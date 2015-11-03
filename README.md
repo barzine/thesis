@@ -42,5 +42,7 @@
   42. Quantile normalisation
   43. Integrating Uhlen and GTEx in some way
 
+5. Other considerations
+example: annotation
 
-5. Conclusions
+6. Conclusions
