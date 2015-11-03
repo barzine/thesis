@@ -1,0 +1,62 @@
+\RequirePackage[12tabu, orthodox]{nag}
+\documentclass(thesis)
+
+\addbibresource{references.bib}
+
+\begin{document}
+
+\hyphenation{%
+  abun-dance
+  be-twe-en
+  chan-ges
+  ri-bo-so-mal
+  samp-ling
+}
+
+\title{Investigating the consistency of gene expression. From high-throughput sequenced transcriptomics to proteomics}
+\subject{This dissertation is submitted for the degree of Doctor of Philosophy}
+\author{ Mitra \second{Parissa} Barzine}
+\publishers{%
+  \includegraphics[width=0.3\textwidth]{Hughes-Hall-coat-of-arms}
+  \\[0.5\baselineskip]
+  Hughes Hall,\\
+  University of Cambridge\\[0.2\baselineskip]
+  EMBL-EBI}
+  
+\lowertitleback{%
+  \centering
+  {\footnotesize Licensed under Creative Commons Attribution (CC BY) 3.0}
+  \\[2mm]
+  \href{http://creativecommons.org/licenses/by/3.0/}{%
+    \raisebox{-0.25em}{\includegraphics[width=1em]{cc}
+      \includegraphics[width=1em]{by}}}}
+      
+      
+\maketitle
+
+\chapterfile{declaration}
+
+\begingroup
+   \hypersetup{linkcolor=thesis@toccolor}
+   \tableofcontents
+   \listoffigures
+   \listoftables
+\endgroup
+
+\chapterfile{summary}
+\chapterfile{acknowledgements}
+\chapterfile{introduction}
+
+\chapterfile{transcriptomics}
+\chapterfile{proteomics}
+\chapterfile{cancer}
+
+\chapterfile{other}
+
+\chapterfile{conclusion}
+
+\chapterfile{appendix}
+
+\printbibliography
+
+\end{document}
