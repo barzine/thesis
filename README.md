@@ -31,8 +31,16 @@
     361. Correlated and un-correlated genes, what is specific to each group
     362. functional groups of genes
     363. Pseudo-gene expresson 
+
+///////
+4. Consistency transcriptomics
+  41. Consistency within cancers
+  42. Consistency of expression between normal and tumor
+/////// Alvis proposition
 4. Methods for integrating independent RNAseq datasets on common set of human tissues
   41. Different distributions in different dataset
   42. Quantile normalisation
   43. Integrating Uhlen and GTEx in some way
+
+
 5. Conclusions
