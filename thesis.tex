@@ -1,10 +1,29 @@
-\RequirePackage[12tabu, orthodox]{nag}
-\documentclass(thesis)
+\RequirePackage{nag}
+\documentclass[a4paper, headinclude, footinclude, BCOR=1cm]{scrbook}
 
-\addbibresource{references.bib}
+\input{config}
+
+\title{Investigating the consistency of gene expression.
+From high-throughput sequenced transcriptomics to proteomics}
+\subject{This dissertation is submitted for the degree of Doctor of Philosophy}
+\author{Mitra \smaller{Parissa} Barzine}
+\publishers{%
+  \includegraphics[width=0.3\textwidth]{HughesHallShield}
+  \\[0.5\baselineskip]
+  Hughes Hall,\\
+  University of Cambridge\\[0.2\baselineskip]
+  EMBL-EBI}
+
+\lowertitleback{%
+  \centering
+  {\footnotesize Licensed under Creative Commons Attribution (CC BY) 3.0}
+  \\[2mm]
+  \href{http://creativecommons.org/licenses/by/3.0/}{%
+    \raisebox{-0.25em}{\includegraphics[width=1em]{cc}
+      \includegraphics[width=1em]{by}}}}
+
 
 \begin{document}
-
 \hyphenation{%
   abun-dance
   be-twe-en
@@ -13,28 +32,9 @@
   samp-ling
 }
 
-\title{Investigating the consistency of gene expression. From high-throughput sequenced transcriptomics to proteomics}
-\subject{This dissertation is submitted for the degree of Doctor of Philosophy}
-\author{ Mitra \second{Parissa} Barzine}
-\publishers{%
-  \includegraphics[width=0.3\textwidth]{Hughes-Hall-coat-of-arms}
-  \\[0.5\baselineskip]
-  Hughes Hall,\\
-  University of Cambridge\\[0.2\baselineskip]
-  EMBL-EBI}
-  
-\lowertitleback{%
-  \centering
-  {\footnotesize Licensed under Creative Commons Attribution (CC BY) 3.0}
-  \\[2mm]
-  \href{http://creativecommons.org/licenses/by/3.0/}{%
-    \raisebox{-0.25em}{\includegraphics[width=1em]{cc}
-      \includegraphics[width=1em]{by}}}}
-      
-      
 \maketitle
 
-\chapterfile{declaration}
+\input{declaration}
 
 \begingroup
    \hypersetup{linkcolor=thesis@toccolor}
@@ -43,20 +43,21 @@
    \listoftables
 \endgroup
 
-\chapterfile{summary}
-\chapterfile{acknowledgements}
-\chapterfile{introduction}
+\input{summary}
+\input{acknowledgements}
+\input{introduction}
 
-\chapterfile{transcriptomics}
-\chapterfile{proteomics}
-\chapterfile{cancer}
+\input{transcriptomics}
+\input{proteomics}
+\input{integration}
+\input{normalisation}
+\input{conclusion}
 
-\chapterfile{other}
+\backmatter
 
-\chapterfile{conclusion}
-
-\chapterfile{appendix}
+\input{appendix}
 
 \printbibliography
 
 \end{document}
+
