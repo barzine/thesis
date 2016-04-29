@@ -1,23 +1,30 @@
+\usepackage{scrhack}
 \usepackage{classicthesis}
+\usepackage{tocbasic}
 \usepackage{csquotes}
 \usepackage{hyperref}
 \usepackage{polyglossia}
-\usepackage[natbib=true, style=authoryear]{biblatex}
+\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix ]{biblatex}
 \usepackage{booktabs}
 \usepackage{relsize}
 \usepackage{setspace}
-\usepackage[multidot]{grffile}
+%\usepackage[multidot]{grffile}
+\usepackage{fontspec}
 \usepackage{comment}
-%%\usepackage{xpatch}
-
+\usepackage{minted}
+\usepackage{xpatch}
+\usepackage{xltxtra}
+%\setmainlanguage[variant=uk]{english}
 \setdefaultlanguage[variant=uk]{english}
 \setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
 \setsansfont[Mapping=tex-text, Numbers=OldStyle]{Droid Sans}
 \setmonofont{Droid Sans Mono}
+\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
+
+\addbibresource{references.bib}
 
 \setstretch{1.1}
 \graphicspath{{gfx/}} %as instructed in classicthesis
-
 
 %% custom macros
 
@@ -25,6 +32,9 @@
 
 \newcommand*\todo[1]{%
     \graffito{\textcolor{red}{TO\ DO:#1}}}
+
+\newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar \todo{#1}}}
+
 
 \newcommand*\gene[1]{\textit{#1}}
 \newcommand*\ko[1]{\textit{#1\textsuperscript{\(-/-\)}}}

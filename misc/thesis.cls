@@ -1,8 +1,7 @@
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesis}
 
-\LoadClass[twoside, titlepage, DIV=8, BCOR=8.5mm, open=right]{scrreprt}
+\LoadClass[twoside, titlepage, DIV=8, BCOR=8.5mm, open=right]{scrbook}
 
 \RequirePackage{fixltx2e}
 \RequirePackage{xltxtra}
@@ -33,7 +32,7 @@
 \RequirePackage[english, iso]{isodate}
 \RequirePackage{xspace}
 \RequirePackage[version=3]{mhchem}
-\RequirePackage{minted}
+% \RequirePackage{minted}
 \RequirePackage[explicit]{titlesec}
 \RequirePackage{scalefnt}
 \RequirePackage{caption}
