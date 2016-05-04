@@ -1,5 +1,5 @@
 \usepackage{scrhack}
-\usepackage{classicthesis}
+\usepackage[dottedtoc]{classicthesis}
 \usepackage{tocbasic}
 \usepackage{csquotes}
 \usepackage{hyperref}
@@ -14,17 +14,69 @@
 \usepackage{minted}
 \usepackage{xpatch}
 \usepackage{xltxtra}
+\usepackage{calc}
+\usepackage{ragged2e}
+\usepackage[font={small},labelfont={bf,sf},format=hang,margin=5pt]{caption}
+\usepackage{verbatim}
+%% \usepackage{xspace} %the original author doesn't recommend it
+
+%% Need to check if everything is really useful:
+%%%%%%%
+%% customisation stollen from Manuel Kuehner template
+\usepackage{marginnote}
+% Custom command fpr the margin notes: \myMarginnote{Your Text}
+% Comment on the \lineskiplimit=-\maxdimen:
+% See http://tex.stackexchange.com/questions/49072/
+% Without it the line spacing of the normal text was changed (ugly).
+%from Manuel Kuehner
+\newcommand{\myMarginnote}[1]{%
+    \marginnote{% needs marginnote package
+        \ifthispageodd{\RaggedRight}{\RaggedLeft}% needs ragged2e package
+        \color{myColorMainB}%
+        \lineskiplimit=-\maxdimen%·
+        \normalfont\sffamily\scriptsize%
+        #1}%
+}
+
+
+%some calculations
+% calc package is needed which is loaded here: 01_Preamble/CommonPackages.tex
+% If you want to understand the calculations visit:
+% http://en.wikibooks.org/wiki/LaTeX/Page_Layout
+\newlength{\myLenghthFootAbstand}
+\setlength{\myLenghthFootAbstand}{\paperheight-1in-\topmargin- \headheight-\headsep-\textheight-\footskip}
+\newlength{\myLenghthTemp}
+\setlength{\myLenghthTemp}{\myLenghthFootAbstand+\baselineskip}
+
+%%%%%%%
+
+
 %\setmainlanguage[variant=uk]{english}
 \setdefaultlanguage[variant=uk]{english}
 \setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
 \setsansfont[Mapping=tex-text, Numbers=OldStyle]{Droid Sans}
 \setmonofont{Droid Sans Mono}
+
+
 \defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
 
 \addbibresource{references.bib}
 
 \setstretch{1.1}
 \graphicspath{{gfx/}} %as instructed in classicthesis
+
+\usepackage{geometry}%% for page layout
+% For debugging: showframe=true to see the layout frames
+\geometry{bottom=30mm,showframe=false,margin=30mm,marginparsep=3mm,marginparwidth=20mm}
+
+
+
+
+
+
+
+
+%%\pagestyle{scrheadings}
 
 %% custom macros
 
@@ -36,10 +88,17 @@
 \newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar \todo{#1}}}
 
 
+\newcommand*\mol[1]{\textnormal{#1}}
 \newcommand*\gene[1]{\textit{#1}}
 \newcommand*\ko[1]{\textit{#1\textsuperscript{\(-/-\)}}}
 \newcommand*\protein[1]{#1}
 \newcommand*\species[1]{\textit{#1}}
 
+\newcommand*\mRNA{\mol{mRNA}}
+\newcommand*\DNA{\mol{DNA}}
+\newcommand*\dataset[1]{\textnormal{#1}}
 
+%%% TOC customisation
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{7}
 
