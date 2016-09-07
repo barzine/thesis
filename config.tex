@@ -1,44 +1,110 @@
 \usepackage{scrhack}
-\usepackage[dottedtoc]{classicthesis}
+\usepackage[dottedtoc,eulerchapternumbers]{classicthesis}
+%\usepackage{arsclassica}
 \usepackage{tocbasic}
-\usepackage{csquotes}
-\usepackage{hyperref}
 \usepackage{polyglossia}
-\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix ]{biblatex}
+\usepackage[english, iso]{isodate}
+\usepackage{csquotes}
+\usepackage{epigraph}
+\usepackage{hyperref}
+\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix]{biblatex}
 \usepackage{booktabs}
 \usepackage{relsize}
 \usepackage{setspace}
 %\usepackage[multidot]{grffile}
 \usepackage{fontspec}
 \usepackage{comment}
+
+\usepackage{amsmath}
+\usepackage{unicode-math}
 \usepackage{minted}
 \usepackage{xpatch}
 \usepackage{xltxtra}
+\usepackage{xcolor}
 \usepackage{calc}
 \usepackage{ragged2e}
 \usepackage[font={small},labelfont={bf,sf},format=hang,margin=5pt]{caption}
 \usepackage{verbatim}
 %% \usepackage{xspace} %the original author doesn't recommend it
 
-%% Need to check if everything is really useful:
-%%%%%%%
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+
+
+\usepackage{tracklang}
+\usepackage{mfirstuc}
+\usepackage{etoolbox}
+\usepackage{xkeyval}
+\usepackage{textcase}
+\usepackage{xfor}
+\usepackage{datatool-base}
+\usepackage{amsgen}
+
+
+\usepackage%[style=long,nolist] %as advised in classicthesis man
+[xindy, toc, nopostdot,style=long,nolist]
+{glossaries} %%hyperref has to be already loaded
+\usepackage[automake,nomain,acronym]{glossaries-extra}
+%\setabbreviationstyle[acronym]{long-short}
+\makeglossaries%
+%\loadglsentries{glossary.tex}
+
+
+\usepackage[nameinlink, noabbrev]{cleveref}
+
+
+\setmainlanguage[variant=uk]{english}
+%\setdefaultlanguage[variant=uk]{english}
+%\setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
+%\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Droid Sans}
+%\setmonofont{Droid Sans Mono}
+
+
+\setmainfont[Ligatures=TeX, Numbers=OldStyle]{TeX Gyre Pagella}
+%%\setmainfont[Ligatures=TeX, Numbers=OldStyle]{Helvetica}
+
+\setsansfont[
+    Ligatures=TeX,
+    UprightFont={* Light},
+    BoldFont={*},
+    ItalicFont={* Light Italic},
+    BoldItalicFont={* Italic},
+    Scale=MatchLowercase
+]{Gill Sans}
+\setmonofont[Scale=MatchLowercase]{WenQuanYi Zen Hei Mono}
+\setmathfont[
+    Extension=.otf,
+    BoldFont=*bold,
+]{xits-math}
+
+
+\setkomafont{title}{\rmfamily\Huge}
+\setkomafont{subject}{\normalfont\normalcolor}
+\isodash{\ensuremath{\cdot}}% Replacement for `‧` = U+‧2027 HYPHENATION POINT
+
+\definecolor{cambridgeblue}{RGB}{163, 193, 173}
+\definecolor{cambridgebluedark}{RGB}{17, 94, 103}
+
+
+%\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
+
+\addbibresource{Bibliography.bib}
+
+\setstretch{1.1}
+\graphicspath{{gfx/}} %as instructed in classicthesis
+
+\usepackage{geometry}%% for page layout
+% For debugging: showframe=true to see the layout frames
+\geometry{bottom=65mm,showframe=false,margin=35mm,marginparsep=3mm,marginparwidth=20mm}
+
+
+
+
+\pagestyle{scrheadings}
+
+%%%%%%
 %% customisation stollen from Manuel Kuehner template
-\usepackage{marginnote}
-% Custom command fpr the margin notes: \myMarginnote{Your Text}
-% Comment on the \lineskiplimit=-\maxdimen:
-% See http://tex.stackexchange.com/questions/49072/
-% Without it the line spacing of the normal text was changed (ugly).
-%from Manuel Kuehner
-\newcommand{\myMarginnote}[1]{%
-    \marginnote{% needs marginnote package
-        \ifthispageodd{\RaggedRight}{\RaggedLeft}% needs ragged2e package
-        \color{myColorMainB}%
-        \lineskiplimit=-\maxdimen%·
-        \normalfont\sffamily\scriptsize%
-        #1}%
-}
-
-
 %some calculations
 % calc package is needed which is loaded here: 01_Preamble/CommonPackages.tex
 % If you want to understand the calculations visit:
@@ -48,45 +114,128 @@
 \newlength{\myLenghthTemp}
 \setlength{\myLenghthTemp}{\myLenghthFootAbstand+\baselineskip}
 
+\clearscrheadfoot%
+% Header
+\ohead{%
+    \headmark%
+    }
+% Left (even page numbers) footer
+\lefoot%
+[% scrplain style (begin)
+    \setlength{\unitlength}{\myLenghthFootAbstand}%
+    \begin{picture}(0,0)%
+        \put(0,-1)%
+        {%
+            \makebox(0,0)[lb]%
+            {%
+                \rule{0.4pt}{\myLenghthTemp}%
+            }%
+        }%
+    \end{picture}\llap{\pagemark~}
+]% scrplain style (end)
+%
+{% scrheadings style (begin)
+    \setlength{\unitlength}{\myLenghthFootAbstand}%
+    \begin{picture}(0,0)%
+        \put(0,-1)%
+        {%
+            \makebox(0,0)[lb]%
+            {%
+                \rule{0.4pt}{\myLenghthTemp}%
+            }%
+        }%
+    \end{picture}\llap{\pagemark~}%
+    }% scrheadings style (end)
+
+% Right (odd page numbers) footer
+\rofoot%
+[% scrplain style (begin)
+    \rlap{~\pagemark}%%
+    \setlength{\unitlength}{\myLenghthFootAbstand}%
+    \begin{picture}(0,0)%
+        \put(0,-1)%
+        {%
+            \makebox(0,0)[lb]%
+            {%
+                \rule{0.4pt}{\myLenghthTemp}%
+            }%
+        }%
+    \end{picture}%
+    ]% scrplain style (end)
+    %
+{% scrplain style (begin)
+    \rlap{~\pagemark}%%
+    \setlength{\unitlength}{\myLenghthFootAbstand}%
+    \begin{picture}(0,0)%
+        \put(0,-1)%
+        {%
+            \makebox(0,0)[lb]%
+            {%
+                \rule{0.4pt}{\myLenghthTemp}%
+            }%
+        }%
+    \end{picture}%
+    }% scrplain style (end)
+
 %%%%%%%
 
 
-%\setmainlanguage[variant=uk]{english}
-\setdefaultlanguage[variant=uk]{english}
-\setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
-\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Droid Sans}
-\setmonofont{Droid Sans Mono}
+%%% More layout definitions
+    \definecolor{primary}{HTML}{429EB6}
+    \definecolor{secondary}{HTML}{DE8950}
+    \definecolor{tertiary}{HTML}{4DB966}
+    \definecolor{quarternary}{HTML}{F3B5FB}
+    \definecolor{quinary}{HTML}{E7BE05}
+    \newcommand*\primaryname{blue}
+    \newcommand*\secondaryname{orange}
+    \newcommand*\tertiaryname{green}
+    \newcommand*\quarternaryname{purple}
+    \newcommand*\quinaryname{yellow}
+
+    \colorlet{thesis@toccolor}{black}
+    \colorlet{thesis@linkcolor}{black!70}
+
+    \definecolor{codenormal}{HTML}{404040}
+    \AtBeginEnvironment{minted}{\color{codenormal}}
+    \usemintedstyle{klmrthesis}
+
+    \hypersetup{%
+        hypertexnames=false,
+        linktoc=all,
+        colorlinks,
+        citecolor=thesis@linkcolor,
+        linkcolor=thesis@linkcolor,
+        filecolor=thesis@linkcolor,
+        urlcolor=thesis@linkcolor
+    }
 
 
-\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
-
-\addbibresource{references.bib}
-
-\setstretch{1.1}
-\graphicspath{{gfx/}} %as instructed in classicthesis
-
-\usepackage{geometry}%% for page layout
-% For debugging: showframe=true to see the layout frames
-\geometry{bottom=30mm,showframe=false,margin=30mm,marginparsep=3mm,marginparwidth=20mm}
-
-
-
-
-
-
-
-
-%%\pagestyle{scrheadings}
-
-%% custom macros
-
+%%%%%%%
+%%%% custom macros
 \newcommand*\captitle[1]{\textbf{#1}}
 
+
+%if use of classicthesis
 \newcommand*\todo[1]{%
     \graffito{\textcolor{red}{TO\ DO:#1}}}
 
-\newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar \todo{#1}}}
+%if no use of classicthesis but \usepackage{scrpage2} instead
+%\newcommand*\todo[1]{%
+%    \comment{TO\ DO:#1}}
 
+\newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar\todo{#1}}}
+
+\newcommand*\TK[1]{
+    \Large{\textcolor{blue}{[TK:\ #1]}}}
+
+\newcommand*\Rough[1]{
+    Speak about:
+
+    \textsl{\textcolor{gray}{#1}}}
+
+%%%% shortcuts
+\newcommand*\myPlace{Cambridge (UK)}
+\newcommand*\myDate{28 July 2016}
 
 \newcommand*\mol[1]{\textnormal{#1}}
 \newcommand*\gene[1]{\textit{#1}}
@@ -97,6 +246,10 @@
 \newcommand*\mRNA{\mol{mRNA}}
 \newcommand*\DNA{\mol{DNA}}
 \newcommand*\dataset[1]{\textnormal{#1}}
+
+
+
+\newcommand*\myName{Mitra Parissa Barzine}
 
 %%% TOC customisation
 \setcounter{secnumdepth}{5}

@@ -1,7 +1,19 @@
 \RequirePackage[l2tabu,orthodox]{nag}
-\documentclass[a4paper,headinclude,footinclude,BCOR=1cm,parskip,numbers=noendperiod]{scrbook}
+\documentclass[a4paper
+,headinclude
+,footinclude
+,BCOR=1cm
+,parskip
+,numbers=noendperiod
+,twoside=true
+,headings=big
+]{scrbook}
+\KOMAoptions{headsepline = false, footsepline = false}
 
-\input{config}
+%\usepackage{scrpage2}
+\input{config.tex}
+\input{glossary.tex}
+
 
 \title{Investigating the consistency of gene expression. From transcriptomic to proteomic expression.}
 \subject{This dissertation is submitted for the degree of Doctor of Philosophy}
@@ -33,30 +45,59 @@
 
 \maketitle
 
-\input{declaration}
 
+\pagestyle{scrheadings}
+%\frontmatter\
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\input{disclaimer.tex}
+\input{summary.tex}
+\input{acknowledgements.tex}
+
+
+%% problem with page numbering fixed with:
+%% http://tex.stackexchange.com/a/125090/102519
 \begingroup
-   \hypersetup{linkcolor=thesis@toccolor}
-   \tableofcontents
-   \listoffigures
-   \listoftables
+    \hypersetup{linkcolor=thesis@toccolor}
+    \tableofcontents
+    \printglossaries%
+    %\printabbreviations%
+    \cleardoublepage\
+    \phantomsection\
+    \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ \pagebreak \thispagestyle{empty}
+    \listoffigures \raggedbottom\ \pagebreak \thispagestyle{empty}
+    \cleardoublepage\
+    \phantomsection\
+    \addcontentsline{toc}{chapter}{\listtablename} \raggedbottom\ \pagebreak \thispagestyle{empty}
+    \listoftables \raggedbottom\ \pagebreak \thispagestyle{empty}
+    %%\cleardoublepage\
 \endgroup
 
-\input{summary}
-\input{acknowledgements}
-\input{introduction}
 
-\input{transcriptomics}
-\input{proteomics}
-\input{integration}
-\input{normalisation}
-\input{conclusion}
+%%%%%%
+%%First use: \acrlong{svm}. Second use: \acrshort{svm}.
+%%Tata: \acrshort{laser}. Second use: \acrlong{laser} et blabla.
+%%%%%%
 
-\backmatter
 
-\input{appendix}
+%\mainmatter\
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{introduction.tex}
+\input{transcriptomics.tex}
+\input{proteomics.tex}
+\input{integration.tex}
+\input{normalisation.tex}
+\input{conclusion.tex}
 
-\printbibliography
+%\backmatter\
+
+\input{appendix.tex}
+
+%\printglossaries\
+\printbibliography\
+
 
 \end{document}
 
