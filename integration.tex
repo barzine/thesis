@@ -118,7 +118,7 @@ with the Gtex and Uhlén datasets (see figures~\ref{VennTissuePandeyGtexUhlen}
 and~\ref{VennTissueKusterGtexUhlen}), I had focused the study on
 the \dataset{Pandey} dataset. Indeed, we managed to quantify the biggest number
 of proteins in this later dataset: 10272 proteins across 24 samples for
-\dataset{Pandey} versus 7223 across 24 samples for \dataset{Kuster}~\footnote{Even
+\dataset{Pandey} versus 7223 across 24 samples for \dataset{Kuster}\footnote{Even
 if the number of samples is the same for the \dataset{Pandey} and
 the \dataset{Kuster} datasets, this is purely fortuitous.}.
 This has an increased importance as the study goes beyond the correlation of
@@ -176,28 +176,33 @@ to identify and quantify a given protein, three different unique peptides
 
 After discussions where we were comparing the different quantification algorithms
 and methods used for \Rnaseq\ data, we decided to try a new quantification
-method~\footnote{Inspired by algorithms as Cufflinks}:
-the amount of proteins would take in account the unique peptides but also the
-peptides that could be attributed to several proteins.
-The ratio of these \emph{shared} peptides for each protein
-is determined based on the amount of the other identified peptides for that protein.
+method\footnote{Inspired by algorithms as Cufflinks} for the proteomics:
+the amount of proteins would still take in account the \emph{unique} peptides,
+but also the peptides that could be attributed to several proteins.
+These \emph{shared} peptides are then probabilistically assigned to the proteins
+they can be mapped.
 
 Both quantification methods have been implemented by James Wright.
 
-In the context of this work, he has quantifies about 6,400 proteins with the standard method.
-The new method allowed him to quantify a bigger set of proteins: about 12,300 proteins.
+In the context of this work, he has quantifies about 6,400 proteins with
+the standard method.The new method allowed him to quantify a bigger set of
+proteins: about 12,300 proteins.
 
 
-I have performed the analyses presented in this chapter on both sets. As the high-level
-results and conclusions are remaining the same, hereafter all the presented figures
-and discussions are referring to the new quantification method. For comparison
-purposes, I have produced (following the same analyses) some figures and tables
-from the data quantified by the first method. Those can be found in the
-appendices. To ease the comparison, their references are given in blue
-(and in brackets) in the caption of the main figures.
+I have performed the analyses presented in this chapter on both sets. As
+the high-level results and conclusions are remaining the same,
+the figures and discussions hereafter are based on
+the new quantification method. For comparison purposes,
+I have produced (following the same analyses and implementation)
+some figures and tables from the data quantified by the first method.
+Those can be found in the appendices. To ease the comparison, their references
+are given in blue (and in brackets) in the caption of the main figures.
 
-\subsection{Independent transcriptomic and proteomic studies of normal human tissues
-have good correlation}
+\subsection{Expressed or not expressed}
+
+
+\subsection{Independent transcriptomic and proteomic studies of normal
+human tissues have good correlation}
 
 \fixme{add figure 10 and 11 from 3rd TAC?}
 
