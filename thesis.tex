@@ -4,13 +4,16 @@
 ,footinclude
 ,BCOR=1cm
 ,parskip
+%,open=right
+%,listof=totoc
+,pdfspacing
 ,numbers=noendperiod
 ,twoside=true
 ,headings=big
 ]{scrbook}
 \KOMAoptions{headsepline = false, footsepline = false}
 
-%\usepackage{scrpage2}
+\usepackage{scrpage2}
 \input{config.tex}
 \input{glossary.tex}
 
@@ -33,6 +36,9 @@
     \raisebox{-0.25em}{\includegraphics[width=1em]{cc}
       \includegraphics[width=1em]{by}}}}
 
+%\addtokomafont{section}{\Large}
+%\addtokomafont{subsection}{\large}
+
 
 \begin{document}
 \hyphenation{%
@@ -54,24 +60,21 @@
 \input{disclaimer.tex}
 \input{summary.tex}
 \input{acknowledgements.tex}
-
+\clearpage
 
 %% problem with page numbering fixed with:
 %% http://tex.stackexchange.com/a/125090/102519
 \begingroup
     \hypersetup{linkcolor=thesis@toccolor}
-    \tableofcontents
-    \printglossaries%
+    \tableofcontents \clearpage \thispagestyle{empty}
+    %\printglossaries%
     %\printabbreviations%
-    \cleardoublepage\
-    \phantomsection\
-    \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ \pagebreak \thispagestyle{empty}
-    \listoffigures \raggedbottom\ \pagebreak \thispagestyle{empty}
-    \cleardoublepage\
-    \phantomsection\
-    \addcontentsline{toc}{chapter}{\listtablename} \raggedbottom\ \pagebreak \thispagestyle{empty}
-    \listoftables \raggedbottom\ \pagebreak \thispagestyle{empty}
-    %%\cleardoublepage\
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ %\clearpage \thispagestyle{empty}
+    \listoffigures \raggedbottom\ \clearpage \thispagestyle{empty}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\listtablename} \raggedbottom\ %\clearpage
+    \listoftables \raggedbottom\ \clearpage \thispagestyle{empty}
 \endgroup
 
 
@@ -79,7 +82,6 @@
 %%First use: \acrlong{svm}. Second use: \acrshort{svm}.
 %%Tata: \acrshort{laser}. Second use: \acrlong{laser} et blabla.
 %%%%%%
-
 
 %\mainmatter\
 \pagenumbering{arabic}

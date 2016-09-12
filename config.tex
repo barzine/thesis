@@ -3,21 +3,25 @@
 %\usepackage{arsclassica}
 \usepackage{tocbasic}
 \usepackage{polyglossia}
+\setdefaultlanguage[variant=uk]{english}
+%\setmainlanguage[variant=uk]{english}
 \usepackage[english, iso]{isodate}
-\usepackage{csquotes}
-\usepackage{epigraph}
 \usepackage{hyperref}
 \usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix]{biblatex}
+\usepackage{minted}
+\usepackage{csquotes}
+\usepackage{epigraph}
 \usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{multirow}
+%\usepackage[table,xcdraw]{xcolor}
 \usepackage{relsize}
 \usepackage{setspace}
 %\usepackage[multidot]{grffile}
 \usepackage{fontspec}
 \usepackage{comment}
-
 \usepackage{amsmath}
 \usepackage{unicode-math}
-\usepackage{minted}
 \usepackage{xpatch}
 \usepackage{xltxtra}
 \usepackage{xcolor}
@@ -25,7 +29,7 @@
 \usepackage{ragged2e}
 \usepackage[font={small},labelfont={bf,sf},format=hang,margin=5pt]{caption}
 \usepackage{verbatim}
-%% \usepackage{xspace} %the original author doesn't recommend it
+%\usepackage{xspace} %the original author doesn't recommend it
 
 
 \usepackage{pgfplots}
@@ -54,9 +58,7 @@
 \usepackage[nameinlink, noabbrev]{cleveref}
 
 
-\setmainlanguage[variant=uk]{english}
-%\setdefaultlanguage[variant=uk]{english}
-%\setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
+\setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
 %\setsansfont[Mapping=tex-text, Numbers=OldStyle]{Droid Sans}
 %\setmonofont{Droid Sans Mono}
 
@@ -79,12 +81,25 @@
 ]{xits-math}
 
 
-\setkomafont{title}{\rmfamily\Huge}
-\setkomafont{subject}{\normalfont\normalcolor}
+%%%% Check with classicthesis manual to redifine the chapter and sections formats
+
+%\titleformat{\chapter}[display]%
+%{\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
+%{\raggedright\spacedallcaps}[\Huge\vspace*{.8\baselineskip}\titlerule]% 
+% sections
+%\titleformat{\section}
+%{\relax}{\textbf{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
+% subsections
+%\titleformat{\subsection}{\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize}
+
+
+
+%\setkomafont{title}{\rmfamily\Huge}
+%\setkomafont{subject}{\normalfont\normalcolor}
 \isodash{\ensuremath{\cdot}}% Replacement for `‧` = U+‧2027 HYPHENATION POINT
 
-\definecolor{cambridgeblue}{RGB}{163, 193, 173}
-\definecolor{cambridgebluedark}{RGB}{17, 94, 103}
+%\definecolor{cambridgeblue}{RGB}{163, 193, 173}
+%\definecolor{cambridgebluedark}{RGB}{17, 94, 103}
 
 
 %\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
@@ -103,12 +118,12 @@
 
 \pagestyle{scrheadings}
 
-%%%%%%
-%% customisation stollen from Manuel Kuehner template
-%some calculations
-% calc package is needed which is loaded here: 01_Preamble/CommonPackages.tex
-% If you want to understand the calculations visit:
-% http://en.wikibooks.org/wiki/LaTeX/Page_Layout
+%%%%%%%
+%%% customisation stollen from Manuel Kuehner template
+%%some calculations
+%% calc package is needed which is loaded here: 01_Preamble/CommonPackages.tex
+%% If you want to understand the calculations visit:
+%% http://en.wikibooks.org/wiki/LaTeX/Page_Layout
 \newlength{\myLenghthFootAbstand}
 \setlength{\myLenghthFootAbstand}{\paperheight-1in-\topmargin- \headheight-\headsep-\textheight-\footskip}
 \newlength{\myLenghthTemp}
@@ -147,7 +162,7 @@
     \end{picture}\llap{\pagemark~}%
     }% scrheadings style (end)
 
-% Right (odd page numbers) footer
+%% Right (odd page numbers) footer
 \rofoot%
 [% scrplain style (begin)
     \rlap{~\pagemark}%%
@@ -177,37 +192,42 @@
     \end{picture}%
     }% scrplain style (end)
 
+
+
+
+
+\setlength{\headheight}{1.1\baselineskip}
 %%%%%%%
 
 
-%%% More layout definitions
-    \definecolor{primary}{HTML}{429EB6}
-    \definecolor{secondary}{HTML}{DE8950}
-    \definecolor{tertiary}{HTML}{4DB966}
-    \definecolor{quarternary}{HTML}{F3B5FB}
-    \definecolor{quinary}{HTML}{E7BE05}
-    \newcommand*\primaryname{blue}
-    \newcommand*\secondaryname{orange}
-    \newcommand*\tertiaryname{green}
-    \newcommand*\quarternaryname{purple}
-    \newcommand*\quinaryname{yellow}
+% %%% More layout definitions
+%    \definecolor{primary}{HTML}{429EB6}
+%    \definecolor{secondary}{HTML}{DE8950}
+%    \definecolor{tertiary}{HTML}{4DB966}
+%    \definecolor{quarternary}{HTML}{F3B5FB}
+%    \definecolor{quinary}{HTML}{E7BE05}
+%    \newcommand*\primaryname{blue}
+%    \newcommand*\secondaryname{orange}
+%    \newcommand*\tertiaryname{green}
+%    \newcommand*\quarternaryname{purple}
+%    \newcommand*\quinaryname{yellow}
+%
+%    \colorlet{thesis@toccolor}{black}
+%    \colorlet{thesis@linkcolor}{black!70}
+%
+%    \definecolor{codenormal}{HTML}{404040}
+%    \AtBeginEnvironment{minted}{\color{codenormal}}
+%    \usemintedstyle{klmrthesis}
 
-    \colorlet{thesis@toccolor}{black}
-    \colorlet{thesis@linkcolor}{black!70}
-
-    \definecolor{codenormal}{HTML}{404040}
-    \AtBeginEnvironment{minted}{\color{codenormal}}
-    \usemintedstyle{klmrthesis}
-
-    \hypersetup{%
-        hypertexnames=false,
-        linktoc=all,
-        colorlinks,
-        citecolor=thesis@linkcolor,
-        linkcolor=thesis@linkcolor,
-        filecolor=thesis@linkcolor,
-        urlcolor=thesis@linkcolor
-    }
+%   \hypersetup{%
+%        hypertexnames=false,
+%        linktoc=all,
+%        colorlinks,
+%        citecolor=thesis@linkcolor,
+%        linkcolor=thesis@linkcolor,
+%        filecolor=thesis@linkcolor,
+%        urlcolor=thesis@linkcolor
+%    }
 
 
 %%%%%%%
@@ -226,11 +246,10 @@
 \newcommand{\fixme}[1]{{\let\marginpar\oldmarginpar\todo{#1}}}
 
 \newcommand*\TK[1]{
-    \Large{\textcolor{blue}{[TK:\ #1]}}}
+    \textcolor{blue}{[TK:\ #1]}}
 
 \newcommand*\Rough[1]{
     Speak about:
-
     \textsl{\textcolor{gray}{#1}}}
 
 %%%% shortcuts
@@ -244,9 +263,10 @@
 \newcommand*\species[1]{\textit{#1}}
 
 \newcommand*\mRNA{\mol{mRNA}}
+\newcommand*\mRNAs{\mol{mRNAs}}
 \newcommand*\DNA{\mol{DNA}}
 \newcommand*\dataset[1]{\textnormal{#1}}
-\newcommand*\etal{~\textit{et al.}}
+\newcommand*\etal{~\textit{et al.~}}
 \newcommand*\Rnaseq{RNA-Seq}
 
 \newcommand*\myName{Mitra Parissa Barzine}
@@ -254,4 +274,12 @@
 %%% TOC customisation
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{7}
+
+
+%\titleformat*{\section}{\LARGE\bfseries}
+%\titleformat*{\subsection}{\Large\bfseries}
+%\titleformat*{\subsubsection}{\large\bfseries}
+%\titleformat*{\paragraph}{\large\bfseries}
+%\titleformat*{\subparagraph}{\large\bfseries}
+
 
