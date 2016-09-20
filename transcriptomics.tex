@@ -5,17 +5,94 @@ As previously stated in the introduction, while I started this project,
 there wasn't any study that was investigating in-depth the reproducibility of
 transcriptomics.
 
-\begin{comment}
-Should the following go to the intro?
-\end{comment}
-
 However, in August 2014 a paper comparing different preparation methods,
 sequencing technologies operated in different laboratories
 on samples from the same biological source concludes that while absolute
 measurements are not consistent, the relative expression is highly consistent
-(95\% pearson correlation?)
+(95\% Pearson correlation?)
 
 
 example: \cite{schwanhausserglobal:2011}
+
+
+
+\section{Available studies}
+\label{sec:Trans_AvailableStudies}
+Une vraie table~\ref{Trans5DF}
+
+\begin{sidewaystable}{}
+    \centering
+    \caption{\label{Trans5DF}Technical description of the 5 transcriptomic dataset (\Rnaseq)
+     used for this study}
+     \begin{tabular}{@{}ccccccccc@{}}
+         \toprule
+         \multicolumn{1}{c|}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}
+                 ArrayExpress ID \\ or Consortium name
+             \end{tabular}}} &
+         \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}
+                Library\\ preparation
+             \end{tabular}} &
+         \multicolumn{2}{c|}{Sequencing} &
+         \multicolumn{2}{c|}{Replicates} &
+         \multicolumn{1}{c|}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}
+                     Tissue\\ number
+                 \end{tabular}}} &
+         \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}
+         Multi-sampling \\ from the same\\ individual\end{tabular}} \\
+         \cmidrule(lr){2-7}
+         \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}
+             Whole\\  RNA\end{tabular}} &
+             \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}
+                 PolyA\\ selected\end{tabular}} &
+                 \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}
+                     Single\\ end\end{tabular}} &
+                     \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}
+                     Paired\\ end\end{tabular}} & \multicolumn{1}{c|}{
+                         Biological} & \multicolumn{1}{c|}{Technical} &
+                     \multicolumn{1}{c|}{} &  \\ \midrule
+             E-MTAB-305 & Y &  & Y &  &  &  & 11 &  \\
+             E-GEOD-303522 (VT) &  & Y & Y &  & Y &  & 8 &  \\
+             \begin{tabular}[c]{@{}c@{}}E-MTAB-513,(IBM: Illumina\\
+             Body Map)\end{tabular} &  & Y & Y & Y &  & (Y) & 16 &  \\
+                 E-MTAB-28363 &  & Y &  & Y & Y & Y & 27 &  \\
+                 GTEX (v1.4) 4 &  & Y &  & Y & Y &  & 54 & Y \\ \bottomrule
+    \end{tabular}
+\end{sidewaystable}
+
+
+\section{Consistency of processing methodology}
+\label{sec:Trans_consistentMethodo}
+
+    \subsection{Reuse of processed data issues}
+    \label{sec:Trans_reuseOfData}
+
+    \subsection{Genome build and annotation impact}
+    \label{sec:Trans_AnnotImpact}
+
+\section{Results}
+\label{sec:Trans_Results}
+
+    \subsection{Reproducibility of expression profile at tissue level}
+    \label{sec:Trans_ReproExpresTissue}
+
+        \subsubsection{Correlation}
+        \label{sec:Trans_Tissue_Corr}
+        \subsubsection{Clustering}
+        \label{sec:Trans_Tissue_cluster}
+
+    \subsection{Reproducibility of expression profile at gene level}
+    \label{sec:Trans_ReproExpresGene}
+
+    \subsection{Tissue specific,housekeeping genes and other categories}
+    \label{sec:Trans_TissueSpeAndHK}
+
+    \subsection{Curated sets}
+    \label{sec:Trans_curatedSets}
+
+\section{Discussion}
+\label{sec:Trans_discussion}
+
+\section{Conclusion}
+\label{sec:Trans_conclusion}
 
 

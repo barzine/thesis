@@ -67,9 +67,10 @@
 \begingroup
     \hypersetup{linkcolor=thesis@toccolor}
     \tableofcontents \clearpage \thispagestyle{empty}
-    %\printglossaries%
-    %\printabbreviations%
-    \phantomsection
+    %\printglossaries \clearpage
+    %\printglossary[type=\acronymtype]
+    \printglossary[type=\acronymtype] \raggedbottom\
+    %\phantomsection
     \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ %\clearpage \thispagestyle{empty}
     \listoffigures \raggedbottom\ \clearpage \thispagestyle{empty}
     \phantomsection

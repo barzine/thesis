@@ -35,49 +35,33 @@ protein effectors ==\textgreater phenotype
 \TK{Assumption mRNA and proteins : highly correlated [find references]}
 
 
-\section{Capturing the expression}
-\subsection{Transcriptomics}
+\section{Capturing the expression in the laboratory}
+\subsection{Transcriptomics Studies}
+    \subsubsection{Main technologies}
+    \subsubsection{A typical sequencing workflow}
 \subsection{Proteomics}
+    \subsubsection{Main technologies}
+    \subsubsection{Mass sprectrometry}
+\subsection{Co-studies on Transcriptomics and Proteomics in the literature}
 
-\section{Problem of integrating independent datasets ====> GXA}
+\section{Big studies, big data and Reproducibility}
+    \subsection{Available big high-throughput studies in Human}
+    \subsection{Reproducibility issues}
+        \begin{itemize}
+            \item{Different samples}
+            \item{Technology: wet lab but also software: Rupgrade, ....}
+            \item{missing meta-data}
+        \end{itemize}
+    \subsection{Main concerns}
+        \subsubsection{Detection}
+        \subsubsection{Quantification}
+    \subsection{Consistency through biological layers}
+    \subsection{EBI Expression Atlas or how integrating independent
+    datasets }
 
-\subsection{Consistency issues}
+\section{Aims of the thesis}
 
-\subsection{Reproducibility issues : i.e. R upgrading, blablabla}
-On fait un exemple stupide.
-
-
-
-\begin{table}
-    \begin{tabular}{@{}llr@{}} \toprule
-        \multicolumn{2}{c}{Item} \\ \cmidrule(r){1-2}
-        Animal & Description & Price (\$)\\ \midrule
-        Gnat & per gram & 13.65 \\
-        & each & 0.01 \\
-        Gnu & stuffed & 92.50 \\
-        Emu & stuffed & 33.33 \\
-        Armadillo & frozen & 8.99 \\ \bottomrule
-    \end{tabular}
-\end{table}
+TBC
 
 
-
-et un vrai tableau: \ref{tabDesTrans5DF}
-
-\begin{sidewaystable}{}
-    \centering
-    \caption{Technical description of the 5 transcriptomic dataset (\Rnaseq) used
-    for this study}
-    \label{tabDesTrans5DF}
-    \begin{tabular}{@{}ccccccccc@{}}
-        \toprule
-        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}ArrayExpress ID \\ or Consortium name\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}Library\\ preparation\end{tabular}} & \multicolumn{2}{c}{Sequencing} & \multicolumn{2}{c}{Replicates} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Tissue\\ number\end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Multi-sampling \\from the same individual\end{tabular}} \\ \cmidrule(lr){2-7}
-            & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Whole\\ RNA\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}PolyA\\ selected\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Single\\end\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Paire\\end\end{tabular}} &  \multicolumn{1}{c|}{Biological} & \multicolumn{1}{c|}{Technical} &  &  \\ \midrule
-                E-MTAB-305 & Y &  & Y &  &  &  & 11 &  \\
-                E-GEOD-303522 (VT) &  & Y & Y &  & Y &  & 8 &  \\
-                \begin{tabular}[c]{@{}c@{}}E-MTAB-513,(IBM: Illumina\\ Body Map)\end{tabular} &  & Y & Y & Y &  & (Y) & 16 &  \\
-                E-MTAB-28363 &  & Y &  & Y & Y & Y & 27 &  \\
-                 GTEX (v1.4) 4 &  & Y &  & Y & Y &  & 54 & Y \\ \bottomrule
-    \end{tabular}
-\end{sidewaystable}
 

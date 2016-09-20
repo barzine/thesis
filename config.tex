@@ -50,6 +50,7 @@
 [xindy, toc, nopostdot,style=long,nolist]
 {glossaries} %%hyperref has to be already loaded
 \usepackage[automake,nomain,acronym]{glossaries-extra}
+\setglossarystyle{longheader}
 %\setabbreviationstyle[acronym]{long-short}
 \makeglossaries%
 %\loadglsentries{glossary.tex}
@@ -85,7 +86,7 @@
 
 %\titleformat{\chapter}[display]%
 %{\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
-%{\raggedright\spacedallcaps}[\Huge\vspace*{.8\baselineskip}\titlerule]% 
+%{\raggedright\spacedallcaps}[\Huge\vspace*{.8\baselineskip}\titlerule]%
 % sections
 %\titleformat{\section}
 %{\relax}{\textbf{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
@@ -268,6 +269,9 @@
 \newcommand*\dataset[1]{\textnormal{#1}}
 \newcommand*\etal{~\textit{et al.~}}
 \newcommand*\Rnaseq{RNA-Seq}
+
+\newcommand*\paper[1]{\emph{#1}}
+
 
 \newcommand*\myName{Mitra Parissa Barzine}
 
