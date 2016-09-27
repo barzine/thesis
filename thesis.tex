@@ -10,6 +10,7 @@
 ,numbers=noendperiod
 ,twoside=true
 ,headings=big
+,bibliography=totoc
 ]{scrbook}
 \KOMAoptions{headsepline = false, footsepline = false}
 
@@ -18,7 +19,7 @@
 \input{glossary.tex}
 
 
-\title{Investigating the consistency of gene expression. From transcriptomic to proteomic expression.}
+\title{Investigating the gene expression in Human: from transcriptomic to proteomic.}
 \subject{This dissertation is submitted for the degree of Doctor of Philosophy}
 \author{Mitra Parissa Barzine}
 \publishers{%
@@ -69,7 +70,7 @@
     \tableofcontents \clearpage \thispagestyle{empty}
     %\printglossaries \clearpage
     %\printglossary[type=\acronymtype]
-    \printglossary[type=\acronymtype] \raggedbottom\
+    \printglossary[title=List of Terms and Abbreviations,toctitle=List of Terms and Abbreviations,type=\acronymtype] \raggedbottom\
     %\phantomsection
     \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ %\clearpage \thispagestyle{empty}
     \listoffigures \raggedbottom\ \clearpage \thispagestyle{empty}
@@ -95,11 +96,28 @@
 \input{conclusion.tex}
 
 %\backmatter\
+\appendix\
+%\input{appendix.tex}
 
-\input{appendix.tex}
+\clearpage
+\phantomsection\
+\addcontentsline{toc}{part}{APPENDIX}
+\part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}
+\label{sec:appendix}
+\renewcommand\thechapter{\Alph{chapter}}
+\begingroup
+\cleardoublepage\
+\input{app/protNoTrans}
+
+\endgroup
+
+
+
+
+
+
 
 %\printglossaries\
-\printbibliography\
 
 
 \end{document}

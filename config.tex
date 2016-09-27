@@ -7,17 +7,19 @@
 %\setmainlanguage[variant=uk]{english}
 \usepackage[english, iso]{isodate}
 \usepackage{hyperref}
-\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix]{biblatex}
+\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex}
 \usepackage{minted}
 \usepackage{csquotes}
 \usepackage{epigraph}
-\usepackage{booktabs}
+\usepackage{booktabs,dcolumn}
 \usepackage{rotating}
 \usepackage{multirow}
 %\usepackage[table,xcdraw]{xcolor}
 \usepackage{relsize}
 \usepackage{setspace}
 %\usepackage[multidot]{grffile}
+\usepackage{marginnote}
+\usepackage{float}
 \usepackage{fontspec}
 \usepackage{comment}
 \usepackage{amsmath}
@@ -28,13 +30,16 @@
 \usepackage{calc}
 \usepackage{ragged2e}
 \usepackage[font={small},labelfont={bf,sf},format=hang,margin=5pt]{caption}
+\usepackage{subcaption}
+
 \usepackage{verbatim}
 %\usepackage{xspace} %the original author doesn't recommend it
 
-
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.13}
-
+\usepackage{expdlist}
+\usepackage{pdflscape}
+\usepackage{longtable}
 
 \usepackage{tracklang}
 \usepackage{mfirstuc}
@@ -234,11 +239,11 @@
 %%%%%%%
 %%%% custom macros
 \newcommand*\captitle[1]{\textbf{#1}}
-
+\setkomafont{caption}{\bfseries\sffamily}
 
 %if use of classicthesis
 \newcommand*\todo[1]{%
-    \graffito{\textcolor{red}{TO\ DO:#1}}}
+    \graffito{\textcolor{red}{TO\ DO:~#1}}}
 
 %if no use of classicthesis but \usepackage{scrpage2} instead
 %\newcommand*\todo[1]{%
@@ -263,15 +268,18 @@
 \newcommand*\protein[1]{#1}
 \newcommand*\species[1]{\textit{#1}}
 
-\newcommand*\mRNA{\mol{mRNA}}
-\newcommand*\mRNAs{\mol{mRNAs}}
+%\newcommand*\mRNA{\mol{mRNA}}
+%\newcommand*\mRNAs{\mol{mRNAs}}
+\newcommand*\mRNA{\gls{mRNA}}
+\newcommand*\mRNAs{\glspl{mRNA}}
+
 \newcommand*\DNA{\mol{DNA}}
 \newcommand*\dataset[1]{\textnormal{#1}}
 \newcommand*\etal{~\textit{et al.~}}
 \newcommand*\Rnaseq{RNA-Seq}
 
 \newcommand*\paper[1]{\emph{#1}}
-
+\newcommand*\subcap[1]{\small{#1}}
 
 \newcommand*\myName{Mitra Parissa Barzine}
 
