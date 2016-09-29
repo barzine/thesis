@@ -29,8 +29,12 @@
 \usepackage{xcolor}
 \usepackage{calc}
 \usepackage{ragged2e}
-\usepackage[font={small},labelfont={bf,sf},format=hang,margin=5pt]{caption}
+\usepackage[font={small},format=hang,labelfont={bf,sf},textfont=normal,up,margin=5pt]{caption}
+%format=hang
+%\usepackage[font=small,format=plain,labelfont=bf,up,textfont=normal,up,justification=justified,singlelinecheck=false,margin=5pt]{caption}
 \usepackage{subcaption}
+\usepackage{xr} %for cross reference between files
+
 
 \usepackage{verbatim}
 %\usepackage{xspace} %the original author doesn't recommend it
@@ -152,7 +156,8 @@
                 \rule{0.4pt}{\myLenghthTemp}%
             }%
         }%
-    \end{picture}\llap{\pagemark~}
+    \end{picture}
+    \llap{\pagemark~}
 ]% scrplain style (end)
 %
 {% scrheadings style (begin)
@@ -165,7 +170,8 @@
                 \rule{0.4pt}{\myLenghthTemp}%
             }%
         }%
-    \end{picture}\llap{\pagemark~}%
+    \end{picture}
+    \llap{\pagemark~}%
     }% scrheadings style (end)
 
 %% Right (odd page numbers) footer

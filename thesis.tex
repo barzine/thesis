@@ -50,13 +50,12 @@
   samp-ling
 }
 
+\pagenumbering{roman}
+\setcounter{page}{1}
 \maketitle
-
 
 \pagestyle{scrheadings}
 %\frontmatter\
-\pagenumbering{roman}
-\setcounter{page}{1}
 
 \input{disclaimer.tex}
 \input{summary.tex}
@@ -77,6 +76,7 @@
     \phantomsection
     \addcontentsline{toc}{chapter}{\listtablename} \raggedbottom\ %\clearpage
     \listoftables \raggedbottom\ \clearpage \thispagestyle{empty}
+    \cleardoublepage
 \endgroup
 
 
@@ -88,6 +88,7 @@
 %\mainmatter\
 \pagenumbering{arabic}
 \setcounter{page}{1}
+\setcounter{table}{0}
 \input{introduction.tex}
 \input{transcriptomics.tex}
 \input{proteomics.tex}
@@ -99,21 +100,20 @@
 \appendix\
 %\input{appendix.tex}
 
-\clearpage
-\phantomsection\
-\addcontentsline{toc}{part}{APPENDIX}
-\part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}
-\label{sec:appendix}
-\renewcommand\thechapter{\Alph{chapter}}
-\begingroup
-\cleardoublepage\
+ \phantomsection\
+ \addcontentsline{toc}{part}{APPENDIX}
+ \part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}
+ \label{sec:appendix}
+ \renewcommand\thechapter{\Alph{chapter}}
+ \begingroup
+
+
+
 \input{app/protNoTrans}
 
+
+
 \endgroup
-
-
-
-
 
 
 
