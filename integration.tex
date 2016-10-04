@@ -74,7 +74,7 @@ what makes a heart a heart would overcome most of the technical variability.
 
 In fact, here, even though I have only access to independent data, the average
 Pearson correlation per tissue is above 0.5
-[min: 0.45 (Oesophagus); max: 0.666 (Liver)].
+[min: 0.45 (\tissue{Oesophagus}); max: 0.666 (\tissue{Liver})].
 
 In 2014, two large proteomics assays focusing on normal human tissues have been
 released for the first time.
@@ -115,74 +115,7 @@ identification (and hence quantification) of the scarcer proteins is harder.
 
 These technical divergences and specificities call for an underlying premise:
 when is a specific protein or transcript considered as expressed in a dataset?
-In a particular tissue? This premise is discussed
-in the Section~\ref{sec:IntegrationExpressedOrNot}.
-
-
-
-\section{Data}
-\label{sec:IntegrationData}
-
-While the \dataset{Kuster} dataset presents more tissues in common
-with the Gtex and Uhlén datasets (see Figures~\ref{VennTissuePandeyGtexUhlen}
-and~\ref{VennTissueKusterGtexUhlen}), I had focused the study on
-the \dataset{Pandey \etal} dataset. Indeed, we managed to quantify the biggest number
-of proteins in this later dataset: 10272 proteins across 24 samples for
-\dataset{Pandey} versus 7223 across 24 samples for \dataset{Kuster}\footnote{Even
-if the number of samples is the same for the \dataset{Pandey} and
-the \dataset{Kuster} datasets, this is purely fortuitous.}.
-
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.55]{integration/PandeyGtexUhlen_tissuesVenn.png}
-    \centering
-    \caption{\label{VennTissuePandeyGtexUhlen}Number of share and unique
-    tissues between the proteomic dataset from Pandey \etal\ and the
-    transcriptomic datasets (Uhlén \etal\ and Gtex)}
-\end{figure}
-
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.55]{integration/KusterGtexUhlen_tissuesVenn.png}
-    \centering
-    \caption{\label{VennTissueKusterGtexUhlen}Number of share and unique
-    tissues between the proteomic dataset from Kuster \etal\ and the
-    transcriptomic datasets (Uhlén \etal\ and Gtex)}
-\end{figure}
-
-This has an increased importance as the study goes beyond the correlation of
-proteomics and transcriptomics for a same tissue. The number of proteins
-detected within a tissue is also greater for \dataset{Pandey} as shown
-in Figure~\ref{KusterPandeyFQM} (A and B).
-It worth noticing that even there is the same number of samples for the
-\dataset{Pandey} and the \dataset{Kuster}, this is purely fortuitous.
-
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.90]{integration/KusterPandey1_2FQM.png}\centering
-    \caption{\label{KusterPandeyFQM}Distribution of proteins across the tissues.}
-    \subcap{Highlighted in red are the proteins that are found only in that
-    tissue within the dataset. A| Kuster (first quantification method).
-    B| Pandey (first quantification method).
-    C| Pandey (second quantification method).}
-\end{figure}
-
-Furthermore, all the \dataset{Pandey} data has been
-collected on the same platform while the \dataset{Kuster} data has been
-collected on different ones. On a side note, as each of the proteomic datasets
-proposes only one sample per tissue, it is difficult to assess if the good or bad
-correlation between the Kuster \etal\ or the Pandey \etal\ proteomic data
-and the available transcriptomic data is due to the technology or
-to the nature of the tissue.
-
-Besides, as the datasets \dataset{Pandey} and \dataset{Uhlén} presents 15 common
-tissues, which includes 12 common tissues with \dataset{Gtex}, if not
-indicate otherwise, the following results are based on the first combination of
-datasets. As the whole analysis pipeline as been applied to the three datasets
-for the same 12 tissues, some of the figures have a counterpart in the
-appendices displaying the results for all three datasets when focusing only on
-that smaller subset of tissues. To ease the comparison, the references of the
-supplementary figures are given in green (and in brackets) in the legend of the
-main one. Overall, the main results and conclusions remain the same either if
-I use Gtex or Uhlén \etal\ data.
-
+In a particular tissue?
 
 \section{Expressed or not expressed}
 \label{sec:IntegrationExpressedOrNot}
@@ -193,7 +126,8 @@ an extensive impact on the results of the integration.
 
 Indeed, the Pearson correlation is very sensitive to outliers and null values,
 \fixme{Add reference}
-hence it is important that all the data used for the analysis is meaningful.
+hence it is important that the data used for the analysis is meaningful in
+its whole.
 
 
 \subsection{The undefined}
@@ -245,20 +179,23 @@ that parts of the analyses have also been done either without
 any threshold (i.e.\ the same definition used with the proteins has been applied)
 or with a threshold of 5 \gls{FPKM}.
 
+
 \subsection{Limitation of the current study}
 
 Apart of the most obvious limitation: the transcriptome and the proteome used in
 this study have been collected from complete independent human donors, there are
 two other main constraints I would like to highlight.
 
-First, as there is only one sample per tissue in the \dataset{Pandey \etal}
-dataset, the expression found in one sample is \textit{de facto} the proteomic
-expression. On the other hand, the \dataset{Uhlén \etal} have \emph{technical}
-and \emph{biological} replicates for each tissue. To calculate the expression
-used for each tissue, I used the median\footnote{When there were more than
-two samples, otherwise it is the mean of expression of the two biological
-replicates.} of the transcript expression after having computed the mean of its
-expression for the technical replicates of each individual.
+First, there is a lack of samples per tissue on the proteomic side of the study.
+
+On one hand, we have the \dataset{Uhlén \etal}, which have \emph{technical}
+and \emph{biological} replicates for each tissue, and the \dataset{Gtex}, which
+provides many biological replicates per tissue. On the other hand, there is only
+one sample per tissue in the proteomic dataset (\dataset{Pandey \etal}) used
+within this study. Hence, the expression found in \emph{one} sample is
+\textit{de facto} the proteomic expression for that tissue. This
+is far from an ideal set-up.
+
 
 Secondly, while I have compared the list of \emph{undefined} transcripts and
 proteins (between \dataset{Pandey \etal} and \dataset{Uhlén \etal} data and
@@ -269,39 +206,111 @@ In other words, if the proteins and their corresponding transcripts are not
 expressed at least in one sample in each dataset, they are unfortunately excluded
 from many many steps of the analysis workflow.
 
-\section{Results}
-\label{sec:IntegrationResults}
+\section{Data}
+\label{sec:IntegrationData}
 
+\taset{Kuster}subsection{Transcriptome}
 For this study, the processed \dataset{Uhlén \etal} and \dataset{Gtex} datasets
 used are a subset of the processed data previously presented in the
 Chapter~\ref{sec:Transcriptomics} (see: Section~\ref{sec:Trans_ReproExpresTissue}
-for the processing methods). Indeed, only the common set of tissues with the
-\dataset{Pandey \etal} study and the genes annotated as protein coding for their
+for the processing methods). Indeed, only the set of tissues also available
+on the proteome side and the genes annotated as protein coding for their
 biotype (in Ensembl 76 release) are kept.
 
-I ran the analyses on both quantification (HTSeq and Cufflinks); if not stated
-otherwise the quantification used for the figures are based on the normalised
-\glspl{FPKM} output of HTseq.
-
-
-In the same fashion as the transcriptomic data, which have been reprocessed before
-being employed in our studies, the proteomic data have been reprocessed
-by James from the raw files he has downloaded from ProteomeXchange
-(\cite{ProteomeXchange:2014}) via the PRIDE database (\cite{Pride:2016}).
-\fixme{Ask James for the methods}
-
-The common tissues between \dataset{Pandey \etal} and \dataset{Gtex} are
+The common tissues between \dataset{Gtex} and the proteomic data
+(\dataset{Pandey \etal}) are
 (by alphabetical order):  Adrenal gland, Bladder, Colon, Oesophagus, Heart,
 Kidney, Liver, Lung, Ovary, Pancreas, Placenta, Prostate and Testis.
 
-The common tissue between \dataset{Pandey \etal} and \dataset{Uhlén \etal} are
+The common tissue between \dataset{Uhlén \etal} and the proteomic data
+(\dataset{Pandey \etal} are)
 an enlarged version of the previous set, with the addition of Gall bladder,
 Placenta and Rectum.
 
-\subsection{New quantification method for the proteomic data}
-\label{sec:IntegrationNewMethQuant}
+Most of the results reported and displayed in the main body
+of the following chapter are using this later bigger set. As the whole analysis
+pipeline as been applied to the three datasets
+for the same 12 tissues, some of the figures have a counterpart in the
+appendices displaying the results for all three datasets when focusing only on
+that smaller subset of tissues. To ease the comparison, the references of the
+supplementary figures are given in green (and in brackets) in the legend of the
+main one. Overall, the main results and conclusions remain the same either if
+I use Gtex or Uhlén \etal\ data.
 
-\textit{Quantifications performed by Dr James Wright}
+To calculate the aggregate expression per tissue\footnote{to be on par with the
+proteomic data}, I used the median\footnote{When there were more than
+two samples, otherwise it is the mean of expression of the two biological
+replicates.} of the transcript expression after having computed the mean of its
+expression for the technical replicates of each individual.
+
+I ran the analyses on both quantification (HTSeq and Cufflinks); if not stated
+otherwise the quantification used for the figures are based on the normalised
+\glspl{FPKM} output of HTseq. Overall, either if we use \dataset{Uhlén et al} or
+\dataset{Gtex} datasets with any of the quantification methods, the high level
+results, discussions and conclusions remain the same.
+
+\subsection{Proteome}
+
+The available data on the proteomic side is by far more limited than the
+transcriptomic side. There are really two datasets that could be suitable for
+the study: \dataset{Kuster \etal} or \dataset{Pandey \etal} datasets.
+
+While the \dataset{Kuster} dataset presents more tissues in common
+with the \dataset{Gtex} and \dataset{Uhlén \etal} datasets
+(see Figures~\ref{VennTissuePandeyGtexUhlen}
+and~\ref{VennTissueKusterGtexUhlen}), I had focused the study on
+the \dataset{Pandey \etal} dataset. Indeed, we managed to quantify the biggest
+number of proteins in this later dataset: 10272 proteins across 24 samples for
+\dataset{Pandey} versus 7223 across 24 samples for \dataset{Kuster}\footnote{Even
+if the number of samples is the same for the \dataset{Pandey} and
+the \dataset{Kuster} datasets, this is purely fortuitous.}.
+
+\begin{figure}%[!htbp]
+    \includegraphics[scale=0.55]{integration/PandeyGtexUhlen_tissuesVenn.png}
+    \centering
+    \caption{\label{VennTissuePandeyGtexUhlen}Number of share and unique
+    tissues between the proteomic dataset from Pandey \etal\ and the
+    transcriptomic datasets (Uhlén \etal\ and Gtex)}
+\end{figure}
+
+\begin{figure}%[!htbp]
+    \includegraphics[scale=0.55]{integration/KusterGtexUhlen_tissuesVenn.png}
+    \centering
+    \caption{\label{VennTissueKusterGtexUhlen}Number of share and unique
+    tissues between the proteomic dataset from Kuster \etal\ and the
+    transcriptomic datasets (Uhlén \etal\ and Gtex)}
+\end{figure}
+
+This has an increased importance as the study goes beyond the correlation of
+proteomics and transcriptomics for a same tissue. The number of proteins
+detected within a tissue is also greater for \dataset{Pandey} as shown
+in Figure~\ref{KusterPandeyFQM} (A and B).
+It worth noticing that even there is the same number of samples for the
+\dataset{Pandey} and the \dataset{Kuster}, this is purely fortuitous.
+
+\begin{figure}%[!htbp]
+    \includegraphics[scale=0.90]{integration/KusterPandey1_2FQM.png}\centering
+    \caption{\label{KusterPandeyFQM}Distribution of proteins across the tissues.}
+    \subcap{Highlighted in red are the proteins that are found only in that
+    tissue within the dataset. A| Kuster (first quantification method).
+    B| Pandey (first quantification method).
+    C| Pandey (second quantification method).}
+\end{figure}
+
+Furthermore, all the \dataset{Pandey} data has been
+collected on the same platform while the \dataset{Kuster} data has been
+collected on different ones. On a side note, as each of the proteomic datasets
+proposes only one sample per tissue, it is difficult to assess if the high or low
+correlation between the Kuster \etal\ or the Pandey \etal\ proteomic data
+and the available transcriptomic data is due to the technology or
+to the nature of the tissue.
+
+
+In the same fashion as the transcriptomic data, which have been reprocessed
+before being employed in our studies, the proteomic data have been reprocessed
+by James from the raw files he has downloaded from ProteomeXchange
+(\cite{ProteomeXchange:2014}) via the PRIDE database (\cite{Pride:2016}).
+\fixme{Ask James for the methods}
 
 At first, the quantification used for the proteomic data was following
 state-of-the-art protocols for which we applied very stringent parameters:
@@ -317,10 +326,19 @@ not always observe the same set of peptides and, moreover, the proteins clusters
 they support are quite different. That is why I have not investigate this option
 further as for each study I would need a new aggregate annotation as a reference.
 It would then be quite difficult to assess the discrepancy due to the
-variations of aggregation. For this first method of quantification, I choose to exclude
-the cluster of peptides/proteins from the study. Since I also work with a subset
-of the tissues, out of context, the number of quantified proteins could seem a bit
-low compare to the original study.
+variations of aggregation. For this first method of quantification, I choose to
+exclude the cluster of peptides/proteins from the study\footnote{Since I also work
+with a subset of the tissues, out of context, the number of quantified proteins
+could seem a bit low compare to the original study.}.
+
+
+\section{Results}
+\label{sec:IntegrationResults}
+
+\subsection{New quantification method for the proteomic data}
+\label{sec:IntegrationNewMethQuant}
+
+\textit{Quantifications performed by Dr James Wright}
 
 After discussions where we were comparing the different quantification algorithms
 and methods used for \Rnaseq\ data, we have decided to try a new quantification
@@ -375,6 +393,15 @@ it could however be primarily surprising that there are proteins
 (See supplementary Table~\ref{sec:protNoTrans}) which don't have
 a match in the transcriptomic data. There are actual several possible explanations.
 
+\begin{figure}
+    \includegraphics[scale=0.15]{integration/VennGeneTransProt15}\centering
+\caption{\label{VennGeneTransProt15}Unique and shared protein/gene pairs between
+    Proteomics and Transcriptomics (Pandey \etal\ (PPKM) and Uhlén \etal\
+    (\gls{FPKM}) data)} \subcap{There are 14,613 pairs common between the
+    transcriptomic (only the protein coding genes are considered)
+    and the proteomic dataset.}
+\end{figure}
+
 It could be a technical issue or an artefact on the transcriptomic side, e.g.\
 the \mRNAs\ were present but were not capture for a reason or another at the
 library preparation; the \mRNAs\ have a high sequence-similarity with other \mRNAs\
@@ -394,41 +421,6 @@ and transcriptome used for this study have been collected independently, if the
 gene is individual or population specific, we will then detected in one of the
 study and not in the other one. However, as we have biological replicates on the
 transcriptomic side, this last hypothesis seems the most unlikely.
-
-
-\begin{figure}
-    \includegraphics[scale=0.15]{integration/VennGeneTransProt15}\centering
-\caption{\label{VennGeneTransProt15}Unique and shared protein/gene pairs between
-    Proteomics and Transcriptomics (Pandey \etal\ (PPKM) and Uhlén \etal\
-    (\gls{FPKM}) data)} \subcap{There are 14,613 pairs common between the
-    transcriptomic (only the protein coding genes are considered)
-    and the proteomic dataset.}
-\end{figure}
-
-
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.45]{integration/densityExpProtTrans15}\centering
-    \caption{\label{densityExpProtTrans15}Density of expression of proteins
-    (\textbf{A}) and \mRNAs\ (\textbf{B},\textbf{C},\textbf{D}) per tissues.}
-    \subcap{\textbf{B},\textbf{C},\textbf{D} presents the same data but with
-    different thresholds; respectively: No threshold, 1 \gls{FPKM} and
-    5 \glspl{FPKM}. The threshold used for the proteins is the threshold of
-    detection (i.e.\ greater than zero). The different density of distributions are
-    globally gaussian. When the threshold is increased for the transcriptome, the
-    shape get closer to the ideal one, as the bulge created by lowly expressed
-    genes is removed. We can also observe that the problem with the pancreatic
-    tissue get more highlighted with higher thresholds.}
-\end{figure}
-
-
- \begin{figure}%[!htbp]
-     \includegraphics{integration/barPlotunique}\centering
-     \caption{\label{barPlotunique} Number of \mRNAs\ (top) and proteins (bottom)
-     that have been detected and quantified (\geq\ 5 \glspl{FPKM} for \mRNA\; > 0
-     for proteins).} \subcap{While some tissue can have consistently a higher
-     specificity at proteomic and transcriptomic level, it is not true for all.}
- \end{figure}
-
 
 
 \subsubsection{Similar shape of density between proteomic and transcriptomic
@@ -459,11 +451,29 @@ we observe density curves that are closer to the ideal one and these \mRNAs\ are
 more likely translated into proteins.
 
 
+\begin{figure}%[!htbp]
+    \includegraphics[scale=0.45]{integration/densityExpProtTrans15}\centering
+    \caption{\label{densityExpProtTrans15}Density of expression of proteins
+    (\textbf{A}) and \mRNAs\ (\textbf{B},\textbf{C},\textbf{D}) per tissues.}
+    \subcap{\textbf{B},\textbf{C},\textbf{D} presents the same data but with
+    different thresholds; respectively: No threshold, 1 \gls{FPKM} and
+    5 \glspl{FPKM}. The threshold used for the proteins is the threshold of
+    detection (i.e.\ greater than zero). The different density of distributions are
+    globally gaussian. When the threshold is increased for the transcriptome, the
+    shape get closer to the ideal one, as the bulge created by lowly expressed
+    genes is removed. We can also observe that the problem with the pancreatic
+    tissue get more highlighted with higher thresholds.}
+\end{figure}
 
 \subsubsection{Distribution of expression breadth of the proteome is bimodal. As is
 the expression breadth of the mRNAs --- if we apply a threshold}
 \label{sec:IntegrationProteinBimodalExpre}
 \fixme{this might need to go to the previous chapter!}
+
+In our study, most proteins are detected in a very limited number of tissues (one
+or two) or in all the tissues as it can be observed in Figure~\ref{breadthProt}.
+Overall, we found that most proteins are found in one tissue. We refer to them as
+\emph{tissue-specific}.
 
 \begin{figure}
     \includegraphics[scale=0.65]{integration/breadthProt.png}\centering
@@ -472,9 +482,13 @@ the expression breadth of the mRNAs --- if we apply a threshold}
     consisting of the ubiquitous proteins.}
 \end{figure}
 
-In our study, most proteins are detected in a very limited number of tissues (one
-or two) or in all the tissues as it can be observed in Figure~\ref{breadthProt}.
 
+For the transcriptome, if we focus only on the detected genes, we don’t observe
+the same trend as showed in Figure~\ref{breadthTrans}|A.
+However, when we apply a threshold, either 1 \gls{FPKM} (\ref{breadthTrans}|C) or
+5 \glspl{FPKM} (\ref{breadthTrans}|D), to which the \mRNA\ expressions have to be
+greater or at least equal, then the expression breadth distribution of the \mRNAs\
+is also bimodal.
 
 \begin{figure}
     \includegraphics[scale=0.85]{integration/breadthTrans.png}\centering
@@ -485,21 +499,22 @@ or two) or in all the tissues as it can be observed in Figure~\ref{breadthProt}.
     detected at or above 1 \gls{FPKM} and \textbf{C}| 5 \glspl{FPKM}.}
 \end{figure}
 
-For the transcriptome, if we focus only on the detected genes, we don’t observe
-the same trend as showed in Figure~\ref{breadthTrans}|A.
-However, when we apply a threshold (1 \gls{FPKM} or 5 \glspl{FPKM})
-above which the \mRNAs\ have to be expressed to be counted, then their distribution
-of expression breadth is also bimodal.
 
-We can also note that while for some tissues having a bigger diversity of
-specific proteins mean to have a broader diversity at transcriptomic level,
-it is not true for all the tissues as displayed in
-Figure~\ref{barPlotunique}.
+We can also note that a broader number of tissues-specific \mRNAs\ doesn't
+necessarily imply the same at proteomic level and vice versa.
+In Figure~\ref{barPlotunique}, we can see that \tissue{Testis} and \tissue{Liver}
+are the tissues with the greatest number of tissues specific \mRNAs\ and proteins.
+The reality is more mixed for the other tissues.
 
+\begin{figure}%[!htbp]
+     \includegraphics{integration/barPlotunique}\centering
+     \caption{\label{barPlotunique} Number of \mRNAs\ (top) and proteins (bottom)
+     that have been detected and quantified (\geq\ 5 \glspl{FPKM} for \mRNA\; > 0
+     for proteins).} \subcap{While some tissue can have consistently a higher
+     specificity at proteomic and transcriptomic level, it is not true for all.}
+\end{figure}
 
-
-
-
+After this first phase of \emph{manual} checks, 
 
 \subsection{Independent transcriptomic and proteomic studies of normal
 human tissues have good and significant correlation}
