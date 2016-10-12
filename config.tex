@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex}
 \usepackage{minted}
+%\usepackage[explicit]{titlesec}
 \usepackage{csquotes}
 \usepackage{epigraph}
 \usepackage{booktabs,dcolumn}
@@ -29,7 +30,7 @@
 \usepackage{xcolor}
 \usepackage{calc}
 \usepackage{ragged2e}
-\usepackage[font={small},format=hang,labelfont={bf,sf},textfont=normal,up,margin=5pt]{caption}
+\usepackage[font={small},format=hang,labelfont={bf,sf},textfont=normal,up,margin=5pt,labelformat=default,labelsep=period]{caption}
 %format=hang
 %\usepackage[font=small,format=plain,labelfont=bf,up,textfont=normal,up,justification=justified,singlelinecheck=false,margin=5pt]{caption}
 \usepackage{subcaption}
@@ -53,7 +54,7 @@
 \usepackage{xfor}
 \usepackage{datatool-base}
 \usepackage{amsgen}
-
+\usepackage{ragged2e}
 
 \usepackage%[style=long,nolist] %as advised in classicthesis man
 [xindy, toc, nopostdot,style=long,nolist]
@@ -65,6 +66,7 @@
 %\loadglsentries{glossary.tex}
 
 
+\usepackage{geometry}%% for page layout
 \usepackage[nameinlink, noabbrev]{cleveref}
 
 
@@ -119,7 +121,6 @@
 \setstretch{1.1}
 \graphicspath{{gfx/}} %as instructed in classicthesis
 
-\usepackage{geometry}%% for page layout
 % For debugging: showframe=true to see the layout frames
 \geometry{bottom=65mm,showframe=false,margin=35mm,marginparsep=3mm,marginparwidth=20mm}
 
@@ -127,6 +128,7 @@
 
 
 \pagestyle{scrheadings}
+
 
 %%%%%%%
 %%% customisation stollen from Manuel Kuehner template
@@ -264,6 +266,8 @@
     Speak about:
     \textsl{\textcolor{gray}{#1}}}
 
+\newcommand*\rough[1]{\textsl{\textcolor{gray}{#1}}}
+
 %%%% shortcuts
 \newcommand*\myPlace{Cambridge (UK)}
 \newcommand*\myDate{7 September 2016}
@@ -283,7 +287,7 @@
 
 \newcommand*\DNA{\mol{DNA}}
 \newcommand*\dataset[1]{\textnormal{#1}}
-\newcommand*\etal{~\textit{et al.~}}
+\newcommand*\etal{\textit{et al.}}
 \newcommand*\Rnaseq{RNA-Seq}
 
 \newcommand*\paper[1]{\emph{#1}}

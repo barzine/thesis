@@ -6,6 +6,7 @@
 ,parskip
 %,open=right
 %,listof=totoc
+,floatperchapter
 ,pdfspacing
 ,numbers=noendperiod
 ,twoside=true
@@ -103,16 +104,17 @@
  \phantomsection\
  \addcontentsline{toc}{part}{APPENDIX}
  \part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}
- \label{sec:appendix}
+ \label{ch:appendix}
  \renewcommand\thechapter{\Alph{chapter}}
  \begingroup
 
 
 
 \chapter{Supplementary material for Chapter}
-\label{sec:SupplIntegration}
-\input{app/protNoTrans}
-\input{app/IntScatt}
+\label{ch:SupplIntegration}
+
+\input{app/protNoTrans.tex}
+\input{app/IntScatt.tex}
 
 
 
