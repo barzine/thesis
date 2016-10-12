@@ -1,10 +1,15 @@
 nanowrimo.tex
 ##MacOS
 .DS_store
+
+
+#other stuff
 _minted-thesis/
 lib/
 misc/
-thesis.aux
+
+### automatically created
+thesis.aux 
 thesis.bbl
 thesis.bcf
 thesis.blg
@@ -15,3 +20,19 @@ thesis.out
 thesis.pdf
 thesis.run.xml
 thesis.toc
+thesis.glg
+thesis.glo
+thesis.gls
+thesis.xdy
+
+*.aux
+
+## appendix
+app/*.txt
+#app/*.aux
+
+# gfx
+gfx/integration/*.txt
+gfx/integration/*.pptx
+gfx/integration/tobeFixed/
+gfx/ppt/
