@@ -127,7 +127,6 @@ In a particular tissue?
 
 \section{Expressed or not expressed}
 \label{sec:IntegrationExpressedOrNot}
-
 While it can seem as a trivial concept and might be overlook, whether a specific
 molecule is expressed --- or not --- in a given condition, can actually have
 an extensive impact on the results of the integration.
@@ -137,8 +136,22 @@ Indeed, the Pearson correlation is very sensitive to outliers and null values,
 hence it is important that the data used for the analysis is meaningful in
 its whole.
 
+\begin{figure}%[!htbp]
+\includegraphics[scale=0.8]{integration/expressedOrNot2.pdf}\centering
+    \caption[Expressed or not: several cases illustrated]
+    {\label{fig:DefineExpression}\textbf{Expressed or not: several cases
+    illustrated.} \\Genes as \emph{gene 1} are unequivocal: they have been
+    detected in all the different tissues. Genes that have been quantified in
+    \emph{some} of the conditions are, in principal, detectable with the
+    protocol of sampling and quantification used for the assay.
+    For these genes, when no signal is collected, I assume this is a true $0$.
+    The genes without any quantification
+    in any tissue are discarded from the remaining analysis as I can't state
+    either there are truly absent from the biological sample or it has to due
+    to the protocol at use; they are \emph{undefined}.}
+\end{figure}
 
-\subsection{The undefined}
+\subsection{The undefined}\KOMAoptions{parskip=false}
 \label{subsec:IntegrationExpressedOrNot-undefined}
 If a protein or transcript is never found in any of the samples of a dataset,
 then I considered that we can not determine if the protein or transcript was
@@ -147,20 +160,6 @@ preparation or the identification/quantification steps. Hence, those are
 excluded from the analyses as I can not resolve precisely if this is a
 technical artefact or a biological truth. This case is illustrate by the row
 circled in red in~\cref{fig:DefineExpression}.
-
-\begin{figure}%[!htbp]
-\includegraphics[scale=0.65]{expressed.png}\centering
-    \caption[Expressed or not: several cases illustrated]
-    {\label{fig:DefineExpression}\textbf{Expressed or not: several cases
-    illustrated.} \\\emph{Gene 1} is unequivocal: it has been detected in all the
-    different tissues. Genes that have been quantified in \emph{some} of the
-    conditions are, in principal, detectable with the protocol of sampling and
-    quantification used for the assay. For these genes, when no signal is
-    collected, I assume this is a true $0$.\\The genes without any quantification
-    in any tissue are discarded from the remaining analysis as I can't state
-    either there are truly absent from the biological sample or it has to due
-    to the protocol at use; they are \emph{undefined}}
-\end{figure}
 
 \subsection{Expression in a dataset}
 \label{subsec:IntegrationExpressedOrNot--expDataset}
@@ -180,7 +179,7 @@ On the proteomic side, I consider that a protein is expressed if it has been
 identified and quantified. In other words, if the expression value of a protein
 is greater than zero in a sample, I consider it as expressed.
 
-\subsubsection{Expressed transcript}
+\subsubsection{Expressed transcript}\KOMAoptions{parskip=half*}
 It is a bit more complex on the transcriptomic side as there can be
 \fixme{find reference on translational noise in RNAseq}
 translational noise. While this noise could be evaluate by empirical methods for
@@ -198,7 +197,6 @@ or with a threshold of $5$ \glspl{FPKM}.
 
 
 \subsection{Limitation of the current study}
-
 Apart of the most obvious limitation: the transcriptome and the proteome used in
 this study have been collected from complete independent human donors, there are
 two other main constraints I would like to highlight.
@@ -272,7 +270,6 @@ Overall, either if we use \dataset{Uhlén et al} or
 results, discussions and conclusions remain the same.
 
 \subsection{Proteome}
-
 The available data on the proteomic side is by far more limited than the
 transcriptomic side. There are really two datasets that could be suitable for
 the study: \dataset{Kuster \etal} or \dataset{Pandey \etal} datasets.
@@ -333,19 +330,34 @@ as shown in~\cref{fig:KusterPandeyFQM} (A and B).
 This has an increased importance as the study goes beyond the correlation of
 proteomics and transcriptomics for a same tissue.
 
-\begin{figure}%[!htbp]
+\newcommand{\figKustPandFQM}{\textbf{Distribution of proteins across the
+tissues.}\\The tissues are ordered by their number of different proteins they
+expressed. Highlighted in red are the proteins that are found solely in that
+tissue (within each dataset).
+A\textbar\ Kuster (first quantification method).
+B\textbar\ Pandey (first quantification method).
+C\textbar\ Pandey (second quantification method).
+There are by far more detected and quantified protein per tissue in the
+\dataset{Pandey \etal} dataset (B\textbar) than the
+\dataset{Kuster \etal} dataset (A\textbar). We can notice that while
+\tissue{Testis} is the tissue that presents the highest number and greatest
+diversity of expressed proteins for both datasets, the other tissues are not in
+the same order.}
+
+
+%\ifthispageodd{\afterpage{\clearpage\
+\begin{figure}
+% \includegraphics[scale=0.90]{integration/KusterPandey1_2FQM.png}\centering\label{fig:KusterPandeyFQM}
+%\end{figure}
+%\captionof{figure}[Distribution of proteins across the tissues]{\figKustPandFQM}
+%}}{\begin{figure}
+% \includegraphics[scale=0.90]{integration/KusterPandey1_2FQM.png}\centering\label{fig:KusterPandeyFQM}
     \includegraphics[scale=0.90]{integration/KusterPandey1_2FQM.png}\centering
-    \caption[Distribution of proteins across the tissues]
-    {\label{fig:KusterPandeyFQM}\textbf{Distribution of proteins across
-    the tissues.}\\Highlighted in red are the proteins that are found only in that
-    tissue within the dataset. A| Kuster (first quantification method).
-    B| Pandey (first quantification method).
-    C| Pandey (second quantification method).
-    There are by far more detected and quantified protein per tissue in the
-    \dataset{Pandey \etal} dataset than the \dataset{Kuster \etal} dataset. We
-    can notice that while \tissue{Testis} is f !!!! 
-    }
+    \caption[Distribution of proteins across the
+    tissues]{\label{fig:KusterPandeyFQM}\figKustPandFQM}
 \end{figure}
+%\captionof{figure}[Distribution of proteins across the tissues]{\figKustPandFQM}
+%    }
 
 Furthermore, all the \dataset{Pandey \etal} data has been
 collected on the same platform while the \dataset{Kuster \etal} data has been
@@ -405,9 +417,9 @@ In the context of this work (i.e.\ when focusing on the 15 common tissues betwee
 the \dataset{Uhlén \etal} and the \dataset{Pandey \etal} datasets),
 he has quantified about 6,400 proteins with
 the standard method. With the new method, he has quantified a bigger set of
-proteins: about 12,300 proteins.
-\fixme{add: `Indeed the original publication was reporting XX uniquely detected
-proteins.'}
+proteins: about 12,300 proteins. This new number is quite closer to the original
+reported number of protein by Kim \etal\.  Indeed the original paper is
+reporting proteins encoded by 17,294 genes.
 
 As shown in~\cref{fig:KusterPandeyFQM} (B and C),
 all tissues and cell lines benefits from this new quantification and there isn't
@@ -492,7 +504,7 @@ before any other computation or visualisation.
     proteins and \mRNAs\ per tissues.} \\\textbf{A}| Proteins.
     \textbf{B},\textbf{C},\textbf{D} present the same data but with
     different thresholds:
-    \\\textbf{B}| No threshold. \textbf{C}| 1 \gls{FPKM}.
+    \textbf{B}| No threshold. \textbf{C}| 1 \gls{FPKM}.
     \textbf{D}| 5 \glspl{FPKM}.\\The threshold used for the proteins is the
     threshold of
     detection (i.e.\ greater than zero). The different density of distributions are
@@ -539,7 +551,7 @@ below $1$ \gls{FPKM} (and their corresponding proteins), the Pearson correlation
 coefficients for each tissue are substantially identical.}
 
 \begin{figure}%[!htbp]
-    \includegraphics[scale=0.6]{integration/Kidney_scattplot.pdf}\centering
+    \includegraphics[scale=0.85]{integration/Kidney_scattplot.pdf}\centering
     \caption[Scatter plot of the expression value of the proteins (Pandey)
     and the \mRNAs\ (Uhlén \etal) for Kidney]
     {\label{fig:ScatKid}\textbf{Scatter plot of the expression value of the
@@ -585,32 +597,32 @@ tissues and looser in others. While this could be due to technical reasons, it
 could also be due to biological ones. With the current knowledge of the datasets,
 it is not possible to reject pairs \emph{a priori}.
 
-
-
 \begin{figure}
     \includegraphics[scale=0.55]{integration/TestWhole_withoutLow.png}\centering
     \caption[Distribution of Pearson correlation coefficients for same tissue
     pairs versus random tissue pairs]{\label{fig:TestSig}\textbf{Distribution of
     Pearson correlation coefficients for same tissue pairs versus random tissue
     pairs.} The left boxplot displays the distribution of Pearson correlation
-    coefficients for same tissues pairs (e.g.\ proteomic\textsubscript{\tissue{Liver}}
-    $\sim$ transcriptomic\textsubscript{\tissue{Liver}},
-    proteomic\textsubscript{\tissue{Heart}} $\sim$
-    transcriptomic\textsubscript{\tissue{Heart}}, etc.).
-    The right the correlation of all the possible random
-    pair of tissues (e.g.\ proteomic \tissue{Lung} $\sim$ transcriptomic
-    \tissue{Liver}, proteomic \tissue{Heart} $\sim$ transcriptomic \tissue{Kidney},
-    etc.). A Welch t-test has been performed to test the significance of the
+    coefficients for same tissues pairs (e.g.\
+Proteome\textsubscript{\tissue{Liver} }$\sim$Transcriptome\textsubscript{\tissue{Liver} }
+or
+Proteome\textsubscript{\tissue{Heart} }$\sim$Transcriptome\textsubscript{\tissue{Heart} }).
+    \\The right boxplot shows the correlation of all the possible random
+    pair of tissues (e.g.\
+Proteome\textsubscript{\tissue{Lung} }$\sim$Transcriptome\textsubscript{\tissue{Liver} }
+or
+Proteome\textsubscript{\tissue{Heart} }$\sim$Transcriptome\textsubscript{\tissue{Kidney} }).
+    A Welch t-test has been performed to test the significance of the
     difference of the means of the two groups ($0.55$ for the same tissue and
     $0.46$ for the random pairs). The difference is significant under the null
     hypothesis $H_{0}$ (The mean of the same pair-tissue coefficient correlations
-    is higher than the random tissue pairs for a confidence interval of $95\%$):
-    p-value: $5.8e-07$}
+    is higher than the random tissue pairs for a confidence interval of $95\%$:
+    p-value: $5.8e-07$).}
 \end{figure}
 
 \fixme{citation for Welch t-test}
 
-\subsection{expression level of mRNAs correlate with the expressed proteins}
+\subsection{Expression level of mRNAs correlate with the expressed proteins}
 
 ---> result: high if protein is tissue specific
 
@@ -630,8 +642,10 @@ Overall, we found that most proteins are found in one tissue. We refer to them a
     \includegraphics[scale=0.65]{integration/breadthProt.png}\centering
     \caption[Distribution of expression breadth for the proteome]
     {\label{fig:breadthProt}\textbf{Distribution of expression breadth for the
-    proteome.} Most of the proteins are only found in one tissue. The second
-    largest group is consisting of the ubiquitous proteins.}
+    proteome.} The breadth of expression is bimodal: most of the proteins are
+    only found in one tissue. The second largest group is consisting of
+    the ubiquitous proteins. The third largest group is the group of the proteins
+    that are expressed in two tissues.}
 \end{figure}
 
 
@@ -663,12 +677,40 @@ The reality is more mixed for the other tissues.
 
 \begin{figure}%[!htbp]
      \includegraphics{integration/barPlotunique}\centering
-     \caption{\label{fig:barPlotunique} \textbf{Number of \mRNAs\ (top) and
-     proteins (bottom)
+     \caption[Number of \mRNAs\ and proteins detected (at specific thresholds)
+     only in one unique tissue]{\label{fig:barPlotunique} \textbf{Number of
+     \mRNAs\ (top) and proteins (bottom)
      that have been detected and quantified (\geq\ 5 \glspl{FPKM} for \mRNA\; > 0
      for proteins).} While some tissue can have consistently a higher
      specificity at proteomic and transcriptomic level, it is not true for all.}
 \end{figure}
+
+
+\begin{figure}
+    \includegraphics[scale=0.75]{integration/GeneProtCor}\centering
+    \caption[Pearson correlation coefficients of \mRNA/protein pairs expression
+    across the common tissues in descending order]
+    {\label{GeneProtCor}\textbf{Pearson correlation coefficients of \mRNA/protein
+    pairs expression across the common tissues in descending order.} For each
+    couple of \mRNA and its corresponding protein, the Pearson correlation of
+    their respective expression across the same set of tissue is calculated. Then,
+    all the pairs are sorted in descending order and plotted based on their
+    correlation coefficient in pink. To provide context to these results,
+    An \emph{ideal} case has also been calculated. The identical \mRNAs\ set of
+    the current Proteome and Transcriptome comparison has been used for a
+    Transcriptome (\dataset{Uhlén \etal} and Transcriptome comparison
+    (\dataset{GTEX}). We can see that even the ideal case is not a perfect
+    horizontal line (which would indicate a whole and complete correlation between
+    the two transcriptomic datasets).    }
+\end{figure}
+
+%\begin{figure}
+%    \includegraphics{integration/}\centering
+%    \caption[]{\label{} \textbf{}
+%    }
+%\end{figure}
+
+
 
 
 
@@ -711,5 +753,9 @@ biological sources.
 %%one tissue to another, the protein pool is quite different.
 
 
+% Hence, a component of the decrease in the
+% correlation between the \mRNA\ and its protein is due to t The pink line,
+%while more similar in essence to the random pair correlation, presents about
+%500 genes/proteins pairs that    are highly correlated.
 
 
