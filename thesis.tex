@@ -5,7 +5,7 @@
 ,footinclude
 ,BCOR=1cm
 ,parskip=half*
-%,open=right
+,open=right
 %,listof=totoc
 ,floatperchapter
 ,pdfspacing
@@ -68,10 +68,11 @@
 %% http://tex.stackexchange.com/a/125090/102519
 \begingroup
     \hypersetup{linkcolor=thesis@toccolor}
+    \pdfbookmark[chapter]{\contentsname}{toc}
     \tableofcontents \clearpage \thispagestyle{empty}
     %\printglossaries \clearpage
     %\printglossary[type=\acronymtype]
-    \printglossary[title=List of Terms and Abbreviations,toctitle=List of Terms and Abbreviations,type=\acronymtype] \raggedbottom\
+    \printglossary[title=List of Terms and Abbreviations,toctitle=List of Terms and Abbreviations,type=\acronymtype]\raggedbottom
     %\phantomsection
     \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ %\clearpage \thispagestyle{empty}
     \listoffigures \raggedbottom\ \clearpage \thispagestyle{empty}

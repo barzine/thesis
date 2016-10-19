@@ -37,7 +37,8 @@
 \usepackage{subcaption}
 \usepackage{xr} %for cross reference between files
 
-
+%\usepackage{ifoddpage}
+\usepackage{afterpage}
 \usepackage{verbatim}
 %\usepackage{xspace} %the original author doesn't recommend it
 
@@ -66,7 +67,7 @@
 \makeglossaries%
 %\loadglsentries{glossary.tex}
 
-
+\usepackage{bookmark}
 \usepackage{geometry}%% for page layout
 \usepackage[nameinlink, noabbrev]{cleveref}
 
@@ -286,10 +287,12 @@
 
 \newcommand*\tissue[1]{\emph{#1}}
 
-\newcommand*\DNA{\mol{DNA}}
+%\newcommand*\DNA{\mol{DNA}}
+\newcommand*\DNA{\gls{DNA}}
+
 \newcommand*\dataset[1]{\textnormal{#1}}
 \newcommand*\etal{\textit{et al.}}
-\newcommand*\Rnaseq{RNA-Seq}
+\newcommand*\Rnaseq{\gls{RNA-Seq}}
 
 \newcommand*\paper[1]{\emph{#1}}
 \newcommand*\subcap[1]{\small{#1}}
