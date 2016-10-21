@@ -8,7 +8,7 @@
 ,open=right
 %,listof=totoc
 ,floatperchapter
-,pdfspacing
+%,pdfspacing %doesn't work with xelatex
 ,numbers=noendperiod
 ,twoside=true
 ,headings=big
@@ -21,7 +21,8 @@
 \input{glossary.tex}
 
 
-\title{Investigating the gene expression in Human: from transcriptomic to proteomic.}
+\title{Expression in normal human tissues: learning from independent publicly
+available high-throughput transcriptomic and proteomic data}
 \subject{This dissertation is submitted for the degree of Doctor of Philosophy}
 \author{Mitra Parissa Barzine}
 \publishers{%
@@ -62,23 +63,22 @@
 \input{disclaimer.tex}
 \input{summary.tex}
 \input{acknowledgements.tex}
-\clearpage
 
 %% problem with page numbering fixed with:
 %% http://tex.stackexchange.com/a/125090/102519
 \begingroup
     \hypersetup{linkcolor=thesis@toccolor}
-    \pdfbookmark[chapter]{\contentsname}{toc}
-    \tableofcontents \clearpage \thispagestyle{empty}
-    %\printglossaries \clearpage
-    %\printglossary[type=\acronymtype]
-    \printglossary[title=List of Terms and Abbreviations,toctitle=List of Terms and Abbreviations,type=\acronymtype]\raggedbottom
-    %\phantomsection
-    \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ %\clearpage \thispagestyle{empty}
-    \listoffigures \raggedbottom\ \clearpage \thispagestyle{empty}
+    \cleardoublepage
+    \pdfbookmark{\contentsname}{toc}
+    \tableofcontents
     \phantomsection
-    \addcontentsline{toc}{chapter}{\listtablename} \raggedbottom\ %\clearpage
-    \listoftables \raggedbottom\ \clearpage \thispagestyle{empty}
+    \printglossary[title=List of Terms and Abbreviations,toctitle=List of Terms and Abbreviations,type=\acronymtype]\raggedbottom
+    \phantomsection
+    \listoffigures
+    \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ \clearpage \thispagestyle{empty}
+    \phantomsection
+    \listoftables
+    \addcontentsline{toc}{chapter}{\listtablename}\raggedbottom\ \clearpage \thispagestyle{empty}
     \cleardoublepage
 \endgroup
 
@@ -116,7 +116,7 @@
 \label{ch:SupplIntegration}
 
 \input{app/protNoTrans.tex}
-\input{app/IntScatt.tex}
+%\input{app/IntScatt.tex}
 
 
 
