@@ -35,4 +35,5 @@ app/*.txt
 gfx/integration/*.txt
 gfx/integration/*.pptx
 gfx/integration/tobeFixed/
+gfx/integration/cleanup-later
 gfx/ppt/
