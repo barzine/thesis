@@ -14,7 +14,7 @@
 ,headings=big
 ,bibliography=totoc
 ]{scrbook}
-\KOMAoptions{headsepline = false, footsepline = false}
+\KOMAoptions{headsepline = true, footsepline = false}
 
 \usepackage{scrpage2}
 \input{config.tex}
@@ -34,15 +34,14 @@ available high-throughput transcriptomic and proteomic data}
 
 \lowertitleback{%
   \centering
-  {\footnotesize Licensed under Creative Commons Attribution (CC BY) 3.0}
+  {\footnotesize Licensed under Creative Commons Attribution International (CC BY) 4.0}
   \\[2mm]
-  \href{http://creativecommons.org/licenses/by/3.0/}{%
+  \href{http://creativecommons.org/licenses/by/4.0/}{%
     \raisebox{-0.25em}{\includegraphics[width=1em]{cc}
       \includegraphics[width=1em]{by}}}}
 
 %\addtokomafont{section}{\Large}
 %\addtokomafont{subsection}{\large}
-
 
 \begin{document}
 \hyphenation{%
@@ -67,7 +66,7 @@ available high-throughput transcriptomic and proteomic data}
 %% problem with page numbering fixed with:
 %% http://tex.stackexchange.com/a/125090/102519
 \begingroup
-    \hypersetup{linkcolor=thesis@toccolor}
+    %\hypersetup{linkcolor=thesis@toccolor}
     \cleardoublepage
     \pdfbookmark{\contentsname}{toc}
     \tableofcontents
@@ -83,10 +82,6 @@ available high-throughput transcriptomic and proteomic data}
 \endgroup
 
 
-%%%%%%
-%%First use: \acrlong{svm}. Second use: \acrshort{svm}.
-%%Tata: \acrshort{laser}. Second use: \acrlong{laser} et blabla.
-%%%%%%
 
 %\mainmatter\
 \pagenumbering{arabic}
@@ -103,12 +98,10 @@ available high-throughput transcriptomic and proteomic data}
 \appendix\
 %\input{appendix.tex}
 
- \phantomsection\
- \addcontentsline{toc}{part}{APPENDIX}
- \part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}
- \label{ch:appendix}
- \renewcommand\thechapter{\Alph{chapter}}
- \begingroup
+\part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}%\label{ch:appendix}
+\addcontentsline{toc}{part}{APPENDIX}
+\renewcommand\thechapter{\Alph{chapter}}
+\begingroup
 
 
 

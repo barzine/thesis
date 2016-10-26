@@ -40,8 +40,7 @@
 %\usepackage{ifoddpage}
 \usepackage{afterpage}
 \usepackage{verbatim}
-%\usepackage{xspace} %the original author doesn't recommend it
-
+\usepackage{xspace} %the original author doesn't recommend it
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.13}
 \usepackage{expdlist}
@@ -161,7 +160,7 @@
             }%
         }%
     \end{picture}
-    \llap{\pagemark~}
+    \llap{\pagemark~~~~~}
 ]% scrplain style (end)
 %
 {% scrheadings style (begin)
@@ -175,13 +174,13 @@
             }%
         }%
     \end{picture}
-    \llap{\pagemark~}%
+    \llap{\pagemark~~~~~}%
     }% scrheadings style (end)
 
 %% Right (odd page numbers) footer
 \rofoot%
 [% scrplain style (begin)
-    \rlap{~\pagemark}%%
+    \rlap{~~~~~\pagemark}%%
     \setlength{\unitlength}{\myLenghthFootAbstand}%
     \begin{picture}(0,0)%
         \put(0,-1)%
@@ -195,7 +194,7 @@
     ]% scrplain style (end)
     %
 {% scrplain style (begin)
-    \rlap{~\pagemark}%%
+    \rlap{~~~~~\pagemark}%%
     \setlength{\unitlength}{\myLenghthFootAbstand}%
     \begin{picture}(0,0)%
         \put(0,-1)%
@@ -272,7 +271,7 @@
 
 %%%% shortcuts
 \newcommand*\myPlace{Cambridge (UK)}
-\newcommand*\myDate{7 September 2016}
+\newcommand*\myDate{21 October 2016}
 
 \newcommand*\mol[1]{\textnormal{#1}}
 \newcommand*\gene[1]{\textit{#1}}
@@ -284,6 +283,8 @@
 %\newcommand*\mRNAs{\mol{mRNAs}}
 \newcommand*\mRNA{\gls{mRNA}}
 \newcommand*\mRNAs{\glspl{mRNA}}
+
+
 
 \newcommand*\tissue[1]{\emph{#1}}
 
