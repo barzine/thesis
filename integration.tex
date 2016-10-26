@@ -1,6 +1,6 @@
 %external files that are referenced
 \externaldocument{app/protNoTrans}
-\externaldocument{app/IntScatt}
+%\externaldocument{app/IntScatt}
 %%%%%%
 
 
@@ -146,7 +146,8 @@ its whole.
     protocol of sampling and quantification used for the assay.
     For these genes, when no signal is collected, I assume this is a true $0$.
     The genes without any quantification
-    in any tissue are discarded from the remaining analysis as I can't state
+    in any tissue, e.g.\ gene 4, are discarded from the remaining analysis as
+    I can't state
     either there are truly absent from the biological sample or it has to due
     to the protocol at use; they are \emph{undefined}.}
 \end{figure}
@@ -179,7 +180,7 @@ On the proteomic side, I consider that a protein is expressed if it has been
 identified and quantified. In other words, if the expression value of a protein
 is greater than zero in a sample, I consider it as expressed.
 
-\subsubsection{Expressed transcript}\KOMAoptions{parskip=half*}
+\subsubsection{Expressed transcript}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
 It is a bit more complex on the transcriptomic side as there can be
 \fixme{find reference on translational noise in RNAseq}
 translational noise. While this noise could be evaluate by empirical methods for
@@ -279,8 +280,8 @@ with the \dataset{Gtex} and \dataset{Uhlén \etal} datasets
 (see~\cref{fig:VennTissuePandeyGtexUhlen}
 and~\cref{fig:VennTissueKusterGtexUhlen}), I had focused the study on
 the \dataset{Pandey \etal} dataset. Indeed, we managed to quantify the biggest
-number of proteins in this later dataset: 10272 proteins across 24 samples for
-\dataset{Pandey} versus 7223 across 24 samples for \dataset{Kuster}\footnote{Even
+number of proteins in this later dataset: 10,272 proteins across 24 samples for
+\dataset{Pandey} versus 7,223 across 24 samples for \dataset{Kuster}\footnote{Even
 if the number of samples is the same for the \dataset{Pandey} and
 the \dataset{Kuster} datasets, this is purely fortuitous.}.
 
@@ -352,7 +353,7 @@ the same order.}
 %\captionof{figure}[Distribution of proteins across the tissues]{\figKustPandFQM}
 %}}{\begin{figure}
 % \includegraphics[scale=0.90]{integration/KusterPandey1_2FQM.png}\centering\label{fig:KusterPandeyFQM}
-    \includegraphics[scale=0.90]{integration/KusterPandey1_2FQM.png}\centering
+    \includegraphics[scale=0.75]{integration/KusterPandey1_2FQM.png}\centering
     \caption[Distribution of proteins across the
     tissues]{\label{fig:KusterPandeyFQM}\figKustPandFQM}
 \end{figure}
@@ -473,7 +474,6 @@ some figures and tables from the data quantified by the first method.
 Those can be found in the appendices; their references
 are given in blue (and in brackets) in the caption of the main figures.
 
-
 In the following sections, we consider the proteomic data with this new
 quantification method and compare it to the \dataset{Uhlén \etal} dataset
 for their 15 common tissues.
@@ -536,12 +536,35 @@ more likely translated into proteins.
 have good and significant correlation for same-tissue pairs.}
 \label{subsec:IntegrationGoodCorrProtTrans}
 
-As a first approach, I used the whole set of common expressed \mRNAs\ and
+I used the whole set of common expressed \mRNAs\ and
 expressed proteins\footnote{Without any other constraint: e.g.\ the \mRNA\ and
 its corresponding protein do not have to be detected in the same tissue.}.
+Then, I calculated the correlation between the proteome and the trancriptome for
+each tissue, i.e.\ for each tissue, I compared each protein expression value to
+its corresponding gene one.
+
+As I exposed in~\Cref{ch:Transcriptomics}, there are some
+\mRNAs\ that are lowly or even anti-correlated between the different
+transcriptomic datasets.
+As I can not pinpoint whether this is due to \emph{biological} or \emph{technical}
+reasons, we choose to exclude the anticorrelated \mRNAs\ between \dataset{Uhlén
+\etal} and \dataset{Gtex} (across the 23 common tissues) as these two datasets have
+very similar protocols and have been sequenced on similar sequencers (Illumina
+HiSeq 2000/2500).
+
+As illustrated in the supplementary~\cref{fig:ScatterPlotLiver}
+and~\cref{fig:ScatterPlotOesophagus}, while the exclusions of these genes might
+slightly improve some of the results, it can also have a feeble opposite effect
+in some other cases.
+Indeed, some pairs of \mRNA/protein might have a very tight relationship in some
+tissues and looser in others. Whilst this could be due to technical reasons, it
+could also be due to biological ones. Unfortunately, with our current knowledge
+of the datasets, it is not possible to reject pairs \emph{a priori}.
+
 In this context, the range of Pearson correlation coefficients between the
-proteomic and the transcriptomic dataset is from $0.66$ for the \tissue{Liver}
-to 0.47 for the \tissue{Oesophagus}. \rough{If I exclude the lowly correlated genes
+proteomic and the transcriptomic data is from $0.66$ for the \tissue{Liver}
+to $0.47$ for the \tissue{Oesophagus}.
+\rough{If I exclude the lowly correlated genes
 between \dataset{GTEX} and \dataset{Uhlén \etal}, then while the \tissue{Liver}
 is still the tissue with the best correlation between proteins and \mRNAs\ and
 the \tissue{Oesophagus} has the worst correlation,
@@ -556,7 +579,7 @@ coefficients for each tissue are substantially identical.}
     and the \mRNAs\ (Uhlén \etal) for Kidney]
     {\label{fig:ScatKid}\textbf{Scatter plot of the expression value of the
     proteins (Pandey) and the \mRNAs\ (Uhlén \etal) for Kidney.}
-    This scatter plot (or bivariate plot) displays the
+    This scatter plot displays the
     log-transformed ($Log_{2}$) expression value of
     each \mRNA\ on the x-axis and the log-transformed ($Log_{2}$)
     expression value of the proteins on the
@@ -566,36 +589,44 @@ coefficients for each tissue are substantially identical.}
     of \mRNAs\ and proteins. We also see that the lower levels of expression of
     \mRNAs\ are more prone to the dispersion ($<0$ on $Log_{2}$-scale, so $<1$
     \gls{FPKM} on the original scale, which is a common threshold used for the
-    coding \mRNAs). Besides, the proteins present a saturation effect of their
-    expression values. The highest expressed protein is HBB (i.e.\ Hemoglobin
-    Subunit Beta) which is also found as the Top-5 of the highest expressed
-    proteins in the other tissues. It is quite likely that for most of the tissues,
-    this is due to how they have been sampled.
+    coding \mRNAs). Besides, the proteins present most-likely a
+    saturation effect of their expression values. The highest expressed protein
+    is \protein{\gls{HBB}}
+    (i.e.\ Hemoglobin Subunit Beta) which is also found in the 5 highest
+    expressed proteins in all the other tissues. It is quite likely that for
+    most of the tissues, this is due to how they have been sampled.
     \\The distributions of the proteins and the \mRNAs, plotted on the outer part
-    the figure, have similar shaped.}
+    the figure, have similar shaped.\\
+    \textbf{N.B.:} Whilst every pair of \mRNA\ and protein has been used to
+    calculate the correlation, the pairs with a null element have been not plotted
+    to optimise the visualisation.}
 \end{figure}
 
-In~\cref{fig:ScatKid}, we can see on %######
+\Cref{fig:ScatKid} illustrates the comparison of the proteomic data to the
+transcriptomic data for the \tissue{Kidney} which stands within the middle of the
+correlation range as its coefficient is equal to $0.56$.
+The x-axis represents the level of the \mRNAs\
+expression on a $Log_{2}$-scale and the y-axis represents the levels for the
+proteins (also on a $Log_{2}$-scale). Whilst, every pair of \mRNA\ and
+corresponding proteins has been used to calculate the overall Pearson correlation
+coefficient, the pairs with a null element have been excluded from the plotting
+to optimise the visualisation. As we can see, there is a higher dispersion for
+small expression values of \mRNAs\ (lesser than $0$ $Log_{2}$(FPKM), i.e.\
+$1$ FPKM). This dispersion could be due to technical limitations or translational
+noise (see \cref{subsubsec:exprTrans}). For the highly expressed \mRNAs\ side,
+we can observe a possible saturation effect on the proteomic side. These two
+phenomenon explain why the correlation coefficient value is so low when the
+bulk of the protein/\mRNA pairs present a positive strong and quite linear
+association.
 
-To test the significance of these coefficients, I have also calculated the Pearson
-correlation coefficient
+When I realise the previous comparison for the other 14 tissues, the results are
+quite similar (see \cref{fig:IndScatt}). To test the significance of these
+coefficients, I have also calculated the Pearson correlation coefficients of
+random pairs of tissues, i.e.\ instead of comparing the $Proteome_{Adrenal}$ with
+the $Transcriptome_{Adrenal}$, (which is a \emph{same tissue pair} comparison),
+I compare for example the $Proteome_{Adrenal}$ with the $Transcriptome_{Placenta}$.
 
-As I exposed in~\Cref{ch:Transcriptomics}, there are some
-\mRNAs\ that are lowly or even anti-correlated between the different
-transcriptomic datasets.
-As I can not pinpoint whether this is due to \emph{biological} or \emph{technical}
-reasons, we choose to exclude the anticorrelated \mRNAs\ between \dataset{Uhlén
-\etal} and \dataset{Gtex} (across the 23 common tissues) as these two datasets have
-very similar protocols and have been sequenced on similar sequencers (Illumina
-HiSeq 2000/2500).
 
-As illustrated in the supplementary~\cref{fig:ScatterPlotLiver}
-and~\cref{fig:ScatterPlotOesophagus}, while the exclusions of these genes might
-slightly improve some of the results, it can also have the opposite effect.
-Indeed, some pairs of \mRNA/protein might have a very tight relationship in some
-tissues and looser in others. While this could be due to technical reasons, it
-could also be due to biological ones. With the current knowledge of the datasets,
-it is not possible to reject pairs \emph{a priori}.
 
 \begin{figure}
     \includegraphics[scale=0.55]{integration/TestWhole_withoutLow.png}\centering
@@ -692,16 +723,16 @@ The reality is more mixed for the other tissues.
     across the common tissues in descending order]
     {\label{GeneProtCor}\textbf{Pearson correlation coefficients of \mRNA/protein
     pairs expression across the common tissues in descending order.} For each
-    couple of \mRNA and its corresponding protein, the Pearson correlation of
+    couple of \mRNA\ and its corresponding protein, the Pearson correlation of
     their respective expression across the same set of tissue is calculated. Then,
     all the pairs are sorted in descending order and plotted based on their
     correlation coefficient in pink. To provide context to these results,
     An \emph{ideal} case has also been calculated. The identical \mRNAs\ set of
     the current Proteome and Transcriptome comparison has been used for a
-    Transcriptome (\dataset{Uhlén \etal} and Transcriptome comparison
+    Transcriptome (\dataset{Uhlén \etal}) and Transcriptome comparison
     (\dataset{GTEX}). We can see that even the ideal case is not a perfect
     horizontal line (which would indicate a whole and complete correlation between
-    the two transcriptomic datasets).    }
+    the two transcriptomic datasets).}
 \end{figure}
 
 %\begin{figure}
@@ -711,6 +742,11 @@ The reality is more mixed for the other tissues.
 %\end{figure}
 
 
+%\begin{figure}
+%    \includegraphics{integration/}\centering
+%    \caption[]{\label{} \textbf{}
+%    }
+%\end{figure}
 
 
 
