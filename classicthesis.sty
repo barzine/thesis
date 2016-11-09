@@ -368,18 +368,20 @@
 % layout of the chapter-, section-, subsection-, subsubsection-,
 % paragraph and description-headings
 % ********************************************************************             
+
+%%%%%
 \RequirePackage{titlesec}
 		% parts
 		\ifthenelse{\boolean{@parts}}%
 		{%
-%		\newcommand{\ctparttext}{\relax}
+		\newcommand{\ctparttext}{\relax}
 		\newcommand{\ct@parttext}{\relax} % Thanks to Ivo
 		\newcommand{\ctparttext}[1]{\renewcommand{\ct@parttext}{#1 \relax}} 
     \titleformat{\part}[display]
         {\normalfont\centering\large}%
         {\thispagestyle{empty}\partname~\MakeTextUppercase{\thepart}}{1em}%
         {\color{Maroon}\spacedallcaps}[\bigskip\normalfont\normalsize\color{Black}\begin{quote}\ct@parttext\end{quote}]
-    }{\relax}
+   }{\relax}
     % chapters
     \ifthenelse{\boolean{@linedheaders}}%
     {% lines above and below, number right
@@ -399,7 +401,7 @@
         {\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize\itshape}
     % subsubsections
     \titleformat{\subsubsection}
-        {\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\normalsize\itshape}        
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\small}
     % paragraphs
     \titleformat{\paragraph}[runin]
         {\normalfont\normalsize}{\theparagraph}{0pt}{\spacedlowsmallcaps}    

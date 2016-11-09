@@ -13,6 +13,7 @@
 \usepackage{csquotes}
 \usepackage{epigraph}
 \usepackage{booktabs,dcolumn}
+\usepackage{microtype}
 \usepackage{rotating}
 \usepackage{multirow}
 %\usepackage[table,xcdraw]{xcolor}
@@ -35,14 +36,14 @@
 %format=hang
 %\usepackage[font=small,format=plain,labelfont=bf,up,textfont=normal,up,justification=justified,singlelinecheck=false,margin=5pt]{caption}
 \usepackage{subcaption}
-\usepackage{xr} %for cross reference between files
+%\usepackage[user,xr]{zref} %for cross reference between files
 
 %\usepackage{ifoddpage}
 \usepackage{afterpage}
 \usepackage{verbatim}
 \usepackage{xspace} %the original author doesn't recommend it
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.13}
+\pgfplotsset{compat=1.14}
 \usepackage{expdlist}
 \usepackage{pdflscape}
 \usepackage{longtable}
@@ -95,29 +96,31 @@
 
 
 %%%% Check with classicthesis manual to redifine the chapter and sections formats
-
 %\titleformat{\chapter}[display]%
 %{\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
-%{\raggedright\spacedallcaps}[\Huge\vspace*{.8\baselineskip}\titlerule]%
-% sections
+%{\raggedright\spacedallcaps}[\Huge\vspace*{.8\baselineskip}\titlerule]
+%%sections
 %\titleformat{\section}
 %{\relax}{\textbf{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
-% subsections
+%%subsections
 %\titleformat{\subsection}{\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize}
+%%subsubsections
+%\titleformat{\subsubsection}{\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{0.5em}{\normalsize}
+%% need to take care of the numbering of the captions if used.
 
-
-
-%\setkomafont{title}{\rmfamily\Huge}
-%\setkomafont{subject}{\normalfont\normalcolor}
+\setkomafont{title}{\rmfamily\Huge}
+\setkomafont{subject}{\normalfont\normalcolor}
 \isodash{\ensuremath{\cdot}}% Replacement for `‧` = U+‧2027 HYPHENATION POINT
 
-%\definecolor{cambridgeblue}{RGB}{163, 193, 173}
-%\definecolor{cambridgebluedark}{RGB}{17, 94, 103}
+\definecolor{cambridgeblue}{RGB}{163, 193, 173}
+\definecolor{cambridgebluedark}{RGB}{17, 94, 103}
 
 
 %\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
 
 \addbibresource{Bibliography.bib}
+\addbibresource[label=ownpubs]{Publications.bib}
+
 
 \setstretch{1.1}
 \graphicspath{{gfx/}} %as instructed in classicthesis
