@@ -21,6 +21,7 @@
 \input{glossary.tex}
 
 
+
 \title{Expression in normal human tissues: learning from independent publicly
 available high-throughput transcriptomic and proteomic data}
 \subject{This dissertation is submitted for the degree of Doctor of Philosophy}
@@ -90,6 +91,7 @@ available high-throughput transcriptomic and proteomic data}
 \input{introduction.tex}
 \input{transcriptomics.tex}
 \input{proteomics.tex}
+\input{additional.tex}
 \input{integration.tex}
 \input{normalisation.tex}
 \input{conclusion.tex}
@@ -105,18 +107,23 @@ available high-throughput transcriptomic and proteomic data}
 
 
 
-\chapter{Supplementary material for Chapter}
-\label{ch:SupplIntegration}
+%\chapter{Supplementary material for Chapter}
+%\label{ch:SupplIntegration}
 
-\input{app/protNoTrans.tex}
+\input{app/IntegSuppl.tex}
 %\input{app/IntScatt.tex}
 
+\chapter{List of publications}
 
-
+\begin{refsection}[ownpubs]
+    \small
+    \nocite{*} % is local to to the enclosing refsection
+    \printbibliography[heading=none]
+\end{refsection}
 
 \endgroup
-
-
+\bookmarksetup{startatroot}
+\printbibliography[title={References}]
 
 %\printglossaries\
 
