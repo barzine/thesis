@@ -733,56 +733,90 @@ of the \mRNAs\ is also bimodal.
     \textbf{C}| $5$ \glspl{FPKM}.}
 \end{figure}
 
-\subsubsection{Similarities of Expression breadth --- limited extend }
+\subsection{Few protein expression breadth can be predict by transcript
+expression breadth}
 
 \begin{figure}[!htbp]
-\includegraphics[scale=0.7]{integration/PandeyUhlenAnnoBreadth}\centering
-    \caption[placehold]{\label{fig:breadthColPandeyUhlen}\textbf{placehold}}
+\includegraphics[scale=0.30]{integration/PandeyUhlenAnnoBreadth}\centering
+    \caption[Proteome expression breadth compared to the transcriptomic one]{\label{fig:breadthColPandeyUhlen}\textbf{Proteome expression breadth
+    compared to the transcriptomic one.}The breadth of expression of each protein
+    is compared to the breadth of its corresponding \mRNA\. Several possible cases
+    are showed. Some proteins haven't been found in the transcriptomic samples,
+    they are \emph{unshared.}
+    The breadth can be \emph{identical}:the protein and the \mRNA\ are
+    expressed in the same number of tissues. The first and last three columns
+    have been grouped together. If a protein and its \mRNA\ are in the same group,
+    they are tagged as \emph{similar}. If the protein and the \mRNA\ are both
+    expressed between 4 to 9 tissues, they are described as \emph{mixed}. If the
+    pair is not belonging to any of the previous categories, it is then described
+    as \emph{different}.}
 \end{figure}
 
-\subsubsection{Tissue cluster same on Proteomic and Transcriptomic?}
+\TK{While the unique protein/\mRNA\ are not concluant; the next analysis was to
+determine if the closeness of two tissues are conserved between proteomic and
+transcriptomic tissues.}
 
-
+\subsection{Tissue clusters differs between Proteomic and Transcriptomic}
 \begin{figure}[!htbp]
 \includegraphics[scale=0.8]{integration/heatmapPairs}\centering
-    \caption[placehold]{\label{fig:bredthColPandeyUhlen}\textbf{placehold}}
+    \caption[Clusters of tissues based on number of proteins or \mRNAs\ shared
+    between a pair of tissues]{\label{fig:heatmapPairs}\textbf{Clusters of
+    tissues based on number of proteins or \mRNAs\ shared between a pair of
+    tissues.} For each pair of tissues, I have collected the number of proteins
+    (or \mRNAs) expressed only in that pair. That number is displayed in the
+    cell. The heatmap is a symmetric heatmap. Higher is the number of features
+    (proteins or \mRNAs) shared between two tissues and closer they are
+    considered. We can observe that the tissue presenting the most shared features
+    with the other tissues is \tissue{Testis}.}
 \end{figure}
+
+\TK{Comparison of the two trees}
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.7]{integration/consensusTree}\centering
-    \caption[placehold]{\label{fig:consensusTree}\textbf{placehold}}
+    \caption[Consensus tree between the cluster trees of the proteome and the
+    transcriptome]{\label{fig:consensusTree}\textbf{Consensus tree between the
+    cluster trees of the proteome and the transcriptome.}}
 \end{figure}
 
 It appears that a direct comparison of the proteins that have been identified
 with the identified \mRNAs\ (even with various thresholds) is not so meaningful.
 
-Instead of focusing of the uniqueness of a gene, the main issue here is to
+Instead of focusing of the uniqueness of a gene (or in a broader way, the breadth
+of expression),the main issue here is to
 determine what and when a gene is \emph{specific}. In fact, I can not use
-the same definition of detection like for the proteins. I then chose to focuse
+the same definition of detection like for the proteins. I then chose to focus
 on the \emph{Tissue-Specific} genes.
 
-\subsection{Tissue specific protein == tissue specific \textit{m}RNA?}
+\subsection{Tissue specific \textit{m}RNAs have significant overlap with tissue
+specific proteins}
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.7]{integration/RankSpe}\centering
-    \caption[placehold]{\label{fig:RankSpe}\textbf{placehold}}
+    \caption[Determination process of specific
+    mRNAs]{\label{fig:RankSpe}\textbf{Determination process of specific \mRNAs.}}
 \end{figure}
 
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.7]{integration/SpeJacquard/Heart}\centering
-    \caption[placehold]{\label{fig:ExJacquard}\textbf{placehold}}
+    \caption[Example of overlap of specific protein and specific
+    mRNAs for heart]{\label{fig:ExJacquard}\textbf{Example of overlap of
+    specific proteins and specific \mRNAs.}}
 \end{figure}
 
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.4]{integration/RatioJac}\centering
-    \caption[placehold]{\label{fig:RatioJac}\textbf{placehold}}
+    \caption[Heatmap of Jaquard indices]{\label{fig:RatioJac}\textbf{Heatmap of
+    Jaquard indices.}}
 \end{figure}
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.4]{integration/pJacquard}\centering
-    \caption[placehold]{\label{fig:pJacquard}\textbf{placehold}}
+    \caption[p-values associated to the Jaquard
+    indices]{\label{fig:pJacquard}\textbf{p-value associated to the Jaquard
+    indices.}They have been computed with hypergeometric test.}
 \end{figure}
 
 \subsection{Expression levels of mRNAs correlate with the expressed proteins}
@@ -808,21 +842,26 @@ on the \emph{Tissue-Specific} genes.
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.5]{integration/caseGene}\centering
-    \caption[placehold]{\label{fig:caseGene}\textbf{placehold}}
+    \caption[Different cases of correlation
+    protein/mRNA]{\label{fig:caseGene}\textbf{Different cases of correlation
+    protein/\mRNA.} The high correlated ones are enriched in pairs that are
+    Tissue-specific as \mRNA\ and protein.}
 \end{figure}
 
-\subsubsection{Tissue specific genes tend to correlate better}
+\subsection{Pairs composed of tissue specific proteins tend to correlate better}
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.7]{integration/Spe_Cor}\centering
+    \caption[Cumul ratio of the specific proteins ordered on the correlation
+    of the mRNA/protein pairs across the 15
+    tissues]{\label{fig:Spe_Cor}\textbf{Cumul ratio of the specific proteins
+    ordered on the correlation of the mRNA/protein pairs across the 15 tissues.}}
+\end{figure}
+
 
 \TK{Can tissues correlations be improved by removing the lowly correlated genes? =>
 it is not always the same pairs that are in the same quadrant ==> no `argument''
 that would legitimate this. Ref:~\cref{fig:CorImprovable}}
-
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.7]{integration/Spe_Cor}\centering
-    \caption[placehold]{\label{fig:Spe_Cor}\textbf{placehold}}
-\end{figure}
-
 
 
 \begin{figure}[!htbp]
@@ -837,26 +876,30 @@ that would legitimate this. Ref:~\cref{fig:CorImprovable}}
 \end{figure}
 
 
-
-
 \subsection{GO enrichment of the different categories}
 
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.7]{integration/Go_dotplot}\centering
-    \caption[placehold]{\label{fig:Go_dotplot}\textbf{placehold}}
+    \caption[GO enrichment analysis of the highest, lowest and Tissue
+    specific genes]{\label{fig:Go_dotplot}\textbf{GO enrichment analysis of the
+    highest, lowest and Tissue specific genes.}}
 \end{figure}
 
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.7]{integration/GO_cor_sorted}\centering
-    \caption[placehold]{\label{fig:GO_cor_sorted}\textbf{placehold}}
+    \caption[Correlation coefficient of the pairs for the GO
+    categories]{\label{fig:GO_cor_sorted}\textbf{Correlation coefficient of the
+    GO categories.}}
 \end{figure}
 
 
 \begin{figure}[!htbp]
 \includegraphics[scale=0.7]{integration/OtherGroups}\centering
-    \caption[placehold]{\label{fig:GO_sub_groups}\textbf{placehold}}
+    \caption[Examples of particular GO
+    categories]{\label{fig:GO_sub_groups}\textbf{Examples of particular GO
+    categories.}}
 \end{figure}
 
 %\begin{figure}
@@ -879,19 +922,6 @@ that would legitimate this. Ref:~\cref{fig:CorImprovable}}
 
 \clearpage\
 
-\begin{itemize}
-\item Ranking the expression
-\item Tissue specific genes/proteins – how consistent they are in RNA and proteomics?
-\item Gene correlation
-\item Correlated and uncorrelated genes, what is specific to each group
-    functional groups of genes
-\item screen shots of the web-applications
-\end{itemize}
-
-
-
-\subsection{Specificity,House-keeping genes}
-\subsection{Genes functionality impact}
 
 \subsection{Annotation + Methodology impact}
 \TK{comparison with the Scientific report paper}
