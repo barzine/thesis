@@ -12,7 +12,14 @@ I have performed the quality control, the mapping and the quantification of the
 all the data analysis and integration under the supervision of Dr Alvis Brazma
 (EMBL-EBI) and Dr Jyoti Choudhary (Wellcome Trust Sanger Institute).
 
-A manuscript describing this work is being prepared with the other authors.
+A manuscript describing this work is being prepared with the aforementioned authors.
+
+Furthermore, while this thesis redaction, \citet*{SciRep2016} published
+\citetitle{SciRep2016} in \emph{Scientific Reports}.
+
+As their work is highly similar to my own, particularly as they are using data
+from the Gtex consortium and from the Pandey laboratory, I will describe the
+paper's relevant findings and discuss them jointly with my own.
 
 \section{Introduction}
 \label{sec:IntegrationIntro}
@@ -22,7 +29,7 @@ will be transcribed as one \mRNA\ transcript and will be in turn translated in
 one protein --- still holds true even though we now know the truth is not as
 linear as we thought first. Many regulation processes are implied before
 and after the transcription and translation steps.
-In~\cref{fig:dogma} which is the reconstruction by~\cite{Crick:1958} of
+In~\cref{fig:dogma} which is the reconstruction by~\citet{Crick:1958} of
 what was conceived circa 1958: the solid lines present the proven mode of
 information transfers, the dashed ones are the ones that were postulated but
 have yet to be proven. To update this figure to our current knowledge, the line
@@ -76,7 +83,7 @@ at the same time. Alike the \dataset{Uhlén \etal} dataset and the \dataset{Gtex
 these datasets have not the same scope of tissues. However, the overlap of
 studied tissues is enough to draw an overview of the current technology.
 
-In their review,~\cite{Uhlen:2016}, the authors outline one on-going debate
+In their review,~\citet{Uhlen:2016}, the authors outline one on-going debate
 in the literature, which could be formulated whereas we should observe (or not)
 good correlations between proteomic and transcriptomic data.
 Indeed, first investigations found low or no correlation. More recent
@@ -108,7 +115,8 @@ In a particular tissue?
 \label{sec:IntegrationExpressedOrNot}
 While it can seem as a trivial concept and might be overlook, whether a specific
 molecule is expressed --- or not --- in a given condition, can actually have
-an extensive impact on the results of the integration.
+an extensive impact on the results of the analyses, particularly when integrating
+proteome and transcriptome together.
 
 Indeed, the Pearson correlation is very sensitive to outliers and null values,
 \fixme{Add reference}
@@ -128,7 +136,8 @@ its whole.
     in any tissue, e.g.\ gene 4, are discarded from the remaining analysis as
     I can't state
     either there are truly absent from the biological sample or it has to due
-    to the protocol at use; they are \emph{undefined}.}
+    to the protocol at use; they are \emph{undefined}. The same approach is used
+    for the transcriptome and the proteome.}
 \end{figure}
 
 \subsection{The undefined}\KOMAoptions{parskip=false}
@@ -143,8 +152,8 @@ circled in red in~\cref{fig:DefineExpression}.
 
 \subsection{Expression in a dataset}
 \label{subsec:IntegrationExpressedOrNot--expDataset}
-By contrast, if a protein or a transcript is expressed in any sample of the
-dataset, then, whenever there wasn't any expression recorded in the other
+By contrast, if a protein or a transcript is expressed in some samples of the
+dataset, then, whenever no expression was recorded in the other
 samples, I consider that the expression of the considered macromolecule is truly
 null for those samples.
 
@@ -163,7 +172,7 @@ It is a bit more complex on the transcriptomic side as there can be
 \fixme{find reference on translational noise in RNAseq}
 translational noise. While this noise could be evaluate by empirical methods for
 each \Rnaseq\ dataset, there is a widespread threshold used in the literature:
-$1$ \gls{FPKM} (or \gls{RPKM}). In fact,~\cite{Hebenstreit:2011} showed in
+$1$ \gls{FPKM} (or \gls{RPKM}). In fact,~\citet{Hebenstreit:2011} showed in
 their study \paper{RNA sequencing reveals two major classes of gene expression
 levels in metazoan cells}, that to be translated into a protein, a \mRNA\ should
 present an expression at least equals to $1$ \gls{RPKM}.
@@ -174,19 +183,18 @@ that parts of the analyses have also been done either without
 any threshold (i.e.\ the same definition used with the proteins has been applied)
 or with a threshold of $5$ \glspl{FPKM}.
 
-
 \subsection{Limitations of the current study}
 Apart of the most obvious limitation: the transcriptome and the proteome used in
-this study have been collected from complete independent human donors, there are
+this study have been collected from independent human donors, there are
 two other main constraints I would like to highlight.
 
 First, there is a lack of samples per tissue on the proteomic side of the study.
 
-On one hand, we have the \dataset{Uhlén \etal}, which have \emph{technical}
+On one hand, we have the \dataset{Uhlén \etal} data, which have \emph{technical}
 and \emph{biological} replicates for each tissue, and the \dataset{Gtex}, which
-provides many biological replicates per tissue. On the other hand, there is only
-one sample per tissue in the proteomic dataset (\dataset{Pandey \etal}) used
-within this study. Hence, the expression found in \emph{one} sample is
+provides many \emph{biological} replicates per tissue. On the other hand, no
+replicate was produced in the proteomic dataset (\dataset{Pandey \etal}) used
+within this study. Hence, the expression found in \emph{one} library is
 \textit{de facto} the proteomic expression for that tissue. This
 is far from an ideal set-up.
 
@@ -222,15 +230,15 @@ on the proteome side were kept. Parallely, as we are interested to compare each
 protein to its corresponding \mRNA\, only the genes annotated as protein coding
 for biotype (in Ensembl 76 release) have been kept.
 
-The common tissues between \dataset{Gtex} and the proteomic data
+The 14 common tissues between \dataset{Gtex} and the proteomic data
 (\dataset{Pandey \etal}) are
 (by alphabetical order):  \tissue{Adrenal gland}, \tissue{Bladder}\footnote{Also
 sometimes reported as \tissue{Urinary Bladder}},
-\tissue{Colon}, \tissue{Oesophagus}, \tissue{Heart},
+\tissue{Colon}, \tissue{Frontal cortex}, \tissue{Oesophagus}, \tissue{Heart},
 \tissue{Kidney}, \tissue{Liver}, \tissue{Lung}, \tissue{Ovary}, \tissue{Pancreas},
-\tissue{Prostate} and \tissue{Testis}.
+\tissue{Prostate}, \tissue{Spinal cord} and \tissue{Testis}.
 
-The common tissue between \dataset{Uhlén \etal} and the proteomic data
+The 15 common tissue between \dataset{Uhlén \etal} and the proteomic data
 (\dataset{Pandey \etal} are)
 an enlarged version of the previous set, with the addition of \tissue{Gall
 bladder}, \tissue{Placenta} and \tissue{Rectum}.
@@ -359,7 +367,7 @@ to the nature of the tissue.
 In the same fashion as the transcriptomic data, which have been reprocessed
 before being employed in our studies, the proteomic data have been reprocessed
 by James from the raw files he has downloaded from ProteomeXchange
-(\cite{ProteomeXchange:2014}) via the PRIDE database (\cite{Pride:2016}).
+\citep{ProteomeXchange:2014} via the PRIDE database \citep{Pride:2016}.
 \fixme{Ask James for the methods}
 
 At first, the quantification used for the proteomic data was following

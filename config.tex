@@ -7,7 +7,7 @@
 %\setmainlanguage[variant=uk]{english}
 \usepackage[english, iso]{isodate}
 \usepackage{hyperref}
-\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex}
+\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draft
 \usepackage{minted}
 %\usepackage[explicit]{titlesec}
 \usepackage{csquotes}
@@ -47,7 +47,7 @@
 \usepackage{expdlist}
 \usepackage{pdflscape}
 \usepackage{longtable}
-
+\usepackage{eqlist}
 \usepackage{tracklang}
 \usepackage{mfirstuc}
 \usepackage{etoolbox}
@@ -251,6 +251,23 @@
 
 
 %%%%%%%
+%\newcounter{dataset}[chapter]
+%\newenvironment{dataset}[1][]{\refstepcounter{dataset}\par\medskip
+%   \textbf{Dataset~\thedataset. #1} \rmfamily}{\medskip}
+
+%%%%% new custom list (of datasets)
+%\DeclareNewTOC[%
+%    type=dataset,%
+%    types=datasets,% used in the \listof.. command
+%    chapter,% define a chapter environment
+%    name=Dataset,%
+%    listname={List of datasets}%
+%    ]{lod}
+
+%%%have a look at http://tex.stackexchange.com/questions/198932/list-of-newcounter/198957#198957
+%%%% and at http://tex.stackexchange.com/questions/6478/new-figure-environment/96493#96493
+
+
 %%%% custom macros
 \newcommand*\captitle[1]{\textbf{#1}}
 \setkomafont{caption}{\bfseries\sffamily}
@@ -276,34 +293,13 @@
 
 %%%% shortcuts
 \newcommand*\myPlace{Cambridge (UK)}
-\newcommand*\myDate{21 October 2016}
+\newcommand*\myDate{21 November 2016}
+\newcommand*\myName{Mitra Parissa Barzine}
 
-\newcommand*\mol[1]{\textnormal{#1}}
-\newcommand*\gene[1]{\textit{#1}}
-\newcommand*\ko[1]{\textit{#1\textsuperscript{\(-/-\)}}}
-\newcommand*\protein[1]{#1}
-\newcommand*\species[1]{\textit{#1}}
+\input{semanticMacro.tex}
 
-%\newcommand*\mRNA{\mol{mRNA}}
-%\newcommand*\mRNAs{\mol{mRNAs}}
-\newcommand*\mRNA{\gls{mRNA}}
-\newcommand*\mRNAs{\glspl{mRNA}}
-
-
-
-\newcommand*\tissue[1]{\emph{#1}}
-
-%\newcommand*\DNA{\mol{DNA}}
-\newcommand*\DNA{\gls{DNA}}
-
-\newcommand*\dataset[1]{\textnormal{#1}}
-\newcommand*\etal{\textit{et al.}}
-\newcommand*\Rnaseq{\gls{RNA-Seq}}
-
-\newcommand*\paper[1]{\emph{#1}}
 \newcommand*\subcap[1]{\small{#1}}
 
-\newcommand*\myName{Mitra Parissa Barzine}
 
 %%% TOC customisation
 \setcounter{secnumdepth}{5}

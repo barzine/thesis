@@ -1,6 +1,6 @@
 \chapter{Consistency through different transcriptomics studies}
 \label{ch:Transcriptomics}
-
+\begin{comment}
 As previously stated in the introduction, while I started this project,
 there wasn't any study that was investigating in-depth the reproducibility of
 transcriptomics.
@@ -13,16 +13,72 @@ measurements are not consistent, the relative expression is highly consistent
 
 
 Example:~\cite{schwanhausserglobal:2011}
+\end{comment}
 
+\section{introduction}
 
+Why?
+
+\begin{itemize}
+    \item Difficulty of sampling of normal conditions for human, particularly
+        for the solid tissues. (could be very useful in case of cancer for
+        example)
+    \item Lots of transcriptomics data in the repository of EBI. Can we use
+        this as a base for reference?
+    \item previous point not new, but recently multiplications of studies on
+        normal human studies based on \Rnaseq
+    \item Indeed, in the past people tried with microarray data but didn't work
+        \TK{find sources}
+    \item When I started this study, there wasn't any publication on this matter
+        yet, but \Rnaseq was considered as quantitative (when microarrays were
+        considered semi-quantitative at best).
+    \item nobody did published on my specific subject yet, but since then things changed
+    \item first paper from MACQ/SEC III
+    \item increasing number of papers that been published on the subject
+    \item I will discuss the different part of the papers that are relevant
+        with additions on what my study confirms/refutes or expands them.
+\end{itemize}
 
 \section{Available studies}
 \label{sec:Trans_AvailableStudies}
-Une vraie table~\cref{fig:Trans5DF}
+
+I chose with datasets (more precisely their samples) that were fitting the
+following criteria: they had to comprise human normal samples from at least
+two kind of tissues, which had been sequenced by \Rnaseq and that the raw data was
+available.
+
+The datasets used are described in the chronological order of their first publications.
+
+Other datasets had also been considered, but not used in this study. Few reasons to
+this; the accessibility/possible usage of the data was the main reason.
+
+For example, \citet{Burge} dataset couldn't be used as raw data; for a few of the
+libraries, it was impossible to determine which was the used encoding. There were
+also few problems with some other thing.
+
+\subsection{Castle et al. dataset}
+
+This dataset has been published by \citet*{castleData} who purchased total \gls{RNA}
+from Ambion (Austin, USA); each of the tissue sample is a pool of multiple donors
+and prepared the samples following a whole transcriptomic protocol \citep{Armour:2009}.
+Specific oligonucleotides are used to amplify by \gls{PCR} nonribosomal \gls{RNA}
+transcripts.
+
+
+\subsection{Illumina Body Map 2.0}
+
+This dataset has been created by Illumina mostly to advertise its new (at that time)
+technology and the advantages of paired-end technology over single end.
+\citep{illuminaBM}
+
+
+The main characteristics of the different datasets are summarised
+in~\cref{fig:Trans5DF}.
 
 \begin{sidewaystable}{}
     \centering
-    \caption{\label{fig:Trans5DF}Technical description of the 5 transcriptomic dataset (\Rnaseq)
+    \caption{\label{fig:Trans5DF}Technical description of the 5 transcriptomic
+    dataset (\Rnaseq)
      used for this study}
      \begin{tabular}{@{}ccccccccc@{}}
          \toprule

@@ -82,13 +82,14 @@ available high-throughput transcriptomic and proteomic data}
     \cleardoublepage
 \endgroup
 
-
-
+\input{listofdatasets.tex}
+\cleardoublepage
 %\mainmatter\
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \setcounter{table}{0}
 \input{introduction.tex}
+\input{expressed.tex}
 \input{transcriptomics.tex}
 \input{proteomics.tex}
 \input{additional.tex}
@@ -105,8 +106,10 @@ available high-throughput transcriptomic and proteomic data}
 \renewcommand\thechapter{\Alph{chapter}}
 \begingroup
 
-
-
+\input{ds/uhlen.tex}
+\input{ds/gtex.tex}
+\input{ds/pandey.tex}
+\input{ds/kuster.tex}
 %\chapter{Supplementary material for Chapter}
 %\label{ch:SupplIntegration}
 
