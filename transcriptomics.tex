@@ -56,9 +56,33 @@ For example, \citet{Burge} dataset couldn't be used as raw data; for a few of th
 libraries, it was impossible to determine which was the used encoding. There were
 also few problems with some other thing.
 
+
+\rough{Dataset: \begin{itemize}
+        \item why?
+        \item Main findings (particularly the ones that impact me)
+        \item how they created it
+\end{itemize}}
+
+
 \subsection{Castle et al. dataset}
 
-This dataset has been published by \citet*{castleData} who purchased total \gls{RNA}
+This dataset has been published by \citet*{castleData} who were interested to explore
+with sequencing-based technology the whole RNA repertoire. At that time, the common
+employed amplification methods were inadequate to study non-polyadenylated
+\glspl{RNA} which is the case of most of the \glspl{ncRNA}.
+
+They designed the amplification to avoid the \glspl{RNA} smaller than 50 \gls{nt},
+as to deplete their pools of long \glspl{rRNA} \ribo{28S}, \ribo{18S}, \ribo{16S},
+\ribo{12S}. Unfortunately, mature \glspl{miRNA} are not caught either while
+\glspl{rRNA} as \ribo{5.8S} and \ribo{5S} are still amplified.
+Nonetheless, they found that genes could be highly tissue-enriched, e.g. \gene{PRM2}
+in \tissue{Testis}. They focused their study on the non coding part essentially
+(as \glspl{snoRNA}, \glspl{scaRNA}, \glspl{scRNA},
+They finally conclude that \glspl{ncRNA} have higher and more tissue-specific
+expression patterns than \glspl{mRNA}.
+
+
+To create their dataset, they purchased total \gls{RNA}
 from Ambion (Austin, USA); each of the tissue sample is a pool of multiple donors
 and prepared the samples following a whole transcriptomic protocol \citep{Armour:2009}.
 Specific oligonucleotides are used to amplify by \gls{PCR} nonribosomal \gls{RNA}
@@ -83,7 +107,7 @@ in~\cref{fig:Trans5DF}.
      \begin{tabular}{@{}ccccccccc@{}}
          \toprule
          \multicolumn{1}{c|}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}
-                 ArrayExpress ID \\ or Consortium name
+             \gls{ArrayExpress} ID \\ or Consortium name
              \end{tabular}}} &
          \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}
                 Library\\ preparation
