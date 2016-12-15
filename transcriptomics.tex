@@ -56,13 +56,13 @@ For example, \citet{Burge} dataset couldn't be used as raw data; for a few of th
 libraries, it was impossible to determine which was the used encoding. There were
 also few problems with some other thing.
 
-
+\begin{comment}
 \rough{Dataset: \begin{itemize}
         \item why?
         \item Main findings (particularly the ones that impact me)
         \item how they created it
 \end{itemize}}
-
+\end{comment}
 
 \subsection{Castle et al. dataset}
 
@@ -71,22 +71,34 @@ with sequencing-based technology the whole RNA repertoire. At that time, the com
 employed amplification methods were inadequate to study non-polyadenylated
 \glspl{RNA} which is the case of most of the \glspl{ncRNA}.
 
-They designed the amplification to avoid the \glspl{RNA} smaller than 50 \gls{nt},
-as to deplete their pools of long \glspl{rRNA} \ribo{28S}, \ribo{18S}, \ribo{16S},
-\ribo{12S}. Unfortunately, mature \glspl{miRNA} are not caught either while
-\glspl{rRNA} as \ribo{5.8S} and \ribo{5S} are still amplified.
-Nonetheless, they found that genes could be highly tissue-enriched, e.g. \gene{PRM2}
+They designed the amplification step to avoid the \glspl{RNA}
+smaller than 50 \gls{nt} in order to deplete their pools of long
+\glspl{rRNA} \ribo{$28$S}, \ribo{$18$S}, \ribo{$16$S},
+\ribo{$12$S}. Unfortunately, most mature \glspl{miRNA} are not caught either while
+\glspl{rRNA} such as \ribo{$5.8$S} and \ribo{$5$S} are still amplified.
+
+They found coding genes could be highly tissue-enriched, e.g. \gene{PRM$2$}
 in \tissue{Testis}. They focused their study on the non coding part essentially
-(as \glspl{snoRNA}, \glspl{scaRNA}, \glspl{scRNA},
+on \glspl{snoRNA},~\glspl{scaRNA},~\glspl{scRNA},~\glspl{tRNA} and mitochondrial
+\glspl{RNA}.\\
 They finally conclude that \glspl{ncRNA} have higher and more tissue-specific
 expression patterns than \glspl{mRNA}.
 
-
-To create their dataset, they purchased total \gls{RNA}
-from Ambion (Austin, USA); each of the tissue sample is a pool of multiple donors
-and prepared the samples following a whole transcriptomic protocol \citep{Armour:2009}.
-Specific oligonucleotides are used to amplify by \gls{PCR} nonribosomal \gls{RNA}
+They used multiple-donors pooled tissues samples (purchased as total \gls{RNA}
+from Ambion (Austin, USA)).
+They prepared the libraries following a whole transcriptomic protocol \citep{Armour:2009}:
+specific oligonucleotides are used to amplify by \gls{PCR} nonribosomal \gls{RNA}
 transcripts.
+
+They generated an average of 50 millions sequence reads per tissue
+using an Illumina GA-II sequencer. They trimmed their original reads (50 \gls{nt}
+and 36 \gls{nt}) to 28 \gls{nt} that they released through EMBL archives (\ENA{ERP000257}
+and \ArrayExpress{E-MTAB-305}).
+
+Despite several limitations (lack of replicates, old technology, small reads),
+I used this dataset for two main reasons. On one hand it is the oldest \gls{RNA-seq}
+data I found that was performed on Human normal tissues and on the other hand it
+is the only publicly available dataset comprising \glspl{ncRNA}.
 
 
 \subsection{Illumina Body Map 2.0}
