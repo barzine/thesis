@@ -1,0 +1,51 @@
+\chapter{Castle et al. dataset}
+\label{ch:castleData}
+
+%%\begin{description}
+\begin{eqlist}
+    \item[Type] Transcriptome
+    \item[Library collection] One sample per tissue (pool of multiple donors per tissue)
+    \item[Library preparation] \gls{PCR} amplification with specific oligonucleotides\\(whole RNA)
+    \item[Technology] Single-end
+    \item[Apparatus] Illumina GA-II sequencer
+\end{eqlist}
+%%\end{description}
+
+This dataset has been published along with the \paper{\citetitle{castleData}}
+    by \citet*{castleData} who were interested to explore
+    with sequencing-based technology the whole RNA repertoire. At that time, the common
+    employed amplification methods were inadequate to study non-polyadenylated
+    \glspl{RNA} which is the case of most of the \glspl{ncRNA}.
+
+    They designed the amplification step to avoid the \glspl{RNA}
+    smaller than 50 \gls{nt} in order to deplete their pools of long
+    \glspl{rRNA} \ribo{$28$S}, \ribo{$18$S}, \ribo{$16$S},
+    \ribo{$12$S}. Unfortunately, most mature \glspl{miRNA} are not caught
+    either while \glspl{rRNA} such as \ribo{$5.8$S} and \ribo{$5$S} are
+    still amplified.
+
+    They found coding genes could be highly tissue-enriched, e.g. \gene{PRM$2$}
+    in \tissue{Testis}.\\They focused their study on the non coding part essentially
+    on \glspl{snoRNA},~\glspl{scaRNA},\\~\glspl{scRNA},~\glspl{tRNA} and mitochondrial
+    \glspl{RNA}.\\
+    They finally conclude that \glspl{ncRNA} have higher and more tissue-specific
+    expression patterns than \glspl{mRNA}.
+
+    They used multiple-donors pooled tissues samples (purchased as total \gls{RNA}
+    from Ambion (Austin, USA)).
+    They prepared the libraries following a whole transcriptomic protocol \citep{Armour:2009}:
+    specific oligonucleotides are used to amplify by \gls{PCR} nonribosomal \gls{RNA}
+    transcripts.
+
+    They generated an average of 50 millions sequence reads per tissue
+    using an Illumina GA-II sequencer. They trimmed their original reads
+    (50 \gls{nt}
+    and 36 \gls{nt}) to 28 \gls{nt} that they released through EMBL archives
+    (\ENA{ERP000257} and \ArrayExpress{E-MTAB-305}).
+
+    Despite several limitations (lack of replicates, old technology, small reads),
+    I used this dataset for two main reasons. It is the oldest available \Rnaseq\
+    data I found that was performed on Human normal tissues and it is comprising
+    \glspl{ncRNA}.
+
+
