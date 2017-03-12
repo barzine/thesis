@@ -14,7 +14,36 @@
 This dataset has been first created by Illumina mostly to advertise its most
 recent technology improvement at that time: the paired-end sequencing.  Until
 then, all the sequencing was done from only one end of the \gls{DNA} (or
-\gls{RNA}) fragments. With a tweak in the library preparation protocol, Illumina
+\gls{cDNA}) fragments. With a tweak in the library preparation protocol, Illumina
 introduced the paired-end sequencing which present many improvements over the
 previous protocol (single-end). One particular enhancement, the detection of
-rearrangements, allows the detection of gene fusions and novel splicing isoforms
+rearrangements, allows the detection of gene fusions and novel splicing isoforms.
+
+
+This dataset has been first created in 2010 and released in
+2011\footnote{See: \citetitle{ibmEnsembl} - \cite{ibmEnsembl}} by Illumina
+mostly to advertise its most recent technology improvement at that time:
+the paired-end sequencing.
+Until then, all the sequencing was done from only one end of the \gls{DNA} (or
+\gls{cDNA}) fragments. With a simple change in the library preparation protocol,
+Illumina introduced the paired-end sequencing which present many improvements
+over the previous protocol (single-end). One particular enhancement, the
+detection of rearrangements, allows the detection of gene fusions and
+novel splicing isoforms. For this reason, most of the following transcriptome
+studies based on \Rnaseq\ are using paired-end sequencing.
+
+The first published paper to analyse this dataset was done by
+\citet{ibmrelatedpaper}: \paper{\citetitle{ibmrelatedpaper}}.
+It was referenced many times since then as it was for a couple of years
+the most extensive freely available \Rnaseq\ dataset of human tissues.
+
+It comprises 16 tissues (one donor per tissue), which were prepared with a
+polyA-selected library preparation protocol and then have been sequenced once
+with a singled-end protocol and then a second time with a paired-end one. There
+are some added libraries which have been created by mixing together the 16 tissues.
+While each sample has been sequenced twice and that we have in principal
+\emph{technical} replicates, these are not ``regular'' technical
+replicates.
+The sequencing was performed with an Illumina HiSeq 2000 and the reads were
+released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}).
+

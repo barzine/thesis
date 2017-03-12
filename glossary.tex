@@ -3,7 +3,6 @@
 \newacronym{DNA}{DNA}{\textbf{D}eoxyribo\textbf{n}ucleic \textbf{A}cid}
 \newacronym{PCR}{PCR}{\textbf{P}olymerase \textbf{C}hain \textbf{R}eaction}
 \newacronym{EBI}{EBI}{\textbf{E}uropean \textbf{B}ioinformatics \textbf{I}nstitute}
-\newacronym{GTEx}{GTEx}{The \textbf{G}enotype-\textbf{T}issue \textbf{Ex}pression program}
 %\newacronym{mRNA}{\textit{m}RNA}{\textit{\textbf{m}essenger}
 %\textbf{R}ib\textbf{n}ucleic \textbf{a}cid}
 \newacronym{GEO}{GEO}{\textbf{G}ene \textbf{E}xpression \textbf{O}mnibus}
@@ -50,6 +49,10 @@ transcript per \textbf{M}illion mapped reads Technologies}
 {tRNA}{tRNA}{Transfer RNA}
 
 \newabbreviation%
+[description={\textit{c}oding \glsxtrshort{DNA}}]
+{cDNA}{cDNA}{coding DNA}
+
+\newabbreviation%
 [description={micro\glsxtrshort{RNA}}]
 {miRNA}{miRNA}{microRNA}
 
@@ -67,12 +70,31 @@ transcript per \textbf{M}illion mapped reads Technologies}
 
 \newglossaryentry{ArrayExpress}{name=ArrayExpress,description={EBI archive of Functional Genomics Data. It stores data from high-throughput functional genomics experiments, and provides these data for reuse to the research community.}}
 
-
-
 \newglossaryentry{ENA}{name=ENA,description={The European Nucleotide Archive
 provides a comprehensive record of the world's nucleotide sequencing information,
 covering raw sequencing data, sequence assembly information and functional annotation.}}
 
+\newglossaryentry{dbGaP}{name=dbGaP,description={The database of Genotypes and
+Phenotypes (dbGaP) was developed to archive and distribute the data and results
+from studies that have investigated the interaction of genotype and phenotype in
+Humans.}}
+
+
+\newglossaryentry{GTEx}{name=GTEx, description={The \textbf{G}enotype-\textbf{T}issue
+\textbf{Ex}pression project establishes a resource database and associated tissue
+bank for the scientific community to study the relationship between genetic
+variation and gene expression in human tissues.}}
+
 \newglossaryentry{nt}{name={nt},description={\textbf{N}ucleo\textbf{t}id; common unit of length for single-stranded nucleic acids}}
 
 \newglossaryentry{bp}{name={bp},description={\textbf{B}ase {P}air; unit of length for double-stranded nucleic acids}}
+
+\newglossaryentry{SNP}{name={SNP},description={Single Nucleotide Polymorphism}}
+
+\newglossaryentry{eQTL}{name={eQTL},
+  description={expression Quantitative Trait Locus},
+  %first={\glsentrydesc{eQTL} (\glsentrytext{eQTL})},
+  plural={eQTL},
+  descriptionplural={expression Quantitative Trait Loci},
+  %firstplural={\glsentrydescplural{LED} (\glsentryplural{})}
+}
