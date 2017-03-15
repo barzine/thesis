@@ -32,7 +32,7 @@ literature comparing normal human transcriptome tissues across different dataset
 
 Progress in Science is based on different elements. In natural sciences, notably
 Biology, repeated observations are one of the earliest ones. Then quantifications
-when possible (+ definitions give you characterisation). (They could be infered or
+when possible (+ definitions give you characterisation). (They could be inferred or
 been used as a start for a hypothesis and then there are predictions and
 experiments). When many observations and measurements, common step: try to create
 a reference. People tried with microarrays technologies but there were too many
@@ -90,12 +90,10 @@ They have been sequenced with \Rnaseq\ and
 the \emph{raw} data is available and reuseable.
 While they are quite a few more studies that I would have like to use
 this last point was often the critical reason why they have not been included.
-Indeed, many times I encountered data with ambiguous encoding format and as the
+Indeed, many times I encountered data with ambiguous encoding format and, as the
 studies were a little bit outdated,
-I also could not get the answer from the original authors.
+I also could not get the information from the original authors.
 
-I describe hereafter the datasets in the chronological order of their first
-publication.
 When I started this work in 2013, there were only three complying
 datasets at that time. Fortunately, I was later
 able to incorporate two other datasets to my study. One of them is the \Gtex\
@@ -109,8 +107,50 @@ the sequencer or the paired-end protocols) and the studies design that includes
 biological replicates for every tissue had motivated a more focused comparison
 based only on these two datasets.
 
-The main characteristics of the different datasets are summarised
-in~\Cref{tab:Trans5DF}.
+While I downloaded and entirely processed four of the transcriptomic datasets
+myself, it was not the case for the \Gtex\ dataset. Since this
+data is involved in many project within the \EBI\ and due to its huge amount of
+data, it was agreed that this would be processed centrally by one person and then
+redistributed to all the other interested parties.
+
+For the sake of consistency, that led me to reprocess all the other four datasets
+to comply with the reference used for the \Gtex\ samples. The silver lining
+was that they were built with the new reference of the
+Human genome GRCH 38 (ENSEMBL v. 76).
+
+\begin{figure}%[!htbp]
+    \includegraphics[scale=0.6]{transcriptomics/VennStudiesT}\centering
+    \caption[Distribution of unique and shared tissues between the
+    transcriptomic datasets]
+    {\label{fig:VennStudiesT}\textbf{Distribution of unique and shared tissues
+    between the transcriptomic datasets.} The 5 datasets share 4
+    common tissues: \tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and
+    \tissue{Testis}. The biggest overlap of tissues (23) is between Uhlén et \Gtex.
+    These two sets of tissues are the focus of the current study.}
+\end{figure}
+
+\Cref{fig:VennStudiesT} presents the five datasets overlapping tissues. We notice
+that they all share at least four tissues: \tissue{Heart}, \tissue{Kidney},
+\tissue{Liver} and \tissue{Testis}.
+
+We also observe the great number of shared tissues between the two most recent
+datasets: \dataset{Uhlen} and \dataset{GTEx}. Indeed, they share together twenty-three
+tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
+\tissue{Cerebral cortex}, \tissue{Colon}, \tissue{Oesophagus},
+\tissue{Fallopian tube}, \tissue{Heart}, \tissue{Kidney}, \tissue{Liver},
+\tissue{Lung}, \tissue{Ovary}, \tissue{Pancreas}, \tissue{Prostate},
+\tissue{Salivary gland}, \tissue{Skeletal muscle}, \tissue{Skin},
+\tissue{Small intestine}, \tissue{Spleen}, \tissue{Stomach}, \tissue{Testis},
+\tissue{Thyroid} and \tissue{Uterus}.
+
+The \cref{tab:Trans5DF} summarises the main characteristics of the different
+datasets. We can see that many of them have been produced through
+polyA-selected library protocols. To avoid as many artefacts as possible, I
+focus my study on the \mRNAs\ pool: most of the analyses are excluding
+any gene that the biotype is not annotated as \emph{protein coding}.
+
+I describe hereafter the datasets in the
+chronological order of their first publication.
 
 \begin{sidewaystable}
     \centering
@@ -141,7 +181,7 @@ E-MTAB-305 & Castle & Y &  & Y &  &  &  & 11 &  \\
 E-GEOD-30352 & Brawand &  & Y & Y &  & Y &  & 8 &  \\
 E-MTAB-513 & IBM &  & Y & Y & Y &  & (Y) & 16 &  \\
 E-MTAB-2836 & Uhlén &  & Y &  & Y & Y & Y & 32 &  \\
-E-MTAB-2919 & Gtex  &  & Y &  & Y & Y &  & 54 & Y \\
+E-MTAB-2919 & Gtex  & Y &  &  & Y & Y &  & 54 & Y \\
 \bottomrule
 \end{tabular}
 \end{sidewaystable}
@@ -280,31 +320,38 @@ The raw data is available for privacy reasons only through controlled access via
 in my study). While getting access can take time, in principal every request for
 academic research should be granted.
 
-Although, I processed myself all the other transcriptomic datasets, as the \Gtex\
-data is involved in many project within the \EBI\ and due to the huge amount of data,
-it was agreed that this would be processed centrally by one person and then
-redistributed to all the other interested parties. Dr Nuno Fonseca had this
-tremendous task and provided me with quantification data, both for each sample
-separately and then for each tissue (all relevant samples pooled together).
+As I mentioned before I did not process myself the \Gtex\ dataset.
+Dr Nuno Fonseca had this tremendous task and provided me with quantification data,
+both for each sample separately and then for each tissue (all relevant samples
+pooled together).
 
-\textbf{N.B. }To be thoroughly consistent in my study, that lead me to reprocess all my
-previous datasets to comply with the reference used for the \Gtex. Indeed the
-\Gtex\ samples were built with the new reference of the Human genome GRCH 38
-(ENSEMBL v. 76).
 
-\section{Outline}
+\section{Clustering analysis}
 
-\subsection{Clustering analysis}
+As we know the tissue type for each sample, we could debate that a supervised
+analysis can be more informative. However, it would involve proper corrections
+for batch effects and other technical biases for each dataset.
+This is challenging as that often requires more knowledge than the available one
+through the repositories. It is also unwise to rely solely on the normalised data
+provided by the original authors as bias corrections (when possible)
+in \Rnaseq\ will vary in function of the following downstream analyses.
 
-To assess the consistency of \Rnaseq\ to quantify the gene expression across
-the different datasets, I chose a widely used and unsupervised method for gene
-expression studies: a cluster analysis. This method allows to detect hidden
-structures within the data, therefore, it is well designed for this exploratory
-study.
+To assess the consistency of \Rnaseq\ quantification across the different
+datasets, I chose a widely used and unsupervised method for gene
+expression studies: a cluster analysis.
 
-There are many available algorithms. Each one based on different notions and
-approaches. I chose a \emph{hierarchical} clustering
-(or \emph{connectivity-based} clustering).
+This method allows to detect hidden structures within the data, therefore,
+it is well designed for this exploratory study.
+I can then confirm if samples are more alike either due to their
+biological or their study origins. We expect in general biology to be a better
+predictor. Yet, a technical predictor can not be excluded straightforwardly
+as most transcripts (in particular \mRNAs) are expressed in many tissues
+and two random tissues share about 60 to 90\%  of their pool of \mRNAs\
+\citep{ramskoldan:2009}, \citep{UhlenGastro}.
+
+There are many available algorithms for clustering analysis.
+Each one based on different notions and approaches.
+I chose a \emph{hierarchical} clustering (or \emph{connectivity-based} clustering).
 
 This sort of clustering is broadly used in gene expression studies as it is
 embryologically\footnote{Or evolutionary, when different species are compared}
@@ -312,65 +359,68 @@ pertinent as we know that the whole organism is developed from
 an original single cell. The data is portioned in an extensive hierarchy:
 each cluster merges with another at a certain distance.
 In practice, each sample starts in its own cluster and then
-by iteration, each cluster is merged with nearest one.
+by iteration, each cluster is merged with nearest one. The method has
+two parameters: the linkage and the distance.
 
-This clustering method has two main parameters:
-the distance (what is used for the measure)
-and the linkage (which part of each cluster is used as reference to compute the
-distance).
+The linkage
 
-I tried to resolve several points (mainly by exclusion)
-that impact the results of the clustering \emph{before} the analysis.
-Then, I tried different set of
-parameters on each dataset independently and, whenever there was no better
-option, I picked empirically the parameter that was dividing accurately
-the samples accordingly to their original tissue for every dataset.
+One common approach to compute the distance dissimilarity
+between two samples is to calculate the subtraction result of
+the correlation coefficient from $1$ (as bigger is the difference, greater is
+the similarity shared between the two samples).
 
-As we know the tissue type for each sample, we could debate that supervised
-analyses could be more informative. However, properly correcting (when possible)
-for batch effects or other technical biases for each dataset is
-challenging as that requires more knowledge than the available one
-through the repositories.
+Correlation coefficients are a measure of the statistic dependence between two
+variables (here the samples) and always ranges within $[-1,1]$. They pairwise
+compare observations between the two variable. Most implementation methods
+will manage an unbalanced number of observations by excluding the incomplete pairs.
+To ease the interpretation I preferred to filter the data \latin{a priori} myself.
 
-Moreover, considering that most \mRNAs\ are expressed in many tissues
-and that two random tissues share about 90\% of \mRNAs\ \citep{ramskoldan:2009},
-a method working on ``uncorrected'' data would be more interesting as
-corrections for \Rnaseq{}, contrarily to \Dnaseq\ \TKR,
-are already part of the analysis \TK{add spec quantify/norm per analysis}
-and often requires as much skills than flair. Indeed, the processing methods,
-from the sampling to the downstream analyses (which often involve
-a specific set of compatible quantification/normalisation methods) are still
-in heavy study and development; while, there are established protocols for
-differential expression analysis, there are presently many other kinds
-that are cumbersome and/or not settled yet, which is the case for this study.
+There are several methods available to compute the correlation coefficient; the
+most famous and used are the Pearson and the Spearman correlation coefficients.
 
-Nevertheless, ``uncorrected'' data does not mean ``unfiltered'' data.
+I tried both as the Spearman correlation, which is more robust than the Pearson
+correlation, only assesses the monotonic dependence between the samples, while
+the Pearson correlation also assesses the linear dependence between them.
+Now, this study is part of a broader scheme that aims to provide \latin{in fine}
+a range of expected expression values for the Human transcriptome. In this context,
+Pearson correlation coefficients are more informative.
 
-In fact, one common approach to compute the distance dissimilarity
-between two samples is to calculate the substraction result of
-the correlation coefficient from $1$.
-There are several methods available to compute the correlation coefficient,
-which is a measure of the statistic dependence between two variables
-(here the samples) and always ranges within $[-1,1]$.
-The two most famous and commonly used are the Pearson and the Spearman correlation
-coefficients.
 
-In any case, to be able to calculate a coefficient correlation, we need the same
-number of measures per sample. Most implementation methods can take care of the
-pairwise requirements but to ease the interpretation I preferred to filter the
-data \textit{a priori}.
 
-\subsection{Expressed or not expressed}
+
+
+
+I only kept the expression values that were effectively observed in all the datasets.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Expressed or not expressed}
 \label{subsec:TransExpressedOrNot}
 While it can seem as a trivial concept and might be overlook, whether a specific
 molecule is expressed --- or not --- in a given condition, can actually have
-an extensive impact on the results of the analyses, particularly when we consider
-comparing different studies.
+an extensive impact on the results of the analyses, particularly when we compare
+different studies.
 
-Indeed, the Pearson correlation is very sensitive to outliers and null values,
-  \fixme{Add reference}
-  hence it is important that the data used for the analysis is meaningful in
-  its whole.
+For example, the Pearson correlation coefficient is very
+sensitive to outliers and null values. If for both samples, a vast number of
+null values are recorded, this will lead to a greater similarity.
+Hence, it is important that the data used for the analysis is meaningful in
+its whole, i.e.\ a null value has still to be an observation and translates
+a lack of expression (and not a lack of observation).
 
 \begin{figure}[!htbp]
   \includegraphics[scale=0.8]{integration/expressedNotExp.pdf}\centering
@@ -385,88 +435,51 @@ Indeed, the Pearson correlation is very sensitive to outliers and null values,
       in any tissue, e.g.\ gene 4, are discarded from the remaining analysis as
       I can't state
       either there are truly absent from the biological sample or it has to due
-      to the protocol at use; they are \emph{undefined}. The same approach is used
-      for the transcriptome and the proteome.}
-  \end{figure}
-
-
-  \subsection{The undefined}\KOMAoptions{parskip=false}
-  \label{subsec:IntegrationExpressedOrNot-undefined}
-  If a protein or transcript is never found in any of the samples of a dataset,
-  then I considered that we can not determine if the protein or transcript was
-  either truly not expressed or, for any reason, was not capture while the library
-  preparation or the identification/quantification steps. Hence, those are
-  excluded from the analyses as I can not resolve precisely if this is a
-  technical artefact or a biological truth. This case is illustrate by the row
-  circled in red in~\cref{fig:DefineExpression}.
-
-  \subsection{Expression in a dataset}
-  \label{subsec:IntegrationExpressedOrNot--expDataset}
-  By contrast, if a protein or a transcript is expressed in some samples of the
-  dataset, then, whenever no expression was recorded in the other
-  samples, I consider that the expression of the considered macromolecule is truly
-  null for those samples.
-
-  \subsection{Expression within a sample}
-  Due to the technical (and biological) differences between proteomics and
-  transcriptomics, I use different thresholds to define the expression of a protein
-  or a transcript.
-
-  \subsubsection{Expressed transcript}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
-  It is a bit more complex on the transcriptomic side as there can be
-  \fixme{find reference on translational noise in RNAseq}
-  translational noise. While this noise could be evaluate by empirical methods for
-  each \Rnaseq\ dataset, there is a widespread threshold used in the literature:
-  $1$ \gls{FPKM} (or \gls{RPKM}). In fact,~\citet{Hebenstreit:2011} showed in
-  their study \paper{RNA sequencing reveals two major classes of gene expression
-  levels in metazoan cells}, that to be translated into a protein, a \mRNA\ should
-  present an expression at least equals to $1$ \gls{RPKM}.
-
-  As our current study focuses on the comparison of proteomic and transcriptomic
-  data, all the analyses have been run with this threshold. It is worth mentioning
-  that parts of the analyses have also been done either without
-  any threshold (i.e.\ the same definition used with the proteins has been applied)
-  or with a threshold of $5$ \glspl{FPKM}.
-
-  While I have compared the list of expressed and unexpressed \mRNAs through
-  the 5 datasets, the bulk of the analysis has been done on the 
-
-  In other words, if a \mRNA\ is not expressed in at least one sample in each
-  dataset used for the study, it will be excluded from the main part of the
-  analysis workflow.
-
-
-
-
-
-
-\subsection{``Working datasets''}
-
-The five datasets present several overlapping tissues as showed in
-the~\cref{fig:VennStudiesT}. Indeed, they all share at least four tissues:
-\tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and \tissue{Testis}. We also
-bserve that the greatest number of shared tissues is between the two most recent
-datasets: \dataset{Uhlen} and \dataset{GTEx}. They share together twenty-three
-tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
-\tissue{Cerebral cortex}, \tissue{Colon}, \tissue{Oesophagus},
-\tissue{Fallopian tube}, \tissue{Heart}, \tissue{Kidney}, \tissue{Liver},
-\tissue{Lung}, \tissue{Ovary}, \tissue{Pancreas}, \tissue{Prostate},
-\tissue{Salivary gland}, \tissue{Skeletal muscle}, \tissue{Skin},
-\tissue{Small intestine}, \tissue{Spleen}, \tissue{Stomach}, \tissue{Testis},
-\tissue{Thyroid} and \tissue{Uterus}.
-
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.8]{transcriptomics/VennStudiesT}\centering
-    \caption[Distribution of unique and shared tissues between the
-    transcriptomic datasets]There are 4 tissues that are shared between the 5
-    datasets: \tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and \tissue{Testis}.%
-    {\label{fig:VennStudiesT}\textbf{Distribution of unique and shared tissues
-    between the transcriptomic datasets}}
+      to the protocol at use; they are \emph{undefined}.}
 \end{figure}
 
-\ldots more of expresed and not expressed and then add other venn diagram with 
-common genes across the common tissues.
+\subsection{The undefined}\KOMAoptions{parskip=false}
+\label{subsec:IntegrationExpressedOrNot-undefined}
+If a transcript is never found in any of the samples of a dataset,
+then I considered that we can not determine if the transcript was
+either truly not expressed or, for any reason, was not captured while the library
+preparation or the identification/quantification steps. Hence, those are
+excluded from the analyses as I can not resolve precisely if this is a
+technical artefact or a biological truth. This case is illustrate by the row
+circled in red in~\cref{fig:DefineExpression}.
+
+\subsection{Expression in a dataset}
+\label{subsec:IntegrationExpressedOrNot--expDataset}
+By contrast, if a transcript is expressed in some samples of the dataset,
+then, whenever no expression was recorded in the other
+samples, I consider that the expression of the considered macromolecule is truly
+null for those samples.
+
+\subsection{Expression within a sample}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
+It is a bit more complex as we can expect ``translational noise'' \TKR{}.
+While we can empirically evaluate it for each dataset,
+there is a widespread (arbitrary) threshold used in the literature:
+$1$ \gls{FPKM} (or \gls{RPKM}). In fact,~\citet{Hebenstreit:2011} showed in
+their study \paper{\citetitle{Hebenstreit:2011}},
+that to be translated into a protein, a \mRNA\ should
+present an expression at least equals to $1$ \gls{RPKM}.
+
+As the \Cref{ch:Integration} focuses on the comparison of proteomic and
+transcriptomic data, all the analyses have been run with this threshold.
+It is worth mentioning that parts of the analyses have also been done without
+any threshold or with a threshold of $5$ \glspl{FPKM}.
+
+\subsection*{}
+
+While I have compared the list of undefined, expressed and unexpressed \mRNAs\
+through the five datasets,
+the bulk of the analysis has been done on the common \mRNAs.
+
+In other words, if a \mRNA\ is not expressed in at least one sample in each
+dataset used for the study, it will be excluded from the main part of the
+analysis workflow.
+
+
 
 \subsection{A consistent pipeline}
 
@@ -477,10 +490,10 @@ common genes across the common tissues.
 \section{Results}\label{sec:Trans_Results}
 \section{Methods}
 
-The Pearson product-moment correlation coefficient (often shortened as
-Pearson correlation coefficient or even as correlation coefficient) is a
+%The Pearson product-moment correlation coefficient (often shortened as
+%Pearson correlation coefficient or even as correlation coefficient) is a
 
-\input{formules.tex}
+%\input{formules.tex}
 
 
 
