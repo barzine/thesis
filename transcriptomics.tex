@@ -145,7 +145,9 @@ tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
 
 The \cref{tab:Trans5DF} summarises the main characteristics of the different
 datasets. We can see that many of them have been produced through
-polyA-selected library protocols. To avoid as many artefacts as possible, I
+polyA-selected library protocols, notably the \dataset{Uhlén} dataset which is
+used in both study parts.
+To avoid as many artefacts as possible, I
 focus my study on the \mRNAs\ pool: most of the analyses are excluding
 any gene that the biotype is not annotated as \emph{protein coding}.
 
@@ -340,7 +342,7 @@ To assess the consistency of \Rnaseq\ quantification across the different
 datasets, I chose a widely used and unsupervised method for gene
 expression studies: a cluster analysis.
 
-This method allows to detect hidden structures within the data, therefore,
+This method uncovers possible hidden structures within the data, therefore,
 it is well designed for this exploratory study.
 I can then confirm if samples are more alike either due to their
 biological or their study origins. We expect in general biology to be a better
@@ -362,54 +364,37 @@ In practice, each sample starts in its own cluster and then
 by iteration, each cluster is merged with nearest one. The method has
 two parameters: the linkage and the distance.
 
-The linkage
+The linkage specifies which part of each cluster is used as reference
+for computing the distance between the clusters. There are many methods and after
+trying many of them, I picked arbitrary the one that was accurately dividing
+the samples by tissues for every and each of the different datasets.
 
-One common approach to compute the distance dissimilarity
-between two samples is to calculate the subtraction result of
-the correlation coefficient from $1$ (as bigger is the difference, greater is
+The distance measures the dissimilarity between two samples and one common
+approach is to calculate the subtraction result of
+the correlation coefficient from $1$ (as smaller is the difference, greater is
 the similarity shared between the two samples).
 
 Correlation coefficients are a measure of the statistic dependence between two
 variables (here the samples) and always ranges within $[-1,1]$. They pairwise
 compare observations between the two variable. Most implementation methods
 will manage an unbalanced number of observations by excluding the incomplete pairs.
-To ease the interpretation I preferred to filter the data \latin{a priori} myself.
+To ease the interpretation I preferred to filter the data \latin{a priori}
+myself; I only kept expression values effectively observed in all the datasets
+(\cref{sec:TransExpressedOrNot}).
 
 There are several methods available to compute the correlation coefficient; the
 most famous and used are the Pearson and the Spearman correlation coefficients.
+I tried both.
 
-I tried both as the Spearman correlation, which is more robust than the Pearson
-correlation, only assesses the monotonic dependence between the samples, while
-the Pearson correlation also assesses the linear dependence between them.
+The Spearman correlation is more robust than the Pearson
+correlation. However, it only assesses the monotonic dependence between samples.
+The Pearson correlation also assesses the linear dependence between them.
 Now, this study is part of a broader scheme that aims to provide \latin{in fine}
-a range of expected expression values for the Human transcriptome. In this context,
-Pearson correlation coefficients are more informative.
-
-
-
-
-
-
-I only kept the expression values that were effectively observed in all the datasets.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+a reference for the Human transcriptome. In this context, Pearson correlation
+coefficients give a better estimation on the practical feasibility.
 
 \section{Expressed or not expressed}
-\label{subsec:TransExpressedOrNot}
+\label{sec:TransExpressedOrNot}
 While it can seem as a trivial concept and might be overlook, whether a specific
 molecule is expressed --- or not --- in a given condition, can actually have
 an extensive impact on the results of the analyses, particularly when we compare
@@ -450,38 +435,38 @@ circled in red in~\cref{fig:DefineExpression}.
 
 \subsection{Expression in a dataset}
 \label{subsec:IntegrationExpressedOrNot--expDataset}
-By contrast, if a transcript is expressed in some samples of the dataset,
+By contrast, if a transcript is expressed in any sample of the dataset,
 then, whenever no expression was recorded in the other
 samples, I consider that the expression of the considered macromolecule is truly
 null for those samples.
 
-\subsection{Expression within a sample}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
-It is a bit more complex as we can expect ``translational noise'' \TKR{}.
-While we can empirically evaluate it for each dataset,
+\subsection{Expression within a sample}\KOMAoptions{parskip=half*}\label{subsec:exprTrans}
+It is a little trickier as we have to account for technical noise,
+but we can also expect ``translational noise'' \citep{rnaseq-2009},
+\citep{lowNoiseLimit}.
+While we can empirically evaluate it for each dataset \citep{ramskoldan:2009},
 there is a widespread (arbitrary) threshold used in the literature:
-$1$ \gls{FPKM} (or \gls{RPKM}). In fact,~\citet{Hebenstreit:2011} showed in
+1 \gls{FPKM} (or \gls{RPKM}).
+I have used this threshold to run (at least once) all the analyses since
+many datasets are enriched for \mRNAs. Moreover, the \Cref{ch:Integration}
+focus is the comparison of proteomic and
+transcriptomic data. In fact,~\citet{Hebenstreit:2011} showed in
 their study \paper{\citetitle{Hebenstreit:2011}},
 that to be translated into a protein, a \mRNA\ should
-present an expression at least equals to $1$ \gls{RPKM}.
+present an expression at least equals to 1 \gls{RPKM}.
 
-As the \Cref{ch:Integration} focuses on the comparison of proteomic and
-transcriptomic data, all the analyses have been run with this threshold.
 It is worth mentioning that parts of the analyses have also been done without
 any threshold or with a threshold of $5$ \glspl{FPKM}.
 
-\subsection*{}
-
+\subsection{Limitation of the study}
 While I have compared the list of undefined, expressed and unexpressed \mRNAs\
-through the five datasets,
-the bulk of the analysis has been done on the common \mRNAs.
+through the five datasets, the bulk of the analysis has been done on the common
+\mRNAs.
 
-In other words, if a \mRNA\ is not expressed in at least one sample in each
+In other words, if a \mRNA\ is not expressed in at least one sample in \emph{each}
 dataset used for the study, it will be excluded from the main part of the
 analysis workflow.
 
-
-
-\subsection{A consistent pipeline}
 
 \subsection{About correlations}
 
@@ -490,6 +475,7 @@ analysis workflow.
 \section{Results}\label{sec:Trans_Results}
 \section{Methods}
 
+\section{A consistent workflow}
 %The Pearson product-moment correlation coefficient (often shortened as
 %Pearson correlation coefficient or even as correlation coefficient) is a
 
