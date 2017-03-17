@@ -9,6 +9,9 @@ They have been sequenced with \Rnaseq\ for the transcriptomic studies or
 analysed with Mass spectrometry for the proteomic ones.
 The \emph{raw} data is available and reusable.
 
+
+\section{Transcriptomics}
+
 While they are quite a few more studies that I would have like to use on the
 transcriptomic side, this last point was often the critical reason
 why they have not been included.
@@ -16,7 +19,6 @@ Indeed, many times I encountered data with ambiguous encoding format and, as the
 studies were a little bit outdated,
 I also could not get the information from the original authors.
 
-\section{Transcriptomics}
 I describe hereafter the 5 transcriptomic datasets I used
 in the chronological order of their first public release.
 The \cref{tab:Trans5DF} summarises the main characteristics of the different
@@ -167,8 +169,8 @@ many tissues from postmortem donors so genotype-tissue expression analyses could
 be done, notably \gls{eQTL} variants studies which study the modulation
 of \gls{RNA} expression in function of \glspl{SNP}. The results of the
 analyses are released through the GTEx portal (%
-\href{http://gtexportal.org}{http://gtexportal.org}). The issue number 6235 of
-the volume number 348 of \emph{Science} has published
+\href{http://gtexportal.org}{http://gtexportal.org}). The issue 6235 of
+\emph{Science} comprises
 many articles from this project. The most relevant to my work is
 \paper{\citetitle{GTExTranscript}} from \cite{GTExTranscript}. While they study
 the landscape of expression through the different tissues across the donors, they
@@ -189,37 +191,46 @@ academic research should be granted.
 
 \section{Proteomics}
 
+In the issue 7502 of \textit{Nature} (2014), two teams of authors released their own
+\emph{``draft of the human proteome''} based on the study of several tissues
+with \ms. There were already other human protein maps available,
+e.g.\ the Human protein atlas (%
+\href{http://www.humanproteomemap.org/}{www.proteinatlas.org/}), but those one
+were mostly reporting the spatial expression of the proteins (as they were based
+on immunohistochemistry or other means of identification) than
+quantifying their abundance in each tissue.
+
+
 \subsection{Pandey data}
 
-\cite{PandeyData} wanted to provide the first atlas for the human proteome.
-Thus, they created the Human Proteome Map (%
-\href{http://www.humanproteomemap.org/}{http://www.humanproteomemap.org/}) which
+\cite{PandeyData} created the Human Proteome Map (%
+\href{http://www.humanproteomemap.org/}{\small www.humanproteomemap.org/}) which
 they released along their paper \paper{\citetitle{PandeyData}}.
 
-To create their map, they have processed pooled samples from three individuals
-per tissue type for 30 kind of histological normal human tissues and cell lines
-(17 adult tissues, 7 fetal tissues and 6 haematopoietic cell types).
+To create their map, they have processed 30 kind of histological normal human
+tissues and cell line (17 adult tissues, 7 fetal tissues and 6 haematopoietic
+cell types) samples. The samples were created from pooled samples of three
+individuals (generally two males and one female).
 
-They used high-resolution Fourier-transform mass spectrometers
-(LTQ-Orbitrap Elite and LTQ-Orbitrap Velos).
+They used a label-free method of library preparation to quantify as many proteins
+they could.
 
-The different histological samples were fractionated first to protein level by
-SDS–polyacrylamide gel electrophoresis (SDS–PAGE)
-and then at the peptide level by basic reversed-phase liquid chromatography
-(RPLC). They use state-of-art protocols to generate about 25 million
-high-resolution tandem mass spectra from more
-than 2,000 \gls{LC-MS/MS}.
+They first fractionated the samples to protein level by
+\gls{SDS-PAGE} and then at peptide level by \gls{RPLC}. Then, they use
+state-of-art \gls{MS/MS} protocols (with high-resolution and high accuracy
+\glspl{FTMS}: a LTQ-Orbitrap Elite and then a LTQ-Orbitrap Velos).
+They generated about 25 million
+high-resolution mass spectra which account for over 2,000 \gls{LC-MS/MS} profiles.
 
-To generate a high-quality data set, both precursorions and higher-energy
-collisional dissociation (HCD)-derived fragment ions were measured
-using the high-resolution and high-accuracy Orbitrapmass spectrometer.
-Approximately 25 million high-resolution tandem mass spectra, acquired
-from more than 2,000 LC-MS/MS (liquid chromatography followed by
+While their work to generate the data was highly appraise, the identification and
+quantification data they provided the community was criticised
+\citep{Ezkurdia2014-qx}.
 
-They used high-resolution Fourier-transform \gls{MS}.
 
-We used a label-free method based on spectral counting to quantify
-protein expression across cells/tissues.A
-
-\paragraph{~Kuster data}
+\subsection{Kuster data}
 \cite{KusterData}
+
+
+
+
+\subsection{Cutler data}
