@@ -1,8 +1,8 @@
 \chapter{Consistency through different transcriptomics studies with RNA-Seq}
 \label{ch:Transcriptomics}
-\setlength{\epigraphwidth}{0.45\textwidth}
-\setlength{\epigraphrule}{0.1pt}
-\epigraph{Quantifier: c'est convenir, puis mesurer.}{\cite{Desrosieres}}
+%\setlength{\epigraphwidth}{0.45\textwidth}
+%\setlength{\epigraphrule}{0.1pt}
+%\epigraph{Quantifier: c'est convenir, puis mesurer.}{\cite{Desrosieres}}
 
 
 I started this project in January 2013. At that time, there was no
@@ -62,7 +62,6 @@ When I started this project there was not any study, comprehensive or not, that
 was investigating in-depth the consistency of transcriptome expression measurements
 for one condition across studies.
 
-
 As previously stated in the introduction, while I started this project,
 there wasn't any study that was investigating in-depth the reproducibility of
 transcriptomics.
@@ -80,19 +79,7 @@ is comparable to microarrays for differential gene expression analysis study
 \Rnaseq\ plus: detect new things - minus: sampling problems (stuff might be there
 but won't be ``fished''.
 
-
-\section{Available studies}
-\label{sec:Trans_AvailableStudies}
-
-All the datasets with which I worked are fitting three main criteria.
-They comprise human normal samples from at least three kind of tissues.
-They have been sequenced with \Rnaseq\ and
-the \emph{raw} data is available and reuseable.
-While they are quite a few more studies that I would have like to use
-this last point was often the critical reason why they have not been included.
-Indeed, many times I encountered data with ambiguous encoding format and, as the
-studies were a little bit outdated,
-I also could not get the information from the original authors.
+%%%%%%%%%
 
 When I started this work in 2013, there were only three complying
 datasets at that time. Fortunately, I was later
@@ -111,7 +98,10 @@ While I downloaded and entirely processed four of the transcriptomic datasets
 myself, it was not the case for the \Gtex\ dataset. Since this
 data is involved in many project within the \EBI\ and due to its huge amount of
 data, it was agreed that this would be processed centrally by one person and then
-redistributed to all the other interested parties.
+redistributed to all the other interested parties. Dr Nuno Fonseca had this
+tremendous task and provided me with quantification data,
+both for each sample separately and then for each tissue (all relevant samples
+pooled together).
 
 For the sake of consistency, that led me to reprocess all the other four datasets
 to comply with the reference used for the \Gtex\ samples. The silver lining
@@ -143,17 +133,15 @@ tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
 \tissue{Small intestine}, \tissue{Spleen}, \tissue{Stomach}, \tissue{Testis},
 \tissue{Thyroid} and \tissue{Uterus}.
 
-The \cref{tab:Trans5DF} summarises the main characteristics of the different
-datasets. We can see that many of them have been produced through
+As we can see in the \cref{tab:Trans5DF}, many of the transcriptomic datasets I
+use have been produced through
 polyA-selected library protocols, notably the \dataset{Uhlén} dataset which is
 used in both study parts.
 To avoid as many artefacts as possible, I
 focus my study on the \mRNAs\ pool: most of the analyses are excluding
 any gene that the biotype is not annotated as \emph{protein coding}.
 
-I describe hereafter the datasets in the
-chronological order of their first publication.
-
+\begin{comment}
 \begin{sidewaystable}
     \centering
     \caption{\label{tab:Trans5DF}Technical description of the 5 transcriptomic
@@ -187,145 +175,6 @@ E-MTAB-2919 & Gtex  & Y &  &  & Y & Y &  & 54 & Y \\
 \bottomrule
 \end{tabular}
 \end{sidewaystable}
-
-
-\subsection{Castle et al. dataset}
-
-This dataset has been published along with the \paper{\citetitle{castleData}}
-by \citet{castleData} who were interested to explore
-with sequencing-based technology the whole RNA repertoire. They essentially
-focused their study on the non coding part and found that
-while \glspl{mRNA} could be highly tissue-specific, \glspl{ncRNA} have generally
-greater tissue-specific expression patterns.
-
-They used multiple-donors pooled tissues samples (purchased as total \gls{RNA})
-and prepared the libraries following a whole transcriptomic protocol
-\citep{Armour:2009}: where nonribosomal \gls{RNA} transcripts are
-specifically amplified by \gls{PCR}.
-
-They generated an average of 50 millions sequence reads per tissue
-using an Illumina Genome Analyser-II sequencer (single-end).
-They trimmed their original reads to 28 \gls{nt}
-and released them through EMBL archives (\ENA{ERP000257}
-and \ArrayExpress{E-MTAB-305}).
-
-Despite several limitations (lack of replicates, old technology, small reads),
-I used this dataset for two main reasons. It is the oldest available \Rnaseq\
-data I found that was performed on Human normal tissues and it is comprising
-\glspl{ncRNA}.
-
-
-\subsection{Brawand et al. dataset}
-
-In the corresponding article entitled \paper{\citetitle{VTpaper}},
-\citet{VTpaper}~collected 6 organs from 10 different vertebrates:
-9 mammalians (including Human) and a bird. They are focused on the
-evolution of the mammalian transcriptomes -- while there were existing studies
-on the matter, the sequencing approach was then creating new perspectives.
-
-They have biological replicates: one male
-and one female for the somatic tissue and two males for the testes samples.
-They used a
-polyA-selected protocol to prepare the libraries. Hence, the samples are largely
-enriched in protein coding genes.
-
-They generated an average of 3,2 billion reads of 76 base pairs per sample
-using an Illumina Genome Analyser IIx (single-end) and they released them
-through \gls{GEO} (accession number: GSE30352).
-I personally retrieved the data from
-\ArrayExpress{E-GEOD-30352}\footnote{ArrayExpress routinely imports
-datasets from \gls{GEO} on a weekly basis.}.
-
-\subsection{Illumina Body Map 2.0}
-
-This dataset has been first created in 2010 and released in
-2011\footnote{See: \citetitle{ibmEnsembl} - \cite{ibmEnsembl}} by Illumina
-mostly to advertise its most recent technology improvement at that time:
-the paired-end sequencing.
-Until then, all the sequencing was done from only one end of the \gls{DNA} (or
-\gls{cDNA}) fragments\footnote{Most of the following transcriptome
-studies based on \Rnaseq\ are using paired-end sequencing.}.
-
-The first published paper to analyse this dataset was done by
-\citet{ibmrelatedpaper}: \paper{\citetitle{ibmrelatedpaper}}.
-It was referenced many times since then as it was for a couple of years
-the most extensive freely available \Rnaseq\ dataset of human tissues.
-
-It comprises 16 tissues (one donor per tissue), which were prepared with a
-polyA-selected library preparation protocol and then have been sequenced once
-with a singled-end protocol and then a second time with a paired-end one. There
-are some added libraries which have been created by mixing together the 16 tissues.
-While each sample has been sequenced twice and that we have in principal
-\emph{technical} replicates, these are not ``regular'' technical
-replicates\footnote{\emph{Technical} replicates,
-by contrast to \emph{biological} replicates,
-usually imply that the same sample source and protocols have been used so the
-error and the noise of a technique could be determined.}.
-
-The sequencing was performed with an Illumina HiSeq 2000 and the reads were
-released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}).
-
-
-\subsection{Uhlén et al. dataset}
-
-The first version of this dataset (\ArrayExpress{E-MTAB-1733}) was published
-as a part of \paper{\citetitle{Uhlen2014}} by \citet{Uhlen2014}. Then an extended
-version (\ArrayExpress{E-MTAB-2836}), with new samples and 5 new tissues,
-was released along with \paper{\citetitle{Uhlen2015}} \citep{Uhlen2015}.
-Both papers are part of the
-\href{http://www.proteinatlas.org/}{Human Protein Atlas}\footnote{
-    \href{http://www.proteinatlas.org/}{http://www.proteinatlas.org/}}.
-Uhlén et al.\ have created
-an atlas revolving mostly around the spatial distribution of the proteins through
-the Human body. They use many approaches and techniques which also include \Rnaseq.
-
-They found that almost half of the proteins are expressed in all analysed tissues
-(with an enrichment for the metabolism enzymes).
-
-There are \emph{technical} and \emph{biological} replicates for the 32 tissues.
-Except very few cases, the somatic tissues have male and female donors.
-
-The libraries have been prepared following a polyA-selected protocols and have
-been sequenced (paired-end) with an Illumina HiSeq 2000 or 2500.
-
-I started to work with the first version, and when the extended version was
-released, I included the new samples and tissues to my work.
-
-\subsection{GTEx data}
-
-The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the NIH Common
-Fund and aims to establish a resource database and associated tissue bank
-for the study of the relationship between genetic variation and gene expression
-and other molecular phenotypes in multiple reference tissues. The project was first
-explained in a paper from the \cite{GTEx2013}: it consists to quickly collect
-many tissues from postmortem donors so genotype-tissue expression analyses could
-be done, notably \gls{eQTL} variants studies which study the modulation
-of \gls{RNA} expression in function of \glspl{SNP}. The results of the
-analyses are released through the GTEx portal (%
-\href{http://gtexportal.org}{http://gtexportal.org}). The issue number 6235 of
-the volume number 348 of \emph{Science} has published
-many articles from this project. The most relevant to my work is
-\paper{\citetitle{GTExTranscript}} from \cite{GTExTranscript}. While they study
-the landscape of expression through the different tissues across the donors, they
-put emphasis on the variation inter- and intra-individuals across the tissues.
-
-As the project is quite ambitious and the collection and sequencing of the samples
-are taking time, several freezes of the data have been released. My work is
-including samples up to the fourth release of the pilot phase (v.1.4). This
-release includes 54 tissue/cell type collected on 551 individuals.
-The libraries were prepared from whole \gls{RNA} extracts and then sequenced
-with a paired-end protocol on Illumina HiSeq 2000/2500 sequencers which produced
-an average of 80 million reads.
-
-The raw data is available for privacy reasons only through controlled access via
-\dbGaP{phs000424.v4.p1} (access number specific to the version of the data I used
-in my study). While getting access can take time, in principal every request for
-academic research should be granted.
-
-As I mentioned before I did not process myself the \Gtex\ dataset.
-Dr Nuno Fonseca had this tremendous task and provided me with quantification data,
-both for each sample separately and then for each tissue (all relevant samples
-pooled together).
 
 
 \section{Clustering analysis}
@@ -467,15 +316,11 @@ In other words, if a \mRNA\ is not expressed in at least one sample in \emph{eac
 dataset used for the study, it will be excluded from the main part of the
 analysis workflow.
 
-
-\subsection{About correlations}
-
-\subsubsection{Pearson Correlation coefficient}
+\end{comment}
 
 \section{Results}\label{sec:Trans_Results}
 \section{Methods}
-
-\section{A consistent workflow}
+\subsection{A consistent \Rnaseq\ workflow}
 %The Pearson product-moment correlation coefficient (often shortened as
 %Pearson correlation coefficient or even as correlation coefficient) is a
 
