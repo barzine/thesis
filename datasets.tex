@@ -68,7 +68,7 @@ while \glspl{mRNA} could be highly tissue-specific, \glspl{ncRNA} have generally
 greater tissue-specific expression patterns.
 
 They used multiple-donors pooled tissues samples (purchased as total \gls{RNA})
-and prepared the libraries following a whole transcriptomic protocol
+and prepared the 11 libraries following a whole transcriptomic protocol
 \citep{Armour:2009}: where nonribosomal \gls{RNA} transcripts are
 specifically amplified by \gls{PCR}.
 
@@ -93,9 +93,8 @@ on the matter, the sequencing approach was then creating new perspectives.
 
 They have biological replicates: one male
 and one female for the somatic tissue and two males for the testes samples.
-They used a
-polyA-selected protocol to prepare the libraries. Hence, the samples are largely
-enriched in protein coding genes.
+They used a polyA-selected protocol to prepare the 18 libraries.
+Hence, the samples are largely enriched in protein coding genes.
 
 They generated an average of 3,2 billion reads of 76 base pairs per sample
 using an Illumina Genome Analyser IIx (single-end) and they released them
@@ -152,8 +151,8 @@ They found that almost half of the proteins are expressed in all analysed tissue
 There are \emph{technical} and \emph{biological} replicates for the 32 tissues.
 Except very few cases, the somatic tissues have male and female donors.
 
-The libraries have been prepared following a polyA-selected protocols and have
-been sequenced (paired-end) with an Illumina HiSeq 2000 or 2500.
+The 200 libraries have been prepared following a polyA-selected protocols and
+have been sequenced (paired-end) with an Illumina HiSeq 2000 or 2500.
 
 I started to work with the first version, and when the extended version was
 released, I included the new samples and tissues to my work.
@@ -180,7 +179,7 @@ As the project is quite ambitious and the collection and sequencing of the sampl
 are taking time, several freezes of the data have been released. My work is
 including samples up to the fourth release of the pilot phase (v.1.4). This
 release includes 54 tissue/cell type collected on 551 individuals.
-The libraries were prepared from whole \gls{RNA} extracts and then sequenced
+The 3,276 libraries were prepared from whole \gls{RNA} extracts and then sequenced
 with a paired-end protocol on Illumina HiSeq 2000/2500 sequencers which produced
 an average of 80 million reads.
 
@@ -189,13 +188,14 @@ The raw data is available for privacy reasons only through controlled access via
 in my study). While getting access can take time, in principal every request for
 academic research should be granted.
 
+
 \section{Proteomics}
 
 In the issue 7502 of \textit{Nature} (2014), two teams of authors released their own
 \emph{``draft of the human proteome''} based on the study of several tissues
 with \ms. There were already other human protein maps available,
-e.g.\ the Human protein atlas (%
-\href{http://www.humanproteomemap.org/}{www.proteinatlas.org/}), but those one
+e.g.\ the Human protein atlas\footnote{%
+\href{http://www.humanproteomemap.org/}{www.proteinatlas.org/}}, but those one
 were mostly reporting the spatial expression of the proteins (as they were based
 on immunohistochemistry or other means of identification) than
 quantifying their abundance in each tissue.
@@ -203,8 +203,8 @@ quantifying their abundance in each tissue.
 
 \subsection{Pandey data}
 
-\cite{PandeyData} created the Human Proteome Map (%
-\href{http://www.humanproteomemap.org/}{\small www.humanproteomemap.org/}) which
+\cite{PandeyData} created the Human Proteome Map\footnote{%
+\href{http://www.humanproteomemap.org/}{\small www.humanproteomemap.org/}} which
 they released along their paper \paper{\citetitle{PandeyData}}.
 
 To create their map, they have processed 30 kind of histological normal human
@@ -216,21 +216,54 @@ They used a label-free method of library preparation to quantify as many protein
 they could.
 
 They first fractionated the samples to protein level by
-\gls{SDS-PAGE} and then at peptide level by \gls{RPLC}. Then, they use
+\gls{SDS-PAGE} and then at peptide level by \gls{RPLC} to create 85 experimental
+samples. Then, they use
 state-of-art \gls{MS/MS} protocols (with high-resolution and high accuracy
-\glspl{FTMS}: a LTQ-Orbitrap Elite and then a LTQ-Orbitrap Velos).
-They generated about 25 million
-high-resolution mass spectra which account for over 2,000 \gls{LC-MS/MS} profiles.
+\glspl{FTMS}: Thermo Scientific Orbitrap instruments).
+They generated about 25 million of (\gls{HCD})
+high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 
 While their work to generate the data was highly appraise, the identification and
-quantification data they provided the community was criticised
-\citep{Ezkurdia2014-qx}.
+quantification data they provided the community was quite criticised
+(e.g.\ see~\cite{Ezkurdia2014-qx}).
 
+The data was downloaded from ProteomeXchange via the PRIDE repository (%
+%\Pride{PXD000561}).
 
 \subsection{Kuster data}
-\cite{KusterData}
 
+In their human proteome approach,
+\cite{KusterData} combined newly generated \gls{LC-MS/MS} spectrum
+data (about 40\%) with already published one
+(either from their colleagues or accessible through repositories ---
+for the remaining 60\%).
+The data comprised 16,857 experiments involving tissues, body fluids and cell
+lines. They used all the data they could access from \gls{PTM} to affinity
+purification studies.
 
+They reprocessed the whole collection of spectra to maximise proteome coverage
+and make it available through their own repositories: ProteomicsDB\footnote{%
+\href{https://www.proteomicsdb.org/}{www.proteomicsdb.org/}}.
+
+The subset of data considered in this study is also known as the Human BodyMap
+which is the part that was generated (1,087 \gls{LC-MS/MS} profiles)
+by the Kuster lab itself.
+It comprises 48 experiments covering 36 tissues
+(adult and fetal) and cell lines.
+They generated about 14 million of (\gls{HCD}/\gls{CID}) spectra from Thermo
+Scientific instruments.
+
+The raw data was downloaded from ProteomicsDB (\Proteomicsdb{PRDB000042}).
 
 
 \subsection{Cutler data}
+
+This data was generated prior to the Pandey and the Kuster data as it was released
+in 2011 through PeptideAtlas.
+
+It was created by Paul Cutler at Roche Pharmaceuticals. It comprises 10 different
+
+This data was used by \cite{KusterData} to create ProteomicsDB
+
+This data was also downloaded from ProteomicsDB (accession PRDB000012) and contains 1,618 CID Thermo Scientific raw files covering 10 different human tissues.
+

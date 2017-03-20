@@ -10,12 +10,11 @@
 As a former chemist, I realise how much it is tempting to trust instruments and
 workflow to accurately identify and quantify all the molecules present in a sample,
 and then been confounded\footnote{After more than 4 months of identification attempts
-with various modern techniques, what could have been that orange/red spot
-(visible light) at 1/3 of the tight light chromatogram is still a mystery too me.}.
+with various modern techniques, what could have been the orange/red spot
+(visible light) at 1/3 of that tight light chromatogram is still a mystery too me.}.
 Hence, I tried to avoid as much as I could any source of technical
-artefacts and biases in the data and statistical approaches I used.
-
-The cross and meta-analyses I performed for this thesis are mostly exploratory.
+artefacts and biases in the data and statistical approaches I used for these
+exploratory analyses.
 
 As we know the tissue type for each sample of each dataset,
 we could debate that supervised analyses can be more informative.
@@ -32,7 +31,7 @@ different results (see~\Cref{ch:proteomics}).
 
 To assess the consistency, in particular for \Rnaseq, quantification across
 the different datasets, I chose a widely used and unsupervised method for gene
-expression studies: a cluster analysis.
+expression studies: a clustering analysis.
 
 \section{Clustering analysis}
 
@@ -52,10 +51,9 @@ In \paper{\citetitle{KusterData}},~\cite{KusterData} estimate that about 10,000
 to 12,000 proteins are ubiquitously detected, which represent about 60 to 75\%
 of the proteins that they identified per tissue.
 
-There are many available algorithms for clustering analysis.
-Each one based on different notions and approaches.
-I chose a \emph{hierarchical} clustering (a.k.a.\ \emph{connectivity-based}
-clustering).
+There are many available approaches and algorithms for clustering analysis.
+I chose a (bottom-up) \emph{hierarchical} clustering
+(a.k.a.\ \emph{connectivity-based} clustering).
 
 This sort of clustering is broadly used in gene expression studies as it is
 embryologically\footnote{Or evolutionary, when different species are compared}
@@ -63,9 +61,10 @@ pertinent as we know that the whole organism is developed from
 an original single cell. The data is portioned in an extensive hierarchy:
 each cluster merges with another at a certain distance.
 In practice, each sample starts in its own cluster and then
-by iteration, each cluster is merged with nearest one. The method has
+by iteration, each cluster is merged with its nearest one. The method has
 two parameters: the linkage and the distance.
 
+%%%%: beginning of the part that need to be edited:
 The linkage specifies which part of each cluster is used as reference
 for computing the distance between the clusters. There are many methods and after
 trying many of them, I picked arbitrary the one that was accurately dividing
@@ -81,23 +80,17 @@ the similarity shared between the two samples).
 %Cum hoc ergo propter hoc
 
 Correlation coefficients are a measure of the statistic dependence between two
-variables\footnote{Either samples or tissues in the context of this study} (e.g.\
+continuous variables\footnote{In the context of this study: either expression
+levels of a given gene across samples/tissues or expression levels of all genes
+\emph{between} two samples or tissues} (e.g.\
 $X$ and $Y$) and always ranges within $[-1,1]$.
 
-$1$ means that there is a perfect positive linear
-correlation; $-1$ means that they have a perfect negative linear correlation (the
-variables are anti-correlated). In both of these cases, we could define a function
-as $Y = aX+b$.
-
-A value around or equal to $0$ means that there is not any linear correlation between
-the two variables. The two variables are then independent.
-There is no effect of the variation of one on the other.
-
+While $1$ and $-1$ mean a perfect correlation (either positive or negative),
+a value equals to $0$ expresses that the two variables are independent.
 A value within $\mathopen]-1,0\mathclose[$
-or $\mathopen]0,1\mathclose[$ needs more interpretation. Obviously, closer to
-the limits is a coefficient, easier it is to define the relationship.
-Although, it is commonly considered that biological variables with a coefficient within
-$[-0.5,0.5]$ are independent.
+or $\mathopen]0,1\mathclose[$ needs more interpretation. In biology, if the
+coefficient is within $[-0.5,0.5]$, the variables are often considered as
+independent.
 
 The correlation coefficient is computed by pairwise comparing observations
 between the two variable. Most implementation methods
@@ -106,25 +99,27 @@ To ease the interpretation I preferred to filter the data \latin{a priori}
 myself; I only kept expression values effectively observed in all the datasets
 (\cref{sec:ExpressedOrNot}).
 
-There are several methods available to compute the correlation coefficient; the
-most famous and used are the one developed by Karl Pearson and the one by Charles
-Spearman. I tried both.
+Among the several methods available to compute the correlation coefficient, I
+tried both the Spearman and the Pearson correlations.
+
+
+\subsection{Spearman correlation}
+The Spearman correlation coefficient (usually noted as $\rho$)
+is more robust than the Pearson correlation.
+However, it only assesses the monotonic dependence between two variables.
+The Spearman correlation is equal to the Pearson correlation of the value
+\emph{ranks} between two variables.
+
+\subsection{Pearson correlation}
+The Pearson correlation coefficient (usually noted as $r$) assesses the linear
+dependence between two variables. In case of a perfect correlation
+
 
 \begin{comment}
 Now, as this study is part of a broader scheme that aims to provide \latin{in fine}
 a reference for the Human transcriptome (and proteome), Pearson correlation
 coefficients give a better estimation on the practical feasibility.
 \end{comment}
-
-\subsection{Pearson correlation}
-The Pearson correlation coefficient (usually noted as $r$) assesses the linear
-dependence between two variables.
-
-\subsection{Spearman correlation}
-The Spearman correlation coefficient (usually noted as $\rho$)
-is more robust than the Pearson correlation.
-However, it only assesses the monotonic dependence between two variables.
-
 
 
 \subsection{Scatter plot}
@@ -142,6 +137,8 @@ However, it only assesses the monotonic dependence between two variables.
       any anomaly.}
 \end{figure}
 
+
+%%%%end
 
 \section{Expressed or not expressed}
 \label{sec:ExpressedOrNot}
