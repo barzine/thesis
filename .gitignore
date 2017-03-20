@@ -30,7 +30,7 @@ thesis.html
 
 *.swp
 *.swo
-
+*.svg
 
 ## appendix
 app/*.txt
