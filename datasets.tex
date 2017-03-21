@@ -1,6 +1,12 @@
 \chapter{Available high-throughput normal human Datasets}
 \label{ch:datasets}
 
+\setlength{\epigraphwidth}{0.57\textwidth}
+\setlength{\epigraphrule}{0.1pt}
+\epigraph{Data! Data! Data! I can’t make bricks without clay!}{Sherlock Homes
+(Sir Arthur Conan Doyle)}
+
+
 In this chapter, I describe the data I used within my project.
 
 All the datasets with which I worked are fitting three main criteria.
@@ -88,7 +94,7 @@ data I found that was performed on Human normal tissues and it is comprising
 In the corresponding article entitled \paper{\citetitle{VTpaper}},
 \citet{VTpaper}~collected 6 organs from 10 different vertebrates:
 9 mammalians (including Human) and a bird. They are focused on the
-evolution of the mammalian transcriptomes -- while there were existing studies
+evolution of the mammalian transcriptomes --- while there were existing studies
 on the matter, the sequencing approach was then creating new perspectives.
 
 They have biological replicates: one male
@@ -228,7 +234,7 @@ quantification data they provided the community was quite criticised
 (e.g.\ see~\cite{Ezkurdia2014-qx}).
 
 The data was downloaded from ProteomeXchange via the PRIDE repository (%
-%\Pride{PXD000561}).
+\Pride{PXD000561}).
 
 \subsection{Kuster data}
 
@@ -258,12 +264,78 @@ The raw data was downloaded from ProteomicsDB (\Proteomicsdb{PRDB000042}).
 
 \subsection{Cutler data}
 
-This data was generated prior to the Pandey and the Kuster data as it was released
-in 2011 through PeptideAtlas.
+This data was generated prior to the \dataset{Pandey} and the dataset{Kuster}
+data as it was released in 2011 through PeptideAtlas\footnote{%
+    \href{http://www.peptideatlas.org/}{www.peptideatlas.org/}}
+\citep{PeptideAtlas}.
 
-It was created by Paul Cutler at Roche Pharmaceuticals. It comprises 10 different
+It was created by Paul Cutler at Roche Pharmaceuticals.
+It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files.
 
-This data was used by \cite{KusterData} to create ProteomicsDB
+While this data was never published on its owned, it has been used in different
+other studies; among them \cite{KusterData} had used it to create ProteomicsDB.
 
-This data was also downloaded from ProteomicsDB (accession PRDB000012) and contains 1,618 CID Thermo Scientific raw files covering 10 different human tissues.
+This data was also downloaded from ProteomicsDB (\Proteomicsdb{PRDB000012}).
+
+
+\section{Processing pipelines}
+
+While the authors of the aforementioned datasets have released for each of them
+a quantification. I have decided to analyse data that would have been reprocessed
+from the raw. There are many reasons.
+\begin{itemize}
+    \item Different reference used to build the data
+    \item Quality check might have not been ``best''
+    \item Not always look for contamination
+    \item Different algorithms used, so different ``theories''
+\end{itemize}
+
+
+Can expand on how based on the literature.
+
+
+\subsection{Transcriptome raw data}
+
+\begin{itemize}
+        \item all the data RNAseq
+        \item everything reprocessed by myself BUT GTEX
+        \item has to reprocess several time due to evolution of Annotation
+\end{itemize}
+
+First I  was doing it manually and very tedious; but as I was reprocessing the data
+as I had access to more data and new ensembl annotations were released, \irap\
+was developed by Nuno Fonseca. It is a meta-pipeline which has speeded a lot the
+work. Still need a configuration file. But everything follows the same protocol.
+Add the final methodology.
+
+I am using only gene levels quantification and not isoforms.
+
+\begin{figure}
+    \includegraphics[scale=0.75]{additional/pipelineTrans.pdf}\centering
+    \caption[General steps for processing the transcriptomic
+    data]{\label{fig:pipelineTrans}\textbf{General steps for processing the
+    transcriptome} [TK]}
+  \end{figure}
+
+
+\subsection{Proteome raw data}
+
+Similarly to the transcriptome issue, there is the proteome which is actually
+trickier (possible problem with Pandey data analyses). Really depends which
+threshold and \gls{FDR} tolerate. And what database and algorithm are used to perform
+the identification of the proteins. More messy.
+
+All the data has been processed by James.
+
+Small problem about mapping back proteins to transcripts.
+
+
+And again describe the methodology.
+
+  \begin{figure}
+      \includegraphics[scale=0.75]{additional/pipelineProteins.pdf}\centering
+      \caption[General steps for processing the proteome
+      data]{\label{fig:pipelineProt}\textbf{General steps for processing the
+      proteome} [TK] }
+  \end{figure}
 

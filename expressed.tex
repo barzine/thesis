@@ -64,16 +64,15 @@ In practice, each sample starts in its own cluster and then
 by iteration, each cluster is merged with its nearest one. The method has
 two parameters: the linkage and the distance.
 
-%%%%: beginning of the part that need to be edited:
-The linkage specifies which part of each cluster is used as reference
+The linkage parameter specifies which part of each cluster is used as reference
 for computing the distance between the clusters. There are many methods and after
-trying many of them, I picked arbitrary the one that was accurately dividing
-the samples by tissues for every and each of the different datasets.
+trying several, I picked arbitrary the one that was dividing
+the samples by tissues the most accurately across the different datasets.
 
 The distance measures the dissimilarity between two samples and one common
 approach is to calculate the subtraction result of
-the correlation coefficient from $1$ (as smaller is the difference, greater is
-the similarity shared between the two samples).
+the correlation coefficient from $1$ (hence, a greater similarity between the two
+samples means a smaller distance).
 
 \section{Correlation}
 
@@ -102,6 +101,10 @@ myself; I only kept expression values effectively observed in all the datasets
 Among the several methods available to compute the correlation coefficient, I
 tried both the Spearman and the Pearson correlations.
 
+\subsection{Pearson correlation}
+The Pearson correlation coefficient (usually noted as $r$) assesses the linear
+dependence between two variables. It is invariant to systematic addition of a
+constant or to simple scaling factors between the two variables.
 
 \subsection{Spearman correlation}
 The Spearman correlation coefficient (usually noted as $\rho$)
@@ -110,38 +113,32 @@ However, it only assesses the monotonic dependence between two variables.
 The Spearman correlation is equal to the Pearson correlation of the value
 \emph{ranks} between two variables.
 
-\subsection{Pearson correlation}
-The Pearson correlation coefficient (usually noted as $r$) assesses the linear
-dependence between two variables. In case of a perfect correlation
-
-
-\begin{comment}
-Now, as this study is part of a broader scheme that aims to provide \latin{in fine}
-a reference for the Human transcriptome (and proteome), Pearson correlation
-coefficients give a better estimation on the practical feasibility.
-\end{comment}
-
 
 \subsection{Scatter plot}
 
-
+\cite{anscombe} created four datasets which share very similar descriptive
+statistics to stress how important it is to visualise the data. As the scatter
+plots show on~\cref{fig:Anscombe}, we can observe quite different distributions
+for sets of two variables that would otherwise share the same descriptive
+statistics. Their means and variances  (for both $x$ and $y$),
+their Pearson correlation between $x$ and $y$, as
+the linear regression line are very similar when not equal.
+Hence, checking the four datasets graphically with scatter plots
+allows a quick quality check along with an
+estimation of the relationship between the variables. Moreover, even a non-linear
+but strong relationship would be promptly highlighted.
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.6]{expressed/Anscombe.png}\centering
+    \includegraphics[scale=0.5]{expressed/Anscombe.png}\centering
       \caption[Anscombe quartet --- why data should always visualy checked]
       {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
-      visually checked.}\smallbreak{}All the datasets displayed here have equal
-      or very similar descriptive statistic indicators. Their means (of $x$ and
-      $y$), their variances 
-        . Checking them graphically is the only way to detect quickly
-      any anomaly.}
+      visually checked.}\smallbreak{} All the datasets displayed here have equal
+      or very similar descriptive statistic indicators.}
 \end{figure}
-
-
-%%%%end
 
 \section{Expressed or not expressed}
 \label{sec:ExpressedOrNot}
+
 While it can seem as a trivial concept and might be overlook, whether a specific
 molecule is expressed --- or not --- in a given condition, can actually have
 an extensive impact on the results of the analyses, particularly when integrating
@@ -155,10 +152,10 @@ its whole, i.e.\ a null value has still to be an observation and translates
 a lack of expression (and not a lack of observation).
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.9]{expressed/expressedNotExp.pdf}\centering
+    \includegraphics[scale=0.7]{expressed/expressedNotExp.pdf}\centering
       \caption[Expressed or not: several cases illustrated]
       {\label{fig:DefineExpression}\textbf{Expressed or not: several cases
-      illustrated.}\smallbreak{}Genes as \emph{gene 1} are unequivocal: they have been
+      illustrated.}\smallbreak{} Genes as \emph{gene 1} are unequivocal: they have been
       detected in all the different tissues. Genes that have been quantified in
       \emph{some} of the conditions are, in principal, detectable with the
       protocol of sampling and quantification used for the assay.
@@ -223,6 +220,9 @@ or with a threshold of $5$ \glspl{FPKM}.
 While I have compared the list of undefined, expressed and unexpressed molecules
 the bulk of the analysis has been done on the common ones.
 
-In other words, if a \mRNA\ (or protein) is not expressed in at least one sample
-in \emph{every and each} of the datasets used for the analysis,
+In other words, if a \mRNA\ --- or protein --- is not expressed in at least
+one sample in \emph{every and each} of the datasets used for the analysis,
 it will be excluded from the main part of it.
+
+
+
