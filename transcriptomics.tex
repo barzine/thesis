@@ -1,12 +1,10 @@
 \chapter{Consistency through different transcriptomics studies with RNA-Seq}
 \label{ch:Transcriptomics}
-%\setlength{\epigraphwidth}{0.45\textwidth}
-%\setlength{\epigraphrule}{0.1pt}
-%\epigraph{Quantifier: c'est convenir, puis mesurer.}{\cite{Desrosieres}}
 
 
-I started this project in January 2013. At that time, there was no
-literature comparing normal human transcriptome tissues across different datasets.
+
+Science progresses through many elements. Quantified observations are rather one
+of the fastest tracks to new understandings and insights.
 
 \section{Introduction}
 
@@ -30,22 +28,12 @@ literature comparing normal human transcriptome tissues across different dataset
         with additions on what my study confirms/refutes or expands them.
 \end{itemize}
 
-Progress in Science is based on different elements. In natural sciences, notably
-Biology, repeated observations are one of the earliest ones. Then quantifications
-when possible (+ definitions give you characterisation). (They could be inferred or
-been used as a start for a hypothesis and then there are predictions and
-experiments). When many observations and measurements, common step: try to create
-a reference. People tried with microarrays technologies but there were too many
-biases and too different microarrays to work with. However, it would be very nice
-to have a reference as it is hard to have a normal controls in studies. Hence, we
-have seen a common trend of Atlases publications and even more when \Rnaseq\ started
-to be used more commonly. (Explosion of the Atlases).
 
 While current high-throughput gene expression studies are mainly about
 differential gene expression between (notably diseased and treated) conditions,
 healthy controls are not always enough or even available. Even more so, when the
 study subject is human. Indeed, it rather apprehensible that sampling solid
-tissues on a healthy human is not (and should not be) usual or common.
+tissues on a healthy human is (Fortunately) not usual or common.
 
 Although, many atlases have been released to help on this issue,
 there is still not any direct method that would allow you more than check the
@@ -53,19 +41,12 @@ presence (or lack of detection) of specific genes in a given condition.
 
 With the increasing number of studies of normal tissues with overlapping conditions
 \cref{fig:VennStudiesT}, we are investigating the consistency of gene-tissue
-associations on
-one side but moreover we would like to assess the expression levels across the
-datasets in the aim of integrating all the available data in a gene expression
-baseline reference.
+associations on one side but moreover we would like to assess the expression
+levels across the datasets in the aim of integrating all the available data in a
+gene expression baseline reference.
 
-When I started this project there was not any study, comprehensive or not, that
-was investigating in-depth the consistency of transcriptome expression measurements
-for one condition across studies.
-
-As previously stated in the introduction, while I started this project,
-there wasn't any study that was investigating in-depth the reproducibility of
-transcriptomics.
-
+When I started this project no study (either comprehensive or not) was
+investigating in-depth the consistency of transcriptome expression measurements.
 However, in August 2014 a paper comparing different preparation methods,
 sequencing technologies operated in different laboratories
 on samples from the same biological source concludes that while absolute
@@ -78,8 +59,7 @@ is comparable to microarrays for differential gene expression analysis study
 \TK{add reference},
 \Rnaseq\ plus: detect new things - minus: sampling problems (stuff might be there
 but won't be ``fished''.
-
-%%%%%%%%%
+\end{comment}
 
 When I started this work in 2013, there were only three complying
 datasets at that time. Fortunately, I was later
@@ -94,6 +74,7 @@ the sequencer or the paired-end protocols) and the studies design that includes
 biological replicates for every tissue had motivated a more focused comparison
 based only on these two datasets.
 
+\begin{comment}
 While I downloaded and entirely processed four of the transcriptomic datasets
 myself, it was not the case for the \Gtex\ dataset. Since this
 data is involved in many project within the \EBI\ and due to its huge amount of
@@ -107,6 +88,7 @@ For the sake of consistency, that led me to reprocess all the other four dataset
 to comply with the reference used for the \Gtex\ samples. The silver lining
 was that they were built with the new reference of the
 Human genome GRCH 38 (ENSEMBL v. 76).
+\end{comment}
 
 \begin{figure}%[!htbp]
     \includegraphics[scale=0.6]{transcriptomics/VennStudiesT}\centering
@@ -142,19 +124,15 @@ focus my study on the \mRNAs\ pool: most of the analyses are excluding
 any gene that the biotype is not annotated as \emph{protein coding}.
 
 
-
 \section{Results}\label{sec:Trans_Results}
-\section{Methods}
-\subsection{A consistent \Rnaseq\ workflow}
+
+\subsection{Reproducibility of expression profile at tissue level}\label{subsec:Trans_ReproExpresTissue}
 
 
+\subsection{Tissue specific,housekeeping genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
 
+\subsection{Curated sets}\label{subsec:Trans_curatedSets}
 
-\section{Consistency of processing methodology}\label{sec:Trans_consistentMethodo}
-
-    \subsection{Reuse of processed data issues}\label{subsec:Trans_reuseOfData}
-
-    \subsection{Genome build and annotation impact}\label{subsec:Trans_AnnotImpact}
 
 RNA-seq is consistent across datasets; samples are more likely to cluster by
 biological origins than by studies. (Figure 2)
@@ -181,16 +159,6 @@ and Proteomics studies – Figure 15)
 
 
 
-    \subsection{Reproducibility of expression profile at tissue level}\label{subsec:Trans_ReproExpresTissue}
-
-        \subsubsection{Correlation}\label{subsubsec:Trans_Tissue_Corr}
-        \subsubsection{Clustering}\label{subsubsec:Trans_Tissue_cluster}
-
-    \subsection{Reproducibility of expression profile at gene level}\label{subsec:Trans_ReproExpresGene}
-
-    \subsection{Tissue specific,housekeeping genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
-
-    \subsection{Curated sets}\label{subsec:Trans_curatedSets}
 
 \section{Discussion}\label{sec:Trans_discussion}
 

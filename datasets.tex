@@ -1,11 +1,12 @@
 \chapter{Available high-throughput normal human Datasets}
 \label{ch:datasets}
 
+\begin{comment}
 \setlength{\epigraphwidth}{0.57\textwidth}
 \setlength{\epigraphrule}{0.1pt}
 \epigraph{Data! Data! Data! I can’t make bricks without clay!}{Sherlock Homes
 (Sir Arthur Conan Doyle)}
-
+\end{comment}
 
 In this chapter, I describe the data I used within my project.
 
@@ -280,8 +281,9 @@ This data was also downloaded from ProteomicsDB (\Proteomicsdb{PRDB000012}).
 
 \section{Processing pipelines}
 
-While the authors of the aforementioned datasets have released for each of them
-a quantification. I have decided to analyse data that would have been reprocessed
+While the  aforementioned datasets have 
+the quantification 
+I have decided to analyse data that would have been reprocessed
 from the raw. There are many reasons.
 \begin{itemize}
     \item Different reference used to build the data
@@ -295,6 +297,36 @@ Can expand on how based on the literature.
 
 
 \subsection{Transcriptome raw data}
+
+While I downloaded and entirely processed four of the transcriptomic datasets
+    myself, it was not the case for the \Gtex\ dataset. Since this
+    data is involved in many project within the \EBI\ and due to its huge amount of
+    data, it was agreed that this would be processed centrally by one person and then
+    redistributed to all the other interested parties. Dr Nuno Fonseca had this
+    tremendous task and provided me with quantification data,
+    both for each sample separately and then for each tissue (all relevant samples
+    pooled together).
+
+    For the sake of consistency, that led me to reprocess all the other four datasets
+    to comply with the reference used for the \Gtex\ samples. The silver lining
+    was that they were built with the new reference of the
+    Human genome GRCH 38 (ENSEMBL v. 76).
+
+
+\begin{comment}
+\section{Methods}
+    \subsection{A consistent \Rnaseq\ workflow}
+
+    \section{Consistency of processing methodology}\label{sec:Trans_consistentMethodo}
+
+        \subsection{Reuse of processed data issues}\label{subsec:Trans_reuseOfData}
+
+        \subsection{Genome build and annotation impact}\label{subsec:Trans_AnnotImpact}
+
+
+\end{comment}
+
+
 
 \begin{itemize}
         \item all the data RNAseq
