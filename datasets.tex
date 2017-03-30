@@ -5,26 +5,33 @@
 \setlength{\epigraphwidth}{0.57\textwidth}
 \setlength{\epigraphrule}{0.1pt}
 \epigraph{Data! Data! Data! I can’t make bricks without clay!}{Sherlock Homes
-(Sir Arthur Conan Doyle)}
+    (Sir Arthur Conan Doyle)}
 \end{comment}
 
-In this chapter, I describe the data I used within my project.
+In this chapter, I describe the data used within my project.
 
-All the datasets with which I worked are fitting three main criteria.
+\section{Introduction}
+
+Every of the datasets, with which I worked, are fitting three main criteria.
 They comprise human normal samples from at least three kind of tissues.
-They have been sequenced with \Rnaseq\ for the transcriptomic studies or
-analysed with Mass spectrometry for the proteomic ones.
-The \emph{raw} data is available and reusable.
+They are high-throughput; either sequenced with \Rnaseq\ for the transcriptomic
+studies or analysed with Mass spectrometry for the proteomic ones.
+Finally, the \emph{raw} data is available and reusable.
 
+For the proteome, there are two published datasets that fit these
+criteria. Due to Dr James Wright and Dr Jyoti Choudary tenacity a third dataset
+was also added to the compendium.
 
-\section{Transcriptomics}
-
-While they are quite a few more studies that I would have like to use on the
+There are a few more studies that I would have like to use on the
 transcriptomic side, this last point was often the critical reason
 why they have not been included.
+
 Indeed, many times I encountered data with ambiguous encoding format and, as the
 studies were a little bit outdated,
 I also could not get the information from the original authors.
+
+
+\section{Transcriptomics}
 
 I describe hereafter the 5 transcriptomic datasets I used
 in the chronological order of their first public release.
@@ -198,8 +205,8 @@ academic research should be granted.
 
 \section{Proteomics}
 
-In the issue 7502 of \textit{Nature} (2014), two teams of authors released their own
-\emph{``draft of the human proteome''} based on the study of several tissues
+In the issue 7502 of \textit{Nature} (2014), two teams of authors released their
+own \emph{``draft of the human proteome''} based on the study of several tissues
 with \ms. There were already other human protein maps available,
 e.g.\ the Human protein atlas\footnote{%
 \href{http://www.humanproteomemap.org/}{www.proteinatlas.org/}}, but those one
@@ -271,7 +278,7 @@ data as it was released in 2011 through PeptideAtlas\footnote{%
 \citep{PeptideAtlas}.
 
 It was created by Paul Cutler at Roche Pharmaceuticals.
-It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files.
+It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files).
 
 While this data was never published on its owned, it has been used in different
 other studies; among them \cite{KusterData} had used it to create ProteomicsDB.
@@ -281,15 +288,27 @@ This data was also downloaded from ProteomicsDB (\Proteomicsdb{PRDB000012}).
 
 \section{Processing pipelines}
 
-While the  aforementioned datasets have 
-the quantification 
-I have decided to analyse data that would have been reprocessed
-from the raw. There are many reasons.
+There are available quantifications for the different
+datasets released either by the original authors or third parts: \citep{Krupp2012},
+\citep{VTpaper}, \citep{BioGPS1}, \citep{Uhlen2015}, \citep{GTExTranscript},
+\citep{PandeyData}, \citep{KusterData}. These quantifications can be partial or
+complete; raw or normalised; available freely or only upon request.
+
+For this study, I have all the datasets reprocessed from the raw files.
+In fact, along my work, I noticed many potential bias sources that can highly impact
+\Rnaseq results. Many of them have since then been reported in the literature.
+Thus, annotations \citep{annotationDiff}, contamination \citep{contaminationRNAseq}
+quality controls  and
+mapping and quantifications pipelines \citep{Fonseca2014}
+have great effects on the final raw quantification.
+
+The normalisation of the quantified data has also great effect \citep{Dillies2013},
+\citep{normalisation2}.
+
+
 \begin{itemize}
-    \item Different reference used to build the data
     \item Quality check might have not been ``best''
     \item Not always look for contamination
-    \item Different algorithms used, so different ``theories''
 \end{itemize}
 
 
@@ -299,18 +318,18 @@ Can expand on how based on the literature.
 \subsection{Transcriptome raw data}
 
 While I downloaded and entirely processed four of the transcriptomic datasets
-    myself, it was not the case for the \Gtex\ dataset. Since this
-    data is involved in many project within the \EBI\ and due to its huge amount of
-    data, it was agreed that this would be processed centrally by one person and then
-    redistributed to all the other interested parties. Dr Nuno Fonseca had this
-    tremendous task and provided me with quantification data,
-    both for each sample separately and then for each tissue (all relevant samples
-    pooled together).
+myself, it was not the case for the \Gtex\ dataset. Since this
+data is involved in many project within the \EBI\ and due to its huge amount of
+data, it was agreed that this would be processed centrally by one person and then
+redistributed to all the other interested parties. Dr Nuno Fonseca had this
+tremendous task and provided me with quantification data,
+both for each sample separately and then for each tissue (all relevant samples
+pooled together).
 
-    For the sake of consistency, that led me to reprocess all the other four datasets
-    to comply with the reference used for the \Gtex\ samples. The silver lining
-    was that they were built with the new reference of the
-    Human genome GRCH 38 (ENSEMBL v. 76).
+For the sake of consistency, that led me to reprocess all the other four datasets
+to comply with the reference used for the \Gtex\ samples. The silver lining
+was that they were built with the new reference of the
+Human genome GRCH 38 (ENSEMBL v. 76).
 
 
 \begin{comment}
