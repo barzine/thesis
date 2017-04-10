@@ -12,27 +12,23 @@ In this chapter, I describe the data used within my project.
 
 \section{Introduction}
 
-Every of the datasets, with which I worked, are fitting three main criteria.
+Every dataset with which I worked is fitting three main criteria.
 They comprise human normal samples from at least three kind of tissues.
-They are high-throughput; either sequenced with \Rnaseq\ for the transcriptomic
-studies or analysed with Mass spectrometry for the proteomic ones.
+They are untargeted high-throughput; either sequenced with \Rnaseq\
+for the transcriptomic studies or
+analysed with Mass spectrometry for the proteomic ones.
 Finally, the \emph{raw} data is available and reusable.
 
-For the proteome, there are two published datasets that fit these
-criteria. Due to Dr James Wright and Dr Jyoti Choudary tenacity a third dataset
-was also added to the compendium.
 
-There are a few more studies that I would have like to use on the
-transcriptomic side, this last point was often the critical reason
+\section{Transcriptomics}
+
+There are a few more studies that I wanted to use on the
+transcriptomic side, but the last previous point was often the critical reason
 why they have not been included.
 
 Indeed, many times I encountered data with ambiguous encoding format and, as the
 studies were a little bit outdated,
 I also could not get the information from the original authors.
-
-
-\section{Transcriptomics}
-
 I describe hereafter the 5 transcriptomic datasets I used
 in the chronological order of their first public release.
 The \cref{tab:Trans5DF} summarises the main characteristics of the different
@@ -212,7 +208,7 @@ e.g.\ the Human protein atlas\footnote{%
 \href{http://www.humanproteomemap.org/}{www.proteinatlas.org/}}, but those one
 were mostly reporting the spatial expression of the proteins (as they were based
 on immunohistochemistry or other means of identification) than
-quantifying their abundance in each tissue.
+quantifying their (non-targeted) abundance in each tissue.
 
 
 \subsection{Pandey data}
@@ -269,7 +265,6 @@ Scientific instruments.
 
 The raw data was downloaded from ProteomicsDB (\Proteomicsdb{PRDB000042}).
 
-
 \subsection{Cutler data}
 
 This data was generated prior to the \dataset{Pandey} and the dataset{Kuster}
@@ -280,23 +275,29 @@ data as it was released in 2011 through PeptideAtlas\footnote{%
 It was created by Paul Cutler at Roche Pharmaceuticals.
 It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files).
 
-While this data was never published on its owned, it has been used in different
-other studies; among them \cite{KusterData} had used it to create ProteomicsDB.
+While this data was never published on its own, it has been used in different
+other studies; indeed, the \dataset{Cutler} data is one the datasets that
+\cite{KusterData} have used in their original study to create ProteomicsDB.
 
 This data was also downloaded from ProteomicsDB (\Proteomicsdb{PRDB000012}).
 
-
 \section{Processing pipelines}
 
-There are available quantifications for the different
-datasets released either by the original authors or third parts: \citep{Krupp2012},
-\citep{VTpaper}, \citep{BioGPS1}, \citep{Uhlen2015}, \citep{GTExTranscript},
-\citep{PandeyData}, \citep{KusterData}. These quantifications can be partial or
-complete; raw or normalised; available freely or only upon request.
+Despite available quantifications for most of the datasets ---
+released either by the original authors (directly \citep{Krupp2012}
+or  only upon requests \citep{PandeyData})
+or by third-parties \citep{BioGPS1}, \citep{EBIgxa},
+\citep{Harmonizome} --- I only used data reprocessed from raw files.
 
-For this study, I have all the datasets reprocessed from the raw files.
-In fact, along my work, I noticed many potential bias sources that can highly impact
-\Rnaseq results. Many of them have since then been reported in the literature.
+The original quantifications  are either directly
+available \citep{Uhlen2015} or only upon request \citep{PandeyData}
+and the normalised values are often the products
+of different methodologies, e.g.\ \citep{GTExTranscript} and \citep{Krupp2012}.
+
+Intuitively, we can appraise that different processing protocols produce
+different results.
+In fact along my work, I noticed many potential bias sources that impact
+\Rnaseq\ outputs. Many of them have since then been reported in the literature.
 Thus, annotations \citep{annotationDiff}, contamination \citep{contaminationRNAseq}
 quality controls  and
 mapping and quantifications pipelines \citep{Fonseca2014}
@@ -315,7 +316,7 @@ The normalisation of the quantified data has also great effect \citep{Dillies201
 Can expand on how based on the literature.
 
 
-\subsection{Transcriptome raw data}
+\subsection{Transcriptome raw data processing}
 
 While I downloaded and entirely processed four of the transcriptomic datasets
 myself, it was not the case for the \Gtex\ dataset. Since this
@@ -335,14 +336,9 @@ Human genome GRCH 38 (ENSEMBL v. 76).
 \begin{comment}
 \section{Methods}
     \subsection{A consistent \Rnaseq\ workflow}
-
-    \section{Consistency of processing methodology}\label{sec:Trans_consistentMethodo}
-
-        \subsection{Reuse of processed data issues}\label{subsec:Trans_reuseOfData}
-
+\section{Consistency of processing methodology}\label{sec:Trans_consistentMethodo}
+       \subsection{Reuse of processed data issues}\label{subsec:Trans_reuseOfData}
         \subsection{Genome build and annotation impact}\label{subsec:Trans_AnnotImpact}
-
-
 \end{comment}
 
 
@@ -379,6 +375,7 @@ the identification of the proteins. More messy.
 All the data has been processed by James.
 
 Small problem about mapping back proteins to transcripts.
+
 
 
 And again describe the methodology.
