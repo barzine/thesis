@@ -36,9 +36,8 @@ datasets.
 
 \begin{sidewaystable}
            \centering
-           \caption{\label{tab:Trans5DF}Technical description of the 5 transcriptomic
-           dataset (\Rnaseq)
-            used for this study}
+           \caption{\label{tab:Trans5DF}General description of the 5 transcriptomic
+           dataset (\Rnaseq) used for this study}
        \begin{tabular}{@{}cccccccccc@{}}
        \toprule
        \multicolumn{1}{c|}
@@ -67,7 +66,7 @@ datasets.
        E-MTAB-2919 & Gtex  & Y &  &  & Y & Y &  & 54 & Y \\
        \bottomrule
        \end{tabular}
-       \end{sidewaystable}
+\end{sidewaystable}
 
 \subsection{Castle et al. dataset}
 
@@ -318,7 +317,10 @@ James Wright.
 \subsection{Transcriptome raw data processing}
 
 While I downloaded and entirely processed four of the transcriptomic datasets
-myself (\dataset{Castle}: 11 samples, \dataset{Brawand}: , \dataset{IBM}, \dataset{Uhlén})
+myself (\dataset{Castle},
+\dataset{Brawand},
+\dataset{IBM},
+\dataset{Uhlén})
 it was not the case for the \Gtex\ dataset. Since this
 data is involved in many project within the \EBI\ and due to the huge amount of
 files and data,
@@ -332,14 +334,35 @@ For the sake of consistency and to avoid more biases \citep{h38vsh37},
 that led me to reprocess all the other four \Rnaseq\ datasets
 to comply with the reference used for the \Gtex\ samples. The silver lining
 was that they were built with the new reference of the
-Human genome GRCH 38 (and then annotated with ENSEMBL v. 76).
+Human genome GRCh38 (and then annotated with ENSEMBL 76).
 
 In the early stages of my research, I was running each of the different steps
 sequentially and manually. While the \EBI\ cluster helped a lot with the
 processing of the numerous files,   the many file integrity checks
 Fortunately, Dr Nuno Fonseca developed
 \irap\footnote{https://nunofonseca.github.io/irap/}, an ``integrated RNA-seq
-Analysis Pipeline''. This meta-pipeline allows to automatise the 
+analysis Pipeline''. This meta-pipeline allows to automatise the
+
+
+\begin{table}
+\centering
+\caption[Technical description of the 5 transcriptomic datasets]{%
+\label{tab:Lib5DF}\textbf{Technical description of the 5 transcriptomic
+    datasets}\\I processed all the datasets but the one in italic}
+\begin{tabular}{@{}cccc@{}}
+%\begin{tabular}{@{}llll@{}}
+\toprule
+Dataset           & Sample number (biologic) & Library number & File number \\
+\midrule
+Castle            & 11                       & 11             & 11          \\
+    \begin{tabular}[c]{@{}c@{}}Brawand\\ \small{(only for \species{Homo sapiens})}\end{tabular}
+        & 18                       & 21             & 23          \\
+Illumina Body Map & 16                       & 36             & 48          \\
+Uhlén             & 122                      & 200            & 400         \\
+\textit{\Gtex\ (v.1.4) }    & \textit{3276}            & \textit{3276}  & \textit{6652}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
 \begin{comment}
