@@ -44,12 +44,13 @@ datasets.
        \multicolumn{1}{c|}
            {\multirow{2}{*}{ArrayExpress ID}} &
             \multicolumn{1}{c|}{\multirow{2}{*}{Data ID}} &
-            \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@                                               {}}Library\\Preparation\end{tabular}} &
+            \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Library\\Preparation\end{tabular}} &
             \multicolumn{2}{c|}{Sequencing} &
             \multicolumn{2}{c|}{Replicates} &
             \multicolumn{1}{c|}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Tissue\\
                     Number\end{tabular}}} &
-            \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Multi-sampling\\ from the \\ same               individual\end{tabular}} \\
+            \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Multi-sampling\\ from the \\ same
+            individual\end{tabular}} \\
             \cmidrule(lr){3-8}
             \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &
             \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Whole\\ RNA\end{tabular}} &
@@ -103,7 +104,8 @@ on the matter, the sequencing approach was then creating new perspectives.
 
 They have biological replicates: one male
 and one female for the somatic tissue and two males for the testes samples.
-They used a polyA-selected protocol to prepare the 18 libraries.
+They used a polyA-selected protocol to prepare their 131 libraries (including 23
+for \species{Homo sapiens}).
 Hence, the samples are largely enriched in protein coding genes.
 
 They generated an average of 3,2 billion reads of 76 base pairs per sample
@@ -284,68 +286,70 @@ This data was also downloaded from ProteomicsDB (\Proteomicsdb{PRDB000012}).
 \section{Processing pipelines}
 
 Despite available quantifications for most of the datasets ---
-released either by the original authors (directly \citep{Krupp2012}
-or  only upon requests \citep{PandeyData})
+released either by the original authors (directly \citep{Krupp2012},
+\citep{Uhlen2015} or  only upon requests \citep{PandeyData})
 or by third-parties \citep{BioGPS1}, \citep{EBIgxa},
 \citep{Harmonizome} --- I only used data reprocessed from raw files.
 
-The original quantifications  are either directly
-available \citep{Uhlen2015} or only upon request \citep{PandeyData}
-and the normalised values are often the products
-of different methodologies, e.g.\ \citep{GTExTranscript} and \citep{Krupp2012}.
-
-Intuitively, we can appraise that different processing protocols produce
+Intuitively, we expect that different processing protocols produce
 different results.
+
 In fact along my work, I noticed many potential bias sources that impact
-\Rnaseq\ outputs. Many of them have since then been reported in the literature.
-Thus, annotations \citep{annotationDiff}, contamination \citep{contaminationRNAseq}
-quality controls  and
+\Rnaseq\ outputs. Many of them have since then been reported in the literature;
+annotations \citep{annotationDiff},
+contamination \citep{contaminationRNAseq},
+quality controls \citep{qualityRNAseq} and
 mapping and quantifications pipelines \citep{Fonseca2014}
-have great effects on the final raw quantification.
+have great effects on the final quantification.
 
-The normalisation of the quantified data has also great effect \citep{Dillies2013},
-\citep{normalisation2}.
+Moreover, the normalisation method of the quantified data also
+greatly impacts the final expression values
+\citep{Dillies2013}, \citep{normalisation2}.
 
+In facts, the available normalised \Rnaseq\ values are the products
+of different methodologies, e.g.\ \citep{GTExTranscript} and \citep{Krupp2012}.
+Hence, reprocessing all the transcriptomic datasets was the logical
+first step of this study.
 
-\begin{itemize}
-    \item Quality check might have not been ``best''
-    \item Not always look for contamination
-\end{itemize}
-
-
-Can expand on how based on the literature.
+Likewise, the proteomic datasets were reprocessed from the raw spectra by Dr
+James Wright.
 
 
 \subsection{Transcriptome raw data processing}
 
 While I downloaded and entirely processed four of the transcriptomic datasets
-myself, it was not the case for the \Gtex\ dataset. Since this
-data is involved in many project within the \EBI\ and due to its huge amount of
-data, it was agreed that this would be processed centrally by one person and then
+myself (\dataset{Castle}: 11 samples, \dataset{Brawand}: , \dataset{IBM}, \dataset{Uhlén})
+it was not the case for the \Gtex\ dataset. Since this
+data is involved in many project within the \EBI\ and due to the huge amount of
+files and data,
+it was agreed that this would be processed centrally by one person and then
 redistributed to all the other interested parties. Dr Nuno Fonseca had this
 tremendous task and provided me with quantification data,
 both for each sample separately and then for each tissue (all relevant samples
 pooled together).
 
-For the sake of consistency, that led me to reprocess all the other four datasets
+For the sake of consistency and to avoid more biases \citep{h38vsh37},
+that led me to reprocess all the other four \Rnaseq\ datasets
 to comply with the reference used for the \Gtex\ samples. The silver lining
 was that they were built with the new reference of the
-Human genome GRCH 38 (ENSEMBL v. 76).
+Human genome GRCH 38 (and then annotated with ENSEMBL v. 76).
+
+In the early stages of my research, I was running each of the different steps
+sequentially and manually. While the \EBI\ cluster helped a lot with the
+processing of the numerous files,   the many file integrity checks
+Fortunately, Dr Nuno Fonseca developed
+\irap\footnote{https://nunofonseca.github.io/irap/}, an ``integrated RNA-seq
+Analysis Pipeline''. This meta-pipeline allows to automatise the 
 
 
 \begin{comment}
-\section{Methods}
     \subsection{A consistent \Rnaseq\ workflow}
-\section{Consistency of processing methodology}\label{sec:Trans_consistentMethodo}
-       \subsection{Reuse of processed data issues}\label{subsec:Trans_reuseOfData}
-        \subsection{Genome build and annotation impact}\label{subsec:Trans_AnnotImpact}
 \end{comment}
 
 
 
 \begin{itemize}
         \item all the data RNAseq
-        \item everything reprocessed by myself BUT GTEX
         \item has to reprocess several time due to evolution of Annotation
 \end{itemize}
 
