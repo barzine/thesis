@@ -282,7 +282,7 @@ other studies; indeed, the \dataset{Cutler} data is one the datasets that
 
 This data was also downloaded from ProteomicsDB (\Proteomicsdb{PRDB000012}).
 
-\section{Processing pipelines}
+\section{Constant processing pipelines}
 
 Despite available quantifications for most of the datasets ---
 released either by the original authors (directly \citep{Krupp2012},
@@ -343,31 +343,26 @@ Fortunately, Dr Nuno Fonseca developed
 \irap\footnote{https://nunofonseca.github.io/irap/}, an ``integrated RNA-seq
 analysis Pipeline''. This meta-pipeline allows to automatise the
 
-
 \begin{table}
 \centering
 \caption[Technical description of the 5 transcriptomic datasets]{%
 \label{tab:Lib5DF}\textbf{Technical description of the 5 transcriptomic
-    datasets}\\I processed all the datasets but the one in italic}
+    datasets}\\\footnotesize{I processed all the datasets but the one in italic.\\
+    For the Brawand dataset, I only processed the \species{Homo sapiens} part.}}
 \begin{tabular}{@{}cccc@{}}
-%\begin{tabular}{@{}llll@{}}
 \toprule
-Dataset           & Sample number (biologic) & Library number & File number \\
+Dataset             & Sample number (biologic) & Library number & File number \\
 \midrule
-Castle            & 11                       & 11             & 11          \\
-    \begin{tabular}[c]{@{}c@{}}Brawand\\ \small{(only for \species{Homo sapiens})}\end{tabular}
-        & 18                       & 21             & 23          \\
-Illumina Body Map & 16                       & 36             & 48          \\
-Uhlén             & 122                      & 200            & 400         \\
-\textit{\Gtex\ (v.1.4) }    & \textit{3276}            & \textit{3276}  & \textit{6652}\\
+Castle              & 11                       & 11             & 11          \\
+Brawand             & 18                       & 21             & 23          \\
+Illumina Body Map   & 16                       & 36             & 48          \\
+Uhlén               & 122                      & 200            & 400         \\
+    \textit{\color{darkgray}\Gtex\ v.1.4} & \textit{\color{darkgray}3276} &
+    \textit{\color{darkgray}3276}      & \textit{\color{darkgray}6552}    \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-
-\begin{comment}
-    \subsection{A consistent \Rnaseq\ workflow}
-\end{comment}
 
 
 
