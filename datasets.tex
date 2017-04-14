@@ -9,6 +9,9 @@
 \end{comment}
 
 In this chapter, I describe the data used within my project.
+\TK{ajouter laius que tout a été fait par moi sous la supervision d'Alvis sauf
+mention contraire}
+
 
 \section{Introduction}
 
@@ -20,7 +23,7 @@ analysed with Mass spectrometry for the proteomic ones.
 Finally, the \emph{raw} data is available and reusable.
 
 
-\section{Transcriptomics}
+\section{RNA-Seq Transcriptome data}
 
 There are a few more studies that I wanted to use on the
 transcriptomic side, but the last previous point was often the critical reason
@@ -62,7 +65,7 @@ datasets.
        E-MTAB-305 & Castle & Y &  & Y &  &  &  & 11 &  \\
        E-GEOD-30352 & Brawand &  & Y & Y &  & Y &  & 8 &  \\
        E-MTAB-513 & IBM &  & Y & Y & Y &  & (Y) & 16 &  \\
-       E-MTAB-2836 & Uhlén &  & Y &  & Y & Y & Y & 32 &  \\
+       E-MTAB-2836 \footnotesize{(and E-MTAB-1733)}& Uhlén &  & Y &  & Y & Y & Y & 32 &  \\
        E-MTAB-2919 & Gtex  & Y &  &  & Y & Y &  & 54 & Y \\
        \bottomrule
        \end{tabular}
@@ -107,7 +110,7 @@ They used a polyA-selected protocol to prepare their 131 libraries (including 23
 for \species{Homo sapiens}).
 Hence, the samples are largely enriched in protein coding genes.
 
-They generated an average of 3,2 billion reads of 76 base pairs per sample
+They generated an average of 3.2 billion reads of 76 base pairs per sample
 using an Illumina Genome Analyser IIx (single-end) and they released them
 through \gls{GEO} (accession number: GSE30352).
 I personally retrieved the data from
@@ -132,7 +135,7 @@ It comprises 16 tissues (one donor per tissue), which were prepared with a
 polyA-selected library preparation protocol and then have been sequenced once
 with a singled-end protocol and then a second time with a paired-end one. There
 are some added libraries which have been created by mixing together the 16 tissues.
-While each sample has been sequenced twice and that we have in principal
+Although each sample has been sequenced twice and that we have in principle
 \emph{technical} replicates, these are not ``regular'' technical
 replicates\footnote{\emph{Technical} replicates,
 by contrast to \emph{biological} replicates,
@@ -174,7 +177,7 @@ The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the NIH Common
 Fund and aims to establish a resource database and associated tissue bank
 for the study of the relationship between genetic variation and gene expression
 and other molecular phenotypes in multiple reference tissues. The project was first
-explained in a paper from the \cite{GTEx2013}: it consists to quickly collect
+explained in a paper from the \cite{GTEx2013}. It consists to quickly collect
 many tissues from postmortem donors so genotype-tissue expression analyses could
 be done, notably \gls{eQTL} variants studies which study the modulation
 of \gls{RNA} expression in function of \glspl{SNP}. The results of the
@@ -200,27 +203,27 @@ in my study). While getting access can take time, in principal every request for
 academic research should be granted.
 
 
-\section{Proteomics}
+\section{Mass spectrometry Proteome data}
 
 In the issue 7502 of \textit{Nature} (2014), two teams of authors released their
 own \emph{``draft of the human proteome''} based on the study of several tissues
 with \ms. There were already other human protein maps available,
-e.g.\ the Human protein atlas\footnote{%
+\eg\ the Human protein atlas\footnote{%
 \href{http://www.humanproteomemap.org/}{www.proteinatlas.org/}}, but those one
 were mostly reporting the spatial expression of the proteins (as they were based
 on immunohistochemistry or other means of identification) than
 quantifying their (non-targeted) abundance in each tissue.
 
 
-\subsection{Pandey data}
+\subsection{Pandey Lab data}
 
 \cite{PandeyData} created the Human Proteome Map\footnote{%
 \href{http://www.humanproteomemap.org/}{\small www.humanproteomemap.org/}} which
 they released along their paper \paper{\citetitle{PandeyData}}.
 
 To create their map, they have processed 30 kind of histological normal human
-tissues and cell line (17 adult tissues, 7 fetal tissues and 6 haematopoietic
-cell types) samples. The samples were created from pooled samples of three
+tissues and cell line samples (17 adult tissues, 7 fetal tissues and 6
+haematopoietic cell types). The samples were created from pooled samples of three
 individuals (generally two males and one female).
 
 They used a label-free method of library preparation to quantify as many proteins
@@ -236,7 +239,7 @@ high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 
 While their work to generate the data was highly appraise, the identification and
 quantification data they provided the community was quite criticised
-(e.g.\ see~\cite{Ezkurdia2014-qx}).
+(\eg\ see~\cite{Ezkurdia2014-qx}).
 
 The data was downloaded from ProteomeXchange via the PRIDE repository (%
 \Pride{PXD000561}).
@@ -256,7 +259,8 @@ They reprocessed the whole collection of spectra to maximise proteome coverage
 and make it available through their own repositories: ProteomicsDB\footnote{%
 \href{https://www.proteomicsdb.org/}{www.proteomicsdb.org/}}.
 
-The subset of data considered in this study is also known as the Human BodyMap
+The subset of data considered in this study is also
+known as the (protein) Human BodyMap
 which is the part that was generated (1,087 \gls{LC-MS/MS} profiles)
 by the Kuster lab itself.
 It comprises 48 experiments covering 36 tissues
@@ -268,7 +272,7 @@ The raw data was downloaded from ProteomicsDB (\Proteomicsdb{PRDB000042}).
 
 \subsection{Cutler data}
 
-This data was generated prior to the \dataset{Pandey} and the dataset{Kuster}
+This data was generated prior to the \dataset{Pandey} and the \dataset{Kuster}
 data as it was released in 2011 through PeptideAtlas\footnote{%
     \href{http://www.peptideatlas.org/}{www.peptideatlas.org/}}
 \citep{PeptideAtlas}.
@@ -277,18 +281,27 @@ It was created by Paul Cutler at Roche Pharmaceuticals.
 It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files).
 
 While this data was never published on its own, it has been used in different
-other studies; indeed, the \dataset{Cutler} data is one the datasets that
+other studies. Indeed, the \dataset{Cutler} data is one the datasets that
 \cite{KusterData} have used in their original study to create ProteomicsDB.
 
-This data was also downloaded from ProteomicsDB (\Proteomicsdb{PRDB000012}).
+These data raw files were downloaded from ProteomicsDB (identifier
+\Proteomicsdb{PRDB000012}).
 
 \section{Constant processing pipelines}
 
-Despite available quantifications for most of the datasets ---
-released either by the original authors (directly \citep{Krupp2012},
-\citep{Uhlen2015} or  only upon requests \citep{PandeyData})
-or by third-parties \citep{BioGPS1}, \citep{EBIgxa},
-\citep{Harmonizome} --- I only used data reprocessed from raw files.
+Despite available quantifications for most of the datasets, for many reasons
+I only used data reprocessed from raw files.
+
+The original authors often released
+quantification either directly (\eg\ \cite{Krupp2012})
+or only upon requests (\eg\ \cite{PandeyData}).
+Third-parties could also distribute quantification of expression values either
+from the original studies (\eg\ BioGPS \citep{BioGPS1} or
+Harmonizome \citep{Harmonizome}) or
+reprocessed from raw as EBI Gene Expression Atlas \citep{EBIgxa}\footnote{Actually,
+I could have used for most of the analyses quantification data downloaded
+from EBI Gene Expression Atlas, if the data was already available at the time that
+I started my study.}.
 
 Intuitively, we expect that different processing protocols produce
 different results.
@@ -301,12 +314,13 @@ quality controls \citep{qualityRNAseq} and
 mapping and quantifications pipelines \citep{Fonseca2014}
 have great effects on the final quantification.
 
-Moreover, the normalisation method of the quantified data also
+Additionally, the normalisation method of the quantified data also
 greatly impacts the final expression values
 \citep{Dillies2013}, \citep{normalisation2}.
 
-In facts, the available normalised \Rnaseq\ values are the products
-of different methodologies, e.g.\ \citep{GTExTranscript} and \citep{Krupp2012}.
+Moreover, the available normalised \Rnaseq\ values of the datasets I use
+are the products of different methodologies, \eg\ \citep{GTExTranscript}
+and \citep{Krupp2012}.
 Hence, reprocessing all the transcriptomic datasets was the logical
 first step of this study.
 
@@ -314,21 +328,18 @@ Likewise, the proteomic datasets were reprocessed from the raw spectra by Dr
 James Wright.
 
 
-\subsection{Transcriptome raw data processing}
+\subsection{Transcriptome RNA-Seq raw data processing}
 
 While I downloaded and entirely processed four of the transcriptomic datasets
-myself (\dataset{Castle},
-\dataset{Brawand},
-\dataset{IBM},
-\dataset{Uhlén})
-it was not the case for the \Gtex\ dataset. Since this
-data is involved in many project within the \EBI\ and due to the huge amount of
-files and data,
+myself (\dataset{Castle}, \dataset{Brawand}, \dataset{IBM} and \dataset{Uhlén}
+data), it was not the case for the \Gtex\ dataset.
+
+Since the \Gtex\ data is involved in many project within the \EBI\
+and due to its huge amount of files (number and  size) (see \cref{tab:Lib5DF}),
 it was agreed that this would be processed centrally by one person and then
 redistributed to all the other interested parties. Dr Nuno Fonseca had this
-tremendous task and provided me with quantification data,
-both for each sample separately and then for each tissue (all relevant samples
-pooled together).
+tremendous task and provided me with quantification data (as raw and normalised
+counts).
 
 For the sake of consistency and to avoid more biases \citep{h38vsh37},
 that led me to reprocess all the other four \Rnaseq\ datasets
@@ -336,40 +347,21 @@ to comply with the reference used for the \Gtex\ samples. The silver lining
 was that they were built with the new reference of the
 Human genome GRCh38 (and then annotated with ENSEMBL 76).
 
+Hence, unless indicated otherwise, the results presented in the current work are
+from these genome reference and annotation version.
+Indeed, as I had access to the different datasets through an extended period of
+times, I built, annotated (from ENSEMBL 73 to ENSEMBL 75 -- all based on
+the Human genome GRCh37) and then quantified, normalised and analysed a subset of
+the datasets several times.
+Those results are congruent with the latest ones.
+
 In the early stages of my research, I was running each of the different steps
-sequentially and manually. While the \EBI\ cluster helped a lot with the
-processing of the numerous files,   the many file integrity checks
+sequentially and manually. While the \EBI\ cluster greatly facilitated the
+processing of the numerous files ,    the many integrity checks of the intermediate
+files  % parler des customs scripts que j'ai ecrit pour faire les trucs plus rapidement
 Fortunately, Dr Nuno Fonseca developed
 \irap\footnote{https://nunofonseca.github.io/irap/}, an ``integrated RNA-seq
 analysis Pipeline''. This meta-pipeline allows to automatise the
-
-\begin{table}
-\centering
-\caption[Technical description of the 5 transcriptomic datasets]{%
-\label{tab:Lib5DF}\textbf{Technical description of the 5 transcriptomic
-    datasets}\\\footnotesize{I processed all the datasets but the one in italic.\\
-    For the Brawand dataset, I only processed the \species{Homo sapiens} part.}}
-\begin{tabular}{@{}cccc@{}}
-\toprule
-Dataset             & Sample number (biologic) & Library number & File number \\
-\midrule
-Castle              & 11                       & 11             & 11          \\
-Brawand             & 18                       & 21             & 23          \\
-Illumina Body Map   & 16                       & 36             & 48          \\
-Uhlén               & 122                      & 200            & 400         \\
-    \textit{\color{darkgray}\Gtex\ v.1.4} & \textit{\color{darkgray}3276} &
-    \textit{\color{darkgray}3276}      & \textit{\color{darkgray}6552}    \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-
-
-\begin{itemize}
-        \item all the data RNAseq
-        \item has to reprocess several time due to evolution of Annotation
-\end{itemize}
 
 First I  was doing it manually and very tedious; but as I was reprocessing the data
 as I had access to more data and new ensembl annotations were released, \irap\
@@ -377,7 +369,38 @@ was developed by Nuno Fonseca. It is a meta-pipeline which has speeded a lot the
 work. Still need a configuration file. But everything follows the same protocol.
 Add the final methodology.
 
+Average Number of samples per tissues different => quantification averaged for
+most of the analysis to avoid skewness.
+
 I am using only gene levels quantification and not isoforms.
+
+
+\begin{table}
+\centering
+\caption[Technical description of the 5 transcriptomic datasets]{%
+\label{tab:Lib5DF}\textbf{Technical description of the 5 transcriptomic
+    datasets}\\\footnotesize{I processed all the datasets but the one in italic.\\
+    For the Brawand dataset, I only processed the \species{Homo sapiens} part.}}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+Dataset & \begin{tabular}[c]{@{}c@{}}Sample number\\(biologic)\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}Library\\number\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}File\\number\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}Total size of\\the fastq\\raw files (GB) \end{tabular}&
+\begin{tabular}[c]{@{}c@{}}Average number\\of biologic samples\\ per tissues\end{tabular} \\
+\midrule
+Castle        & 11    & 11    & 11    & 58    & 10 (mixture)  \\
+Brawand       & 18    & 21    & 23    & 111   & 2.8           \\
+Ill. Body Map & 16    & 36    & 48    & 1,004  & 1             \\
+Uhlén         & 122   & 200   & 400   & 1,851  & 3.81          \\
+\textit{\color{darkgray}\Gtex\ v.1.4}  &
+    \textit{\color{darkgray}3,276}  & \textit{\color{darkgray}3,276}  &
+    \textit{\color{darkgray}6,552}  &
+    \textit{\color{darkgray}>800,000}  & \textit{\color{darkgray}60.67}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 \begin{figure}
     \includegraphics[scale=0.75]{additional/pipelineTrans.pdf}\centering
