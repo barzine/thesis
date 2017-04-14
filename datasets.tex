@@ -199,7 +199,7 @@ an average of 80 million reads.
 
 The raw data is available for privacy reasons only through controlled access via
 \dbGaP{phs000424.v4.p1} (access number specific to the version of the data I used
-in my study). While getting access can take time, in principal every request for
+in my study). While getting access can take time, in principle every request for
 academic research should be granted.
 
 
@@ -241,8 +241,8 @@ While their work to generate the data was highly appraise, the identification an
 quantification data they provided the community was quite criticised
 (\eg\ see~\cite{Ezkurdia2014-qx}).
 
-The data was downloaded from ProteomeXchange via the PRIDE repository (%
-\Pride{PXD000561}).
+The data was downloaded from ProteomeXchange via the repository
+\Pride{PXD000561}.
 
 \subsection{Kuster data}
 
@@ -268,13 +268,13 @@ It comprises 48 experiments covering 36 tissues
 They generated about 14 million of (\gls{HCD}/\gls{CID}) spectra from Thermo
 Scientific instruments.
 
-The raw data was downloaded from ProteomicsDB (\Proteomicsdb{PRDB000042}).
+The raw data was downloaded from \Proteomicsdb{PRDB000042}.
 
 \subsection{Cutler data}
 
 This data was generated prior to the \dataset{Pandey} and the \dataset{Kuster}
 data as it was released in 2011 through PeptideAtlas\footnote{%
-    \href{http://www.peptideatlas.org/}{www.peptideatlas.org/}}
+\href{http://www.peptideatlas.org/}{www.peptideatlas.org/}}
 \citep{PeptideAtlas}.
 
 It was created by Paul Cutler at Roche Pharmaceuticals.
@@ -284,24 +284,26 @@ While this data was never published on its own, it has been used in different
 other studies. Indeed, the \dataset{Cutler} data is one the datasets that
 \cite{KusterData} have used in their original study to create ProteomicsDB.
 
-These data raw files were downloaded from ProteomicsDB (identifier
-\Proteomicsdb{PRDB000012}).
+These data raw files were downloaded from \Proteomicsdb{PRDB000012}.
 
 \section{Constant processing pipelines}
 
 Despite available quantifications for most of the datasets, for many reasons
 I only used data reprocessed from raw files.
 
-The original authors often released
+In fact, the original authors often released
 quantification either directly (\eg\ \cite{Krupp2012})
 or only upon requests (\eg\ \cite{PandeyData}).
 Third-parties could also distribute quantification of expression values either
 from the original studies (\eg\ BioGPS \citep{BioGPS1} or
 Harmonizome \citep{Harmonizome}) or
 reprocessed from raw as EBI Gene Expression Atlas \citep{EBIgxa}\footnote{Actually,
-I could have used for most of the analyses quantification data downloaded
-from EBI Gene Expression Atlas, if the data was already available at the time that
-I started my study.}.
+nowadays, I would probably be able to use quantification data downloaded
+from EBI Gene Expression Atlas for most of the analyses of this study,}.
+Unfortunately, when I started my study (and still at
+the time of writing this thesis), the available \Rnaseq\ expression values
+are the products of different methodologies, \eg\ \dataset{\Gtex}
+data \citep{GTExTranscript} and \dataset{Castle} data \citep{Krupp2012}.
 
 Intuitively, we expect that different processing protocols produce
 different results.
@@ -312,20 +314,17 @@ annotations \citep{annotationDiff},
 contamination \citep{contaminationRNAseq},
 quality controls \citep{qualityRNAseq} and
 mapping and quantifications pipelines \citep{Fonseca2014}
-have great effects on the final quantification.
-
-Additionally, the normalisation method of the quantified data also
-greatly impacts the final expression values
+have great effects on the final quantification. Finally, the normalisation
+method of the quantified data also greatly impacts the final expression values
 \citep{Dillies2013}, \citep{normalisation2}.
 
-Moreover, the available normalised \Rnaseq\ values of the datasets I use
-are the products of different methodologies, \eg\ \citep{GTExTranscript}
-and \citep{Krupp2012}.
-Hence, reprocessing all the transcriptomic datasets was the logical
-first step of this study.
+For all these reasons, reprocessing all the transcriptomic datasets was the
+logical first step of this study.
 
 Likewise, the proteomic datasets were reprocessed from the raw spectra by Dr
-James Wright.
+James Wright. Indeed, the many steps from peptide identifications to the
+normalisation of the protein expression values can be (and have been) processed
+with various methods and parameters.
 
 
 \subsection{Transcriptome RNA-Seq raw data processing}
@@ -335,25 +334,21 @@ myself (\dataset{Castle}, \dataset{Brawand}, \dataset{IBM} and \dataset{Uhlén}
 data), it was not the case for the \Gtex\ dataset.
 
 Since the \Gtex\ data is involved in many project within the \EBI\
-and due to its huge amount of files (number and  size) (see \cref{tab:Lib5DF}),
+and due to its huge amount of files (number and  size) (see \Cref{tab:Lib5DF}),
 it was agreed that this would be processed centrally by one person and then
 redistributed to all the other interested parties. Dr Nuno Fonseca had this
-tremendous task and provided me with quantification data (as raw and normalised
-counts).
+tremendous task and provided me with quantification data (produced with the
+Human genome GRCh38 and ENSEMBL 76 annotation).
 
 For the sake of consistency and to avoid more biases \citep{h38vsh37},
 that led me to reprocess all the other four \Rnaseq\ datasets
-to comply with the reference used for the \Gtex\ samples. The silver lining
-was that they were built with the new reference of the
-Human genome GRCh38 (and then annotated with ENSEMBL 76).
+to comply with the reference used for the \Gtex\ samples\footnote{Actually,
+as I had access to the different datasets through an extended period of
+times, I produced results based on GRCh37 (for various annotations) for subset of
+the datasets several times. The results series are congruent together.}.
 
 Hence, unless indicated otherwise, the results presented in the current work are
 from these genome reference and annotation version.
-Indeed, as I had access to the different datasets through an extended period of
-times, I built, annotated (from ENSEMBL 73 to ENSEMBL 75 -- all based on
-the Human genome GRCh37) and then quantified, normalised and analysed a subset of
-the datasets several times.
-Those results are congruent with the latest ones.
 
 In the early stages of my research, I was running each of the different steps
 sequentially and manually. While the \EBI\ cluster greatly facilitated the
@@ -390,13 +385,13 @@ Dataset & \begin{tabular}[c]{@{}c@{}}Sample number\\(biologic)\end{tabular} &
 \begin{tabular}[c]{@{}c@{}}Average number\\of biologic samples\\ per tissues\end{tabular} \\
 \midrule
 Castle        & 11    & 11    & 11    & 58    & 10 (mixture)  \\
-Brawand       & 18    & 21    & 23    & 111   & 2.8           \\
+    Brawand       & 18    & 21    & 23    & 111   & 2.8  [2,3]         \\
 Ill. Body Map & 16    & 36    & 48    & 1,004  & 1             \\
-Uhlén         & 122   & 200   & 400   & 1,851  & 3.81          \\
+    Uhlén         & 122   & 200   & 400   & 1,851  & 3.81    [2,11]    \\
 \textit{\color{darkgray}\Gtex\ v.1.4}  &
     \textit{\color{darkgray}3,276}  & \textit{\color{darkgray}3,276}  &
     \textit{\color{darkgray}6,552}  &
-    \textit{\color{darkgray}>800,000}  & \textit{\color{darkgray}60.67}\\
+    \textit{\color{darkgray}>800,000}  & \textit{\color{darkgray}60.67 [4,214]}\\
 \bottomrule
 \end{tabular}
 \end{table}
