@@ -24,7 +24,7 @@ paper's relevant findings and discuss them jointly with my own.
 \section{Introduction}
 \label{sec:IntegrationIntro}
 
-The core of central dogma of molecular biology --- i.e.\ one \DNA\ (coding) gene
+The core of central dogma of molecular biology --- \ie\ one \DNA\ (coding) gene
 will be transcribed as one \mRNA\ transcript and will be in turn translated in
 one protein --- still holds true even though we now know the truth is not as
 linear as we thought first. Many regulation processes are implied before
@@ -134,7 +134,7 @@ its whole.
     protocol of sampling and quantification used for the assay.
     For these genes, when no signal is collected, I assume this is a true $0$.
     The genes without any quantification
-    in any tissue, e.g.\ gene 4, are discarded from the remaining analysis as
+    in any tissue, \eg\ gene 4, are discarded from the remaining analysis as
     I can't state
     either there are truly absent from the biological sample or it has to due
     to the protocol at use; they are \emph{undefined}. The same approach is used
@@ -181,7 +181,7 @@ present an expression at least equals to $1$ \gls{RPKM}.
 As our current study focuses on the comparison of proteomic and transcriptomic
 data, all the analyses have been run with this threshold. It is worth mentioning
 that parts of the analyses have also been done either without
-any threshold (i.e.\ the same definition used with the proteins has been applied)
+any threshold (\ie\ the same definition used with the proteins has been applied)
 or with a threshold of $5$ \glspl{FPKM}.
 \end{comment}
 
@@ -411,7 +411,7 @@ the other peptides that could be mapped to each protein).
 
 Both quantification methods have been implemented by James Wright.
 
-In the context of this work (i.e.\ when focusing on the 15 common tissues between
+In the context of this work (\ie\ when focusing on the 15 common tissues between
 the \dataset{Uhlén \etal} and the \dataset{Pandey \etal} datasets),
 he has quantified about 6,400 proteins with
 the standard method. With the new method, he has quantified a bigger set of
@@ -441,7 +441,7 @@ a match in the transcriptomic data. There are actual several possible explanatio
     and the proteomic dataset.}
 \end{figure}
 
-It could be a technical issue or an artefact on the transcriptomic side, e.g.\
+It could be a technical issue or an artefact on the transcriptomic side, \eg\
 the \mRNAs\ were present but were not capture for a reason or another at the
 library preparation step; the \mRNAs\ have a high sequence-similarity with other
 \mRNAs\ and the reads haven't been accurately assigned; the lacking \mRNAs\ are
@@ -455,7 +455,7 @@ proteins.
 It can also be due to an underlying biological phenomenon:
 the turnover of the \mRNA\ is very low, while the protein is very stable;
 the proteins have been expressed somewhere else and then has been imported in the
-current tissue (e.g.\ hormones or cytokines). Finally, as the proteome
+current tissue (\eg\ hormones or cytokines). Finally, as the proteome
 and transcriptome used for this study have been collected independently, if the
 gene is individual- or population-specific, we will then detected in one of the
 study and not in the other one. However, as we have biological replicates on the
@@ -504,7 +504,7 @@ before any other computation or visualisation.
     \textbf{B}| No threshold. \textbf{C}| 1 \gls{FPKM}.
     \textbf{D}| 5 \glspl{FPKM}.\\The threshold used for the proteins is the
     threshold of
-    detection (i.e.\ greater than zero). The different density of distributions are
+    detection (\ie\ greater than zero). The different density of distributions are
     globally gaussian. When the threshold is increased for the transcriptome, the
     shape get closer to the ideal one, as the bulge created by lowly expressed
     genes is removed. We can also observe that the problem with the pancreatic
@@ -536,10 +536,10 @@ have good and significant correlation for same-tissue pairs.}
 \label{subsec:IntegrationGoodCorrProtTrans}
 
 I used the whole set of common expressed \mRNAs\ and
-expressed proteins\footnote{Without any other constraint: e.g.\ the \mRNA\ and
+expressed proteins\footnote{Without any other constraint: \eg\ the \mRNA\ and
 its corresponding protein do not have to be detected in the same tissue.}.
 Then, I calculated the correlation between the proteome and the trancriptome for
-each tissue, i.e.\ for each tissue, I compared each protein expression value to
+each tissue, \ie\ for each tissue, I compared each protein expression value to
 its corresponding gene one.
 
 As I exposed in~\Cref{ch:Transcriptomics}, there are some
@@ -585,7 +585,7 @@ coefficients for each tissue are substantially identical.}
     coding \mRNAs). Besides, the proteins present most-likely a
     saturation effect of their expression values. The highest expressed protein
     is \protein{\gls{HBB}}
-    (i.e.\ Hemoglobin Subunit Beta) which is also found in the 5 highest
+    (\ie\ Hemoglobin Subunit Beta) which is also found in the 5 highest
     expressed proteins in all the other tissues. It is quite likely that for
     most of the tissues, this is due to how they have been sampled.
     \\The distributions of the proteins and the \mRNAs, plotted on the outer part
@@ -604,7 +604,7 @@ proteins (also on a $Log_{2}$-scale). Whilst, every pair of \mRNA\ and
 corresponding proteins has been used to calculate the overall Pearson correlation
 coefficient, the pairs with a null element have been excluded from the plotting
 to optimise the visualisation. As we can see, there is a higher dispersion for
-small expression values of \mRNAs\ (lesser than $0$ $Log_{2}$(FPKM), i.e.\
+small expression values of \mRNAs\ (lesser than $0$ $Log_{2}$(FPKM), \ie\
 $1$ FPKM). This dispersion could be due to technical limitations or translational
 noise (see \cref{subsubsec:exprTrans}). For the highly expressed \mRNAs\ side,
 we can observe a possible saturation effect on the proteomic side. These two
@@ -615,7 +615,7 @@ association.
 When I perform the previous comparison for the remaining 14 tissues, the results are
 quite similar (see~\cref{fig:ScatterPlotAll}). To test the significance of these
 coefficients, I have also calculated the Pearson correlation coefficients of
-random pairs of tissues, i.e.\ instead of comparing the $Proteome_{Adrenal}$ with
+random pairs of tissues, \ie\ instead of comparing the $Proteome_{Adrenal}$ with
 the $Transcriptome_{Adrenal}$, (which is a \emph{same tissue pair} comparison),
 I compare for example the $Proteome_{Adrenal}$ with the $Transcriptome_{Placenta}$.
 (see~\cref{fig:TestSig})
@@ -626,12 +626,12 @@ I compare for example the $Proteome_{Adrenal}$ with the $Transcriptome_{Placenta
     pairs versus random tissue pairs]{\label{fig:TestSig}\textbf{Distribution of
     Pearson correlation coefficients for same tissue pairs versus random tissue
     pairs.} The left boxplot displays the distribution of Pearson correlation
-    coefficients for same tissues pairs (e.g.\
+    coefficients for same tissues pairs (\eg\
 Proteome\textsubscript{\tissue{Liver} }$\sim$Transcriptome\textsubscript{\tissue{Liver} }
 or
 Proteome\textsubscript{\tissue{Heart} }$\sim$Transcriptome\textsubscript{\tissue{Heart} }).
     \\The right boxplot shows the correlation of all the possible random
-    pair of tissues (e.g.\
+    pair of tissues (\eg\
 Proteome\textsubscript{\tissue{Lung} }$\sim$Transcriptome\textsubscript{\tissue{Liver} }
 or
 Proteome\textsubscript{\tissue{Heart} }$\sim$Transcriptome\textsubscript{\tissue{Kidney} }).
@@ -959,7 +959,7 @@ might be very well correlated, but their expression levels can be somewhat disco
 Big plus of this analysis, not only one conditions, but multiple and can try to
 avoid technical artefacts by crossing over the results. (More importantly, whatever
 which would be found would be consistent with the technology and not just a fling,
-i.e.\ it is more robust that any of the study took by itself.)
+\ie\ it is more robust that any of the study took by itself.)
 Which is a weakness of the data (not the same people) create a force (what is found
 is probably universal). (We can't say anything about the non-findings!!!)
 
@@ -998,7 +998,7 @@ So big need of an external/outliers sample(s) or external source.
 %The reality is more mixed for the other tissues.
 
 %\subsection{Relative specificity of the tissues are kept from transcriptome to
-%proteome level for the most extreme cases --- i.e.\ proteomic diversity of a tissue
+%proteome level for the most extreme cases --- \ie\ proteomic diversity of a tissue
 %can not be systematically deduced from transcriptomic}
 
 
