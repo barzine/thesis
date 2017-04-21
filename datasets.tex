@@ -8,9 +8,16 @@
     (Sir Arthur Conan Doyle)}
 \end{comment}
 
-In this chapter, I describe the data used within my project.
-\TK{ajouter laius que tout a été fait par moi sous la supervision d'Alvis sauf
-mention contraire}
+In the past few years, many laboratories studied the expression
+of the genes within normal humans at the transcriptome and at
+the proteome levels. In this chapter, I review the data I use within my thesis
+and how it has been processed.
+
+When not stated otherwise, all the computational processing of the \Rnaseq\ part
+described here have been performed by myself under the supervision of
+the Dr Alvis Brazma. I also received general feedback from Dr Mar Gonzalez-Portà,
+Dr Johann Rung and Dr Nuno Fonseca. The proteome data has been processed by
+Dr James Wright from the Wellcome Trust Sanger Institute.
 
 
 \section{Introduction}
@@ -26,12 +33,12 @@ Finally, the \emph{raw} data is available and reusable.
 \section{RNA-Seq Transcriptome data}
 
 There are a few more studies that I wanted to use on the
-transcriptomic side, but the last previous point was often the critical reason
+transcriptomic side, but the reusability point was often the critical reason
 why they have not been included.
 
-Indeed, many times I encountered data with ambiguous encoding format and, as the
-studies were a little bit outdated,
-I also could not get the information from the original authors.
+Indeed, many times I encountered data with ambiguous encoding format
+and, as the studies were a little bit outdated,
+I was also unable to get the information from the original authors.
 I describe hereafter the 5 transcriptomic datasets I used
 in the chronological order of their first public release.
 The \cref{tab:Trans5DF} summarises the main characteristics of the different
@@ -202,10 +209,9 @@ The raw data is available for privacy reasons only through controlled access via
 in my study). While getting access can take time, in principle every request for
 academic research should be granted.
 
-
 \section{Mass spectrometry Proteome data}
 
-In the issue 7502 of \textit{Nature} (2014), two teams of authors released their
+In the issue 7502 of \textit{Nature} (2014), two sets of authors released their
 own \emph{``draft of the human proteome''} based on the study of several tissues
 with \ms. There were already other human protein maps available,
 \eg\ the Human protein atlas\footnote{%
@@ -219,29 +225,28 @@ quantifying their (non-targeted) abundance in each tissue.
 
 \cite{PandeyData} created the Human Proteome Map\footnote{%
 \href{http://www.humanproteomemap.org/}{\small www.humanproteomemap.org/}} which
-they released along their paper \paper{\citetitle{PandeyData}}.
+they released along their \emph{Nature} paper \paper{\citetitle{PandeyData}}.
 
-To create their map, they have processed 30 kind of histological normal human
+For their study, they have processed 30 kind of histological normal human
 tissues and cell line samples (17 adult tissues, 7 fetal tissues and 6
 haematopoietic cell types). The samples were created from pooled samples of three
 individuals (generally two males and one female).
 
-They used a label-free method of library preparation to quantify as many proteins
-they could.
-
-They first fractionated the samples to protein level by
+Then, they prepared their libraries with a label-free method to quantify
+as many proteins they could. They fractionated the samples to protein level by
 \gls{SDS-PAGE} and then at peptide level by \gls{RPLC} to create 85 experimental
-samples. Then, they use
-state-of-art \gls{MS/MS} protocols (with high-resolution and high accuracy
-\glspl{FTMS}: Thermo Scientific Orbitrap instruments).
+samples. Finally, they use state-of-art \gls{MS/MS} protocols
+(with high-resolution and high accuracy \glspl{FTMS}:
+Thermo Scientific Orbitrap instruments).
 They generated about 25 million of (\gls{HCD})
 high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 
-While their work to generate the data was highly appraise, the identification and
-quantification data they provided the community was quite criticised
-(\eg\ see~\cite{Ezkurdia2014-qx}).
+While their effort to generate high quality raw data was highly appraise
+by the scientific community, their processing
+(identification and quantification) methods were
+quite criticised (\eg\ see~\cite{Ezkurdia2014-qx}).
 
-The data was downloaded from ProteomeXchange via the repository
+The raw spectra were retrieve from ProteomeXchange via the repository
 \Pride{PXD000561}.
 
 \subsection{Kuster data}
@@ -284,12 +289,12 @@ While this data was never published on its own, it has been used in different
 other studies. Indeed, the \dataset{Cutler} data is one the datasets that
 \cite{KusterData} have used in their original study to create ProteomicsDB.
 
-These data raw files were downloaded from \Proteomicsdb{PRDB000012}.
+The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
 \section{Constant processing pipelines}
 
-Despite available quantifications for most of the datasets, for many reasons
-I only used data reprocessed from raw files.
+For many reasons, I only used data reprocessed from raw files despite many
+ready available quantifications for most of the datasets.
 
 In fact, the original authors often released
 quantification either directly (\eg\ \cite{Krupp2012})
@@ -299,9 +304,9 @@ from the original studies (\eg\ BioGPS \citep{BioGPS1} or
 Harmonizome \citep{Harmonizome}) or
 reprocessed from raw as EBI Gene Expression Atlas \citep{EBIgxa}\footnote{Actually,
 nowadays, I would probably be able to use quantification data downloaded
-from EBI Gene Expression Atlas for most of the analyses of this study,}.
-Unfortunately, when I started my study (and still at
-the time of writing this thesis), the available \Rnaseq\ expression values
+from \EBI\ Gene Expression Atlas for most of the analyses of this study,}.
+Unfortunately, when I started my study (and at the time of the redaction
+of this thesis), the available \Rnaseq\ expression values of these studies
 are the products of different methodologies, \eg\ \dataset{\Gtex}
 data \citep{GTExTranscript} and \dataset{Castle} data \citep{Krupp2012}.
 
@@ -334,11 +339,39 @@ myself (\dataset{Castle}, \dataset{Brawand}, \dataset{IBM} and \dataset{Uhlén}
 data), it was not the case for the \Gtex\ dataset.
 
 Since the \Gtex\ data is involved in many project within the \EBI\
-and due to its huge amount of files (number and  size) (see \Cref{tab:Lib5DF}),
+and due to its huge amount of files (number and  size -- see \Cref{tab:Lib5DF}),
 it was agreed that this would be processed centrally by one person and then
 redistributed to all the other interested parties. Dr Nuno Fonseca had this
 tremendous task and provided me with quantification data (produced with the
 Human genome GRCh38 and ENSEMBL 76 annotation).
+
+\begin{table}
+\centering
+\caption[Technical description of the 5 transcriptomic datasets]{%
+\label{tab:Lib5DF}\textbf{Technical description of the 5 transcriptomic
+    datasets}\\\footnotesize{I processed all the datasets but the one in
+    \textit{\color{darkgray}italic}.\\
+    For the Brawand dataset, I only processed the \species{Homo sapiens} part.}}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+Dataset & \begin{tabular}[c]{@{}c@{}}Sample number\\(biologic)\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}Library\\number\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}File\\number\end{tabular} &
+\begin{tabular}[c]{@{}c@{}}Total size of\\the fastq\\raw files (GB) \end{tabular}&
+    \begin{tabular}[c]{@{}c@{}}Mean number of\\biologic samples per\\tissues
+    [min,max]\end{tabular} \\
+\midrule
+Castle        & 11    & 11    & 11    & 58    & 10 (mixture)    \\
+Brawand       & 18    & 21    & 23    & 111   & 2.8  [2,3]      \\
+{\small Illumina Body Map} & 16    & 36    & 48    & 1,004  & 1 \\
+Uhlén         & 122   & 200   & 400   & 1,851  & 3.81    [2,11] \\
+\textit{\color{darkgray}\Gtex\ v.1.4}  &
+    \textit{\color{darkgray}3,276}  & \textit{\color{darkgray}3,276}  &
+    \textit{\color{darkgray}6,552}  &
+    \textit{\color{darkgray}>100,000}  & \textit{\color{darkgray}60.67 [4,214]}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 For the sake of consistency and to avoid more biases \citep{h38vsh37},
 that led me to reprocess all the other four \Rnaseq\ datasets
@@ -350,19 +383,23 @@ the datasets several times. The results series are congruent together.}.
 Hence, unless indicated otherwise, the results presented in the current work are
 from these genome reference and annotation version.
 
-In the early stages of my research, I was running each of the different steps
-sequentially and manually. While the \EBI\ cluster greatly facilitated the
-processing of the numerous files ,    the many integrity checks of the intermediate
-files  % parler des customs scripts que j'ai ecrit pour faire les trucs plus rapidement
-Fortunately, Dr Nuno Fonseca developed
-\irap\footnote{https://nunofonseca.github.io/irap/}, an ``integrated RNA-seq
-analysis Pipeline''. This meta-pipeline allows to automatise the
+In the early stages of my research, I was processing each of the different steps
+sequentially and semi-manually with the help of custom made scripts.
+While the \EBI\ cluster greatly facilitated the handling of the numerous files,
+the task was quite tedious: particularly due to the necessary jobs monitoring of
+each step and the integrity checks of the intermediate files between them.
+Additionally, although working perfectly within the \EBI\ infrastructure,
+the scripts I wrote would need a fair amount of work to be usable elsewhere and
+thus to achieve reproducibility.
 
-First I  was doing it manually and very tedious; but as I was reprocessing the data
-as I had access to more data and new ensembl annotations were released, \irap\
-was developed by Nuno Fonseca. It is a meta-pipeline which has speeded a lot the
-work. Still need a configuration file. But everything follows the same protocol.
-Add the final methodology.
+Fortunately, Dr Nuno Fonseca developed and released a meta-pipeline:
+\irap\footnote{https://nunofonseca.github.io/irap/}, an ``integrated RNA-seq
+analysis Pipeline''. This tool allows
+the automation of the typical (and state-of-the art) workflow to study
+\Rnaseq. Apart of remarkably speeding up the data processing, it also
+decreases the risk of inconstant parameters from one script to another.
+
+
 
 Average Number of samples per tissues different => quantification averaged for
 most of the analysis to avoid skewness.
@@ -370,31 +407,6 @@ most of the analysis to avoid skewness.
 I am using only gene levels quantification and not isoforms.
 
 
-\begin{table}
-\centering
-\caption[Technical description of the 5 transcriptomic datasets]{%
-\label{tab:Lib5DF}\textbf{Technical description of the 5 transcriptomic
-    datasets}\\\footnotesize{I processed all the datasets but the one in italic.\\
-    For the Brawand dataset, I only processed the \species{Homo sapiens} part.}}
-\begin{tabular}{@{}cccccc@{}}
-\toprule
-Dataset & \begin{tabular}[c]{@{}c@{}}Sample number\\(biologic)\end{tabular} &
-\begin{tabular}[c]{@{}c@{}}Library\\number\end{tabular} &
-\begin{tabular}[c]{@{}c@{}}File\\number\end{tabular} &
-\begin{tabular}[c]{@{}c@{}}Total size of\\the fastq\\raw files (GB) \end{tabular}&
-\begin{tabular}[c]{@{}c@{}}Average number\\of biologic samples\\ per tissues\end{tabular} \\
-\midrule
-Castle        & 11    & 11    & 11    & 58    & 10 (mixture)  \\
-    Brawand       & 18    & 21    & 23    & 111   & 2.8  [2,3]         \\
-Ill. Body Map & 16    & 36    & 48    & 1,004  & 1             \\
-    Uhlén         & 122   & 200   & 400   & 1,851  & 3.81    [2,11]    \\
-\textit{\color{darkgray}\Gtex\ v.1.4}  &
-    \textit{\color{darkgray}3,276}  & \textit{\color{darkgray}3,276}  &
-    \textit{\color{darkgray}6,552}  &
-    \textit{\color{darkgray}>800,000}  & \textit{\color{darkgray}60.67 [4,214]}\\
-\bottomrule
-\end{tabular}
-\end{table}
 
 
 \begin{figure}
