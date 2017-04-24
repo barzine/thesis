@@ -16,17 +16,18 @@ and how it has been processed.
 When not stated otherwise, all the computational processing of the \Rnaseq\ part
 described here have been performed by myself under the supervision of
 the Dr Alvis Brazma. I also received general feedback from Dr Mar Gonzalez-Portà,
-Dr Johann Rung and Dr Nuno Fonseca. The proteome data has been processed by
+Dr Johan Rung and Dr Nuno Fonseca. The proteome data has been processed by
 Dr James Wright from the Wellcome Trust Sanger Institute.
 
 
 \section{Introduction}
 
 Every dataset with which I worked is fitting three main criteria.
-They comprise human normal samples from at least three kind of tissues.
-They are untargeted high-throughput; either sequenced with \Rnaseq\
-for the transcriptomic studies or
-analysed with Mass spectrometry for the proteomic ones.
+First, they comprise human normal samples from at least three kinds of tissues.
+Secondly, they are non-targeted high-throughput \ie\ gene expression
+quantifications are based on \Rnaseq\ for the transcriptome or on \ms\ for the
+proteome. These technologies allow in theory to study the whole repertoire of
+\glspl{RNA} or proteins in a sample.
 Finally, the \emph{raw} data is available and reusable.
 
 
@@ -41,7 +42,7 @@ and, as the studies were a little bit outdated,
 I was also unable to get the information from the original authors.
 I describe hereafter the 5 transcriptomic datasets I used
 in the chronological order of their first public release.
-The \cref{tab:Trans5DF} summarises the main characteristics of the different
+\Cref{tab:Trans5DF} summarises the main characteristics of the different
 datasets.
 
 \begin{sidewaystable}
@@ -73,7 +74,7 @@ datasets.
        E-GEOD-30352 & Brawand &  & Y & Y &  & Y &  & 8 &  \\
        E-MTAB-513 & IBM &  & Y & Y & Y &  & (Y) & 16 &  \\
        E-MTAB-2836 \footnotesize{(and E-MTAB-1733)}& Uhlén &  & Y &  & Y & Y & Y & 32 &  \\
-       E-MTAB-2919 & Gtex  & Y &  &  & Y & Y &  & 54 & Y \\
+       E-MTAB-2919 & Gtex (v4)  & Y &  &  & Y & Y &  & 54 & Y \\
        \bottomrule
        \end{tabular}
 \end{sidewaystable}
@@ -81,38 +82,47 @@ datasets.
 \subsection{Castle et al. dataset}
 
 This dataset has been published along with the \paper{\citetitle{castleData}}
-by \citet{castleData} who were interested to explore
-with sequencing-based technology the whole RNA repertoire. They essentially
-focused their study on the non coding part and found that
+by \citet{castleData} who were interested in exploring the whole RNA repertoire
+with sequencing-based technology. They essentially focused their study
+on the non-coding part.
+\begin{comment}
+    %following are results that I removed based on Isabelle suggestions
+and found that
 while \glspl{mRNA} could be highly tissue-specific, \glspl{ncRNA} have generally
 greater tissue-specific expression patterns.
+\end{comment}
 
-They used multiple-donors pooled tissues samples (purchased as total \gls{RNA})
+They used multiple-donors pooled tissues samples %(purchased as total \gls{RNA})
 and prepared the 11 libraries following a whole transcriptomic protocol
-\citep{Armour:2009}: where nonribosomal \gls{RNA} transcripts are
-specifically amplified by \gls{PCR}.
+where nonribosomal \gls{RNA} transcripts are
+specifically amplified by \gls{PCR} \citep{Armour:2009}.
 
-They generated an average of 50 millions sequence reads per tissue
+They generated an average of 50 million sequence reads per tissue
 using an Illumina Genome Analyser-II sequencer (single-end).
 They trimmed their original reads to 28 \gls{nt}
 and released them through EMBL archives (\ENA{ERP000257}
 and \ArrayExpress{E-MTAB-305}).
 
 Despite several limitations (lack of replicates, old technology, small reads),
-I used this dataset for two main reasons. It is the oldest available \Rnaseq\
-data I found that was performed on Human normal tissues and it is comprising
-\glspl{ncRNA}.
+I used this dataset for two main reasons. First, it is the oldest available
+\Rnaseq\ data I found that was performed on Human normal tissues. Thus, the
+results congruence of this dataset to the others gives a rough assessment about
+the extent of \Rnaseq\ datasets that can be used in an atlas. Secondly as
+\Rnaseq\ studies are prepared mainly with polyA-selected protocols nowadays,
+I was interested to gauge how the library protocols --- and the presence of
+\glspl{ncRNA} --- can affect the quantifications and then the final outcomes.
+
 
 \subsection{Brawand et al. dataset}
 
 In the corresponding article entitled \paper{\citetitle{VTpaper}},
-\citet{VTpaper}~collected 6 organs from 10 different vertebrates:
-9 mammalians (including Human) and a bird. They are focused on the
+\citet{VTpaper} focused their interest on the
 evolution of the mammalian transcriptomes --- while there were existing studies
 on the matter, the sequencing approach was then creating new perspectives.
 
-They have biological replicates: one male
-and one female for the somatic tissue and two males for the testes samples.
+They collected 6 organs from 10 different vertebrates:
+9 mammalians (including Human) and a bird. They have two biological replicates
+per tissue: one male and one female for every tissue but the testis (two males).
 They used a polyA-selected protocol to prepare their 131 libraries (including 23
 for \species{Homo sapiens}).
 Hence, the samples are largely enriched in protein coding genes.
@@ -124,64 +134,66 @@ I personally retrieved the data from
 \ArrayExpress{E-GEOD-30352}\footnote{ArrayExpress routinely imports
 datasets from \gls{GEO} on a weekly basis.}.
 
+
 \subsection{Illumina Body Map 2.0}
 This dataset has been first created in 2010 and released in
 2011\footnote{See: \citetitle{ibmEnsembl} - \cite{ibmEnsembl}} by Illumina
 mostly to advertise its most recent technology improvement at that time:
-the paired-end sequencing.
-Until then, all the sequencing was done from only one end of the \gls{DNA} (or
-\gls{cDNA}) fragments\footnote{Most of the following transcriptome
-studies based on \Rnaseq\ are using paired-end sequencing.}.
-
-The first published paper to analyse this dataset was done by
-\citet{ibmrelatedpaper}: \paper{\citetitle{ibmrelatedpaper}}.
-It was referenced many times since then as it was for a couple of years
-the most extensive freely available \Rnaseq\ dataset of human tissues.
+the paired-end sequencing. Indeed, until then, all the sequencing was done
+from only one end of the \gls{DNA} or \gls{cDNA} fragments.\footnote{From that
+date, most of the following transcriptome studies based on \Rnaseq\ are using
+paired-end sequencing.}
 
 It comprises 16 tissues (one donor per tissue), which were prepared with a
-polyA-selected library preparation protocol and then have been sequenced once
-with a singled-end protocol and then a second time with a paired-end one. There
-are some added libraries which have been created by mixing together the 16 tissues.
+polyA-selected library preparation protocol.
+
 Although each sample has been sequenced twice and that we have in principle
 \emph{technical} replicates, these are not ``regular'' technical
-replicates\footnote{\emph{Technical} replicates,
+replicates. \emph{Technical} replicates,
 by contrast to \emph{biological} replicates,
-usually imply that the same sample source and protocols have been used so the
-error and the noise of a technique could be determined.}.
+usually imply that their processing uses the same sample source and protocols.
+Thus, the error and the noise due to a specific technique could be determined.
+Here, however, each tissue has been sequenced once with a singled-end protocol
+and once with a paired-end one.
 
 The sequencing was performed with an Illumina HiSeq 2000 and the reads were
 released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}).
 
+Despite the lack of biological replicates, I used this dataset as it was for an
+extended time the most extensive freely available \Rnaseq\ dataset of human
+tissues and such has been referenced many times since it was released.
 
 \subsection{Uhlén et al. dataset}
 
-The first version of this dataset (\ArrayExpress{E-MTAB-1733}) was published
-as a part of \paper{\citetitle{Uhlen2014}} by \citet{Uhlen2014}. Then an extended
-version (\ArrayExpress{E-MTAB-2836}), with new samples and 5 new tissues,
-was released along with \paper{\citetitle{Uhlen2015}} \citep{Uhlen2015}.
-Both papers are part of the
+Uhlén et al.\ have created an atlas,
 \href{http://www.proteinatlas.org/}{Human Protein Atlas}\footnote{%
-\href{http://www.proteinatlas.org/}{http://www.proteinatlas.org/}}.
-Uhlén et al.\ have created
-an atlas revolving mostly around the spatial distribution of the proteins through
-the Human body. They use many approaches and techniques which also include \Rnaseq.
+\href{http://www.proteinatlas.org/}{http://www.proteinatlas.org/}},
+revolving mostly around the spatial
+distribution of the proteins through the Human body. They use many approaches
+and techniques which also include \Rnaseq. They first released their \Rnaseq\
+data of 27 normal tissues as a part of their article \paper{\citetitle{Uhlen2014}}
+\citep{Uhlen2014}. Later, they extended their dataset with new samples and 5 new
+tissues. The latest version was published with \paper{\citetitle{Uhlen2015}}
+\citep{Uhlen2015} in \textit{Science}.
 
-They found that almost half of the proteins are expressed in all analysed tissues
-(with an enrichment for the metabolism enzymes).
+There are \emph{technical} and --- at least two different --- \emph{biological}
+replicates for the 32 tissues.
+Except for a very small number, the tissues have both male and female donors.
 
-There are \emph{technical} and \emph{biological} replicates for the 32 tissues.
-Except very few cases, the somatic tissues have male and female donors.
+The 200 libraries have been prepared following a polyA-selected protocol and
+have been sequenced (paired-end) with an Illumina HiSeq 2000 or 2500. I started
+to work with the first version (\ArrayExpress{E-MTAB-1733}) and then
+with the extended version (\ArrayExpress{E-MTAB-2836}).
 
-The 200 libraries have been prepared following a polyA-selected protocols and
-have been sequenced (paired-end) with an Illumina HiSeq 2000 or 2500.
+At the time of the redaction of this thesis, this dataset is the freely available
+most important one either regarding the number of tissues
+(see \Cref{tab:Trans5DF}) or the number of samples (see \Cref{tab:Lib5DF}).
 
-I started to work with the first version, and when the extended version was
-released, I included the new samples and tissues to my work.
 
 \subsection{GTEx data}
 
-The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the NIH Common
-Fund and aims to establish a resource database and associated tissue bank
+The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the \gls{NIH}
+Common Fund and aims to establish a resource database and associated tissue bank
 for the study of the relationship between genetic variation and gene expression
 and other molecular phenotypes in multiple reference tissues. The project was first
 explained in a paper from the \cite{GTEx2013}. It consists to quickly collect
@@ -198,8 +210,9 @@ put emphasis on the variation inter- and intra-individuals across the tissues.
 
 As the project is quite ambitious and the collection and sequencing of the samples
 are taking time, several freezes of the data have been released. My work is
-including samples up to the fourth release of the pilot phase (v.1.4). This
-release includes 54 tissue/cell type collected on 551 individuals.
+including samples up to the fourth release of the pilot phase (v4). This
+release includes 54 tissue/cell types (53 normal and one tumoral)
+collected on 551 individuals.
 The 3,276 libraries were prepared from whole \gls{RNA} extracts and then sequenced
 with a paired-end protocol on Illumina HiSeq 2000/2500 sequencers which produced
 an average of 80 million reads.
@@ -211,23 +224,35 @@ academic research should be granted.
 
 \section{Mass spectrometry Proteome data}
 
-In the issue 7502 of \textit{Nature} (2014), two sets of authors released their
-own \emph{``draft of the human proteome''} based on the study of several tissues
-with \ms. There were already other human protein maps available,
-\eg\ the Human protein atlas\footnote{%
-\href{http://www.humanproteomemap.org/}{www.proteinatlas.org/}}, but those one
-were mostly reporting the spatial expression of the proteins (as they were based
-on immunohistochemistry or other means of identification) than
-quantifying their (non-targeted) abundance in each tissue.
+While the transcriptomic data was retrieved and then processed within the \EBI\
+either by Dr Nuno Fonseca or myself, the proteomic data have been picked and
+handled by Dr Jyoti Choudary and Dr James Wright from the Wellcome Trust
+Sanger Institute.
 
+Until a couple of years ago, compared to the transcriptome, the proteome world
+was regrettably lacking on normal human tissues expression quantification
+experiments. In fact, while there were human protein maps available
+(\eg\ the \href{www.proteinatlas}{Human Proteome Map}%
+\footnote{\href{http://www.proteinatlas.org}{www.proteinatlas.org}}), these
+are mostly reporting the spatial expression of proteins (as they are based
+on immunohistochemistry or other means of identification) than quantifying
+their (non-targeted) abundance in each tissue.
+
+Then, in 2014, two different groups of authors, \cite{PandeyData}
+and \cite{KusterData}, published (in \textit{Nature},
+issue 7502) their own \emph{``draft of the human proteome''}
+based on the study of tissues with \ms. These two datasets complement a previous
+smaller one that was publicly released but never published.
+
+Hereafter, I present these 3 datasets that I use in my thesis.
 
 \subsection{Pandey Lab data}
 
 \cite{PandeyData} created the Human Proteome Map\footnote{%
 \href{http://www.humanproteomemap.org/}{\small www.humanproteomemap.org/}} which
-they released along their \emph{Nature} paper \paper{\citetitle{PandeyData}}.
+they released along \paper{\citetitle{PandeyData}}.
 
-For their study, they have processed 30 kind of histological normal human
+For their study, they have processed 30 kinds of histological normal human
 tissues and cell line samples (17 adult tissues, 7 fetal tissues and 6
 haematopoietic cell types). The samples were created from pooled samples of three
 individuals (generally two males and one female).
@@ -241,13 +266,13 @@ Thermo Scientific Orbitrap instruments).
 They generated about 25 million of (\gls{HCD})
 high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 
-While their effort to generate high quality raw data was highly appraise
+The raw spectra were retrieved from ProteomeXchange via the repository
+\Pride{PXD000561}.
+
+While their effort to generate high quality raw data was highly appraised
 by the scientific community, their processing
 (identification and quantification) methods were
-quite criticised (\eg\ see~\cite{Ezkurdia2014-qx}).
-
-The raw spectra were retrieve from ProteomeXchange via the repository
-\Pride{PXD000561}.
+criticised (\eg\ see~\cite{Ezkurdia2014-qx}).
 
 \subsection{Kuster data}
 
@@ -264,30 +289,28 @@ They reprocessed the whole collection of spectra to maximise proteome coverage
 and make it available through their own repositories: ProteomicsDB\footnote{%
 \href{https://www.proteomicsdb.org/}{www.proteomicsdb.org/}}.
 
-The subset of data considered in this study is also
-known as the (protein) Human BodyMap
-which is the part that was generated (1,087 \gls{LC-MS/MS} profiles)
-by the Kuster lab itself.
-It comprises 48 experiments covering 36 tissues
-(adult and fetal) and cell lines.
-They generated about 14 million of (\gls{HCD}/\gls{CID}) spectra from Thermo
-Scientific instruments.
+The subset of data considered in my thesis is also
+known as the [protein] Human BodyMap which is the part that was primary generated
+by the Kuster lab itself for this study. It corresponds to 1,087 \gls{LC-MS/MS}
+profiles and comprises 48 experiments covering 36 tissues (adult and fetal) and
+cell lines. Overall that represents about 14 million of (\gls{HCD}/\gls{CID})
+spectra from Thermo Scientific instruments.
 
-The raw data was downloaded from \Proteomicsdb{PRDB000042}.
+This raw data was downloaded from \Proteomicsdb{PRDB000042}.
 
 \subsection{Cutler data}
 
 This data was generated prior to the \dataset{Pandey} and the \dataset{Kuster}
 data as it was released in 2011 through PeptideAtlas\footnote{%
-\href{http://www.peptideatlas.org/}{www.peptideatlas.org/}}
+\href{http://www.peptideatlas.org/}{www.peptideatlas.org}}
 \citep{PeptideAtlas}.
 
 It was created by Paul Cutler at Roche Pharmaceuticals.
 It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files).
 
 While this data was never published on its own, it has been used in different
-other studies. Indeed, the \dataset{Cutler} data is one the datasets that
-\cite{KusterData} have used in their original study to create ProteomicsDB.
+studies. Indeed, the \dataset{Cutler} data is one the datasets that
+\cite{KusterData} are using in their original study to create ProteomicsDB.
 
 The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
@@ -313,7 +336,7 @@ data \citep{GTExTranscript} and \dataset{Castle} data \citep{Krupp2012}.
 Intuitively, we expect that different processing protocols produce
 different results.
 
-In fact along my work, I noticed many potential bias sources that impact
+Indeed, along my work, I noticed many potential bias sources that impact
 \Rnaseq\ outputs. Many of them have since then been reported in the literature;
 annotations \citep{annotationDiff},
 contamination \citep{contaminationRNAseq},
@@ -365,10 +388,10 @@ Castle        & 11    & 11    & 11    & 58    & 10 (mixture)    \\
 Brawand       & 18    & 21    & 23    & 111   & 2.8  [2,3]      \\
 {\small Illumina Body Map} & 16    & 36    & 48    & 1,004  & 1 \\
 Uhlén         & 122   & 200   & 400   & 1,851  & 3.81    [2,11] \\
-\textit{\color{darkgray}\Gtex\ v.1.4}  &
+    \textit{\color{darkgray}\Gtex\ (v4)}  &
     \textit{\color{darkgray}3,276}  & \textit{\color{darkgray}3,276}  &
     \textit{\color{darkgray}6,552}  &
-    \textit{\color{darkgray}>100,000}  & \textit{\color{darkgray}60.67 [4,214]}\\
+    \textit{\color{darkgray}$\sim$ 50,000}  & \textit{\color{darkgray}60.67 [4,214]}\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -439,3 +462,9 @@ And again describe the methodology.
       proteome} [TK] }
   \end{figure}
 
+
+
+\begin{comment}
+They found that almost half of the proteins are expressed in all analysed tissues
+(with an enrichment for the metabolism enzymes).
+\end{comment}
