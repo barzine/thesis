@@ -1,77 +1,76 @@
-\usepackage{scrhack}
-\usepackage[dottedtoc,eulerchapternumbers]{classicthesis}
+\RequirePackage{minted}
+\RequirePackage[dottedtoc,eulerchapternumbers]{classicthesis}
 %\usepackage{arsclassica}
-\usepackage{tocbasic}
-\usepackage{polyglossia}
+\RequirePackage{tocbasic}
+\RequirePackage{polyglossia}
 \setdefaultlanguage[variant=uk]{english}
 %\setmainlanguage[variant=uk]{english}
-\usepackage[english, iso]{isodate}
-\usepackage{hyperref}
-\usepackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draft
-\usepackage{minted}
+\RequirePackage[english, iso]{isodate}
+\RequirePackage{hyperref}
+\RequirePackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draft
 %\usepackage[explicit]{titlesec}
-\usepackage{csquotes}
-\usepackage{epigraph}
+\RequirePackage{csquotes}
+%\RequirePackage{epigraph}
 %\renewcommand{\epigraphflush}{center}
-\usepackage{booktabs,dcolumn}
-\usepackage{microtype}
-\usepackage{rotating}
-\usepackage{multirow}
+\RequirePackage{booktabs,dcolumn}
+\RequirePackage{microtype}
+\RequirePackage{rotating}
+\RequirePackage{multirow}
 %\usepackage[table,xcdraw]{xcolor}
-\usepackage{relsize}
-\usepackage[onehalfspacing]{setspace}
+\RequirePackage{relsize}
+\RequirePackage[onehalfspacing]{setspace}
 %\usepackage{setspace}
 %\usepackage[multidot]{grffile}
-\usepackage{marginnote}
-\usepackage{float}
-\usepackage{fontspec}
-\usepackage{comment}
-\usepackage{amsmath}
-\usepackage{unicode-math}
-\usepackage{xpatch}
-\usepackage{xltxtra}
-\usepackage{xcolor}
-\usepackage{calc}
-\usepackage{ragged2e}
-\usepackage[font=bf,format=hang,labelfont={bf,normal},textfont=normal,up,margin=5pt,labelformat=default,labelsep=period]{caption}
+\RequirePackage{marginnote}
+\RequirePackage{float}
+\RequirePackage{fontspec}
+\RequirePackage{comment}
+\RequirePackage{amsmath}
+\RequirePackage{unicode-math}
+\RequirePackage{xpatch}
+\RequirePackage{xltxtra}
+\RequirePackage{xcolor}
+\RequirePackage{calc}
+\RequirePackage[font=bf,format=hang,labelfont={bf,normal},textfont=normal,up,margin=5pt,labelformat=default,labelsep=period]{caption}
 %format=hang
 %\usepackage[font=small,format=plain,labelfont=bf,up,textfont=normal,up,justification=justified,singlelinecheck=false,margin=5pt]{caption}
-\usepackage{subcaption}
+\RequirePackage{subcaption}
 %\usepackage[user,xr]{zref} %for cross reference between files
 
 %\usepackage{ifoddpage}
-\usepackage{afterpage}
-\usepackage{verbatim}
-\usepackage{xspace} %the original author doesn't recommend it
-\usepackage{pgfplots}
+\RequirePackage{afterpage}
+\RequirePackage{verbatim}
+\RequirePackage{xspace} %the original author doesn't recommend it
+\RequirePackage{pgfplots}
 \pgfplotsset{compat=1.14}
-\usepackage{expdlist}
-\usepackage{pdflscape}
-\usepackage{longtable}
-\usepackage{eqlist}
-\usepackage{tracklang}
-\usepackage{mfirstuc}
-\usepackage{etoolbox}
-\usepackage{xkeyval}
-\usepackage{textcase}
-\usepackage{xfor}
-\usepackage{datatool-base}
-\usepackage{amsgen}
-\usepackage{interval}
-\usepackage{ragged2e}
+\RequirePackage{expdlist}
+\RequirePackage{pdflscape}
+\RequirePackage{longtable}
+\RequirePackage{eqlist}
+\RequirePackage{tracklang}
+\RequirePackage{mfirstuc}
+\RequirePackage{etoolbox}
+\RequirePackage{xkeyval}
+\RequirePackage{textcase}
+\RequirePackage{xfor}
+\RequirePackage{datatool-base}
+\RequirePackage{amsgen}
+\RequirePackage{interval}
+\RequirePackage{ragged2e}
 
-\usepackage%[style=long,nolist] %as advised in classicthesis man
-[xindy, toc, nopostdot,style=long,nolist]
+\RequirePackage%[style=long,nolist] %as advised in classicthesis man
+[xindy, toc, nopostdot,style=long,nolist]%
 {glossaries} %%hyperref has to be already loaded
-\usepackage[automake,nomain,acronym]{glossaries-extra}
+\RequirePackage[automake,nomain,acronym]{glossaries-extra}
 \setglossarystyle{longheader}
 %\setabbreviationstyle[acronym]{long-short}
 \makeglossaries%
 %\loadglsentries{glossary.tex}
 
-\usepackage{bookmark}
-\usepackage{geometry}%% for page layout
-\usepackage[nameinlink, noabbrev]{cleveref}
+\RequirePackage{scrhack} %to avoid some possible reported clashs
+\RequirePackage{bookmark}
+\RequirePackage{geometry}%% for page layout
+\RequirePackage[nameinlink, noabbrev]{cleveref}
 
 
 \setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
@@ -131,15 +130,14 @@
 \setstretch{1.1}
 \graphicspath{{gfx/}} %as instructed in classicthesis
 
+
+
 %\graphicspath{{gfxRasterOnly/}} %as instructed in classicthesis
 % For debugging: showframe=true to see the layout frames
 \geometry{bottom=65mm,showframe=false,margin=35mm,marginparsep=3mm,marginparwidth=20mm}
 
 
-
-
 \pagestyle{scrheadings}
-
 
 %%%%%%%
 %%% customisation stollen from Manuel Kuehner template
@@ -223,6 +221,7 @@
 
 \setlength{\headheight}{1.1\baselineskip}
 %%%%%%%
+
 
 
 % %%% More layout definitions
