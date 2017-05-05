@@ -90,14 +90,8 @@ This dataset has been published along with the \paper{\citetitle{castleData}}
 by \citet{castleData} who were interested in exploring the whole RNA repertoire
 with sequencing-based technology. They essentially focused their study
 on the non-coding part.
-\begin{comment}
-    %following are results that I removed based on Isabelle suggestions
-and found that
-while \glspl{mRNA} could be highly tissue-specific, \glspl{ncRNA} have generally
-greater tissue-specific expression patterns.
-\end{comment}
 
-They used multiple-donors pooled tissues samples %(purchased as total \gls{RNA})
+They used multiple-donors pooled tissues samples
 and prepared the 11 libraries following a whole transcriptomic protocol
 where nonribosomal \gls{RNA} transcripts are
 specifically amplified by \gls{PCR} \citep{Armour:2009}.
@@ -174,6 +168,7 @@ tissues and such has been referenced many times since it was released.
 
 Uhlén et al.\ have created an atlas,
 \href{http://www.proteinatlas.org/}{Human Protein Atlas}\footnote{%
+Human Protein Atlas ---
 \href{http://www.proteinatlas.org/}{http://www.proteinatlas.org/}},
 revolving mostly around the spatial
 distribution of the proteins through the Human body. They use many approaches
@@ -207,8 +202,8 @@ explained in a paper from the \cite{GTEx2013}. It consists to quickly collect
 many tissues from postmortem donors so genotype-tissue expression analyses could
 be done, notably \gls{eQTL} variants studies which study the modulation
 of \gls{RNA} expression in function of \glspl{SNP}. The results of the
-analyses are released through the GTEx portal (%
-\href{http://gtexportal.org}{http://gtexportal.org}).
+analyses are released through the GTEx portal\footnote{\Gtex\ portal --- %
+\href{http://gtexportal.org}{http://gtexportal.org}}.
 
 As the project is quite ambitious and the collection and sequencing of the samples
 are taking time, several freezes of the data have been released. My work is
@@ -234,8 +229,9 @@ Sanger Institute.
 Until a couple of years ago, compared to the transcriptome, the proteome world
 was regrettably lacking on normal human tissues expression quantification
 experiments. In fact, while there were human protein maps available
-(\eg\ the \href{www.proteinatlas}{Human Proteome Map}%
-\footnote{\href{http://www.proteinatlas.org}{www.proteinatlas.org}}), these
+(\eg\ the \href{www.proteinatlas}{Human Protein Atlas}%
+\footnote{Human Protein Atlas --- \href{http://www.proteinatlas.org}%
+{www.proteinatlas.org}}), these
 are mostly reporting the spatial expression of proteins (as they are based
 on immunohistochemistry or other means of identification) than quantifying
 their (non-targeted) abundance in each tissue.
@@ -250,8 +246,9 @@ Hereafter, I present these 3 datasets that I use in my thesis.
 
 \subsection{Pandey Lab data}
 
-The Pandey Lab \citep{PandeyData} created the \href{http://www.humanproteomemap.org/}%
-{Human Proteome Map}\footnote{%
+The Pandey Lab \citep{PandeyData} created the
+\href{http://www.humanproteomemap.org/}%
+{Human Proteome Map}\footnote{Human Proteome Map --- %
 \href{http://www.humanproteomemap.org/}{www.humanproteomemap.org}} which
 they released along \paper{\citetitle{PandeyData}}.
 
@@ -292,6 +289,7 @@ purification studies.
 
 They reprocessed the whole collection of spectra to maximise proteome coverage
 and make it available through their own repositories: ProteomicsDB\footnote{%
+Proteomicsdb --- %
 \href{https://www.proteomicsdb.org/}{www.proteomicsdb.org}}.
 
 The subset of data considered in my thesis is also
@@ -309,7 +307,7 @@ This raw data was downloaded from \Proteomicsdb{PRDB000042}.
 \end{comment}
 
 This data was generated prior to the \dataset{Pandey} and the \dataset{Kuster}
-data as it was released in 2011 through PeptideAtlas\footnote{%
+data as it was released in 2011 through PeptideAtlas\footnote{PeptideAtlas --- %
 \href{http://www.peptideatlas.org/}{www.peptideatlas.org}}
 \citep{PeptideAtlas}.
 
@@ -425,22 +423,23 @@ While the \EBI\ cluster greatly facilitated the handling of the numerous files,
 the task was quite tedious: particularly due to the necessary jobs monitoring of
 each step and the integrity checks of the intermediate files between them.
 Additionally, although working perfectly within the \EBI\ infrastructure,
-the scripts I wrote would need a fair amount of work to be usable elsewhere and
-thus to achieve reproducibility.
+the scripts I wrote would need a fair amount of work to achieve reproducibility
+with another platform.
 
-Fortunately, Dr Nuno Fonseca developed and released a meta-pipeline:
-\irap\footnote{\irap\ --- see: \href{https://nunofonseca.github.io/irap/}%
-{https://nunofonseca.github.io/irap/}}, an ``integrated RNA-seq analysis
-Pipeline''. This tool allows the automation of the typical
+Fortunately, Dr Nuno Fonseca developed and released
+an ``integrated RNA-seq analysis Pipeline'': \irap\footnote{\irap\ ---
+see: \href{https://nunofonseca.github.io/irap/}%
+{https://nunofonseca.github.io/irap/}}.
+This tool allows the automation of the typical
 (and state-of-the art) workflow to study
 \Rnaseq. Apart of remarkably speeding up the data processing, it also
 decreases the risk of inconstant parameters from one script to another.
 
-Indeed, \irap\ takes as input raw transcriptomic files encoded as \emph{\fastq}
-files and a configuration file which precisely describes the dataset ---as well
-on the technical level (\eg\ encoding format, read length, paired-end or
-single-end, \ldots) than the design (\eg\ groups of biological or
-technical replicates, normalisation method to apply to the
+\irap\ takes as input raw transcriptomic files encoded as \emph{\fastq}
+files and a configuration file which precisely describes the dataset ---
+its design (\eg\ groups of biological or
+technical replicates) and technical (\eg\ encoding format, read length, paired-end or
+single-end, \ldots) normalisation method to apply to the
 quantification, \ldots) ---
 and the tools, reference and annotations that should be used.
 \begin{comment}
@@ -458,26 +457,19 @@ set of tools and versions.
 \subsubsection{Data retrieval and preparation}
 
 The human raw data of each dataset were retrieved from \gls{ArrayExpress},
-\gls{ENA} and, after approved access \gls{dbGaP}.
-The files that were not encoded as (Phred score) \fastq\ files
-(\dataset{Castle} dataset) were translated to \gls{Phred} $33$ with the help of
+\gls{ENA} and, once the access was approved, from \gls{dbGaP}.
+Files encoded in a non-compliant format to the most recent tools (\dataset{Castle}
+dataset) were translated to \gls{Phred} $33$ \fastq\ files with the help of
 a \emph{perl} script (see~\Cref{code:fastq}).
+
+
+\subsubsection{Data processing with iRAP}
 
 \irap\ accepts as input these \fastq\ (or \gls{BAM}) files and manages all
 the steps from the quality assessments till the quantification (and
 normalisation) of the data.
 
-\subsubsection{Quality assessment, trimming and filtering}
 
-The quality assessment allows to remove any read (or part) that would increase
-the complexity of the mapping step or skew the downstream analyses.
-
-Generally, after the sequencer calls the reads, a trimming removes
-all the adaptors and barcodes needed by the sequencing protocols. Thus,
-in principle, they are not to be found in raw data from repositories.
-However, to avert any latter contingency, a research against
-a list of the most common adaptors and an over-representation assessment of small
-sequences (\emph{k-mers}) at each end of the reads are performed.
 
 Then, reads that present an overall quality score below a given threshold (10) are
 fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
@@ -514,7 +506,7 @@ parameters.
 
 While in the earlier stages of my work, I was using the GRCh37.p12
 (GENCODE release 18) and then GRCh37.p13 genebuild (GENCODE release 19),
-the complete set of datasets has been processed with GRCh38.p1 (ENSEMBL 76).
+the complete set of datasets has been processed with GRCh38.p1.
 When not stated otherwise, the presented results are from the GRCh38.p1 build.
 
 \subsubsection{Quantification}

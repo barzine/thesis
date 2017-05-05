@@ -119,6 +119,33 @@ and/or not settled yet. This is the case for this study.
 
 Corrections for \Rnaseq\ are already part of the analysis and
 requires often as much flair than skills.
+\subsection{RNA-seq processing}
+
+\subsubsection{Quality assessment, trimming and filtering}
+
+    The quality assessment allows to remove any read (or part) that would increase
+    the complexity of the mapping step or skew the downstream analyses.
+
+    Generally, after the sequencer calls the reads, a trimming removes
+    all the adaptors and barcodes needed by the sequencing protocols. Thus,
+    in principle, they are not to be found in raw data from repositories.
+    However, to avert any latter contingency, a research against
+    a list of the most common adaptors and an over-representation assessment of small
+    sequences (\emph{k-mers}) at each end of the reads are performed.
+
+    Then, reads that present an overall quality score below a given threshold (10) are
+    fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
+    Since the quality decreases as the calling process progresses, all the reads are
+    trimmed to a same length\footnote{This is a requirement of some tools (mappers
+    in particular).} in a way to optimise the purity-length balance. The trimming has
+    to be less than 15\% of the original length. If needed, more reads are discarded
+    so the length is maximised.
+
+
+
+
+
+
 
 
 \subsection{Transcriptomics Studies}
