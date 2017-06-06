@@ -31,19 +31,20 @@ repertoire of \glspl{RNA} or proteins in a sample.}.
 Finally, the \emph{raw} data is available and reusable.
 
 In the next section, I first describe the \Rnaseq\ and then the \ms\ data I use
-in my thesis; then I detailed how these data have been processed before being
+in my thesis; then I detailed how these data have been processed to be
 employed in the next chapters for various analyses that explore the transcriptome,
 the proteome and the integration attempt of these two biological layers.
 
 
 \section{RNA-Seq Transcriptome data}
 
-There are a few more studies that I wanted to use on the
+For my thesis, I retrieve as many available studies as I can get. There are a
+few more studies that I wanted to use on the
 transcriptomic side, but the reusability point was often the critical reason
 why they have not been included.
 
 Indeed, many times I encountered data with ambiguous encoding format. As
-those studies were a little bit outdated,
+those studies were a bit outdated,
 I was unable to get the information from the original authors either.
 I describe hereafter the 5 transcriptomic datasets I used
 in the chronological order of their first public release.
@@ -120,8 +121,9 @@ evolution of the mammalian transcriptomes --- while there were existing studies
 on the matter, the sequencing approach was then creating new perspectives.
 
 They collected 6 organs from 10 different vertebrates:
-9 mammalians (including Human) and a bird. They have two biological replicates
-per tissue: one male and one female for every tissue but the testis (two males).
+9 mammalians (including Human) and a bird. There is not any technical replicates
+but there are two biological replicates per tissue:
+one male and one female for every tissue but the testis (two males).
 They used a polyA-selected protocol to prepare their 131 libraries (including 23
 for \species{Homo sapiens}).
 Hence, the samples are largely enriched in protein coding genes.
@@ -150,8 +152,7 @@ technology was to improve the accurate identification of spliced \glspl{mRNA}.
 
 Although each sample has been sequenced twice and that we have in principle
 \emph{technical} replicates, these are not ``regular'' technical replicates.
-\emph{Technical} replicates,
-by contrast to \emph{biological} replicates,
+\emph{Technical} replicates, by contrast to \emph{biological} replicates,
 usually imply that their processing uses the same sample source and protocols.
 Thus, the error and the noise due to a specific technique could be determined.
 Here, however, each tissue has been sequenced once with a singled-end protocol
@@ -213,6 +214,7 @@ are taking time, several freezes of the data have been released. My work is
 including samples up to the fourth release of the pilot phase (v4). This
 release includes 54 tissue/cell types (53 normal and 1 tumour)
 collected on 551 individuals.
+
 The 3,276 libraries were prepared from whole \gls{RNA} extracts and then sequenced
 with a paired-end protocol on Illumina HiSeq 2000/2500 sequencers which produced
 an average of 80 million reads.
@@ -253,7 +255,7 @@ The Pandey Lab \citep{PandeyData} created the
 \href{http://www.humanproteomemap.org/}%
 {Human Proteome Map}\footnote{Human Proteome Map --- %
 \href{http://www.humanproteomemap.org/}{www.humanproteomemap.org}} which
-they released along \paper{\citetitle{PandeyData}}.
+they released along \paper{\citetitle{PandeyData}} in \emph{Nature}.
 
 For their study, they have processed 30 kinds of histological normal human
 tissues and cell line samples (17 adult tissues, 7 fetal tissues and 6
@@ -471,62 +473,32 @@ a \emph{perl} script (see~\Cref{code:fastq}).
 \subsubsection{Data processing with iRAP}
 
 Each of the datasets has been processed through an identical pipeline
-independently: \irap\ (development version 0.6.3b). As the default arguments
-pipeline is involving
-most the default \irap\ 
+independently: \irap\ (development version 0.6.3b). \Cref{fig:pipelineTrans}
+illustrates the overall steps of the workflow.
 
-Few of \irap's default options have been overridden. 
-
-
-Then, reads that present an overall quality score below a given threshold (10) are
-fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
-Since the quality decreases as the calling process progresses, all the reads are
-trimmed to a same length\footnote{This is a requirement of some tools (mappers
-in particular).} in a way to optimise the purity-length balance. The trimming has
-to be less than 15\% of the original length. If needed, more reads are discarded
-so the length is maximised.
-
-Reads that could be assigned to a likely contamination source (here
-\species{Escherichia coli}) are also discarded. This requires a first mapping
-step to all the possible contaminant genomes. Reads that map to these genome
-without ambiguity are discarded.
-
-Finally, if the sequencing protocol is paired-end, all the ``orphan'' reads are
-gathered together in a separate file as a subset of tools mishandle unmatched
-paired-end reads.
-
-These assessments and trimming have been performed with \soft{FASTX}
-toolkit\footnote{\soft{FASTX} toolkit ---
-\href{http://hannonlab.cshl.edu/fastx\_toolkit/}%
-{http://hannonlab.cshl.edu/fastx\_toolkit/}} (0.0.13).
-
-The mapping to contaminant genomes is done with a splice non-aware mapper:
-\soft{BWA}\footnote{\soft{BWA} --- \href{http://bio-bwa.sourceforge.net/}%
-{http://bio-bwa.sourceforge.net/}} (0.7.4).
-
-\subsubsection{Mapping}
-I chose to map the reads to the \species{Homo sapiens} genome with a spliced
-read mapper: \soft{TopHat}\footnote{\soft{TopHat} ---
+As the default parameters of \irap\ are tuned for human Illumina paired-end data,
+I only defined very few of them. Hence, the quality and contamination checks,
+the filtering and trimming of the reads were done following the default options
+of \irap. I also chose to map the reads to the genome with the default
+splice-aware mapper \soft{TopHat}\footnote{\soft{TopHat} ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}%
-{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) with the default
-parameters.
+{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12)  with its set of
+predefined arguments. Hence, I only had to pick the genome and annotation references
+and the algorithm to quantify (and normalise) the genes expression.
 
-While in the earlier stages of my work, I was using the GRCh37.p12
+While in the earlier stages of my work, I used the GRCh37.p12
 (GENCODE release 18) and then GRCh37.p13 genebuild (GENCODE release 19),
-the complete set of datasets has been processed with GRCh38.p1.
-When not stated otherwise, the presented results are from the GRCh38.p1 build.
+the complete set of datasets has been processed with GRCh38.p1. Hence, if not
+stated otherwise, the presented results are mapped to the GRCh38.p1 build.
 
-\subsubsection{Quantification}
-Two tools have been used for this step: \soft{HTSeq-count}\footnote{%
+I used two tools for the quantification step: \soft{HTSeq-count}\footnote{%
 \soft{HTSeq-count} --- \href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
 {http://www-huber.embl.de/HTSeq/doc/index.html\#}}(0.6.1p1) (intersection
 non-empty mode) and \soft{Cufflinks}\footnote{\soft{Cufflinks} ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
 {http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1).
 
-I am using only gene levels quantification and not isoforms.
 
-\subsubsection{Normalisation}
 \gls{RPKM}
 values were then calculated with the internal function provided by \irap. For each
 tissue, gene expression levels were calculated by first taking the mean of the
@@ -540,12 +512,11 @@ paired reads that have been counted for each novel gene on the merged bam files
 normalized by the number of initial samples for each tissue.
 
 
+I am using only gene levels quantification and not isoforms.
 
 \subsubsection{Tissue Averaging}
 Average Number of samples per tissues different => quantification averaged for
 most of the analysis to avoid skewness.
-
-
 
 
 
@@ -554,7 +525,8 @@ most of the analysis to avoid skewness.
     \caption[General steps for processing the transcriptomic
     data]{\label{fig:pipelineTrans}\textbf{General steps for processing the
     transcriptome} [TK]}
-  \end{figure}
+\end{figure}
+
 
 
 \subsection{Proteome raw data}
