@@ -1,7 +1,7 @@
 \chapter{Introduction}
+\label{ch:Introduction}
 
 \begin{comment}
-\label{ch:Introduction}
 \setlength{\epigraphwidth}{0.6\textwidth}
 \setlength{\epigraphrule}{0.1pt}
 %\epigraphhead[70]{%
@@ -107,33 +107,57 @@ study the cell life intricacy and its underlying mechanisms.\\
 The oldest approach is descriptive:
 
 
-Small bits: corrections for \Rnaseq\ are already part of the analysis and
+Small bits: corrections for Rnaseq are already part of the analysis and
 requires often as much flair than skills.
 Contrarily to \Dnaseq\ where corrections can be applied \TK{add reference} and
-then the analysis be done, in \Rnaseq each analysis requires a set of conform
+then the analysis be done, in Rnaseq each analysis requires a set of conform
 quantification and normalisation methods.
 While, there are quite established protocols for differential expression analysis,
 there are presently many other downstream analyses that are cumbersome
 and/or not settled yet. This is the case for this study.
 
 
-Corrections for \Rnaseq\ are already part of the analysis and
+Corrections for Rnaseq are already part of the analysis and
 requires often as much flair than skills.
-\subsection{RNA-seq processing}
+
+\subsection{Transcriptome exploration with RNA sequencing}
+
+The transcriptome is the total repertoire of transcripts (\ie\ \glspl{RNA}
+molecules) expressed in a cell or tissue at a given time and condition. Unlike
+the genome which is roughly identical regardless which cell of a particular
+individual is considered, the transcriptome varies\ldots
+
+
+
+
+In the past decade, \gls{RNA-Seq} technology has risen as the method of choice
+for  transcriptome
+
+
 
 \subsubsection{Quality assessment, trimming and filtering}
 
-    The quality assessment allows to remove any read (or part) that would increase
-    the complexity of the mapping step or skew the downstream analyses.
 
-    Generally, after the sequencer calls the reads, a trimming removes
-    all the adaptors and barcodes needed by the sequencing protocols. Thus,
-    in principle, they are not to be found in raw data from repositories.
-    However, to avert any latter contingency, a research against
-    a list of the most common adaptors and an over-representation assessment of small
-    sequences (\emph{k-mers}) at each end of the reads are performed.
 
-    Then, reads that present an overall quality score below a given threshold (10) are
+
+
+\NB Generally, after the sequencer calls the reads, a first trimming removes
+all the adaptors and barcodes needed by the sequencing protocols. Thus,
+in principle, they are not to be found in raw data from repositories.
+However, to avert any latter contingency, a research against
+a list of the most common adaptors and an over-representation assessment of small
+sequences (\emph{k-mers}) at each end of the reads is good practice.
+
+
+
+
+The quality assessment allows to remove any read (or part of it) that would
+increase the complexity of the mapping step or skew the downstream analyses.
+
+Whenever the overall quality of the samples allows it, it is best to discard very
+
+
+Then, reads that present an overall quality score below a given threshold (10) are
     fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
     Since the quality decreases as the calling process progresses, all the reads are
     trimmed to a same length\footnote{This is a requirement of some tools (mappers
@@ -208,7 +232,7 @@ for a few key tissues.
 \end{itemize}
 
 
-
+\section{Reproducibility vs. Repeatability}
 
 \section{Comment preparer RNA-seq libraries?}
 
@@ -216,5 +240,5 @@ for a few key tissues.
 
 \section{Experimental design}
 \subsection{Technical replicates}
-\subsection{Biological replicates} 
+\subsection{Biological replicates}
 pourquoi c'est important.

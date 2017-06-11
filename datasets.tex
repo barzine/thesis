@@ -37,6 +37,7 @@ the proteome and the integration attempt of these two biological layers.
 
 
 \section{RNA-Seq Transcriptome data}
+\label{sec:rnaseq-data}
 
 For my thesis, I retrieve as many available studies as I can get. There are a
 few more studies that I wanted to use on the
@@ -121,7 +122,7 @@ evolution of the mammalian transcriptomes --- while there were existing studies
 on the matter, the sequencing approach was then creating new perspectives.
 
 They collected 6 organs from 10 different vertebrates:
-9 mammalians (including Human) and a bird. There is not any technical replicates
+9 mammalians (including Human) and a bird. There is no technical replicate
 but there are two biological replicates per tissue:
 one male and one female for every tissue but the testis (two males).
 They used a polyA-selected protocol to prepare their 131 libraries (including 23
@@ -182,13 +183,15 @@ tissues. The latest version was published with \paper{\citetitle{Uhlen2015}}
 
 They provide (at least two) biological replicates for the 32 tissues.
 Except for a very small number, the tissues have both male and female donors.
-There are also technical replicates for many of the tissues. The samples were
-picked after a screening of frozen biopsy samples by pathologists.
+There are also technical replicates for many of the tissues. Two hundred samples
+were picked after a screening of frozen biopsy samples by pathologists.
 
-The 200 libraries have been prepared following a polyA-selected protocol and
-have been sequenced (paired-end) with an Illumina HiSeq 2000 or 2500. I started
-to work with the first version (\ArrayExpress{E-MTAB-1733}) and then
-with the extended version (\ArrayExpress{E-MTAB-2836}).
+Then they prepared the libraries following a polyA-selected protocol and
+paired-end sequenced them with an Illumina HiSeq 2000 or 2500. I first started
+to work with the early version of this dataset
+(\ArrayExpress{E-MTAB-1733} --- 171 samples for 27 tissues)
+and then I upgraded my work with the extended more recent version
+(\ArrayExpress{E-MTAB-2836}).
 
 At the time of the redaction of this thesis, this normal human dataset is the
 most important one that is also freely and directly available: either regarding
@@ -199,7 +202,8 @@ or the number of samples (see \Cref{tab:Lib5DF}).
 \subsection{GTEx data}
 
 The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the \gls{NIH}
-Common Fund and aims to establish a resource database and associated tissue bank
+Common Fund and aims to establish, in its authors own words,
+a resource database and associated tissue bank
 for the study of the relationship between genetic variation and gene expression
 and other molecular phenotypes in multiple reference tissues. The project was first
 explained in a paper from the \cite{GTEx2013}. It consists to quickly collect
@@ -213,9 +217,9 @@ As the project is quite ambitious and the collection and sequencing of the sampl
 are taking time, several freezes of the data have been released. My work is
 including samples up to the fourth release of the pilot phase (v4). This
 release includes 54 tissue/cell types (53 normal and 1 tumour)
-collected on 551 individuals.
+collected on 551 individuals for a total of 3,276 samples.
 
-The 3,276 libraries were prepared from whole \gls{RNA} extracts and then sequenced
+The libraries were prepared from whole \gls{RNA} extracts and then sequenced
 with a paired-end protocol on Illumina HiSeq 2000/2500 sequencers which produced
 an average of 80 million reads.
 
@@ -274,8 +278,8 @@ high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 The raw spectra were retrieved from ProteomeXchange via the repository
 \Pride{PXD000561}.
 
-While their effort to generate high quality raw data was highly appraised
-by the scientific community, their processing
+While their effort to generate technical high quality raw data was highly
+appraised by the scientific community, their processing
 (identification and quantification) methods were
 criticised (see~\cite{Ezkurdia2014-qx}). Thus, for this thesis I only use
 quantification that James Wright provided me after reprocessing the dataset
@@ -328,42 +332,43 @@ The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
 \section{Constant processing pipelines}
 
-The original authors of these 8 studies have often released themselves the
-quantification of the expression values either directly (\eg\ \cite{Krupp2012})
-or upon requests (\eg\ \cite{PandeyData}).  Third-parties also distribute
+The original authors of these 5 transcriptomic and 3 proteomic studies have often
+released themselves the quantification of the expression values either directly
+(\eg\ \cite{Krupp2012}) or upon requests (\eg\ \cite{PandeyData}).
+Third-parties also distribute
 quantification for these studies either retrieved from the original studies,
 as BioGPS \citep{BioGPS1} or Harmonizome \citep{Harmonizome},
 or after reprocessing the raw data as EBI Gene Expression Atlas
 \citep{EBIgxa} does.
 
-However, for many reasons, I only used data reprocessed from raw files despite
-the ready available quantifications for most of the datasets.
+For many reasons and despite readily available quantifications for most of the
+datasets, I only used data reprocessed from raw files by myself or Dr Nuno
+Fonseca  (Gtex data) or Dr James Wright (proteomic data).
 
-Indeed, each study has
-been originally processed with different protocols, \eg\ \dataset{\Gtex}
-data \citep{GTExTranscript} and \dataset{Castle} data \citep{Krupp2012}.
-
-In addition, while the \egxa\ reprocesses raw data through the same methods
+In fact, each study has been originally processed with different protocols,
+\eg\ \dataset{\Gtex} data \citep{GTExTranscript} and \dataset{Castle}
+data \citep{Krupp2012}.  In addition, while the \egxa\ reprocesses raw data
+through the same methods
 and has nowadays quantification for most of the datasets, these are still the
 products of different protocols since
 different versions of reference (Human genome build and annotation) and tools
 have been used.
 
 Intuitively, we expect that different processing protocols produce
-different results. In fact, as I started to work with \Rnaseq\ data,
-I noticed many potential bias
+different results.
+
+Indeed, as I started to work with \Rnaseq\ data, I noticed many potential bias
 sources that impact its final expression values. Many of these have been
 reported in the literature since then;
-annotations \citep{annotationDiff},
+annotation versions \citep{annotationDiff},
 contamination \citep{contaminationRNAseq},
-quality controls \citep{qualityRNAseq} and
+quality controls \citep{qualityRNAseq},
 mapping and quantifications pipelines \citep{Fonseca2014}
 have great effects on the final quantification. Lastly, normalisation
 methods also greatly impact the final expression figures
-\citep{Dillies2013}, \citep{normalisation2}.
-
-For all these reasons, reprocessing all the transcriptomic datasets --- with the
-same exact protocol --- was the logical first step of this current study.
+\citep{Dillies2013}, \citep{normalisation2}. For all these reasons, reprocessing
+all the transcriptomic datasets --- with the same exact protocol ---
+was the logical first step of this current study.
 
 Likewise, there are various tools and many parameters for each processing step
 needed to quantify the proteomic data. Therefore, Dr James Wright reprocessed
@@ -372,16 +377,29 @@ protein expression values.
 
 \subsection{Transcriptome RNA-Seq raw data processing}
 
-While I downloaded and entirely processed four of the transcriptomic datasets
-myself (\dataset{Castle}, \dataset{Brawand}, \dataset{IBM} and \dataset{Uhlén}
-data), Dr Nuno Fonseca processed the \Gtex\ dataset.
+There are many steps from the raw data files to the quantification matrices
+on which this thesis analyses are based. \Cref{fig:pipelineTrans} presents a
+general overview of the \Rnaseq\ processing protocol I used.
 
-Since the \Gtex\ data is involved in many project within the \EBI\
+\begin{figure}
+    \includegraphics[scale=0.75]{additional/pipelineTrans.pdf}\centering
+    \caption[General steps for processing the transcriptomic
+    data]{\label{fig:pipelineTrans}\textbf{General steps for processing the
+    transcriptome} [TK]}
+\end{figure}
+
+I downloaded and entirely processed four of the transcriptomic datasets
+myself (\dataset{Castle}, \dataset{Brawand}, \dataset{IBM} and \dataset{Uhlén}
+data) and Dr Nuno Fonseca retrieved and processed the \Gtex\ dataset.
+In this thesis, I present results computed on the quantification of these
+5 datasets which have been processed through the same identical pipeline.
+
+\NB As the \Gtex\ data is involved in many project within the \EBI\
 and due to its huge amount of files (number and  size -- see \Cref{tab:Lib5DF}),
 it was agreed that this would be processed centrally by one person and then
 redistributed to all the other interested parties. Dr Nuno Fonseca had this
-tremendous task and provided me with quantification data (produced with the
-Human genome GRCh38 and ENSEMBL 76 annotation).
+tremendous task and provided me with quantification data mapped to the \hg{38}
+human genome reference and \ens{76} annotation.
 
 \begin{table}
 \centering
@@ -392,147 +410,203 @@ Human genome GRCh38 and ENSEMBL 76 annotation).
     For the Brawand dataset, I only processed the \species{Homo sapiens} part.}}
 \begin{tabular}{@{}cccccc@{}}
 \toprule
-Dataset & \begin{tabular}[c]{@{}c@{}}Sample number\\(biologic)\end{tabular} &
+Dataset & \begin{tabular}[c]{@{}c@{}}Participant\\number\end{tabular} &
 \begin{tabular}[c]{@{}c@{}}Library\\number\end{tabular} &
 \begin{tabular}[c]{@{}c@{}}File\\number\end{tabular} &
 \begin{tabular}[c]{@{}c@{}}Total size of\\the fastq\\raw files (GB) \end{tabular}&
     \begin{tabular}[c]{@{}c@{}}Mean number of\\biologic samples per\\tissues
     [min,max]\end{tabular} \\
 \midrule
-Castle        & 11    & 11    & 11    & 58    & 10 (mixture)    \\
+Castle        & 10    & 11    & 11    & 58    & 10 (mixture)    \\
 Brawand       & 18    & 21    & 23    & 111   & 2.8  [2,3]      \\
 {\small Illumina Body Map} & 16    & 36    & 48    & 1,004  & 1 \\
 Uhlén         & 122   & 200   & 400   & 1,851  & 3.81    [2,11] \\
     \textit{\color{darkgray}\Gtex\ (v4)}  &
-    \textit{\color{darkgray}3,276}  & \textit{\color{darkgray}3,276}  &
+    \textit{\color{darkgray}551}  & \textit{\color{darkgray}3,276}  &
     \textit{\color{darkgray}6,552}  &
     \textit{\color{darkgray}$\sim$ 50,000}  & \textit{\color{darkgray}60.67 [4,214]}\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-For the sake of consistency and to avoid more biases \citep{h38vsh37},
-that led me to reprocess all the other four \Rnaseq\ datasets
-to comply with the reference used for the \Gtex\ samples.
+\subsubsection{Data retrieval and preparation}
 
-Actually,
-as I accessed the datasets through an extended period of time, for a subset of
-the datasets, I produced many sets of results with the previous human reference
-genome (GRCh37) and three different ENSEMBL annotations (73, 74 and 75).While the
-results can vary for individual genes, the overall outcomes are congruent
-together hence supporting the robustness of the findings presented in this thesis.
+I retrieved the human raw data of each dataset from \gls{ArrayExpress} and
+\gls{ENA} through their identifier (see \cref{sec:rnaseq-data}). After we
+received our access approval, Dr Nuno Fonseca retrieved \Gtex\ data from
+\gls{dbGaP}.
 
-Hence, unless indicated otherwise, the results presented in the current work are
-from these genome reference and annotation version.
+While most of the raw files can be used as they are, an additional step is
+needed for the \dataset{Casle} files. Indeed these files are using an older
+\fastq\ format that is non-compliant to the most (accurate and) recent tools.
+As it is a simple matter of changing the quality score scale,
+I translated these files to \gls{Phred} $33$ \fastq\ files with a
+\emph{\gls{Perl}} script (see~\Cref{code:fastq}).
+
+\subsubsection{Genome and annotation reference}
+
+I accessed the datasets through an extended period of time. Hence, for a subset of
+them, I produced many sets of results based on the \hg{37.p12}
+(and later \hg{37.p13})  human reference genome and the latest available ENSEMBL
+annotation (73, 74 or 75) at that time.
+In fact, the quality of each new annotation update is
+supposedly greater than its predecessor.
+
+As the \dataset{Gtex} data was processed with \hg{38.p1} and \ens{76}, that led me
+to reprocess all the other four \Rnaseq\ datasets for the sake of consistency and
+to avoid more biases \citep{h38vsh37}. Thus, unless indicated
+otherwise, the results presented in the current work are
+based on the \hg{38.p1} human genome reference genebuild and the \ens{76}
+annotation.
+
+
+\subsubsection{Data processing}
 
 In the early stages of my research, I was processing each of the different steps
-sequentially and semi-manually with the help of custom made scripts.
-While the \EBI\ cluster greatly facilitated the handling of the numerous files,
+sequentially and semi-manually with the help of custom made scripts. While the
+\EBI\ \gls{cluster} greatly facilitated the handling of the numerous files,
 the task was quite tedious: particularly due to the necessary jobs monitoring of
 each step and the integrity checks of the intermediate files between them.
 Additionally, although working perfectly within the \EBI\ infrastructure,
 the scripts I wrote would need a fair amount of work to achieve reproducibility
-with other platforms.
+for other platforms.
 
 Fortunately, Dr Nuno Fonseca developed and released
 an ``integrated RNA-seq analysis Pipeline'': \irap\footnote{\irap\ ---
 see: \href{https://nunofonseca.github.io/irap/}%
 {https://nunofonseca.github.io/irap/}}.
 This tool allows the automation of the typical
-(and state-of-the art) workflow to study
+state-of-the art workflow to study
 \Rnaseq\ and use advanced software optimisation techniques and takes full
-advantages of the capacities provided by computer clusters.
+advantages of the capacities provided by computer clusters. Hence, my processing
+workflow improved without any real change as regards for the steps or
+third-parties software tools used.
 
-\irap\ accepts as input raw \Rnaseq\ files,
-a configuration one that precisely describes the dataset (its design and
-technical features) and the protocol specifications to use.
-While parts of the protocol have to be precisely described, \eg\ the genome
-and annotation references, \irap\ provides many default options\footnote{These
-can be easily overridden with the configuration files.}, \eg\ which algorithms to
-use for the mapping, the quantification and the normalisation.
-In addition, each version of \irap\ is embedding its own set of third-party
-version-defined tools.
-
-All the transcriptomic datasets are the products of the same version of the \irap\
-pipeline and share the same set of parameters in the latest complete working sets.
-Thus, apart of remarkably speeding up the data processing, \irap\
+Besides the usual inputs files: raw \Rnaseq\ files and genome/annotation
+references, \irap\ needs a configuration file that precisely describes the
+dataset (its design and technical features) and, if needed, specific parameters
+to use. Indeed, \irap\ provides many default options that could be easily
+overridden by explicit definitions in the configuration file. To provide
+full reproducibility, each version of \irap\ is shipped with
+its own set of third-party version-defined tools and default parameters. Thus,
+apart of remarkably speeding up the data processing, \irap\
 also ensures the protocol integrity across the 5 transcriptomic datasets I
-use in my thesis.
+use in my thesis regardless of who run the pipeline.
 
-
-\subsubsection{Data retrieval and preparation}
-
-The human raw data of each dataset were retrieved from \gls{ArrayExpress},
-\gls{ENA} and, once the access was approved, from \gls{dbGaP}.
-Files encoded in a non-compliant format to \irap\ or the most recent
-tools (\dataset{Castle} dataset)
-were translated to \gls{Phred} $33$ \fastq\ files with the help of
-a \emph{perl} script (see~\Cref{code:fastq}).
-
-
-\subsubsection{Data processing with iRAP}
-
-Each of the datasets has been processed through an identical pipeline
-independently: \irap\ (development version 0.6.3b). \Cref{fig:pipelineTrans}
-illustrates the overall steps of the workflow.
+Each of the transcriptomic datasets are the products of the same version of
+the \irap\ pipeline (development version 0.6.3b) and set of parameters.
 
 As the default parameters of \irap\ are tuned for human Illumina paired-end data,
-I only defined very few of them. Hence, the quality and contamination checks,
-the filtering and trimming of the reads were done following the default options
-of \irap. I also chose to map the reads to the genome with the default
-splice-aware mapper \soft{TopHat}\footnote{\soft{TopHat} ---
+I only have to define few of them. Hence, the quality and contamination checks,
+the filtering and trimming of the reads are done following the default options
+of \irap.
+
+
+\minisec{Quality assessment, trimming and filtering}
+
+\irap\ uses internally \soft{FastX} toolkit\footnote{\soft{FastX} toolkit ---
+\href{http://hannonlab.cshl.edu/fastx\_toolkit/}%
+{http://hannonlab.cshl.edu/fastx\_toolkit/}} (0.0.13) to perform the
+assessment and the trimming.
+
+Reads with a low sequence complexity (\eg\ poly-T or poly-A tails) are discarded.
+As is any read with uncalled bases (N) or with an overall quality score below a
+threshold of 10.
+
+As reported in \Cref{ch:Introduction}, as the base calling progresses, quality
+of the call decreases. On another note, some tools (mappers in particular) need
+all the reads to be trimmed to the same length. \irap\ will optimise the purity
+length-balance to avoid more errors or biases due to smaller reads
+\citep{Trimwisely} by trimming at most 15\% of the original length while discarding
+more reads if necessary to maximise the length.
+
+Reads that could be assigned to a likely contamination source (here
+\species{Escherichia coli}) are also discarded. A splice non-aware mapper,
+\soft{BWA}\footnote{\soft{BWA} --- \href{http://bio-bwa.sourceforge.net/}%
+{http://bio-bwa.sourceforge.net/}} (0.7.4) maps all the reads to the contaminant
+genome and all the reads mapping perfectly and non ambiguously are discarded.
+
+\minisec{Mapping}
+I mapped the reads to the genome with \irap's proposed default splice-aware mapper
+\soft{TopHat2}\footnote{\soft{TopHat} ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}%
-{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12)  with its set of
-predefined arguments. Hence, I only had to pick the genome and annotation references
-and the algorithm to quantify (and normalise) the genes expression.
+{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \citep{tophat2}
+with its set of default predefined arguments. Hence, I only had to provide the
+genome and the transcriptome references. Indeed, \soft{TopHat2} can handle reads
+from many organisms by fine-tuning the parameters (\eg\ number of mismatches or
+indels to tolerate) although the default parameters are adjusted for normal human
+transcriptome reads.
 
-While in the earlier stages of my work, I used the GRCh37.p12
-(GENCODE release 18) and then GRCh37.p13 genebuild (GENCODE release 19),
-the complete set of datasets has been processed with GRCh38.p1. Hence, if not
-stated otherwise, the presented results are mapped to the GRCh38.p1 build.
+\soft{TopHat2} uses an hybrid approach between the two main
+strategies to reconstruct a transcriptome, that are either by mapping them to
+a reference or by \latin{de novo} assembly (see \cref{ch:Introduction}).
+As a first step, \soft{TopHat2} tries to align all the reads
+to the genome. Then in a second time, it maps all the unmapped reads from
+the previous step to the transcriptome reference and creates an exon-exon
+junctions database based on the new set of mapped reads. Finally, all the
+remaining unmapped reads are split between possible exons as to find
+possible new split events via a seed-and-extend approach.
 
-I used two tools for the quantification step: \soft{HTSeq-count}\footnote{%
-\soft{HTSeq-count} --- \href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
-{http://www-huber.embl.de/HTSeq/doc/index.html\#}}(0.6.1p1) (intersection
-non-empty mode) and \soft{Cufflinks}\footnote{\soft{Cufflinks} ---
+\minisec{Quantification and Normalisation}
+
+While \Rnaseq\ is a technique of choice to identify (and discover) \gls{RNA}
+isoforms, I have focused my thesis on the gene level expression. Indeed, current
+annotations and knowledge are still lacking in the reasons and
+external conditions that impact the expression of a specific isoform over the
+others. In addition, criticisms have been raised on the accuracy of distinction
+between them (\cite{tamaraRNA}, \cite{ernestRNA}). While normalising gene
+expression presents additional challenges than specific transcript expression,
+
+
+As I discuss in \Cref{ch:Introduction}, there are various strategies to estimate
+gene expression levels. I used two approaches, implemented in these
+following popular tools:
+\soft{Cufflinks}\footnote{\soft{Cufflinks} ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
-{http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1).
+{http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1) \citep{cufflinks}
+and \soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
+\href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
+{http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1) (with the
+\texttt{intersection non-empty} mode).
 
 
-\gls{RPKM}
-values were then calculated with the internal function provided by \irap. For each
-tissue, gene expression levels were calculated by first taking the mean of the
-technical replicates before calculating the mean of the biological ones. When the
-VEGA IDs of the genes had corresponding ENSEMBL 76 gene IDs, those IDs were
-directly used to assess the gene expression. When this was not the case, the
-coordinates of the genes were retrieved from the latest VEGA release and then the
-windows of interest were plotted on merged bam files (one bam per tissue)
-obtained from TopHat2. The Supplementary Dataset 1 includes the number of
-paired reads that have been counted for each novel gene on the merged bam files
-normalized by the number of initial samples for each tissue.
+\soft{Cufflinks} tries to probabilistically assign the multi-mapped reads
+depending on the coverage at each mapping locus. It also 
 
+\soft{HTSeq-count} 
 
+\gls{FPKM}
+values were then calculated with the internal function provided by \irap.
 I am using only gene levels quantification and not isoforms.
 
+
 \subsubsection{Tissue Averaging}
-Average Number of samples per tissues different => quantification averaged for
-most of the analysis to avoid skewness.
+
+To avoid unnecessary skewness due to the unbalance of biological replicates per
+tissue across the set of datasets for many of the analyses,
+I computed a \emph{virtual reference tissue}
+for \dataset{Brawand}, \dataset{Uhlén} and \dataset{Gtex} datasets.
+
+For each of these datasets, for each tissue, I compute gene expression levels by
+taking the median value of each gene across all the biological replicates.
+
+The \dataset{Uhlén} requires an extra prior step for some of the tissues as they
+present technical replicates. For these, I average first the gene expression levels
+for each subject-tissue pairs before computing the gene expression level medians
+of each tissue.
+
+\NB \dataset{Castle} dataset comprises mixture of 10 subjects for each tissue, I
+discard the single-end sequenced samples for the \dataset{Illumina Body Map}.
 
 
-
-\begin{figure}
-    \includegraphics[scale=0.75]{additional/pipelineTrans.pdf}\centering
-    \caption[General steps for processing the transcriptomic
-    data]{\label{fig:pipelineTrans}\textbf{General steps for processing the
-    transcriptome} [TK]}
-\end{figure}
+\TK{Isabelle, c'est la fin de ce que j'ai fait pour le moment}
 
 
 
 \subsection{Proteome raw data}
 
 Similarly to the transcriptome issue, there is the proteome which is actually
-trickier (possible problem with Pandey data analyses). Really depends which
+trickier (possible problem with \dataset{Pandey} data analyses). Really depends which
 threshold and \gls{FDR} tolerate. And what database and algorithm are used to perform
 the identification of the proteins. More messy.
 
@@ -557,7 +631,7 @@ In this chapter, I describe why and how 5 transcriptomic and 3 proteomic normal
 human tissues datasets have been reprocessed from raw files with unified
 pipelines using the same reference and annotation files.
 
-
+As I accessed the datasets through an extended period of time, for a subset of the datasets, I produced many sets of results with the previous human reference gen- ome (GRCh37) and three different ENSEMBL annotations (73, 74 and 75).While the results can vary for individual genes, the overall outcomes are congruent together hence supporting the robustness of the findings presented in this thesis.
 
 
 \TK{

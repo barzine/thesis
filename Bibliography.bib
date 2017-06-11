@@ -1681,5 +1681,209 @@
   Month       =  {04},
   Year        =  {2016},
   Language    = {en}
-}
+}#49
+
+
+
+@article{Trimwisely,
+  Title       = {Trimming of sequence reads alters {RNA-Seq} gene expression
+                 estimates},
+  Author      = {Williams, Claire R and Baccarella, Alyssa and Parrish, Jay Z
+                 and Kim, Charles C},
+  Abstract    = {BACKGROUND: High-throughput RNA-Sequencing (RNA-Seq) has
+                 become the preferred technique for studying gene expression
+                 differences between biological samples and for discovering
+                 novel isoforms, though the techniques to analyze the resulting
+                 data are still immature. One pre-processing step that is
+                 widely but heterogeneously applied is trimming, in which low
+                 quality bases, identified by the probability that they are
+                 called incorrectly, are removed. However, the impact of
+                 trimming on subsequent alignment to a genome could influence
+                 downstream analyses including gene expression estimation; we
+                 hypothesized that this might occur in an inconsistent manner
+                 across different genes, resulting in differential bias.
+                 RESULTS: To assess the effects of trimming on gene expression,
+                 we generated RNA-Seq data sets from four samples of larval
+                 Drosophila melanogaster sensory neurons, and used three
+                 trimming algorithms--SolexaQA, Trimmomatic, and ConDeTri-to
+                 perform quality-based trimming across a wide range of
+                 stringencies. After aligning the reads to the D. melanogaster
+                 genome with TopHat2, we used Cuffdiff2 to compare the
+                 original, untrimmed gene expression estimates to those
+                 following trimming. With the most aggressive trimming
+                 parameters, over ten percent of genes had significant changes
+                 in their estimated expression levels. This trend was seen with
+                 two additional RNA-Seq data sets and with alternative
+                 differential expression analysis pipelines. We found that the
+                 majority of the expression changes could be mitigated by
+                 imposing a minimum length filter following trimming,
+                 suggesting that the differential gene expression was primarily
+                 being driven by spurious mapping of short reads. Slight
+                 differences with the untrimmed data set remained after length
+                 filtering, which were associated with genes with low exon
+                 numbers and high GC content. Finally, an analysis of paired
+                 RNA-seq/microarray data sets suggests that no or modest
+                 trimming results in the most biologically accurate gene
+                 expression estimates. CONCLUSIONS: We find that aggressive
+                 quality-based trimming has a large impact on the apparent
+                 makeup of RNA-Seq-based gene expression estimates, and that
+                 short reads can have a particularly strong impact. We conclude
+                 that implementation of trimming in RNA-Seq analysis workflows
+                 warrants caution, and if used, should be used in conjunction
+                 with a minimum read length filter to minimize the introduction
+                 of unpredictable changes in expression estimates.},
+  Journal     = {BMC Bioinformatics},
+  Volume      =  {17},
+  Pages       = {103},
+  Month       =  {02},
+  Year        =  {2016},
+  Language    = {en}
+}#50
+
+
+
+@article{tophat2,
+  Title    = {{TopHat2}: accurate alignment of transcriptomes in the presence
+              of insertions, deletions and gene fusions},
+  Author   = {Kim, Daehwan and Pertea, Geo and Trapnell, Cole and Pimentel,
+              Harold and Kelley, Ryan and Salzberg, Steven L},
+  Abstract = {TopHat is a popular spliced aligner for RNA-sequence (RNA-seq)
+              experiments. In this paper, we describe TopHat2, which
+              incorporates many significant enhancements to TopHat. TopHat2 can
+              align reads of various lengths produced by the latest sequencing
+              technologies, while allowing for variable-length indels with
+              respect to the reference genome. In addition to de novo spliced
+              alignment, TopHat2 can align reads across fusion breaks, which
+              can occur after genomic translocations. TopHat2 combines the
+              ability to identify novel splice sites with direct mapping to
+              known transcripts, producing sensitive and accurate alignments,
+              even for highly repetitive genomes or in the presence of
+              pseudogenes. TopHat2 is available at
+              http://ccb.jhu.edu/software/tophat.},
+  Journal  = {Genome Biology},
+  Volume   =  {14},
+  Number   =  {4},
+  Pages    = {R36},
+  Month    =  {04},
+  Year     =  {2013},
+  Language = {en}
+}#51
+
+
+@article{cufflinks,
+  Title       = {Transcript assembly and quantification by {RNA-Seq} reveals
+                 unannotated transcripts and isoform switching during cell
+                 differentiation},
+  Author      = {Trapnell, Cole and Williams, Brian A and Pertea, Geo and
+                 Mortazavi, Ali and Kwan, Gordon and van Baren, Marijke J and
+                 Salzberg, Steven L and Wold, Barbara J and Pachter, Lior},
+  Abstract    = {High-throughput mRNA sequencing (RNA-Seq) promises
+                 simultaneous transcript discovery and abundance estimation.
+                 However, this would require algorithms that are not restricted
+                 by prior gene annotations and that account for alternative
+                 transcription and splicing. Here we introduce such algorithms
+                 in an open-source software program called Cufflinks. To test
+                 Cufflinks, we sequenced and analyzed >430 million paired 75-bp
+                 RNA-Seq reads from a mouse myoblast cell line over a
+                 differentiation time series. We detected 13,692 known
+                 transcripts and 3,724 previously unannotated ones, 62\% of
+                 which are supported by independent expression data or by
+                 homologous genes in other species. Over the time series, 330
+                 genes showed complete switches in the dominant transcription
+                 start site (TSS) or splice isoform, and we observed more
+                 subtle shifts in 1,304 other genes. These results suggest that
+                 Cufflinks can illuminate the substantial regulatory
+                 flexibility and complexity in even this well-studied model of
+                 muscle development and that it can improve transcriptome-based
+                 genome annotation.},
+  Journal     =  {Nature Biotechnoly},
+  Volume      =  {28},
+  Number      =  {5},
+  Pages       =  {511--515},
+  Month       =  {05},
+  Year        =  {2010},
+  Language    =  {en}
+}#52
+
+
+
+
+@article{ernestRNA,
+  Title    = {A comparative study of {RNA-seq} analysis strategies},
+  Author   = {J{\"a}nes, J{\"u}rgen and Hu, Fengyuan and Lewin, Alexandra and
+              Turro, Ernest},
+  Abstract = {Three principal approaches have been proposed for inferring the
+              set of transcripts expressed in RNA samples using RNA-seq. The
+              simplest approach uses curated annotations, which assumes the
+              transcripts in a sample are a subset of the transcripts listed in
+              a curated database. A more ambitious method involves aligning
+              reads to a reference genome and using the alignments to infer the
+              transcript structures, possibly with the aid of a curated
+              transcript database. The most challenging approach is to assemble
+              reads into putative transcripts de novo without the aid of
+              reference data. We have systematically assessed the properties of
+              these three approaches through a simulation study. We have found
+              that the sensitivity of computational transcript set estimation
+              is severely limited. Computational approaches (both genome-guided
+              and de novo assembly) produce a large number of artefacts, which
+              are assigned large expression estimates and absorb a substantial
+              proportion of the signal when performing expression analysis. The
+              approach using curated annotations shows good expression
+              correlation even when the annotations are incomplete.
+              Furthermore, any incorrect transcripts present in a curated set
+              do not absorb much signal, so it is preferable to have a curation
+              set with high sensitivity than high precision. Software to
+              simulate transcript sets, expression values and sequence reads
+              under a wider range of parameter values and to compare
+              sensitivity, precision and signal-to-noise ratios of different
+              methods is freely available online
+              (https://github.com/boboppie/RSSS) and can be expanded by
+              interested parties to include methods other than the exemplars
+              presented in this article.},
+  Journal  = {Brief. Bioinform.},
+  Volume   =  {16},
+  Number   =  {6},
+  Pages    = {932--940},
+  Month    =  {11},
+  Year     =  {2015},
+  Keywords = {RNA splicing; RNA-seq; gene expression; transcriptome assembly},
+  Language = {en}
+}#53
+
+
+
+@article{tamaraRNA,
+  Title       = {Systematic evaluation of spliced alignment programs for
+                 {RNA-seq} data},
+  Author      = {Engstr{\"o}m, P{\"a}r G and Steijger, Tamara and Sipos, Botond
+                 and Grant, Gregory R and Kahles, Andr{\'e} and R{\"a}tsch,
+                 Gunnar and Goldman, Nick and Hubbard, Tim J and Harrow,
+                 Jennifer and Guig{\'o}, Roderic and Bertone, Paul and {RGASP
+                 Consortium}},
+  Abstract    = {High-throughput RNA sequencing is an increasingly accessible
+                 method for studying gene structure and activity on a
+                 genome-wide scale. A critical step in RNA-seq data analysis is
+                 the alignment of partial transcript reads to a reference
+                 genome sequence. To assess the performance of current mapping
+                 software, we invited developers of RNA-seq aligners to process
+                 four large human and mouse RNA-seq data sets. In total, we
+                 compared 26 mapping protocols based on 11 programs and
+                 pipelines and found major performance differences between
+                 methods on numerous benchmarks, including alignment yield,
+                 basewise accuracy, mismatch and gap placement, exon junction
+                 discovery and suitability of alignments for transcript
+                 reconstruction. We observed concordant results on real and
+                 simulated RNA-seq data, confirming the relevance of the
+                 metrics employed. Future developments in RNA-seq alignment
+                 methods would benefit from improved placement of multimapped
+                 reads, balanced utilization of existing gene annotation and a
+                 reduced false discovery rate for splice junctions.},
+  Journal     = {Nature. Methods},
+  Volume      =  {10},
+  Number      =  {12},
+  Pages       = {1185--1191},
+  Month       =  {12},
+  Year        =  {2013},
+  Language    = {en}
+}#54
 
