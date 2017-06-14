@@ -120,19 +120,49 @@ and/or not settled yet. This is the case for this study.
 Corrections for Rnaseq are already part of the analysis and
 requires often as much flair than skills.
 
-\subsection{Transcriptome exploration with RNA sequencing}
-
 The transcriptome is the total repertoire of transcripts (\ie\ \glspl{RNA}
 molecules) expressed in a cell or tissue at a given time and condition. Unlike
 the genome which is roughly identical regardless which cell of a particular
 individual is considered, the transcriptome varies\ldots
 
+\subsection{Transcriptome exploration with RNA sequencing}
 
-
-
+\TK{history of \Rnaseq.}
 In the past decade, \gls{RNA-Seq} technology has risen as the method of choice
-for  transcriptome
+for  transcriptome.
 
+Many methods and technologies through the years but more recently, boom of study:
+next generation sequencing (1st generation, 2nd generation and 3rd)\ldots So
+much that now the expression doesn't mean anything.
+
+Completion of the Human genome project : key changer: probes with microarrays
+possible (as there were then template). Next key changer: shotgun sequencing
+instead of Sanger sequencing (slow). + advance in computer science: needs of
+parallelisation and storage.
+
+So, In 2008, shift from microarrays to \Rnaseq.
+
+\rew{
+The first step in transcriptome sequencing is library preparation, and consists of obtaining the starting material and converting it into a cDNA library that can be loaded into the sequencing machine (Figure 1.5) [van Dijk et al., 2014]. Following RNA extraction, the RNA species of interest are typically enriched through either polyA selection or ribodepletion. In both cases, the aim is to diminish the concentration of rRNAs, i.e. the most abundant species of RNA in the cell. With the first method, this is achieved through the use of oligo-dT beads, which enable the specific extraction of polyAdenylated RNAs, hence ensuring a good representation of mRNAs (Figure 1.5 - step 1). Conversely, ribodepletion relies on the use of ribonucleases to specifically digest rRNAs, and has the advantage of not restricting the analyses to a specific type of RNA. Indeed, the term total RNA is typically used to refer to datasets produced with such protocol, while those obtained with the former method are commonly known as polyA-selected. Due to the simpler protocol and its lower price, polyA selection emerges as the most popular choice amongst the currently available RNA-seq datasets, with the notable exception of those studies aimed at characterising non-coding RNA species, which typically lack a polyA tail. The extracted RNA is then fragmented via hydrolysis with divalent cations and retro-transcribed into double stranded cDNA by using random hexamer primers, since the sequence of the obtained fragments is not known at this point (Figure 1.5 - step 2). These steps are followed by the ligation of adapter sequences at both ends of each cDNA fragment (Figure 1.5 - step 3). Such adapters satisfy two different purposes: on the one hand, they enable the hybridisation of those fragments into the flow cell,
+where the sequencing takes place; on the other hand, they serve as primers for the sequencing reaction. Then, the resulting cDNA fragments are size-selected through gel electrophoresis to fit within the range required by the sequencing machine (typically 300-500 bp). Fragments outside this range will be missed; hence the existence of alternative protocols for the study of small RNAs [Zhuang et al., 2012]. Finally, the cDNA library is amplified by PCR.
+}
+
+
+In the following section, I introduce the typical steps of the required workflow to
+study the transcriptome through sequencing on an Illumina platform. In fact,
+while not by prior design, all the transcriptomes analysed in this thesis are the
+product of Illumina sequencing \footnote{While there are many types of sequencing
+platform, Illumina is still by far the most popular: on 2,851
+\species{Homo sapiens} \Rnaseq\ studies included in ArrayExpress, were sequenced
+with an Illumina sequencing
+machine (query done on 14 June 2017)}.
+Other platforms protocols will need
+various modifications that are outside of the realm of this thesis and that are
+well explained in the respective manual of each sequencer machine.
+
+I will discuss the concepts behind this type of sequencing technology and the
+methods for analysing this kind of data with emphasis on the tools and
+approaches I used.
 
 
 \subsubsection{Quality assessment, trimming and filtering}
@@ -158,12 +188,12 @@ Whenever the overall quality of the samples allows it, it is best to discard ver
 
 
 Then, reads that present an overall quality score below a given threshold (10) are
-    fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
-    Since the quality decreases as the calling process progresses, all the reads are
-    trimmed to a same length\footnote{This is a requirement of some tools (mappers
-    in particular).} in a way to optimise the purity-length balance. The trimming has
-    to be less than 15\% of the original length. If needed, more reads are discarded
-    so the length is maximised.
+fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
+Since the quality decreases as the calling process progresses, all the reads are
+trimmed to a same length\footnote{This is a requirement of some tools (mappers
+in particular).} in a way to optimise the purity-length balance. The trimming has
+to be less than 15\% of the original length. If needed, more reads are discarded
+so the length is maximised.
 
 
 

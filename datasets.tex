@@ -52,6 +52,7 @@ in the chronological order of their first public release.
 \Cref{tab:Trans5DF} summarises the main characteristics of these datasets.
 
 \begin{sidewaystable}
+    \TK{Ajouter une legende Y et (Y) }
            \centering
            \caption{\label{tab:Trans5DF}General description of the 5 transcriptomic
            dataset (\Rnaseq) used for this study}
@@ -157,7 +158,7 @@ Although each sample has been sequenced twice and that we have in principle
 usually imply that their processing uses the same sample source and protocols.
 Thus, the error and the noise due to a specific technique could be determined.
 Here, however, each tissue has been sequenced once with a singled-end protocol
-and once with a paired-end one.
+and once with a paired-end one to compare them together.
 
 The sequencing was performed with an Illumina HiSeq 2000 and the reads were
 released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}), from where I
@@ -245,8 +246,8 @@ are mostly reporting the spatial expression of proteins (as they are based
 on immunohistochemistry or other means of identification) than quantifying
 their (non-targeted) abundance in each tissue.
 
-Then, in 2014, two different groups of authors, \cite{PandeyData}
-and \cite{KusterData}, published (in \textit{Nature},
+Then, in 2014, two different groups of authors, M.-S.\ Kim et al.\
+and Wilhelm et al., published (in \textit{Nature},
 issue 7502) their own \emph{``draft of the human proteome''}
 based on the study of tissues with \ms. These two datasets complement a previous
 smaller one that was publicly released but was never the object of a publication.
@@ -305,7 +306,7 @@ The subset of data considered in my thesis is also
 known as the [protein] Human BodyMap which is the part that was primary generated
 by the Kuster lab itself for their study. It corresponds to 1,087 \gls{LC-MS/MS}
 profiles and comprises 48 experiments covering 36 tissues (adult and fetal) and
-cell lines. Overall that represents about 14 million of (\gls{HCD}/\gls{CID})
+cell lines. Overall that represents about 14 million of \gls{HCD}/\gls{CID}
 spectra from Thermo Scientific instruments.
 
 This specific subpart of the raw data was downloaded from \Proteomicsdb{PRDB000042}.
@@ -324,8 +325,8 @@ It was created by Paul Cutler at Roche Pharmaceuticals.
 It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files).
 
 While this data was never published on its own, it has been used in different
-studies. Indeed, the \dataset{Cutler} data is one of the datasets that
-\cite{KusterData} are using in their original study to create ProteomicsDB.
+studies. %Indeed, the \dataset{Cutler} data is one of the datasets that
+%\cite{KusterData} are using in their original study to create ProteomicsDB.
 
 The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
@@ -357,6 +358,7 @@ have been used.
 Intuitively, we expect that different processing protocols produce
 different results.
 
+% est-ce que tous ces concepts sont introduit précedement.
 Indeed, as I started to work with \Rnaseq\ data, I noticed many potential bias
 sources that impact its final expression values. Many of these have been
 reported in the literature since then;
@@ -390,16 +392,15 @@ general overview of the \Rnaseq\ processing protocol I used.
 
 I downloaded and entirely processed four of the transcriptomic datasets
 myself (\dataset{Castle}, \dataset{Brawand}, \dataset{IBM} and \dataset{Uhlén}
-data) and Dr Nuno Fonseca retrieved and processed the \Gtex\ dataset.
-In this thesis, I present results computed on the quantification of these
-5 datasets which have been processed through the same identical pipeline.
-
-\NB As the \Gtex\ data is involved in many project within the \EBI\
+data) and Dr Nuno Fonseca retrieved and processed the \Gtex\ dataset (\hg{38.p1}
+human genome reference and \ens{76} annotation)\footnote{As
+the \Gtex\ data is involved in many project within the \EBI\
 and due to its huge amount of files (number and  size -- see \Cref{tab:Lib5DF}),
 it was agreed that this would be processed centrally by one person and then
 redistributed to all the other interested parties. Dr Nuno Fonseca had this
-tremendous task and provided me with quantification data mapped to the \hg{38}
-human genome reference and \ens{76} annotation.
+tremendous task.}. I present results computed on the quantification of these
+5 datasets which have been processed through the same identical pipeline.
+
 
 \begin{table}
 \centering
@@ -437,8 +438,8 @@ received our access approval, Dr Nuno Fonseca retrieved \Gtex\ data from
 \gls{dbGaP}.
 
 While most of the raw files can be used as they are, an additional step is
-needed for the \dataset{Casle} files. Indeed these files are using an older
-\fastq\ format that is non-compliant to the most (accurate and) recent tools.
+needed for the \dataset{Castle} files. Indeed these files are using an older
+\fastq\ format that is non-compliant to the most accurate and recent tools.
 As it is a simple matter of changing the quality score scale,
 I translated these files to \gls{Phred} $33$ \fastq\ files with a
 \emph{\gls{Perl}} script (see~\Cref{code:fastq}).
@@ -478,12 +479,12 @@ see: \href{https://nunofonseca.github.io/irap/}%
 This tool allows the automation of the typical
 state-of-the art workflow to study
 \Rnaseq\ and use advanced software optimisation techniques and takes full
-advantages of the capacities provided by computer clusters. Hence, my processing
-workflow improved without any real change as regards for the steps or
-third-parties software tools used.
+advantages of the capacities provided by computer clusters. Hence, my previous
+manual processing workflow get optimised by \irap\ without any real change
+regarding the steps or the algorithms. % à relire phrase.
 
-Besides the usual inputs files: raw \Rnaseq\ files and genome/annotation
-references, \irap\ needs a configuration file that precisely describes the
+Besides the usual inputs files (raw \Rnaseq\ files and genome/annotation
+references), \irap\ needs a configuration file that precisely describes the
 dataset (its design and technical features) and, if needed, specific parameters
 to use. Indeed, \irap\ provides many default options that could be easily
 overridden by explicit definitions in the configuration file. To provide
@@ -515,10 +516,10 @@ threshold of 10.
 
 As reported in \Cref{ch:Introduction}, as the base calling progresses, quality
 of the call decreases. On another note, some tools (mappers in particular) need
-all the reads to be trimmed to the same length. \irap\ will optimise the purity
-length-balance to avoid more errors or biases due to smaller reads
+all the reads to be trimmed to the same length. \TK{\irap\ will optimise the
+purity-length balance to avoid more errors or biases due to smaller reads
 \citep{Trimwisely} by trimming at most 15\% of the original length while discarding
-more reads if necessary to maximise the length.
+more reads if necessary to maximise the length. : instead balance compromise}
 
 Reads that could be assigned to a likely contamination source (here
 \species{Escherichia coli}) are also discarded. A splice non-aware mapper,
@@ -571,9 +572,9 @@ and \soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
 
 
 \soft{Cufflinks} tries to probabilistically assign the multi-mapped reads
-depending on the coverage at each mapping locus. It also 
+depending on the coverage at each mapping locus. It also
 
-\soft{HTSeq-count} 
+\soft{HTSeq-count}
 
 \gls{FPKM}
 values were then calculated with the internal function provided by \irap.
@@ -583,7 +584,8 @@ I am using only gene levels quantification and not isoforms.
 \subsubsection{Tissue Averaging}
 
 To avoid unnecessary skewness due to the unbalance of biological replicates per
-tissue across the set of datasets for many of the analyses,
+tissue across the set of datasets for many of the analyses, \TK{reexpliquer pkoi
+le déséquilibre}
 I computed a \emph{virtual reference tissue}
 for \dataset{Brawand}, \dataset{Uhlén} and \dataset{Gtex} datasets.
 
@@ -633,9 +635,7 @@ pipelines using the same reference and annotation files.
 
 As I accessed the datasets through an extended period of time, for a subset of the datasets, I produced many sets of results with the previous human reference gen- ome (GRCh37) and three different ENSEMBL annotations (73, 74 and 75).While the results can vary for individual genes, the overall outcomes are congruent together hence supporting the robustness of the findings presented in this thesis.
 
-
-\TK{
-Many tools are for now not a better than the other one. Can be hard to decide
+\TK{Many tools are for now not a better than the other one. Can be hard to decide
 which one to pick. A lot of decision have to been taken --- and while this
 doesn't affect the overall landscape, if one is interested by a specific
 genes, \Rnaseq\ should be supported with more wet-lab thing.\\
@@ -647,4 +647,7 @@ Similar expression between HTSeq and Cufflinks
 \\
 Add the end of the day, \Rnaseq remains an exploratory (even when we look at
 specific differential expression) studies.
+%Discuter de l'origine des échantillons
 }
+
+
