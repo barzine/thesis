@@ -11,6 +11,7 @@ commentary''.}{\cite{asimov:WrongRel}}%
 %}
 \end{comment}
 
+
 \begin{comment}
 When Asimov concluded with these words his chapter ``Beginning with bone'',
 scientists had already started unfolding one of the most mesmerising biological
@@ -21,7 +22,7 @@ organisme A different
 de B, ou un foie et un foie et pas un coeur + comment d'une cellule-oeuf on a un
 organisme complet qui se creée... ne pas s'étendre dessus par contre}.\
 Watson and Crick by publishing the double-helix structure of \DNA\
-\citep{DNA1953} unlocked our path to understand the natural ways of storing and
+\mycite{DNA1953} unlocked our path to understand the natural ways of storing and
 manipulating the information. As the whole past six decades were packed with major
 discoveries and technological achievements, there are many, fascinating,
 milestones that could be discussed.
@@ -86,7 +87,6 @@ quelque chose.%
 
 Just so that the next part of the chapter got a OK presentation:
 \begin{itemize}
-    \item \gls{mRNA}
     \item \gls{ncRNA}
     \item \gls{tRNA}
     \item \gls{miRNA}
@@ -94,7 +94,6 @@ Just so that the next part of the chapter got a OK presentation:
     \item \gls{scaRNA}
     \item \gls{snoRNA}
     \item \gls{scRNA}
-    \item \gls{rRNA}
 \end{itemize}
 
 \TK{Assumption mRNA and proteins : highly correlated [find references]}
@@ -142,34 +141,118 @@ parallelisation and storage.
 
 So, In 2008, shift from microarrays to \Rnaseq.
 
-\rew{
-The first step in transcriptome sequencing is library preparation, and consists of obtaining the starting material and converting it into a cDNA library that can be loaded into the sequencing machine (Figure 1.5) [van Dijk et al., 2014]. Following RNA extraction, the RNA species of interest are typically enriched through either polyA selection or ribodepletion. In both cases, the aim is to diminish the concentration of rRNAs, i.e. the most abundant species of RNA in the cell. With the first method, this is achieved through the use of oligo-dT beads, which enable the specific extraction of polyAdenylated RNAs, hence ensuring a good representation of mRNAs (Figure 1.5 - step 1). Conversely, ribodepletion relies on the use of ribonucleases to specifically digest rRNAs, and has the advantage of not restricting the analyses to a specific type of RNA. Indeed, the term total RNA is typically used to refer to datasets produced with such protocol, while those obtained with the former method are commonly known as polyA-selected. Due to the simpler protocol and its lower price, polyA selection emerges as the most popular choice amongst the currently available RNA-seq datasets, with the notable exception of those studies aimed at characterising non-coding RNA species, which typically lack a polyA tail. The extracted RNA is then fragmented via hydrolysis with divalent cations and retro-transcribed into double stranded cDNA by using random hexamer primers, since the sequence of the obtained fragments is not known at this point (Figure 1.5 - step 2). These steps are followed by the ligation of adapter sequences at both ends of each cDNA fragment (Figure 1.5 - step 3). Such adapters satisfy two different purposes: on the one hand, they enable the hybridisation of those fragments into the flow cell,
-where the sequencing takes place; on the other hand, they serve as primers for the sequencing reaction. Then, the resulting cDNA fragments are size-selected through gel electrophoresis to fit within the range required by the sequencing machine (typically 300-500 bp). Fragments outside this range will be missed; hence the existence of alternative protocols for the study of small RNAs [Zhuang et al., 2012]. Finally, the cDNA library is amplified by PCR.
-}
+\clearpage
+
+In the following section, I introduce the typical steps of the required workflow
+to study the transcriptome through sequencing on an Illumina platform. In fact,
+while not by conscious design, all the transcriptomes analysed in this thesis are
+the product of Illumina sequencing. It is not surprising as Illumina was by far
+the most popular platform for the last decade. Indeed, Illumina proposes a very
+good ratio between the accuracy and the fact that it achieves the highest
+throughput and the lowest per-base cost \mycite{IlluminaCheap}.
+
+Experimental protocols for other platforms will need various and specific
+modifications that are outside of the realm of this thesis and thus will not be
+cover here. More details on the other main sequencing platforms and their
+relevant protocols can be found in \cite{rnaseqProtocols} review paper or at the
+online resource ``RNA-seqlopedia'' \mycite{rnaseqlopedia}.
+
+As I discuss the concepts behind the Illumina sequencing technology and the
+most common related methods to process it, I will emphasise the approaches and
+the tools I used to estimate the gene expression levels from raw nucleotide
+sequences.
+
+\Cref{fig:OverviewRnaseqPrepSeq} presents an overview of the typical steps of a
+\Rnaseq\ workflow from the libraries preparation to the sequencing.
+
+\begin{figure}
+    \includegraphics[scale=0.60]{introduction/IntroWorkflow}\centering
+    \caption[Overview of a \Rnaseq\ workflow: library preparation
+    and sequencing]{\label{fig:OverviewRnaseqPrepSeq}\textbf{Overview of
+    a typical \Rnaseq\ workflow:
+    library preparation and sequencing}}
+\end{figure}
+
+\NB Albeit the collection and the conservation of the samples prior to the
+\gls{RNA} extraction most definitely affects the final
+estimations, I will let aside these steps from my review.
+
+\subsubsection{Library preparation}
+
+The first step of a typical \Rnaseq\ workflow is the preparation of \gls{cDNA}
+libraries from the starting material. This step and the sequencing itself are
+the most platform dependent parts of the overall protocol. Indeed, contingently
+on to the sequencing principle they rely, the sequencers need the libraries to
+be fixed and loaded differently.
+
+\minisec{\gls{RNA} enrichment}
+
+The most abundant \gls{RNA} population in a cell is constituted by the
+\glspl{rRNA} (about 70\% or above) \mycite{biochbook}\footnote{Even though, they
+are a very small part of the genome, \eg\ for \species{Homo sapiens}, there are
+only 568 genes (<1\%) that are described as \gls{rRNA} out of the 63,898
+annotated genes of the ENSEMBL database (\hg{38.p10} - \ens{89}).}
+than 1\%. Although it is interesting to study them on their own,
+most of the current \gls{RNA} studies aim to research \mRNAs\ (about 3 to 5\% of
+the whole \gls{RNA} population) \mycite{molBiolCell} and \glspl{lncRNA} which
+are commonlypolyadenylated) or other more scarce (as they are less numerous)
+\glspl{RNA}.
+
+There are typically two strategies: either polyA-selection or ribodepletion.
+However, these are insufficiently specific though to exclusively select a
+particular type of \gls{RNA}.
 
 
-In the following section, I introduce the typical steps of the required workflow to
-study the transcriptome through sequencing on an Illumina platform. In fact,
-while not by prior design, all the transcriptomes analysed in this thesis are the
-product of Illumina sequencing \footnote{While there are many types of sequencing
-platform, Illumina is still by far the most popular: on 2,851
-\species{Homo sapiens} \Rnaseq\ studies included in ArrayExpress, were sequenced
-with an Illumina sequencing
-machine (query done on 14 June 2017)}.
-Other platforms protocols will need
-various modifications that are outside of the realm of this thesis and that are
-well explained in the respective manual of each sequencer machine.
+\subminisec{PolyA-selection}
+This strategy essentially targets the \mRNAs. It exploits the polyadenylated
+tail at the 3' end of the \mRNAs\ (and some other, \eg\ \glspl{lncRNA}
+\mycite{polyAlncRNA}) added
+post-transcriptionally. In fact, magnetic beads supporting short
+strings of thymine (oligo-dT) capture efficiently these \mRNAs\ while the others
+are washed away \mycite{Mortazavi2008}.
 
-I will discuss the concepts behind this type of sequencing technology and the
-methods for analysing this kind of data with emphasis on the tools and
-approaches I used.
+\subminisec{Ribodepletion}
+
+This strategy is preferred for the study of any \gls{ncRNA} or when researching
+the interaction of \mRNAs\ with other \glspl{RNA}. \TK{add example.}
+
+This strategy is in a way the reverse of the previous one as its also
+uses magnetic beads to target \glspl{rRNA}. However, they are used to remove the
+unwanted \glspl{rRNA} from the sample. ThermoFisher claims that its
+RiboMinus protocol can remove till 99.99\% of the \glspl{rRNA}.
+
+Ribonucleases that specifically digest \glspl{rRNA} can also be used;
+\cite{castleData} had another approach where they tried to amplify \emph{every}
+other \gls{RNA} with the help of specifically designed probes (see
+\Cref{subsec:castlepresentation}).
+
+Datasets produced following a ribodepletion protocol are usually called
+\emph{whole \gls{RNA}} or \emph{total \gls{RNA}} as a contrast to the
+\emph{polyA-selected} datasets (produced with the previous protocol).
+
+\clearpage
+
+\minisec{RNA fragmentation}
+
+\minisec{Double-stranded cDNA synthesis}
+
+\minisec{Adapter ligation, PCR amplification and size selection}
+
+\minisec{Hybridisation}
+
+\minisec{Cluster amplification}
 
 
-\subsubsection{Quality assessment, trimming and filtering}
+\minisec{Sequencing}
+
+
+\minisec{Alternative preparation strategies}
 
 
 
+\subsubsection{Read mapping strategies}
 
+\minisec{Quality check, trimming and filtering}
 
 \NB Generally, after the sequencer calls the reads, a first trimming removes
 all the adaptors and barcodes needed by the sequencing protocols. Thus,
@@ -178,6 +261,13 @@ However, to avert any latter contingency, a research against
 a list of the most common adaptors and an over-representation assessment of small
 sequences (\emph{k-mers}) at each end of the reads is good practice.
 
+\minisec{\latin{De novo} assembly}
+
+\minisec{Read alignment}
+
+\subminisec{Genome reference}
+
+\subminisec{Transcriptome reference}
 
 
 

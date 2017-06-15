@@ -52,10 +52,17 @@ in the chronological order of their first public release.
 \Cref{tab:Trans5DF} summarises the main characteristics of these datasets.
 
 \begin{sidewaystable}
-    \TK{Ajouter une legende Y et (Y) }
            \centering
-           \caption{\label{tab:Trans5DF}General description of the 5 transcriptomic
-           dataset (\Rnaseq) used for this study}
+           \caption[General description of the 5 transcriptomic datasets
+           (\Rnaseq) used for this study]{\label{tab:Trans5DF}\textbf{General
+           description of the 5 transcriptomic datasets (\Rnaseq) used for this
+           study}\\\footnotesize{Illumina Body Map (IBM) has not ``regular''
+           technical replicates as the ``replicates'' are the product of
+           different protocols,\\thus are unfit to estimate the specific noise of
+           either protocol (single-end or paired-end).\\
+           \NB The protocols used for \Gtex\ and Castle datasets are not the same:
+           \\\Gtex\ is following the most common ribodepletion protocol, while\\
+           Castle is based on  a targeted amplification protocol.\\}}
        \begin{tabular}{@{}cccccccccc@{}}
        \toprule
        \multicolumn{1}{c|}
@@ -77,17 +84,21 @@ in the chronological order of their first public release.
             \multicolumn{1}{c|}{Biological} & \multicolumn{1}{c|}{Technical} &
             \multicolumn{1}{c|}{} &  \\
        \midrule
-       E-MTAB-305 & Castle & Y &  & Y &  &  &  & 11 &  \\
-       E-GEOD-30352 & Brawand &  & Y & Y &  & Y &  & 8 &  \\
-       E-MTAB-513 & IBM &  & Y & Y & Y &  & (Y) & 16 &  \\
-       E-MTAB-2836 \footnotesize{(and E-MTAB-1733)}& Uhlén &  & Y &  & Y & Y & Y & 32 &  \\
-       E-MTAB-2919 & Gtex (v4)  & Y &  &  & Y & Y &  & 54 & Y \\
+       E-MTAB-305 & Castle & \mycheckmark &  & \mycheckmark &  &  &  & 11 &  \\
+       E-GEOD-30352 & Brawand &  & \mycheckmark & \mycheckmark  &  &
+           \mycheckmark  &  & 8 &  \\
+       E-MTAB-513 & IBM &  & \mycheckmark & \mycheckmark & \mycheckmark &  &
+           (\mycheckmark) & 16 &  \\
+       E-MTAB-2836 \footnotesize{(and E-MTAB-1733)}& Uhlén &  & \mycheckmark &
+           & \mycheckmark & \mycheckmark  & \mycheckmark  & 32 &  \\
+       E-MTAB-2919 & Gtex (v4)  & \mycheckmark &  &  & \mycheckmark &
+           \mycheckmark &  & 54 & \mycheckmark \\
        \bottomrule
        \end{tabular}
 \end{sidewaystable}
 
 \subsection{Castle et al. dataset}
-
+\label{subsec:castlepresentation}
 This dataset has been published along with the \paper{\citetitle{castleData}}
 by \citet{castleData} who were interested in exploring the whole RNA repertoire
 with sequencing-based technology. They essentially focused their study
@@ -96,7 +107,7 @@ on the non-coding part.
 They used multiple-donors pooled tissues created from purchased total \gls{RNA}
 samples and prepared the 11 libraries following a whole transcriptomic protocol
 where nonribosomal \gls{RNA} transcripts are
-specifically amplified by \gls{PCR} \citep{Armour:2009}.
+specifically amplified by \gls{PCR} \mycite{Armour:2009}.
 
 They generated an average of 50 million sequence reads per tissue
 using an Illumina Genome Analyser-II sequencer (single-end).
@@ -178,9 +189,9 @@ revolving mostly around the spatial
 distribution of the proteins through the Human body. They use many approaches
 and techniques which also include \Rnaseq. They first released their \Rnaseq\
 data of 27 normal tissues as a part of their article \paper{\citetitle{Uhlen2014}}
-\citep{Uhlen2014}. Later, they extended their dataset with new samples and 5 new
+\mycite{Uhlen2014}. Later, they extended their dataset with new samples and 5 new
 tissues. The latest version was published with \paper{\citetitle{Uhlen2015}}
-\citep{Uhlen2015} in \textit{Science}.
+\mycite{Uhlen2015} in \textit{Science}.
 
 They provide (at least two) biological replicates for the 32 tissues.
 Except for a very small number, the tissues have both male and female donors.
@@ -256,7 +267,7 @@ Hereafter, I present these 3 datasets that I use in my thesis.
 
 \subsection{Pandey Lab data}
 
-The Pandey Lab \citep{PandeyData} created the
+The Pandey Lab \mycite{PandeyData} created the
 \href{http://www.humanproteomemap.org/}%
 {Human Proteome Map}\footnote{Human Proteome Map --- %
 \href{http://www.humanproteomemap.org/}{www.humanproteomemap.org}} which
@@ -319,7 +330,7 @@ This specific subpart of the raw data was downloaded from \Proteomicsdb{PRDB0000
 This data was generated prior to the \dataset{Pandey} and the \dataset{Kuster}
 data as it was released in 2011 through PeptideAtlas\footnote{PeptideAtlas --- %
 \href{http://www.peptideatlas.org/}{www.peptideatlas.org}}
-\citep{PeptideAtlas}.
+\mycite{PeptideAtlas}.
 
 It was created by Paul Cutler at Roche Pharmaceuticals.
 It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files).
@@ -338,17 +349,17 @@ released themselves the quantification of the expression values either directly
 (\eg\ \cite{Krupp2012}) or upon requests (\eg\ \cite{PandeyData}).
 Third-parties also distribute
 quantification for these studies either retrieved from the original studies,
-as BioGPS \citep{BioGPS1} or Harmonizome \citep{Harmonizome},
+as BioGPS \mycite{BioGPS1} or Harmonizome \mycite{Harmonizome},
 or after reprocessing the raw data as EBI Gene Expression Atlas
-\citep{EBIgxa} does.
+\mycite{EBIgxa} does.
 
 For many reasons and despite readily available quantifications for most of the
 datasets, I only used data reprocessed from raw files by myself or Dr Nuno
 Fonseca  (Gtex data) or Dr James Wright (proteomic data).
 
 In fact, each study has been originally processed with different protocols,
-\eg\ \dataset{\Gtex} data \citep{GTExTranscript} and \dataset{Castle}
-data \citep{Krupp2012}.  In addition, while the \egxa\ reprocesses raw data
+\eg\ \dataset{\Gtex} data \mycite{GTExTranscript} and \dataset{Castle}
+data \mycite{Krupp2012}.  In addition, while the \egxa\ reprocesses raw data
 through the same methods
 and has nowadays quantification for most of the datasets, these are still the
 products of different protocols since
@@ -362,13 +373,13 @@ different results.
 Indeed, as I started to work with \Rnaseq\ data, I noticed many potential bias
 sources that impact its final expression values. Many of these have been
 reported in the literature since then;
-annotation versions \citep{annotationDiff},
-contamination \citep{contaminationRNAseq},
-quality controls \citep{qualityRNAseq},
-mapping and quantifications pipelines \citep{Fonseca2014}
+annotation versions \mycite{annotationDiff},
+contamination \mycite{contaminationRNAseq},
+quality controls \mycite{qualityRNAseq},
+mapping and quantifications pipelines \mycite{Fonseca2014}
 have great effects on the final quantification. Lastly, normalisation
 methods also greatly impact the final expression figures
-\citep{Dillies2013}, \citep{normalisation2}. For all these reasons, reprocessing
+\mycite{Dillies2013}, \mycite{normalisation2}. For all these reasons, reprocessing
 all the transcriptomic datasets --- with the same exact protocol ---
 was the logical first step of this current study.
 
@@ -455,7 +466,7 @@ supposedly greater than its predecessor.
 
 As the \dataset{Gtex} data was processed with \hg{38.p1} and \ens{76}, that led me
 to reprocess all the other four \Rnaseq\ datasets for the sake of consistency and
-to avoid more biases \citep{h38vsh37}. Thus, unless indicated
+to avoid more biases \mycite{h38vsh37}. Thus, unless indicated
 otherwise, the results presented in the current work are
 based on the \hg{38.p1} human genome reference genebuild and the \ens{76}
 annotation.
@@ -518,7 +529,7 @@ As reported in \Cref{ch:Introduction}, as the base calling progresses, quality
 of the call decreases. On another note, some tools (mappers in particular) need
 all the reads to be trimmed to the same length. \TK{\irap\ will optimise the
 purity-length balance to avoid more errors or biases due to smaller reads
-\citep{Trimwisely} by trimming at most 15\% of the original length while discarding
+\mycite{Trimwisely} by trimming at most 15\% of the original length while discarding
 more reads if necessary to maximise the length. : instead balance compromise}
 
 Reads that could be assigned to a likely contamination source (here
@@ -531,7 +542,7 @@ genome and all the reads mapping perfectly and non ambiguously are discarded.
 I mapped the reads to the genome with \irap's proposed default splice-aware mapper
 \soft{TopHat2}\footnote{\soft{TopHat} ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}%
-{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \citep{tophat2}
+{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \mycite{tophat2}
 with its set of default predefined arguments. Hence, I only had to provide the
 genome and the transcriptome references. Indeed, \soft{TopHat2} can handle reads
 from many organisms by fine-tuning the parameters (\eg\ number of mismatches or
@@ -564,7 +575,7 @@ gene expression levels. I used two approaches, implemented in these
 following popular tools:
 \soft{Cufflinks}\footnote{\soft{Cufflinks} ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
-{http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1) \citep{cufflinks}
+{http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1) \mycite{cufflinks}
 and \soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
 \href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
 {http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1) (with the
