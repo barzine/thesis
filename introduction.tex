@@ -187,50 +187,61 @@ be fixed and loaded differently.
 
 \minisec{\gls{RNA} enrichment}
 
-The most abundant \gls{RNA} population in a cell is constituted by the
-\glspl{rRNA} (about 70\% or above) \mycite{biochbook}\footnote{Even though, they
-are a very small part of the genome, \eg\ for \species{Homo sapiens}, there are
-only 568 genes (<1\%) that are described as \gls{rRNA} out of the 63,898
-annotated genes of the ENSEMBL database (\hg{38.p10} - \ens{89}).}
-than 1\%. Although it is interesting to study them on their own,
-most of the current \gls{RNA} studies aim to research \mRNAs\ (about 3 to 5\% of
-the whole \gls{RNA} population) \mycite{molBiolCell} and \glspl{lncRNA} which
-are commonlypolyadenylated) or other more scarce (as they are less numerous)
-\glspl{RNA}.
+The \glspl{rRNA} are the most abundant type of \gls{RNA} in any cell. In fact,
+even though they are a very small part of the genome\footnote{For example,
+\species{Homo sapiens}, there are only 568 genes (<1\%) that are described as
+\gls{rRNA} out of the 63,898 annotated genes of the ENSEMBL database
+(\hg{38.p10} - \ens{89}).}, they represent by their number 70\% or more of
+the total population \mycite{biochbook}. Although there are interests to
+study \glspl{rRNA}, most studies research  \mRNAs\ (which constitute about
+3 to 5\% of the whole \gls{RNA} population) \mycite{molBiolCell} and or other
+more scarce (as they are less numerous) \glspl{RNA}.
 
-There are typically two strategies: either polyA-selection or ribodepletion.
-However, these are insufficiently specific though to exclusively select a
-particular type of \gls{RNA}.
-
+After extracting the \gls{RNA} from the cells or tissues,
+the next step is to enrich the content of the samples with the \glspl{RNA}
+of interest. There are typically three strategies: either polyA-selection,
+ribodepletion and (more complex) targeted amplification.  While these
+approaches are insufficiently specific to select one particular kind of \gls{RNA}
+or remove all \glspl{rRNA}, it eases and improves the downstream analyses.
 
 \subminisec{PolyA-selection}
 This strategy essentially targets the \mRNAs. It exploits the polyadenylated
-tail at the 3' end of the \mRNAs\ (and some other, \eg\ \glspl{lncRNA}
-\mycite{polyAlncRNA}) added
+tail at the 3' end of the \mRNAs\ (and a few other \gls{RNA} kinds,
+\eg\ \glspl{lncRNA} \mycite{polyAlncRNA}) added
 post-transcriptionally. In fact, magnetic beads supporting short
 strings of thymine (oligo-dT) capture efficiently these \mRNAs\ while the others
 are washed away \mycite{Mortazavi2008}.
 
+This protocol is probably the most widespread one and a dataset produced
+following this protocol is known as a \emph{polyA-selected} dataset.
+
 \subminisec{Ribodepletion}
-
 This strategy is preferred for the study of any \gls{ncRNA} or when researching
-the interaction of \mRNAs\ with other \glspl{RNA}. \TK{add example.}
-
-This strategy is in a way the reverse of the previous one as its also
+the interaction of \mRNAs\ with other \glspl{RNA}. \TK{add example.} This
+strategy is in a way the reverse of the previous one as its also
 uses magnetic beads to target \glspl{rRNA}. However, they are used to remove the
 unwanted \glspl{rRNA} from the sample. ThermoFisher claims that its
 RiboMinus protocol can remove till 99.99\% of the \glspl{rRNA}.
 
-Ribonucleases that specifically digest \glspl{rRNA} can also be used;
-\cite{castleData} had another approach where they tried to amplify \emph{every}
-other \gls{RNA} with the help of specifically designed probes (see
-\Cref{subsec:castlepresentation}).
+Ribonucleases that specifically digest \glspl{rRNA} can also be used.
 
 Datasets produced following a ribodepletion protocol are usually called
 \emph{whole \gls{RNA}} or \emph{total \gls{RNA}} as a contrast to the
-\emph{polyA-selected} datasets (produced with the previous protocol).
+\emph{polyA-selected} ones.
 
-\clearpage
+\cite{castleData} had another approach where they tried to amplify \emph{every}
+other \gls{RNA} with the help of specifically designed probes (see
+\Cref{subsec:castlepresentation}). Hence, while the dataset they have created is
+defined as a total \gls{RNA} dataset, the protocol they have used is closer to
+the following one.
+
+\subminisec{Targeted amplification}
+Targeted amplifications rely on primers that would be designed to target (or
+avoid as for \cite{castleData}) specific sequence motifs of the genome. This
+approach is lesser used for \Rnaseq\ studies but quite frequent with other
+types of sequencing-base assays for the \glspl{ncRNA}. And while the protocols
+and workflows are based on the \Rnaseq\ one, often they are designed by their
+own specific name, \eg\ \gls{miRNA-Seq}.
 
 \minisec{RNA fragmentation}
 
