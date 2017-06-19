@@ -174,8 +174,8 @@ sequences.
 \end{figure}
 
 \NB Albeit the collection and the conservation of the samples prior to the
-\gls{RNA} extraction most definitely affects the final
-estimations, I will let aside these steps from my review.
+\gls{RNA} extraction most definitely affects the final estimations,
+I will let aside these steps from my review.
 
 \subsubsection{Library preparation}
 
@@ -185,76 +185,140 @@ the most platform dependent parts of the overall protocol. Indeed, contingently
 on to the sequencing principle they rely, the sequencers need the libraries to
 be fixed and loaded differently.
 
-\minisec{\gls{RNA} enrichment}
+\minisec{\gls{RNA} extraction}
+There are many methods to extract \glspl{RNA} from the primary samples and they
+are commonly standardised. Indeed, regarding the type of biological samples,
+the \glspl{RNA} of interest, the aim of the  study and the sequencing platform
+used, there is one (or more) available commercial kit. These are designed in
+a way to not interfere
+with any of the later steps of the library preparation or with the sequencing
+itself.
+Without surprise, the choice of one kit (and hereby method of extraction)
+over another can impact the final \Rnaseq\ data \mycite{RNAextraction}. The main
+difference between the most widespread methods being the quantity of non-mature
+\glspl{RNA} (\ie\ with longer intronic regions) detected whereby kit
+has been used. However, the relative gene expression levels are similar.
 
-The \glspl{rRNA} are the most abundant type of \gls{RNA} in any cell. In fact,
-even though they are a very small part of the genome\footnote{For example,
-\species{Homo sapiens}, there are only 568 genes (<1\%) that are described as
-\gls{rRNA} out of the 63,898 annotated genes of the ENSEMBL database
-(\hg{38.p10} - \ens{89}).}, they represent by their number 70\% or more of
-the total population \mycite{biochbook}. Although there are interests to
-study \glspl{rRNA}, most studies research  \mRNAs\ (which constitute about
-3 to 5\% of the whole \gls{RNA} population) \mycite{molBiolCell} and or other
-more scarce (as they are less numerous) \glspl{RNA}.
+
+\minisec{\gls{RNA} enrichment}
 
 After extracting the \gls{RNA} from the cells or tissues,
 the next step is to enrich the content of the samples with the \glspl{RNA}
-of interest. There are typically three strategies: either polyA-selection,
-ribodepletion and (more complex) targeted amplification.  While these
+of interest (\ie\ the concentration of the \glspl{RNA} of interest is increased
+either by specifically selecting it or by removing other \glspl{RNA}). Indeed,
+the \glspl{rRNA} are the most abundant type of \gls{RNA} in any cell. Even
+though they are a very small part of the genome\footnote{For example,
+\species{Homo sapiens}, there are only 568 genes (<1\%) that are described as
+\gls{rRNA} out of the 63,898 annotated genes of the ENSEMBL database
+(\hg{38.p10} - \ens{89}).}, they represent by their number 70\% or more of
+the total population of \gls{RNA} \mycite{biochbook}.
+Although there are interests to study \glspl{rRNA}, \mRNAs\ studies are more
+popular and they only constitute about 3 to 5\% of the whole \gls{RNA} population
+\mycite{molBiolCell}. Other studies research even scarcer kinds of \gls{RNA}.
+
+There are typically three strategies to achieve \gls{RNA} enrichment:
+either by polyA-selection, by ribodepletion or (more complex)
+by targeted amplification. While these
 approaches are insufficiently specific to select one particular kind of \gls{RNA}
 or remove all \glspl{rRNA}, it eases and improves the downstream analyses.
 
 \subminisec{PolyA-selection}
 This strategy essentially targets the \mRNAs. It exploits the polyadenylated
-tail at the 3' end of the \mRNAs\ (and a few other \gls{RNA} kinds,
-\eg\ \glspl{lncRNA} \mycite{polyAlncRNA}) added
+tail at the 3' end of the \mRNAs\footnote{And a few other kinds of \gls{RNA},
+\eg\ \glspl{lncRNA} \mycite{polyAlncRNA}} that is added
 post-transcriptionally. In fact, magnetic beads supporting short
 strings of thymine (oligo-dT) capture efficiently these \mRNAs\ while the others
 are washed away \mycite{Mortazavi2008}.
 
-This protocol is probably the most widespread one and a dataset produced
-following this protocol is known as a \emph{polyA-selected} dataset.
+This protocol is probably the most widespread one as it is the easiest and
+cheapest to set up. A dataset produced following this protocol is known as
+a \emph{polyA-selected} dataset.
 
 \subminisec{Ribodepletion}
 This strategy is preferred for the study of any \gls{ncRNA} or when researching
-the interaction of \mRNAs\ with other \glspl{RNA}. \TK{add example.} This
+the interaction of \mRNAs\ with other \glspl{RNA} \mycite{ribodepletion}. This
 strategy is in a way the reverse of the previous one as its also
-uses magnetic beads to target \glspl{rRNA}. However, they are used to remove the
-unwanted \glspl{rRNA} from the sample. ThermoFisher claims that its
-RiboMinus protocol can remove till 99.99\% of the \glspl{rRNA}.
+uses magnetic beads, but this time to efficiently\footnote{ThermoFisher claims
+that its RiboMinus protocol can remove till 99.99\% of the \glspl{rRNA}.}
+target the unwanted \glspl{rRNA} as to remove from the sample.
 
-Ribonucleases that specifically digest \glspl{rRNA} can also be used.
+The ribodepletion can also be achieved through ribonucleases. These enzymes
+specifically digest \glspl{rRNA} and then \glspl{RNA} of interest can be retrieve
+through size selection.
 
 Datasets produced following a ribodepletion protocol are usually called
 \emph{whole \gls{RNA}} or \emph{total \gls{RNA}} as a contrast to the
 \emph{polyA-selected} ones.
 
-\cite{castleData} had another approach where they tried to amplify \emph{every}
-other \gls{RNA} with the help of specifically designed probes (see
-\Cref{subsec:castlepresentation}). Hence, while the dataset they have created is
-defined as a total \gls{RNA} dataset, the protocol they have used is closer to
-the following one.
+\cite{castleData} created a total \gls{RNA} dataset but they use another
+approach where they amplify \emph{every} other \gls{RNA} with the help of
+specifically designed probes (see \Cref{subsec:castlepresentation}). Hence,
+the protocol they have used is closer to the following one.
 
 \subminisec{Targeted amplification}
 Targeted amplifications rely on primers that would be designed to target (or
-avoid as for \cite{castleData}) specific sequence motifs of the genome. This
-approach is lesser used for \Rnaseq\ studies but quite frequent with other
-types of sequencing-base assays for the \glspl{ncRNA}. And while the protocols
-and workflows are based on the \Rnaseq\ one, often they are designed by their
-own specific name, \eg\ \gls{miRNA-Seq}.
+avoid as for \cite{castleData}) specific sequence motifs of the genome. Most
+studies based on this type of approach are not referred as \Rnaseq\ studies, but
+a name that is based on the kind of studied \gls{RNA} (\eg\ \gls{miRNA-Seq}) or
+that emphasises the variation of the method (\eg\ Capture-Seq
+\mycite{captureSeq}). Often, additional steps are required to prepare the
+library comparatively to a polyA-selected or ribodepleted dataset.
+
 
 \minisec{RNA fragmentation}
+Most of the sequencing platforms\footnote{As for the Illumina platforms that have
+produced the transcriptomic datasets studied in this thesis} require relatively
+short (\eg\ 200 to 500 nt) length to sequence. Concomitantly, it also ensures
+that the sampling along the \gls{RNA} is more uniform.
+This fragmentation can be carry out via divalent cations hydrolysis or
+nebullisation.
+
+This step is sometimes performed after the \gls{cDNA} synthesis (see next section).
+In those case, the \gls{cDNA} are fragmented by digestion with DNase I or by
+sonication.
 
 \minisec{Double-stranded cDNA synthesis}
+There are sequencing technologies that can directly sequence \glspl{RNA}. Yet
+most of the technologies handle only \gls{DNA}. Thus, the \gls{RNA}
+molecules are used as a template for a retro-transcription involving
+oligo-dTs or \emph{random} hexamer primers, respectively only for polyA-selected
+datasets or any dataset (polyA-selected included). The set of \emph{random}
+hexamer has been designed to cover the whole transcriptome. Unfortunately,
+these \emph{random} hexamer primers have been proven to actually lack full
+randomness \mycite{notSoRandom}.
+
+At the end of the most common protocol, the order of synthesis of each \gls{cDNA}
+strands is lost, \ie\ it is impossible to distinguish which of the \gls{cDNA}
+strands has the same sequence than the original \gls{RNA}. Several techniques,
+called \emph{strand-specific}, have been developed to compensate for this
+(\mycite{strandSpecific}, \mycite{strandSpe}).
 
 \minisec{Adapter ligation, PCR amplification and size selection}
+After generating blunt edges by restriction digest of the \glspl{cDNA}, adapters
+are ligated to their both ends. These adapters are ensuring the hybridisation of
+the \glspl{cDNA} with the flow cell\footnote{The flow cell is the support of the
+sequencing. It enables the parallelisation of the sequencing of millions of
+\gls{DNA} fragments together as they are kept spatially separated. This was
+allowed with the advent and optimisation of supported Chemistry.}
+and are used for the following step as primers for the cluster amplification
+happening \latin{in situ} on the flow cell.
+
+Then, all the molecules are amplified by \gls{PCR}.
+
+Finally, as the previous fragmentation step has created a greater range of length
+that required by the typical sequencer machine (about 250 to 500 bp), a
+size-selection is performed (per gel electrophoresis).
+
+\TK{La suite au prochain numéro :p }
+
+\subsubsection{Sequencing}
 
 \minisec{Hybridisation}
 
 \minisec{Cluster amplification}
 
 
-\minisec{Sequencing}
+\minisec{Sequencing-by-synthesis}
 
 
 \minisec{Alternative preparation strategies}
@@ -306,7 +370,7 @@ so the length is maximised.
 \subsection{Transcriptomics Studies}
     \subsubsection{Main technologies}
 While microarrays are measuring many \mRNAs\ at once, their number is limited,
-    \subsubsection{A typical sequencing workflow}
+     (ubsubsection{A typical sequencing workflow}
 \subsection{Proteomics}
     \subsubsection{Main technologies}
     \subsubsection{Mass sprectrometry}
