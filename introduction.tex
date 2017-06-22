@@ -267,8 +267,8 @@ library comparatively to a polyA-selected or ribodepleted dataset.
 
 \minisec{RNA fragmentation}
 Most of the sequencing platforms\footnote{As for the Illumina platforms that have
-produced the transcriptomic datasets studied in this thesis} require relatively
-short (\eg\ 200 to 500 nt) length to sequence. Concomitantly, it also ensures
+produced the transcriptomic datasets studied in this thesis.} require relatively
+short (\ie\ 200 to 500 nt) length to sequence. Concomitantly, it also ensures
 that the sampling along the \gls{RNA} is more uniform.
 This fragmentation can be carry out via divalent cations hydrolysis or
 nebullisation.
@@ -295,33 +295,182 @@ called \emph{strand-specific}, have been developed to compensate for this
 
 \minisec{Adapter ligation, PCR amplification and size selection}
 After generating blunt edges by restriction digest of the \glspl{cDNA}, adapters
-are ligated to their both ends. These adapters are ensuring the hybridisation of
-the \glspl{cDNA} with the flow cell\footnote{The flow cell is the support of the
-sequencing. It enables the parallelisation of the sequencing of millions of
-\gls{DNA} fragments together as they are kept spatially separated. This was
-allowed with the advent and optimisation of supported Chemistry.}
-and are used for the following step as primers for the cluster amplification
-happening \latin{in situ} on the flow cell.
+(small known sequences of oligonucleotides) are ligated to their both ends.
+These adapters are constituted from several parts. Some are ensuring later the
+hybridisation of the \glspl{cDNA} with the flow cells\footnote{\gls{flow}: see
+\cref{subsub:HybridClustAmp}.} (based on sequence complimentary) and some others
+are sequence binding sites that are used as primers for the following cluster
+amplification step happening \latin{in situ}. These adapters are also used to
+introduce additional motifs such as indexes.
 
-Then, all the molecules are amplified by \gls{PCR}.
+The next two steps can be interchanged regarding the amount of starting material
+at disposition. All the molecules are amplified by \gls{PCR} before (or after)
+a size-selection is performed (per gel electrophoresis) to extract
+length-complying fragments (about 200 to 500 bp) to the sequencer machine
+requirements\footnote{Indeed, the previous fragmentation step creates a great
+length range of fragments.}.
 
-Finally, as the previous fragmentation step has created a greater range of length
-that required by the typical sequencer machine (about 250 to 500 bp), a
-size-selection is performed (per gel electrophoresis).
+Unfortunately, the size-selection means that any
+transcript with an original length below the threshold used for the
+selection will be missed\footnote{There is no problem for the greater length
+as statistically they will present fragments that will be in the correct range.}.
+For example, \glspl{miRNA} are shorter than the general requirement of Illumina
+sequencers. Alternative protocols are addressing this issue
+\mycite{smallRNAprotocol}.
 
-\TK{La suite au prochain numéro :p }
+\minisec{An example of alternative preparation strategy}
+Along with the targeted, the strand-specific and small \glspl{RNA} protocols,
+there are a few other variations to this typical protocol to handle other concerns.
+For example, it is occasionally necessary to sequence simultaneously (in a single
+run) multiple samples. This can be motivated by practical reasons
+(to lower the experimental costs or hasten the overall processing time)
+\mycite{multiplexCheaper} or critical to the experimental design as a way to
+experimentally handle the \emph{batch effects}\footnote{Batch effect: see
+\cref{subsub:BatchEffect}} \mycite{multiplexBatchEffect}. However, it is
+crucial to later extricate the several pooled samples from each other as a
+requirement to many downstream analyses.
 
-\subsubsection{Sequencing}
+\emph{Multiplexed} protocols easily achieve
+the distinction between the multiple samples as they incorporate \emph{barcodes}
+before ligating the adapters. These barcodes are also small sequences of
+nucleotides and each sample has its own unique associated
+barcode. In practice, each sample is prepared separately with the added extra
+step (before the adapters ligation) where the barcode is incorporated, then all
+the samples are pooled together before the next step that consists to hybridise
+the \glspl{cDNA} to the flow cell.
+
+Other extra steps occur just after the sequencing and before any other data
+analysis: all the reads\footnote{Reads : see \cref{subsub:sequencing}} are
+separated in files based on their barcodes and the barcode, along with the
+adapters, is trimmed from all the reads.
+
+The main inconvenient of the multiplexing protocol is that the original sequenced
+length of the \glspl{cDNA} are then shorter as the barcodes are also (and have
+to) be sequenced as well.
+
+\subsubsection[Clustering: Hybridisation and Bridge amplification]{Clustering:
+Hybridisation and Bridge amplification \mycite{IlluminaYoutube}}
+\label{subsub:HybridClustAmp}
+
+Once the libraries are ready, they are loaded onto a \emph{flow cell}\footnote{%
+\emph{Flow cells} are the support of Illumina sequencing. They enable the
+parallelisation of the sequencing of millions of \gls{DNA} fragments together
+which are kept spatially separated in clusters. This was allowed with the advent
+and optimisation of supported Chemistry. Each flow cell is a glass slide with
+lanes. Each lane is coated with two short nucleotide sequences. One of these
+oligonucleotides is complementary to a region comprised in the ligated adapters.}.
+
+The clustering step comprises two phases: hybridisation and bridge amplification
+of the \gls{cDNA} fragments.
 
 \minisec{Hybridisation}
 
-\minisec{Cluster amplification}
+The double-strand \glspl{cDNA} are denatured and then each fragment randomly
+hybridises across the flow cell surface with one of its small oligonucleotides.
+These are used as primers for polymerases which create a first complimentary
+strand to the hybridised \gls{DNA} fragments. The new double-strand molecule is
+denatured and the original first template is washed away.
+
+\minisec{Bridge amplification}
+The strands then folds over and their (second) adapter hybridises with a
+complimentary oligonucleotide sequence of the flow cell and thus creating a
+bridge. The flow cell complimentary fragment is then used as the primer for a new
+strand. The new double-stranded \gls{DNA} is then denatured (which
+dismantles the bridge). Each of the two tethered molecules creates a new
+bridge by hybridisation which are the templates for a new strand each.
+This process happens many times and simultaneously for millions of fragments.
+It creates clusters of clonal amplification of the original fragments of
+the library. After the bridge amplification, the reverse strands are cleaved
+and washed away. The 3' end primers are also blocked to avoid any unwanted
+priming.
+
+\subsubsection{Sequencing-by-synthesis}
+\label{subsub:sequencing}
+
+Illumina sequencers propose two sequencing approaches: single-end and paired-end.
+The difference is that in \emph{single-end sequencing}\footnote{Chronologically
+the oldest method}, the sequencing begins at one (and only one) of the fragment
+ends and progresses towards the second. Whereas in \emph{paired-end sequencing},
+once the first end has been sequenced (as in the single-end approach), after a
+single new bridge replication, the other end of the original fragment is
+sequenced as well. Hence, in paired-end, the sequencing occurs at \emph{both}
+ends of each original fragment. This has been allowed by a small change in
+the original single-end adpters \mycite{pairedEndAdapters}.
+
+In both cases, the sequencing process is the same. It is an Illumina proprietary
+process and it is called \emph{Sequencing-by-Synthesis} \mycite{seqBySynth}.
+It uses the \gls{DNA} replication mechanism with modified \dNTPs.
+It relies on the step-by-step incorporation of
+reversible fluorescent tagged \dNTPs who are protected at
+their 3'end as to block any further elongation.
+The product of this synthesis is called a \emph{read} and supports the base calling.
+
+The sequencing occurs simultaneously on every identical fragment
+of every cluster of the flow cell.
+It begins with the hybridisation of a complimentary 5' primer onto the 3' biding
+site of the tethered \gls{DNA} template. This primer is then extended by
+replication to create a new read. Next, the sequencing cycle (described below)
+repeats itself several times.
+
+The \emph{sequencing cycle} starts with the addition of one complimentary
+fluorescent \dNTP\ to the new growing read and, since the \dNTPs\ are blocked at
+their 3' end, the replication process stops. Afterwards, all the unlinked
+\dNTPs\ are washed away. Then, the clusters are excited by a light source
+and as each
+\dNTPs\ has a fluorescent tag with its own characteristic wave-length, the
+signal that they emit back will allow to \emph{call} (\ie\ identify) what is the
+new nucleotide that each cluster has incorporated. The signal intensity is also
+considered while the base call and as the calling happens its accuracy is also
+measured and recorded. Finally, the fluorescent tags and the 3' caps are cleaved
+and washed away so a new cycle can happen.
+The number of cycles determines the final length of the reads.
+
+Unfortunately, as the sequencing proceeds, the error rate of the sequencers
+increases. This is due to the incomplete removal of the fluorescent signal which
+increases the background noise and thus reduces the signal-to-noise ratio.
+
+Once the programmed read length is achieved (typically between 30 to 200),
+the reads are washed away (after denaturation).
+
+\NB The below steps are specific to the \emph{paired-end} protocol.
+
+Then, after introduction of a new primer, the first index is sequenced
+following the same sequencing cycle.
+Once completed, the index read is washed off and the 3' end primer is deprotected.
+Then, the \gls{DNA} fragment bends over and hybridises to a complimentary
+oligonucleotide at the surface of the flow cell.
+Next, the second index is sequenced and its product read washed away,
+a single new bridge replication follows.
+The new double-stranded \gls{DNA} fragment is denatured and the 3' primers are
+protected before the forward strand is cleaved and washed away.
+Finally, the reverse strand is sequenced following the previously described
+sequencing cycle. Once the same number of sequencing cycles than the forward
+strand is reached, the read product of the reverse strand is washed away.
+
+\subsubsection{From analogous input to digital output}
+
+At the end of the sequencing process, the set of images (one per sequencing cycle)
+is produced. While it is possible to work with the images themselves, in most
+cases, the sequencing facilities will perform the base calling and provide the
+end-user with text files. These files are usually distributed in \fastq\ format
+\mycite{fastqFormat} which record for each cluster (read) a unique identifier,
+a nucleotide sequence and, for each base of the sequence,
+a \gls{Phred} quality score.
+Some optional information can also be provided
+such as the position of the read on the \gls{flow} (See also
+\cref{sec:fastq_format}).
 
 
-\minisec{Sequencing-by-synthesis}
+The \gls{Phred} quality score ($Q$) are set by the base calling program and are
+defined as $Q = -10\log_{10}(P)$ with $P$ the probability of the base being
+called wrongly (See also \cref{sec:PhredScore}).
 
 
-\minisec{Alternative preparation strategies}
+
+In paired end experiments reads are typically split over two ordered files, one with the first end and the other with the second.
+
+
+
 
 
 
@@ -364,7 +513,7 @@ so the length is maximised.
 
 
 
-
+\begin{comment}
 
 
 \subsection{Transcriptomics Studies}
@@ -375,22 +524,25 @@ While microarrays are measuring many \mRNAs\ at once, their number is limited,
     \subsubsection{Main technologies}
     \subsubsection{Mass sprectrometry}
 
+\end{comment}
+
 \section{Big studies, big data and Reproducibility}
 
 
 
-\begin{comment}
-\subsection{Reproducibility issues}
-        \begin{itemize}
+\subsection{Reproducibility issues // experimental design}
+    \subsubsection{Batch effect}\label{subsub:BatchEffect}
+    Batch effect: \mycite{batchEffect}
+
+    \begin{itemize}
             \item{Different samples}
-            \item{Technology: wet lab but also software: Rupgrade, ....}
+            \item{Technology: wet lab but also software: Rupgrade, \ldots}
             \item{missing meta-data}
         \end{itemize}
     \subsection{Main concerns}
         \subsubsection{Detection}
         \subsubsection{Quantification}
     \subsection{Consistency through biological layers}
-\end{comment}
 
 
 \subsection{Co-studies on Transcriptomics and Proteomics in the literature}
@@ -429,9 +581,6 @@ for a few key tissues.
 
 \section{Reproducibility vs. Repeatability}
 
-\section{Comment preparer RNA-seq libraries?}
-
-\section{Paired-end, Single-end}
 
 \section{Experimental design}
 \subsection{Technical replicates}

@@ -83,6 +83,11 @@ transcript per \textbf{M}illion mapped reads Technologies}
 [description={Ribosomal \glsxtrshort{RNA}}]
 {rRNA}{rRNA}{Ribosomal RNA}
 
+\newabbreviation%
+[description={\textit{d}eoxynucleoside \textit{t}ri\textit{p}hosphate.
+The N indicates that it can be any
+nucleotide (usually either Adenosine (A), Cytosine (C), Guanine (G) or
+Thymine (T))}]{dNTP}{dNTP}{deoxynucleoside triphosphate}
 
 %%%% glossary entries
 \newglossaryentry{RNA-Seq}{name={RNA-Seq},
@@ -97,13 +102,18 @@ transcript per \textbf{M}illion mapped reads Technologies}
     description={miRNA sequencing, which can also be called miRNA shotgun
     sequencing}}
 
+
 \newglossaryentry{HBB}{name={HBB},description={Hemoglobin Subunit Beta}}
 
-\newglossaryentry{ArrayExpress}{name=ArrayExpress,description={EBI archive of Functional Genomics Data. It stores data from high-throughput functional genomics experiments, and provides these data for reuse to the research community.}}
+\newglossaryentry{ArrayExpress}{name=ArrayExpress,description={EBI archive of
+Functional Genomics Data. It stores data from high-throughput functional
+genomics experiments, and provides these data for reuse to the
+research community.}}
 
 \newglossaryentry{ENA}{name=ENA,description={The European Nucleotide Archive
 provides a comprehensive record of the world's nucleotide sequencing information,
-covering raw sequencing data, sequence assembly information and functional annotation.}}
+covering raw sequencing data, sequence assembly information and functional
+annotation.}}
 
 \newglossaryentry{dbGaP}{name=dbGaP,description={The database of Genotypes and
 Phenotypes (dbGaP) was developed to archive and distribute the data and results
@@ -117,7 +127,8 @@ post-translational modifications and supporting spectral evidence.
 PRIDE is a core member in the ProteomeXchange (PX) consortium,
 which provides a single point for submitting mass spectrometry based proteomics
 data to public-domain repositories.
-Datasets are submitted to PRIDE via ProteomeXchange and are handled by expert biocurators.}}
+Datasets are submitted to PRIDE via ProteomeXchange and are handled by expert
+biocurators.}}
 
 \newglossaryentry{Proteomicsdb}{name=Proteomicsdb,description={ProteomicsDB is a
 joint effort of the Technische Universität München (TUM) and SAP SE. It is
@@ -129,9 +140,11 @@ the scientific community.}}
 bank for the scientific community to study the relationship between genetic
 variation and gene expression in human tissues.}}
 
-\newglossaryentry{nt}{name={nt},description={\textbf{N}ucleo\textbf{t}id; common unit of length for single-stranded nucleic acids}}
+\newglossaryentry{nt}{name={nt},description={\textbf{N}ucleo\textbf{t}id;
+common unit of length for single-stranded nucleic acids}}
 
-\newglossaryentry{bp}{name={bp},description={\textbf{B}ase {P}air; unit of length for double-stranded nucleic acids}}
+\newglossaryentry{bp}{name={bp},description={\textbf{B}ase {P}air;
+unit of length for double-stranded nucleic acids}}
 
 \newglossaryentry{SNP}{name={SNP},description={Single Nucleotide Polymorphism}}
 
@@ -152,7 +165,8 @@ variation and gene expression in human tissues.}}
 \newabbreviation[description={tandem \glsxtrshort{MS}}]
 {MS/MS}{MS/MS}{tandem MS}
 
-\newacronym{FTMS}{FTMS}{\textbf{F}ourier \textbf{t}ransform \textbf{M}ass \textbf{s}pectrometer}
+\newacronym{FTMS}{FTMS}{\textbf{F}ourier \textbf{t}ransform \textbf{M}ass
+\textbf{s}pectrometer}
 
 
 \newacronym{SDS}{SDS}{\textbf{S}odium \textbf{D}odecyl \textbf{S}ulfate}
@@ -187,3 +201,18 @@ computers that work together to improve performance over a single computer}}
 
 \newglossaryentry{GENCODE}{name={GENCODE},description={Project that produces
 high quality reference gene annotation for human and mouse genomes.}}
+
+\newglossaryentry{FASTQ}{name={FASTQ},description={File Format recording for
+each cluster read, a unique identifier, a nucleotide sequence and the call
+accuracy for each base (\gls{Phred} score). Optionally, there can be more
+information, \eg\ the spatial position of the cluster on the flow cell.}}
+
+\newglossaryentry{flow}{name={Flow cell}, description={Support of Illumina
+sequencing. It enables the parallelisation of the sequencing of millions of
+\gls{DNA} fragments together which are kept spatially separated in clusters.
+It is a glass slide with lanes and each lane is coated with short nucleotide
+sequences that are used to hybridise by complementarity adapters on the \gls{DNA}
+that will be sequenced.}}
+
+
+
