@@ -146,8 +146,11 @@ So, In 2008, shift from microarrays to \Rnaseq.
 In the following section, I introduce the typical steps of the required workflow
 to study the transcriptome through sequencing on an Illumina platform. In fact,
 while not by conscious design, all the transcriptomes analysed in this thesis are
-the product of Illumina sequencing. It is not surprising as Illumina was by far
-the most popular platform for the last decade. Indeed, Illumina proposes a very
+the product of Illumina sequencing (see
+\crefrange{subsec:castlepresentation}{subsec:gtexPresentation}).
+It is not surprising as Illumina was by far
+the most popular platform for the last decade \mycite{popularIllumina}.
+Indeed, Illumina proposes a very
 good ratio between the accuracy and the fact that it achieves the highest
 throughput and the lowest per-base cost \mycite{IlluminaCheap}.
 
@@ -155,7 +158,10 @@ Experimental protocols for other platforms will need various and specific
 modifications that are outside of the realm of this thesis and thus will not be
 cover here. More details on the other main sequencing platforms and their
 relevant protocols can be found in \cite{rnaseqProtocols} review paper or at the
-online resource ``RNA-seqlopedia'' \mycite{rnaseqlopedia}.
+online resource
+``\href{http://rnaseq.uoregon.edu/}{RNA-seqlopedia}''\footnote{\textit{RNA-seqlopedia}:
+\href{http://rnaseq.uoregon.edu/}{http://rnaseq.uoregon.edu/}.}
+\mycite{rnaseqlopedia}.
 
 As I discuss the concepts behind the Illumina sequencing technology and the
 most common related methods to process it, I will emphasise the approaches and
@@ -179,11 +185,13 @@ I will let aside these steps from my review.
 
 \subsubsection{Library preparation}
 
-The first step of a typical \Rnaseq\ workflow is the preparation of \gls{cDNA}
-libraries from the starting material. This step and the sequencing itself are
-the most platform dependent parts of the overall protocol. Indeed, contingently
-on to the sequencing principle they rely, the sequencers need the libraries to
-be fixed and loaded differently.
+While there are sequencing technologies that can directly sequence \glspl{RNA}
+(see \mycite{rnaDirectSeq}), most of the technologies handle only \gls{DNA}.
+Hence, the first step of a typical \Rnaseq\ workflow is the preparation of
+\gls{cDNA} libraries from the starting material. This step and the sequencing
+itself are the most platform dependent parts of the overall protocol.
+Indeed, contingently on to the sequencing principle they rely,
+the sequencers need the libraries to be fixed and loaded differently.
 
 \minisec{\gls{RNA} extraction}
 There are many methods to extract \glspl{RNA} from the primary samples and they
@@ -193,11 +201,13 @@ used, there is one (or more) available commercial kit. These are designed in
 a way to not interfere
 with any of the later steps of the library preparation or with the sequencing
 itself.
+
 Without surprise, the choice of one kit (and hereby method of extraction)
-over another can impact the final \Rnaseq\ data \mycite{RNAextraction}. The main
-difference between the most widespread methods being the quantity of non-mature
-\glspl{RNA} (\ie\ with longer intronic regions) detected whereby kit
-has been used. However, the relative gene expression levels are similar.
+over another can impact the final \Rnaseq\ data. The main difference between
+the most widespread methods being the quantity of non-mature \glspl{RNA}
+(\ie\ with longer intronic regions) detected whereby kit has been used.
+However, the relative gene expression levels are similar from one extraction
+protocol to the other. \mycite{RNAextraction}
 
 
 \minisec{\gls{RNA} enrichment}
@@ -207,14 +217,21 @@ the next step is to enrich the content of the samples with the \glspl{RNA}
 of interest (\ie\ the concentration of the \glspl{RNA} of interest is increased
 either by specifically selecting it or by removing other \glspl{RNA}). Indeed,
 the \glspl{rRNA} are the most abundant type of \gls{RNA} in any cell. Even
-though they are a very small part of the genome\footnote{For example,
-\species{Homo sapiens}, there are only 568 genes (<1\%) that are described as
+though they amount for a very small part of the genome\footnote{For example,
+\species{Homo sapiens}, there are 568 genes (<1\%) that are described as
 \gls{rRNA} out of the 63,898 annotated genes of the ENSEMBL database
 (\hg{38.p10} - \ens{89}).}, they represent by their number 70\% or more of
 the total population of \gls{RNA} \mycite{biochbook}.
-Although there are interests to study \glspl{rRNA}, \mRNAs\ studies are more
+Although there are interests to study \glspl{rRNA} (\eg\ \mycite{rrnaStudy}),
+\mRNAs\ studies are more
 popular and they only constitute about 3 to 5\% of the whole \gls{RNA} population
-\mycite{molBiolCell}. Other studies research even scarcer kinds of \gls{RNA}.
+\mycite{molBiolCell}. Other studies research even scarcer kinds of
+\gls{RNA}.\footnote{Out of the 10,081 experiments tagged as \comp{``rna assay''}
+and \comp{``sequencing assay''} within \gls{ArrayExpress}, 7,981 were also
+tagged as \comp{``RNA-seq of coding RNA''}, 1,829 as \comp{``RNA-seq of
+non coding RNA''} and 366 have both tags. The remaining 637 have various tags
+(including \comp{microRNA profiling by high-throughput sequencing} as only tag
+for 4 of them)--- Query date: 22 June 2017.}
 
 There are typically three strategies to achieve \gls{RNA} enrichment:
 either by polyA-selection, by ribodepletion or (more complex)
@@ -252,7 +269,7 @@ Datasets produced following a ribodepletion protocol are usually called
 
 \cite{castleData} created a total \gls{RNA} dataset but they use another
 approach where they amplify \emph{every} other \gls{RNA} with the help of
-specifically designed probes (see \Cref{subsec:castlepresentation}). Hence,
+specifically designed probes (see \cref{subsec:castlepresentation}). Hence,
 the protocol they have used is closer to the following one.
 
 \subminisec{Targeted amplification}
@@ -278,14 +295,12 @@ In those case, the \gls{cDNA} are fragmented by digestion with DNase I or by
 sonication.
 
 \minisec{Double-stranded cDNA synthesis}
-There are sequencing technologies that can directly sequence \glspl{RNA}. Yet
-most of the technologies handle only \gls{DNA}. Thus, the \gls{RNA}
-molecules are used as a template for a retro-transcription involving
-oligo-dTs or \emph{random} hexamer primers, respectively only for polyA-selected
-datasets or any dataset (polyA-selected included). The set of \emph{random}
-hexamer has been designed to cover the whole transcriptome. Unfortunately,
-these \emph{random} hexamer primers have been proven to actually lack full
-randomness \mycite{notSoRandom}.
+The \gls{RNA} molecules are used as a template for a retro-transcription
+involving oligo-dTs or \emph{random} hexamer primers, respectively only
+for polyA-selected datasets or any dataset (polyA-selected included).
+The set of \emph{random} hexamer has been designed to cover the whole
+transcriptome. Unfortunately, these \emph{random} hexamer primers have been
+proven to actually lack full randomness \mycite{notSoRandom}.
 
 At the end of the most common protocol, the order of synthesis of each \gls{cDNA}
 strands is lost, \ie\ it is impossible to distinguish which of the \gls{cDNA}
@@ -455,10 +470,9 @@ cases, the sequencing facilities will perform the base calling and provide the
 end-user with text files. These files are usually distributed in \fastq\ format
 \mycite{fastqFormat} which record for each cluster (read) a unique identifier,
 a nucleotide sequence and, for each base of the sequence,
-a \gls{Phred} quality score.
-Some optional information can also be provided
-such as the position of the read on the \gls{flow} (See also
-\cref{sec:fastq_format}).
+a \gls{Phred} quality score. Some optional information can also be provided (\eg\
+the position of the read on the \gls{flow} (See \cref{sec:fastq_format} for
+a random read example).
 
 
 The \gls{Phred} quality score ($Q$) are set by the base calling program and are
