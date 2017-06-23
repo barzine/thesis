@@ -857,7 +857,7 @@
 }
 
 
-@ARTICLE{UhlenGastro,
+@article{UhlenGastro,
   Title       = {The human gastrointestinal tract-specific transcriptome and
                  proteome as defined by {RNA} sequencing and antibody-based
                  profiling},
@@ -2836,5 +2836,81 @@
   Pmid        = {28584301},
   Doi         = {10.1038/s41598-017-03139-4},
   Pmc         = {PMC5459821}
+}
+
+
+
+
+@article{phredScale,
+  Title       = {A glance at quality score: implication for de novo
+                 transcriptome reconstruction of Illumina reads},
+  Author      = {Mbandi, Stanley Kimbung and Hesse, Uljana and Rees, D Jasper G
+                 and Christoffels, Alan},
+  Abstract    = {Downstream analyses of short-reads from next-generation
+                 sequencing platforms are often preceded by a pre-processing
+                 step that removes uncalled and wrongly called bases. Standard
+                 approaches rely on their associated base quality scores to
+                 retain the read or a portion of it when the score is above a
+                 predefined threshold. It is difficult to differentiate
+                 sequencing error from biological variation without a reference
+                 using quality scores. The effects of quality score based
+                 trimming have not been systematically studied in de novo
+                 transcriptome assembly. Using RNA-Seq data produced from
+                 Illumina, we teased out the effects of quality score based
+                 filtering or trimming on de novo transcriptome reconstruction.
+                 We showed that assemblies produced from reads subjected to
+                 different quality score thresholds contain truncated and
+                 missing transfrags when compared to those from untrimmed
+                 reads. Our data supports the fact that de novo assembling of
+                 untrimmed data is challenging for de Bruijn graph assemblers.
+                 However, our results indicates that comparing the assemblies
+                 from untrimmed and trimmed read subsets can suggest
+                 appropriate filtering parameters and enable selection of the
+                 optimum de novo transcriptome assembly in non-model organisms.},
+  Journal     = {Frontiers in genetics},
+  Volume      =  {5},
+  Pages       = {17},
+  Month       =  {02},
+  Year        =  {2014},
+  Keywords    = {Oases; RNA-Seq; Trinity; quality score; transcriptome
+                 reconstruction; truncated transfrags},
+  Language    = {en},
+  Issn        = {1664-8021},
+  Pmid        = {24575122},
+  Doi         = {10.3389/fgene.2014.00017},
+  Pmc         = {PMC3921913}
+}
+
+
+
+@article{reviewRNAseqBestpractice,
+  Title       = {A survey of best practices for {RNA-seq} data analysis},
+  Author      = {Conesa, Ana and Madrigal, Pedro and Tarazona, Sonia and
+                 Gomez-Cabrero, David and Cervera, Alejandra and McPherson,
+                 Andrew and Szcześniak, Michał Wojciech and Gaffney, Daniel J
+                 and Elo, Laura L and Zhang, Xuegong and Mortazavi, Ali},
+  Abstract    = {RNA-sequencing (RNA-seq) has a wide variety of applications,
+                 but no single analysis pipeline can be used in all cases. We
+                 review all of the major steps in RNA-seq data analysis,
+                 including experimental design, quality control, read
+                 alignment, quantification of gene and transcript levels,
+                 visualization, differential gene expression, alternative
+                 splicing, functional analysis, gene fusion detection and eQTL
+                 mapping. We highlight the challenges associated with each
+                 step. We discuss the analysis of small RNAs and the
+                 integration of RNA-seq with other functional genomics
+                 techniques. Finally, we discuss the outlook for novel
+                 technologies that are changing the state of the art in
+                 transcriptomics.},
+  Journal     = {Genome biology},
+  Volume      =  {17},
+  Pages       = {13},
+  Month       =  {01},
+  Year        =  {2016},
+  Language    = {en},
+  Issn        = {1465-6906},
+  Pmid        = {26813401},
+  Doi         = {10.1186/s13059-016-0881-8},
+  Pmc         = {PMC4728800}
 }
 

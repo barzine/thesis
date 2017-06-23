@@ -172,7 +172,7 @@ sequences.
 \Rnaseq\ workflow from the libraries preparation to the sequencing.
 
 \begin{figure}
-    \includegraphics[scale=0.60]{introduction/IntroWorkflow}\centering
+    \includegraphics[scale=0.60]{introduction/IntroWorkflow.png}\centering
     \caption[Overview of a \Rnaseq\ workflow: library preparation
     and sequencing]{\label{fig:OverviewRnaseqPrepSeq}\textbf{Overview of
     a typical \Rnaseq\ workflow:
@@ -229,9 +229,9 @@ popular and they only constitute about 3 to 5\% of the whole \gls{RNA} populatio
 \gls{RNA}.\footnote{Out of the 10,081 experiments tagged as \comp{``rna assay''}
 and \comp{``sequencing assay''} within \gls{ArrayExpress}, 7,981 were also
 tagged as \comp{``RNA-seq of coding RNA''}, 1,829 as \comp{``RNA-seq of
-non coding RNA''} and 366 have both tags. The remaining 637 have various tags
-(including \comp{microRNA profiling by high-throughput sequencing} as only tag
-for 4 of them)--- Query date: 22 June 2017.}
+non coding RNA''} and 366 have both tags. 4 of them are only described as
+\comp{``microRNA profiling by high-throughput sequencing''} --- Query date: 22
+June 2017.}
 
 There are typically three strategies to achieve \gls{RNA} enrichment:
 either by polyA-selection, by ribodepletion or (more complex)
@@ -275,11 +275,11 @@ the protocol they have used is closer to the following one.
 \subminisec{Targeted amplification}
 Targeted amplifications rely on primers that would be designed to target (or
 avoid as for \cite{castleData}) specific sequence motifs of the genome. Most
-studies based on this type of approach are not referred as \Rnaseq\ studies, but
-a name that is based on the kind of studied \gls{RNA} (\eg\ \gls{miRNA-Seq}) or
+studies based on this kind of approach are not referred as \Rnaseq\ studies, but
+a name that is based on the studied \gls{RNA} type (\eg\ \gls{miRNA-Seq}) or
 that emphasises the variation of the method (\eg\ Capture-Seq
-\mycite{captureSeq}). Often, additional steps are required to prepare the
-library comparatively to a polyA-selected or ribodepleted dataset.
+\mycite{captureSeq}). Often, in comparison with a polyA-selected or ribodepleted
+dataset, additional steps are required to prepare the libraries.
 
 
 \minisec{RNA fragmentation}
@@ -291,8 +291,8 @@ This fragmentation can be carry out via divalent cations hydrolysis or
 nebullisation.
 
 This step is sometimes performed after the \gls{cDNA} synthesis (see next section).
-In those case, the \gls{cDNA} are fragmented by digestion with DNase I or by
-sonication.
+In those case, the \gls{cDNA} are fragmented mostly
+by digestion with DNase I or by sonication.
 
 \minisec{Double-stranded cDNA synthesis}
 The \gls{RNA} molecules are used as a template for a retro-transcription
@@ -412,13 +412,23 @@ sequenced as well. Hence, in paired-end, the sequencing occurs at \emph{both}
 ends of each original fragment. This has been allowed by a small change in
 the original single-end adpters \mycite{pairedEndAdapters}.
 
+Though more expensive and more challenging to programmatically handle,
+the paired-end approach produces more information and hence facilitates
+the detection of genomic rearrangements (as indels or inversions) and
+repetitive sequence elements.
+It also allows an easier distinction between isoforms of a same gene and provides
+greater support to the novel transcripts (new isoform or new gene) and fusion
+genes\footnote{A \gls{fusionG} is a gene that is the product of the fusion of
+parts of two different genes.}.
+
 In both cases, the sequencing process is the same. It is an Illumina proprietary
 process and it is called \emph{Sequencing-by-Synthesis} \mycite{seqBySynth}.
 It uses the \gls{DNA} replication mechanism with modified \dNTPs.
 It relies on the step-by-step incorporation of
-reversible fluorescent tagged \dNTPs who are protected at
-their 3'end as to block any further elongation.
-The product of this synthesis is called a \emph{read} and supports the base calling.
+reversible fluorescent tagged \dNTPs\ who are protected at
+their 3'end to block any further elongation.
+The product of this synthesis is called a \emph{read} and it supports the base
+calling.
 
 The sequencing occurs simultaneously on every identical fragment
 of every cluster of the flow cell.
@@ -434,9 +444,10 @@ their 3' end, the replication process stops. Afterwards, all the unlinked
 and as each
 \dNTPs\ has a fluorescent tag with its own characteristic wave-length, the
 signal that they emit back will allow to \emph{call} (\ie\ identify) what is the
-new nucleotide that each cluster has incorporated. The signal intensity is also
-considered while the base call and as the calling happens its accuracy is also
-measured and recorded. Finally, the fluorescent tags and the 3' caps are cleaved
+new nucleotide that each cluster has incorporated. The signal intensity, along to
+its wave-length are recorded (both of them are needed for the base calling
+process for the base call itself and its associated accuracy). Finally,
+the fluorescent tags and the 3' caps are cleaved
 and washed away so a new cycle can happen.
 The number of cycles determines the final length of the reads.
 
@@ -444,7 +455,7 @@ Unfortunately, as the sequencing proceeds, the error rate of the sequencers
 increases. This is due to the incomplete removal of the fluorescent signal which
 increases the background noise and thus reduces the signal-to-noise ratio.
 
-Once the programmed read length is achieved (typically between 30 to 200),
+Once the programmed read length is achieved (typically between 25 to 200),
 the reads are washed away (after denaturation).
 
 \NB The below steps are specific to the \emph{paired-end} protocol.
@@ -467,45 +478,99 @@ strand is reached, the read product of the reverse strand is washed away.
 At the end of the sequencing process, the set of images (one per sequencing cycle)
 is produced. While it is possible to work with the images themselves, in most
 cases, the sequencing facilities will perform the base calling and provide the
-end-user with text files. These files are usually distributed in \fastq\ format
+end-user with text files. In single-end sequencing, there is one file per sample.
+In paired-end sequencing, the reads are separated based on their associated
+indexes into two ordered files: all the reads from the forward strands (one end)
+are grouped in one file, and the ones from the reverse strands (other end)
+in another.
+
+These files are usually distributed in \fastq\ format
 \mycite{fastqFormat} which record for each cluster (read) a unique identifier,
-a nucleotide sequence and, for each base of the sequence,
-a \gls{Phred} quality score. Some optional information can also be provided (\eg\
+a nucleotide sequence and a \gls{Phred} quality score for each base of the
+sequence. Some optional information can also be provided (\eg\
 the position of the read on the \gls{flow} (See \cref{sec:fastq_format} for
 a random read example).
 
-
-The \gls{Phred} quality score ($Q$) are set by the base calling program and are
-defined as $Q = -10\log_{10}(P)$ with $P$ the probability of the base being
-called wrongly (See also \cref{sec:PhredScore}).
-
-
-
-In paired end experiments reads are typically split over two ordered files, one with the first end and the other with the second.
+The \gls{Phred} quality score ($Q$) measures the accuracy of the identification
+of the nucleobase to which it refers. These score are set by the base calling
+program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
+the base being called wrongly. There are several possible encoding formats
+(See \cref{sec:PhredScore}).
 
 
+\subsubsection{Data analysis}
+
+Before any downstream analysis, for each read, the genomic region from which it
+has been originally expressed need to be identified. Indeed, \Rnaseq\ main
+objective is to quantify the expression of genomic \emph{features}\footnote{These
+genomic features could be genes, isoforms, exons, novel genes, \dots\
+In short, any genomic region with some annotated function.}.
+
+In general, there are two different strategies (described in the
+following `Read mapping strategies' segment).
 
 
+\begin{comment}
+\rew{Angela:
+The first step
+to achieve this requires the identification of which features are present in the
+sequencing library. Mapping of reads to these features can be challenging given
+that reads are very short when compared to most genome sizes. There are three
+principal approaches for this mapping which include in order of decreasing
+complexity: de novo assembly of reads, read alignment to the genome followed by
+assembly and read alignment to the transcriptome.}
 
+\rew{Mar:
+In RNA-seq, this
+task is equivalent to discovering the loci that are expressed in a given sample.
+In general, two different strategies exist to perform this task: on the one hand,
+reads can be aligned to the reference genome or transcriptome, provided that such
+information is available for the species of interest; on the other hand, they can
+be directly assembled into contigs (i.e. contiguously expressed regions) with the
+aim of reconstructing the set of expressed transcripts. The first strategy
+constitutes a much simpler approach, and it is typically the method of
+choice when working with model organisms.
+Independently of the strategy used, read mapping is typically the most time
+consuming step of the analysis workflow, and the available tools make use of
+heuristic parameters such as the maximum number of allowed mismatches per
+read in order to speed up this task. Such processing can lead to information
+loss given a decrease of quality at the 3’ end of the read, which emerges as a
+common profile when working with Illumina platforms due to the increased
+difficulty in interrpeting the fluorescent signal as sequencing cycles
+accumulate [Minoche et al., 2011]. Thus, in order to avoid such reads being
+discarded, it is often useful to first perform a quality control and
+pre-filtering step, whereby read sequences can be shortened (i.e. trimmed) in
+terms of their quality (e.g. Andrews [2010]). Simi- larly, reads with overall
+low quality can be also removed, in order to speed up the subsequent mapping
+process.}
 
-\subsubsection{Read mapping strategies}
-
-\minisec{Quality check, trimming and filtering}
+\end{comment}
 
 \NB Generally, after the sequencer calls the reads, a first trimming removes
 all the adaptors and barcodes needed by the sequencing protocols. Thus,
 in principle, they are not to be found in raw data from repositories.
 However, to avert any latter contingency, a research against
 a list of the most common adaptors and an over-representation assessment of small
-sequences (\emph{k-mers}) at each end of the reads is good practice.
+sequences (\emph{k-mers}\footnote{k-mer: All possible subsequences of length
+\emph{k} of a \emph{read}.}) at each end of the reads is good practice.
 
-\minisec{\latin{De novo} assembly}
 
-\minisec{Read alignment}
+\TK{la suite au prochain épisode}
 
-\subminisec{Genome reference}
 
-\subminisec{Transcriptome reference}
+
+\minisec{Quality check, trimming and filtering}
+
+\mycite{Trimwisely}
+
+\minisec{Read mapping strategies}
+\subminisec{\latin{De novo} assembly}
+
+\subminisec{Read alignment}
+
+\subsubminisec{Genome reference}
+
+\subsubminisec{Transcriptome reference}
 
 
 
@@ -558,7 +623,7 @@ While microarrays are measuring many \mRNAs\ at once, their number is limited,
         \subsubsection{Quantification}
     \subsection{Consistency through biological layers}
 
-
+\mycite{reviewRNAseqBestpractice}
 \subsection{Co-studies on Transcriptomics and Proteomics in the literature}
 \subsection{EBI Expression Atlas or how integrating independent datasets }
 
