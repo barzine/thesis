@@ -116,9 +116,6 @@ there are presently many other downstream analyses that are cumbersome
 and/or not settled yet. This is the case for this study.
 
 
-Corrections for Rnaseq are already part of the analysis and
-requires often as much flair than skills.
-
 The transcriptome is the total repertoire of transcripts (\ie\ \glspl{RNA}
 molecules) expressed in a cell or tissue at a given time and condition. Unlike
 the genome which is roughly identical regardless which cell of a particular
@@ -290,8 +287,8 @@ that the sampling along the \gls{RNA} is more uniform.
 This fragmentation can be carry out via divalent cations hydrolysis or
 nebullisation.
 
-This step is sometimes performed after the \gls{cDNA} synthesis (see next section).
-In those case, the \gls{cDNA} are fragmented mostly
+This step is performed on occasions after the \gls{cDNA} synthesis
+(see next section). In those case, the \gls{cDNA} are fragmented mostly
 by digestion with DNase I or by sonication.
 
 \minisec{Double-stranded cDNA synthesis}
@@ -311,9 +308,10 @@ called \emph{strand-specific}, have been developed to compensate for this
 \minisec{Adapter ligation, PCR amplification and size selection}
 After generating blunt edges by restriction digest of the \glspl{cDNA}, adapters
 (small known sequences of oligonucleotides) are ligated to their both ends.
-These adapters are constituted from several parts. Some are ensuring later the
-hybridisation of the \glspl{cDNA} with the flow cells\footnote{\gls{flow}: see
-\cref{subsub:HybridClustAmp}.} (based on sequence complimentary) and some others
+These adapters are constituted from several parts. A subset of them are ensuring
+later the hybridisation of the \glspl{cDNA} with the flow
+cells\footnote{\gls{flow}: see \cref{subsub:HybridClustAmp}.} (based on sequence
+complimentary) and another set of them
 are sequence binding sites that are used as primers for the following cluster
 amplification step happening \latin{in situ}. These adapters are also used to
 introduce additional motifs such as indexes.
@@ -455,7 +453,7 @@ Unfortunately, as the sequencing proceeds, the error rate of the sequencers
 increases. This is due to the incomplete removal of the fluorescent signal which
 increases the background noise and thus reduces the signal-to-noise ratio.
 
-Once the programmed read length is achieved (typically between 25 to 200),
+Once the programmed read length is achieved (typically between 25 to 200 nt),
 the reads are washed away (after denaturation).
 
 \NB The below steps are specific to the \emph{paired-end} protocol.
@@ -487,7 +485,7 @@ in another.
 These files are usually distributed in \fastq\ format
 \mycite{fastqFormat} which record for each cluster (read) a unique identifier,
 a nucleotide sequence and a \gls{Phred} quality score for each base of the
-sequence. Some optional information can also be provided (\eg\
+sequence. A few optional information can also be provided (\eg\
 the position of the read on the \gls{flow} (See \cref{sec:fastq_format} for
 a random read example).
 
@@ -497,32 +495,66 @@ program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
 the base being called wrongly. There are several possible encoding formats
 (See \cref{sec:PhredScore}).
 
-
 \subsubsection{Data analysis}
+
+\NB \Cref{fig:pipelineTrans} present an example of the overall \latin{in silico}
+process of raw \Rnaseq\ data. It summarises the steps I used to process the data
+I used within this thesis.
 
 Before any downstream analysis, for each read, the genomic region from which it
 has been originally expressed need to be identified. Indeed, \Rnaseq\ main
 objective is to quantify the expression of genomic \emph{features}\footnote{These
 genomic features could be genes, isoforms, exons, novel genes, \dots\
-In short, any genomic region with some annotated function.}.
+In short, any genomic region with an annotated function.}.
 
-In general, there are two different strategies (described in the
-following `Read mapping strategies' segment).
+Three different \emph{mapping} strategies (described in the following related
+segment) manage to accomplish this identification step. Independently of the
+approach, this step is the most challenging and time consuming
+of the workflow. Tools, that tackle the mapping, usually provide a
+number of tunable heuristic parameters (\eg\ maximum number of allowed mismatches
+or indels per read before discarding an identification) to speed up the task.
+Unfortunately, as on Illumina platforms, the base calling accuracy decreases
+along the read length, this may lead to an information loss \mycite{TrimRNAseq}.
+To prevent avoidable reads to be discarded, it is opportune to perform a quality
+check of the raw data prior to the mapping steps. Thus, reads with a drop of
+accuracy in their 3'end may be trimmed (\ie\ trimmed) and rescued for the next
+step. Similarly, low quality reads may be discarded hence lowering the complexity
+of the mapping task and hasten its accomplishment.
+
+\minisec{Quality check, trimming and filtering}
+
+As a number of tools (mappers in particular) only accept as input reads with an
+unique length, the purity-length balance requires optimisation. Indeed, the
+trimming ought to compromise between an approach too lenient (where many reads
+are discarded by the mappers at a later step) and a too stringent one
+(where shorter reads increase the overall complexity and therefore hinder
+the mapping both on time and accuracy \mycite{Trimwisely}).
+
+
+\NB Generally, after the sequencer calls the reads, a first trimming removes
+all the adaptors and barcodes needed by the sequencing protocols. Thus,
+in principle, they are not to be found in the ``raw data''.
+However, to avert any latter contingency, a research against
+a list of the most common adaptors and an over-representation assessment of small
+sequences (\emph{k-mers}\footnote{k-mer: All possible subsequences of length
+\emph{k} of a \emph{read}.}) at each end of the reads is good practice.
+
+
+
+
+corrections for Rnaseq are already part of the analysis and
+requires often as much skills than flair.
+Contrarily to \Dnaseq\ where corrections can be applied \TK{add reference} and
+then the analysis be done
+
+
+
+
+
 
 
 \begin{comment}
-\rew{Angela:
-The first step
-to achieve this requires the identification of which features are present in the
-sequencing library. Mapping of reads to these features can be challenging given
-that reads are very short when compared to most genome sizes. There are three
-principal approaches for this mapping which include in order of decreasing
-complexity: de novo assembly of reads, read alignment to the genome followed by
-assembly and read alignment to the transcriptome.}
-
 \rew{Mar:
-In RNA-seq, this
-task is equivalent to discovering the loci that are expressed in a given sample.
 In general, two different strategies exist to perform this task: on the one hand,
 reads can be aligned to the reference genome or transcriptome, provided that such
 information is available for the species of interest; on the other hand, they can
@@ -530,40 +562,27 @@ be directly assembled into contigs (i.e. contiguously expressed regions) with th
 aim of reconstructing the set of expressed transcripts. The first strategy
 constitutes a much simpler approach, and it is typically the method of
 choice when working with model organisms.
-Independently of the strategy used, read mapping is typically the most time
-consuming step of the analysis workflow, and the available tools make use of
-heuristic parameters such as the maximum number of allowed mismatches per
-read in order to speed up this task. Such processing can lead to information
-loss given a decrease of quality at the 3’ end of the read, which emerges as a
-common profile when working with Illumina platforms due to the increased
-difficulty in interrpeting the fluorescent signal as sequencing cycles
-accumulate [Minoche et al., 2011]. Thus, in order to avoid such reads being
-discarded, it is often useful to first perform a quality control and
-pre-filtering step, whereby read sequences can be shortened (i.e. trimmed) in
-terms of their quality (e.g. Andrews [2010]). Simi- larly, reads with overall
-low quality can be also removed, in order to speed up the subsequent mapping
-process.}
-
+}
 \end{comment}
 
-\NB Generally, after the sequencer calls the reads, a first trimming removes
-all the adaptors and barcodes needed by the sequencing protocols. Thus,
-in principle, they are not to be found in raw data from repositories.
-However, to avert any latter contingency, a research against
-a list of the most common adaptors and an over-representation assessment of small
-sequences (\emph{k-mers}\footnote{k-mer: All possible subsequences of length
-\emph{k} of a \emph{read}.}) at each end of the reads is good practice.
-
-
-\TK{la suite au prochain épisode}
 
 
 
-\minisec{Quality check, trimming and filtering}
 
-\mycite{Trimwisely}
+
+
 
 \minisec{Read mapping strategies}
+
+\begin{comment}
+\rew{Angela:
+sequencing library. Mapping of reads to these features can be challenging given
+that reads are very short when compared to most genome sizes. There are three
+principal approaches for this mapping which include in order of decreasing
+complexity: de novo assembly of reads, read alignment to the genome followed by
+assembly and read alignment to the transcriptome.}
+\end{comment}
+
 \subminisec{\latin{De novo} assembly}
 
 \subminisec{Read alignment}
@@ -583,7 +602,7 @@ Whenever the overall quality of the samples allows it, it is best to discard ver
 Then, reads that present an overall quality score below a given threshold (10) are
 fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
 Since the quality decreases as the calling process progresses, all the reads are
-trimmed to a same length\footnote{This is a requirement of some tools (mappers
+trimmed to a same length\footnote{This is a requirement of a number of tools (mappers
 in particular).} in a way to optimise the purity-length balance. The trimming has
 to be less than 15\% of the original length. If needed, more reads are discarded
 so the length is maximised.

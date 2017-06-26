@@ -1,0 +1,70 @@
+\chapter{Supplementary for Chapter 1}
+\label{ch:SupplIntro}
+
+\section{FASTQ format}\label{sec:fastq_format}
+
+{\color[rgb]{0.447059,0.678431,0.274510}\verb!@ERR030856.1!}
+{\color[rgb]{0.500000,0.500000,0.500000}\verb!HWI-BRUNOP16X_0001:1:1:2669:1073#0!}%
+{\color[rgb]{1.000000,0.000000,0.000000}\verb!/1!}\\
+\verb!AAAGGATTATGCAGANGTAGGGCGTGTNNNNNNNNNNNNNGGCTGGGGNNNNNNNNNNNNNNNNNNATNNNCTGACCANCTGAAGTATGTCANGCTGCCT!\\
+{\color[rgb]{0.698039,0.145098,0.450980}+}\\
+{\color[rgb]{0.000000,0.000000,0.555711}\verb!HHHHHHHIHHFFFFF#>>@>GGGFG###########################################################################!}\\
+{\color[rgb]{0.447059,0.678431,0.274510}\verb!@ERR030856.2!}
+{\color[rgb]{0.500000,0.500000,0.500000}\verb!HWI-BRUNOP16X_0001:1:1:4476:1072#0!}%
+{\color[rgb]{1.000000,0.000000,0.000000}\verb!/1!}\\
+\verb!GATAGATTATCAGAANGACAGTTACTTNNNNNNNNNNNNNGGGCACTTNNNNNNNNNNNNNNNNNNATNNNTCATAAGNNCTGTTGCCAAATNAGTGATA!\\
+{\color[rgb]{0.698039,0.145098,0.450980}+}\\
+{\color[rgb]{0.000000,0.000000,0.555711}\verb!HHHHHHHHHHDDDDD#@@AAGGGGG###########################################################################!}
+
+{\footnotesize
+Legende:\\
+\quad{\color[rgb]{0.447059,0.678431,0.274510}\textbullet Read identifier}\\
+\quad{\color[rgb]{0.500000,0.500000,0.500000}\textbullet Optional information (here flow cell lane:tile number:x:y:z)}\\
+\quad{\color[rgb]{1.000000,0.000000,0.000000}\textbullet First member of pair (here) or single-end}\\
+\quad\textbullet Nucleotide sequence of the read\\
+\quad{\color[rgb]{0.698039,0.145098,0.450980}\textbullet Separator (+ or any string of character)}\\
+\quad{\color[rgb]{0.000000,0.000000,0.555711}\textbullet Phred score (here Phred 33)}
+}
+
+
+\section{Phred score}\label{sec:PhredScore}
+
+\begin{table}
+\centering
+\caption{Phred quality score to accuracy significance}
+\label{PhredtoAccuracy}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\begin{tabular}[c]{@{}l@{}}Phred quality\\ score ($Q$)\end{tabular} & \begin{tabular}[c]{@{}l@{}}Probability of\\ incorrect\\ base call\end{tabular} & \begin{tabular}[c]{@{}l@{}}Base call\\ accuracy\end{tabular} \\ \midrule
+10 & 1 in 10 & 90\% \\
+20 & 1 in 100 & 99\% \\
+30 & 1 in 1,000 & 99.9\% \\
+40 & 1 in 10,000 & 99.99\% \\ \bottomrule
+\end{tabular}
+\end{table}
+
+The \gls{Phred} quality score can be encoded in several standards.
+
+\begin{verbatim}
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.....................................................
+..........................XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX......................
+...............................IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII......................
+.................................JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ......................
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL....................................................
+!"#\$\%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+ |                         |    |        |                              |                     |
+33                        59   64       73                            104                   126
+ 0........................26...31.......40
+                          -5....0........9.............................40
+                                0........9.............................40
+                                   3.....9.............................40
+ 0........................26...31........41
+
+S - Sanger        Phred+33,   cores des séquences brutes compris entre 0 et 40
+X - Solexa        Phred+64, scores des séquences brutes compris entre -5 et 40
+I - Illumina 1.3+ Phred+64,  scores des séquences brutes compris entre 0 et 40
+J - Illumina 1.5+ Phred+64,  scores des séquences brutes compris entre 3 et 40
+     avec 0=inutilisé, 1=inutilisé, 2=Indicateur de contrôle qualité de segment de séquence (en gras)
+L - Illumina 1.8+ Phred+33,  scores des séquences brutes compris entre 0 et 41
+\end{verbatim}
+
