@@ -501,86 +501,117 @@ the base being called wrongly. There are several possible encoding formats
 process of raw \Rnaseq\ data. It summarises the steps I used to process the data
 I used within this thesis.
 
-Before any downstream analysis, for each read, the genomic region from which it
-has been originally expressed need to be identified. Indeed, \Rnaseq\ main
-objective is to quantify the expression of genomic \emph{features}\footnote{These
-genomic features could be genes, isoforms, exons, novel genes, \dots\
-In short, any genomic region with an annotated function.}.
+Before any downstream analysis, for each read, the genomic region (or
+\emph{locus}) from which it has been originally expressed need to be identified. 
+Indeed, \Rnaseq\ main objective is to quantify the expression of genomic
+\emph{features}\footnote{These genomic features could be genes, isoforms,
+exons, novel genes, \dots\
+In short, any genomic region with an annotated function.}. In other words,
+the transcriptome needs to be reconstruct from the short reads and annotated
+(\ie\ identify which features have been expressed in each library).
 
-Three different \emph{mapping} strategies (described in the following related
-segment) manage to accomplish this identification step. Independently of the
+Two main different strategies (see further `Reconstruction strategies' segment)
+manage to accomplish this identification step. Independently of the
 approach, this step is the most challenging and time consuming
-of the workflow. Tools, that tackle the mapping, usually provide a
+of the workflow. Tools, that tackle the reconstruction, usually provide a
 number of tunable heuristic parameters (\eg\ maximum number of allowed mismatches
-or indels per read before discarding an identification) to speed up the task.
+or indels per read before discarding a possible identification\footnote{Indeed,
+many reads will have many identifications, these reads are defined as
+\emph{ambiguous reads}.})
+to speed up the task.
 Unfortunately, as on Illumina platforms, the base calling accuracy decreases
 along the read length, this may lead to an information loss \mycite{TrimRNAseq}.
-To prevent avoidable reads to be discarded, it is opportune to perform a quality
-check of the raw data prior to the mapping steps. Thus, reads with a drop of
-accuracy in their 3'end may be trimmed (\ie\ trimmed) and rescued for the next
-step. Similarly, low quality reads may be discarded hence lowering the complexity
-of the mapping task and hasten its accomplishment.
+To prevent informative reads to be discarded, it is opportune to perform a quality
+check of the raw data prior to the identification step. Thus, reads with a drop of
+accuracy in their 3'end may be shortened (\ie\ trimmed) and rescued for the next
+reconstruction step. Similarly, low quality reads may be discarded hence
+lowering the complexity
+of the reconstruction task and hasten its accomplishment.
 
 \minisec{Quality check, trimming and filtering}
 
-As a number of tools (mappers in particular) only accept as input reads with an
-unique length, the purity-length balance requires optimisation. Indeed, the
-trimming ought to compromise between an approach too lenient (where many reads
-are discarded by the mappers at a later step) and a too stringent one
-(where shorter reads increase the overall complexity and therefore hinder
-the mapping both on time and accuracy \mycite{Trimwisely}).
+It is wise to discard uninformative reads, \ie\
+reads with a low sequence complexity (\eg\ poly-T or poly-A tails) or with
+uncalled base (N). Indeed, these reads will hamper the processing time as they
+usually map to several parts of the genome while also decreasing the accuracy of
+the global gene expression estimations.
 
+For similar reasons, it is judicious to remove reads with a low overall quality
+score\footnote{It may vary based on the complete set of reads to analyse.}.
+
+It is also prudent to check and remove any read that may map to possible
+contamination sources\footnote{For example, for eukaryotes, by aligning (see next
+segment) every read to the \species{Escherichia coli} genome}).
+Indeed, as these reads are ambiguous, it is safer
+to discard them than skew the expression estimations.
+
+Finally, as a number of tools (mappers in particular) only accept reads
+with an unique length, the purity-length balance requires optimisation.
+Indeed, the trimming has to compromise between
+an approach too lenient (where many unfit reads are discarded
+by the mappers at a later step) and
+a too stringent one (where too little reads are left for a pertinent analyses or
+where shorter reads increase the overall complexity and therefore hinder
+the mapping both on time and accuracy \mycite{Trimwisely}).
 
 \NB Generally, after the sequencer calls the reads, a first trimming removes
 all the adaptors and barcodes needed by the sequencing protocols. Thus,
 in principle, they are not to be found in the ``raw data''.
 However, to avert any latter contingency, a research against
 a list of the most common adaptors and an over-representation assessment of small
-sequences (\emph{k-mers}\footnote{k-mer: All possible subsequences of length
+sequences (\emph{k-mers}\footnote{\emph{k-mer}: All possible subsequences of length
 \emph{k} of a \emph{read}.}) at each end of the reads is good practice.
 
 
+\minisec{Reconstruction strategies}
+
+Two main approaches can be used for the very computationally expensive step of
+identification. I will present them in a decreasing order of complexity:
+the \latin{de novo} assembly of the reads and then the Reads alignment approach
+(to a genome reference or a transcriptome one).
 
 
-corrections for Rnaseq are already part of the analysis and
-requires often as much skills than flair.
-Contrarily to \Dnaseq\ where corrections can be applied \TK{add reference} and
-then the analysis be done
+\subminisec{\latin{de novo} Assembly}
+The reconstruction of the transcriptome 
 
 
 
-
-
+\NB As many concepts or terms, `\emph{Read mapping}' can have different (however
+very closely related) meanings. Hence, while for a number of people (\eg\
+\mycite{MarPhD}, \mycite{AngelaPhD},
+\emph{Read mapping} will encompass all reconstruction
+strategies (including \latin{de novo}
+assembly) as the main point is to map the \emph{features} to functional
+annotations, for others the locution will only refer to `Read alignment'
+strategies only \mycite{readMappingDef}.
 
 
 \begin{comment}
 \rew{Mar:
-In general, two different strategies exist to perform this task: on the one hand,
-reads can be aligned to the reference genome or transcriptome, provided that such
-information is available for the species of interest; on the other hand, they can
+on the other hand, they can be directly assembled into contigs (i.e. contiguously expressed regions) with the aim of reconstructing the set of expressed transcripts. The first strategy constitutes a much simpler approach, and it is typically the method of choice when working with model organisms.
+
+
+hey can
 be directly assembled into contigs (i.e. contiguously expressed regions) with the
 aim of reconstructing the set of expressed transcripts. The first strategy
 constitutes a much simpler approach, and it is typically the method of
 choice when working with model organisms.
-}
+
+    De novo assembly emerges as an advantageous strategy in the cases where the species of interest lacks a reference genome. Additionally, it can be used in sit- uations where the genome composition of a given sample is expected to differ largely from that of the reference assembly (e.g. cancer samples). The goal here is to assemble the reads into sets of expressed regions (i.e. contigs), by relying on their overlap. Nonetheless, the short read length adds to the non-triviality of the task, and even though the use of paired-end data can simplify this process, lowly expressed regions are often difficult to solve. In terms of available software, Trinity [Grabherr et al., 2011] emerges as the most popular tool to perform this task; however, such methods are not used in this thesis and are covered elsewhere [Martin and Wang, 2011].
+
+    }
 \end{comment}
-
-
-
-
-
-
-
-
-\minisec{Read mapping strategies}
 
 \begin{comment}
 \rew{Angela:
-sequencing library. Mapping of reads to these features can be challenging given
-that reads are very short when compared to most genome sizes. There are three
-principal approaches for this mapping which include in order of decreasing
-complexity: de novo assembly of reads, read alignment to the genome followed by
-assembly and read alignment to the transcriptome.}
+
+
+The objective of de novo read assembly is to find a set of the longest possible con- tiguously expressed regions (contigs) by exploiting overlaps between reads. Three algorithmic strategies have been employed to solve the problem of de novo assembly in recent years: prefix tree based, overlap-layout-consensus based, and de Bruijn
+25 graph based [152]. Of these the most prevalent has been the de Bruijn graph repre- sentation which has been adopted by a number of transcriptome assembly programs such as Trinity [47], Trans-ABySS [122] or Oases [134].
+In the de Bruijn graph representation read sequences are split into two sets of substrings, one set of substrings of length k (known as k-mers), and one set of substrings of length k − 1. A graph is then built with the k − 1-mers as nodes and the k-mers as directed edges if their prefix and suffix match the sequences in the start and end nodes respectively. The choice of k is essential for a good assembly. A smaller k produces longer contigs but more complex graphs, whilst a larger k produces shorter contigs and simpler graphs. However, the optimal k depends of the level of expression of the gene. Highly expressed genes produce more reads per base and consequently there is more overlap between the reads. The optimal k in this case is larger. On the other hand, lowly expressed genes produce less reads which overlap less. In this case, the ideal k is smaller. A single k is therefore unlikely to be optimal for the whole range of expression values found, unlike for genomic DNA sequence assembly. Some assembly programs address this by using a range of k values to produce sets of contigs which are then merged. Further challenges to de novo assembly are the occurrence of sequencing errors, heterozygosity and alternative splicing which can create a large number of forks in the graphs. A number of strategies can be employed to address some of these problems including the removal of variants with low coverage from the graphs and contig merging and expansion by using paired-end reads [122]. In the case of alternative splicing, it is important to note that for well annotated species, novel, previously unknown isoforms are expected to be lowly expressed given that highly expressed isoforms are more likely to have been detected and annotated by previous technologies in many years of genome annotation effort. If novel isoforms are lowly expressed it will still be challenging for de novo assemblers to find a good gene model.
+In summary, de novo read assembly is the most challenging of the three mapping strategies discussed in this section, however it is particularly useful when a reference genome is not available, or when the annotation is of poor quality for the species in question. Also, it provides the advantage of allowing a more unbiased discovery of exon-exon junctions [122].
+
+
 \end{comment}
 
 \subminisec{\latin{De novo} assembly}
@@ -683,4 +714,21 @@ for a few key tissues.
 \section{Experimental design}
 \subsection{Technical replicates}
 \subsection{Biological replicates}
-pourquoi c'est important.
+pourquoi c'est important
+
+
+
+
+\section{discussion or conclusion}
+
+
+
+
+\Rnaseq\ as \Dnaseq\ needs many corrections as to prevent biases in the downstream
+analysis. However, due to the dynamic component of the transcriptome
+contrarily to the genome, while it is possible to apply the corrections in
+\Dnaseq\ and then analyse the data \mycite{dnaseqCorr},
+in \Rnaseq, corrections are already part of
+the analysis and requires often as much skills than flair. It is possible that
+future protocols will overcome this issue.
+
