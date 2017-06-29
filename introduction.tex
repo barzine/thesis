@@ -123,6 +123,8 @@ individual is considered, the transcriptome varies\ldots
 
 \subsection{Transcriptome exploration with RNA sequencing}
 
+While microarrays are measuring many \mRNAs\ at once, their number is limited,
+
 \TK{history of \Rnaseq.}
 In the past decade, \gls{RNA-Seq} technology has risen as the method of choice
 for  transcriptome.
@@ -502,7 +504,7 @@ process of raw \Rnaseq\ data. It summarises the steps I used to process the data
 I used within this thesis.
 
 Before any downstream analysis, for each read, the genomic region (or
-\emph{locus}) from which it has been originally expressed need to be identified. 
+\emph{locus}) from which it has been originally expressed need to be identified.
 Indeed, \Rnaseq\ main objective is to quantify the expression of genomic
 \emph{features}\footnote{These genomic features could be genes, isoforms,
 exons, novel genes, \dots\
@@ -528,7 +530,10 @@ reconstruction step. Similarly, low quality reads may be discarded hence
 lowering the complexity
 of the reconstruction task and hasten its accomplishment.
 
-\minisec{Quality check, trimming and filtering}
+\minisec{Quality check, trimming and filtering}\label{minisec:trim}
+
+The quality assessment allows to remove any read (or part of it) that would
+increase the complexity of the reconstruction step or skew the downstream analyses.
 
 It is wise to discard uninformative reads, \ie\
 reads with a low sequence complexity (\eg\ poly-T or poly-A tails) or with
@@ -570,85 +575,183 @@ identification. I will present them in a decreasing order of complexity:
 the \latin{de novo} assembly of the reads and then the Reads alignment approach
 (to a genome reference or a transcriptome one).
 
+Regardless of the approaches, the reconstructed transcriptome is usually reported
+as a \emph{SAM} file \mycite{SAMformat} (or one of its derivative format either
+\emph{BAM} or more recently \emph{CRAM}).
+
+\begin{figure}
+    \includegraphics[scale=0.60]{introduction/MappingStrategies_cropped.pdf}\centering
+    \caption[Overview of main reconstruction strategies for
+    \Rnaseq\ transcriptome]{\label{fig:OverviewRnaseqMapping}\textbf{Overview of main
+    reconstruction strategies for a \Rnaseq\ transcriptome}}
+\end{figure}
+
 
 \subminisec{\latin{de novo} Assembly}
-The reconstruction of the transcriptome 
+This approach is favoured when the reference genome of the species of interest
+is unavailable or of poor quality
+(\eg\ many non-model organisms) or inadequate (\eg\ cancer samples)
+for the samples of interest. However, if a reference already exists this strategy
+is avoided to the utmost.
 
+It allows the unbiased discovery of novel
+exon-exon junctions \mycite{deBruijn}. As none of the datasets I use in this
+thesis has been reconstructed through this approach, I briefly summarise
+the main points below as more in-depth reviews cover this strategy
+\mycite{denovoReview}.
 
+In \latin{de novo} assembly, the reconstruction of the transcriptome happens
+with the construction of the longest possible \emph{contigs} (\ie\ contiguously
+expressed regions) based on sets of overlapping reads. Short length reads add
+to the overall complexity of this approach. While paired-end reads may help to
+solve a number of genomic regions, lowly expressed or repetitive regions remain
+challenging to determine. There are several algorithmic approaches for \latin{de
+novo} transcriptome assembly \mycite{algorithmsDenovo},
+though the most prevalent one is the de Bruijn representation \mycite{deBruijn}.
 
-\NB As many concepts or terms, `\emph{Read mapping}' can have different (however
-very closely related) meanings. Hence, while for a number of people (\eg\
-\mycite{MarPhD}, \mycite{AngelaPhD},
-\emph{Read mapping} will encompass all reconstruction
-strategies (including \latin{de novo}
-assembly) as the main point is to map the \emph{features} to functional
-annotations, for others the locution will only refer to `Read alignment'
-strategies only \mycite{readMappingDef}.
-
-
-\begin{comment}
-\rew{Mar:
-on the other hand, they can be directly assembled into contigs (i.e. contiguously expressed regions) with the aim of reconstructing the set of expressed transcripts. The first strategy constitutes a much simpler approach, and it is typically the method of choice when working with model organisms.
-
-
-hey can
-be directly assembled into contigs (i.e. contiguously expressed regions) with the
-aim of reconstructing the set of expressed transcripts. The first strategy
-constitutes a much simpler approach, and it is typically the method of
-choice when working with model organisms.
-
-    De novo assembly emerges as an advantageous strategy in the cases where the species of interest lacks a reference genome. Additionally, it can be used in sit- uations where the genome composition of a given sample is expected to differ largely from that of the reference assembly (e.g. cancer samples). The goal here is to assemble the reads into sets of expressed regions (i.e. contigs), by relying on their overlap. Nonetheless, the short read length adds to the non-triviality of the task, and even though the use of paired-end data can simplify this process, lowly expressed regions are often difficult to solve. In terms of available software, Trinity [Grabherr et al., 2011] emerges as the most popular tool to perform this task; however, such methods are not used in this thesis and are covered elsewhere [Martin and Wang, 2011].
-
-    }
-\end{comment}
-
-\begin{comment}
-\rew{Angela:
-
-
-The objective of de novo read assembly is to find a set of the longest possible con- tiguously expressed regions (contigs) by exploiting overlaps between reads. Three algorithmic strategies have been employed to solve the problem of de novo assembly in recent years: prefix tree based, overlap-layout-consensus based, and de Bruijn
-25 graph based [152]. Of these the most prevalent has been the de Bruijn graph repre- sentation which has been adopted by a number of transcriptome assembly programs such as Trinity [47], Trans-ABySS [122] or Oases [134].
-In the de Bruijn graph representation read sequences are split into two sets of substrings, one set of substrings of length k (known as k-mers), and one set of substrings of length k − 1. A graph is then built with the k − 1-mers as nodes and the k-mers as directed edges if their prefix and suffix match the sequences in the start and end nodes respectively. The choice of k is essential for a good assembly. A smaller k produces longer contigs but more complex graphs, whilst a larger k produces shorter contigs and simpler graphs. However, the optimal k depends of the level of expression of the gene. Highly expressed genes produce more reads per base and consequently there is more overlap between the reads. The optimal k in this case is larger. On the other hand, lowly expressed genes produce less reads which overlap less. In this case, the ideal k is smaller. A single k is therefore unlikely to be optimal for the whole range of expression values found, unlike for genomic DNA sequence assembly. Some assembly programs address this by using a range of k values to produce sets of contigs which are then merged. Further challenges to de novo assembly are the occurrence of sequencing errors, heterozygosity and alternative splicing which can create a large number of forks in the graphs. A number of strategies can be employed to address some of these problems including the removal of variants with low coverage from the graphs and contig merging and expansion by using paired-end reads [122]. In the case of alternative splicing, it is important to note that for well annotated species, novel, previously unknown isoforms are expected to be lowly expressed given that highly expressed isoforms are more likely to have been detected and annotated by previous technologies in many years of genome annotation effort. If novel isoforms are lowly expressed it will still be challenging for de novo assemblers to find a good gene model.
-In summary, de novo read assembly is the most challenging of the three mapping strategies discussed in this section, however it is particularly useful when a reference genome is not available, or when the annotation is of poor quality for the species in question. Also, it provides the advantage of allowing a more unbiased discovery of exon-exon junctions [122].
-
-
-\end{comment}
-
-\subminisec{\latin{De novo} assembly}
 
 \subminisec{Read alignment}
+This approach exploits prior knowledge. The reads are aligned to a reference to
+hasten the reconstruction process. The reference may be a genome or a
+transcriptome (provided that a good annotation is available).
 
 \subsubminisec{Genome reference}
+Aligning to the genome allows to discover new genes or isoforms. However, it
+requires a splice-aware algorithms, \ie\ they need to align the
+reads across the splice-junctions (which is possible but non-trivial).
+As illustrated in \Cref{fig:OverviewRnaseqMapping} --- Genome alignment part,
+the reads might span a number of discontinued regions of the reference.
+While on one hand, aligning to the genome avoids \emph{multiple mapping
+issues}\footnote{Due to sequence similarity, a same read or subpart of a read
+may be attributed to a number of different loci in the genome. As it is
+impossible to directly attribute the read to its original locus of expression,
+distribution models have to be considered to avoid unnecessary skewness while
+the quantification step.} for a same exon. Indeed, irrespectively of the number
+of a gene isoforms including an exon, the sequence of this exon is transcribed
+only once in the reference. However, this also implies that, for correct
+quantifications of the different isoforms, the genome needs to provide the
+coordinates for the isoforms and that an accurate quantification at isoform levels
+requires further analysis.
+
 
 \subsubminisec{Transcriptome reference}
+Using a transcriptome as reference instead of a genome reduces the complexity
+of the aligning step due to the lack of intronic sequences. However, it also
+limits the potential downstream analyses, \eg\ any new (or unannotated) gene
+or isoform will be missed. This approach is the easiest, but a pre-existing
+accurate and well-annotated gene models is required. The third part of the
+\Cref{fig:OverviewRnaseqMapping} shows in fact that this approach is simpler
+to the previous one as a direct alignment of the reads is done against the
+transcriptome of reference. This enables to quantify accurately the expression
+of gene isoforms, provided that the gene model is correct and the reads may be
+attributed unambiguously to a single isoform for each gene.
+
+
+To mitigate between very computational greedy approaches and more constraining
+ones, several tools complementary use the previous strategies.
+
+\subminisec{Hybrid approach between \latin{de novo} and alignment}
+There are tools like \soft{TopHat2}\footnote{\soft{TopHat} ---
+\href{https://ccb.jhu.edu/software/tophat/index.shtml}%
+{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \mycite{tophat2}
+(which has been used to reconstruct all the
+transcriptomes involved in this thesis --- see \Cref{ch:datasets}),
+that uses an hybrid approach between a reference alignment and a \latin{de novo}
+assembly. As a first (but optional) step, \soft{TopHat2} tries to contiguously
+align the reads with \soft{Bowtie}\footnote{\soft{Bowtie} ---
+\href{http://bowtie-bio.sourceforge.net/index.shtml}%
+{http://bowtie-bio.sourceforge.net/index.shtml}} \mycite{Bowtie}
+to the reference transcriptome when this one is provided. Then
+(or alternatively as a first step), the unmapped reads are aligned to the
+reference genome. The intention in these alignment steps is to identify and
+localise the exons, which may eventually span over splicing junctions and be
+connected through spliced alignment. Then, \soft{TopHat2} builds a database of
+possible exon-exon splice junctions from the set of mapped reads and then split
+the remaining unmapped (or aligned with a low score) reads in order to find
+possible new split events via a seed-and-extend approach. Potential new events
+are considered when smaller segments, that are matching exactly the reference
+in their good quality score regions, are also overlapping a splice junction
+reported in the newly created database.
+
+The smaller segments
+have to match exactly for their regions with good quality score with the reference
+and have overlaps (for an user defined length) with a splice junction.
+These segment sections are called seed.
+Any read with a seed is then checked for a
+complete alignment to the exons on both side of the junction.
+
+In the case of paired-end data, each read is first processed separately. Although,
+they are a valuable resource in a final evaluation phase, where with additional
+information sources, they help to determinate among the many possibilities which
+are the most credible ones.
+
+
+\minisec{Quantification of \emph{features}}
 
 
 
-The quality assessment allows to remove any read (or part of it) that would
-increase the complexity of the mapping step or skew the downstream analyses.
 
-Whenever the overall quality of the samples allows it, it is best to discard very
+\rew{Angela:
+and several others. The result of the combination of all these parameters is
+complex and species dependent and therefore would be difficult to assess even
+with simulated data. To my knowledge this has not been done and it is unclear
+what the impact of changing the parameters is. What limited comparisons exist
+have been reported by competing alignment tools in scenarios of limited scope,
+for example in [60] and [164].\\\\
+Alignment to the genome results in a set of one or more genomic coordinates for
+each aligned read which may or may not span exon junctions. By itself this
+information is of limited use so alignments can be further matched to known
+annotated features (for example by searching for overlaps between aligned reads
+and genes) or they can be used to build gene models de novo. One of the earliest
+and most well known programs to achieve the latter is a software application
+called Cufflinks [146]. In this program the authors have implemented an algorithm
+which tries to find the smallest possible set of transcripts that explains all
+observed (aligned) read or read pairs (henceforth in this section referred to
+as fragments). As in the de novo assembly approach described above, the fragments
+are used to find islands of expression. The problem of assembly is then to
+construct a directed acyclic graph in which fragments are nodes and pairs of
+nodes are connected if the fragments overlap with one another and if they do not
+imply splice junctions which cannot be present simultaneously in the same
+transcript (i.e. if the aligned reads are not incompatible, Figure 1.7). Assembly
+with Cufflinks is done independently for each island.
+Finally, Cufflinks finds the minimum number of partitions into chains of the
+graph by implementing a proof of a theorem for the decomposition of partially
+ordered sets known as Dilworth’s theorem. This set of minimum number of paths
+however may not be unique as in the example in Figure 1.8. In order to “phase”
+distant exons together Cufflinks chooses the path that minimises the total cost
+obtained by weighting each graph edge between nodes x and y with a cost C(x, y)
+= − log(1 − |φx − φy |), where φx and φy are the percent-spliced-in metrics
+computed for x and y by dividing the number of alignments compatible with x or y
+by the total number of fragments overlapping x or y and normalising for the
+length of x or y.
+The method employed by Cufflinks requires high coverage (high read overlap) to
+create good gene models, otherwise lowly expressed transcripts will be broken
+into pieces. Still, at low coverage this method is more sensitive than the de
+novo assemblers of the previous sections [134]. One other caveat of this approach
+is that paths are maximally extended as in the example of Figure 1.7, making it
+impossible to detect some instances of alternative transcript start and end
+sites. Finally, Cufflinks finds the minimum set of transcripts that explains the data.
+Choosing the simplest model over a more complex one when both models are equally
+valid is an application of Occam’s Razor. However, while Occam’s Razor is of great
+use for the development of theoretical models, its adoption for arbitrating
+between models in biology is controversial since the result of evolution is not
+necessarily optimal [157].
+\\\\
+For contiguous alignment to a reference, the most well known aligner is Bowtie.
+Bowtie indexes and compresses a genome sequence using a technique called a
+Burrows-Wheeler (BW) transform. The BW transformation allows the index to be
+held in memory and is faster than other aligning approaches such as spaced seed
+indexing [144]. The output of Bowtie, as with most current aligners including all
+previously mentioned, is in the SAM format. Among other information the SAM format
+provides for each read one or more alignment records describing one or more
+locations, in this case a coordinate along a feature, to which the read aligns [85].}
 
 
-Then, reads that present an overall quality score below a given threshold (10) are
-fully discarded. Reads that have uncalled bases (\textsc{N}) are also discarded.
-Since the quality decreases as the calling process progresses, all the reads are
-trimmed to a same length\footnote{This is a requirement of a number of tools (mappers
-in particular).} in a way to optimise the purity-length balance. The trimming has
-to be less than 15\% of the original length. If needed, more reads are discarded
-so the length is maximised.
 
-
-
+\subsection{Proteome exploration with Mass spectrometry}
 
 
 \begin{comment}
-
-
-\subsection{Transcriptomics Studies}
-    \subsubsection{Main technologies}
-While microarrays are measuring many \mRNAs\ at once, their number is limited,
-     (ubsubsection{A typical sequencing workflow}
 \subsection{Proteomics}
     \subsubsection{Main technologies}
     \subsubsection{Mass sprectrometry}
@@ -676,6 +779,31 @@ While microarrays are measuring many \mRNAs\ at once, their number is limited,
 \mycite{reviewRNAseqBestpractice}
 \subsection{Co-studies on Transcriptomics and Proteomics in the literature}
 \subsection{EBI Expression Atlas or how integrating independent datasets }
+
+
+
+
+\section{Reproducibility vs. Repeatability}
+
+
+\section{Experimental design}
+\subsection{Technical replicates}
+\subsection{Biological replicates}
+pourquoi c'est important
+
+
+
+
+\section{discussion or conclusion}
+
+
+\Rnaseq\ as \Dnaseq\ needs many corrections as to prevent biases in the downstream
+analysis. However, due to the dynamic component of the transcriptome
+contrarily to the genome, while it is possible to apply the corrections in
+\Dnaseq\ and then analyse the data \mycite{dnaseqCorr},
+in \Rnaseq, corrections are already part of
+the analysis and requires often as much skills than flair. It is possible that
+future protocols will overcome this issue.
 
 
 \section{Aims of the thesis}
@@ -706,29 +834,3 @@ for a few key tissues.
         transcriptomic et protoemic
     \item attempt de normalisation basée sur les housekeepings
 \end{itemize}
-
-
-\section{Reproducibility vs. Repeatability}
-
-
-\section{Experimental design}
-\subsection{Technical replicates}
-\subsection{Biological replicates}
-pourquoi c'est important
-
-
-
-
-\section{discussion or conclusion}
-
-
-
-
-\Rnaseq\ as \Dnaseq\ needs many corrections as to prevent biases in the downstream
-analysis. However, due to the dynamic component of the transcriptome
-contrarily to the genome, while it is possible to apply the corrections in
-\Dnaseq\ and then analyse the data \mycite{dnaseqCorr},
-in \Rnaseq, corrections are already part of
-the analysis and requires often as much skills than flair. It is possible that
-future protocols will overcome this issue.
-

@@ -451,7 +451,8 @@ received our access approval, Dr Nuno Fonseca retrieved \Gtex\ data from
 
 While most of the raw files can be used as they are, an additional step is
 needed for the \dataset{Castle} files. Indeed these files are using an older
-\fastq\ format that is non-compliant to the most accurate and recent tools.
+\fastq\ format that is non-compliant to the most accurate and recent tools used
+for this thesis.
 As it is a simple matter of changing the quality score scale,
 I translated these files to \gls{Phred} $33$ \fastq\ files with a
 \emph{\gls{Perl}} script (see~\Cref{code:fastq}).
@@ -516,22 +517,20 @@ of \irap.
 
 
 \minisec{Quality assessment, trimming and filtering}
-
 \irap\ uses internally \soft{FastX} toolkit\footnote{\soft{FastX} toolkit ---
 \href{http://hannonlab.cshl.edu/fastx\_toolkit/}%
 {http://hannonlab.cshl.edu/fastx\_toolkit/}} (0.0.13) to perform the
-assessment and the trimming.
+assessment and the trimming. The recommended usual reads (see \Cref{minisec:trim})
+have been discard as were any with an overall quality score a threshold of 10.
 
-Reads with a low sequence complexity (\eg\ poly-T or poly-A tails) are discarded.
-As is any read with uncalled bases (N) or with an overall quality score below a
-threshold of 10.
-
-As reported in \Cref{ch:Introduction}, as the base calling progresses, quality
-of the call decreases. On another note, some tools (mappers in particular) need
-all the reads to be trimmed to the same length. \TK{\irap\ will optimise the
-purity-length balance to avoid more errors or biases due to smaller reads
-\mycite{Trimwisely} by trimming at most 15\% of the original length while discarding
-more reads if necessary to maximise the length. : instead balance compromise}
+As reported in the \cref{subsub:sequencing}, as the base calling progresses,
+the quality of the call decreases.
+On another note, some tools (mappers in particular) need
+all the reads to be trimmed to the same length. \irap\ will optimise the
+purity-length balance of the reads to avoid more errors or biases due to smaller
+reads \mycite{Trimwisely} by trimming at most 15\% of the original length while
+discarding more reads if necessary to maximise the length (see also
+\Cref{minisec:trim}).
 
 Reads that could be assigned to a likely contamination source (here
 \species{Escherichia coli}) are also discarded. A splice non-aware mapper,
@@ -544,24 +543,22 @@ I mapped the reads to the genome with \irap's proposed default splice-aware mapp
 \soft{TopHat2}\footnote{\soft{TopHat} ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}%
 {https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \mycite{tophat2}
-with its set of default predefined arguments. Hence, I only had to provide the
-genome and the transcriptome references. Indeed, \soft{TopHat2} can handle reads
-from many organisms by fine-tuning the parameters (\eg\ number of mismatches or
-indels to tolerate) although the default parameters are adjusted for normal human
-transcriptome reads.
+with its set of default predefined arguments\footnote{Indeed, \soft{TopHat2} can
+handle reads from many organisms by fine-tuning the parameters (\eg\ number
+of mismatches or indels to tolerate), but the default parameters are adjusted
+for normal human.}. Hence, I only had to provide the
+genome and the transcriptome references.
 
-\soft{TopHat2} uses an hybrid approach between the two main
-strategies to reconstruct a transcriptome, that are either by mapping them to
-a reference or by \latin{de novo} assembly (see \cref{ch:Introduction}).
-As a first step, \soft{TopHat2} tries to align all the reads
-to the genome. Then in a second time, it maps all the unmapped reads from
-the previous step to the transcriptome reference and creates an exon-exon
-junctions database based on the new set of mapped reads. Finally, all the
-remaining unmapped reads are split between possible exons as to find
-possible new split events via a seed-and-extend approach.
+\NB As many concepts or terms in Science,
+`\emph{Read mapping}' can have different (however very closely related) meanings.
+Hence, while for a number of people, \emph{Read mapping} will encompass any
+transcriptome reconstruction strategy (including \latin{de novo} assembly) since
+the main point is to map the features to functional annotations, for others the
+locution will only refer to `Read alignment' strategies specifically
+\mycite{readMappingDef}. Tools as \soft{TopHat2} contributes to this
+locution vagueness.
 
 \minisec{Quantification and Normalisation}
-
 While \Rnaseq\ is a technique of choice to identify (and discover) \gls{RNA}
 isoforms, I have focused my thesis on the gene level expression. Indeed, current
 annotations and knowledge are still lacking in the reasons and
