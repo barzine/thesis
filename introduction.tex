@@ -38,7 +38,7 @@ l'observation et quantification du sang ---
 
 As where the situation stands for now, we know that between the unique common
 bluprint, which is the \DNA\ and the different phenotypes displayed by the tissues
-comprising our bodies, they are many regulatory processes happening at different
+comprising our bodies, they are many regulatory processes occurring at different
 layers (transcription, and translation).
 
  ### agent
@@ -315,7 +315,7 @@ later the hybridisation of the \glspl{cDNA} with the flow
 cells\footnote{\gls{flow}: see \cref{subsub:HybridClustAmp}.} (based on sequence
 complimentary) and another set of them
 are sequence binding sites that are used as primers for the following cluster
-amplification step happening \latin{in situ}. These adapters are also used to
+amplification step occurring \latin{in situ}. These adapters are also used to
 introduce additional motifs such as indexes.
 
 The next two steps can be interchanged regarding the amount of starting material
@@ -499,9 +499,21 @@ the base being called wrongly. There are several possible encoding formats
 
 \subsubsection{Data analysis}
 
-\NB \Cref{fig:pipelineTrans} present an example of the overall \latin{in silico}
-process of raw \Rnaseq\ data. It summarises the steps I used to process the data
-I used within this thesis.
+From the reconstruction of the
+transcriptome to the normalisation of expression in each sample, the various
+steps may be addressed through a number of different algorithmic approaches.
+Often, the choice of a method at one stage implies a more limited number of
+alternatives from which to pick at later points in the pipeline. Actually,
+the choice is frequently driven by the kind of downstream analyses planned for
+the study. More than the practical format of the data for these, it is the
+assumptions and the correction methods used upstream that are critical for a
+rigorous investigation and, later, for an accurate interpretation of the results.
+%Hence, \Rnaseq\ data analysis pipeline are often designed in the chronological
+%order of its steps than reversely.
+
+\Cref{fig:pipelineTrans} present an example of the overall \latin{in silico}
+process of raw \Rnaseq\ data. It summarises the steps and highlights the tools
+I used to process the data within this thesis.
 
 Before any downstream analysis, for each read, the genomic region (or
 \emph{locus}) from which it has been originally expressed need to be identified.
@@ -564,7 +576,8 @@ all the adaptors and barcodes needed by the sequencing protocols. Thus,
 in principle, they are not to be found in the ``raw data''.
 However, to avert any latter contingency, a research against
 a list of the most common adaptors and an over-representation assessment of small
-sequences (\emph{k-mers}\footnote{\emph{k-mer}: All possible subsequences of length
+sequences (\emph{k-mers}\footnote{\emph{k-mer}: In the present context, all
+possible subsequences of length
 \emph{k} of a \emph{read}.}) at each end of the reads is good practice.
 
 
@@ -625,7 +638,7 @@ While on one hand, aligning to the genome avoids \emph{multiple mapping
 issues}\footnote{Due to sequence similarity, a same read or subpart of a read
 may be attributed to a number of different loci in the genome. As it is
 impossible to directly attribute the read to its original locus of expression,
-distribution models have to be considered to avoid unnecessary skewness while
+distribution models have to be pondered to avoid unnecessary skewness while
 the quantification step.} for a same exon. Indeed, irrespectively of the number
 of a gene isoforms including an exon, the sequence of this exon is transcribed
 only once in the reference. However, this also implies that, for correct
@@ -688,16 +701,42 @@ are the most credible ones.
 
 \minisec{Quantification of \emph{features}}
 
+With \Rnaseq\ data, the typical next step after mapping the reads to the
+reference is to quantify the expression of the feature\footnote{E.g.\ genes,
+isoforms, exons, spicing events, \ldots}
+of interest. In fact, while genotyping, heredity
+studies and other genetic focused studies are in principle possible, the usual
+main focus is centred on expression\footnote{For example, instead of reporting
+a specific \gls{SNP}, in an \Rnaseq\ study, the core interest is more usually
+about the specific allelic expression.}. Moreover, most of the \Rnaseq\ studies
+lack to provide the sequence depth and coverage for such studies.
+Genome assays are by far better for those.
+
+Several tools and algorithmic approaches are available. Within this thesis, I
+use two popular tools, \soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
+\href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
+{http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1)
+\mycite{htseq} and
+\soft{Cufflinks}\footnote{\soft{Cufflinks} ---
+\href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
+{http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1)
+\mycite{cufflinks},
+which are both compatible with \soft{TopHat2} but rely on different concepts.
+
+\TK{review about the quantification tools}
+
+\subminisec{HTSeq-count}
+This
+
+\subminisec{Cufflinks}
+
+
+
+\minisec{Normalisation}
 
 
 
 \rew{Angela:
-and several others. The result of the combination of all these parameters is
-complex and species dependent and therefore would be difficult to assess even
-with simulated data. To my knowledge this has not been done and it is unclear
-what the impact of changing the parameters is. What limited comparisons exist
-have been reported by competing alignment tools in scenarios of limited scope,
-for example in [60] and [164].\\\\
 Alignment to the genome results in a set of one or more genomic coordinates for
 each aligned read which may or may not span exon junctions. By itself this
 information is of limited use so alignments can be further matched to known
@@ -735,16 +774,7 @@ Choosing the simplest model over a more complex one when both models are equally
 valid is an application of Occam’s Razor. However, while Occam’s Razor is of great
 use for the development of theoretical models, its adoption for arbitrating
 between models in biology is controversial since the result of evolution is not
-necessarily optimal [157].
-\\\\
-For contiguous alignment to a reference, the most well known aligner is Bowtie.
-Bowtie indexes and compresses a genome sequence using a technique called a
-Burrows-Wheeler (BW) transform. The BW transformation allows the index to be
-held in memory and is faster than other aligning approaches such as spaced seed
-indexing [144]. The output of Bowtie, as with most current aligners including all
-previously mentioned, is in the SAM format. Among other information the SAM format
-provides for each read one or more alignment records describing one or more
-locations, in this case a coordinate along a feature, to which the read aligns [85].}
+necessarily optimal [157].}
 
 
 
