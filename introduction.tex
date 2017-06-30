@@ -497,7 +497,7 @@ program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
 the base being called wrongly. There are several possible encoding formats
 (See \cref{sec:PhredScore}).
 
-\subsubsection{Data analysis}
+\subsubsection{Data analysis overwiew}
 
 From the reconstruction of the
 transcriptome to the normalisation of expression in each sample, the various
@@ -695,45 +695,103 @@ they are a valuable resource in a final evaluation phase, where with additional
 information sources, they help to determinate among the many possibilities which
 are the most credible ones.
 
-Despite being a slow 
+Despite being a slow splice-aware mapper \mycite{hisat},
+\soft{TopHat2} --- along with
+\soft{STAR}\footnote{\soft{STAR} --- \href{https://github.com/alexdobin/STAR}%
+{https://github.com/alexdobin/STAR}} \mycite{STARpaper} --- is the most
+popular mapper for genomes with a near-complete annotation (such as
+\species{Homo sapiens} for example) \mycite{Tamara2013}.
+
 
 \minisec{Quantification of \emph{features}}
 
-With \Rnaseq\ data, the typical next step after mapping the reads to the
-reference is to quantify the expression of the feature\footnote{E.g.\ genes,
+When working with \Rnaseq\ data, the typical next step after mapping the reads
+to the reference is to quantify the expression of the feature\footnote{E.g.\ genes,
 isoforms, exons, spicing events, \ldots}
-of interest. In fact, while genotyping, heredity
-studies and other genetic focused studies are in principle possible, the usual
-main focus is centred on expression\footnote{For example, instead of reporting
-a specific \gls{SNP}, in an \Rnaseq\ study, the core interest is more usually
-about the specific allelic expression.}. Moreover, most of the \Rnaseq\ studies
-lack to provide the sequence depth and coverage for such studies.
-Genome assays are by far better for those.
+of interest\footnote{In fact, while genotyping, heredity
+studies and other genetically focused studies are in principle possible, the usual
+main focus is centred on expression estimation. For example, instead of
+reporting a specific \gls{SNP}, in an \Rnaseq\ study, the core interest is more
+usually about the specific allelic expression. Moreover, most of the \Rnaseq\
+studies lack to provide the sequence depth and coverage for other kinds of study.}.
 
-Several tools and algorithmic approaches are available. Within this thesis, I
-use two popular tools, \soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
-\href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
-{http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1)
-\mycite{htseq} and
+Several tools and algorithmic approaches are available.
+Indeed, for larger genomes, many regions may present high sequence similarity
+which result to many \emph{ambiguous} (and challenging) reads as they mapped to
+many potential initial sites. These reads are also called \emph{multireads}.
+One early strategy to solve multireads is to discard them from later analyses;
+another one is to attribute them to the most credible site based on the overall
+distribution of the reads for a given sample. \mycite{Mortazavi2008}
+
+Within this thesis, I use two popular tools,
 \soft{Cufflinks}\footnote{\soft{Cufflinks} ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
 {http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1)
-\mycite{cufflinks},
+\mycite{cufflinks} and
+\soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
+\href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
+{http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1)
+\mycite{htseq},
 which are both compatible with \soft{TopHat2} but rely on different concepts.
 
-\TK{review about the quantification tools}
+I briefly summarise their main characteristic below in their paper publication
+order.
 
-\subminisec{HTSeq-count}
-This
+\TK{Isabelle, je travaille encore sur le reste.}
+
 
 \subminisec{Cufflinks}
+\soft{Cufflinks} is part of set of tool developed under the \soft{Tuxedo} suite
+which also includes \soft{TopHat2} and \soft{Bowtie}.
 
+
+\subminisec{HTSeq-count}
+This stand-alone script, provided with the \gls{Python} library \soft{HTSeq},
+handles more straightforwardly the feature quantification.
+
+It discards any multiread and counts how many \emph{unambiguous} reads in SAM/BAM
+file are overlapping the features of interest described in a given gene
+model\footnote{Gene models are distributed as annotation file (usually either as
+GTF or GFF format) to a reference (genome or transcriptome).}.
+
+For example, to assess gene expression, it counts reads that overlap unambiguously
+with the exons.
+
+Initially, this simpler approach was designed for \emph{differential gene analysis}.
+However, more
+
+
+
+\begin{comment}
+its exons. These counts can then be used for gene-level differential
+expression analyses using methods such as DESeq2 (Love
+et al., 2014) or edgeR (Robinson et al., 2010). As the script
+is designed specifically for differential expression analysis, only
+reads mapping unambiguously to a single gene are counted,
+whereas reads aligned to multiple positions or overlapping with
+more than one gene are discarded. To see why this is desirable,
+consider two genes with some sequence similarity, one of which
+is differentially expressed while the other one is not. A read that
+maps to both genes equally well should be discarded, because if
+it were counted for both genes, the extra reads from the differentially
+expressed gene may cause the other gene to be wrongly
+called differentially expressed, too. Another design choice made
+with the downstream application of differential expression testing
+in mind is to count fragments, not reads, in case of pairedend
+data. This is because the two mates originating from the
+same fragment provide only evidence for one cDNA fragment
+and should hence be counted only once.
+\end{comment}
+
+
+
+\TK{review about the quantification tools}
 
 
 \minisec{Normalisation}
 
 
-
+\begin{comment}
 \rew{Angela:
 Alignment to the genome results in a set of one or more genomic coordinates for
 each aligned read which may or may not span exon junctions. By itself this
@@ -773,7 +831,7 @@ valid is an application of Occam’s Razor. However, while Occam’s Razor is of
 use for the development of theoretical models, its adoption for arbitrating
 between models in biology is controversial since the result of evolution is not
 necessarily optimal [157].}
-
+\end{comment}
 
 
 \subsection{Proteome exploration with Mass spectrometry}
