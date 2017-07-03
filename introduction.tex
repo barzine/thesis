@@ -586,8 +586,8 @@ the \latin{de novo} assembly of the reads and then the Reads alignment approach
 (to a genome reference or a transcriptome one).
 
 Regardless of the approaches, the reconstructed transcriptome is usually reported
-as a \emph{SAM} file \mycite{SAMformat} (or one of its derivative format either
-\emph{BAM} or more recently \emph{CRAM}).
+as a \emph{\gls{SAM}} file \mycite{SAMformat} (or one of its derivative format
+either \emph{\gls{BAM}} or more recently \emph{CRAM}).
 
 \begin{figure}
     \includegraphics[scale=0.60]{introduction/MappingStrategies-2_cropped.pdf}\centering
@@ -745,32 +745,43 @@ I briefly present them below in their chronological release.
 
 \subminisec{HTSeq-count}
 The \gls{Python} library \soft{HTSeq} provides a stand-alone script
-(\htseq) performing
-the feature quantification with a more stringent strategy. It discards all
-\emph{ambiguous} reads (multireads or reads overlapping more than one gene) from
-a \gls{SAM}/\gls{BAM} file to keep the \emph{unambiguous} ones only.
-Then, it counts their
-overlaps with the features of interest which are described in a given gene
-model\footnote{Gene models are distributed as annotation file (usually either as
-\gls{GTF} or \gls{GFF} format) to a specific reference (genome or transcriptome).}.
-To quantify the expression of a given gene for example, it counts every read
-that unambiguously overlaps with all its annotated exons\footnote{Indeed, \htseq\
-defines a gene as the union of all its exons.}. Three modes fine-tune the overlap
-definition (see \Cref{fig:htseqMode}). For this thesis, I used the
-``\texttt{intersection non-empty}'' mode. This mode avoids discarding too many
-reads due to a too tolerant annotation (\ie\ additional possible features can
-be included to the annotation while they are not properly defined yet).
+(\htseq) performing the feature quantification with a more stringent strategy.
+It discards all ambiguous reads from a \gls{SAM}/\gls{BAM} file and then
+only counts the \emph{un}ambiguous reads that overlap with the features of
+interest for a given gene model\footnote{Gene models are distributed as
+annotation file (usually either as \gls{GTF} or \gls{GFF} format) and refer
+to a specific reference (genome or transcriptome).}.
 
-Initially, this tool was designed for \emph{differential gene
+\htseq\ deems as ambiguous any multiread or read that overlaps more than
+one annotation for the considered feature.\footnote{In fact, reads might be
+discarded for one feature but kept for another one. For example, to quantify the
+expression of a given gene, \htseq\ considers every read that unambiguously
+overlaps with any of its annotated exons --- indeed, \htseq\ defines a gene
+as the union of all its exons. However, while quantifying exon expression, many
+of these same reads may be discarded as they overlap several exon annotations
+with overlaying definitions.}
+\htseq\ provides
+three modes to fine-tune the overlap definition (see \Cref{fig:htseqMode}).
+For this thesis, I used the ``\texttt{intersection non-empty}'' mode.
+This mode avoids discarding too many reads due to a too tolerant annotation
+(\ie\ the annotation itself presents many overlapping definitions for a given pair
+of feature and chromosome region).
+
+
+Initially, \htseq\ was designed for \emph{differential gene
 expression analysis} (see \cref{minisec:dgea}). As multireads are irrelevant for
 those studies, including or excluding them from the downstream analysis was
 insignificant \mycite{htseq}. Interestingly, many papers (\eg\ \mycite{Fonseca2014},
 \mycite{errorsRNAquant}, \mycite{tophatStarwhatever}) have since showed that
-the gene expression estimation by \htseq\ while underestimated is overall
-well-correlated with other \gls{RNA} quantification (\eg\ microarrays, RT-qPCR).
+the gene expression estimation by \htseq, while underestimated, is overall
+well-correlated with other \gls{RNA} quantification methods
+(\eg\ microarrays, RT-qPCR).
 
 Moreover, quantifications with \htseq\ are highly correlated with \cuffl\
-quantifications for most of the genes (over 85\%) \mycite{tophatStarwhatever}.
+quantifications for most of the genes after proper normalisation
+\mycite{tophatStarwhatever}. Indeed, \htseq\ provides \emph{raw counts} that
+require normalisation to avoid a few statistical biases. These are mostly related
+to sampling issues.
 
 
 \begin{comment}
