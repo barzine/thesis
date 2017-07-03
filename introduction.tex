@@ -661,7 +661,7 @@ ones, several tools complementary use the previous strategies.
 
 \subminisec{Hybrid approach between \latin{de novo} and alignment}
 There are tools like \toph\footnote{\toph\ ---
-\href{https://ccb.jhu.edu/software/tophat/index.shtml}%
+\href{https://ccb.jhu.edu/software/tophat/index.shtml}
 {https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \mycite{tophat2}
 (which has been used to reconstruct all the
 transcriptomes involved in this thesis --- see \Cref{ch:datasets}),
@@ -748,26 +748,29 @@ The \gls{Python} library \soft{HTSeq} provides a stand-alone script
 (\htseq) performing
 the feature quantification with a more stringent strategy. It discards all
 \emph{ambiguous} reads (multireads or reads overlapping more than one gene) from
-a SAM/BAM file to keep the \emph{unambiguous} ones only. Then, it counts their
+a \gls{SAM}/\gls{BAM} file to keep the \emph{unambiguous} ones only.
+Then, it counts their
 overlaps with the features of interest which are described in a given gene
 model\footnote{Gene models are distributed as annotation file (usually either as
-GTF or GFF format) to a specific reference (genome or transcriptome).}.
+\gls{GTF} or \gls{GFF} format) to a specific reference (genome or transcriptome).}.
 To quantify the expression of a given gene for example, it counts every read
 that unambiguously overlaps with all its annotated exons\footnote{Indeed, \htseq\
 defines a gene as the union of all its exons.}. Three modes fine-tune the overlap
-definition.
+definition (see \Cref{fig:htseqMode}). For this thesis, I used the
+``\texttt{intersection non-empty}'' mode. This mode avoids discarding too many
+reads due to a too tolerant annotation (\ie\ additional possible features can
+be included to the annotation while they are not properly defined yet).
 
 Initially, this tool was designed for \emph{differential gene
 expression analysis} (see \cref{minisec:dgea}). As multireads are irrelevant for
 those studies, including or excluding them from the downstream analysis was
-insignificant. Interestingly, many papers (\eg\ \mycite{Fonseca2014},
+insignificant \mycite{htseq}. Interestingly, many papers (\eg\ \mycite{Fonseca2014},
 \mycite{errorsRNAquant}, \mycite{tophatStarwhatever}) have since showed that
 the gene expression estimation by \htseq\ while underestimated is overall
 well-correlated with other \gls{RNA} quantification (\eg\ microarrays, RT-qPCR).
 
 Moreover, quantifications with \htseq\ are highly correlated with \cuffl\
 quantifications for most of the genes (over 85\%) \mycite{tophatStarwhatever}.
-
 
 
 \begin{comment}
