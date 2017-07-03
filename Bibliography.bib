@@ -3276,47 +3276,6 @@
 }
 
 
-
-
-@article{Tamara2013,
-  Title       = {Systematic evaluation of spliced alignment programs for
-                 {RNA-seq} data},
-  Author      = {Engström, Pär G and Steijger, Tamara and Sipos, Botond and
-                 Grant, Gregory R and Kahles, André and Rätsch, Gunnar and
-                 Goldman, Nick and Hubbard, Tim J and Harrow, Jennifer and
-                 Guigó, Roderic and Bertone, Paul and {RGASP Consortium}},
-  Abstract    = {High-throughput RNA sequencing is an increasingly accessible
-                 method for studying gene structure and activity on a
-                 genome-wide scale. A critical step in RNA-seq data analysis is
-                 the alignment of partial transcript reads to a reference
-                 genome sequence. To assess the performance of current mapping
-                 software, we invited developers of RNA-seq aligners to process
-                 four large human and mouse RNA-seq data sets. In total, we
-                 compared 26 mapping protocols based on 11 programs and
-                 pipelines and found major performance differences between
-                 methods on numerous benchmarks, including alignment yield,
-                 basewise accuracy, mismatch and gap placement, exon junction
-                 discovery and suitability of alignments for transcript
-                 reconstruction. We observed concordant results on real and
-                 simulated RNA-seq data, confirming the relevance of the
-                 metrics employed. Future developments in RNA-seq alignment
-                 methods would benefit from improved placement of multimapped
-                 reads, balanced utilization of existing gene annotation and a
-                 reduced false discovery rate for splice junctions.},
-  Journal     = {Nature Methods},
-  Volume      = {10},
-  Number      = {12},
-  Pages       = {1185--1191},
-  Month       = {12},
-  Year        = {2013},
-  Language    = {en},
-  Issn        = {1548-7091, 1548-7105},
-  Pmid        = {24185836},
-  Doi         = {10.1038/nmeth.2722},
-  Pmc         = {PMC4018468}
-}
-
-
 @article{tophatStarwhatever,
   Title       = {Benchmarking of {RNA-sequencing} analysis workflows using
                  whole-transcriptome {RT-qPCR} expression data},
@@ -3360,5 +3319,47 @@
   Pmid        = {28484260},
   Doi         = {10.1038/s41598-017-01617-3},
   Pmc         = {PMC5431503}
+}
+
+
+@article{errorsRNAquant,
+  Title       = {Errors in {RNA-Seq} quantification affect genes of relevance
+                 to human disease},
+  Author      = {Robert, Christelle and Watson, Mick},
+  Abstract    = {BACKGROUND: RNA-Seq has emerged as the standard for measuring
+                 gene expression and is an important technique often used in
+                 studies of human disease. Gene expression quantification
+                 involves comparison of the sequenced reads to a known genomic
+                 or transcriptomic reference. The accuracy of that
+                 quantification relies on there being enough unique information
+                 in the reads to enable bioinformatics tools to accurately
+                 assign the reads to the correct gene. RESULTS: We apply 12
+                 common methods to estimate gene expression from RNA-Seq data
+                 and show that there are hundreds of genes whose expression is
+                 underestimated by one or more of those methods. Many of these
+                 genes have been implicated in human disease, and we describe
+                 their roles. We go on to propose a two-stage analysis of
+                 RNA-Seq data in which multi-mapped or ambiguous reads can
+                 instead be uniquely assigned to groups of genes. We apply this
+                 method to a recently published mouse cancer study, and
+                 demonstrate that we can extract relevant biological signal
+                 from data that would otherwise have been discarded.
+                 CONCLUSIONS: For hundreds of genes in the human genome,
+                 RNA-Seq is unable to measure expression accurately. These
+                 genes are enriched for gene families, and many of them have
+                 been implicated in human disease. We show that it is possible
+                 to use data that may otherwise have been discarded to measure
+                 group-level expression, and that such data contains
+                 biologically relevant information.},
+  Journal     = {Genome Biology},
+  Volume      = {16},
+  Pages       = {177},
+  Month       = {09},
+  Year        = {2015},
+  Language    = {en},
+  Issn        = {1465-6906},
+  Pmid        = {26335491},
+  Doi         = {10.1186/s13059-015-0734-x},
+  Pmc         = {PMC4558956}
 }
 

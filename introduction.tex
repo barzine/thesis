@@ -155,12 +155,11 @@ throughput and the lowest per-base cost \mycite{IlluminaCheap}.
 
 Experimental protocols for other platforms will need various and specific
 modifications that are outside of the realm of this thesis and thus will not be
-cover here. More details on the other main sequencing platforms and their
+cover here\footnote{More details on the other main sequencing platforms and their
 relevant protocols can be found in \cite{rnaseqProtocols} review paper or at the
-online resource
-``\href{http://rnaseq.uoregon.edu/}{RNA-seqlopedia}''\footnote{\textit{RNA-seqlopedia}:
-\href{http://rnaseq.uoregon.edu/}{http://rnaseq.uoregon.edu/}.}
-\mycite{rnaseqlopedia}.
+online resource ``\href{http://rnaseq.uoregon.edu/}{RNA-seqlopedia}''
+(\href{http://rnaseq.uoregon.edu/}{http://rnaseq.uoregon.edu/})
+\mycite{rnaseqlopedia}.}.
 
 As I discuss the concepts behind the Illumina sequencing technology and the
 most common related methods to process it, I will emphasise the approaches and
@@ -313,7 +312,7 @@ After generating blunt edges by restriction digest of the \glspl{cDNA}, adapters
 These adapters are constituted from several parts. A subset of them are ensuring
 later the hybridisation of the \glspl{cDNA} with the flow
 cells\footnote{\gls{flow}: see \cref{subsub:HybridClustAmp}.} (based on sequence
-complimentary) and another set of them
+complementary) and another set of them
 are sequence binding sites that are used as primers for the following cluster
 amplification step occurring \latin{in situ}. These adapters are also used to
 introduce additional motifs such as indexes.
@@ -382,14 +381,14 @@ of the \gls{cDNA} fragments.
 
 The double-strand \glspl{cDNA} are denatured and then each fragment randomly
 hybridises across the flow cell surface with one of its small oligonucleotides.
-These are used as primers for polymerases which create a first complimentary
+These are used as primers for polymerases which create a first complementary
 strand to the hybridised \gls{DNA} fragments. The new double-strand molecule is
 denatured and the original first template is washed away.
 
 \minisec{Bridge amplification}
 The strands then folds over and their (second) adapter hybridises with a
-complimentary oligonucleotide sequence of the flow cell and thus creating a
-bridge. The flow cell complimentary fragment is then used as the primer for a new
+complementary oligonucleotide sequence of the flow cell and thus creating a
+bridge. The flow cell complementary fragment is then used as the primer for a new
 strand. The new double-stranded \gls{DNA} is then denatured (which
 dismantles the bridge). Each of the two tethered molecules creates a new
 bridge by hybridisation which are the templates for a new strand each.
@@ -432,12 +431,12 @@ calling.
 
 The sequencing occurs simultaneously on every identical fragment
 of every cluster of the flow cell.
-It begins with the hybridisation of a complimentary 5' primer onto the 3' biding
+It begins with the hybridisation of a complementary 5' primer onto the 3' biding
 site of the tethered \gls{DNA} template. This primer is then extended by
 replication to create a new read. Next, the sequencing cycle (described below)
 repeats itself several times.
 
-The \emph{sequencing cycle} starts with the addition of one complimentary
+The \emph{sequencing cycle} starts with the addition of one complementary
 fluorescent \dNTP\ to the new growing read and, since the \dNTPs\ are blocked at
 their 3' end, the replication process stops. Afterwards, all the unlinked
 \dNTPs\ are washed away. Then, the clusters are excited by a light source
@@ -463,7 +462,7 @@ the reads are washed away (after denaturation).
 Then, after introduction of a new primer, the first index is sequenced
 following the same sequencing cycle.
 Once completed, the index read is washed off and the 3' end primer is deprotected.
-Then, the \gls{DNA} fragment bends over and hybridises to a complimentary
+Then, the \gls{DNA} fragment bends over and hybridises to a complementary
 oligonucleotide at the surface of the flow cell.
 Next, the second index is sequenced and its product read washed away,
 a single new bridge replication follows.
@@ -591,7 +590,7 @@ as a \emph{SAM} file \mycite{SAMformat} (or one of its derivative format either
 \emph{BAM} or more recently \emph{CRAM}).
 
 \begin{figure}
-    \includegraphics[scale=0.60]{introduction/MappingStrategies_cropped.pdf}\centering
+    \includegraphics[scale=0.60]{introduction/MappingStrategies-2_cropped.pdf}\centering
     \caption[Overview of main reconstruction strategies for
     \Rnaseq\ transcriptome]{\label{fig:OverviewRnaseqMapping}\textbf{Overview of main
     reconstruction strategies for a \Rnaseq\ transcriptome}}
@@ -661,13 +660,13 @@ To mitigate between very computational greedy approaches and more constraining
 ones, several tools complementary use the previous strategies.
 
 \subminisec{Hybrid approach between \latin{de novo} and alignment}
-There are tools like \soft{TopHat2}\footnote{\soft{TopHat} ---
+There are tools like \toph\footnote{\toph\ ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}%
 {https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \mycite{tophat2}
 (which has been used to reconstruct all the
 transcriptomes involved in this thesis --- see \Cref{ch:datasets}),
 that uses an hybrid approach between a reference alignment and a \latin{de novo}
-assembly. As a first (but optional) step, \soft{TopHat2} tries to contiguously
+assembly. As a first (but optional) step, \toph\ tries to contiguously
 align the reads with \soft{Bowtie}\footnote{\soft{Bowtie} ---
 \href{http://bowtie-bio.sourceforge.net/index.shtml}%
 {http://bowtie-bio.sourceforge.net/index.shtml}} \mycite{Bowtie}
@@ -675,7 +674,7 @@ to the reference transcriptome when this one is provided. Then
 (or alternatively as a first step), the unmapped reads are aligned to the
 reference genome. The intention in these alignment steps is to identify and
 localise the exons, which may eventually span over splicing junctions and be
-connected through spliced alignment. Then, \soft{TopHat2} builds a database of
+connected through spliced alignment. Then, \toph\ builds a database of
 possible exon-exon splice junctions from the set of mapped reads and then split
 the remaining unmapped (or aligned with a low score) reads in order to find
 possible new split events via a seed-and-extend approach. Potential new events
@@ -696,11 +695,11 @@ information sources, they help to determinate among the many possibilities which
 are the most credible ones.
 
 Despite being a slow splice-aware mapper \mycite{hisat},
-\soft{TopHat2} --- along with
+\toph\ --- along with
 \soft{STAR}\footnote{\soft{STAR} --- \href{https://github.com/alexdobin/STAR}%
 {https://github.com/alexdobin/STAR}} \mycite{STARpaper} --- is the most
 popular mapper for genomes with a near-complete annotation (such as
-\species{Homo sapiens} for example) \mycite{Tamara2013}.
+\species{Homo sapiens} for example) \mycite{tamaraRNA}.
 
 
 \minisec{Quantification of \emph{features}}
@@ -724,50 +723,54 @@ another one is to attribute them to the most credible site based on the overall
 distribution of the reads for a given sample. \mycite{Mortazavi2008}
 
 Within this thesis, I use two popular tools,
-\soft{Cufflinks}\footnote{\soft{Cufflinks} ---
+\cuffl\footnote{\cuffl\ ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
 {http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1)
 \mycite{cufflinks} and
-\soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
+\htseq\footnote{\htseq\ ---
 \href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
 {http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1)
 \mycite{htseq},
-which are both compatible with \soft{TopHat2} but rely on different concepts.
+which are both compatible with \toph\ but rely on different concepts.
 
-I briefly summarise their main characteristic below in their paper publication
-order.
-
-\TK{Isabelle, je travaille encore sur le reste.}
-
+I briefly present them below in their chronological release.
 
 \subminisec{Cufflinks}
-\soft{Cufflinks} is part of set of tool developed under the \soft{Tuxedo} suite
-which also includes \soft{TopHat2} and \soft{Bowtie}.
+\cuffl\ is part of collection of tools called
+\soft{Tuxedo suite}\footnote{\soft{Tuxedo suite} user group:
+\href{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}%
+{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}} which also includes
+\toph\ and \soft{Bowtie}.
 
 
 \subminisec{HTSeq-count}
-This stand-alone script, provided with the \gls{Python} library \soft{HTSeq},
-handles more straightforwardly the feature quantification.
-
-It discards any multiread and counts how many \emph{unambiguous} reads in SAM/BAM
-file are overlapping the features of interest described in a given gene
+The \gls{Python} library \soft{HTSeq} provides a stand-alone script
+(\htseq) performing
+the feature quantification with a more stringent strategy. It discards all
+\emph{ambiguous} reads (multireads or reads overlapping more than one gene) from
+a SAM/BAM file to keep the \emph{unambiguous} ones only. Then, it counts their
+overlaps with the features of interest which are described in a given gene
 model\footnote{Gene models are distributed as annotation file (usually either as
-GTF or GFF format) to a reference (genome or transcriptome).}.
+GTF or GFF format) to a specific reference (genome or transcriptome).}.
+To quantify the expression of a given gene for example, it counts every read
+that unambiguously overlaps with all its annotated exons\footnote{Indeed, \htseq\
+defines a gene as the union of all its exons.}. Three modes fine-tune the overlap
+definition.
 
-For example, to assess gene expression, it counts reads that overlap unambiguously
-with the exons.
+Initially, this tool was designed for \emph{differential gene
+expression analysis} (see \cref{minisec:dgea}). As multireads are irrelevant for
+those studies, including or excluding them from the downstream analysis was
+insignificant. Interestingly, many papers (\eg\ \mycite{Fonseca2014},
+\mycite{errorsRNAquant}, \mycite{tophatStarwhatever}) have since showed that
+the gene expression estimation by \htseq\ while underestimated is overall
+well-correlated with other \gls{RNA} quantification (\eg\ microarrays, RT-qPCR).
 
-Initially, this simpler approach was designed for \emph{differential gene analysis}.
-However, more
+Moreover, quantifications with \htseq\ are highly correlated with \cuffl\
+quantifications for most of the genes (over 85\%) \mycite{tophatStarwhatever}.
 
 
 
 \begin{comment}
-its exons. These counts can then be used for gene-level differential
-expression analyses using methods such as DESeq2 (Love
-et al., 2014) or edgeR (Robinson et al., 2010). As the script
-is designed specifically for differential expression analysis, only
-reads mapping unambiguously to a single gene are counted,
 whereas reads aligned to multiple positions or overlapping with
 more than one gene are discarded. To see why this is desirable,
 consider two genes with some sequence similarity, one of which
@@ -785,11 +788,9 @@ and should hence be counted only once.
 
 
 
-\TK{review about the quantification tools}
-
-
 \minisec{Normalisation}
 
+\minisec{Differential gene expression analysis}\label{minisec:dgea}
 
 \begin{comment}
 \rew{Angela:
