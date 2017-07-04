@@ -676,23 +676,26 @@ reference genome. The intention in these alignment steps is to identify and
 localise the exons, which may eventually span over splicing junctions and be
 connected through spliced alignment. Then, \toph\ builds a database of
 possible exon-exon splice junctions from the set of mapped reads and then split
-the remaining unmapped (or aligned with a low score) reads in order to find
+the remaining unmapped (or aligned with a low score) reads to smaller segments
+in order to find
 possible new split events via a seed-and-extend approach. Potential new events
-are considered when smaller segments, that are matching exactly the reference
-in their good quality score regions, are also overlapping a splice junction
-reported in the newly created database.
+are considered when these smaller segments, first, match exactly the reference
+for their regions with good quality score and, secondly, they have overlaps
+(for an user defined length) with a splice junction. These segment sections are
+called seed. Any read with a seed is then checked for a longer or even complete
+alignment to the exons on both side of the junction.
 
-The smaller segments
-have to match exactly for their regions with good quality score with the reference
-and have overlaps (for an user defined length) with a splice junction.
-These segment sections are called seed.
-Any read with a seed is then checked for a
-complete alignment to the exons on both side of the junction.
-
-In the case of paired-end data, each read is first processed separately. Although,
-they are a valuable resource in a final evaluation phase, where with additional
+In the case of paired-end data, each read of the pair is first processed
+separately. Then, they are a valuable resource as a pair in the final evaluation
+phase, where with additional
 information sources, they help to determinate among the many possibilities which
-are the most credible ones.
+are the most credible ones. Both part of a paired-end data once aligned to a
+concordant region of the genome is then called a \emph{fragment} instead of a
+\emph{read}. Nowadays, there is an assimilation between the ``\emph{read}''
+and the ``\emph{fragment}'' terms. Even though, the locution \emph{fragment}
+is more accurate and may be use in any situation (as it equals to one read for
+single-end data and to a pair of related reads for paired-end data), it is
+frequent to see the denomination \emph{read} instead (even for paired-end data).
 
 Despite being a slow splice-aware mapper \mycite{hisat},
 \toph\ --- along with
@@ -704,25 +707,31 @@ popular mapper for genomes with a near-complete annotation (such as
 
 \minisec{Quantification of \emph{features}}
 
-When working with \Rnaseq\ data, the typical next step after mapping the reads
-to the reference is to quantify the expression of the feature\footnote{E.g.\ genes,
-isoforms, exons, spicing events, \ldots}
-of interest\footnote{In fact, while genotyping, heredity
+When working with \Rnaseq\ data, the typical next step after mapping the reads or
+fragments to the reference is to quantify the expression of the
+feature\footnote{E.g.\ genes, isoforms, exons, spicing events, \ldots}
+of interest.\footnote{In fact, while genotyping, heredity
 studies and other genetically focused studies are in principle possible, the usual
 main focus is centred on expression estimation. For example, instead of
 reporting a specific \gls{SNP}, in an \Rnaseq\ study, the core interest is more
 usually about the specific allelic expression. Moreover, most of the \Rnaseq\
-studies lack to provide the sequence depth and coverage for other kinds of study.}.
+studies lack to provide the sequence depth and coverage for other kinds of study.}
+In the context of this thesis, I only consider gene expression (either as \gls{RNA}
+or as protein). Hence, many subtleties required for isoforms or exons studies are
+here irrelevant and are left out from my overall review.
 
 Several tools and algorithmic approaches are available.
 Indeed, for larger genomes, many regions may present high sequence similarity
 which result to many \emph{ambiguous} (and challenging) reads as they mapped to
-many potential initial sites. These reads are also called \emph{multireads}.
+many potential genomic sites. These reads are also called \emph{multireads}.
 One early strategy to solve multireads is to discard them from later analyses;
-another one is to attribute them to the most credible site based on the overall
-distribution of the reads for a given sample. \mycite{Mortazavi2008}
+another one is to attribute them to the most credible locus based on
+the overall distribution of the reads for a given sample. \mycite{Mortazavi2008}
+Paired-end data help in many cases to discriminate between possible genomic
+original sites, thus decreasing the overall number of multi-mapped fragments.
 
-Within this thesis, I use two popular tools,
+
+I personally use two popular tools for this thesis,
 \cuffl\footnote{\cuffl\ ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
 {http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1)
@@ -732,7 +741,6 @@ Within this thesis, I use two popular tools,
 {http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1)
 \mycite{htseq},
 which are both compatible with \toph\ but rely on different concepts.
-
 I briefly present them below in their chronological release.
 
 \subminisec{Cufflinks}
@@ -740,12 +748,38 @@ I briefly present them below in their chronological release.
 \soft{Tuxedo suite}\footnote{\soft{Tuxedo suite} user group:
 \href{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}%
 {https://groups.google.com/forum/\#!forum/tuxedo-tools-users}} which also includes
-\toph\ and \soft{Bowtie}.
+\toph\ and \soft{Bowtie}. In fact, the first releases of \soft{TopHat} and
+\soft{Cufflinks} share many common authors. As such, \cuffl\ is able to assemble
+\latin{de novo} novel transcripts and isoforms following the same principles
+than \toph. Likewise, using good references is faster and more useful.
+In both case, \cuffl\ infers the smaller set of transcripts (and their
+isoforms) that can explain the complete set of observed fragments.
 
+\cuffl\ infers the most credible isoforms that are expressed for each gene.
+This task is challenging as many isoforms share a common set of exons and
+while most genes present a dominant isoform for a specific condition,
+there are often a few other isoforms expressed along, even though their amount
+may be very limited \mycite{oneDominant}. \cuffl\ tries to distribute
+the observed fragments (including the multireads) to the most
+parsimonious\footnote{As a requirement to Occam's razor, which may be
+a debatable strategy \mycite{OccamRazorAndBiology}} set of isoforms.
+Many information are integrated for this
+purpose. Typical information include the overall reads (or fragments)
+distribution, the reads (or fragments) spanning over splice-junctions,
+the ones mapping unambiguously to only
+one of the possible isoforms. When available, paired-end fragments are critical:
+as they cover longer regions, the probability that they span multiple adjacent
+exons is increased which helps to resolve the possible structure of the isoforms.
+
+
+
+
+Finally, to compute the gene expression level, \cuffl\ aggregates \latin{per}
+gene all the isoforms expression abundances together.
 
 \subminisec{HTSeq-count}
 The \gls{Python} library \soft{HTSeq} provides a stand-alone script
-(\htseq) performing the feature quantification with a more stringent strategy.
+(\htseq) performing the feature quantification with a more conservative strategy.
 It discards all ambiguous reads from a \gls{SAM}/\gls{BAM} file and then
 only counts the \emph{un}ambiguous reads that overlap with the features of
 interest for a given gene model\footnote{Gene models are distributed as
@@ -767,7 +801,6 @@ This mode avoids discarding too many reads due to a too tolerant annotation
 (\ie\ the annotation itself presents many overlapping definitions for a given pair
 of feature and chromosome region).
 
-
 Initially, \htseq\ was designed for \emph{differential gene
 expression analysis} (see \cref{minisec:dgea}). As multireads are irrelevant for
 those studies, including or excluding them from the downstream analysis was
@@ -775,7 +808,7 @@ insignificant \mycite{htseq}. Interestingly, many papers (\eg\ \mycite{Fonseca20
 \mycite{errorsRNAquant}, \mycite{tophatStarwhatever}) have since showed that
 the gene expression estimation by \htseq, while underestimated, is overall
 well-correlated with other \gls{RNA} quantification methods
-(\eg\ microarrays, RT-qPCR).
+(\eg\ microarrays, \gls{RT-qPCR}).
 
 Moreover, quantifications with \htseq\ are highly correlated with \cuffl\
 quantifications for most of the genes after proper normalisation
@@ -800,53 +833,13 @@ same fragment provide only evidence for one cDNA fragment
 and should hence be counted only once.
 \end{comment}
 
-
-
 \minisec{Normalisation}
+Longer the genes and more event to pick it.
+
+
 
 \minisec{Differential gene expression analysis}\label{minisec:dgea}
 
-\begin{comment}
-\rew{Angela:
-Alignment to the genome results in a set of one or more genomic coordinates for
-each aligned read which may or may not span exon junctions. By itself this
-information is of limited use so alignments can be further matched to known
-annotated features (for example by searching for overlaps between aligned reads
-and genes) or they can be used to build gene models de novo. One of the earliest
-and most well known programs to achieve the latter is a software application
-called Cufflinks [146]. In this program the authors have implemented an algorithm
-which tries to find the smallest possible set of transcripts that explains all
-observed (aligned) read or read pairs (henceforth in this section referred to
-as fragments). As in the de novo assembly approach described above, the fragments
-are used to find islands of expression. The problem of assembly is then to
-construct a directed acyclic graph in which fragments are nodes and pairs of
-nodes are connected if the fragments overlap with one another and if they do not
-imply splice junctions which cannot be present simultaneously in the same
-transcript (i.e. if the aligned reads are not incompatible, Figure 1.7). Assembly
-with Cufflinks is done independently for each island.
-Finally, Cufflinks finds the minimum number of partitions into chains of the
-graph by implementing a proof of a theorem for the decomposition of partially
-ordered sets known as Dilworth’s theorem. This set of minimum number of paths
-however may not be unique as in the example in Figure 1.8. In order to “phase”
-distant exons together Cufflinks chooses the path that minimises the total cost
-obtained by weighting each graph edge between nodes x and y with a cost C(x, y)
-= − log(1 − |φx − φy |), where φx and φy are the percent-spliced-in metrics
-computed for x and y by dividing the number of alignments compatible with x or y
-by the total number of fragments overlapping x or y and normalising for the
-length of x or y.
-The method employed by Cufflinks requires high coverage (high read overlap) to
-create good gene models, otherwise lowly expressed transcripts will be broken
-into pieces. Still, at low coverage this method is more sensitive than the de
-novo assemblers of the previous sections [134]. One other caveat of this approach
-is that paths are maximally extended as in the example of Figure 1.7, making it
-impossible to detect some instances of alternative transcript start and end
-sites. Finally, Cufflinks finds the minimum set of transcripts that explains the data.
-Choosing the simplest model over a more complex one when both models are equally
-valid is an application of Occam’s Razor. However, while Occam’s Razor is of great
-use for the development of theoretical models, its adoption for arbitrating
-between models in biology is controversial since the result of evolution is not
-necessarily optimal [157].}
-\end{comment}
 
 
 \subsection{Proteome exploration with Mass spectrometry}
