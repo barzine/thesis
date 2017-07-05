@@ -311,7 +311,7 @@ After generating blunt edges by restriction digest of the \glspl{cDNA}, adapters
 (small known sequences of oligonucleotides) are ligated to their both ends.
 These adapters are constituted from several parts. A subset of them are ensuring
 later the hybridisation of the \glspl{cDNA} with the flow
-cells\footnote{\gls{flow}: see \cref{subsub:HybridClustAmp}.} (based on sequence
+cells\footnote{\Gls{flow}: see \cref{subsub:HybridClustAmp}.} (based on sequence
 complementary) and another set of them
 are sequence binding sites that are used as primers for the following cluster
 amplification step occurring \latin{in situ}. These adapters are also used to
@@ -589,13 +589,14 @@ Regardless of the approaches, the reconstructed transcriptome is usually reporte
 as a \emph{\gls{SAM}} file \mycite{SAMformat} (or one of its derivative format
 either \emph{\gls{BAM}} or more recently \emph{CRAM}).
 
+\begin{comment}
 \begin{figure}
-    \includegraphics[scale=0.60]{introduction/MappingStrategies-2_cropped.pdf}\centering
+    \includegraphics[scale=0.60]{introduction/MappingStrategies3.pdf}\centering
     \caption[Overview of main reconstruction strategies for
     \Rnaseq\ transcriptome]{\label{fig:OverviewRnaseqMapping}\textbf{Overview of main
     reconstruction strategies for a \Rnaseq\ transcriptome}}
 \end{figure}
-
+\end{comment}
 
 \subminisec{\latin{de novo} Assembly}
 This approach is favoured when the reference genome of the species of interest
@@ -612,12 +613,39 @@ the main points below as more in-depth reviews cover this strategy
 
 In \latin{de novo} assembly, the reconstruction of the transcriptome happens
 with the construction of the longest possible \emph{contigs} (\ie\ contiguously
-expressed regions) based on sets of overlapping reads. Short length reads add
+expressed regions) based on sets of overlapping reads (see also
+\Cref{fig:denovo}). Short length reads add
 to the overall complexity of this approach. While paired-end reads may help to
 solve a number of genomic regions, lowly expressed or repetitive regions remain
 challenging to determine. There are several algorithmic approaches for \latin{de
 novo} transcriptome assembly \mycite{algorithmsDenovo},
 though the most prevalent one is the de Bruijn representation \mycite{deBruijn}.
+
+\begin{figure}
+    \includegraphics[scale=0.60]{introduction/denovo.png}\centering
+    \caption[\textit{de novo} Assembly]{\label{fig:denovo}\textbf{\latin{de novo}
+    Assembly.} From overlapping regions of raw reads, \emph{contigs} are
+    created by integrating the reads sequences together.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{1.1\textwidth}
+        \includegraphics[scale=0.60]{introduction/genomeAlignment.png}\centering
+        \caption{Alignment to the genome}
+        \label{fig:genoAlignment}
+    \end{subfigure}
+
+    \begin{subfigure}{1.1\textwidth}
+        \includegraphics[scale=0.6]{introduction/transcriptomeAlignment.png}\centering
+        \caption{Alignment to the transcriptome}
+        \label{fig:transAlignment}
+    \end{subfigure}
+    \caption[Overview of main alignment strategies for \Rnaseq\
+    transcriptome]{\label{fig:OverviewRnaseqMapping}\textbf{Overview of main
+    reconstruction strategies for a \Rnaseq\ transcriptome by alignment to a
+    reference}}
+\end{figure}
 
 
 \subminisec{Read alignment}
@@ -625,11 +653,12 @@ This approach exploits prior knowledge. The reads are aligned to a reference to
 hasten the reconstruction process. The reference may be a genome or a
 transcriptome (provided that a good annotation is available).
 
+
 \subsubminisec{Genome reference}
 Aligning to the genome allows to discover new genes or isoforms. However, it
 requires a splice-aware algorithms, \ie\ they need to align the
 reads across the splice-junctions (which is possible but non-trivial).
-As illustrated in \Cref{fig:OverviewRnaseqMapping} --- Genome alignment part,
+As illustrated in \Cref{fig:genoAlignment},
 the reads might span a number of discontinued regions of the reference.
 While on one hand, aligning to the genome avoids \emph{multiple mapping
 issues}\footnote{Due to sequence similarity, a same read or subpart of a read
@@ -649,8 +678,8 @@ Using a transcriptome as reference instead of a genome reduces the complexity
 of the aligning step due to the lack of intronic sequences. However, it also
 limits the potential downstream analyses, \eg\ any new (or unannotated) gene
 or isoform will be missed. This approach is the easiest, but a pre-existing
-accurate and well-annotated gene models is required. The third part of the
-\Cref{fig:OverviewRnaseqMapping} shows in fact that this approach is simpler
+accurate and well-annotated gene models is required.
+\Cref{fig:transAlignment} shows in fact that this approach is simpler
 to the previous one as a direct alignment of the reads is done against the
 transcriptome of reference. This enables to quantify accurately the expression
 of gene isoforms, provided that the gene model is correct and the reads may be
@@ -749,28 +778,52 @@ I briefly present them below in their chronological release.
 \href{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}%
 {https://groups.google.com/forum/\#!forum/tuxedo-tools-users}} which also includes
 \toph\ and \soft{Bowtie}. In fact, the first releases of \soft{TopHat} and
-\soft{Cufflinks} share many common authors. As such, \cuffl\ is able to assemble
+\soft{Cufflinks} share many common authors and \cuffl\ is able to assemble
 \latin{de novo} novel transcripts and isoforms following the same principles
 than \toph. Likewise, using good references is faster and more useful.
-In both case, \cuffl\ infers the smaller set of transcripts (and their
-isoforms) that can explain the complete set of observed fragments.
+In both case, \cuffl\ infers the most parsimonious\footnote{As a requirement to
+Occam's razor, which may be a debatable strategy \mycite{OccamRazorAndBiology}}
+and credible set of transcripts (and their isoforms) that can explain the
+complete set of observed fragments.
 
-\cuffl\ infers the most credible isoforms that are expressed for each gene.
 This task is challenging as many isoforms share a common set of exons and
 while most genes present a dominant isoform for a specific condition,
 there are often a few other isoforms expressed along, even though their amount
-may be very limited \mycite{oneDominant}. \cuffl\ tries to distribute
-the observed fragments (including the multireads) to the most
-parsimonious\footnote{As a requirement to Occam's razor, which may be
-a debatable strategy \mycite{OccamRazorAndBiology}} set of isoforms.
-Many information are integrated for this
-purpose. Typical information include the overall reads (or fragments)
-distribution, the reads (or fragments) spanning over splice-junctions,
-the ones mapping unambiguously to only
-one of the possible isoforms. When available, paired-end fragments are critical:
-as they cover longer regions, the probability that they span multiple adjacent
-exons is increased which helps to resolve the possible structure of the isoforms.
+may be very limited \mycite{oneDominant}. Furthermore, \cuffl\ tries to
+redistribute the multireads to the set of isoforms.
 
+Then to estimate the abundance of each isoform, \cuffl\ integrates many
+information sources together. For example, the overall distribution of fragments
+(or reads), if these are spanning over known (or novel) splice-junctions.
+Particular attention is drawn to the fragments that map unambiguously to one
+unique isoform. When available, paired-end fragments are critical:
+as they cover longer regions, the probability
+that they span multiple adjacent exons is increased which helps to resolve
+the possible structure of the original isoforms. \mycite{CufflinksPaper2} The
+abundance are finally estimated through an \gls{EM} algorithm
+\citep{EM-what,EM-algo-latest},
+with the following main steps (see also \Cref{fig:cuffEstimation}):
+\begin{enumerate}
+    \item \emph{Initialisation}: Based on these different piece of information, a rough
+    estimation of the probable probability of each fragment being expressed
+    by each compatible isoform is computed.
+\item \emph{Iteration till convergence}:
+    \begin{enumerate}
+        \item Isoforms abundance are recomputed based on the updated
+            fragment-to-isoform assignment
+        \item Fragment-to-isoform assignment re-updated based on the isoforms
+            abundance.
+    \end{enumerate}
+\end{enumerate}
+
+
+\begin{figure}
+    \includegraphics[scale=0.60]{introduction/CufflEstimation.png}\centering
+    \caption[Abundance estimation of isoforms by
+    Cufflinks]{\label{fig:cuffEstimation}\textbf{Abundance estimation of isoforms
+    by \cuffl} following an \gls{EM} algorithmic approach. [Adapted from
+    \cite{Turner2015}]}
+\end{figure}
 
 
 
@@ -785,6 +838,15 @@ only counts the \emph{un}ambiguous reads that overlap with the features of
 interest for a given gene model\footnote{Gene models are distributed as
 annotation file (usually either as \gls{GTF} or \gls{GFF} format) and refer
 to a specific reference (genome or transcriptome).}.
+
+\begin{figure}
+    \includegraphics[scale=0.60]{introduction/htseqQuant.png}\centering
+    \caption[Abundance estimation of genes by
+    HTSeq-count]{\label{fig:htseqEstimation}\textbf{Abundance estimation of genes
+    by \htseq}. The unambiguous reads (or fragments if case of paired-end data)
+    overlapping locus annotated as gene are directly counted. [Adapted from
+    \cite{MarPhD}]}
+  \end{figure}
 
 \htseq\ deems as ambiguous any multiread or read that overlaps more than
 one annotation for the considered feature.\footnote{In fact, reads might be
@@ -804,8 +866,8 @@ of feature and chromosome region).
 Initially, \htseq\ was designed for \emph{differential gene
 expression analysis} (see \cref{minisec:dgea}). As multireads are irrelevant for
 those studies, including or excluding them from the downstream analysis was
-insignificant \mycite{htseq}. Interestingly, many papers (\eg\ \mycite{Fonseca2014},
-\mycite{errorsRNAquant}, \mycite{tophatStarwhatever}) have since showed that
+insignificant \mycite{htseq}. Interestingly, many papers (\eg\ \cite{Fonseca2014},
+\cite{errorsRNAquant}, \cite{tophatStarwhatever}) have since showed that
 the gene expression estimation by \htseq, while underestimated, is overall
 well-correlated with other \gls{RNA} quantification methods
 (\eg\ microarrays, \gls{RT-qPCR}).
@@ -836,11 +898,14 @@ and should hence be counted only once.
 \minisec{Normalisation}
 Longer the genes and more event to pick it.
 
+\subminisec{RPKM and FPKM}
 
+\subminisec{TMM and Deseq normalisation}
+%\minisec{Examples of downstream analysis}\label{minisec:dgea}
+For Differential gene expression analysis
 
-\minisec{Differential gene expression analysis}\label{minisec:dgea}
-
-
+\subminisec{TPM}
+More recent quantification metrics.
 
 \subsection{Proteome exploration with Mass spectrometry}
 
