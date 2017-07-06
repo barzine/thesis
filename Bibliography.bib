@@ -3429,3 +3429,147 @@
   Pmc         = {PMC5266269}
 }
 
+@article{replicates,
+  Title    = {Points of significance: replication},
+  Author   = {Blainey, Paul and Krzywinski, Martin and Altman, Naomi},
+  Journal  = {Nature Methods},
+  Volume   =  {11},
+  Number   =  {9},
+  Pages    = {879--880},
+  Month    =  {09},
+  Year     =  {2014},
+  Language = {en},
+  Issn     = {1548-7091, 1548-7105},
+  Pmid     = {25317452},
+  Doi      = {10.1038/nmeth.3091}
+}
+
+@article{normSigCancerHelp,
+  Title       = {Transforming {RNA-Seq} data to improve the performance of
+                 prognostic gene signatures},
+  Author      = {Zwiener, Isabella and Frisch, Barbara and Binder, Harald},
+  Abstract    = {Gene expression measurements have successfully been used for
+                 building prognostic signatures, i.e for identifying a short
+                 list of important genes that can predict patient outcome.
+                 Mostly microarray measurements have been considered, and there
+                 is little advice available for building multivariable risk
+                 prediction models from RNA-Seq data. We specifically consider
+                 penalized regression techniques, such as the lasso and
+                 componentwise boosting, which can simultaneously consider all
+                 measurements and provide both, multivariable regression models
+                 for prediction and automated variable selection. However, they
+                 might be affected by the typical skewness,
+                 mean-variance-dependency or extreme values of RNA-Seq
+                 covariates and therefore could benefit from transformations of
+                 the latter. In an analytical part, we highlight preferential
+                 selection of covariates with large variances, which is
+                 problematic due to the mean-variance dependency of RNA-Seq
+                 data. In a simulation study, we compare different
+                 transformations of RNA-Seq data for potentially improving
+                 detection of important genes. Specifically, we consider
+                 standardization, the log transformation, a
+                 variance-stabilizing transformation, the Box-Cox
+                 transformation, and rank-based transformations. In addition,
+                 the prediction performance for real data from patients with
+                 kidney cancer and acute myeloid leukemia is considered. We
+                 show that signature size, identification performance, and
+                 prediction performance critically depend on the choice of a
+                 suitable transformation. Rank-based transformations perform
+                 well in all scenarios and can even outperform complex
+                 variance-stabilizing approaches. Generally, the results
+                 illustrate that the distribution and potential transformations
+                 of RNA-Seq data need to be considered as a critical step when
+                 building risk prediction models by penalized regression
+                 techniques.},
+  Journal     = {PLoS ONE},
+  Volume      = {9},
+  Number      = {1},
+  Pages       = {e85150},
+  Month       = {01},
+  Year        = {2014},
+  Language    = {en},
+  Issn        = {1932-6203},
+  Pmid        = {24416353},
+  Doi         = {10.1371/journal.pone.0085150},
+  Pmc         = {PMC3885686}
+}
+
+@article{NormImpact,
+  Title       = {The Impact of Normalization Methods on {RNA-Seq} Data Analysis},
+  Author      = {Zyprych-Walczak, J and Szabelska, A and Handschuh, L and
+                 Górczak, K and Klamecka, K and Figlerowicz, M and Siatkowski,
+                 I},
+  Abstract    = {High-throughput sequencing technologies, such as the Illumina
+                 Hi-seq, are powerful new tools for investigating a wide range
+                 of biological and medical problems. Massive and complex data
+                 sets produced by the sequencers create a need for development
+                 of statistical and computational methods that can tackle the
+                 analysis and management of data. The data normalization is one
+                 of the most crucial steps of data processing and this process
+                 must be carefully considered as it has a profound effect on
+                 the results of the analysis. In this work, we focus on a
+                 comprehensive comparison of five normalization methods related
+                 to sequencing depth, widely used for transcriptome sequencing
+                 (RNA-seq) data, and their impact on the results of gene
+                 expression analysis. Based on this study, we suggest a
+                 universal workflow that can be applied for the selection of
+                 the optimal normalization procedure for any particular data
+                 set. The described workflow includes calculation of the bias
+                 and variance values for the control genes, sensitivity and
+                 specificity of the methods, and classification errors as well
+                 as generation of the diagnostic plots. Combining the above
+                 information facilitates the selection of the most appropriate
+                 normalization method for the studied data sets and determines
+                 which methods can be used interchangeably.},
+  Journal     = {BioMed research international},
+  Volume      = {2015},
+  Pages       = {621690},
+  Month       = {06},
+  Year        = {2015},
+  Language    = {en},
+  Issn        = {2314-6133, 2314-6141},
+  Pmid        = {26176014},
+  Doi         = {10.1155/2015/621690},
+  Pmc         = {PMC4484837}
+}
+
+@article{ruvseqComQN,
+  Title       = {How data analysis affects power, reproducibility and
+                 biological insight of {RNA-seq} studies in complex datasets},
+  Author      = {Peixoto, Lucia and Risso, Davide and Poplawski, Shane G and
+                 Wimmer, Mathieu E and Speed, Terence P and Wood, Marcelo A and
+                 Abel, Ted},
+  Abstract    = {The sequencing of the full transcriptome (RNA-seq) has become
+                 the preferred choice for the measurement of genome-wide gene
+                 expression. Despite its widespread use, challenges remain in
+                 RNA-seq data analysis. One often-overlooked aspect is
+                 normalization. Despite the fact that a variety of factors or
+                 'batch effects' can contribute unwanted variation to the data,
+                 commonly used RNA-seq normalization methods only correct for
+                 sequencing depth. The study of gene expression is particularly
+                 problematic when it is influenced simultaneously by a variety
+                 of biological factors in addition to the one of interest.
+                 Using examples from experimental neuroscience, we show that
+                 batch effects can dominate the signal of interest; and that
+                 the choice of normalization method affects the power and
+                 reproducibility of the results. While commonly used global
+                 normalization methods are not able to adequately normalize the
+                 data, more recently developed RNA-seq normalization can. We
+                 focus on one particular method, RUVSeq and show that it is
+                 able to increase power and biological insight of the results.
+                 Finally, we provide a tutorial outlining the implementation of
+                 RUVSeq normalization that is applicable to a broad range of
+                 studies as well as meta-analysis of publicly available data.},
+  Journal     = {Nucleic acids research},
+  Volume      = {43},
+  Number      = {16},
+  Pages       = {7664--7674},
+  Month       = {09},
+  Year        = {2015},
+  Language    = {en},
+  Issn        = {0305-1048, 1362-4962},
+  Pmid        = {26202970},
+  Doi         = {10.1093/nar/gkv736},
+  Pmc         = {PMC4652761}
+}
+

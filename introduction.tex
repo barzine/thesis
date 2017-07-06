@@ -29,19 +29,17 @@ milestones that could be discussed.
 The following pages present a summary of the facts and techniques
 that form the biological and technical context of the work backing this thesis.
 
---- ici intro par rapport à Asimov et le fait que l'ADN est un 'blueprint' et qu'en
-fonction du l'organe ou du develepment stage l'expression est régulé. On sait
-maitenant que la régulation se passe à différent niveau.... finir peut être la
-section sur Harvey qui a élucider la circulation sanguine car il a utilisé
-l'observation et quantification du sang ---
+--- ici intro par rapport à Asimov et le fait que l'ADN est un ``blueprint''
+    et qu'en fonction du l'organe ou du develepment stage l'expression est régulé.
+    On sait maitenant que la régulation se passe à différent niveau\ldots Finir
+    peut être la section sur Harvey qui a élucider la circulation sanguine car
+    il a utilisé l'observation et quantification du sang ---
 
 
 As where the situation stands for now, we know that between the unique common
 bluprint, which is the \DNA\ and the different phenotypes displayed by the tissues
 comprising our bodies, they are many regulatory processes occurring at different
 layers (transcription, and translation).
-
- ### agent
 
 
 \Rough{%
@@ -73,19 +71,19 @@ quelque chose.%
 
 
 \section{Diversity and universality of Life}
+\Rough{\begin{itemize}
+    \item What we speak about (\gls{DNA},\gls{RNA}, protein)
+    \item Why we speak about/study it. Speak of identification of unique features,
+        differential expression analysis.
+\end{itemize}}
 
+\TK{The central dogma of Molecular biology => Crick describes the cycle}
+\TK{add reference on replication? (a priori no review of that part}
 
+\subsection{Transcription: From \gls{DNA} to \gls{RNA}}
 
-%\TK{Soupe primaire experience du Chimiste}
-\TK{The central dogma of Molecular biology} => Crick describes the cycle
-
-\fixme{Add references on replications, not going into that one}
-
-\subsection{Translation + Regulation}
-
-\subsection{Translation + Regulation}
-
-Just so that the next part of the chapter got a OK presentation:
+Transcriptome is the complete population of \gls{RNA} in a cell or a group of
+cells. There are many kinds of them:
 \begin{itemize}
     \item \gls{ncRNA}
     \item \gls{tRNA}
@@ -96,7 +94,10 @@ Just so that the next part of the chapter got a OK presentation:
     \item \gls{scRNA}
 \end{itemize}
 
-\TK{Assumption mRNA and proteins : highly correlated [find references]}
+\subsection{Translation: From \gls{RNA} to protein}
+
+\TK{Small conclusion: Assumption mRNA and proteins : highly correlated
+[find references]}
 
 
 \section{Capturing the expression in the laboratory}
@@ -177,7 +178,9 @@ sequences.
     library preparation and sequencing}}
 \end{figure}
 
-\NB Albeit the collection and the conservation of the samples prior to the
+\NB Albeit the collection and the conservation\footnote{E.g.\ between fresh-frozen
+samples and \gls{FFPE} samples see \cite{sampleConservationMatters}.}
+of the samples prior to the
 \gls{RNA} extraction most definitely affects the final estimations,
 I will let aside these steps from my review.
 
@@ -340,7 +343,7 @@ run) multiple samples. This can be motivated by practical reasons
 (to lower the experimental costs or hasten the overall processing time)
 \mycite{multiplexCheaper} or critical to the experimental design as a way to
 experimentally handle the \emph{batch effects}\footnote{Batch effect: see
-\cref{subsub:BatchEffect}} \mycite{multiplexBatchEffect}. However, it is
+\cref{sub:BatchEffect}} \mycite{multiplexBatchEffect}. However, it is
 crucial to later extricate the several pooled samples from each other as a
 requirement to many downstream analyses.
 
@@ -759,7 +762,6 @@ the overall distribution of the reads for a given sample. \mycite{Mortazavi2008}
 Paired-end data help in many cases to discriminate between possible genomic
 original sites, thus decreasing the overall number of multi-mapped fragments.
 
-
 I personally use two popular tools for this thesis,
 \cuffl\footnote{\cuffl\ ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
@@ -804,10 +806,10 @@ abundance are finally estimated through an \gls{EM} algorithm
 \citep{EM-what,EM-algo-latest},
 with the following main steps (see also \Cref{fig:cuffEstimation}):
 \begin{enumerate}
-    \item \emph{Initialisation}: Based on these different piece of information, a rough
-    estimation of the probable probability of each fragment being expressed
-    by each compatible isoform is computed.
-\item \emph{Iteration till convergence}:
+    \item \emph{Initialisation}: For each fragment, a rough estimation of the
+        probability to be expressed from each isoform is computed based on the
+        different piece of information cited previously.
+\item \emph{Iteration till convergence with the observed distribution of fragments}:
     \begin{enumerate}
         \item Isoforms abundance are recomputed based on the updated
             fragment-to-isoform assignment
@@ -825,9 +827,7 @@ with the following main steps (see also \Cref{fig:cuffEstimation}):
     \cite{Turner2015}]}
 \end{figure}
 
-
-
-Finally, to compute the gene expression level, \cuffl\ aggregates \latin{per}
+Finally, to compute the gene expression levels, \cuffl\ aggregates \latin{per}
 gene all the isoforms expression abundances together.
 
 \subminisec{HTSeq-count}
@@ -857,55 +857,105 @@ as the union of all its exons. However, while quantifying exon expression, many
 of these same reads may be discarded as they overlap several exon annotations
 with overlaying definitions.}
 \htseq\ provides
-three modes to fine-tune the overlap definition (see \Cref{fig:htseqMode}).
-For this thesis, I used the ``\texttt{intersection non-empty}'' mode.
+three modes to fine-tune the overlap definition.
+For this thesis, I used the ``\texttt{intersection non-empty}'' mode
+(see \Cref{fig:htseqMode}).
 This mode avoids discarding too many reads due to a too tolerant annotation
-(\ie\ the annotation itself presents many overlapping definitions for a given pair
-of feature and chromosome region).
+(\ie\ the annotation itself presents many overlapping definitions for a given
+pair of feature and chromosome region).
 
 Initially, \htseq\ was designed for \emph{differential gene
-expression analysis} (see \cref{minisec:dgea}). As multireads are irrelevant for
+expression analysis} \mycite{htseq}. As multireads are irrelevant for
 those studies, including or excluding them from the downstream analysis was
-insignificant \mycite{htseq}. Interestingly, many papers (\eg\ \cite{Fonseca2014},
+insignificant. Interestingly, many papers (\eg\ \cite{Fonseca2014},
 \cite{errorsRNAquant}, \cite{tophatStarwhatever}) have since showed that
 the gene expression estimation by \htseq, while underestimated, is overall
 well-correlated with other \gls{RNA} quantification methods
-(\eg\ microarrays, \gls{RT-qPCR}).
+(\eg\ microarrays or \gls{RT-qPCR}).
 
 Moreover, quantifications with \htseq\ are highly correlated with \cuffl\
 quantifications for most of the genes after proper normalisation
-\mycite{tophatStarwhatever}. Indeed, \htseq\ provides \emph{raw counts} that
-require normalisation to avoid a few statistical biases. These are mostly related
-to sampling issues.
+\mycite{tophatStarwhatever} as \htseq\ provides \emph{raw counts}.
+
+
+\minisec{Normalisation}
+Actually, regardless of the quantification method, a normalisation is usually
+necessary to avoid a few statistical biases due to the sampling. The
+normalisation method, though, is generally determined based on the quantification
+(method or tool\footnote{Many quantification tools (\eg\ \cuffl) perform
+automatically the normalisation step as well. They may also (or not) provide
+raw counts.}) and the planned downstream analysis.
+
+Many papers review or compare normalisation methods (See \cite{Dillies2013},
+\cite{normSigCancerHelp}, \cite{NormImpact}, \cite{ruvseqComQN}). I present
+hereinafter the currently most popular ones.
+
+
+\subminisec{RPKM and FPKM}
+The first evident source of bias is the total number of \emph{mapped} reads (or
+fragments) between two \Rnaseq\ libraries (shortened as ``libraries'' from now
+on). Indeed, there may be huge discrepancies in their respective amount of
+starting material loaded on a \gls{flow}\footnote{\Rnaseq\ lacks to assess
+directly the initial \gls{RNA} abundance of a sample from the initial collection
+step. In fact, this would involve the monitoring of many parameters or
+assessments of the samples before the library preparation. While, it may be easy
+to weight each sample before extracting the \gls{RNA},
+the many steps (involving the fragmentation of the \glspl{RNA},
+\gls{PCR} syntheses or size-selection) and their associated biases
+overburden the tracking of the specific contribution of each \gls{RNA} along the
+experiment steps.} and, more importantly, the amount of the reads (or fragments)
+that may be mapped to a reference\footnote{The quantification disregarding the
+\emph{unmapped} reads (or fragments) so does the normalisation.}.
 
 
 \begin{comment}
-whereas reads aligned to multiple positions or overlapping with
-more than one gene are discarded. To see why this is desirable,
-consider two genes with some sequence similarity, one of which
-is differentially expressed while the other one is not. A read that
-maps to both genes equally well should be discarded, because if
-it were counted for both genes, the extra reads from the differentially
-expressed gene may cause the other gene to be wrongly
-called differentially expressed, too. Another design choice made
-with the downstream application of differential expression testing
-in mind is to count fragments, not reads, in case of pairedend
-data. This is because the two mates originating from the
-same fragment provide only evidence for one cDNA fragment
-and should hence be counted only once.
+Since the first use of \Rnaseq\ is to explore the \gls{RNA} population of samples
+and compare them together, an early method of normalisation
+
+
+Sampling bias problems: no idea what is being fished and there is no way yet
+to assess the absolute RNA abundance of a sample (also a lot of things are not
+measured: for example volume/weight of biological samples processed,
+number/size of the cells. It is OK because in most cases,
+there is a define question and many issue can be solved by correct normalisation
+of the data.
+
+There are many normalisation methods around. One should consider what they
+are doing before picking one. (judment)
+
+Unfortunately, \Rnaseq\ lacks (still) to assess the absolute abundance of each
+gene in a sample.
+
+Longer the genes and more event to pick it.
 \end{comment}
 
-\minisec{Normalisation}
-Longer the genes and more event to pick it.
+First def was: read per kilobase of exon model per million mapped reads.
 
-\subminisec{RPKM and FPKM}
+Now it is read per kilobase of transcript per million mapped reads
+and then Fragments per kilobase of transcript per million mapped reads.
+
+$RPK_x$ (the reads per kilobase for gene x) is $n_x/\ell_x$, where $n_x$ is the
+number of reads that map to gene A and $\ell_x$ is the length of gene x.
+This measures the transcription rate for gene x.
+Then the scaling factor is $(\sum_i RPK_i) / (10^6)$,
+where $i$ ranges over all of the genes, including x.
+So the final value TPM of gene x is $(n_x/\ell_x)/(\sum_i n_i/\ell_i)\times 10^6$,
+which measures the *relative* rate of transcription of gene x (with the decimal
+point moved 6 spaces to the right). Both $\ell_x$ and $\ell_i$ have kilobase
+units, which cancel out.
 
 \subminisec{TMM and Deseq normalisation}
-%\minisec{Examples of downstream analysis}\label{minisec:dgea}
-For Differential gene expression analysis
+%\minisec{Examples of downstream analysis}For Differential gene expression analysis
 
 \subminisec{TPM}
 More recent quantification metrics.
+
+\subminisec{Other normalisation approaches}
+Other normalisation methods tries to correct a priori or at posteriori:
+take into account batch effect. That's why important to have good experimental
+design. See \cref{sec:expDesign}
+
+
 
 \subsection{Proteome exploration with Mass spectrometry}
 
@@ -917,12 +967,12 @@ More recent quantification metrics.
 
 \end{comment}
 
-\section{Big studies, big data and Reproducibility}
+%\section{Big studies, big data and Reproducibility}
 
 
 
-\subsection{Reproducibility issues // experimental design}
-    \subsubsection{Batch effect}\label{subsub:BatchEffect}
+\section{Reproducibility issues // experimental design}\label{sec:expDesign}
+    \subsection{Batch effect}\label{sub:BatchEffect}
     Batch effect: \mycite{batchEffect}
 
     \begin{itemize}
