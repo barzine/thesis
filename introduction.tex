@@ -3,17 +3,16 @@
 
 \begin{comment}
 \setlength{\epigraphwidth}{0.6\textwidth}
-\setlength{\epigraphrule}{0.1pt}
-%\epigraphhead[70]{%
+%\setlength{\epigraphrule}{0.1pt}
+\epigraphhead[70]{%
     \epigraph{It would probably be oversimplifying the
-matter,\\but I am strongly tempted to say,\\ ``All life is nucleic acid; the rest is
-commentary''.}{\cite{asimov:WrongRel}}%
-%}
+    matter,\\but I am strongly tempted to say,\\ \textquote{All life is nucleic acid; the rest is
+    commentary}.}{\cite{asimov:WrongRel}}%
+}
 \end{comment}
 
-
 \begin{comment}
-When Asimov concluded with these words his chapter ``Beginning with bone'',
+When Asimov concluded with these words his chapter \textquote{Beginning with bone},
 scientists had already started unfolding one of the most mesmerising biological
 mystery: how does the Nature manage and organise the production of specific
 effectors in specific locations. In other words how from one cell
@@ -29,7 +28,7 @@ milestones that could be discussed.
 The following pages present a summary of the facts and techniques
 that form the biological and technical context of the work backing this thesis.
 
---- ici intro par rapport à Asimov et le fait que l'ADN est un ``blueprint''
+--- ici intro par rapport à Asimov et le fait que l'ADN est un \enquote{blueprint}
     et qu'en fonction du l'organe ou du develepment stage l'expression est régulé.
     On sait maitenant que la régulation se passe à différent niveau\ldots Finir
     peut être la section sur Harvey qui a élucider la circulation sanguine car
@@ -158,7 +157,7 @@ Experimental protocols for other platforms will need various and specific
 modifications that are outside of the realm of this thesis and thus will not be
 cover here\footnote{More details on the other main sequencing platforms and their
 relevant protocols can be found in \cite{rnaseqProtocols} review paper or at the
-online resource ``\href{http://rnaseq.uoregon.edu/}{RNA-seqlopedia}''
+online resource \enquote{\href{http://rnaseq.uoregon.edu/}{RNA-seqlopedia}}
 (\href{http://rnaseq.uoregon.edu/}{http://rnaseq.uoregon.edu/})
 \mycite{rnaseqlopedia}.}.
 
@@ -227,12 +226,12 @@ Although there are interests to study \glspl{rRNA} (\eg\ \mycite{rrnaStudy}),
 \mRNAs\ studies are more
 popular and they only constitute about 3 to 5\% of the whole \gls{RNA} population
 \mycite{molBiolCell}. Other studies research even scarcer kinds of
-\gls{RNA}.\footnote{Out of the 10,081 experiments tagged as \comp{``rna assay''}
-and \comp{``sequencing assay''} within \gls{ArrayExpress}, 7,981 were also
-tagged as \comp{``RNA-seq of coding RNA''}, 1,829 as \comp{``RNA-seq of
-non coding RNA''} and 366 have both tags. 4 of them are only described as
-\comp{``microRNA profiling by high-throughput sequencing''} --- Query date: 22
-June 2017.}
+\gls{RNA}.\footnote{Out of the 10,081 experiments tagged as \comp{\enquote{rna
+assay}} and \comp{\enquote{sequencing assay}} within \gls{ArrayExpress},
+7,981 were also tagged as \comp{\enquote{RNA-seq of coding RNA}},
+1,829 as \comp{\enquote{RNA-seq of non coding RNA}} and 366 have both tags.
+4 of them are only described as \comp{\enquote{microRNA profiling by
+high-throughput sequencing}} --- Query date: 22 June 2017.}
 
 There are typically three strategies to achieve \gls{RNA} enrichment:
 either by polyA-selection, by ribodepletion or (more complex)
@@ -573,7 +572,7 @@ the mapping both on time and accuracy \mycite{Trimwisely}).
 
 \NB Generally, after the sequencer calls the reads, a first trimming removes
 all the adaptors and barcodes needed by the sequencing protocols. Thus,
-in principle, they are not to be found in the ``raw data''.
+in principle, they are not to be found in the \enquote{raw data}.
 However, to avert any latter contingency, a research against
 a list of the most common adaptors and an over-representation assessment of small
 sequences (\emph{k-mers}\footnote{\emph{k-mer}: In the present context, all
@@ -723,8 +722,8 @@ phase, where with additional
 information sources, they help to determinate among the many possibilities which
 are the most credible ones. Both part of a paired-end data once aligned to a
 concordant region of the genome is then called a \emph{fragment} instead of a
-\emph{read}. Nowadays, there is an assimilation between the ``\emph{read}''
-and the ``\emph{fragment}'' terms. Even though, the locution \emph{fragment}
+\emph{read}. Nowadays, there is an assimilation between the \enquote{\emph{read}}
+and the \enquote{\emph{fragment}} terms. Even though, the locution \emph{fragment}
 is more accurate and may be use in any situation (as it equals to one read for
 single-end data and to a pair of related reads for paired-end data), it is
 frequent to see the denomination \emph{read} instead (even for paired-end data).
@@ -830,6 +829,9 @@ with the following main steps (see also \Cref{fig:cuffEstimation}):
 Finally, to compute the gene expression levels, \cuffl\ aggregates \latin{per}
 gene all the isoforms expression abundances together.
 
+\NB\ \cuffl\ provides by default \FPKM\ \emph{normalised} data (see
+\cref{mini:norm}).
+
 \subminisec{HTSeq-count}
 The \gls{Python} library \soft{HTSeq} provides a stand-alone script
 (\htseq) performing the feature quantification with a more conservative strategy.
@@ -858,7 +860,7 @@ of these same reads may be discarded as they overlap several exon annotations
 with overlaying definitions.}
 \htseq\ provides
 three modes to fine-tune the overlap definition.
-For this thesis, I used the ``\texttt{intersection non-empty}'' mode
+For this thesis, I used the \enquote{\texttt{intersection non-empty}} mode
 (see \Cref{fig:htseqMode}).
 This mode avoids discarding too many reads due to a too tolerant annotation
 (\ie\ the annotation itself presents many overlapping definitions for a given
@@ -875,27 +877,33 @@ well-correlated with other \gls{RNA} quantification methods
 
 Moreover, quantifications with \htseq\ are highly correlated with \cuffl\
 quantifications for most of the genes after proper normalisation
-\mycite{tophatStarwhatever} as \htseq\ provides \emph{raw counts}.
+\mycite{tophatStarwhatever} as \htseq\ provides \emph{raw counts} (\ie\
+unnormalised counts).
 
 
-\minisec{Normalisation}
+\minisec{Normalisation}\label{mini:norm}
 Actually, regardless of the quantification method, a normalisation is usually
-necessary to avoid a few statistical biases due to the sampling. The
+necessary to avoid a few statistical biases (mainly due to the sampling). The
 normalisation method, though, is generally determined based on the quantification
 (method or tool\footnote{Many quantification tools (\eg\ \cuffl) perform
 automatically the normalisation step as well. They may also (or not) provide
-raw counts.}) and the planned downstream analysis.
+raw counts.}) and they have to be suitable to the planned downstream analyses.
+As unfortunately, \Rnaseq\ lacks (still) to assess the true concentration of each
+expressed gene (or transcript) in a sample, each normalisation method is based on
+a specific set of assumptions that may be incompatible to the ones required by
+a number of investigation approaches.
 
 Many papers review or compare normalisation methods (See \cite{Dillies2013},
 \cite{normSigCancerHelp}, \cite{NormImpact}, \cite{ruvseqComQN}). I present
 hereinafter the currently three most popular ones.
 
 \subminisec{RPKM and FPKM}
-The first evident source of bias is the total number of \emph{mapped} reads (or
-fragments) between two \Rnaseq\ libraries (shortened as ``libraries'' from now
-on). Indeed, there may be huge discrepancies in their respective amount of
-starting material loaded on a \gls{flow}\footnote{\Rnaseq\ lacks to assess
-directly the initial \gls{RNA} abundance of a sample from the initial collection
+The first evident source of sampling bias is the total number of \emph{mapped}
+reads (or fragments) between two \Rnaseq\ libraries (shortened as
+\enquote{libraries} from now on). Indeed, there may be huge discrepancies in
+their respective amount of starting material loaded on a
+\gls{flow}\footnote{\Rnaseq\ lacks to assess directly the initial \gls{RNA}
+abundance of a sample from the initial collection
 step. In fact, this would involve the monitoring of many parameters or
 assessments of the samples before the library preparation. While, it may be easy
 to weight each sample before extracting the \gls{RNA},
@@ -914,36 +922,61 @@ raw counts also present this scaling factor. However, with proper normalisation,
 \frfig{Gene 2} and \frfig{Gene 3} are expressed in equal proportions.
 
 To correct for these two biases, \cite{Mortazavi2008} introduced a new unit
-``RPKM'' which they first defined as \emph{\textbf{R}ead} per \textbf{K}ilobase of
-\emph{exon model} per \textbf{M}illion mapped \emph{reads}. From since, this unit
-as been redifined as \acrlong{RPKM} and then to \acrfull{FPKM} to also
-account for paired-end data\footnote{As mentioned before, despite the inaccuracy,
-\emph{read} and \emph{fragment} are often used interchangeably;
-this is also the case for \emph{\RPKM} and \emph{\FPKM}.}.
+\enquote{RPKM} which they first defined as \emph{\textbf{R}ead} per
+\textbf{K}ilobase of \emph{exon model} per \textbf{M}illion mapped \emph{reads}.
+From since, this unit is usually redefined as \acrlong{RPKM} and then to
+\acrfull{FPKM} to also account for paired-end data\footnote{As mentioned before,
+despite the inaccuracy, \emph{read} and \emph{fragment} are often used
+interchangeably; this is also the case for \emph{\RPKM} and \emph{\FPKM}.}.
 
+The canonical formula for \FPKM\ (or \RPKM) is:
 
+\begin{equation}
+\hat{\mu}_{ij}=\frac{f_i}{F_j\cdot10^{-6} \cdot \ell_i\cdot10^{-3}}
+              =\frac{f_i}{F_j\cdot\ell_i}\cdot10^{9} \text{\ ,}
+\end{equation}
 
-$RPK_x$ (the reads per kilobase for gene x) is $n_x/\ell_x$, where $n_x$ is the
-number of reads that map to gene A and $\ell_x$ is the length of gene x.
-This measures the transcription rate for gene x.
-Then the scaling factor is $(\sum_i RPK_i) / (10^6)$,
-where $i$ ranges over all of the genes, including x.
-So the final value TPM of gene x is $(n_x/\ell_x)/(\sum_i n_i/\ell_i)\times 10^6$,
-which measures the *relative* rate of transcription of gene x (with the decimal
-point moved 6 spaces to the right). Both $\ell_x$ and $\ell_i$ have kilobase
-units, which cancel out.
+where: \\
+$\hat{\mu}_{ij}$ is the normalised expression for \emph{feature} (\eg\ gene) $i$
+in sample $j$,\\
+$f_i$ is the count number of the fragments (or reads) mapped to
+\emph{feature} $i$ in sample $j$,\\
+$F_j$ is the total count number of all the fragments (or reads) mapped in
+sample $j$,\\
+$\ell_i$ is the length of \emph{feature} $i$.
 
-\subminisec{TMM and Deseq normalisation}
-%\minisec{Examples of downstream analysis}For Differential gene expression analysis
+\NB\ The scaling factor was introduced such as in most cases $1$\ \FPKM\ is
+roughly equivalent to $1$\ \gls{RNA} in the cell \mycite{Mortazavi2008}. This
+has been confirmed in other papers (see for example \cite{Hebenstreit:2011}) and
+also explains why $1$\ \FPKM\ is so often used as a threshold.
+
+This normalisation is quite intuitive and still largely used nowadays.
 
 \subminisec{TPM}
 More recent quantification metrics.
 
-\subminisec{Other normalisation approaches}
-Other normalisation methods tries to correct a priori or at posteriori:
-take into account batch effect. That's why important to have good experimental
-design. See \cref{sec:expDesign}
+\begin{comment}
+So the final value TPM of gene x is $(n_x/\ell_x)/(\sum_i n_i/\ell_i)\times 10^6$,
+which measures the *relative* rate of transcription of gene x (with the decimal
+point moved 6 spaces to the right). Both $\ell_x$ and $\ell_i$ have kilobase
+units, which cancel out.
+\end{comment}
 
+\subminisec{TMM and Deseq normalisation}
+%\minisec{Examples of downstream analysis}For Differential gene expression analysis
+
+
+\subminisec{Other normalisation approaches}
+A number of normalisation methods applied first to microarrays are also used.
+The most common ones include the quantile normalisation method or simple scaling
+normalisation.
+Other normalisation methods tries to correct \latin{a priori} or \latin{at
+posteriori} biases. The \gls{BiocR} package \soft{CQN} \mycite{cqn}
+for example corrects the expression levels according to their length and
+their \emph{GC} content\footnote{\gls{cDNA} enriched in GC bases are stabler and
+tend to a more optimal amplification.}. A few of them may correct
+\emph{batch effect} (see \cref{sec:expDesign}) or other confouding factors.
+The \gls{BiocR} package \soft{RUVSeq} \mycite{ruvseq} is one of the example.
 
 
 \subsection{Proteome exploration with Mass spectrometry}
