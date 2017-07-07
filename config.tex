@@ -1,6 +1,4 @@
 \RequirePackage{minted}
-\RequirePackage[dottedtoc,eulerchapternumbers]{classicthesis}
-%\usepackage{arsclassica}
 \RequirePackage{tocbasic}
 \RequirePackage{polyglossia}
 \setdefaultlanguage[variant=uk]{english}
@@ -9,6 +7,7 @@
 \RequirePackage{hyperref}
 \RequirePackage[natbib=true,backend=biber,style=authoryear,maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draft
 %\usepackage[explicit]{titlesec}
+\RequirePackage[dottedtoc,eulerchapternumbers]{classicthesis}
 \RequirePackage[english=british]{csquotes}
 %\RequirePackage{epigraph}
 %\renewcommand{\epigraphflush}{center}
@@ -58,7 +57,7 @@
 \RequirePackage{interval}
 \RequirePackage{ragged2e}
 \RequirePackage{soul}
-
+%\usepackage{arsclassica}
 \RequirePackage%[style=long,nolist] %as advised in classicthesis man
 [xindy, toc, nopostdot,style=long,nolist]%
 {glossaries} %%hyperref has to be already loaded
@@ -102,7 +101,7 @@
 ]{xits-math}
 
 
-%%%% Check with classicthesis manual to redifine the chapter and sections formats
+%%%% Check with classicthesis manual to redefine the chapter and sections formats
 %\titleformat{\chapter}[display]%
 %{\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
 %{\raggedright\spacedallcaps}[\Huge\vspace*{.8\baselineskip}\titlerule]
