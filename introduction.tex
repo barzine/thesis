@@ -286,7 +286,7 @@ dataset, additional steps are required to prepare the libraries.
 \minisec{RNA fragmentation}
 Most of the sequencing platforms\footnote{As for the Illumina platforms that have
 produced the transcriptomic datasets studied in this thesis.} require relatively
-short (\ie\ 200 to 500 nt) length to sequence. Concomitantly, it also ensures
+short (\ie\ 200 to 500\ nt) length to sequence. Concomitantly, it also ensures
 that the sampling along the \gls{RNA} is more uniform.
 This fragmentation can be carry out via divalent cations hydrolysis or
 nebullisation.
@@ -323,7 +323,7 @@ introduce additional motifs such as indexes.
 The next two steps can be interchanged regarding the amount of starting material
 at disposition. All the molecules are amplified by \gls{PCR} before (or after)
 a size-selection is performed (per gel electrophoresis) to extract
-length-complying fragments (about 200 to 500 bp) to the sequencer machine
+length-complying fragments (about 200 to 500\ bp) to the sequencer machine
 requirements\footnote{Indeed, the previous fragmentation step creates a great
 length range of fragments.}.
 
@@ -888,8 +888,7 @@ raw counts.}) and the planned downstream analysis.
 
 Many papers review or compare normalisation methods (See \cite{Dillies2013},
 \cite{normSigCancerHelp}, \cite{NormImpact}, \cite{ruvseqComQN}). I present
-hereinafter the currently most popular ones.
-
+hereinafter the currently three most popular ones.
 
 \subminisec{RPKM and FPKM}
 The first evident source of bias is the total number of \emph{mapped} reads (or
@@ -903,36 +902,26 @@ to weight each sample before extracting the \gls{RNA},
 the many steps (involving the fragmentation of the \glspl{RNA},
 \gls{PCR} syntheses or size-selection) and their associated biases
 overburden the tracking of the specific contribution of each \gls{RNA} along the
-experiment steps.} and, more importantly, the amount of the reads (or fragments)
-that may be mapped to a reference\footnote{The quantification disregarding the
+experiment steps.} and, more importantly, \emph{the amount of mapped reads (or
+fragments)} to a reference\footnote{The quantification disregarding the
 \emph{unmapped} reads (or fragments) so does the normalisation.}.
 
+The second source of bias arises when two genes have their expression level
+compared. Indeed, as a longer gene produces more reads (or fragments), it has
+greater stastistical chance to be sampled. \Cref{fig:htseqEstimation} illustrates
+this sample bias: \frfig{Gene 3} is twice longer than \frfig{Gene 2} and their
+raw counts also present this scaling factor. However, with proper normalisation,
+\frfig{Gene 2} and \frfig{Gene 3} are expressed in equal proportions.
 
-\begin{comment}
-Since the first use of \Rnaseq\ is to explore the \gls{RNA} population of samples
-and compare them together, an early method of normalisation
+To correct for these two biases, \cite{Mortazavi2008} introduced a new unit
+``RPKM'' which they first defined as \emph{\textbf{R}ead} per \textbf{K}ilobase of
+\emph{exon model} per \textbf{M}illion mapped \emph{reads}. From since, this unit
+as been redifined as \acrlong{RPKM} and then to \acrfull{FPKM} to also
+account for paired-end data\footnote{As mentioned before, despite the inaccuracy,
+\emph{read} and \emph{fragment} are often used interchangeably;
+this is also the case for \emph{\RPKM} and \emph{\FPKM}.}.
 
 
-Sampling bias problems: no idea what is being fished and there is no way yet
-to assess the absolute RNA abundance of a sample (also a lot of things are not
-measured: for example volume/weight of biological samples processed,
-number/size of the cells. It is OK because in most cases,
-there is a define question and many issue can be solved by correct normalisation
-of the data.
-
-There are many normalisation methods around. One should consider what they
-are doing before picking one. (judment)
-
-Unfortunately, \Rnaseq\ lacks (still) to assess the absolute abundance of each
-gene in a sample.
-
-Longer the genes and more event to pick it.
-\end{comment}
-
-First def was: read per kilobase of exon model per million mapped reads.
-
-Now it is read per kilobase of transcript per million mapped reads
-and then Fragments per kilobase of transcript per million mapped reads.
 
 $RPK_x$ (the reads per kilobase for gene x) is $n_x/\ell_x$, where $n_x$ is the
 number of reads that map to gene A and $\ell_x$ is the length of gene x.
