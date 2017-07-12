@@ -902,15 +902,13 @@ The first evident source of sampling bias is the total number of \emph{mapped}
 reads (or fragments) between two \Rnaseq\ libraries (shortened as
 \enquote{libraries} from now on). Indeed, there may be huge discrepancies in
 their respective amount of starting material loaded on a
-\gls{flow}\footnote{\Rnaseq\ lacks to assess directly the initial \gls{RNA}
-abundance of a sample from the initial collection
-step. In fact, this would involve the monitoring of many parameters or
-assessments of the samples before the library preparation. While, it may be easy
-to weight each sample before extracting the \gls{RNA},
+\gls{flow}\footnote{In fact, this would involve the monitoring of many parameters
+or assessments of the samples before the library preparation. And, while
+it \emph{may} be possible to weight each sample before extracting the \gls{RNA},
 the many steps (involving the fragmentation of the \glspl{RNA},
 \gls{PCR} syntheses or size-selection) and their associated biases
-overburden the tracking of the specific contribution of each \gls{RNA} along the
-experiment steps.} and, more importantly, \emph{the amount of mapped reads (or
+overburden the tracking of the final amounts used for the sequencing.}
+and, more importantly, \emph{the amount of mapped reads (or
 fragments)} to a reference\footnote{The quantification disregarding the
 \emph{unmapped} reads (or fragments) so does the normalisation.}.
 
@@ -936,7 +934,7 @@ The canonical formula for \FPKM\ (or \RPKM) is:
               =\frac{f_i}{F_j\cdot\ell_i}\cdot10^{9} \text{\ ,}
 \end{equation}
 
-where: \\
+where: \\{\small
 $\hat{\mu}_{ij}$ is the normalised expression for \emph{feature} (\eg\ gene) $i$
 in sample $j$,\\
 $f_i$ is the count number of the fragments (or reads) mapped to
@@ -944,6 +942,7 @@ $f_i$ is the count number of the fragments (or reads) mapped to
 $F_j$ is the total count number of all the fragments (or reads) mapped in
 sample $j$,\\
 $\ell_i$ is the length of \emph{feature} $i$.
+}
 
 \NB\ The scaling factor was introduced such as in most cases $1$\ \FPKM\ is
 roughly equivalent to $1$\ \gls{RNA} in the cell \mycite{Mortazavi2008}. This
@@ -953,7 +952,10 @@ also explains why $1$\ \FPKM\ is so often used as a threshold.
 This normalisation is quite intuitive and still largely used nowadays.
 
 \subminisec{TPM}
-More recent quantification metrics.
+
+
+
+
 
 \begin{comment}
 So the final value TPM of gene x is $(n_x/\ell_x)/(\sum_i n_i/\ell_i)\times 10^6$,
@@ -974,9 +976,10 @@ Other normalisation methods tries to correct \latin{a priori} or \latin{at
 posteriori} biases. The \gls{BiocR} package \soft{CQN} \mycite{cqn}
 for example corrects the expression levels according to their length and
 their \emph{GC} content\footnote{\gls{cDNA} enriched in GC bases are stabler and
-tend to a more optimal amplification.}. A few of them may correct
-\emph{batch effect} (see \cref{sec:expDesign}) or other confouding factors.
-The \gls{BiocR} package \soft{RUVSeq} \mycite{ruvseq} is one of the example.
+tend to a more optimal amplification.} before applying a quantile normalisation.
+A few of them may correct \emph{batch effect} (see \cref{sec:expDesign}) or
+other confounding factors. The \gls{BiocR} package \soft{RUVSeq} \mycite{ruvseq}
+is one of the example.
 
 
 \subsection{Proteome exploration with Mass spectrometry}
