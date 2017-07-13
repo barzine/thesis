@@ -80,7 +80,7 @@ quelque chose.%
 \TK{add reference on replication? (a priori no review of that part}
 
 \subsection{Transcription: From \gls{DNA} to \gls{RNA}}
-
+\begin{comment}
 Transcriptome is the complete population of \gls{RNA} in a cell or a group of
 cells. There are many kinds of them:
 \begin{itemize}
@@ -92,15 +92,24 @@ cells. There are many kinds of them:
     \item \gls{snoRNA}
     \item \gls{scRNA}
 \end{itemize}
+\end{comment}
+
+The transcriptome is the total repertoire of transcripts (\ie\ \glspl{RNA}
+molecules) expressed in a cell or tissue at a given time and condition. Unlike
+the genome which is roughly identical regardless which cell of a particular
+individual is considered, the transcriptome varies\ldots
 
 \subsection{Translation: From \gls{RNA} to protein}
 
 \TK{Small conclusion: Assumption mRNA and proteins : highly correlated
-[find references]}
+[add references]}
 
 
 \section{Capturing the expression in the laboratory}
 
+\TK{Two lines about microarrays}
+
+\begin{comment}
 Biological research uses mainly two approaches to
 study the cell life intricacy and its underlying mechanisms.\\
 The oldest approach is descriptive:
@@ -114,15 +123,17 @@ quantification and normalisation methods.
 While, there are quite established protocols for differential expression analysis,
 there are presently many other downstream analyses that are cumbersome
 and/or not settled yet. This is the case for this study.
+\end{comment}
 
-
-The transcriptome is the total repertoire of transcripts (\ie\ \glspl{RNA}
-molecules) expressed in a cell or tissue at a given time and condition. Unlike
-the genome which is roughly identical regardless which cell of a particular
-individual is considered, the transcriptome varies\ldots
 
 \subsection{Transcriptome exploration with RNA sequencing}
 
+With the recent era of short-sequencing technology and the completion of the
+Human genome, understanding the genome expression is increasingly a more
+reachable aim.
+\TK{extend a little}
+
+\begin{comment}
 While microarrays are measuring many \mRNAs\ at once, their number is limited,
 
 \TK{history of \Rnaseq.}
@@ -141,6 +152,8 @@ parallelisation and storage.
 So, In 2008, shift from microarrays to \Rnaseq.
 
 \clearpage
+
+\end{comment}
 
 In the following section, I introduce the typical steps of the required workflow
 to study the transcriptome through sequencing on an Illumina platform. In fact,
@@ -459,7 +472,7 @@ increases the background noise and thus reduces the signal-to-noise ratio.
 Once the programmed read length is achieved (typically between 25 to 200 nt),
 the reads are washed away (after denaturation).
 
-\NB The below steps are specific to the \emph{paired-end} protocol.
+\minisec{Specificity of the \emph{paired-end} protocol}
 
 Then, after introduction of a new primer, the first index is sequenced
 following the same sequencing cycle.
@@ -498,7 +511,8 @@ program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
 the base being called wrongly. There are several possible encoding formats
 (See \cref{sec:PhredScore}).
 
-\subsubsection{Data analysis overwiew}
+\subsubsection[Data analysis overview]{Data analysis overview (\ie\ a typical
+bioinformatic workflow for \Rnaseq\ study)}
 
 From the reconstruction of the
 transcriptome to the normalisation of expression in each sample, the various
@@ -894,8 +908,8 @@ a specific set of assumptions that may be incompatible to the ones required by
 a number of investigation approaches.
 
 Many papers review or compare normalisation methods (See \cite{Dillies2013},
-\cite{normSigCancerHelp}, \cite{NormImpact}, \cite{ruvseqComQN}). I present
-hereinafter the currently three most popular ones.
+\cite{normSigCancerHelp}, \cite{NormImpact}, \cite{ruvseqComQN}). %I present
+%hereinafter the currently three most popular ones.
 
 \subminisec{RPKM and FPKM}
 The first evident source of sampling bias is the total number of \emph{mapped}
@@ -946,32 +960,30 @@ $\ell_i$ is the length of \emph{feature} $i$.
 
 \NB\ The scaling factor was introduced such as in most cases $1$\ \FPKM\ is
 roughly equivalent to $1$\ \gls{RNA} in the cell \mycite{Mortazavi2008}. This
-has been confirmed in other papers (see for example \cite{Hebenstreit:2011}) and
-also explains why $1$\ \FPKM\ is so often used as a threshold.
+has been observed in other papers (see for example \cite{Hebenstreit:2011}) and
+also explains why $1$\ \FPKM\ is a commonly used threshold.
 
-This normalisation is quite intuitive and still largely used nowadays.
-
-\subminisec{TPM}
-
-
-
-
-
-\begin{comment}
-So the final value TPM of gene x is $(n_x/\ell_x)/(\sum_i n_i/\ell_i)\times 10^6$,
-which measures the *relative* rate of transcription of gene x (with the decimal
-point moved 6 spaces to the right). Both $\ell_x$ and $\ell_i$ have kilobase
-units, which cancel out.
-\end{comment}
-
-\subminisec{TMM and Deseq normalisation}
-%\minisec{Examples of downstream analysis}For Differential gene expression analysis
+This normalisation is quite intuitive and still largely used nowadays. In fact,
+I use this normalisation through the thesis. However, it is also unsuitable for
+a popular type of analysis: \emph{Differential expression analysis}. Indeed,
+if a set of genes are expressed in a specific condition and are undetected in
+another (either for biological or technical reasons), the \emph{normalised counts}
+of every \gls{RNA} in both conditions is then affected (see \Cref{tab:noFPKM4DEA})
+and will entangle the interpretation.
 
 
 \subminisec{Other normalisation approaches}
-A number of normalisation methods applied first to microarrays are also used.
-The most common ones include the quantile normalisation method or simple scaling
+Differential expression analyses (DEA)  have required the development of distinct
+models and methods. Indeed, they generally involve a model where for most of the
+genes, the expression is stable between conditions\footnote{The comparison is
+usually between diseased (or treated) samples to control (healthy).} (\eg\
+\soft{edgeR}\footnote{\label{footnote:1}Bioconductor package} \mycite{edgeR}
+or \soft{DESeq2}\footref{footnote:1} \mycite{DESeq2}).
+
+Also, a number of normalisation methods applied first to microarrays are used, \eg\
+the most common ones include a quantile normalisation method or a simple scaling
 normalisation.
+
 Other normalisation methods tries to correct \latin{a priori} or \latin{at
 posteriori} biases. The \gls{BiocR} package \soft{CQN} \mycite{cqn}
 for example corrects the expression levels according to their length and
@@ -984,23 +996,26 @@ is one of the example.
 
 \subsection{Proteome exploration with Mass spectrometry}
 
-
-\begin{comment}
-\subsection{Proteomics}
-    \subsubsection{Main technologies}
-    \subsubsection{Mass sprectrometry}
-
-\end{comment}
-
-%\section{Big studies, big data and Reproducibility}
+Protein identification and quantification rely on \ms\ as the method of choice
+since it allies high-throughput 
 
 
 
-\section{Reproducibility issues // experimental design}\label{sec:expDesign}
+
+
+
+
+\section{Reproducibility and Experimental design}\label{sec:expDesign}
     \subsection{Batch effect}\label{sub:BatchEffect}
     Batch effect: \mycite{batchEffect}
+    \subsection{Technical replicates}
+    \TK{definition: technical replicate}
+    \subsection{Biological replicates}
+    \TK{definition: biological replicate}
+    \subsection{Bioinformatic pipeline}
 
-    \begin{itemize}
+\begin{comment}
+\begin{itemize}
             \item{Different samples}
             \item{Technology: wet lab but also software: Rupgrade, \ldots}
             \item{missing meta-data}
@@ -1009,28 +1024,18 @@ is one of the example.
         \subsubsection{Detection}
         \subsubsection{Quantification}
     \subsection{Consistency through biological layers}
+\end{comment}
+
 
 \mycite{reviewRNAseqBestpractice}
-\subsection{Co-studies on Transcriptomics and Proteomics in the literature}
-\subsection{EBI Expression Atlas or how integrating independent datasets }
 
 
+\section{EBI Expression Atlas or how integrating independent datasets }
 
 
-\section{Reproducibility vs. Repeatability}
+\section{`Conclusion'}
 
-
-\section{Experimental design}
-\subsection{Technical replicates}
-\subsection{Biological replicates}
-pourquoi c'est important
-
-
-
-
-\section{discussion or conclusion}
-
-
+\begin{comment}
 \Rnaseq\ as \Dnaseq\ needs many corrections as to prevent biases in the downstream
 analysis. However, due to the dynamic component of the transcriptome
 contrarily to the genome, while it is possible to apply the corrections in
@@ -1038,7 +1043,7 @@ contrarily to the genome, while it is possible to apply the corrections in
 in \Rnaseq, corrections are already part of
 the analysis and requires often as much skills than flair. It is possible that
 future protocols will overcome this issue.
-
+\end{comment}
 
 \section{Aims of the thesis}
 
@@ -1054,7 +1059,7 @@ qualitative assessment of the consistency and evaluate the feasibility of a
 quantitative assessment in general, if not, realise a quantitative integration
 for a few key tissues.
 
-\section{Achievements}
+\subsection{Achievements}
 \begin{itemize}
     \item First time so many datasets have been reprocessed together with the
         same annotation and hence comparison are better (y'a le truc de chez Burges,
