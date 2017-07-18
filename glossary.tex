@@ -94,6 +94,9 @@ The N indicates that it can be any
 nucleotide (usually either Adenosine (A), Cytosine (C), Guanine (G) or
 Thymine (T))}]{dNTP}{dNTP}{deoxynucleoside triphosphate}
 
+
+
+
 %%%% glossary entries
 \newglossaryentry{RNA-Seq}{name={RNA-Seq},
     description={RNA sequencing, which can also be called whole transcriptome
@@ -106,7 +109,6 @@ Thymine (T))}]{dNTP}{dNTP}{deoxynucleoside triphosphate}
 \newglossaryentry{miRNA-Seq}{name={miRNA-Seq},
     description={miRNA sequencing, which can also be called miRNA shotgun
     sequencing}}
-
 
 \newglossaryentry{HBB}{name={HBB},description={Hemoglobin Subunit Beta}}
 
@@ -183,17 +185,33 @@ unit of length for double-stranded nucleic acids}}
     file format that records gene information or other features as \glsxtrshort{DNA},
 \glsxtrshort{RNA} or protein sequences.}}
 
-\newacronym{LC}{LC}{\textbf{L}iquid \textbf{C}hromatography}
-\newacronym{MS}{MS}{\textbf{M}ass \textbf{S}pectrometry}
+\newabbreviation{LC}{LC}{\textbf{L}iquid \textbf{C}hromatography}
+\newabbreviation{MS}{MS}{\textbf{M}ass \textbf{S}pectrometry}
 \newabbreviation[description={\glsxtrshort{LC} followed by tandem \glsxtrshort{MS}}]
 {LC-MS/MS}{LC-MS/MS}{LC followed by tandem MS}
 
 \newabbreviation[description={tandem \glsxtrshort{MS}}]
 {MS/MS}{MS/MS}{tandem MS}
 
+\newglossaryentry{Bottom-up}{name={Bottom-up approach (proteomics)},
+text={bottom-up},
+description={In proteomics, bottom-up approaches (in contrast to
+\emph{top-down} approaches) involve a step of proteolytic digestion prior
+to the Mass Spectrometry analysis.}}
+
+\newglossaryentry{Top-down}{name={Top-down approach (proteomics)},
+text={top-down},
+description={In proteomics, top-down approaches (in contrast to the
+\emph{bottom-up} approaches) analyses directly the proteins without any prior
+step of proteolytic digestion before the Mass Spectrometry analysis (which often
+involves \glsxtrshort{MS/MS})}}
+
 \newacronym{FTMS}{FTMS}{\textbf{F}ourier \textbf{t}ransform \textbf{M}ass
 \textbf{s}pectrometer}
 
+
+\newabbreviation[description={\textit{D}ata-\textit{d}ependant
+\textit{a}cquisition}]{DDA}{DDA}{data-dependant acquisition}
 
 \newacronym{SDS}{SDS}{\textbf{S}odium \textbf{D}odecyl \textbf{S}ulfate}
 \newacronym{PAGE}{PAGE}{\textbf{P}oly\textbf{a}crylamide \textbf{G}el

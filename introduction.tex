@@ -70,6 +70,7 @@ quelque chose.%
 
 
 \section{Diversity and universality of Life}
+
 \Rough{\begin{itemize}
     \item What we speak about (\gls{DNA},\gls{RNA}, protein)
     \item Why we speak about/study it. Speak of identification of unique features,
@@ -104,8 +105,7 @@ individual is considered, the transcriptome varies\ldots
 \TK{Small conclusion: Assumption mRNA and proteins : highly correlated
 [add references]}
 
-
-\section{Capturing the expression in the laboratory}
+\section{Transcriptome exploration with RNA sequencing}
 
 \TK{Two lines about microarrays}
 
@@ -124,9 +124,6 @@ While, there are quite established protocols for differential expression analysi
 there are presently many other downstream analyses that are cumbersome
 and/or not settled yet. This is the case for this study.
 \end{comment}
-
-
-\subsection{Transcriptome exploration with RNA sequencing}
 
 With the recent era of short-sequencing technology and the completion of the
 Human genome, understanding the genome expression is increasingly a more
@@ -196,7 +193,7 @@ of the samples prior to the
 \gls{RNA} extraction most definitely affects the final estimations,
 I will let aside these steps from my review.
 
-\subsubsection{Library preparation}
+\subsection{Library preparation}
 
 While there are sequencing technologies that can directly sequence \glspl{RNA}
 (see \mycite{rnaDirectSeq}), most of the technologies handle only \gls{DNA}.
@@ -206,7 +203,8 @@ itself are the most platform dependent parts of the overall protocol.
 Indeed, contingently on to the sequencing principle they rely,
 the sequencers need the libraries to be fixed and loaded differently.
 
-\minisec{\gls{RNA} extraction}
+\subsubsection{\gls{RNA} extraction}
+
 There are many methods to extract \glspl{RNA} from the primary samples and they
 are commonly standardised. Indeed, regarding the type of biological samples,
 the \glspl{RNA} of interest, the aim of the  study and the sequencing platform
@@ -223,7 +221,7 @@ However, the relative gene expression levels are similar from one extraction
 protocol to the other. \mycite{RNAextraction}
 
 
-\minisec{\gls{RNA} enrichment}
+\subsubsection{\gls{RNA} enrichment}
 
 After extracting the \gls{RNA} from the cells or tissues,
 the next step is to enrich the content of the samples with the \glspl{RNA}
@@ -252,7 +250,7 @@ by targeted amplification. While these
 approaches are insufficiently specific to select one particular kind of \gls{RNA}
 or remove all \glspl{rRNA}, it eases and improves the downstream analyses.
 
-\subminisec{PolyA-selection}
+\minisec{PolyA-selection}
 This strategy essentially targets the \mRNAs. It exploits the polyadenylated
 tail at the 3' end of the \mRNAs\footnote{And a few other kinds of \gls{RNA},
 \eg\ \glspl{lncRNA} \mycite{polyAlncRNA}} that is added
@@ -264,7 +262,7 @@ This protocol is probably the most widespread one as it is the easiest and
 cheapest to set up. A dataset produced following this protocol is known as
 a \emph{polyA-selected} dataset.
 
-\subminisec{Ribodepletion}
+\minisec{Ribodepletion}
 This strategy is preferred for the study of any \gls{ncRNA} or when researching
 the interaction of \mRNAs\ with other \glspl{RNA} \mycite{ribodepletion}. This
 strategy is in a way the reverse of the previous one as its also
@@ -285,7 +283,7 @@ approach where they amplify \emph{every} other \gls{RNA} with the help of
 specifically designed probes (see \cref{subsec:castlepresentation}). Hence,
 the protocol they have used is closer to the following one.
 
-\subminisec{Targeted amplification}
+\minisec{Targeted amplification}
 Targeted amplifications rely on primers that would be designed to target (or
 avoid as for \cite{castleData}) specific sequence motifs of the genome. Most
 studies based on this kind of approach are not referred as \Rnaseq\ studies, but
@@ -295,7 +293,8 @@ that emphasises the variation of the method (\eg\ Capture-Seq
 dataset, additional steps are required to prepare the libraries.
 
 
-\minisec{RNA fragmentation}
+\subsubsection{RNA fragmentation}
+
 Most of the sequencing platforms\footnote{As for the Illumina platforms that have
 produced the transcriptomic datasets studied in this thesis.} require relatively
 short (\ie\ 200 to 500\ nt) length to sequence. Concomitantly, it also ensures
@@ -307,7 +306,7 @@ This step is performed on occasions after the \gls{cDNA} synthesis
 (see next section). In those case, the \gls{cDNA} are fragmented mostly
 by digestion with DNase I or by sonication.
 
-\minisec{Double-stranded cDNA synthesis}
+\subsubsection{Double-stranded cDNA synthesis}
 The \gls{RNA} molecules are used as a template for a retro-transcription
 involving oligo-dTs or \emph{random} hexamer primers, respectively only
 for polyA-selected datasets or any dataset (polyA-selected included).
@@ -321,12 +320,12 @@ strands has the same sequence than the original \gls{RNA}. Several techniques,
 called \emph{strand-specific}, have been developed to compensate for this
 (\mycite{strandSpecific}, \mycite{strandSpe}).
 
-\minisec{Adapter ligation, PCR amplification and size selection}
+\subsubsection{Adapter ligation, PCR amplification and size selection}
 After generating blunt edges by restriction digest of the \glspl{cDNA}, adapters
 (small known sequences of oligonucleotides) are ligated to their both ends.
 These adapters are constituted from several parts. A subset of them are ensuring
 later the hybridisation of the \glspl{cDNA} with the flow
-cells\footnote{\Gls{flow}: see \cref{subsub:HybridClustAmp}.} (based on sequence
+cells\footnote{\Gls{flow}: see \cref{sub:HybridClustAmp}.} (based on sequence
 complementary) and another set of them
 are sequence binding sites that are used as primers for the following cluster
 amplification step occurring \latin{in situ}. These adapters are also used to
@@ -347,7 +346,7 @@ For example, \glspl{miRNA} are shorter than the general requirement of Illumina
 sequencers. Alternative protocols are addressing this issue
 \mycite{smallRNAprotocol}.
 
-\minisec{An example of alternative preparation strategy}
+\subsubsection{An example of alternative preparation strategy}
 Along with the targeted, the strand-specific and small \glspl{RNA} protocols,
 there are a few other variations to this typical protocol to handle other concerns.
 For example, it is occasionally necessary to sequence simultaneously (in a single
@@ -377,9 +376,9 @@ The main inconvenient of the multiplexing protocol is that the original sequence
 length of the \glspl{cDNA} are then shorter as the barcodes are also (and have
 to) be sequenced as well.
 
-\subsubsection[Clustering: Hybridisation and Bridge amplification]{Clustering:
+\subsection[Clustering: Hybridisation and Bridge amplification]{Clustering:
 Hybridisation and Bridge amplification \mycite{IlluminaYoutube}}
-\label{subsub:HybridClustAmp}
+\label{sub:HybridClustAmp}
 
 Once the libraries are ready, they are loaded onto a \emph{flow cell}\footnote{%
 \emph{Flow cells} are the support of Illumina sequencing. They enable the
@@ -392,7 +391,7 @@ oligonucleotides is complementary to a region comprised in the ligated adapters.
 The clustering step comprises two phases: hybridisation and bridge amplification
 of the \gls{cDNA} fragments.
 
-\minisec{Hybridisation}
+\subsubsection{Hybridisation}
 
 The double-strand \glspl{cDNA} are denatured and then each fragment randomly
 hybridises across the flow cell surface with one of its small oligonucleotides.
@@ -400,7 +399,7 @@ These are used as primers for polymerases which create a first complementary
 strand to the hybridised \gls{DNA} fragments. The new double-strand molecule is
 denatured and the original first template is washed away.
 
-\minisec{Bridge amplification}
+\subsubsection{Bridge amplification}
 The strands then folds over and their (second) adapter hybridises with a
 complementary oligonucleotide sequence of the flow cell and thus creating a
 bridge. The flow cell complementary fragment is then used as the primer for a new
@@ -413,7 +412,7 @@ the library. After the bridge amplification, the reverse strands are cleaved
 and washed away. The 3' end primers are also blocked to avoid any unwanted
 priming.
 
-\subsubsection{Sequencing-by-synthesis}
+\subsection{Sequencing-by-synthesis}
 \label{subsub:sequencing}
 
 Illumina sequencers propose two sequencing approaches: single-end and paired-end.
@@ -472,7 +471,7 @@ increases the background noise and thus reduces the signal-to-noise ratio.
 Once the programmed read length is achieved (typically between 25 to 200 nt),
 the reads are washed away (after denaturation).
 
-\minisec{Specificity of the \emph{paired-end} protocol}
+\subsubsection{Sequencing specificities for the \emph{paired-end} protocol}
 
 Then, after introduction of a new primer, the first index is sequenced
 following the same sequencing cycle.
@@ -487,7 +486,7 @@ Finally, the reverse strand is sequenced following the previously described
 sequencing cycle. Once the same number of sequencing cycles than the forward
 strand is reached, the read product of the reverse strand is washed away.
 
-\subsubsection{From analogous input to digital output}
+\subsection{From analogous input to digital output}
 
 At the end of the sequencing process, the set of images (one per sequencing cycle)
 is produced. While it is possible to work with the images themselves, in most
@@ -511,8 +510,7 @@ program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
 the base being called wrongly. There are several possible encoding formats
 (See \cref{sec:PhredScore}).
 
-\subsubsection[Data analysis overview]{Data analysis overview (\ie\ a typical
-bioinformatic workflow for \Rnaseq\ study)}
+\subsection{A typical bioinformatic workflow for \Rnaseq\ study}
 
 From the reconstruction of the
 transcriptome to the normalisation of expression in each sample, the various
@@ -555,7 +553,7 @@ reconstruction step. Similarly, low quality reads may be discarded hence
 lowering the complexity
 of the reconstruction task and hasten its accomplishment.
 
-\minisec{Quality check, trimming and filtering}\label{minisec:trim}
+\subsubsection{Quality check, trimming and filtering}\label{subsub:trim}
 
 The quality assessment allows to remove any read (or part of it) that would
 increase the complexity of the reconstruction step or skew the downstream analyses.
@@ -594,7 +592,7 @@ possible subsequences of length
 \emph{k} of a \emph{read}.}) at each end of the reads is good practice.
 
 
-\minisec{Reconstruction strategies}
+\subsubsection{Reconstruction strategies}
 
 Two main approaches can be used for the very computationally expensive step of
 identification. I will present them in a decreasing order of complexity:
@@ -614,7 +612,7 @@ either \emph{\gls{BAM}} or more recently \emph{CRAM}).
 \end{figure}
 \end{comment}
 
-\subminisec{\latin{de novo} Assembly}
+\minisec{\latin{de novo} Assembly}
 This approach is favoured when the reference genome of the species of interest
 is unavailable or of poor quality
 (\eg\ many non-model organisms) or inadequate (\eg\ cancer samples)
@@ -664,13 +662,13 @@ though the most prevalent one is the de Bruijn representation \mycite{deBruijn}.
 \end{figure}
 
 
-\subminisec{Read alignment}
+\minisec{Read alignment}
 This approach exploits prior knowledge. The reads are aligned to a reference to
 hasten the reconstruction process. The reference may be a genome or a
 transcriptome (provided that a good annotation is available).
 
 
-\subsubminisec{Genome reference}
+\subminisec{Genome reference}
 Aligning to the genome allows to discover new genes or isoforms. However, it
 requires a splice-aware algorithms, \ie\ they need to align the
 reads across the splice-junctions (which is possible but non-trivial).
@@ -688,8 +686,7 @@ quantifications of the different isoforms, the genome needs to provide the
 coordinates for the isoforms and that an accurate quantification at isoform levels
 requires further analysis.
 
-
-\subsubminisec{Transcriptome reference}
+\subminisec{Transcriptome reference}
 Using a transcriptome as reference instead of a genome reduces the complexity
 of the aligning step due to the lack of intronic sequences. However, it also
 limits the potential downstream analyses, \eg\ any new (or unannotated) gene
@@ -704,7 +701,7 @@ attributed unambiguously to a single isoform for each gene.
 To mitigate between very computational greedy approaches and more constraining
 ones, several tools complementary use the previous strategies.
 
-\subminisec{Hybrid approach between \latin{de novo} and alignment}
+\minisec{Hybrid approach between \latin{de novo} and alignment}
 There are tools like \toph\footnote{\toph\ ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}
 {https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \mycite{tophat2}
@@ -750,7 +747,7 @@ popular mapper for genomes with a near-complete annotation (such as
 \species{Homo sapiens} for example) \mycite{tamaraRNA}.
 
 
-\minisec{Quantification of \emph{features}}
+\subsubsection{Quantification of \emph{features}}
 
 When working with \Rnaseq\ data, the typical next step after mapping the reads or
 fragments to the reference is to quantify the expression of the
@@ -787,7 +784,7 @@ I personally use two popular tools for this thesis,
 which are both compatible with \toph\ but rely on different concepts.
 I briefly present them below in their chronological release.
 
-\subminisec{Cufflinks}
+\minisec{Cufflinks}
 \cuffl\ is part of collection of tools called
 \soft{Tuxedo suite}\footnote{\soft{Tuxedo suite} user group:
 \href{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}%
@@ -844,9 +841,8 @@ Finally, to compute the gene expression levels, \cuffl\ aggregates \latin{per}
 gene all the isoforms expression abundances together.
 
 \NB\ \cuffl\ provides by default \FPKM\ \emph{normalised} data (see
-\cref{mini:norm}).
-
-\subminisec{HTSeq-count}
+\cref{subsub:norm}).
+\minisec{HTSeq-count}
 The \gls{Python} library \soft{HTSeq} provides a stand-alone script
 (\htseq) performing the feature quantification with a more conservative strategy.
 It discards all ambiguous reads from a \gls{SAM}/\gls{BAM} file and then
@@ -895,7 +891,7 @@ quantifications for most of the genes after proper normalisation
 unnormalised counts).
 
 
-\minisec{Normalisation}\label{mini:norm}
+\subsubsection{Normalisation}\label{subsub:norm}
 Actually, regardless of the quantification method, a normalisation is usually
 necessary to avoid a few statistical biases (mainly due to the sampling). The
 normalisation method, though, is generally determined based on the quantification
@@ -908,10 +904,9 @@ a specific set of assumptions that may be incompatible to the ones required by
 a number of investigation approaches.
 
 Many papers review or compare normalisation methods (See \cite{Dillies2013},
-\cite{normSigCancerHelp}, \cite{NormImpact}, \cite{ruvseqComQN}). %I present
-%hereinafter the currently three most popular ones.
+\cite{normSigCancerHelp}, \cite{NormImpact}, \cite{ruvseqComQN}).
 
-\subminisec{RPKM and FPKM}
+\minisec{RPKM and FPKM}
 The first evident source of sampling bias is the total number of \emph{mapped}
 reads (or fragments) between two \Rnaseq\ libraries (shortened as
 \enquote{libraries} from now on). Indeed, there may be huge discrepancies in
@@ -972,7 +967,7 @@ of every \gls{RNA} in both conditions is then affected (see \Cref{tab:noFPKM4DEA
 and will entangle the interpretation.
 
 
-\subminisec{Other normalisation approaches}
+\minisec{Other normalisation approaches}
 Differential expression analyses (DEA)  have required the development of distinct
 models and methods. Indeed, they generally involve a model where for most of the
 genes, the expression is stable between conditions\footnote{The comparison is
@@ -985,24 +980,57 @@ the most common ones include a quantile normalisation method or a simple scaling
 normalisation.
 
 Other normalisation methods tries to correct \latin{a priori} or \latin{at
-posteriori} biases. The \gls{BiocR} package \soft{CQN} \mycite{cqn}
+posteriori} biases\footnote{The \gls{BiocR} package \soft{CQN} \mycite{cqn}
 for example corrects the expression levels according to their length and
 their \emph{GC} content\footnote{\gls{cDNA} enriched in GC bases are stabler and
-tend to a more optimal amplification.} before applying a quantile normalisation.
+tend to a more optimal amplification.} before applying a quantile normalisation.}.
 A few of them may correct \emph{batch effect} (see \cref{sec:expDesign}) or
 other confounding factors. The \gls{BiocR} package \soft{RUVSeq} \mycite{ruvseq}
-is one of the example.
+is one example.
+
+\section{Proteome exploration with Mass spectrometry}
+
+High-throughput protein identification and quantification use \ms\
+as the primary method of choice since it allies a good dynamic range with high
+sensitivity and specificity \mycite{Aebersold2003}, \mycite{Broshphd},
+\mycite{Cox2011}. Indeed, a shift in the field has occurred on the last decade
+from a largely technology-driven research to a mainstream analytical tool for
+life sciences \mycite{AebersoldMann2016}.
+As \ms\ is very versatile and supports many proteomic investigation
+approaches\footnote{E.g.\ Proteome sequences, quantity, modification sites,
+structures and context of the protein along with mechanism-oriented
+(interaction) studies \mycite{AebersoldMann2016}.},
+there are many possible workflows for \ms-based proteomic studies.
+As the present thesis focuses only on \gls{DDA} discovery
+studies (See \Cref{sec:ProteoData}), I only review the widespread
+\emph{bottom-up} approach\footnote{\emph{Bottom-up approach}:
+\glsentrydesc{Bottom-up}}\sepfootnote\footnote{In
+fact, \gls{Top-down} approaches while appealing are still very challenging both
+as experimental and computational perspectives \mycite{AebersoldMann2016}.}
+for identification and quantification studies; this method is also
+called \emph{\enquote{shotgun}} proteomics \mycite{Cox2011}. The bottom-up
+approach\footnote{First introduced by \cite{Hunt1992}} increased popularity
+relies on the availability of high-quality genome and gene sequence databases
+and more recent technical advances in \ms, in particular the discovery
+and development of protein ionization methods and fragmentation
+\mycite{Aebersold2003}.
 
 
-\subsection{Proteome exploration with Mass spectrometry}
+\subsection{Sample preparation}
 
-Protein identification and quantification rely on \ms\ as the method of choice
-since it allies high-throughput 
+\TK{preparation of the sample}
+Unfortunately, proteomics field lacks amplification methods such as \gls{PCR}.
+Thus, the quantity of proteins detected is directly
 
+Folding of proteins and complexes with number of subunits: increase the difficulty
+it is not like transcriptomic where the molecule can be more easily linearised by
+denaturation.
 
+\TK{Separation techniques}
 
+\TK{Analyse of the sample}
 
-
+\TK{Bioinformatic strategies}
 
 
 \section{Reproducibility and Experimental design}\label{sec:expDesign}

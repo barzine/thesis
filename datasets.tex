@@ -241,7 +241,7 @@ For privacy reasons, the raw data is available only through controlled access vi
 in my study). While getting access can take time, in principle every request for
 academic research should be granted.
 
-\section{Mass spectrometry Proteome data}
+\section{Mass spectrometry Proteome data}\label{sec:ProteoData}
 
 While the transcriptomic data was retrieved and then processed within the \EBI\
 either by Dr Nuno Fonseca or myself, the proteomic data have been picked and
@@ -294,7 +294,8 @@ The raw spectra were retrieved from ProteomeXchange via the repository
 While their effort to generate technical high quality raw data was highly
 appraised by the scientific community, their processing
 (identification and quantification) methods were
-criticised (see~\cite{Ezkurdia2014-qx}). Thus, for this thesis I only use
+criticised (see~\cite{Ezkurdia2014-qx} and \cite{Deutsch2015}).
+Thus, for this thesis I only use
 quantification that James Wright provided me after reprocessing the dataset
 from the raw spectra.
 
@@ -380,8 +381,8 @@ quality controls \mycite{qualityRNAseq},
 mapping and quantifications pipelines \mycite{Fonseca2014}
 have great effects on the final quantification. Lastly, normalisation
 methods also greatly impact the final expression figures
-\mycite{Dillies2013}, \mycite{normalisation2}. For all these reasons, reprocessing
-all the transcriptomic datasets --- with the same exact protocol ---
+\mycite{Dillies2013}, \mycite{normSigCancerHelp}. For all these reasons,
+reprocessing all the transcriptomic datasets --- with the same exact protocol ---
 was the logical first step of this current study.
 
 Likewise, there are various tools and many parameters for each processing step
@@ -520,7 +521,7 @@ of \irap.
 \irap\ uses internally \soft{FastX} toolkit\footnote{\soft{FastX} toolkit ---
 \href{http://hannonlab.cshl.edu/fastx\_toolkit/}%
 {http://hannonlab.cshl.edu/fastx\_toolkit/}} (0.0.13) to perform the
-assessment and the trimming. The recommended usual reads (see \Cref{minisec:trim})
+assessment and the trimming. The recommended usual reads (see \Cref{subsub:trim})
 have been discard as were any with an overall quality score a threshold of 10.
 
 As reported in the \cref{subsub:sequencing}, as the base calling progresses,
