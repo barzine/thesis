@@ -4,7 +4,7 @@
 \setdefaultlanguage[variant=uk]{english}
 %\setmainlanguage[variant=uk]{english}
 \RequirePackage[english, iso]{isodate}
-\RequirePackage{hyperref}
+\RequirePackage[breaklinks=true,colorlinks]{hyperref}
 \RequirePackage[natbib=true,backend=biber,style=authoryear,isbn=false,%url=false,%
 doi=false,url=false,dashed=false,eprint=false,giveninits=true,hyperref=true,%
 maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draft
@@ -159,7 +159,8 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 
 \definecolor{cambridgeblue}{RGB}{163, 193, 173}
 \definecolor{cambridgebluedark}{RGB}{17, 94, 103}
-
+%\definecolor{ebidark}{RGB}{0, 124, 130}
+%\definecolor{ebilight}{RGB}{RGB}{45, 124, 130}
 
 %\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
 
@@ -178,6 +179,13 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 
 
 \pagestyle{scrheadings}
+
+\hypersetup{%
+    pdftitle={M. Barzine - PhD thesis, University of Cambridge (2017)},
+    pdfauthor={Mitra Barzine},
+    linkcolor=darkgray,
+    citecolor=teal
+}
 
 %%%%%%%
 %%% customisation stollen from Manuel Kuehner template
