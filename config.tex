@@ -57,7 +57,6 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 %\usepackage[table,xcdraw]{xcolor}
 \RequirePackage{relsize}
 \RequirePackage[onehalfspacing]{setspace}
-%\usepackage{setspace}
 %\usepackage[multidot]{grffile}
 \RequirePackage{marginnote}
 \RequirePackage{float}
@@ -97,9 +96,7 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 \RequirePackage{ragged2e}
 \RequirePackage{soul}
 %\usepackage{arsclassica}
-\RequirePackage%[style=long,nolist] %as advised in classicthesis man
-[xindy, toc, nopostdot,style=long,nolist]%
-{glossaries} %%hyperref has to be already loaded
+\RequirePackage[xindy, toc, nopostdot,nolist]{glossaries} %%after hyperref loaded
 \RequirePackage[automake,nomain,acronym]{glossaries-extra}
 \setglossarystyle{longheader}
 %\setabbreviationstyle[acronym]{long-short}
