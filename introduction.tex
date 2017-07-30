@@ -230,7 +230,7 @@ either by specifically selecting it or by removing other \glspl{RNA}). Indeed,
 the \glspl{rRNA} are the most abundant type of \gls{RNA} in any cell. Even
 though they amount for a very small part of the genome\footnote{For example,
 \species{Homo sapiens}, there are 568 genes (<1\%) that are described as
-\gls{rRNA} out of the 63,898 annotated genes of the ENSEMBL database
+\gls{rRNA} out of the 63,898 annotated genes of the \gls{Ensembl} database
 (\hg{38.p10} - \ens{89}).}, they represent by their number 70\% or more of
 the total population of \gls{RNA} \mycite{biochbook}.
 Although there are interests to study \glspl{rRNA} (\eg\ \mycite{rrnaStudy}),
@@ -558,9 +558,10 @@ of the reconstruction task and hasten its accomplishment.
 The quality assessment allows to remove any read (or part of it) that would
 increase the complexity of the reconstruction step or skew the downstream analyses.
 
-It is wise to discard uninformative reads, \ie\
-reads with a low sequence complexity (\eg\ poly-T or poly-A tails) or with
-uncalled base (N). Indeed, these reads will hamper the processing time as they
+It is wise to discard uninformative reads, \ie\ reads with a low sequence
+complexity (\eg\ poly-T or poly-A tails) or with ambiguous sequences (in other
+words with uncalled bases --- reported as \emph{N}).
+Indeed, these reads will hamper the processing time as they
 usually map to several parts of the genome while also decreasing the accuracy of
 the global gene expression estimations.
 
@@ -990,12 +991,12 @@ is one example.
 
 \section{Proteome exploration with Mass spectrometry}
 
-High-throughput protein identification and quantification use \ms\
-as the primary method of choice since it allies a good dynamic range with high
-sensitivity and specificity \mycite{Aebersold2003}, \mycite{Broshphd},
-\mycite{Cox2011}. Indeed, a shift in the field has occurred on the last decade
-from a largely technology-driven research to a mainstream analytical tool for
-life sciences \mycite{AebersoldMann2016}.
+High-throughput protein identification and quantification (\ie\ characterisation)
+use \ms\ as the primary method of choice since it allies a good dynamic range
+with high sensitivity and specificity \mycite{Aebersold2003,Broshphd,Cox2011}.
+Indeed, on the last decade, the field has shifted from technical research on the
+instruments and methods to an extensive and routine use of \ms\ as an analytical
+tool for life sciences, in particular for proteins \mycite{AebersoldMann2016}.
 As \ms\ is very versatile and supports many proteomic investigation
 approaches\footnote{E.g.\ Proteome sequences, quantity, modification sites,
 structures and context of the protein along with mechanism-oriented
@@ -1004,7 +1005,7 @@ there are many possible workflows for \ms-based proteomic studies.
 As the present thesis focuses only on \gls{DDA} discovery
 studies (See \Cref{sec:ProteoData}), I only review the widespread
 \emph{bottom-up} approach for identification and quantification
-studies\footnote{\emph{Bottom-up approach}: \glsentrydesc{Bottom-up}.\\
+studies\footnote{\emph{Bottom-up approach}: \glsentrydesc{Bottom-up}\\
 In fact, \gls{Top-down} approaches while appealing
 are still very challenging both as experimental and computational perspectives
 \mycite{AebersoldMann2016}.}\sepfootnote\footnote{Bottom-up approaches are
@@ -1012,45 +1013,43 @@ also used for \emph{targeted proteomics} (see \mycite{Shi2016}) and for
 \gls{DIA} studies to generate, for instance, comprehensive fragment-ion maps for
 specific proteoforms (see \mycite{Chapman2014})}, and more exactly, the
 typical \emph{\enquote{shotgun}} proteomics approach that
-relies on \gls{LC-MS/MS} \mycite{Cox2011}, \mycite{Zhang2013}. In fact, all
+relies on \gls{LC-MS/MS} \mycite{Cox2011,Zhang2013}. In fact, all
 three proteomic datasets used within this thesis are the product of this specific
 protocol. The \gls{DDA} approach has many advantages over other approaches
-\mycite{Aebersold2016}: they are unbiased and free from hypothesis and as such
-are great tools for global discovery study. Indeed, \gls{DDA} studies survey all
-the proteome at once and prior knowledge is unrequired. The lately increased
+\mycite{AebersoldMann2016}: they are unbiased and free from hypothesis and as
+such are great tools for global discovery study. Indeed, \gls{DDA} studies survey
+all the proteome at once and prior knowledge is unrequired. The lately increased
 popularity of this method%\footnote{First introduced by \cite{Hunt1992}}
 ~relies on the increased availability of high-quality genome and gene sequence
 databases and more recent technical advances in \ms\ (development of new
-protein/peptide ionization and fragmentation methods) \mycite{Aebersold2003},
-\mycite{Cox2011}, \mycite{Zhang2014}. In the same manner, I will restrict myself
-to the techniques used in the aforementioned datasets.
+protein/peptide ionization and fragmentation methods)
+\mycite{Aebersold2003,Cox2011,Zhang2014}. In the same manner as for the \Rnaseq,
+I will emphasise the techniques used in the aforementioned proteomic datasets.
 
 \subsection{Sample preparation}
-
 Protocols to prepare samples for proteome analyses are quite simpler than the
 ones for \Rnaseq. However, as proteins are also more complex and heterogeneous in
 nature than \DNA\ and \RNA\ \mycite{Bruce2013}, there is a wider choice of them
 in order to adapt to any requirement \mycite{Feist2015}.
 
 \subsubsection{Sample collection and conservation}
-
 \minisec{Collection}
 \cite{Feist2015} report that traditional dissection, biopsies, blood draws and
 other additional methods can deliver adequate samples for proteome analysis.
 
 \minisec{Conservation}
-As recent developments have significantly improved proteome analysis from
-\gls{FFPE} samples and since they are still evolving,
-they may compare soon to fresh-frozen (\gls{FF}) samples \mycite{Feist2015}.
+Recent developments have significantly improved proteome analysis from
+\gls{FFPE} samples \mycite{Steiner2014}. Actually, as they are still evolving,
+they may compare soon to fresh-frozen (\gls{FF}) samples.
 However, for now fresh or \gls{FF} samples are still remaining the best initial
 sources.
 
 \subsubsection{Protein extraction and contaminant removal}
 \minisec{Protein extraction}
 Contrariwise to the collection step, \cite{Feist2015} explain that the crucial
-consideration is the cell lysis and then extraction approaches used on
+consideration is the cell lysis and the extraction approaches used on
 the protein as they may interact and disrupt the later characterisation step and
-thus require appropriate picking. In addition, the physical and chemical of
+thus require appropriate picking. In addition, the physico-chemical properties of
 the proteins are far more heterogeneous than for \DNA\ or \RNA\ molecules
 \mycite{Bruce2013} and may be incompatible to a number of extraction protocols.
 
@@ -1072,63 +1071,211 @@ sample proteome. They list several techniques and approaches to this regard.
 
 High-throughput bottom-up workflows (including \gls{LC-MS/MS}) generally
 aim to decrease the sample complexity to analyse while increasing the depth
-of proteomic coverage $[$\cite{Zhang2014,Bruce2013,Cox2011}$]$. Indeed,
-the concentrations of peptides/proteins in a sample may saturate the \ms\
-characterisation capacity: the very abundant proteins are easily detected and
-quantified, while rarer proteins may be missed entirely without specific
-precautions $[$\cite{Liu2009,Cappadona2012}$]$ or without unbearably
-increasing the analysis time per sample \mycite{Nilsson2010}.
-As the proteomic field unfortunately lacks amplification method, only targeted
-depletion strategies can be used. Also, digesting the proteins into peptide
-mixtures and then separating them in smaller fractions before subjection to \ms\
-may help to increase the coverage-depth while keeping a reasonable analysis
-time-frame $[$\cite{Aebersold2003,Cox2011,Zhang2013}$]$.
+of proteomic coverage \mycite{Zhang2014,Bruce2013,Cox2011}. Indeed,
+many aspects may impede the characterisation of the proteins.
+For example, the wide physico-chemical property scope of the proteins will
+require various protocols to be handle efficiently.
+Their concentrations in a sample may saturate the \ms\ characterisation capacity
+as the very abundant proteins are easily detected and quantified while rarer
+proteins may be missed entirely without specific precautions
+\mycite{Liu2009,Cappadona2012} or without unbearably increasing the
+analysis time per sample \mycite{Nilsson2010}.
+
+Hence, the usual workflow will usually involve the denaturation, the reducing,
+the alkylation and the digestion of the proteins. The peptide mixture products
+are then separated in smaller fractions before subjection to \ms\ so to increase
+the coverage depth while keeping a reasonable analysis time-frame
+\mycite{Aebersold2003,Cox2011,Zhang2013}.
+
+\NB\ The various \emph{simplification} steps may happen in a different order
+than I report hereinafter; they may also happen concomitantly. Additionally,
+protocols may skip or inversely involve several times the same type of
+simplification step. For example, protocols may present a first step of
+\emph{proteins} fractioning and then a later step of \emph{peptides} fractioning.
+
+\subsubsection{Denaturation, Reduction and alkylation}
+
+Theses steps may happen simultaneously to other steps. For example, they may
+occur while the extraction, the depletion or the digestion. They help to protect
+the proteins from endogenous proteases and separate the protein complexes. They
+also help to the relative linearisation of the proteins and to some extent to
+the homogenisation of the crude mixtures \mycite{Feist2015,Bruce2013}.
 
 \subsubsection{Depletion of highly abundant proteins}
 
-Regrettably, there are very few strategies to remove the highly abundant proteins.
-\cite{Zhang2014} reports two main strategies useful for clinical samples such
-as the plasma.
+Regrettably, the proteomic field lacks amplification method and
+there are very few strategies to remove the highly abundant proteins. Fortunately,
+these are very limited in number and may be precisely targeted.
+\cite{Zhang2014} reports two useful strategies. The first one aims to remove
+them completely from the sample, either by selective
+precipitation or by (more expensive) specific antibody-arrays.
+The second approach aims to the equalisation of the proteome.
+It may be based either on combinatorial ligand libraries involving
+bead-supported ligands (on a similar model to \Rnaseq\ protocols)
+or on specific protease mixtures\footnote{The former method uses bead-conjugated
+hexapeptide ligands to capture (approximatively) equimolar amounts of proteins.
+The very abundant proteins will bind till saturation to the beads and their
+remaining part in solution are washed off. This cheaper method has drawbacks.
+For example, it presupposes that every protein has a corresponding ligand to bind.
+\\\cite{MichaelMentenDepletion}, for example, describes the later method. The
+key of this protocol is to digest the most abundant proteins into peptides while
+keeping the bulk of the other proteins intact. Then, a filtering (based on
+molecular size) removes the peptides.}.
 
-In one hand, as there are a very limited number of highly abundant proteins, they
-can be specifically targeted: either by selective precipitation or by (very
-expensive) protocols using antibody arrays designed against the highest abundant
-proteins.
-
-In the other hand, there is a strategy aiming to equalise the proteome to analyse.
-It may be based on combinatorial ligand libraries involving bead-supported
-ligands (on the model of the \Rnaseq\ protocol) or on specific proteases.
-The first method uses bead-conjugated hexapeptide ligands to capture
-approximative equimolar amounts of proteins. The very abundant proteins, after
-binding till saturation, will be unable to attach to any available remaining
-ligand, and so, will be washed off. While this strategy is 20-fold cheaper than
-the previous depletion one, there are two main drawbacks.
-First, it presupposes that every protein has a corresponding hexapeptide ligand
-into which to bind. Secondly, it also skews the relative proportions of proteins
-that will be analyse. This second downside may also be true for the second method
-to achieve equalisation of the proteomes. \cite{MichaelMentenDepletion} uses
-selective digestion of the most abundant proteins into peptides while the bulk
-of the other proteins are left undigested until the remains of the most abundant
-proteins are filtered out. In general, the equalisation of the proteome improves
-the characterisation (identification and quantification) of the scarcer proteins
-\mycite{Zhang2014}.
+In general, the equalisation of the proteome improves the characterisation
+of the scarcer proteins \mycite{Zhang2014} while they may introduce skewness
+to the analyses (due to the relative protein proportions).
 
 \subsubsection{Proteolytic digestion}
-\clearpage
+It may seem contradictory to digest the proteins into peptide mixtures as a mean
+of \emph{simplification} step. And yet, while the main drawback is the inability
+to distinguish between proteoforms \mycite{Bruce2013}, it improves the proteins
+characterisation on several points.
+\begin{itemize}
+    \item It helps to homogenise the sample: peptides present closer
+        physico-chemical properties to each other than proteins \mycite{Zhang2014}.
+        In addition, peptide separations (by gel or \gls{LC}) are easier than
+        for proteins (see \cref{subsub:sepMethods}).
+    \item \ms\ is also more sensitive to the peptides than to the proteins as
+        \ms\ is more sensitive towards lower molecular-weight molecules
+        \mycite{Vitek2009,Cox2011}. Proteins may also be too large to be
+        fragmented (\eg\ with \gls{CID}) \mycite{Bruce2013}.
+    \item It is also easier to accurately characterise (identification and
+        quantification) smaller molecules. In fact, large proteins with alike
+        compositions present very similar molecular mass and may be impossible
+        to discriminate. On the other hand, a sequence-specific enzymatic
+        digestion gives hints on the protein sequence.
+    \item Finally, it increases the coverage of the less abundant proteins
+        \mycite{Zhang2014}. Indeed, each protein is represented by multiple
+        peptides hence increasing the sampling probability. Often, one or a small
+        number of \gls{LC-MS/MS}-characterised peptides is enough to identify the
+        parent protein \mycite{Bruce2013}.
+        Furthermore, as mentioned previously, a well-designed digestion can deplete
+        the final mixture of abundant proteins.
+\end{itemize}
+
+The digestion may happen in-gel or in-solution. Both are very well-used.
+In-gel digestion is very common in bottom-up approaches based on \gls{LC-MS/MS}
+as it provides also directly the fractioning and it is better adapted to more
+complex samples. Often, the gel will contain, in addition to the protease, a few
+chemical reagents that handle other step (\eg\ chaotropic reagents to denature
+the proteins at the same time). However, it requires greater time and amount of
+starting material than for the in-solution digestion. In-solution digestion
+on the other hand is the simplest and the most widespread
+digestion approach among all the proteome studies in general. It usually
+foreshadows filtering and fractioning steps. More recently, a hybrid method
+combining both method has been developed and named \acrfull{FASP}
+\mycite{Manza2005,Wisniewski2009}.
+
+Although there are other enzymes for restrictive digestion, trypsin is the gold
+standard protease \mycite{Zhang2014}. Its popularity is also explained by
+circularity: as more studies are using it, more data are available for comparison,
+hence more studies use it.
+
+\subsubsection{Separation methods (fractioning)}\label{subsub:sepMethods}
+Fractioning is the principal method to simplify sample complexity. It also allows
+to focus selectively on subcellular fractions when needed. Indeed, one may want
+to study in particular organelles, cell compartments or other kinds of proteome
+(\eg\ phosphorylated or glycosylated proteins) \mycite{Cox2011}.
+
+Several methods may fraction the peptide mixture and protocols may
+involve many of their various combinations.
+
+\minisec{Precipitation}
+Very easy to perform and it usually involves solvent gradients. However,
+its use is limited mostly to protein mixtures as other separation methods,
+based either on gel or capillarity (\gls{LC}), are more performant.
+
+\minisec{Gel electrophoresis based separation}
+Many protocols involve a first gel-based separation method prior to the
+liquid-based separation and fragmentation of\enspace\gls{LC-MS/MS}
+\mycite{Feist2015}.
+
+The gel separation may comprised one step or two, which are respectively referred
+as one-dimension (1D) and two-dimensions (2D) gels.
+
+The widespread sample preparation for bottom-up proteomics is a 1D-gel approach.
+It comprehends a denaturing alkylating gel (usually \gls{SDS-PAGE} but other are
+possible, \eg\ \gls{LDS-PAGE}) \mycite{Shevchenko2006}. Thus, the proteins lose
+all their quaternary, tertiary and secondary structures. The separation relies
+then on the length of the proteins. Indeed, \gls{SDS} molecules are negatively
+charged and they bind to the proteins proportionally to their length and as an
+electric field is applied to the gel, the proteins migrate towards the positive
+side of the gel at different speeds due to their difference in their mass-charge
+ratio. This 1D protocol is more common than the 2D as it is faster. However, the
+2D-gel is more selective as it uses very similar principles but in two separate
+steps\footnote{Usually, the proteins are first separated based on their
+isoelectric point in a \emph{native} gel (as opposed to a denaturing one).
+In fact, an \gls{ampholyte} reagent is added to the gel which ensure a stable
+gradient of \gls{pH} through the gel. The proteins migrate till they reached a
+\gls{pH} region where their overall charge is neutral. In a second time, the
+proteins are separated perpendicularly this time on their mass after the addition
+of \gls{SDS} or an alike reagent.}.
+
+Note that a protease may be added to the gel and then peptides are separated
+instead.
+
+\minisec{Liquid chromatography (LC)}
+The coupling of \gls{LC} with \gls{MS} allows, apart of the very high
+repeatability of peptide mixtures fractioning, to optimise the running time.
+This is a very powerful and widespread chemical analysis method which is why many instrument manufacturers propose mass
+spectrometers comprising directly modules for \gls{LC} (either as
+\glsxtrfull{HPLC} or \glsxtrfull{UPLC}).
 
 
-\subsubsection{Separation methods}
+\subsection{Characterisation through Fragmentation profiles}
+
+The first reported use of the principle underlying \ms\ happened in 1913 when
+Sir Joseph John Thomson channelled a stream of neon ions trough an electromagnetic
+field and captured its deflection on a photographic plate \mycite{Thomson1913}.
+Later on, his student Francis William Aston built the first complete mass
+spectrometer which he uses for his paper \paper{\citetitle{Aston1919}}
+\mycite{Aston1919}. \ms\ became rapidly a pillar
+of the so-called \emph{modern analytical techniques} in Chemistry as it allows
+for a large spectrum of molecules of interest, the identification,
+the characterisation and even, for the smaller ones, the resolution of their
+structures. In this context, the use of \ms\ in proteomics is quite recent as it
+is developing from the 1980s onwards \mycite{BiomolBio}.
 
 
-\subsection{Characterisation (and quantification) through fragmentation profiles}
+Finally, as mentioned before, the completion of the human genome sequencing and
+many other organisms accelerated the process even more on the last decade by
+allowing to use peptide mixtures to characterise the proteins present initially
+in the studied sample.
 
-Mass spectrometry
 
 
-Also, the use of two mass spectrometers in tandem (\gls{MS/MS} reduces
+Also, the use of two mass spectrometers in tandem (\gls{MS/MS}) reduces
 significantly the number of missed proteins \mycite{LCMSflaws}.
 
-\TK{Bioinformatic strategies}
+
+\subsection{Bioinformatic strategies for proteomics studies}
+
+\ms-based proteomics is quite challenging and it is the major bottleneck of
+proteomics pipelines \mycite{Chen2016}.
+
+\subsubsection{Identification of peptides and proteins}
+
+
+\minisec{Detecting peptide peaks}
+
+\minisec{Database of candidate peptides}
+
+\minisec{Scoring function}
+
+\minisec{Search Algorithm}
+
+\minisec{False Discovery Rate (FDR) of spectral identification}
+
+\minisec{Protein inference}
+
+\subsubsection{Quantification}
+
+\minisec{Signal Processing}
+
+\minisec{Transformation, normalisation and summarisation}
+
+\minisec{Learning}
 
 
 
@@ -1158,8 +1305,6 @@ significantly the number of missed proteins \mycite{LCMSflaws}.
 
 \mycite{reviewRNAseqBestpractice}
 
-
-\section{EBI Expression Atlas or how integrating independent datasets }
 
 
 \section{`Conclusion'}
