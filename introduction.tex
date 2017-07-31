@@ -80,6 +80,9 @@ quelque chose.%
 \TK{The central dogma of Molecular biology => Crick describes the cycle}
 \TK{add reference on replication? (a priori no review of that part}
 
+\TK{proteins : polar molecules}
+
+
 \subsection{Transcription: From \gls{DNA} to \gls{RNA}}
 \begin{comment}
 Transcriptome is the complete population of \gls{RNA} in a cell or a group of
@@ -1182,8 +1185,9 @@ Several methods may fraction the peptide mixture and protocols may
 involve many of their various combinations.
 
 \minisec{Precipitation}
-Very easy to perform and it usually involves solvent gradients. However,
-its use is limited mostly to protein mixtures as other separation methods,
+Desalting steps usually include solvent precipitations. They are
+very easy to perform and they usually involve solvent gradients. However,
+their use is limited with protein mixtures as other separation methods,
 based either on gel or capillarity (\gls{LC}), are more performant.
 
 \minisec{Gel electrophoresis based separation}
@@ -1202,8 +1206,8 @@ then on the length of the proteins. Indeed, \gls{SDS} molecules are negatively
 charged and they bind to the proteins proportionally to their length and as an
 electric field is applied to the gel, the proteins migrate towards the positive
 side of the gel at different speeds due to their difference in their mass-charge
-ratio. This 1D protocol is more common than the 2D as it is faster. However, the
-2D-gel is more selective as it uses very similar principles but in two separate
+ratio. This 1D protocol is more common than the 2D as it is faster. The later is
+usually more selective as it relies on very similar principles but in two separate
 steps\footnote{Usually, the proteins are first separated based on their
 isoelectric point in a \emph{native} gel (as opposed to a denaturing one).
 In fact, an \gls{ampholyte} reagent is added to the gel which ensure a stable
@@ -1216,11 +1220,42 @@ Note that a protease may be added to the gel and then peptides are separated
 instead.
 
 \minisec{Liquid chromatography (LC)}
+
+Chromatography is a technique of choice for the separation of mixtures into their
+components or --- at least --- in simpler mixtures. \gls{LC}, as any kind of
+chromatography, involves a \emph{mobile} and a \emph{stationary} phase.
+The mobile phase comprises an eluent (\ie\ a solvent) and the mixture to be
+separated. A column plays the stationary phase part. To fasten the process, high
+pressure may be used (\eg\ \glsxtrfull{HPLC} or \glsxtrfull{UPLC}).
+
+The separation relies on the difference of affinity of the mixtures components
+towards the mobile and stationary phases. Many combinations may be used. However,
+any inadequate choice may precipitate the mixture on the (\emph{extremely})
+expensive column which means that both the column and the mixture will be lost.
+Hence, in discovery mode and for complex mixtures (as for proteins extracts),
+instead of using a \emph{normal phase}, \ie\ crude silica-gel, column (which
+interacts tightly with polar molecules such as peptides and may prevent them to
+interact with the mobile phase afterwards), a \emph{reversed phase} column
+is more common. In these columns, the silica-gel is modified and has been
+attached to long hydrocarbon chain. Thus, the column is unable to fix anything
+permanently. Along with a \gls{RPLC} column, polar eluants are used. These
+interact strongly with charged proteins and peptides. Hence, the separation
+occurs on the polarity of the molecules and the most hydrophobic a molecule,
+the longest it will remain in the column as it will present fewer interactions
+with the eluent.
+
+
+Thus, the sequential use of a gel and then \gls{LC} separation allows to
+fraction efficiently unknown mixtures into simpler ones ready to be analysed with
+\ms.
+
+Moreover, \gls{LC} modules are easily coupled to mass spectrometers. In addition,
+to present the components in an adequate form to be ionised, a detector monitoring
+the \gls{LC} will optimise the \ms\ analyses as it will initiate them at relevant
+times. Before being used in proteomics, \gls{LC-MS/MS} was already a
+very powerful and widespread chemical analysis method.
 The coupling of \gls{LC} with \gls{MS} allows, apart of the very high
 repeatability of peptide mixtures fractioning, to optimise the running time.
-This is a very powerful and widespread chemical analysis method which is why many instrument manufacturers propose mass
-spectrometers comprising directly modules for \gls{LC} (either as
-\glsxtrfull{HPLC} or \glsxtrfull{UPLC}).
 
 
 \subsection{Characterisation through Fragmentation profiles}
