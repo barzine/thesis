@@ -1282,7 +1282,7 @@ the ionisation is substantial, they may also forego fragmentation and internal
 reactions that will result to the production of many spectra. The collection
 of spectra obtained from a single peptide ultimately increase the accuracy of
 the mass measurement and the identification of the peptide \mycite{BiomolBio}.
-Indeed, these peptide-mass fingerprints are a very effective way to identify
+Indeed, these peptide-mass profiles are a very effective way to identify
 proteins in a very short laps of time as long a reference database is available
 for the studied organism \mycite{Pappin1993}. The recent completion of the human
 genome sequence and many other organisms has accelerated the general use of this
@@ -1294,11 +1294,145 @@ of \gls{HPLC} \mycite{Cox2011}.
 
 \subsubsection{Ionisation}
 
-While there are other ionisation methods (more adapted to small organic molecules)
-there are two that are use routinely for proteomic samples: \gls{ESI} and
-\gls{MALDI}.
+While there are other methods (more adapted to small organic molecules)
+two \emph{soft} ionisation methods are routinely used for proteomic samples:
+\acrfull{MALDI} and \acrfull{ESI}.
 
+\gls{MALDI} is very useful for large molecules. It allows to create ions with a
+minimum of fragmentation (if none at all). The molecules are fixed on a matrix
+(a gel) and then a pulsed \gls{laser} irradiates the sample which provokes the
+ablation and then the desorption from the matrix and ionisation of the molecules.
+This method had an increased popularity as separation gels (\eg\ \gls{SDS-PAGE})
+may be used directly for both steps. \mycite{BiomolBio}. However, many
+manufactured mass spectrometers are incompatible with this ionisation technique
+\mycite{Zhang2014,Walther2010}.
 
+\gls{ESI} is currently the most popular technique of ionisation, particularly
+because it may be used with a large panel of different analysers and that it
+interfaces efficiently with \gls{HPLC} or \gls{UPLC}. The ionisation is realised
+through an electrostatic method. The application of a high electric potential on
+a needle through which a liquid (containing the dissolved analyte peptides)
+is passing provokes its dispersion into small and highly charged droplets.
+These droplets start to evaporate to the point where the charge on their surface
+is so high that a desorption of the analytes occurs.  The analytes are then
+in an ionised form (often many charges). They are then released into the mass
+spectrometer. \mycite{Walther2010}
+
+\subsubsection{Mass analyser}
+
+Many different mass analyser designs are available. They all share two properties:
+they accelerated the ions (in a vacuum) so all the ions share the same kinetic
+energy and then they deflect (and thus resolve) the ions based on
+their various $m/z$.  A number of them are also
+capable of trapping and storing specific range of ions for deeper analyses until
+they release them based on their $m/z$.
+The most common commercial analysers include quadrupole (Q), \acrfull{LIT},
+\acrfull{TOF}, ion traps and most recent \gls{FT} analysers such as \acrfull{ICR}
+and \orbi. The choice of one analyser over others or any combination of them
+depends on many factors (including the ready availability). \mycite{Haag2016}
+
+Hereinafter, I review the analysers involved in the production of the
+proteomic raw data used within this thesis. Indeed, all the datasets have been
+produced by a combination of \acrfull{LTQ} and \orbi. I also review very
+shortly the quadrupole analyser. (See~\cite{Haag2016} for more details on other
+types of analysers.)
+
+\minisec{Quadrupole analyser}
+
+It is one of the most popular analyser. In fact, they are cheap compared to the
+others. They are also compact, durable and reliable. The quadrupole analyser is
+able to filter the ions based on their difference of $m/z$. The are adequately
+named quadrupole as they comprise four cylindrical or hyperbolic rods in
+parallel of each other. Opposite rods are connected together electrically and
+\gls{RF} potential is applied. A \gls{DC} potential is superimposed on the
+\gls{RF} one. These combination of \gls{RF} and \gls{DC} potentials constrain the
+ions to oscillate between the rods as they pass through them. Hence, by tuning
+the \gls{RF} and \gls{DC}, it is easy to select for which range of $m/z$ ions
+will have a stable trajectory and thus the only one detected. Indeed, the
+ions with unstable trajectory will collide with the rods and be \enquote{filtered}
+out. If used in \enquote{\gls{RF}-only} mode (\gls{DC} reduced in a minimum),
+the quadripole may have other applications. For example, it can guide specific
+$m/z$ ions to other area (while the bulk of ions will remain trapped).
+It may also be used as collision cells for \gls{CID}: by introducing an inert
+gas and tuning with the \gls{RF}-energy, the amount of fragmentation undergone
+by the targeted ions can be precisely controlled. \mycite{Haag2016}
+The quadrupole analyser is also qualified as mass filter.
+
+\minisec{\Acrfull{LTQ}}
+\gls{LTQ} also called \acrfull{LIT} are in principle a kind of a quadripole
+mass analyser. A \gls{LTQ} uses a set of
+quadrupole rods and a two-dimensional \gls{RF} field confines the ions radially.
+In addition, a static electrical potential is applied to end electrodes which
+forbid the ions to escape axially. However, the quadripole is commonly segmented
+in three parts which ensures a perfect homogeneity of the electric field of the
+trap area and thus avoiding ion loss when the trapping is done.
+While they may be used as an ion trap, they
+may be also used as a simple mass filter. \gls{RF} voltage is tuned to produce
+multi-frequency resonance ejection waveforms are applied as to
+eliminate all the undesirable ions in the trap before the fragmentation and mass
+analysis of the remaining ones. Frequently, these \glspl{LTQ} are used as a
+front-end to other mass analysers as they have high injection efficiencies and
+high ion storage capacities. They may be equipped then of two biased radial
+ejection slits and then be used with two detectors hence the signal-to-noise
+ratio may be doubled.
+
+Compared with other traps, linear ion traps provide an enhanced dynamic range
+with a reduced low mass cut-off as the ion cloud is
+spatially distributed on a linear axis and not a 3D centre which improves the
+sensitivity. And then, for example, the ions may then be accumulated before
+being released into another mass analyser \mycite{Madalinski2008}.
+
+\minisec{\orbi}
+It is a very recent analyser and it relies on \gls{FT}. Recently,
+there is an increasing use of \glspl{FTMS} for proteomic studies. Indeed, these
+\glspl{FTMS} are more precise than previous analysers and allow the detection of
+a greater range of ions in very short lapses of time \mycite{Scigelova2011}.
+In this kind of analyser, ions are trapped and both orbit around and oscillate
+in an electrostatic field between an inner and outer part of a central electrode
+shaped as a spindle. The ions can only move following the spindle long axis
+\mycite{Makarov2000}. While moving around the spindle the ions create a current.
+Images of this current are recorded by the outer part of the spindle and after
+Fourier transformation of these images allow to obtain very high mass accurate
+and high sensitive mass spectra for a greater dynamic range than most of the
+other analysers. \mycite{Hu2005}
+
+\minisec{\gls{LTQ}-\orbi}
+It is an hybrid (tandem) mass spectrometer that has a \gls{LTQ} as a first MS$^1$
+and an \orbi\ as MS$^2$. This \gls{MS/MS} enables multiple levels of
+fragmentation for the elucidation of a wide range of peptides and can be coupled
+with an \gls{ESI} which is a continuous source of ionisation. This instrument
+allows to analyse proteomic samples optimally both in terms of starting material,
+time \mycite{Scigelova2011} and provides \enquote{ultrahigh} mass resolution,
+high mass accuracy and enhanced dynamic range with respect to mass accuracy
+\mycite{Madalinski2008}.
+
+\subsubsection{Fragmentation techniques \mycite{Zhang2014}}
+
+The overall quality and success of peptide (and then proteins)
+identification depends largely on the quality of ion fragmentation. To improve
+the identification of the peptides, the number of fragmentations are increased,
+but in a rather clever way thanks to \gls{MS/MS} use. Indeed, the first \ms\ is
+used to select specific ions (hence known $m/z$) to pass to a second \ms.
+Thus for each \emph{precursor} ion, a collection of fragmentation mass spectra
+can be gathered. The peptide sequences are then more likely to be accurate and
+the risk of false positive is significantly decreased.
+
+While in many cases, the experimenter may want to limit fragmentation, they may
+also use devoted techniques to increase it. There are schematically different
+classes of fragmentation techniques: a collisional, an
+electron-based a photon-based. In the collisional category, \gls{CID},
+mentioned previously, is a very common one. The chosen ion is introduced in the
+collision cell and when it collides with a particle of the inert gas, its kinetic
+energy is transformed into internal energy. The fragmentation happens when this
+internal energy is enough to activate the dissociation of the ion. Another
+related and slightly more effective method for higher charge state ions is the
+\acrfull{HCD}. This latest method has gained popularity with the development of
+quantitative proteomics (\eg\ \gls{iTRAQ}) has it provides in parallel peptide
+identification and quantitation. In the electron-based category, there is the
+\acrfull{ETD} technique. In \gls{ETD}, an anion donates an electron to a cationic
+peptide. The backbone of this peptide will then fragment \mycite{Syka2004}.
+For the other categories, see the review from \mycite{Zhang2014} and the included
+literature.
 
 \subsection{Bioinformatic strategies for proteomics studies}
 
