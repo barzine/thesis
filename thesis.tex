@@ -99,34 +99,14 @@ available high-throughput transcriptomic and proteomic data}
 %\backmatter\
 \appendix\
 %\input{appendix.tex}
-
+\crefalias{section}{appsec}
 \part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}%\label{ch:appendix}
 \addcontentsline{toc}{part}{APPENDIX}
 \renewcommand\thechapter{\Alph{chapter}}
 \begingroup
 
 \input{app/intro-suppl}
-
-\input{ds/castle.tex}
-\section{Script to convert older format to FASTQ}% \texorpdfstring{\fastq}{FASTQ}}
-\label{code:fastq}
-Most tools only accept \fastq\ files as an imput. Older datasets (\eg\ Castle)
-need then to be converted.
-
-\inputminted{pl}{app/scripts/fastq2phred33.pl}
-
-\input{ds/vt.tex}
-\input{ds/ibm.tex}
-\input{ds/uhlen.tex}
-\input{ds/gtex.tex}
-\input{ds/pandey.tex}
-\input{ds/kuster.tex}
-\input{ds/cutler.tex}
-
-
-
-
-
+\input{ds/index.tex}
 \input{app/IntegSuppl.tex}
 %\input{app/IntScatt.tex}
 

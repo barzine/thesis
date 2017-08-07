@@ -9,8 +9,8 @@
 
 As a former chemist, I realise how much it is tempting to trust instruments and
 workflow to accurately identify and quantify all the molecules present in a sample,
-and then been confounded\footnote{After more than 4 months of identification attempts
-with various modern techniques, what could have been the orange/red spot
+and then been confounded\footnote{After more than 4 months of identification
+attempts with various modern techniques, what could have been the orange/red spot
 (visible light) at 1/3 of that tight light chromatogram (dichloromethane + drops
 of triethylamine) is still a mystery too me.}.
 Hence, I tried to avoid as much as I could any source of technical
@@ -22,8 +22,8 @@ exploratory analyses.
 
 As we know the tissue type for each sample of each dataset,
 we could debate that supervised analyses can be more informative.
-However, they would involve proper corrections
-for batch effects and other technical biases for each dataset.
+However, they would involve proper corrections for batch effects and
+other technical biases for each dataset.
 
 This is challenging as that often requires more knowledge than the available one
 through the repositories. It is also unwise to rely solely on the normalised data
@@ -42,22 +42,26 @@ expression studies: a clustering analysis.
 This method uncovers possible hidden structures within the data, therefore,
 it is well designed for exploratory studies.
 I can thus confirm if samples are more alike either due to their
-biological or their study origins. In general, we expect biology to be a better
-predictor when we only either consider data from transcriptome or proteome.
-More over, if the identification technology and the quantification workflow are
-equivalent. Yet, a technical predictor can not be excluded straightforwardly
+biological or their study origins.
+
+In general, we expect biology to be a better predictor when we consider
+data only from either transcriptome or proteome. Even more so, if the
+identification technology and the quantification workflows are
+consistent. Yet, a technical predictor can not be excluded straightforwardly
 as most transcripts (in particular \mRNAs) are expressed in many tissues
 and two random tissues share about 60 to 90\% of their pool of
-\mRNAs~\citep{ramskoldan:2009}, \citep{UhlenGastro}.
+\mRNAs~\mycite{ramskoldan:2009,UhlenGastro}.
 On the proteome side,~\cite{PandeyData}
 estimate that 75\% of the mass of a cell is due to ubiquitous proteins.
 In \paper{\citetitle{KusterData}},~\cite{KusterData} estimate that about 10,000
 to 12,000 proteins are ubiquitously detected, which represent about 60 to 75\%
-of the proteins that they identified per tissue.
+of the proteins that they identified per tissue. Thus, if the variation of
+expression are too subtle from one tissue to another, a strong collection or
+processing bias may hide any relevant biological signal.
 
 There are many available approaches and algorithms for clustering analysis.
-I chose a (bottom-up) \emph{hierarchical} clustering
-(a.k.a.\ \emph{connectivity-based} clustering).
+I chose a (bottom-up) \emph{hierarchical} clustering (a.k.a.\
+\emph{connectivity-based} clustering).
 
 This sort of clustering is broadly used in gene expression studies as it is
 embryologically\footnote{Or evolutionary, when different species are compared}
@@ -237,3 +241,33 @@ it will be excluded from the main part of it.
 
 \TK{Ajouter dans ce chapitre les résultats d'un dataset (à terme d'example)
 pour expliquer les choix de logarithm}
+
+
+I have opted for
+a semi-empirical approach to determine the most adequate parameters to pick for
+the clustering method.
+
+
+Before starting the meta-analysis, last source of possible bias to remove: the
+biological replicates unbalance.
+
+\subsection{Tissue Averaging}
+The different datasets present different number of biological replicates per
+tissues (see \Cref{tab:Lib5DF}). To avoid unnecessary skewness due this unbalance
+(see \cref{sec:expDesign}), I computed a \emph{\enquote{virtual} reference} for
+each tissue of the datasets that present more than one sample for each tissue,
+\ie\ \dataset{Brawand}, \dataset{Uhlén} and \dataset{Gtex} datasets.
+
+Thus, for each of these datasets, for each of their tissues, I compute gene
+expression levels by taking the median value of each gene across all the
+biological replicates of that tissue.
+
+The \dataset{Uhlén} requires an extra prior step for some of the tissues as they
+present technical replicates. For these, I average first the gene expression levels
+for each subject-tissue pairs before computing the gene expression level medians
+of each tissue.
+
+\NB\ \dataset{Castle} dataset comprises mixture of 10 subjects for each tissue, I
+discard the single-end sequenced samples for the \dataset{Illumina Body Map}.
+
+

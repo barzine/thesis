@@ -108,7 +108,13 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 \RequirePackage{geometry}%% for page layout
 \RequirePackage[nameinlink, noabbrev]{cleveref}
 \crefname{subsection}{subsection}{subsections}
-\crefname{minisec}{Segment}{Segments}
+\Crefname{subsection}{Subsection}{Subsections}
+\crefname{subsubsection}{subsubsection}{subsubsections}
+\Crefname{subsubsection}{Subsubsection}{Subsubsections}
+\crefname{minisec}{segment}{segments}
+\crefname{appsec}{appendix}{appendices}
+\Crefname{appsec}{Appendix}{Appendices}
+\RequirePackage{isotope}
 
 \setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
 %\setmainfont[Ligatures={NoRequired,NoCommon,NoContextual}]{Font Name}

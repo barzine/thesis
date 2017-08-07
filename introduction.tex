@@ -751,6 +751,15 @@ popular mapper for genomes with a near-complete annotation (such as
 \species{Homo sapiens} for example) \mycite{tamaraRNA}.
 
 
+\NB\ As many concepts or terms in Science, \enquote{\emph{Read mapping}} can
+have different (however very closely related) meanings.
+Hence, while for a number of people, \emph{Read mapping} will encompass any
+transcriptome reconstruction strategy (including \latin{de novo} assembly) since
+the main point is to map the features to functional annotations, for others the
+locution will only refer to `Read alignment' strategies specifically
+\mycite{readMappingDef}. Tools as \soft{TopHat2} contributes to this
+locution vagueness.
+
 \subsubsection{Quantification of \emph{features}}
 
 When working with \Rnaseq\ data, the typical next step after mapping the reads or
@@ -936,21 +945,25 @@ raw counts also present this scaling factor. However, with proper normalisation,
 To correct for these two biases,~\cite{Mortazavi2008} introduced a new unit
 \enquote{RPKM} which they first defined as \emph{\textbf{R}ead} per
 \textbf{K}ilobase of \emph{exon model} per \textbf{M}illion mapped \emph{reads}.
-From since, this unit is usually redefined as \acrlong{RPKM} and then to
-\acrfull{FPKM} to also account for paired-end data\footnote{As mentioned before,
+From since, this unit is usually redefined as \emph{\textbf{R}ead} per
+\textbf{K}ilobase of \emph{transcript} per \textbf{M}illion mapped \emph{reads}
+and thus, \enquote{FPKM} usually stands for  \emph{\textbf{F}ragments} per
+\textbf{K}ilobase of \emph{transcript} per \textbf{M}illion mapped \emph{reads}
+to also account for paired-end data\footnote{As mentioned before,
 despite the inaccuracy, \emph{read} and \emph{fragment} are often used
 interchangeably; this is also the case for \emph{\RPKM} and \emph{\FPKM}.}.
 
 The canonical formula for \FPKM\ (or \RPKM) is:
 
 \begin{equation}
+    \tag{Canonical RPKM formula}\label{eq:rpkm-fx}
 \hat{\mu}_{ij}=\frac{f_i}{F_j\cdot10^{-6} \cdot \ell_i\cdot10^{-3}}
               =\frac{f_i}{F_j\cdot\ell_i}\cdot10^{9} \text{\,}
 \end{equation}
 
 where: \\{\small
-$\hat{\mu}_{ij}$ is the normalised expression for \emph{feature} (\eg\ gene) $i$
-in sample $j$,\\
+$\hat{\mu}_{ij}$ is the normalised expression for \emph{feature} (\eg\ gene or
+transcript) $i$ in sample $j$,\\
 $f_i$ is the count number of the fragments (or reads) mapped to
 \emph{feature} $i$ in sample $j$,\\
 $F_j$ is the total count number of all the fragments (or reads) mapped in
@@ -1180,7 +1193,11 @@ hence more studies use it.
 Fractioning is the principal method to simplify sample complexity. It also allows
 to focus selectively on subcellular fractions when needed. Indeed, one may want
 to study in particular organelles, cell compartments or other kinds of proteome
-(\eg\ phosphorylated or glycosylated proteins) \mycite{Cox2011}.
+(\eg\ phosphorylated or glycosylated proteins) \mycite{Cox2011}. In addition,
+fractioning is also a good strategy to reduce the impact of undersampling and
+increase repeatability between analyses. In fact, \gls{MS} is prone to
+undersampling which means that repeated analyses may lack yielding the same
+protein identifications as different sets of peptides may get sampled.
 
 Several methods may fraction peptide mixture. Protocols may involve many of their
 various combinations. However, the sequential use of a gel and a \gls{LC} is
@@ -1359,8 +1376,8 @@ by the targeted ions can be precisely controlled. \mycite{Haag2016}
 The quadrupole analyser is also qualified as mass filter.
 
 \minisec{\Acrfull{LTQ}}
-\gls{LTQ} also called \acrfull{LIT} are in principle a kind of a quadripole
-mass analyser. A \gls{LTQ} uses a set of
+\gls{LTQ} is a particular kind of \acrfull{LIT} which is in principle a sort of
+a quadripole mass analyser \mycite{Zhang2014}. A \gls{LTQ} uses a set of
 quadrupole rods and a two-dimensional \gls{RF} field confines the ions radially.
 In addition, a static electrical potential is applied to end electrodes which
 forbid the ions to escape axially. However, the quadripole is commonly segmented
@@ -1397,8 +1414,10 @@ and high sensitive mass spectra for a greater dynamic range than most of the
 other analysers. \mycite{Hu2005}
 
 \minisec{\gls{LTQ}-\orbi}
-It is an hybrid (tandem) mass spectrometer that has a \gls{LTQ} as a first MS$^1$
-and an \orbi\ as MS$^2$. This \gls{MS/MS} enables multiple levels of
+It is an hybrid (tandem) mass spectrometer that uses \gls{ESI} for the ionisation
+step and has a \gls{LTQ} as a first analyser (MS$^1$)
+and an \orbi\ as a second one (MS$^2$).
+This \gls{MS/MS} enables multiple levels of
 fragmentation for the elucidation of a wide range of peptides and can be coupled
 with an \gls{ESI} which is a continuous source of ionisation. This instrument
 allows to analyse proteomic samples optimally both in terms of starting material,
@@ -1436,17 +1455,132 @@ literature.
 
 \subsection{Bioinformatic strategies for proteomics studies}
 
+Mass spectrometers raw data output for proteomics are directly uninterpretable
+by a human and need to be processed before being meaningful.
+
 \ms-based proteomics is quite challenging and the major bottleneck of
-proteomics pipelines remains the data analysis \mycite{Chen2016}. There are
-various tools for proteomics analysis (as there was for \Rnaseq) and they may
-be combine in many different pipelines.
+proteomics pipelines remains the data analysis \mycite{Chen2016,perseus2016} and
+most particularly, the data matching (\ms\ spectra to database content) and
+protein naming \mycite{Nilsson2010}. Indeed, the sheer amount of produced data
+is in the \gls{TB} range which prohibits any manual handling and requires
+automation \mycite{Codrea2016}.
 
-\subsubsection{From peptide identifications to proteins}
+There are various tools for each proteomics analysis step (as there was for
+\Rnaseq) and they may be combine in many different pipelines (\eg\
+\href{http://www.maxquant.org}{\soft{MaxQuant}}\footnote{\soft{MaxQuant}:
+\href{http://www.maxquant.org}{http://www.maxquant.org}} \mycite{maxquant2016}
+for the \emph{processing} raw data part and \href{htpp://www.perseus-framework.org}%
+{\soft{Perseus}}\footnote{\soft{Perseus}:
+\href{htpp://www.perseus-framework.org}{http://www.perseus-framework.org}}
+\mycite{perseus2016} for the downstream data analysis part). Moreover, these
+pipelines will also vary depending on the experimental design and data types
+(\ie\ expression, modification state or interactions map) and the practical
+creation of the data (method of separation, mass analyser kind, \ldots). In
+addition, the files from mass spectrometers are usually encoded in proprietary
+formats and thus there may be a limited choice of available tools or software
+for a specific combination of analysis and data.  A few open file formats (and
+their appropriate converters) exist (\eg\ \mzml\ format \mycite{mzML}
+and \href{http://proteowizard.sourceforge.net/}{\soft{ProteoWizard}}\footnote{%
+\soft{ProteoWizard}: \href{http://proteowizard.sourceforge.net/}%
+{http://proteowizard.sourceforge.net/}} \mycite{proteowizard2012}),
+however, they may lack recording a few key points of the raw data and thus they
+may also be unfit to analysis.
 
 
-\minisec{Detecting peptide peaks}
+\subsubsection{From peptide identification \ldots}
+
+An essential early step of proteomic data processing is to identify a peptide
+sequence for each mass that has been detected. This requires to first retrieve
+the molecular mass and fragmentation profile from the raw data and then match
+the observed spectra to a \emph{known} (or \emph{theoretical}) peptide database.
+Typically, the first \ms\ spectra (MS$^1$) allow the estimation of the relative
+quantities of peptides, while the fragmentation spectra (MS$^2$) provide their
+identification \mycite{Codrea2016}. Many computational tools exist for
+\gls{MS/MS} search engines, see \mycite{Griss2016,Shteynberg2013,Eng2011}
+for reviews.
+
+\minisec{Detecting mass peaks}
+While this may be done manually for a chemical study, the amount of
+spectra in proteomics require the automation of this \emph{peak picking} task.
+It may look trivial, particularly as the resolution of the instruments greatly
+improved the last decade. However, depending on the noise, the peaks may be
+smooth (with a large signal-to-noise ratio \gls{SNR}) and easy to pick or noisy
+(barely distinct from the background) and more tricky to identify.
+
+There is relation between the peaks width and the mass-to-charge ($m/z$) of
+the peptide, the resolution of the mass analyser, the acquisition parameters.
+Algorithms may use this relation to scan the mass spectra for local maxima of
+expected widths and detect the peaks. \mycite{Bauer2011}.
+As the main elements of peptides have isotopes with known natural frequency
+(see \Cref{app:isotopes}), the peptide masses present a cluster of peaks instead
+of a single one for their molecular mass. Algorithms may also use the information
+provided by these clusters (including the relative intensity of each peak) to
+resolve the atomic composition of the peptides (for example see \mycite{Nitpick}).
+
+This mass peak detection is part of the \emph{signal processing} step, which also
+includes filtering (or \enquote{denoising}), baseline correction (eliminates
+systematic trends) and signal normalisation (\enquote{centroiding})
+\mycite{Codrea2016,Nahnsen2013}.
+
 
 \minisec{Database of candidate peptides}
+For the matching step of the fragmentation spectra to a peptide database,
+there are three main possibilities.
+\begin{itemize}
+    \item Match the experimental spectra to theoretical ones that are created
+        \latin{in silico} based on the protein sequence database of the studied
+        organism. These databases may be created from the \emph{\latin{in silico}
+        translation} of the genome. This requires database-dependent search engines.
+    \item Match the experimental spectra to other previous experimental spectra
+        saved into a repository. This approach relies on spectral matching engines.
+    \item A \latin{de novo} \emph{sequencing} approach which consists to compare
+        the observed mass data to theoretical mass of every possible peptide
+        sequence.
+\end{itemize}
+
+
+\begin{comment}
+From: Sun et al. BMC Genomics 2012, 13(Suppl 6):S2
+http://www.biomedcentral.com/1471-2164/13/S6/S2
+
+The output of the MS1-based peptide detection algorithm
+is a list of detected peptides annotated by monoisotopic
+mass, retention time, abundance, and so on. To
+obtain peptide sequence information, i.e.\ peptide identification,
+which can be used to infer the parent protein
+from which the peptide was digested, database searching
+is required. To do so, the acquired MS/MS (MS2) spectra
+are searched against a protein database containing
+theoretical MS2 spectra generated from in-silico digested
+peptide sequences by popular software such as
+SEQUEST [26] and Mascot [27].
+Several machine learning methods have been proposed
+to predict the probability (i.e., identifiability) of a peptide
+being identified through MS2 database searching [14,28].
+These methods try to extract the common trends residing
+in peptide identifiability that can be explained by
+Figure 2 The MS calibration curve. MS ion signal as a function of
+analyte concentration in solution. The slope of the linear portion of
+the curve is the instrument response factor (i.e.\ instrument
+sensitivity). The curve departs from linear at high analyte
+concentration. A wider linear dynamic range is desired for
+quantitative analysis.
+Sun et al. BMC Genomics 2012, 13(Suppl 6):S2
+http://www.biomedcentral.com/1471-2164/13/S6/S2
+Page 4 of 15
+peptide sequence-specific properties. Their successful
+application may suggest that the peptide sequence largely
+affects the chance of a peptide getting selected for MS2
+analysis, whether the peptide can be sufficiently fragmented,
+and the quality of its fragmentation spectra. In our
+simulation, the identifiability pi of the true peptide species
+i is predicted by the APEX software [14], trained on
+the human serum proteome [29], and whether peptide
+species i in sample j is identified or not through database
+searching is determined by the outcome of a Bernoulli
+trial with success rate pi.
+
+\end{comment}
 
 \minisec{Scoring function}
 
@@ -1454,9 +1588,9 @@ be combine in many different pipelines.
 
 \minisec{False Discovery Rate (FDR) of spectral identification}
 
-\minisec{Protein inference}
+\subsubsection{\ldots To protein quantification}
 
-\subsubsection{Quantification}
+\minisec{Protein inference}
 
 \minisec{Signal Processing}
 
@@ -1469,6 +1603,8 @@ be combine in many different pipelines.
 
 
 \section{Reproducibility and Experimental design}\label{sec:expDesign}
+\TK{Do not forget to explain why the use of different numbers of samples in 
+meta-analysis creates problem!!!}
     \subsection{Batch effect}\label{sub:BatchEffect}
     Batch effect: \mycite{batchEffect}
     \subsection{Technical replicates}

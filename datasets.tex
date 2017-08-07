@@ -11,7 +11,7 @@
 In the past few years, many laboratories studied the expression
 of the genes within normal humans at the transcriptome and at
 the proteome levels. In this chapter, I review the data I use within my thesis
-and how it has been processed.
+and how it has been reprocessed.
 
 When not stated otherwise, all the computational processing of the \Rnaseq\ part
 described here have been performed by myself under the supervision of
@@ -25,15 +25,16 @@ Dr James Wright from the Wellcome Trust Sanger Institute.
 Every dataset with which I worked is fitting three main criteria.
 First, they comprise human normal samples from at least three kinds of tissues.
 Secondly, they are non-targeted high-throughput \ie\ gene expression
-quantifications are based on \Rnaseq\ for the transcriptome or on \ms\ for the
-proteome\footnote{These technologies allow in theory to study the whole
+quantifications are based on \Rnaseq\ for the transcriptome or on label-free \ms\
+for the proteome\footnote{These technologies allow in theory to study the whole
 repertoire of \glspl{RNA} or proteins in a sample.}.
 Finally, the \emph{raw} data is available and reusable.
 
 In the next section, I first describe the \Rnaseq\ and then the \ms\ data I use
 in my thesis; then I detailed how these data have been processed to be
 employed in the next chapters for various analyses that explore the transcriptome,
-the proteome and the integration attempt of these two biological layers.
+the proteome and finally, the comparison and integration of these two
+biological layers.
 
 
 \section{RNA-Seq Transcriptome data}
@@ -196,8 +197,9 @@ tissues. The latest version was published with \paper{\citetitle{Uhlen2015}}
 
 They provide (at least two) biological replicates for the 32 tissues.
 Except for a very small number, the tissues have both male and female donors.
-There are also technical replicates for many of the tissues. Two hundred samples
-were picked after a screening of frozen biopsy samples by pathologists.
+There are also technical replicates for many of the tissues. The total set
+comprise two hundred samples, which have been picked by pathologists based on the
+screening of frozen biopsy samples.
 
 Then they prepared the libraries following a polyA-selected protocol and
 paired-end sequenced them with an Illumina HiSeq 2000 or 2500. I first started
@@ -209,16 +211,17 @@ and then I upgraded my work with the extended more recent version
 At the time of the redaction of this thesis, this normal human dataset is the
 most important one that is also freely and directly available: either regarding
 the number of tissues (see \Cref{tab:Trans5DF})
-or the number of samples (see \Cref{tab:Lib5DF}).
+or the number of samples (see \Cref{tab:Lib5DF}). Therefore, its growing
+number of references is unsurprising.
 
 
 \subsection{GTEx data}
 \label{subsec:gtexPresentation}
 The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the \gls{NIH}
 Common Fund and aims to establish, in its authors own words,
-a resource database and associated tissue bank
-for the study of the relationship between genetic variation and gene expression
-and other molecular phenotypes in multiple reference tissues. The project was first
+\textquote{a resource database and associated tissue bank for the study of the
+relationship between genetic variation and gene expression
+and other molecular phenotypes in multiple reference tissues}. The project was first
 explained in a paper from the \cite{GTEx2013}. It consists to quickly collect
 many tissues from postmortem donors so genotype-tissue expression analyses could
 be done, notably \gls{eQTL} variants studies which study the modulation
@@ -260,7 +263,7 @@ their (non-targeted) abundance in each tissue.
 
 Then, in 2014, two different groups of authors, M.-S.\ Kim et al.\
 and Wilhelm et al., published (in \textit{Nature},
-issue 7502) their own \emph{``draft of the human proteome''}
+issue 7502) their own \textquote{\emph{draft of the human proteome}}
 based on the study of tissues with \ms. These two datasets complement a previous
 smaller one that was publicly released but was never the object of a publication.
 
@@ -281,10 +284,10 @@ individuals (generally two males and one female).
 
 Then, they prepared their libraries with a label-free method to quantify
 as many proteins they could. They fractionated the samples to protein level by
-\gls{SDS-PAGE} and then at peptide level by \gls{RPLC} to create 85 experimental
-samples. Finally, they use state-of-art \gls{MS/MS} protocols
-(with high-resolution and high accuracy \glspl{FTMS}:
-Thermo Scientific Orbitrap instruments).
+\gls{SDS-PAGE} and then at peptide level after trypsin digestion by \gls{RPLC}
+to create 85 experimental samples. Finally, they use state-of-art \gls{MS/MS}
+protocols (with high-resolution and high accuracy \glspl{FTMS}:
+Thermo Scientific \orbi\ instruments).
 They generated about 25 million of (\gls{HCD})
 high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 
@@ -294,52 +297,47 @@ The raw spectra were retrieved from ProteomeXchange via the repository
 While their effort to generate technical high quality raw data was highly
 appraised by the scientific community, their processing
 (identification and quantification) methods were
-criticised (see~\cite{Ezkurdia2014-qx} and \cite{Deutsch2015}).
+criticised (see \mycite{Ezkurdia2014-qx,Deutsch2015}).
 Thus, for this thesis I only use
 quantification that James Wright provided me after reprocessing the dataset
 from the raw spectra.
 
 \subsection{Kuster data}
 
-As for the Kuster Lab approach of the human proteome map,
-\cite{KusterData} combined newly generated \gls{LC-MS/MS} spectrum
-data (about 40\%) with already published one
-(either from their colleagues or accessible through repositories ---
-for the remaining 60\%).
-The data comprised 16,857 experiments involving tissues, body fluids and cell
-lines. They used all the data they could access from \gls{PTM} to affinity
-purification studies.
-
-They reprocessed the whole collection of spectra to maximise proteome coverage
+In their approach of the human proteome map, the Kuster Lab \mycite{KusterData}
+combined newly generated \gls{LC-MS/MS} spectrum data (about 40\% of their
+complete working set) with already published data (either from their colleagues
+or accessible through repositories --- for the remaining 60\%). They reprocessed
+the whole collection of spectra to maximise proteome coverage
 and make it available through their own repositories: ProteomicsDB\footnote{%
 Proteomicsdb --- %
 \href{https://www.proteomicsdb.org/}{www.proteomicsdb.org}}.
 
 The subset of data considered in my thesis is also
-known as the [protein] Human BodyMap which is the part that was primary generated
-by the Kuster lab itself for their study. It corresponds to 1,087 \gls{LC-MS/MS}
-profiles and comprises 48 experiments covering 36 tissues (adult and fetal) and
-cell lines. Overall that represents about 14 million of \gls{HCD}/\gls{CID}
-spectra from Thermo Scientific instruments.
+known as the [protein] Human BodyMap which is the part that the Kuster lab
+primary generated for their study. They collected 48 experiments covering 36
+tissues (adult and fetal) and cell lines. After \gls{LDS-PAGE} fractionation and
+digestion into peptides with trypsin, they processed the samples with
+\gls{LC-MS/MS} to create 1,087 profiles.  Overall, that represents about
+14 million of \gls{HCD}/\gls{CID} spectra from Thermo Scientific instruments
+(including an \orbi).
 
 This specific subpart of the raw data was downloaded from \Proteomicsdb{PRDB000042}.
 
 \subsection{Cutler data}
-\begin{comment}
-    rexpliquer quelle partie reutilisée
-\end{comment}
 
 This data was generated prior to the \dataset{Pandey} and the \dataset{Kuster}
 data as it was released in 2011 through PeptideAtlas\footnote{PeptideAtlas --- %
 \href{http://www.peptideatlas.org/}{www.peptideatlas.org}}
-\mycite{PeptideAtlas}.
+\mycite{PeptideAtlas}, IDs: [PAe001768 --- PAe001778].
 
 It was created by Paul Cutler at Roche Pharmaceuticals.
-It comprises 10 different tissues (1,618 \gls{CID} Thermo Scientific raw files).
+It comprises 10 different tissues (and one sample per tissue) that after trypsin
+digestion, were analysed through Thermo Scientific \gls{LTQ}-\orbi.
+In final, there are 1,618 \gls{CID} profiles.
 
 While this data was never published on its own, it has been used in different
-studies. %Indeed, the \dataset{Cutler} data is one of the datasets that
-%\cite{KusterData} are using in their original study to create ProteomicsDB.
+studies (\eg\ \mycite{KusterData}).
 
 The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
@@ -357,24 +355,23 @@ or after reprocessing the raw data as EBI Gene Expression Atlas
 
 For many reasons and despite readily available quantifications for most of the
 datasets, I only used data reprocessed from raw files by myself or Dr Nuno
-Fonseca  (Gtex data) or Dr James Wright (proteomic data).
+Fonseca (Gtex data) for the transcriptomic data and by Dr James Wright
+for the proteomic data.
 
 In fact, each study has been originally processed with different protocols,
 \eg\ \dataset{\Gtex} data \mycite{GTExTranscript} and \dataset{Castle}
-data \mycite{Krupp2012}.  In addition, while the \egxa\ reprocesses raw data
-through the same methods
-and has nowadays quantification for most of the datasets, these are still the
-products of different protocols since
-different versions of reference (Human genome build and annotation) and tools
-have been used.
+data \mycite{Krupp2012}. While the \egxa\ reprocesses raw data through the same
+methods and has nowadays quantification for most of the aforementioned
+datasets\footnote{\egxa\ is still lacking the \dataset{Castle}.},
+they were still the products of different protocols since different versions of
+reference (Human genome build and annotation) and tools when I started my work.
 
 Intuitively, we expect that different processing protocols produce
 different results.
 
-% est-ce que tous ces concepts sont introduit précedement.
 Indeed, as I started to work with \Rnaseq\ data, I noticed many potential bias
 sources that impact its final expression values. Many of these have been
-reported in the literature since then;
+reported in the literature since then; in fact,
 annotation versions \mycite{annotationDiff},
 contamination \mycite{contaminationRNAseq},
 quality controls \mycite{qualityRNAseq},
@@ -454,7 +451,8 @@ While most of the raw files can be used as they are, an additional step is
 needed for the \dataset{Castle} files. Indeed these files are using an older
 \fastq\ format that is non-compliant to the most accurate and recent tools used
 for this thesis.
-As it is a simple matter of changing the quality score scale,
+As it is a simple matter of changing the quality score scale
+(see \cref{sec:PhredScore}),
 I translated these files to \gls{Phred} $33$ \fastq\ files with a
 \emph{\gls{Perl}} script (see~\Cref{code:fastq}).
 
@@ -462,8 +460,8 @@ I translated these files to \gls{Phred} $33$ \fastq\ files with a
 
 I accessed the datasets through an extended period of time. Hence, for a subset of
 them, I produced many sets of results based on the \hg{37.p12}
-(and later \hg{37.p13})  human reference genome and the latest available ENSEMBL
-annotation (73, 74 or 75) at that time.
+(and later \hg{37.p13}) human reference genome and the latest available
+\gls{Ensembl} annotation (73, 74 or 75) at that time.
 In fact, the quality of each new annotation update is
 supposedly greater than its predecessor.
 
@@ -494,8 +492,8 @@ This tool allows the automation of the typical
 state-of-the art workflow to study
 \Rnaseq\ and use advanced software optimisation techniques and takes full
 advantages of the capacities provided by computer clusters. Hence, my previous
-manual processing workflow get optimised by \irap\ without any real change
-regarding the steps or the algorithms. % à relire phrase.
+manual processing workflow get optimised by \irap\ without any real change to
+the steps or the algorithms I was using before.
 
 Besides the usual inputs files (raw \Rnaseq\ files and genome/annotation
 references), \irap\ needs a configuration file that precisely describes the
@@ -509,13 +507,11 @@ also ensures the protocol integrity across the 5 transcriptomic datasets I
 use in my thesis regardless of who run the pipeline.
 
 Each of the transcriptomic datasets are the products of the same version of
-the \irap\ pipeline (development version 0.6.3b) and set of parameters.
-
-As the default parameters of \irap\ are tuned for human Illumina paired-end data,
+the \irap\ pipeline (development version 0.6.3b) and set of parameters. As the
+default parameters of \irap\ are tuned for human Illumina paired-end data,
 I only have to define few of them. Hence, the quality and contamination checks,
 the filtering and trimming of the reads are done following the default options
 of \irap.
-
 
 \minisec{Quality assessment, trimming and filtering}
 \irap\ uses internally \soft{FastX} toolkit\footnote{\soft{FastX} toolkit ---
@@ -527,14 +523,14 @@ have been discard as were any with an overall quality score a threshold of 10.
 As reported in the \cref{subsub:sequencing}, as the base calling progresses,
 the quality of the call decreases.
 On another note, some tools (mappers in particular) need
-all the reads to be trimmed to the same length. \irap\ will optimise the
-purity-length balance of the reads to avoid more errors or biases due to smaller
-reads \mycite{Trimwisely} by trimming at most 15\% of the original length while
-discarding more reads if necessary to maximise the length (see also
-\Cref{subsub:trim}).
+all the reads to be trimmed to the same length. \irap\ optimises the compromise
+between the purity and the length of the reads to avoid more errors or
+biases due to smaller reads \mycite{Trimwisely} by trimming at most 15\% of the
+original length while discarding more reads if necessary to maximise the length.
 
-Reads that could be assigned to a likely contamination source (here
-\species{Escherichia coli}) are also discarded. A splice non-aware mapper,
+Reads that could be assigned to a likely contamination source, here
+\species{Escherichia coli} (as I work with \species{Homo sapiens}),
+are also discarded. A splice non-aware mapper,
 \soft{BWA}\footnote{\soft{BWA} --- \href{http://bio-bwa.sourceforge.net/}%
 {http://bio-bwa.sourceforge.net/}} (0.7.4) maps all the reads to the contaminant
 genome and all the reads mapping perfectly and non ambiguously are discarded.
@@ -550,14 +546,6 @@ of mismatches or indels to tolerate), but the default parameters are adjusted
 for normal human.}. Hence, I only had to provide the
 genome and the transcriptome references.
 
-\NB As many concepts or terms in Science,
-`\emph{Read mapping}' can have different (however very closely related) meanings.
-Hence, while for a number of people, \emph{Read mapping} will encompass any
-transcriptome reconstruction strategy (including \latin{de novo} assembly) since
-the main point is to map the features to functional annotations, for others the
-locution will only refer to `Read alignment' strategies specifically
-\mycite{readMappingDef}. Tools as \soft{TopHat2} contributes to this
-locution vagueness.
 
 \minisec{Quantification and Normalisation}
 While \Rnaseq\ is a technique of choice to identify (and discover) \gls{RNA}
@@ -565,11 +553,29 @@ isoforms, I have focused my thesis on the gene level expression. Indeed, current
 annotations and knowledge are still lacking in the reasons and
 external conditions that impact the expression of a specific isoform over the
 others. In addition, criticisms have been raised on the accuracy of distinction
-between them (\cite{tamaraRNA}, \cite{ernestRNA}). While normalising gene
-expression presents additional challenges than specific transcript expression,
+between them (\cite{tamaraRNA}, \cite{ernestRNA}). Normalising gene expression
+presents additional challenges than specific transcript expression,
+as the definition of the gene length may be different from one lab to another.
 
+In the context of this thesis, when I have to use a gene length for a computation,
+I use the same gene length definition as in
+\irap\ or \egxa. Thus, the gene length is defined as the sum of the length of
+all its \emph{collapsed} exons. See \Cref{fig:Genelength-collapsedExons}.
 
-As I discuss in \Cref{ch:Introduction}, there are various strategies to estimate
+\begin{figure}
+    \includegraphics[scale=1]{datasets/collapsedExons.pdf}\centering
+        \caption[Gene length equals to the sum of the length of all its collapsed
+        exons]{\label{fig:Genelength-collapsedExons}\textbf{Gene length equals to
+        the sum of the length of all its collapsed exons.} This method lacks
+        complete accuracy however, it provides a sufficient estimation of the
+        gene length for an efficient normalisation regarding the length bias.
+        The coordinates for the 5' and 3' ends of each exon is extracted from
+        the annotation and they are collapsed together. This \emph{gene length}
+        is unaffected by incorrect attribution of a fragment to a
+        specific transcript when there are many possible options.}
+    \end{figure}
+
+As I discuss in \Cref{subsub:norm}, there are various strategies to estimate
 gene expression levels. I used two approaches, implemented in these
 following popular tools:
 \soft{Cufflinks}\footnote{\soft{Cufflinks} ---
@@ -580,41 +586,23 @@ and \soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
 {http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1) \mycite{htseq}
 (with the \texttt{intersection non-empty} mode).
 
-
 \soft{Cufflinks} tries to probabilistically assign the multi-mapped reads
-depending on the coverage at each mapping locus. It also
+depending on the coverage at each mapping locus and provides directly normalised
+\FPKM\ counts for each transcript. Then, it infers the expression at gene level
+by summing the corresponding transcript expression. Hence, there is no need to
+compute a \emph{gene} length in this case.
 
-\soft{HTSeq-count}
+On the other hand, \soft{HTSeq-count} provides only \emph{raw} counts. Hence, to
+normalise to \gls{FPKM}, I use the aforementioned method to compute the gene
+length needed by the internal normalisation function provided by \irap. This
+internal function is an implementation of the \cref{eq:rpkm-fx}.
 
-\gls{FPKM}
-values were then calculated with the internal function provided by \irap.
-I am using only gene levels quantification and not isoforms.
-
-
-\subsubsection{Tissue Averaging}
-
-To avoid unnecessary skewness due to the unbalance of biological replicates per
-tissue across the set of datasets for many of the analyses, \TK{reexpliquer pkoi
-le déséquilibre}
-I computed a \emph{virtual reference tissue}
-for \dataset{Brawand}, \dataset{Uhlén} and \dataset{Gtex} datasets.
-
-For each of these datasets, for each tissue, I compute gene expression levels by
-taking the median value of each gene across all the biological replicates.
-
-The \dataset{Uhlén} requires an extra prior step for some of the tissues as they
-present technical replicates. For these, I average first the gene expression levels
-for each subject-tissue pairs before computing the gene expression level medians
-of each tissue.
-
-\NB \dataset{Castle} dataset comprises mixture of 10 subjects for each tissue, I
-discard the single-end sequenced samples for the \dataset{Illumina Body Map}.
-
-
-
-
+All the configuration files I created for this thesis may be found at
+\addressToirapConfFiles.
 
 \subsection{Proteome raw data}
+
+Proteome raw data,
 
 Similarly to the transcriptome issue, there is the proteome which is actually
 trickier (possible problem with \dataset{Pandey} data analyses). Really depends which
