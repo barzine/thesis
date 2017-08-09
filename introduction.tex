@@ -503,8 +503,8 @@ in another.
 These files are usually distributed in \fastq\ format
 \mycite{fastqFormat} which record for each cluster (read) a unique identifier,
 a nucleotide sequence and a \gls{Phred} quality score for each base of the
-sequence. A few optional information can also be provided (\eg\
-the position of the read on the \gls{flow} (See \cref{sec:fastq_format} for
+sequence. A few optional information can also be provided, \eg\
+the position of the read on the \gls{flow} (See \cref{sec:fastq-format} for
 a random read example).
 
 The \gls{Phred} quality score ($Q$) measures the accuracy of the identification
@@ -513,7 +513,7 @@ program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
 the base being called wrongly. There are several possible encoding formats
 (see \cref{sec:PhredScore}).
 
-\subsection{A typical bioinformatic workflow for \Rnaseq\ study}
+\subsection{A typical bioinformatic workflow for \Rnaseq\ study}\label{sub;RNAseqworflow}
 
 From the reconstruction of the
 transcriptome to the normalisation of expression in each sample, the various
@@ -573,7 +573,7 @@ score\footnote{It may vary based on the complete set of reads to analyse.}.
 
 It is also prudent to check and remove any read that may map to possible
 contamination sources\footnote{For example, for eukaryotes, by aligning (see next
-segment) every read to the \species{Escherichia coli} genome}).
+segment) every read to the \species{Escherichia coli} genome.}.
 Indeed, as these reads are ambiguous, it is safer
 to discard them than skew the expression estimations.
 
@@ -768,8 +768,8 @@ feature\footnote{E.g.\ genes, isoforms, exons, spicing events, \ldots}
 of interest.\footnote{In fact, while genotyping, heredity
 studies and other genetically focused studies are in principle possible, the usual
 main focus is centred on expression estimation. For example, instead of
-reporting a specific \gls{SNP}, in an \Rnaseq\ study, the core interest is more
-usually about the specific allelic expression. Moreover, most of the \Rnaseq\
+reporting a specific \gls{SNP}, in an \Rnaseq\ study, the core interest is
+currently more about the specific allelic expression. Moreover, most of the \Rnaseq\
 studies lack to provide the sequence depth and coverage for other kinds of study.}
 In the context of this thesis, I only consider gene expression (either as \gls{RNA}
 or as protein). Hence, many subtleties required for isoforms or exons studies are
@@ -853,8 +853,9 @@ with the following main steps (see also \Cref{fig:cuffEstimation}):
 Finally, to compute the gene expression levels, \cuffl\ aggregates \latin{per}
 gene all the isoforms expression abundances together.
 
-\NB\ \cuffl\ provides by default \FPKM\ \emph{normalised} data (see
-\cref{subsub:norm}).
+\NB\ \cuffl\ provides by default \FPKM\footnote{See \cref{subsub:norm}.}
+\emph{normalised} data.
+
 \minisec{HTSeq-count}
 The \gls{Python} library \soft{HTSeq} provides a stand-alone script
 (\htseq) performing the feature quantification with a more conservative strategy.

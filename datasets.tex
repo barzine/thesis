@@ -15,9 +15,8 @@ and how it has been reprocessed.
 
 When not stated otherwise, all the computational processing of the \Rnaseq\ part
 described here have been performed by myself under the supervision of
-the Dr Alvis Brazma. I also received general feedback from Dr Mar Gonzalez-Portà,
-Dr Johan Rung and Dr Nuno Fonseca. The proteome data has been processed by
-Dr James Wright from the Wellcome Trust Sanger Institute.
+\alvis. I also received general feedback from Dr Mar Gonzalez-Portà,
+Dr Johan Rung and \nuno. The proteome data has been processed by \james.
 
 
 \section{Introduction}
@@ -43,7 +42,7 @@ biological layers.
 For my thesis, I retrieve as many available studies as I can get. There are a
 few more studies that I wanted to use on the
 transcriptomic side, but the reusability point was often the critical reason
-why they have not been included.
+why I disregarded them.
 
 Indeed, many times I encountered data with ambiguous encoding format. As
 those studies were a bit outdated,
@@ -61,9 +60,13 @@ in the chronological order of their first public release.
            technical replicates as the ``replicates'' are the product of
            different protocols,\\thus are unfit to estimate the specific noise of
            either protocol (single-end or paired-end).\\
-           \NB The protocols used for \Gtex\ and Castle datasets are not the same:
+           \NB\ The protocols used for \Gtex\ and Castle datasets are not the same:
            \\\Gtex\ is following the most common ribodepletion protocol, while\\
-           Castle is based on  a targeted amplification protocol.\\}}
+           Castle is based on  a targeted amplification protocol.\\
+           %\mynormalcheckmark\ indicates that the dataset presents the
+           %characteristic, and \\(\mynormalcheckmark) that one (or more) of the
+           %required criteria of the characteristic is lacking.\\
+           }}
        \begin{tabular}{@{}cccccccccc@{}}
        \toprule
        \multicolumn{1}{c|}
@@ -85,30 +88,34 @@ in the chronological order of their first public release.
             \multicolumn{1}{c|}{Biological} & \multicolumn{1}{c|}{Technical} &
             \multicolumn{1}{c|}{} &  \\
        \midrule
-       E-MTAB-305 & Castle & \mycheckmark &  & \mycheckmark &  &  &  & 11 &  \\
-       E-GEOD-30352 & Brawand &  & \mycheckmark & \mycheckmark  &  &
-           \mycheckmark  &  & 8 &  \\
-       E-MTAB-513 & IBM &  & \mycheckmark & \mycheckmark & \mycheckmark &  &
+       E-MTAB-305 & Castle & \mycheckmark\ &  & \mycheckmark\ &  &  &  & 11 &  \\
+       E-GEOD-30352 & Brawand &  & \mycheckmark\ & \mycheckmark\  &  &
+           \mycheckmark\  &  & 8 &  \\
+       E-MTAB-513 & IBM &  & \mycheckmark\ & \mycheckmark\ & \mycheckmark\ &  &
            (\mycheckmark) & 16 &  \\
-       E-MTAB-2836 \footnotesize{(and E-MTAB-1733)}& Uhlén &  & \mycheckmark &
-           & \mycheckmark & \mycheckmark  & \mycheckmark  & 32 &  \\
-       E-MTAB-2919 & Gtex (v4)  &  & \mycheckmark &  & \mycheckmark &
-           \mycheckmark &  & 54 & \mycheckmark \\
+       E-MTAB-2836 \footnotesize{(and E-MTAB-1733)}& Uhlén &  & \mycheckmark\ &
+           & \mycheckmark\ & \mycheckmark\  & \mycheckmark\  & 32 &  \\
+       E-MTAB-2919 & Gtex (v4)  &  & \mycheckmark\ &  & \mycheckmark\ &
+           \mycheckmark\ &  & 54 & \mycheckmark\\
        \bottomrule
-       \end{tabular}
+       \multicolumn{10}{p{.8\textwidth}}{\raggedright\
+           \mynormalcheckmark\ indicates that the dataset presents the
+           characteristic, and \\(\mynormalcheckmark) that one (or more) of the
+           required criteria of the characteristic is lacking.}
+      \end{tabular}
 \end{sidewaystable}
 
-\subsection{Castle et al. dataset}
+\subsection{Castle et al.\ dataset}
 \label{subsec:castlepresentation}
-This dataset has been published along with the \paper{\citetitle{castleData}}
-by \citet{castleData} who were interested in exploring the whole RNA repertoire
+This dataset has been published along with the~\paper{\citetitle{castleData}}
+by~\citet{castleData} who were interested in exploring the whole RNA repertoire
 with sequencing-based technology. They essentially focused their study
 on the non-coding part.
 
 They used multiple-donors pooled tissues created from purchased total \gls{RNA}
 samples and prepared the 11 libraries following a whole transcriptomic protocol
 where nonribosomal \gls{RNA} transcripts are
-specifically amplified by \gls{PCR} \mycite{Armour:2009}.
+specifically amplified by \gls{PCR}~\mycite{Armour:2009}.
 
 They generated an average of 50 million sequence reads per tissue
 using an Illumina Genome Analyser-II sequencer (single-end).
@@ -127,10 +134,10 @@ protocols --- and the presence of \glspl{ncRNA} --- can affect the
 quantifications and then the final outcomes.
 
 
-\subsection{Brawand et al. dataset}
+\subsection{Brawand et al.\ dataset}
 \label{subsec:brawandpresentation}
-In the corresponding article entitled \paper{\citetitle{VTpaper}},
-\citet{VTpaper} focused their interest on the
+In the corresponding article entitled~\paper{\citetitle{VTpaper}},%
+~\citet{VTpaper} focused their interest on the
 evolution of the mammalian transcriptomes --- while there were existing studies
 on the matter, the sequencing approach was then creating new perspectives.
 
@@ -150,10 +157,10 @@ I personally retrieved the human data from
 datasets from \gls{GEO} on a weekly basis.}.
 
 
-\subsection{Illumina Body Map 2.0}
+\subsection{Illumina Body Map 2.0 (IBM)}
 \label{subsec:ibmpresentation}
 This dataset has been first created in 2010 and released in
-2011\footnote{See: \citetitle{ibmEnsembl} - \cite{ibmEnsembl}} by Illumina
+2011\footnote{See:~\citetitle{ibmEnsembl} -~\cite{ibmEnsembl}} by Illumina
 mostly to advertise its most recent technology improvement at that time:
 the paired-end sequencing. Indeed, until then, all the sequencing was done
 from only one end of the \gls{DNA} or \gls{cDNA} fragments.\footnote{From that
@@ -181,7 +188,7 @@ Despite the lack of biological replicates, I used this dataset as it was for an
 extended time the most extensive freely available \Rnaseq\ dataset of human
 tissues and as such has been referenced many times since it was released.
 
-\subsection{Uhlén et al. dataset}
+\subsection{Uhlén et al.\ dataset}
 \label{subsec:uhlenPresentation}
 Uhlén et al.\ have created an atlas,
 \href{http://www.proteinatlas.org/}{Human Protein Atlas}\footnote{%
@@ -190,10 +197,10 @@ Human Protein Atlas ---
 revolving mostly around the spatial
 distribution of the proteins through the Human body. They use many approaches
 and techniques which also include \Rnaseq. They first released their \Rnaseq\
-data of 27 normal tissues as a part of their article \paper{\citetitle{Uhlen2014}}
-\mycite{Uhlen2014}. Later, they extended their dataset with new samples and 5 new
-tissues. The latest version was published with \paper{\citetitle{Uhlen2015}}
-\mycite{Uhlen2015} in \textit{Science}.
+data of 27 normal tissues as a part of their article~\paper{\citetitle{Uhlen2014}}%
+~\mycite{Uhlen2014}. Later, they extended their dataset with new samples and 5 new
+tissues. The latest version was published within~\paper{\citetitle{Uhlen2015}}%
+~\mycite{Uhlen2015} in \textit{Science}.
 
 They provide (at least two) biological replicates for the 32 tissues.
 Except for a very small number, the tissues have both male and female donors.
@@ -222,7 +229,7 @@ Common Fund and aims to establish, in its authors own words,
 \textquote{a resource database and associated tissue bank for the study of the
 relationship between genetic variation and gene expression
 and other molecular phenotypes in multiple reference tissues}. The project was first
-explained in a paper from the \cite{GTEx2013}. It consists to quickly collect
+explained in a paper from the~\cite{GTEx2013}. It consists to quickly collect
 many tissues from postmortem donors so genotype-tissue expression analyses could
 be done, notably \gls{eQTL} variants studies which study the modulation
 of \gls{RNA} expression in function of \glspl{SNP}. The results of the
@@ -271,11 +278,11 @@ Hereinafter, I present these 3 datasets that I use in my thesis.
 
 \subsection{Pandey Lab data}
 
-The Pandey Lab \mycite{PandeyData} created the
+The Pandey Lab~\mycite{PandeyData} created the
 \href{http://www.humanproteomemap.org/}%
 {Human Proteome Map}\footnote{Human Proteome Map --- %
 \href{http://www.humanproteomemap.org/}{www.humanproteomemap.org}} which
-they released along \paper{\citetitle{PandeyData}} in \emph{Nature}.
+they released along~\paper{\citetitle{PandeyData}} in \emph{Nature}.
 
 For their study, they have processed 30 kinds of histological normal human
 tissues and cell line samples (17 adult tissues, 7 fetal tissues and 6
@@ -297,14 +304,14 @@ The raw spectra were retrieved from ProteomeXchange via the repository
 While their effort to generate technical high quality raw data was highly
 appraised by the scientific community, their processing
 (identification and quantification) methods were
-criticised (see \mycite{Ezkurdia2014-qx,Deutsch2015}).
+criticised (see~\mycite{Ezkurdia2014-qx,Deutsch2015}).
 Thus, for this thesis I only use
 quantification that James Wright provided me after reprocessing the dataset
 from the raw spectra.
 
 \subsection{Kuster data}
 
-In their approach of the human proteome map, the Kuster Lab \mycite{KusterData}
+In their approach of the human proteome map, the Kuster Lab~\mycite{KusterData}
 combined newly generated \gls{LC-MS/MS} spectrum data (about 40\% of their
 complete working set) with already published data (either from their colleagues
 or accessible through repositories --- for the remaining 60\%). They reprocessed
@@ -326,18 +333,19 @@ This specific subpart of the raw data was downloaded from \Proteomicsdb{PRDB0000
 
 \subsection{Cutler data}
 
-This data was generated prior to the \dataset{Pandey} and the \dataset{Kuster}
+This data was generated prior to the \pandey\ and the \kuster\
 data as it was released in 2011 through PeptideAtlas\footnote{PeptideAtlas --- %
-\href{http://www.peptideatlas.org/}{www.peptideatlas.org}}
-\mycite{PeptideAtlas}, IDs: [PAe001768 --- PAe001778].
+\href{http://www.peptideatlas.org/}{www.peptideatlas.org}}~\mycite{PeptideAtlas},
+IDs: [PAe001768 --- PAe001778].
 
 It was created by Paul Cutler at Roche Pharmaceuticals.
 It comprises 10 different tissues (and one sample per tissue) that after trypsin
 digestion, were analysed through Thermo Scientific \gls{LTQ}-\orbi.
-In final, there are 1,618 \gls{CID} profiles.
+In final, there are 1,618 \gls{CID} profiles which counts for 13 million of raw
+\gls{CID} spectra from \gls{LTQ}-\orbi\ instrument.
 
 While this data was never published on its own, it has been used in different
-studies (\eg\ \mycite{KusterData}).
+studies (\eg~\mycite{KusterData}).
 
 The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
@@ -346,23 +354,22 @@ The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
 The original authors of these 5 transcriptomic and 3 proteomic studies have often
 released themselves the quantification of the expression values either directly
-(\eg\ \cite{Krupp2012}) or upon requests (\eg\ \cite{PandeyData}).
+(\eg~\cite{Krupp2012}) or upon requests (\eg~\cite{PandeyData}).
 Third-parties also distribute
 quantification for these studies either retrieved from the original studies,
-as BioGPS \mycite{BioGPS1} or Harmonizome \mycite{Harmonizome},
-or after reprocessing the raw data as EBI Gene Expression Atlas
-\mycite{EBIgxa} does.
+as BioGPS~\mycite{BioGPS1} or Harmonizome~\mycite{Harmonizome},
+or after reprocessing the raw data as \egxa~\mycite{EBIgxa} does.
 
 For many reasons and despite readily available quantifications for most of the
 datasets, I only used data reprocessed from raw files by myself or Dr Nuno
-Fonseca (Gtex data) for the transcriptomic data and by Dr James Wright
+Fonseca (\gtex\ data) for the transcriptomic data and by Dr James Wright
 for the proteomic data.
 
 In fact, each study has been originally processed with different protocols,
-\eg\ \dataset{\Gtex} data \mycite{GTExTranscript} and \dataset{Castle}
+\eg\ \gtex\ data~\mycite{GTExTranscript} and \castle\
 data \mycite{Krupp2012}. While the \egxa\ reprocesses raw data through the same
 methods and has nowadays quantification for most of the aforementioned
-datasets\footnote{\egxa\ is still lacking the \dataset{Castle}.},
+datasets\footnote{\egxa\ is still lacking the \castle.},
 they were still the products of different protocols since different versions of
 reference (Human genome build and annotation) and tools when I started my work.
 
@@ -372,13 +379,13 @@ different results.
 Indeed, as I started to work with \Rnaseq\ data, I noticed many potential bias
 sources that impact its final expression values. Many of these have been
 reported in the literature since then; in fact,
-annotation versions \mycite{annotationDiff},
-contamination \mycite{contaminationRNAseq},
-quality controls \mycite{qualityRNAseq},
-mapping and quantifications pipelines \mycite{Fonseca2014}
+annotation versions~\mycite{annotationDiff},
+contamination~\mycite{contaminationRNAseq},
+quality controls~\mycite{qualityRNAseq},
+mapping and quantifications pipelines~\mycite{Fonseca2014}
 have great effects on the final quantification. Lastly, normalisation
-methods also greatly impact the final expression figures
-\mycite{Dillies2013}, \mycite{normSigCancerHelp}. For all these reasons,
+methods also greatly impact the final expression figures~\mycite{Dillies2013},%
+~\mycite{normSigCancerHelp}. For all these reasons,
 reprocessing all the transcriptomic datasets --- with the same exact protocol ---
 was the logical first step of this current study.
 
@@ -389,9 +396,10 @@ protein expression values.
 
 \subsection{Transcriptome RNA-Seq raw data processing}
 
-There are many steps from the raw data files to the quantification matrices
-on which this thesis analyses are based. \Cref{fig:pipelineTrans} presents a
-general overview of the \Rnaseq\ processing protocol I used.
+As presented in \Cref{sub;RNAseqworflow}, there are many steps from the raw data
+files to the quantification matrices on which this thesis analyses are based.
+\Cref{fig:pipelineTrans} presents a general overview of the \Rnaseq\ processing
+protocol I used.
 
 \begin{figure}
     \includegraphics[scale=0.75]{additional/pipelineTrans.pdf}\centering
@@ -401,11 +409,11 @@ general overview of the \Rnaseq\ processing protocol I used.
 \end{figure}
 
 I downloaded and entirely processed four of the transcriptomic datasets
-myself (\dataset{Castle}, \dataset{Brawand}, \dataset{IBM} and \dataset{Uhlén}
-data) and Dr Nuno Fonseca retrieved and processed the \Gtex\ dataset (\hg{38.p1}
+myself (\castle, \vt, \ibm\ and \uhlen\ data) and
+Dr Nuno Fonseca retrieved and processed the \gtex\ dataset (\hg{38.p1}
 human genome reference and \ens{76} annotation)\footnote{As
 the \Gtex\ data is involved in many project within the \EBI\
-and due to its huge amount of files (number and  size -- see \Cref{tab:Lib5DF}),
+and due to its huge amount of files (number and  size --- see \Cref{tab:Lib5DF}),
 it was agreed that this would be processed centrally by one person and then
 redistributed to all the other interested parties. Dr Nuno Fonseca had this
 tremendous task.}. I present results computed on the quantification of these
@@ -448,7 +456,7 @@ received our access approval, Dr Nuno Fonseca retrieved \Gtex\ data from
 \gls{dbGaP}.
 
 While most of the raw files can be used as they are, an additional step is
-needed for the \dataset{Castle} files. Indeed these files are using an older
+needed for the \castle\ files. Indeed these files are using an older
 \fastq\ format that is non-compliant to the most accurate and recent tools used
 for this thesis.
 As it is a simple matter of changing the quality score scale
@@ -465,9 +473,9 @@ them, I produced many sets of results based on the \hg{37.p12}
 In fact, the quality of each new annotation update is
 supposedly greater than its predecessor.
 
-As the \dataset{Gtex} data was processed with \hg{38.p1} and \ens{76}, that led me
+As the \gtex\ data was processed with \hg{38.p1} and \ens{76}, that led me
 to reprocess all the other four \Rnaseq\ datasets for the sake of consistency and
-to avoid more biases \mycite{h38vsh37}. Thus, unless indicated
+to avoid more biases~\mycite{h38vsh37}. Thus, unless indicated
 otherwise, the results presented in the current work are
 based on the \hg{38.p1} human genome reference genebuild and the \ens{76}
 annotation.
@@ -525,7 +533,7 @@ the quality of the call decreases.
 On another note, some tools (mappers in particular) need
 all the reads to be trimmed to the same length. \irap\ optimises the compromise
 between the purity and the length of the reads to avoid more errors or
-biases due to smaller reads \mycite{Trimwisely} by trimming at most 15\% of the
+biases due to smaller reads~\mycite{Trimwisely} by trimming at most 15\% of the
 original length while discarding more reads if necessary to maximise the length.
 
 Reads that could be assigned to a likely contamination source, here
@@ -537,10 +545,10 @@ genome and all the reads mapping perfectly and non ambiguously are discarded.
 
 \minisec{Mapping}
 I mapped the reads to the genome with \irap's proposed default splice-aware mapper
-\soft{TopHat2}\footnote{\soft{TopHat} ---
+\toph\footnote{\toph\ ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}%
-{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12) \mycite{tophat2}
-with its set of default predefined arguments\footnote{Indeed, \soft{TopHat2} can
+{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12)~\mycite{tophat2}
+with its set of default predefined arguments\footnote{Indeed, \toph\ can
 handle reads from many organisms by fine-tuning the parameters (\eg\ number
 of mismatches or indels to tolerate), but the default parameters are adjusted
 for normal human.}. Hence, I only had to provide the
@@ -553,14 +561,14 @@ isoforms, I have focused my thesis on the gene level expression. Indeed, current
 annotations and knowledge are still lacking in the reasons and
 external conditions that impact the expression of a specific isoform over the
 others. In addition, criticisms have been raised on the accuracy of distinction
-between them (\cite{tamaraRNA}, \cite{ernestRNA}). Normalising gene expression
+between them~\mycite{tamaraRNA,ernestRNA}. Normalising gene expression
 presents additional challenges than specific transcript expression,
 as the definition of the gene length may be different from one lab to another.
 
 In the context of this thesis, when I have to use a gene length for a computation,
 I use the same gene length definition as in
-\irap\ or \egxa. Thus, the gene length is defined as the sum of the length of
-all its \emph{collapsed} exons. See \Cref{fig:Genelength-collapsedExons}.
+\irap\ or \egxa. Thus, as shown on \Cref{fig:Genelength-collapsedExons} the gene
+length is defined as the sum of the length of all its \emph{collapsed} exons.
 
 \begin{figure}
     \includegraphics[scale=1]{datasets/collapsedExons.pdf}\centering
@@ -575,47 +583,84 @@ all its \emph{collapsed} exons. See \Cref{fig:Genelength-collapsedExons}.
         specific transcript when there are many possible options.}
     \end{figure}
 
-As I discuss in \Cref{subsub:norm}, there are various strategies to estimate
-gene expression levels. I used two approaches, implemented in these
-following popular tools:
-\soft{Cufflinks}\footnote{\soft{Cufflinks} ---
+As mentioned in \Cref{subsub:norm}, I used two different popular tools based on
+different strategies to estimate
+gene expression levels:
+\cuffl\footnote{\cuffl\ ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
-{http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1) \mycite{cufflinks}
-and \soft{HTSeq-count}\footnote{\soft{HTSeq-count} ---
+{http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1)~\mycite{cufflinks}
+and \htseq\footnote{\htseq\ ---
 \href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
-{http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1) \mycite{htseq}
+{http://www-huber.embl.de/HTSeq/doc/index.html\#}} (0.6.1p1)~\mycite{htseq}
 (with the \texttt{intersection non-empty} mode).
+These tools are also integrated in \irap.
 
-\soft{Cufflinks} tries to probabilistically assign the multi-mapped reads
-depending on the coverage at each mapping locus and provides directly normalised
-\FPKM\ counts for each transcript. Then, it infers the expression at gene level
-by summing the corresponding transcript expression. Hence, there is no need to
-compute a \emph{gene} length in this case.
+For \cuffl, I used the mode where the multi-mapped reads are probabilistically
+assigned depending on the coverage of each mapped locus. In addition,
+\cuffl\ provides normalised gene expression levels by aggregating their
+corresponding normalised isoform expression levels. \cuffl\ uses the
+\cref{eq:rpkm-fx} to normalise isoform expression levels. The length of the
+isoforms are extracted from the reference.
 
-On the other hand, \soft{HTSeq-count} provides only \emph{raw} counts. Hence, to
-normalise to \gls{FPKM}, I use the aforementioned method to compute the gene
-length needed by the internal normalisation function provided by \irap. This
-internal function is an implementation of the \cref{eq:rpkm-fx}.
+On the other hand, \htseq\ provides only \emph{raw} counts for the feature of
+interest. \irap\ provides an internal \FPKM\ normalisation function that
+is an implementation of the \cref{eq:rpkm-fx}. As I requested \htseq\ to work at
+gene level, this formula requires gene lengths which are computed with the
+aforementioned method.
 
 All the configuration files I created for this thesis may be found at
 \addressToirapConfFiles.
 
-\subsection{Proteome raw data}
+\subsection{MS-based (shotgun) proteome data processing}
 
-Proteome raw data,
+After retrieval of the data from \gls{Pride} and \gls{Proteomicsdb},
+Dr James Wright reprocessed the three proteome \ms-based datasets.
+\Cref{fig:pipelineProt} illustrates the pipeline that processed the three
+datasets in a consistent and optimal manner. I summarise this protocol
+thereafter. See~\mycite{Wright-2016,Weisser2016-pipeline} for more details.
 
-Similarly to the transcriptome issue, there is the proteome which is actually
-trickier (possible problem with \dataset{Pandey} data analyses). Really depends which
-threshold and \gls{FDR} tolerate. And what database and algorithm are used to perform
-the identification of the proteins. More messy.
+\subsubsection{Sequence database creation and preparation for searching}
 
-All the data has been processed by James.
+The sequence database is a critical element of the \ms\ pipeline and thus, it has
+been carefully designed. It combines six different parts, three based on known
+protein sequences and three other covering possible new protein candidates.
+The known sources include the complete human \hg{38} (v.20) \gls{CDS} translated
+sequences from \gls{GENCODE}; the human reference proteome from
+\href{http://www.uniprot.org/}{\gls{Uniprot}}\footnote{%
+\gls{Uniprot} --- \href{http://www.uniprot.org/}{http://www.uniprot.org/}}%
+~\mycite{UniProt2017} (in its May 2014 version); common contamination protein
+sequences (from the Max Planck Institute of
+Biochemistry\footnote{Contamination sequences ---
+\href{http://maxquant.org/contaminants.zip}{http://maxquant.org/contaminants.zip}})
+and \gls{HLA} sequences\footnote{\gls{HLA} sequences ---
+\href{http://www.ebi.ac.uk/ipd/imgt/hla/download.html}%
+{http://www.ebi.ac.uk/ipd/imgt/hla/download.html}}. The sources for potential
+novel proteins included a selection of non-coding gene sequences (including
+pseudogenes, \gls{lncRNA} and untranslated regions) from \gls{GENCODE}
+\hg{38} (v.20); prediction of novel sequences with
+\href{http://bioinf.uni-greifswald.de/augustus/}{\soft{AUGUSTUS}}\footnote{%
+\soft{AUGUSTUS} --- \href{http://bioinf.uni-greifswald.de/augustus/}%
+{http://bioinf.uni-greifswald.de/augustus/}}~\mycite{Stanke2004}; a set of
+two-consensus predictions (December 2013) from \href{http://pseudogene.org/}%
+{\soft{Pseudogene.org}}\footnote{\soft{Pseudogene.org} ---
+\href{http://pseudogene.org/}{http://pseudogene.org/}}~\mycite{pseudogenesOrg}
+and three-frame translated \Rnaseq\ transcript sequences. These \Rnaseq\
+transcript sequences includes an \gls{Ensembl} model (built itself
+on \ibm), models created with
+\href{http://software.broadinstitute.org/software/scripture/}{\soft{Scripture}}%
+\footnote{\soft{Scripture} ---
+\href{http://software.broadinstitute.org/software/scripture/}%
+{http://software.broadinstitute.org/software/scripture/}}~\mycite{scripture}
+by the Kellis lab (also built on \ibm) and finally models by Caltech and CSHL
+based on different \gls{ENCODE} (created with \soft{Cufflinks}).
 
-Small problem about mapping back proteins to transcripts.
+\subsubsection{Spectral processing}
+
+\subsubsection{Spectral identification and database search pipeline}
 
 
+\subsubsection{Results processing and filtering}
 
-And again describe the methodology.
 
   \begin{figure}
       \includegraphics[scale=0.75]{additional/pipelineProteins.pdf}\centering
@@ -623,6 +668,8 @@ And again describe the methodology.
       data]{\label{fig:pipelineProt}\textbf{General steps for processing the
       proteome} [TK] }
   \end{figure}
+
+
 
 \section{Discussion/Conclusion}
 

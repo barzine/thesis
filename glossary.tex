@@ -10,6 +10,7 @@
 \newacronym{HCD}{HCD}{\textbf{H}igher-energy \textbf{C}ollisional
 \textbf{D}issociation}
 
+\newacronym{HLA}{HLA}{\textbf{H}uman \textbf{l}eukocyte \textbf{a}ntigen}
 \newacronym{iTRAQ}{iTRAQ}{\textbf{i}sobaric \textbf{t}ag for \textbf{r}elative
 \textbf{a}bsolute \textbf{q}uantification}
 
@@ -57,7 +58,7 @@ a feature (\ie\ transcript in most cases) per \textbf{M}illion mapped
 
 \newacronym{TB}{TB}{\textbf{T}era\textbf{B}yte}
 
-
+\newacronym{IBM}{IBM}{Illumina Body Map 2.0}
 
 \newabbreviation%
 [description={\textit{B}GZF-compressed
@@ -187,6 +188,11 @@ joint effort of the Technische Universität München (TUM) and SAP SE\@. It is
 dedicated to expedite the identification of the human proteome and its use across
 the scientific community.}}
 
+\newglossaryentry{Uniprot}{name=UniProt,description={The \textbf{Uni}versal
+\textbf{Prot}ein Resource provides the scientific community with a comprehensive
+high-quality and freely accessible resource for protein sequence and functional
+annotation data.}}
+
 \newglossaryentry{GTEx}{name=GTEx, description={The \textbf{G}enotype-\textbf{T}issue
 \textbf{Ex}pression project establishes a resource database and associated tissue
 bank for the scientific community to study the relationship between genetic
@@ -259,6 +265,8 @@ involves \glsxtrshort{MS/MS})}}
 \newabbreviation[description={\textit{D}ata-\textit{i}ndependant
 \textit{a}cquisition}]{DIA}{DIA}{data-independant acquisition}
 
+\newabbreviation[description={\textit{C}odant \glsxtrshort{DNA} \textit{s}equence}]
+{CDS}{CDS}{coding DNA sequence}
 
 \newacronym{ESI}{ESI}{Electron Spray Ionisation}
 \newacronym{MALDI}{MALDI}{matrix assisted \glsxtrshort{laser} desorption ionisation}
@@ -315,10 +323,22 @@ computers that work together to improve performance over a single computer}}
 \newglossaryentry{GENCODE}{name={GENCODE},description={Project that produces
 high quality reference gene annotation for human and mouse genomes.}}
 
-\newglossaryentry{FASTQ}{name={FASTQ},description={File Format recording for
+\newglossaryentry{ENCODE}{name={ENCODE},description={The ENCODE (Encyclopedia
+of DNA Elements) Consortium is an international collaboration of research
+groups funded by the \glsxtrlong{NHGRI}}}
+\newacronym{NHGRI}{NHGRI}{National Human Genome Genome Research Institute}
+
+\newglossaryentry{FASTQ}{name={FASTQ},description={Text-based file format.
+It records for
 each cluster read, a unique identifier, a nucleotide sequence and the call
 accuracy for each base (\gls{Phred} score). Optionally, there can be more
 information, \eg\ the spatial position of the cluster on the flow cell.}}
+
+
+\newglossaryentry{Fasta}{name={FASTA},description={Text-based file format
+standard. The file records protein or nucleotide sequences using their respective
+single letter codes.}}
+
 
 \newglossaryentry{flow}{name={Flow cell},text={flow cell},
 description={Support of Illumina
