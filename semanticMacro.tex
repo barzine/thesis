@@ -11,7 +11,8 @@
 \newcommand*\tissue[1]{\emph{#1}}
 \newcommand*\soft[1]{\emph{#1}}
 \newcommand*\comp[1]{\texttt{#1}}
-\newcommand*\frfig[1]{\textnormal{#1}}
+\newcommand*\frfig[1]{\textnormal{#1}} %for changing element of a figure in the main text
+
 
 %% identifiers
 \newcommand*\ENA[1]{\gls{ENA} \textnormal{#1}}
@@ -21,18 +22,23 @@
 \newcommand*\Proteomicsdb[1]{\gls{Proteomicsdb} \textnormal{#1}}
 
 
-
 %% personal abbr.
 \newcommand*\TKR{\TK{add reference}}
 \newcommand*\etal{\textit{et al.}}
 \newcommand*\eg{\textit{e.g.}}
 \newcommand*\ie{\textit{i.e.}}
+\newcommand*\rew[1]{\hl{#1}}
+\newcommand*\sepfootnote{$^{,}$}
+\newcommand*\mycheckmark{\Large ✔}
+\newcommand*\mynormalcheckmark{✔}
+\newcommand*\NB{\textbf{N.B.}: }
+
 %\newcommand*\mRNAs{\mol{mRNAs}}
 %\newcommand*\mRNA{\mol{mRNA}}
+%\newcommand*\DNA{\mol{DNA}}
 \newcommand*\RNA{\gls{RNA}}
 \newcommand*\mRNA{\gls{mRNA}}
 \newcommand*\mRNAs{\glspl{mRNA}}
-%\newcommand*\DNA{\mol{DNA}}
 \newcommand*\DNA{\gls{DNA}}
 \newcommand*\RPKM{\gls{RPKM}}
 \newcommand*\FPKM{\gls{FPKM}}
@@ -42,15 +48,12 @@
 \newcommand*\Rnaseq{\gls{RNA-Seq}}
 \newcommand*\ms{\gls{MS}}
 \newcommand*\orbi{Orbitrap™}
-\newcommand*\NB{\textbf{N.B.}: }
-\newcommand*\mycite[1]{$\lbrack$\cite{#1}$\rbrack$}
-\newcommand*\subminisec[1]{\quad\textbullet~\textbf{\small #1}\\[9pt]}
-\newcommand*\subsubminisec[1]{\qquad\rightarrow~\textit{\small #1}\\[9pt]}
 
 \newcommand*\Gtex{\gls{GTEx}}
 \newcommand*\EBI{\gls{EBI}}
 \newcommand*\egxa{\EBI\ Gene Expression Atlas}
 
+%%%% datasets
 \newcommand*\ibm{\dataset{\gls{IBM}}}
 \newcommand*\vt{\dataset{Brawand}}
 \newcommand*\uhlen{\dataset{Uhlén}}
@@ -59,7 +62,7 @@
 \newcommand*\pandey{\dataset{Pandey}}
 \newcommand*\cutler{\dataset{Cutler}}
 \newcommand*\kuster{\dataset{Kuster}}
-
+%%%% tools
 \newcommand*\irap{\soft{iRAP}}
 \newcommand*\htseq{\soft{HTSeq-count}}
 \newcommand*\cuffl{\soft{Cufflinks2}}
@@ -68,16 +71,10 @@
 \newcommand*\fastq{\gls{FASTQ}}
 \newcommand*\mzml{mzML}
 
+%%annotation
 \newcommand*\hg[1]{\gls{GRCh}#1}
-
 \newcommand*\ens[1]{ENSEMBL #1}
 
-
-\newcommand*\rew[1]{\hl{#1}}
-
-\newcommand*\sepfootnote{$^{,}$}
-\newcommand*\mycheckmark{\Large ✔}
-\newcommand*\mynormalcheckmark{✔}
 
 %abbr. for people
 \newcommand*\alvis{Dr Alvis Brazma}
@@ -85,6 +82,22 @@
 \newcommand*\james{Dr James Wright}
 \newcommand*\jyoti{Dr Jyoti Choudhary}
 
+
+%% an easier life
+\newcommand*\Href[1]{\href{#1}{#1}}
+\newcommand*\mycite[1]{$\lbrack$\cite{#1}$\rbrack$}
+\newcommand*\subminisec[1]{\quad\textbullet~\textbf{\small #1}\\[9pt]}
+\newcommand*\subsubminisec[1]{\qquad\rightarrow~\textit{\small #1}\\[9pt]}
+\newcommand*\hFo[2]{\href{#2}{#1}\footnote{{#1} --- \href{#2}{#2}}}
+\newcommand*\hFoCi[3]{\hFo{#1}{#2}~\mycite{#3}}
+
+\newcommand*\softFo[2]{\href{#2}{\soft{#1}}\footnote{\soft{#1} --- \href{#2}{#2}}}
+\newcommand*\softCi[2]{\soft{#1}~\mycite{#2}}
+\newcommand*\softFoCi[3]{\href{#2}{\soft{#1}}\footnote{\soft{#1} ---
+\href{#2}{#2}}~\mycite{#3}}
+
+\newcommand*\softFull[4]{\href{#2}{\soft{#1}}\footnote{\soft{#1} ---
+\Href{#2}} ({#4})~\mycite{#3}}
 
 %url to different part of the github repo for this thesis
 \newcommand*\addressToirapConfFiles{%

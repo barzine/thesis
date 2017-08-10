@@ -1599,6 +1599,22 @@ trial with success rate pi.
 
 \minisec{Learning}
 
+\subsubsection{Intensity-Based Absolute Quantification (IBAQ)}
+This is a label-free quantification method based on peak intensity.
+\cite{Arike2012} report that this quantification method is better than the ones
+based on spectral counting (\eg\ \softCi{APEX}{apex-tool}  or
+\softCi{emPAI}{emPAI-tool}) as the estimated quantification correlates better to
+the absolute abundance.
+\cite{TOP3isbetter} refine this statement as \gls{IBAQ} is unfit for a direct
+use as a proportional assessment for the complete set of the proteins
+due to biases quantification errors.
+Indeed, \gls{IBAQ} dramatically underestimates the low-abundant proteins.
+To improve the general estimation,
+they argue to use a variation of the \gls{IBAQ},~\cite{Silva-Top3} Top3 approach
+which represents the abundance of each protein by the average intensity of
+its three best ionised peptides.
+They also warn about the lesser accuracy of the Top3 method
+for the shorter proteins and a saturating effect for the larger proteins.
 
 
 
