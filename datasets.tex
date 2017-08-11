@@ -398,7 +398,14 @@ protocol I used.
     \includegraphics[scale=0.75]{datasets/pipelineTrans.pdf}\centering
     \caption[General steps for processing the transcriptomic
     data]{\label{fig:pipelineTrans}\textbf{General steps for processing the
-    transcriptome} [TK]}
+    transcriptome.} \irap\ integrates all the tools needed for the state-of-art
+    processing of \Rnaseq\ data. The quality of the reads is checked and they
+    are trimmed if needed. After removal of possible contaminant reads, the reads
+    are aligned with \toph. The gene expression is then quantified with two
+    different approaches: based on the aggregation of isomers for each gene or
+    simply based on the number of aligned fragment on the gene locus defined in
+    the reference. \cuffl\ provides directly \FPKM\ values. \htseq\ provides
+    raw counts which were normalised by an \irap\ function into \FPKM.}
 \end{figure}
 
 I downloaded and entirely processed four of the transcriptomic datasets
@@ -611,7 +618,17 @@ thereafter. See~\mycite{Wright-2016,Weisser2016-pipeline} for more details.
       \includegraphics[scale=0.75]{datasets/pipelineProteins.pdf}\centering
       \caption[General steps for processing the proteome
       data]{\label{fig:pipelineProt}\textbf{General steps for processing the
-      proteome} [TK] }
+      proteome.} [Adaptation of courtesy materials from \james].\\
+      (\textbf{A}) The 3 datasets have been processed through the
+      same pipeline. I only use their normal tissues samples and I also discard
+      the cell lines. (\textbf{B}) Extensive sources of protein sequences were
+      used for the search database, including prediction of novel proteins.
+      Contamination and decoy sequences were also included to allow for \gls{FDR}
+      estimation. (\textbf{C}) State of the art workflow was used to process the
+      \ms\ data from raw files.
+      This workflow combines multiple \ms\ search engines and
+      post-search evaluation tools. Results were filtered by peptide length,
+      \gls{FDR}, \gls{PEP} and agreement between the multiple search algorithms.}
   \end{sidewaysfigure}
 
 \subsubsection{Spectral processing}
@@ -724,28 +741,36 @@ with the Top3~(\gls{IBAQ}) approach for each experiment.
 When there were more than one experiment per tissue, the final quantification
 values are the average across all the experiment of each tissue.
 
+Comparing to the original \pandey\ study, less proteins were quantified, but
+the results are congruent to other previous studies on the range of detection
+and quantification of \gls{LC-MS/MS}. The quantification were released along
+our paper~\mycite{Wright-2016} and the reanalysis of the \pandey\ data was
+also released through \egxa\ under the accession: E\textminus PROT\textminus 1.
 
-\section{Conclusion}
+\section{Discussion}
 
-In this chapter, I describe why and how 5 transcriptomic and 3 proteomic normal
-human tissues datasets have been reprocessed from raw files with unified
-pipelines using the same reference and annotation files.
+In this chapter, I introduced the 5 transcriptomic and 3 proteomic normal
+human tissues datasets on which I based my thesis.
+I described how both the transcriptomic and the proteomic datasets have been
+reprocessed from raw files with state-of-the-art unified pipelines
+which are also using the same genome built and annotation references in the
+final processed version.
 
-As I accessed the datasets through an extended period of time, for a subset of the datasets, I produced many sets of results with the previous human reference gen- ome (GRCh37) and three different ENSEMBL annotations (73, 74 and 75).While the results can vary for individual genes, the overall outcomes are congruent together hence supporting the robustness of the findings presented in this thesis.
+Indeed, I accessed the datasets through an extended period of time.
+For a subset of the transcriptomic datasets,
+I thus produced many sets of results with
+the previous human reference genome~(\hg{37}) and
+three different \gls{Ensembl} annotations (73, 74 and 75).
+While the results may vary for individual genes,
+the overall outcomes are congruent together hence
+supporting the robustness of the findings presented in this thesis.
+In addition, the products of these pipelines are in agreement with the original
+studies findings --- apart for~\mycite{PandeyData}.
 
-\TK{Many tools are for now not a better than the other one. Can be hard to decide
-which one to pick. A lot of decision have to been taken --- and while this
-doesn't affect the overall landscape, if one is interested by a specific
-genes, \Rnaseq\ should be supported with more wet-lab thing.\\
-    Add shortly other important information (or maybe mix in a bit of discussion.
-Too vague now) to the conclusion \\
-All but one of these datasets have been subject of one if not more papers:
-results confirmed previous authors.\\
-Similar expression between HTSeq and Cufflinks
-\\
-Add the end of the day, \Rnaseq remains an exploratory (even when we look at
-specific differential expression) studies.
-%Discuter de l'origine des échantillons
-}
-
+While we are in the era of \emph{data deluge} and \emph{big data},
+the number of normal human tissues was surprisingly small.
+Most of these datasets have been (and will be) referenced through
+many papers for comparison (or as control) purposes;
+hence, it is essential to assess the soundness of these practices by assessing
+the consistency between these datasets.
 
