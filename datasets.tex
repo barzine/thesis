@@ -36,7 +36,7 @@ the proteome and finally, the comparison and integration of these two
 biological layers.
 
 
-\section{RNA-Seq Transcriptome data}
+\section{Transcriptome RNA-Seq studies}
 \label{sec:rnaseq-data}
 
 For my thesis, I retrieve as many available studies as I can get. There are a
@@ -248,7 +248,7 @@ For privacy reasons, the raw data is available only through controlled access vi
 in my study). While getting access can take time, in principle every request for
 academic research should be granted.
 
-\section{Mass spectrometry Proteome data}\label{sec:ProteoData}
+\section{Proteome (MS) bottom-down studies}\label{sec:ProteoData}
 
 While the transcriptomic data was retrieved and then processed within the \EBI\
 either by \nuno\ or myself, the proteomic data have been picked and
@@ -269,6 +269,7 @@ based on the study of tissues with \ms. These two datasets complement a previous
 smaller one that was publicly released but was never the object of a publication.
 
 Hereinafter, I present these 3 datasets that I use in my thesis.
+See \Cref{fig:pipelineProt}A for a short summary.
 
 \subsection{Pandey Lab data}
 
@@ -386,7 +387,7 @@ needed to quantify the proteomic data. Therefore, \james\ reprocessed
 uniformly the 3 datasets from the raw spectra till the normalisation of the
 protein expression values.
 
-\subsection{Transcriptome RNA-Seq raw data processing}
+\subsection{RNA-Seq raw data processing}
 
 As presented in \Cref{sub;RNAseqworflow}, there are many steps from the raw data
 files to the quantification matrices on which this thesis analyses are based.
@@ -394,7 +395,7 @@ files to the quantification matrices on which this thesis analyses are based.
 protocol I used.
 
 \begin{figure}
-    \includegraphics[scale=0.75]{additional/pipelineTrans.pdf}\centering
+    \includegraphics[scale=0.75]{datasets/pipelineTrans.pdf}\centering
     \caption[General steps for processing the transcriptomic
     data]{\label{fig:pipelineTrans}\textbf{General steps for processing the
     transcriptome} [TK]}
@@ -561,7 +562,7 @@ I use the same gene length definition as in
 length is defined as the sum of the length of all its \emph{collapsed} exons.
 
 \begin{figure}
-    \includegraphics[scale=1]{datasets/collapsedExons.pdf}\centering
+    \includegraphics[scale=0.8]{datasets/collapsedExons.pdf}\centering
         \caption[Gene length equals to the sum of the length of all its collapsed
         exons]{\label{fig:Genelength-collapsedExons}\textbf{Gene length equals to
         the sum of the length of all its collapsed exons.} This method lacks
@@ -598,7 +599,7 @@ aforementioned method.
 All the configuration files I created for this thesis may be found at
 \addressToirapConfFiles.
 
-\subsection{MS-based (shotgun) proteome data processing}
+\subsection{MS shotgun data processing}
 
 After retrieval of the data from \gls{Pride} and \gls{Proteomicsdb},
 \james\ reprocessed the three proteome \ms-based datasets.
@@ -606,11 +607,18 @@ After retrieval of the data from \gls{Pride} and \gls{Proteomicsdb},
 datasets in a consistent and optimal manner. I summarise this protocol
 thereafter. See~\mycite{Wright-2016,Weisser2016-pipeline} for more details.
 
+  \begin{sidewaysfigure}
+      \includegraphics[scale=0.75]{datasets/pipelineProteins.pdf}\centering
+      \caption[General steps for processing the proteome
+      data]{\label{fig:pipelineProt}\textbf{General steps for processing the
+      proteome} [TK] }
+  \end{sidewaysfigure}
+
 \subsubsection{Spectral processing}
 
-The \soft{msconvert} module of \softFull{ProteomeWizard}%
+The \soft{msconvert} module of \softFull{ProteoWizard}%
 {http://proteowizard.sourceforge.net/}{ProteomeWizard}{v3.0.6485}
-converted all the files to the standard format mzML.
+converted all the files to the standard format mzML.\@
 \softCi{TOPP}{Topp} from
 \softFull{OpenMS}{http://www.openms.de/}{openMS2016}{pre-v2.0 development build},
 processed the raw spectra. Notably, \soft{PeakPickerHiRes} to centroid them
@@ -626,8 +634,8 @@ sequences from \gls{GENCODE}; the human reference proteome from
 \gls{Uniprot}\footnote{%
 \gls{Uniprot} --- \Href{http://www.uniprot.org/}}~\mycite{UniProt2017}
 (in its May 2014 version); common contamination protein
-sequences\footnote{Contamination sequences by the Max Planck Institute of
-Biochemistry --- \Href{http://maxquant.org/contaminants.zip}}
+sequences\footnote{Contamination sequences ---
+\Href{http://maxquant.org/contaminants.zip}}
 and \gls{HLA} sequences\footnote{\gls{HLA} sequences ---
 \Href{http://www.ebi.ac.uk/ipd/imgt/hla/download.html}}.
 The sources for potential
@@ -645,29 +653,79 @@ translations.
 \softFo{Mimic}{https://github.com/percolator/mimic} generated the randomised
 decoy sequences (equal sizes of the target database sequences).
 The two databases were then merged together.
+It is represented on \Cref{fig:pipelineProt}{\footnotesize B}
+(no relation between the real size of the database parts and their representation).
 To account for the isobaric peptides, all isoleucine (I) resides were
 converted to leucine (L) before the search and then after the search all leucine
 (L) residues were converted to (J) to avoid later misconceptions.
 In summary, the know coding portion of the tryptic peptides sequences represents
 787,587 peptides and the novel portion provides an additional 4,211,835 peptides.
 
+\NB\ For each peptide sequence, there is a unique identifier, its source database
+and when available the corresponding gene locus.
 
 \subsubsection{Spectral identification and database search pipeline}
 
+\Cref{fig:pipelineProt}{\footnotesize C} describes the overall workflow used by
+\james\ to quantify the protein abundance in each tissue. As mentioned in
+\Cref{seg:moreAlgoisbetter}, workflows involving several algorithms produce
+better results. \soft{Mascot} Server~(v~2.4--- Matrix Science)~cluster produced
+a first search on the mzML files submitted through \soft{MascotAdapterOnline}
+(part of \soft{TOPP}). In parallel, \james\ also used  \soft{MS-GF~$+$~Search},
+which involves the run of \soft{MS-GF~$+$}~(v. 10089)~\mycite{Kim2014-nj}.
+\soft{MascotPercolator}~(v~2.08)~\mycite{Brosch2009-xq,Wright2012-od}
+optimised and rescored the results from \soft{Mascot} and
+\soft{msgf2pin/Percolator} (v~2.08\textminus1)~\mycite{Granholm2014-cw} the
+results from \soft{MS-GF~$+$}.
+Finally, \soft{SEQUEST}~\mycite{Eng1994-eq} and
+\soft{Percolator}~\mycite{Spivak2009-zd} performed a research in a
+\soft{Proteome Discoverer}~(v 1.4 --- Thermo Scientific) workflow.
+
+The different workflows used common stringent parameters for all the database
+searches:
+the precursor tolerance was set to 10 \gls{ppm};
+fragment tolerance for \gls{HCD} spectra to $0.02$ \gls{Da} and
+to $0.5$ \gls{Da} for \gls{CID} spectra;
+the allowed missed cleavages limit to $3$; several amino acid modifications were
+also used for the research (see~\mycite{Wright-2016}).
+
+The research results were converted into mzTab formatted files and uploaded along
+with the mzML spectra and FASTA search database to \gls{Pride}
+under accession \Pride{PXD002967}
 
 \subsubsection{Results processing and filtering}
 
+Custom Perl scripts parsed, merged and filtered the results of each search engine
+so that every \gls{PSM} had the same identification in at least two of the three
+search engines.
+In each case, the lest confident \gls{PEP} (\ie\ the highest) was retained.
 
-  \begin{figure}
-      \includegraphics[scale=0.75]{additional/pipelineProteins.pdf}\centering
-      \caption[General steps for processing the proteome
-      data]{\label{fig:pipelineProt}\textbf{General steps for processing the
-      proteome} [TK] }
-  \end{figure}
+The \glspl{PSM} were then filtered to only keep matches to the three following
+criteria:
+\gls{q-value} equals to $0.01$ (\ie\ 1\% \gls{FDR}) at the greatest; % $\leq 0.01$
+a \gls{PEP} of 0.05 at the greatest and
+a peptide length of at least 7 amino acids.
+\glspl{PSM} matching contaminant or decoy sequences were also removed.
+
+The resulting list of peptides was then used to infer the proteins with
+a simple approach.
+Protein clusters are created based on common matching non-null set of peptides,
+\ie\ each protein cluster has at least one unique peptide.
+Then, the \gls{GENCODE} \gls{CDS} and \gls{Uniprot} accession were mapped back to
+\gls{Ensembl} identifiers.
+The genes that were matching at least 3 unique peptides were kept for the
+remaining of the analysis while the others were discarded. Protein clusters
+matching several gene identifiers or failing the \emph{unique peptide} rule were
+discarded. (\NB\ The list of the discarded clusters is different for each of the
+proteome dataset.)
+
+The quantification (and normalisation) of the conserved proteins were computed
+with the Top3~(\gls{IBAQ}) approach for each experiment.
+When there were more than one experiment per tissue, the final quantification
+values are the average across all the experiment of each tissue.
 
 
-
-\section{Discussion/Conclusion}
+\section{Conclusion}
 
 In this chapter, I describe why and how 5 transcriptomic and 3 proteomic normal
 human tissues datasets have been reprocessed from raw files with unified

@@ -5981,3 +5981,240 @@
   doi         = "10.1038/nmeth.3959"
 }
 
+
+@ARTICLE{Kim2014-nj,
+  title       = "{MS-GF+} makes progress towards a universal database search
+                 tool for proteomics",
+  author      = "Kim, Sangtae and Pevzner, Pavel A",
+  abstract    = "Mass spectrometry (MS) instruments and experimental protocols
+                 are rapidly advancing, but the software tools to analyse
+                 tandem mass spectra are lagging behind. We present a database
+                 search tool MS-GF+ that is sensitive (it identifies more
+                 peptides than most other database search tools) and universal
+                 (it works well for diverse types of spectra, different
+                 configurations of MS instruments and different experimental
+                 protocols). We benchmark MS-GF+ using diverse spectral data
+                 sets: (i) spectra of varying fragmentation methods; (ii)
+                 spectra of multiple enzyme digests; (iii) spectra of
+                 phosphorylated peptides; and (iv) spectra of peptides with
+                 unusual fragmentation propensities produced by a novel
+                 alpha-lytic protease. For all these data sets, MS-GF+
+                 significantly increases the number of identified peptides
+                 compared with commonly used methods for peptide
+                 identifications. We emphasize that although MS-GF+ is not
+                 specifically designed for any particular experimental set-up,
+                 it improves on the performance of tools specifically designed
+                 for these applications (for example, specialized tools for
+                 phosphoproteomics).",
+  journal     = "Nature Communications",
+  volume      =  5,
+  pages       = "5277",
+  month       =  {10},
+  year        =  2014,
+  Language    = "en",
+  Issn        = "2041-1723",
+  Pmid        = "25358478",
+  Doi         = "10.1038/ncomms6277",
+  Pmc         = "PMC5036525"
+}
+
+
+@ARTICLE{Brosch2009-xq,
+  title       = "Accurate and sensitive peptide identification with Mascot
+                 Percolator",
+  author      = "Brosch, Markus and Yu, Lu and Hubbard, Tim and Choudhary,
+                 Jyoti",
+  abstract    = "Sound scoring methods for sequence database search algorithms
+                 such as Mascot and Sequest are essential for sensitive and
+                 accurate peptide and protein identifications from proteomic
+                 tandem mass spectrometry data. In this paper, we present a
+                 software package that interfaces Mascot with Percolator, a
+                 well performing machine learning method for rescoring database
+                 search results, and demonstrate it to be amenable for both low
+                 and high accuracy mass spectrometry data, outperforming all
+                 available Mascot scoring schemes as well as providing reliable
+                 significance measures. Mascot Percolator can be readily used
+                 as a stand alone tool or integrated into existing data
+                 analysis pipelines.",
+  journal     = "Journal of Proteome Research",
+  volume      =  8,
+  number      =  6,
+  pages       = "3176--3181",
+  month       =  {06},
+  year        =  2009,
+  language    = "en",
+  issn        = "1535-3893",
+  pmid        = "19338334",
+  doi         = "10.1021/pr800982s",
+  pmc         = "PMC2734080"
+}
+
+
+
+@ARTICLE{Wright2012-od,
+  title       = "Enhanced peptide identification by electron transfer
+                 dissociation using an improved Mascot Percolator",
+  author      = "Wright, James C and Collins, Mark O and Yu, Lu and Käll, Lukas
+                 and Brosch, Markus and Choudhary, Jyoti S",
+  abstract    = "Peptide identification using tandem mass spectrometry is a
+                 core technology in proteomics. Latest generations of mass
+                 spectrometry instruments enable the use of electron transfer
+                 dissociation (ETD) to complement collision induced
+                 dissociation (CID) for peptide fragmentation. However, a
+                 critical limitation to the use of ETD has been optimal
+                 database search software. Percolator is a post-search
+                 algorithm, which uses semi-supervised machine learning to
+                 improve the rate of peptide spectrum identifications (PSMs)
+                 together with providing reliable significance measures. We
+                 have previously interfaced the Mascot search engine with
+                 Percolator and demonstrated sensitivity and specificity
+                 benefits with CID data. Here, we report recent developments in
+                 the Mascot Percolator V2.0 software including an improved
+                 feature calculator and support for a wider range of ion
+                 series. The updated software is applied to the analysis of
+                 several CID and ETD fragmented peptide data sets. This version
+                 of Mascot Percolator increases the number of CID PSMs by up to
+                 80\% and ETD PSMs by up to 60\% at a 0.01 q-value (1\% false
+                 discovery rate) threshold over a standard Mascot search,
+                 notably recovering PSMs from high charge state precursor ions.
+                 The greatly increased number of PSMs and peptide coverage
+                 afforded by Mascot Percolator has enabled a fuller assessment
+                 of CID/ETD complementarity to be performed. Using a data set
+                 of CID and ETcaD spectral pairs, we find that at a 1\% false
+                 discovery rate, the overlap in peptide identifications by CID
+                 and ETD is 83\%, which is significantly higher than that
+                 obtained using either stand-alone Mascot (69\%) or OMSSA
+                 (39\%). We conclude that Mascot Percolator is a highly
+                 sensitive and accurate post-search algorithm for peptide
+                 identification and allows direct comparison of peptide
+                 identifications using multiple alternative fragmentation
+                 techniques.",
+  journal     = "Molecular \& Cellular Proteomics",
+  volume      =  11,
+  number      =  8,
+  pages       = "478--491",
+  month       =  {08},
+  year        =  2012,
+  language    = "en",
+  issn        = "1535-9476, 1535-9484",
+  pmid        = "22493177",
+  doi         = "10.1074/mcp.O111.014522",
+  pmc         = "PMC3412976"
+}
+
+
+@ARTICLE{Granholm2014-cw,
+  title       = "Fast and accurate database searches with {MS-GF+Percolator}",
+  author      = "Granholm, Viktor and Kim, Sangtae and Navarro, José C F and
+                 Sjölund, Erik and Smith, Richard D and Käll, Lukas",
+  abstract    = "One can interpret fragmentation spectra stemming from peptides
+                 in mass-spectrometry-based proteomics experiments using
+                 so-called database search engines. Frequently, one also runs
+                 post-processors such as Percolator to assess the confidence,
+                 infer unique peptides, and increase the number of
+                 identifications. A recent search engine, MS-GF+, has shown
+                 promising results, due to a new and efficient scoring
+                 algorithm. However, MS-GF+ provides few statistical estimates
+                 about the peptide-spectrum matches, hence limiting the
+                 biological interpretation. Here, we enabled Percolator
+                 processing for MS-GF+ output and observed an increased number
+                 of identified peptides for a wide variety of data sets. In
+                 addition, Percolator directly reports p values and false
+                 discovery rate estimates, such as q values and posterior error
+                 probabilities, for peptide-spectrum matches, peptides, and
+                 proteins, functions that are useful for the whole proteomics
+                 community.",
+  journal     = "Journal of Proteome Research",
+  volume      =  13,
+  number      =  2,
+  pages       = "890--897",
+  month       =  {02},
+  year        =  2014,
+  language    = "en",
+  issn        = "1535-3893, 1535-3907",
+  pmid        = "24344789",
+  doi         = "10.1021/pr400937n",
+  pmc         = "PMC3975676"
+}
+
+
+@ARTICLE{Eng1994-eq,
+  title       = "An approach to correlate tandem mass spectral data of peptides
+                 with amino acid sequences in a protein database",
+  author      = "Eng, J K and McCormack, A L and Yates, J R",
+  abstract    = "A method to correlate the uninterpreted tandem mass spectra of
+                 peptides produced under low energy (10-50 eV) collision
+                 conditions with amino acid sequences in the Genpept database
+                 has been developed. In this method the protein database is
+                 searched to identify linear amino acid sequences within a mass
+                 tolerance of ±1 u of the precursor ion molecular weight A
+                 cross-correlation function is then used to provide a
+                 measurement of similarity between the mass-to-charge ratios
+                 for the fragment ions predicted from amino acid sequences
+                 obtained from the database and the fragment ions observed in
+                 the tandem mass spectrum. In general, a difference greater
+                 than 0.1 between the normalized cross-correlation functions of
+                 the first- and second-ranked search results indicates a
+                 successful match between sequence and spectrum. Searches of
+                 species-specific protein databases with tandem mass spectra
+                 acquired from peptides obtained from the enzymatically
+                 digested total proteins of E. coli and S. cerevisiae cells
+                 allowed matching of the spectra to amino acid sequences within
+                 proteins of these organisms. The approach described in this
+                 manuscript provides a convenient method to interpret tandem
+                 mass spectra with known sequences in a protein database.",
+  journal     = "Journal of the American Society for Mass Spectrometry",
+  volume      =  5,
+  number      =  11,
+  pages       = "976--989",
+  month       =  {11},
+  year        =  1994,
+  language    = "en",
+  issn        = "1044-0305",
+  pmid        = "24226387",
+  doi         = "10.1016/1044-0305(94)80016-2"
+}
+
+
+@ARTICLE{Spivak2009-zd,
+  title       = "Improvements to the percolator algorithm for Peptide
+                 identification from shotgun proteomics data sets",
+  author      = "Spivak, Marina and Weston, Jason and Bottou, Léon and Käll,
+                 Lukas and Noble, William Stafford",
+  affiliation = "NEC Labs America, Princeton, New Jersey 08540, USA.",
+  abstract    = "Shotgun proteomics coupled with database search software
+                 allows the identification of a large number of peptides in a
+                 single experiment. However, some existing search algorithms,
+                 such as SEQUEST, use score functions that are designed
+                 primarily to identify the best peptide for a given spectrum.
+                 Consequently, when comparing identifications across spectra,
+                 the SEQUEST score function Xcorr fails to discriminate
+                 accurately between correct and incorrect peptide
+                 identifications. Several machine learning methods have been
+                 proposed to address the resulting classification task of
+                 distinguishing between correct and incorrect peptide-spectrum
+                 matches (PSMs). A recent example is Percolator, which uses
+                 semisupervised learning and a decoy database search strategy
+                 to learn to distinguish between correct and incorrect PSMs
+                 identified by a database search algorithm. The current work
+                 describes three improvements to Percolator. (1) Percolator's
+                 heuristic optimization is replaced with a clear objective
+                 function, with intuitive reasons behind its choice. (2)
+                 Tractable nonlinear models are used instead of linear models,
+                 leading to improved accuracy over the original Percolator. (3)
+                 A method, Q-ranker, for directly optimizing the number of
+                 identified spectra at a specified q value is proposed, which
+                 achieves further gains.",
+  journal     = "Journal of Proteome Research",
+  volume      =  8,
+  number      =  7,
+  pages       = "3737--3745",
+  month       =  {07},
+  year        =  2009,
+  language    = "en",
+  issn        = "1535-3893",
+  pmid        = "19385687",
+  doi         = "10.1021/pr801109k",
+  pmc         = "PMC2710313"
+}
+
