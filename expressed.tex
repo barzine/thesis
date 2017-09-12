@@ -1,45 +1,131 @@
-\chapter{About Clustering, Correlation and Expression}
+\chapter{About expression visualisation, correlation and clustering}
 \label{ch:expression}
 
-\begin{comment}
-\setlength{\epigraphwidth}{0.45\textwidth}
-\setlength{\epigraphrule}{0.1pt}
-\epigraph{Quantifier: c'est convenir, puis mesurer.}{\cite{Desrosieres}}
-\end{comment}
-
-As a former chemist, I realise how much it is tempting to trust instruments and
-workflow to accurately identify and quantify all the molecules present in a sample,
-and then been confounded\footnote{After more than 4 months of identification
-attempts with various modern techniques, what could have been the orange/red spot
-(visible light) at 1/3 of that tight light chromatogram (dichloromethane + drops
-of triethylamine) is still a mystery too me.}.
-Hence, I tried to avoid as much as I could any source of technical
-artefacts and biases in the data and statistical approaches I used for these
-exploratory analyses.
 
 
-\section{Introduction}
+The first recommended step to any kind of data analysis is to visualise it first.
+It allows us to detect underlying structures and also possible unwanted artefacts
+(either due to the experiments themselves, or to their statistical handling
+or both).
+I have also opted for a semi-empirical approach to determine a consensus set of
+parameters before applying them across datasets in further chapters.
+
+
+\section{Visualisation of expression data}
+
+\subsection{Distribution plots}
+In the literature, the distribution of expression values are usually $\log_{2}$-scaled.
+\Cref{fig:distribPlots} and~\cref{fig:unscaledDistrib} illustrate how
+this scaling improves the readability of the figure.
+Whenever removing the null values is harmful statistically or for the understanding,
+I add a common \emph{pseuco-count} (equals to $1$)
+to overcome the lack of definition of $\log_{2}(0)$.
+
+\Cref{fig:distribPlots.pdf} shows that all samples present a similar profile on
+this $\log_{2}(x+1)$ scale:
+a pic near $0$ for the lowly (and not expressed genes) and a long-trailing tail.
+The bulk of the expressed genes on this scale is below $6$ (\ie\ below 63 FPKM).
+
+  \begin{figure}[htbp]
+      \centering
+      \begin{subfigure}[b]{0.45\textwidth} % "0.45" donne ici la largeur de l'image
+          \centering \includegraphics[width=\textwidth]{histogramCastle_noLog.pdf}
+          \caption{}\label{fig:histCastle_nolog}
+      \end{subfigure}
+      ~ % ce symbole ajoute un espacement horisontal entre les premières deux images
+      \begin{subfigure}[b]{0.45\textwidth} % "0.45" donne ici la largeur de l'image
+            \centering \includegraphics[width=\textwidth]{histogramBrawand_noLog.pdf}
+            \caption{}\label{fig:histBrawand_nolog}
+        \end{subfigure}
+  \caption{Untransformed FPKM distribution across the
+      datasets}\label{fig:distribPlot}
+  \end{figure}
+
+
+
+\subsection{Scatter plots}
+\cite{anscombe} created four datasets which share very similar descriptive
+statistics to stress how important it is to visualise the data. As the scatter
+plots show on~\cref{fig:Anscombe}, we can observe quite different distributions
+for sets of two variables that would otherwise share the same descriptive
+statistics. Their means and variances  (for both $x$ and $y$),
+their Pearson correlation between $x$ and $y$, as
+the linear regression line are very similar when not equal.
+Hence, checking the four datasets graphically with scatter plots
+allows a quick quality check along with an
+estimation of the relationship between the variables. Moreover, even a non-linear
+but strong relationship would be promptly highlighted (\eg\ top right corner
+of~\cref{fig:Anscombe}).
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.5]{expressed/AnscombePanel.pdf}\centering
+      \caption[Anscombe quartet --- why data should always visualy checked]
+      {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
+      visually checked.}\smallbreak{} All the datasets displayed here have equal
+      or very similar descriptive statistic indicators.}
+\end{figure}
+
+
+\section{Main statistical approaches}
+
+\subsection{Correlation}
+%Cum hoc ergo propter hoc
+
+Correlation coefficients are a measure of the statistic dependence between two
+continuous variables\footnote{In the context of this study: either expression
+levels of a given gene across samples/tissues or expression levels of all genes
+\emph{between} two samples or tissues} (\eg\
+$X$ and $Y$) and always ranges within $[-1,1]$.
+
+While $1$ and $-1$ mean a perfect correlation (either positive or negative),
+a value equals to $0$ expresses that the two variables are independent.
+A value within $\mathopen]-1,0\mathclose[$
+or $\mathopen]0,1\mathclose[$ needs more interpretation. In biology, if the
+coefficient is within $[-0.5,0.5]$, the variables are often considered as
+independent.
+
+The correlation coefficient is computed by pairwise comparing observations
+between the two variable. Most implementation methods
+will manage an unbalanced number of observations by excluding the incomplete pairs.
+To ease the interpretation I preferred to filter the data \latin{a priori}
+myself; I only kept expression values effectively observed in all the datasets
+(\cref{sec:ExpressedOrNot}).
+
+Among the several methods available to compute the correlation coefficient, I
+tried both the Spearman and the Pearson correlations.
+
+\subsubsection{Pearson correlation}
+The Pearson correlation coefficient (usually noted as $r$) assesses the linear
+dependence between two variables. It is invariant to systematic addition of a
+constant or to simple scaling factors between the two variables.
+
+\subsubsection{Spearman correlation}
+The Spearman correlation coefficient (usually noted as $\rho$)
+is more robust than the Pearson correlation.
+However, it only assesses the monotonic dependence between two variables.
+The Spearman correlation is equal to the Pearson correlation of the value
+\emph{ranks} between two variables.
+
+
+\subsection{Clustering analysis}
 
 As we know the tissue type for each sample of each dataset,
-we could debate that supervised analyses can be more informative.
+we may debate that supervised analyses can be more informative.
 However, they would involve proper corrections for batch effects and
 other technical biases for each dataset.
 
 This is challenging as that often requires more knowledge than the available one
-through the repositories. It is also unwise to rely solely on the normalised data
-provided by the original authors as bias corrections (when possible)
-in \Rnaseq\ will vary in function of the following downstream analyses.
-Likewise, proteomic data is hard to handle and from the same data,
-two identification/quantification pipelines can give rather quite
-different results (see~\Cref{ch:proteomics}).
+through the repositories. We have seen it is also unwise to rely solely on the
+normalised data provided by the original authors. Eventual bias corrections
+in \Rnaseq\ vary according to planed downstream analyses and
+proteomic data is hard to handle and two processing pipelines may rather give
+quite different results (see~\Cref{ch:proteomics}).
 
 To assess the consistency, in particular for \Rnaseq, quantification across
 the different datasets, I chose a widely used and unsupervised method for gene
 expression studies: a clustering analysis.
-
-\section{Clustering analysis}
-
-This method uncovers possible hidden structures within the data, therefore,
+This method uncovers possible hidden
+structures within the data, therefore,
 it is well designed for exploratory studies.
 I can thus confirm if samples are more alike either due to their
 biological or their study origins.
@@ -83,69 +169,16 @@ approach is to calculate the subtraction result of
 the correlation coefficient from $1$ (hence, a greater similarity between the two
 samples means a smaller distance).
 
-\section{Correlation}
-
-%Cum hoc ergo propter hoc
-
-Correlation coefficients are a measure of the statistic dependence between two
-continuous variables\footnote{In the context of this study: either expression
-levels of a given gene across samples/tissues or expression levels of all genes
-\emph{between} two samples or tissues} (\eg\
-$X$ and $Y$) and always ranges within $[-1,1]$.
-
-While $1$ and $-1$ mean a perfect correlation (either positive or negative),
-a value equals to $0$ expresses that the two variables are independent.
-A value within $\mathopen]-1,0\mathclose[$
-or $\mathopen]0,1\mathclose[$ needs more interpretation. In biology, if the
-coefficient is within $[-0.5,0.5]$, the variables are often considered as
-independent.
-
-The correlation coefficient is computed by pairwise comparing observations
-between the two variable. Most implementation methods
-will manage an unbalanced number of observations by excluding the incomplete pairs.
-To ease the interpretation I preferred to filter the data \latin{a priori}
-myself; I only kept expression values effectively observed in all the datasets
-(\cref{sec:ExpressedOrNot}).
-
-Among the several methods available to compute the correlation coefficient, I
-tried both the Spearman and the Pearson correlations.
-
-\subsection{Pearson correlation}
-The Pearson correlation coefficient (usually noted as $r$) assesses the linear
-dependence between two variables. It is invariant to systematic addition of a
-constant or to simple scaling factors between the two variables.
-
-\subsection{Spearman correlation}
-The Spearman correlation coefficient (usually noted as $\rho$)
-is more robust than the Pearson correlation.
-However, it only assesses the monotonic dependence between two variables.
-The Spearman correlation is equal to the Pearson correlation of the value
-\emph{ranks} between two variables.
 
 
-\subsection{Scatter plot}
+\section{Discussion}
 
-\cite{anscombe} created four datasets which share very similar descriptive
-statistics to stress how important it is to visualise the data. As the scatter
-plots show on~\cref{fig:Anscombe}, we can observe quite different distributions
-for sets of two variables that would otherwise share the same descriptive
-statistics. Their means and variances  (for both $x$ and $y$),
-their Pearson correlation between $x$ and $y$, as
-the linear regression line are very similar when not equal.
-Hence, checking the four datasets graphically with scatter plots
-allows a quick quality check along with an
-estimation of the relationship between the variables. Moreover, even a non-linear
-but strong relationship would be promptly highlighted.
+\TK{removed the principal sources of biases that was easily handled}
+\TK{First source: focus only on the protein coding genes as the data not good for
+other biotypes of \gls{RNA}}
 
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.5]{expressed/Anscombe.png}\centering
-      \caption[Anscombe quartet --- why data should always visualy checked]
-      {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
-      visually checked.}\smallbreak{} All the datasets displayed here have equal
-      or very similar descriptive statistic indicators.}
-\end{figure}
 
-\section{Expressed or not expressed}
+\subsection{Expressed or not expressed}
 \label{sec:ExpressedOrNot}
 
 While it can seem as a trivial concept and might be overlook, whether a specific
@@ -177,7 +210,7 @@ a lack of expression (and not a lack of observation).
       for the transcriptome and the proteome.}
 \end{figure}
 
-\subsection{The undefined}%\KOMAoptions{parskip=false}
+\subsubsection{The undefined}%\KOMAoptions{parskip=false}
 \label{subsec:ExpressedOrNot-undefined}
 If a protein or transcript is never found in any of the samples of a dataset,
 then I considered that we can not determine if the protein or transcript was
@@ -187,24 +220,24 @@ excluded from the analyses as I can not resolve precisely if this is a
 technical artefact or a biological truth. This case is illustrate by the row
 circled in red in~\cref{fig:DefineExpression}.
 
-\subsection{Expression in a dataset}
+\subsubsection{Expression in a dataset}
 \label{subsec:ExpressedOrNot--expDataset}
 By contrast, if a protein or a transcript is expressed in some samples of the
 dataset, then, whenever no expression was recorded in the other
 samples, I consider that the expression of the considered macromolecule is truly
 null for those samples.
 
-\subsection{Expression within a sample}
+\subsubsection{Expression within a sample}
 Due to the technical (and biological) differences between proteomics and
 transcriptomics, I use different thresholds to define the expression of a protein
 or a transcript.
 
-\subsubsection{Expressed protein}
+\minisec{Expressed protein}
 On the proteomic side, I consider that a protein is expressed if it has been
 identified and quantified. In other words, if the expression value of a protein
 is greater than zero in a sample, I consider it as expressed.
 
-\subsubsection{Expressed transcript}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
+\minisec{Expressed transcript}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
 It is a bit more complex on the transcriptomic side as we have to account for
 technical noise, but we can also expect ``translational noise'' \citep{rnaseq-2009},
 \citep{lowNoiseLimit}.
@@ -225,7 +258,7 @@ that parts of the analyses have also been done either without
 any threshold (\ie\ the same definition used with the proteins has been applied)
 or with a threshold of $5$ \glspl{FPKM}.
 
-\subsection{Limitation of the study}
+\subsubsection{Limitation of the study}
 While I have compared the list of undefined, expressed and unexpressed molecules
 the bulk of the analysis has been done on the common ones.
 
@@ -233,25 +266,11 @@ In other words, if a \mRNA\ --- or protein --- is not expressed in at least
 one sample in \emph{every and each} of the datasets used for the analysis,
 it will be excluded from the main part of it.
 
-
-\section{About logarithm scaling}
-
-
-
-
-\TK{Ajouter dans ce chapitre les résultats d'un dataset (à terme d'example)
-pour expliquer les choix de logarithm}
-
-
-I have opted for
-a semi-empirical approach to determine the most adequate parameters to pick for
-the clustering method.
-
-
-Before starting the meta-analysis, last source of possible bias to remove: the
-biological replicates unbalance.
+\subsection{Mitochondria issue}
 
 \subsection{Tissue Averaging}
+Before starting the meta-analysis, last source of possible bias to remove: the
+biological replicates unbalance.
 The different datasets present different number of biological replicates per
 tissues (see \Cref{tab:Lib5DF}). To avoid unnecessary skewness due this unbalance
 (see \cref{sec:expDesign}), I computed a \emph{\enquote{virtual} reference} for
