@@ -1,69 +1,91 @@
 \chapter{About expression visualisation, correlation and clustering}
 \label{ch:expression}
 
-
-
-The first recommended step to any kind of data analysis is to visualise it first.
-It allows us to detect underlying structures and also possible unwanted artefacts
-(either due to the experiments themselves, or to their statistical handling
-or both).
-I have also opted for a semi-empirical approach to determine a consensus set of
-parameters before applying them across datasets in further chapters.
+As a first step towards the meta-analyses (across transcriptomes, across
+proteomes and then across transcriptomes/proteomes),
+I have opted for a semi-empirical approach to determine
+a consensus set of methods and parameters on each individual study
+before applying them across all the datasets in the further chapters.
 
 
 \section{Visualisation of expression data}
 
+Visualising the data first allows for adequate analyses
+and more pertinent results by uncovering
+the detection of underlying structures and possible unwanted artefacts.
+
 \subsection{Distribution plots}
-In the literature, the distribution of expression values are usually $\log_{2}$-scaled.
-\Cref{fig:distribPlots} and~\cref{fig:unscaledDistrib} illustrate how
+
+In the literature, the distribution of expression values are frequently
+visualised on a $\log_{2}$-scale.
+\Cref{fig:distribPlot} and~\Cref{fig:unscaledDistrib} illustrate how
 this scaling improves the readability of the figure.
-Whenever removing the null values is harmful statistically or for the understanding,
-I add a common \emph{pseuco-count} (equals to $1$)
+Furthermore, $\log_{2}$-scale allows to transform count data to continuous
+while smoothing the global distribution shape towards a normal distribution.
+Another advantage of the transformation is to conform the data to many available
+statistical models as they rely on normal distributions.
+
+\NB\ Whenever removing the null values is harmful statistically
+or for correct interpretation,
+I have added a common \emph{pseudo-count} (equals to $1$)
 to overcome the lack of definition of $\log_{2}(0)$.
 
-\Cref{fig:distribPlots.pdf} shows that all samples present a similar profile on
-this $\log_{2}(x+1)$ scale:
+\Cref{fig:distribPlot} shows that all \gls{RNA} samples present a similar
+profile on this $\log_{2}(x+1)$ scale:
 a pic near $0$ for the lowly (and not expressed genes) and a long-trailing tail.
-The bulk of the expressed genes on this scale is below $6$ (\ie\ below 63 FPKM).
+The bulk of the expressed genes on this scale is below $6$ (\ie\ below 63 \FPKM).
 
-  \begin{figure}[htbp]
-      \centering
-      \begin{subfigure}[b]{0.45\textwidth} % "0.45" donne ici la largeur de l'image
-          \centering \includegraphics[width=\textwidth]{histogramCastle_noLog.pdf}
-          \caption{}\label{fig:histCastle_nolog}
-      \end{subfigure}
-      ~ % ce symbole ajoute un espacement horisontal entre les premières deux images
-      \begin{subfigure}[b]{0.45\textwidth} % "0.45" donne ici la largeur de l'image
-            \centering \includegraphics[width=\textwidth]{histogramBrawand_noLog.pdf}
-            \caption{}\label{fig:histBrawand_nolog}
-        \end{subfigure}
-  \caption{Untransformed FPKM distribution across the
-      datasets}\label{fig:distribPlot}
-  \end{figure}
+Many non-trivial methods correct for the skewness presents in
+\Rnaseq\ and \ms-based proteome global expression distributions.
+However, it may be complex to assess the biological relevance of those corrections.
+Hence, while it may be better to correct for every bias in principle,
+in the context of this thesis, this is a small concern.
 
-
+\begin{sidewaysfigure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/histogramCastle_noLog.pdf}
+        \caption{}\label{fig:histCastle_nolog}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/histogramBrawand_noLog.pdf}
+        \caption{}\label{fig:histBrawand_nolog}
+    \end{subfigure}
+    \caption{Profile of expression across the transcriptome
+     and proteome datasets}\label{fig:distribPlot}
+\end{sidewaysfigure}
 
 \subsection{Scatter plots}
-\cite{anscombe} created four datasets which share very similar descriptive
-statistics to stress how important it is to visualise the data. As the scatter
-plots show on~\cref{fig:Anscombe}, we can observe quite different distributions
-for sets of two variables that would otherwise share the same descriptive
-statistics. Their means and variances  (for both $x$ and $y$),
-their Pearson correlation between $x$ and $y$, as
-the linear regression line are very similar when not equal.
-Hence, checking the four datasets graphically with scatter plots
-allows a quick quality check along with an
-estimation of the relationship between the variables. Moreover, even a non-linear
-but strong relationship would be promptly highlighted (\eg\ top right corner
-of~\cref{fig:Anscombe}).
 
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.5]{expressed/AnscombePanel.pdf}\centering
-      \caption[Anscombe quartet --- why data should always visualy checked]
-      {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
-      visually checked.}\smallbreak{} All the datasets displayed here have equal
-      or very similar descriptive statistic indicators.}
+\cite{anscombe} created four datasets (see \Cref{fig:Anscombe})
+which share similar descriptive statistics to show the importance
+of data visualisation even through a simple scatter plot.
+Hence, checking the datasets graphically with scatter plots
+allows a quick quality check to detect outliers along with an
+estimation of the relationship between the variables.
+Even a non-linear but strong relationship is promptly highlighted
+(\eg\ top right corner of~\cref{fig:Anscombe}).
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/RepTechscat.pdf}
+        \caption{Technical replicates}\label{fig:scatTechRep}
+    \end{subfigure}~%
+    \begin{subfigure}[b]{0.45\textwidth}
+    \centering \includegraphics[width=\textwidth]{expressed/RepBiolscat.pdf}
+        \caption{Biological replicates}\label{fig:scatBiolRep}
+    \end{subfigure}
+    \caption{Examples of scatter plot for replicates from Uhlén
+    (transcriptome)}\label{fig:scatEg}
 \end{figure}
+
+\Cref{fig:scatTechRep} illustrates how very lowly expressed \gls{RNA}
+diverge even in technical replicates.
+Biological replicates, within a same dataset,
+may present very close profiles though with a greater spread
+as showed in \Cref{fig:scatBiolRep}.
 
 
 \section{Main statistical approaches}
@@ -75,37 +97,18 @@ Correlation coefficients are a measure of the statistic dependence between two
 continuous variables\footnote{In the context of this study: either expression
 levels of a given gene across samples/tissues or expression levels of all genes
 \emph{between} two samples or tissues} (\eg\
-$X$ and $Y$) and always ranges within $[-1,1]$.
-
-While $1$ and $-1$ mean a perfect correlation (either positive or negative),
-a value equals to $0$ expresses that the two variables are independent.
-A value within $\mathopen]-1,0\mathclose[$
-or $\mathopen]0,1\mathclose[$ needs more interpretation. In biology, if the
-coefficient is within $[-0.5,0.5]$, the variables are often considered as
-independent.
+$X$ and $Y$) and always ranges within $[-1,1]$ (see also \cref{sec:CorrMore}).
 
 The correlation coefficient is computed by pairwise comparing observations
 between the two variable. Most implementation methods
 will manage an unbalanced number of observations by excluding the incomplete pairs.
 To ease the interpretation I preferred to filter the data \latin{a priori}
-myself; I only kept expression values effectively observed in all the datasets
-(\cref{sec:ExpressedOrNot}).
+myself; I only kept expression values \emph{effectively observed}
+in all the datasets (\cref{sec:ExpressedOrNot}).
 
 Among the several methods available to compute the correlation coefficient, I
-tried both the Spearman and the Pearson correlations.
-
-\subsubsection{Pearson correlation}
-The Pearson correlation coefficient (usually noted as $r$) assesses the linear
-dependence between two variables. It is invariant to systematic addition of a
-constant or to simple scaling factors between the two variables.
-
-\subsubsection{Spearman correlation}
-The Spearman correlation coefficient (usually noted as $\rho$)
-is more robust than the Pearson correlation.
-However, it only assesses the monotonic dependence between two variables.
-The Spearman correlation is equal to the Pearson correlation of the value
-\emph{ranks} between two variables.
-
+tried both the Spearman and the Pearson correlations
+(see respectively \cref{subsec:SpearmanCor} and \cref{subsec:PearsonCor}).
 
 \subsection{Clustering analysis}
 
@@ -113,13 +116,13 @@ As we know the tissue type for each sample of each dataset,
 we may debate that supervised analyses can be more informative.
 However, they would involve proper corrections for batch effects and
 other technical biases for each dataset.
-
 This is challenging as that often requires more knowledge than the available one
-through the repositories. We have seen it is also unwise to rely solely on the
-normalised data provided by the original authors. Eventual bias corrections
+through the repositories.
+In \Cref{ch:datasets}, we have seen it is also unwise to rely solely on the
+normalised data provided by the original authors\footnote{Eventual bias corrections
 in \Rnaseq\ vary according to planed downstream analyses and
 proteomic data is hard to handle and two processing pipelines may rather give
-quite different results (see~\Cref{ch:proteomics}).
+quite different results (see~\Cref{ch:proteomics}).}.
 
 To assess the consistency, in particular for \Rnaseq, quantification across
 the different datasets, I chose a widely used and unsupervised method for gene
@@ -155,28 +158,39 @@ pertinent as we know that the whole organism is developed from
 an original single cell. The data is portioned in an extensive hierarchy:
 each cluster merges with another at a certain distance.
 In practice, each sample starts in its own cluster and then
-by iteration, each cluster is merged with its nearest one. The method has
-two parameters: the linkage and the distance. \TK{how to pick them debated: see
-and add Jaskowiak et al. BMC Bioinformatics 2014, 15(Suppl 2:S2).}
-
-The linkage parameter specifies which part of each cluster is used as reference
-for computing the distance between the clusters. There are many methods and after
-trying several, I picked arbitrary the one that was dividing
-the samples by tissues the most accurately across the different datasets.
+by iteration, each cluster is merged with its nearest one.
+The method has two parameters: the distance and the linkage method.
+Debate is still going on how to pick these parameters, see~\mycite{Jaskowiak2014}.
 
 The distance measures the dissimilarity between two samples and one common
 approach is to calculate the subtraction result of
 the correlation coefficient from $1$ (hence, a greater similarity between the two
-samples means a smaller distance).
+samples means a smaller distance). As previously, I have used both Spearman
+and Pearson correlation methods.
+
+The linkage parameter specifies which part of each cluster is used as reference
+for computing the distance between the clusters. There are many methods and after
+trying several, I have picked arbitrary the one that divides the most accurately
+the samples by their tissue source across the different datasets.
+In fact, I noticed that the Ward's method~\mycite{Ward1963}
+was the best for this task and was outperforming the complete-linkage method.
+Indeed, this later method was used in~\mycite{Uhlen2014}
+(first release of the \uhlen\ dataset) where
+the original authors have to discard a few samples as they were clustering
+incoherently in regards of their biological nature.
+However, the Ward's method allows to conserve all the samples for the analysis
+as long as another bias source is corrected (see \cref{subsec:mito}).
 
 
+\section{Reducing obvious bias sources}
 
-\section{Discussion}
+Prior to the analysis and while its early stages,
+I controlled a few easy biases.
 
-\TK{removed the principal sources of biases that was easily handled}
-\TK{First source: focus only on the protein coding genes as the data not good for
-other biotypes of \gls{RNA}}
+\subsection{Protein coding genes}
+More than the 
 
+\subsection{Mitochondria issue}\label{subsec:mito}
 
 \subsection{Expressed or not expressed}
 \label{sec:ExpressedOrNot}
@@ -266,27 +280,25 @@ In other words, if a \mRNA\ --- or protein --- is not expressed in at least
 one sample in \emph{every and each} of the datasets used for the analysis,
 it will be excluded from the main part of it.
 
-\subsection{Mitochondria issue}
-
-\subsection{Tissue Averaging}
-Before starting the meta-analysis, last source of possible bias to remove: the
-biological replicates unbalance.
-The different datasets present different number of biological replicates per
-tissues (see \Cref{tab:Lib5DF}). To avoid unnecessary skewness due this unbalance
-(see \cref{sec:expDesign}), I computed a \emph{\enquote{virtual} reference} for
-each tissue of the datasets that present more than one sample for each tissue,
-\ie\ \dataset{Brawand}, \dataset{Uhlén} and \dataset{Gtex} datasets.
+\subsection{Averaging tissue expression}
+To avoid unnecessary skewness in the meta-analysis due to
+the biological replicates unbalance across the datasets
+(see \cref{sec:expDesign}), I computed a \emph{\enquote{virtual} reference} per
+tissue for the datasets that present more than one biological sample per tissue,
+\ie\ \vt, \uhlen\ and \gtex\ datasets.
 
 Thus, for each of these datasets, for each of their tissues, I compute gene
 expression levels by taking the median value of each gene across all the
 biological replicates of that tissue.
 
-The \dataset{Uhlén} requires an extra prior step for some of the tissues as they
-present technical replicates. For these, I average first the gene expression levels
+The \uhlen\ dataset has required an extra prior step for some of the tissues
+as they present technical replicates.
+For these, I have first averaged the gene expression levels
 for each subject-tissue pairs before computing the gene expression level medians
 of each tissue.
 
-\NB\ \dataset{Castle} dataset comprises mixture of 10 subjects for each tissue, I
-discard the single-end sequenced samples for the \dataset{Illumina Body Map}.
+\NB\ For \ibm\ dataset, I discard the single-end sequenced samples.
+For \castle, \cutler, \kuster\ and \pandey\ datasets, averaging the expression
+per tissue was unnecessary due to their original design.
 
 

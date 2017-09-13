@@ -1,20 +1,51 @@
 \chapter{Supplementary for Chapter 3}
 \label{ch:SupplExpress}
 
-
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.45\textwidth} % "0.45" donne ici la largeur de l'image
-        \centering \includegraphics[width=\textwidth]{histogramCastle_noLog.pdf}
+        \centering \includegraphics[width=\textwidth]{expressed/histogramCastle_noLog.pdf}
         \caption{}\label{fig:histCastle_nolog}
     \end{subfigure}
 ~ % ce symbole ajoute un espacement horisontal entre les premières deux images
     \begin{subfigure}[b]{0.45\textwidth} % "0.45" donne ici la largeur de l'image
-          \centering \includegraphics[width=\textwidth]{histogramBrawand_noLog.pdf}
+          \centering \includegraphics[width=\textwidth]{expressed/histogramBrawand_noLog.pdf}
           \caption{}\label{fig:histBrawand_nolog}
       \end{subfigure}
 \caption{Untransformed FPKM distribution across the
     datasets}\label{fig:unscaledDistrib}
 \end{figure}
 
+\begin{figure}
+    \includegraphics[scale=0.40]{expressed/AnscombePanel.pdf}\centering
+    \caption[Anscombe quartet --- why data should always visualy checked]
+    {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
+    visually checked.}\smallbreak{} All the datasets, while presenting
+    different distribution, have equal or very similar descriptive statistic
+    indicators. Their means and variances (for both $x$ and $y$ variables),
+    their Pearson correlation between $x$ and $y$,
+    as their linear regressions are very similar when not equal.}
+\end{figure}
+
+
+\section{Correlation}\label{sec:CorrMore}
+
+While $1$ and $-1$ mean a perfect correlation (either positive or negative),
+a value equals to $0$ expresses that the two variables are independent.
+A value within $\mathopen]-1,0\mathclose[$
+or $\mathopen]0,1\mathclose[$ needs more interpretation. In biology, if the
+coefficient is within $[-0.5,0.5]$, the variables are often considered as
+independent.
+
+\subsection{Spearman correlation}\label{subsec:SpearmanCor}
+The Spearman correlation coefficient (usually noted as $\rho$)
+is more robust than the Pearson correlation.
+However, it only assesses the monotonic dependence between two variables.
+The Spearman correlation is equal to the Pearson correlation of the value
+\emph{ranks} between two variables.
+
+\subsection{Pearson correlation}\label{subsec:PearsonCor}
+The Pearson correlation coefficient (usually noted as $r$) assesses the linear
+dependence between two variables. It is invariant to systematic addition of a
+constant or to simple scaling factors between the two variables.
 
