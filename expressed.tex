@@ -1,8 +1,8 @@
 \chapter{About expression visualisation, correlation and clustering}
 \label{ch:expression}
 
-As a first step towards the meta-analyses (across transcriptomes, across
-proteomes and then across transcriptomes/proteomes),
+As a first step towards the meta-analyses\footnote{Across transcriptomes, across
+proteomes and then across transcriptomes/proteomes.},
 I have opted for a semi-empirical approach to determine
 a consensus set of methods and parameters on each individual study
 before applying them across all the datasets in the further chapters.
@@ -18,11 +18,11 @@ the detection of underlying structures and possible unwanted artefacts.
 
 In the literature, the distribution of expression values are frequently
 visualised on a $\log_{2}$-scale.
-\Cref{fig:distribPlot} and~\Cref{fig:unscaledDistrib} illustrate how
+\Cref{fig:distribPlot} and~\Cref{fig:DistribPlot_noLog2} illustrate how
 this scaling improves the readability of the figure.
 Furthermore, $\log_{2}$-scale allows to transform count data to continuous
 while smoothing the global distribution shape towards a normal distribution.
-Another advantage of the transformation is to conform the data to many available
+Another advantage of this transformation is to conform the data to many available
 statistical models as they rely on normal distributions.
 
 \NB\ Whenever removing the null values is harmful statistically
@@ -35,26 +35,54 @@ profile on this $\log_{2}(x+1)$ scale:
 a pic near $0$ for the lowly (and not expressed genes) and a long-trailing tail.
 The bulk of the expressed genes on this scale is below $6$ (\ie\ below 63 \FPKM).
 
-Many non-trivial methods correct for the skewness presents in
-\Rnaseq\ and \ms-based proteome global expression distributions.
-However, it may be complex to assess the biological relevance of those corrections.
-Hence, while it may be better to correct for every bias in principle,
-in the context of this thesis, this is a small concern.
+The expression of the proteins is more irregular which is concordant to the
+heterogeneity of the sample preparation (see \cref{subsec:ProtSampPrep}).
 
-\begin{sidewaysfigure}
+
+\begin{figure}
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/histogramCastle_noLog.pdf}
-        \caption{}\label{fig:histCastle_nolog}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/castle.pdf}
+        \caption{Castle}\label{fig:densityCastle_log2}
     \end{subfigure}%
 ~%
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/histogramBrawand_noLog.pdf}
-        \caption{}\label{fig:histBrawand_nolog}
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/vt.pdf}
+        \caption{Brawand}\label{fig:densityBrawand_log2}
     \end{subfigure}
-    \caption{Profile of expression across the transcriptome
-     and proteome datasets}\label{fig:distribPlot}
-\end{sidewaysfigure}
+
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/ibm.pdf}
+        \caption{Illumina Body Map}\label{fig:densityIBM_log2}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/uhlen.pdf}
+        \caption{Uhlen}\label{fig:densityUhlen_log2}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/gtex.pdf}
+        \caption{Gtex}\label{fig:densityGtex_log2}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/cutler.pdf}
+        \caption{Cutler}\label{fig:densityCutler_log2}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/kuster.pdf}
+        \caption{Kuster}\label{fig:densityKuster_log2}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/pandey.pdf}
+        \caption{Pandey}\label{fig:densityPandey_log2}
+    \end{subfigure}
+    \caption{Profile of expression across the transcriptome (protein coding
+    genes only) and proteome datasets}\label{fig:distribPlot}
+\end{figure}
 
 \subsection{Scatter plots}
 
@@ -184,13 +212,58 @@ as long as another bias source is corrected (see \cref{subsec:mito}).
 
 \section{Reducing obvious bias sources}
 
-Prior to the analysis and while its early stages,
-I controlled a few easy biases.
+Many non-trivial methods correct for the skewness presents in
+\Rnaseq\ and \ms-based proteome global expression distributions
+and for other possible sources of bias.
+However, it may be complex to assess the biological relevance of those corrections.
+Hence, while it may be better to correct for every bias in principle,
+in the context of this thesis, this is a smaller concern as I am interested into
+consistent traits across the datasets that may be consolidated into a reference.
+Nonetheless, prior to the analysis and while its early stages,
+I found a few easy biases to avoid.
 
 \subsection{Protein coding genes}
-More than the 
+In addition of the obvious reason to match with the proteomic data,
+most of the transcriptomic data is the produce of poly-A selected protocols.
+Thus, aside of the \mRNAs, the other \glspl{RNA} are off-target
+and, for many of them,
+their expression levels estimations may be highly imprecise.
 
 \subsection{Mitochondria issue}\label{subsec:mito}
+
+Gene expression levels of mitochondria can report on the stress level of a cell
+(for an example, see~\mycite{Ilicic2016}).
+However, it is unwise to keep them for a bulk analysis, particularly when
+comparing different biological sources.
+Indeed, it is very hard to properly normalise their expression.
+It involves knowing the amount of mitochondria in the studied samples.
+I have decided to remove them from the analysis
+as there are always mitochondrial genes among the highest expressed genes.
+As these usually dominate manifolds the expression of the other genes,
+they skew any analysis relying on correlation.
+
+Removing the 37 mitochondrial genes from the bulk of expressed genes
+(above 10,000 protein coding genes) produces more defined clusters as showed on
+\Cref{fig:MitoNomito}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.75\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{expressed/Uhlen_noLog_mito_htseq.pdf}
+        \caption{With the 37 mitochondrial genes}\label{fig:withMito}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.75\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{%
+            expressed/Uhlen_noLog_NoMito_htseqPearson.pdf}
+        \caption{Without the mitochondrial genes}\label{fig:NoMito}
+    \end{subfigure}
+    \caption{Clustering of the biological samples of \uhlen\
+    dataset based on the Pearson correlation}\label{fig:MitoNomito}
+\end{figure}
+
 
 \subsection{Expressed or not expressed}
 \label{sec:ExpressedOrNot}
