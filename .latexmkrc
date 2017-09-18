@@ -1,5 +1,5 @@
-#$pdflatex = 'xelatex --synctex=1 -shell-escape %O %S';
-#$pdf_previewer = 'open -a /Applications/Skim.app';
+$pdflatex = 'xelatex --synctex=1 -shell-escape %O %S';
+$pdf_previewer = 'open -a /Applications/Skim.app';
 
 # Glossaries support based on <http://tex.stackexchange.com/a/44316/42>
 #add_cus_dep('glo', 'gls', 0, 'makeglo2gls');
