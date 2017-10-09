@@ -19,8 +19,8 @@
 
 
 
-\title{Investigating Human Gene Expression in Normal. From Transcriptomic to
-Proteomics}
+\title{Investigating Human Gene Expression in Normal Tissues.\\
+From Transcriptomic to Proteomics}
 %%other possibility:
 %\title{Expression in normal human tissues: learning from independent publicly available high-throughput transcriptomic and proteomic data}
 \subject{This dissertation is submitted for the degree of Doctor of Philosophy}
@@ -43,6 +43,13 @@ Proteomics}
 %\addtokomafont{section}{\Large}
 %\addtokomafont{subsection}{\large}
 
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+
 \begin{document}
 \hyphenation{%
   abun-dance
@@ -59,7 +66,7 @@ Proteomics}
 
 \pagestyle{scrheadings}
 %\frontmatter\
-
+%TC:ignore
 \input{disclaimer.tex}
 \input{summary.tex}
 \input{acknowledgements.tex}
@@ -81,7 +88,7 @@ Proteomics}
     \addcontentsline{toc}{chapter}{\listtablename}\raggedbottom\ \clearpage \thispagestyle{empty}
     \cleardoublepage
 \endgroup
-
+%TC:endignore
 %\input{listofdatasets.tex}
 \cleardoublepage
 %\mainmatter\
@@ -97,7 +104,7 @@ Proteomics}
 \input{integration.tex}
 \input{normalisation.tex}
 \input{conclusion.tex}
-
+%TC:ignore
 %\backmatter\
 \appendix\
 %\input{appendix.tex}
@@ -108,9 +115,10 @@ Proteomics}
 \begingroup
 
 \input{app/intro-suppl}
-\input{ds/index.tex}
+\input{ds/index}
 \input{app/express-supl}
-\input{app/IntegSuppl.tex}
+\input{app/transc-supl}
+\input{app/IntegSuppl}
 %\input{app/IntScatt.tex}
 
 \chapter{List of publications}
@@ -128,5 +136,6 @@ Proteomics}
 %\printglossaries\
 
 
+%TC:endignore
 \end{document}
 
