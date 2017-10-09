@@ -260,16 +260,6 @@ consistent traits across the datasets that may be consolidated into a reference.
 Nonetheless, prior to the analysis and while its early stages,
 I found a few easily avertible biases that I describe hereinafter.
 
-\subsection{Protein coding genes}
-I have focused my analyses on the \mRNAs\ (\ie\ \glspl{RNA} that have a
-biotype described as \emph{protein coding} in \ens{76}).
-
-In addition of the obvious reason to match with the proteomic data,
-most of the transcriptomic data is the produce of poly-A selected protocols
-(see \cref{msec:polyA}).
-Thus, aside of the \mRNAs, all the other \glspl{RNA} are off-target
-and, for many of them,
-their expression levels estimations may be highly imprecise.
 
 \subsection{Mitochondria issue}\label{subsec:mito}
 
@@ -286,7 +276,8 @@ and they usually dominate manifolds the expression of the other genes.
 
 Removing the 37 mitochondrial genes from the bulk of expressed genes
 (above 10,000 protein coding genes) produces more defined clusters as showed on
-\Cref{fig:MitoNomito}.
+\Cref{fig:MitoNomito} (see also \Cref{ExpGenePcoding1_withMito} in comparison
+of \Cref{ExpGenePcoding1}).
 
 \begin{figure}
     \centering
@@ -302,9 +293,24 @@ Removing the 37 mitochondrial genes from the bulk of expressed genes
             expressed/Uhlen_noLog_NoMito_htseqPearson.pdf}
         \caption{Without the mitochondrial genes}\label{fig:NoMito}
     \end{subfigure}
-    \caption{Clustering of the biological samples of \uhlen\
-    dataset based on the Pearson correlation}\label{fig:MitoNomito}
+    \caption[Clustering of the biological samples of \uhlen\
+    dataset based on the Pearson correlation]{\label{fig:MitoNomito}\textbf{Clustering
+    of the biological samples of \uhlen\ dataset based on the Pearson correlation}
+    --- all expressed genes are included.}
 \end{figure}
+
+
+\subsection{Protein coding genes}\label{subsec:protcodingOnly}
+I have focused my analyses on the \mRNAs\ (\ie\ \glspl{RNA} that have a
+biotype described as \emph{protein coding} in \ens{76}).
+
+In addition of the obvious reason to match with the proteomic data,
+most of the transcriptomic data is the produce of poly-A selected protocols
+(see \cref{msec:polyA}).
+Thus, aside of the \mRNAs, all the other \glspl{RNA} are off-target
+and, for many of them,
+their expression levels estimations may be highly imprecise.
+
 
 
 \subsection{Expressed or not expressed}
