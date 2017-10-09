@@ -1,119 +1,70 @@
 \chapter{Consistency through different transcriptomics studies with RNA-Seq}
 \label{ch:Transcriptomics}
 
+Multiplication of atlases for many species: quel est le bien fondé de ces pratiques
 
+On the past few years, a large number of gene expression studies based on
+\Rnaseq\ have been used to create gene expression
+atlases, for examples see~\mycite{Krupp2012,Freeman2012,Ringwald2012,
+Jimenez-Lozano2012,Wu2009-lw,Clark2017-mw,Lu2017-df,Pazhamala2017-ig,
+Stelpflug2016-sm,Yao2016-se,Gerrard2016-zu}.
 
-Science progresses through many elements. Quantified observations are rather one
-of the fastest tracks to new understandings and insights.
+The incentive is that compared to microarrays, there should be a lot less
+batch effects and that these studies, in addition to explore the transcriptome
+for new (undiscovered until now) transcripts, the relationships (coexpression,
+coregulation between them) due to the fact that there are not these biases (as
+microarrays) these studies can be used as reference for later studies.
 
-\section{Introduction}
+Problem: while they don't present some of the batch effects of the microarrays,
+there was no real studies \emph{at that time} on how good is the \Rnaseq.
 
-\begin{itemize}
-    \item Difficulty of sampling of normal conditions for human, particularly
-        for the solid tissues. (could be very useful in case of cancer for
-        example)
-    \item Lots of transcriptomics data in the repository of \EBI{}. Can we use
-        this as a base for reference? + Explosion of atlases publications
-    \item previous point not new, but recently multiplications of studies on
-        normal human studies based on \Rnaseq
-    \item Indeed, in the past people tried with microarray data but didn't work
-        \TK{find sources}
-    \item When I started this study, there wasn't any publication on this matter
-        yet, but \Rnaseq was considered as quantitative (when microarrays were
-        considered semi-quantitative at best).
-    \item nobody did published on my specific subject yet, but since then things changed
-    \item first paper from MACQ/SEC III
-    \item increasing number of papers that been published on the subject
-    \item I will discuss the different part of the papers that are relevant
-        with additions on what my study confirms/refutes or expands them.
+While at the beginning of my thesis,
+the subject was little known,
+since then several other studies have been published on the matter.
+Whenever relevant, I present and discuss those results them relation to my owns.
+
+The first piece towards this goal was done by the~\mycite{seqcmaqc}.
+
+\TK{put back in context why}
+\TK{who supervised, help and etc.}
+
+\minisec{Publications derived from this chapter}
+\begin{itemize}[topsep=0pt,nosep]
+    \item \fullcite{EBIgxa}
+    \item (flash talk) CSAMA2013 --- How quantitative is RNA-seq?
+    \item (invited talk) GM$^2$ 2013 --- Baseline Gene expression Atlas
+    \item (poster) ECCB14 --- A feasibility study:
+        Integration of independent RNAseq datasets
 \end{itemize}
 
-\section{EBI Expression Atlas or how integrating independent datasets }
 
-While current high-throughput gene expression studies are mainly about
-differential gene expression between (notably diseased and treated) conditions,
-healthy controls are not always enough or even available. Even more so, when the
-study subject is human. Indeed, it rather apprehensible that sampling solid
-tissues on a healthy human is (Fortunately) not usual or common.
+\mycite{seqcmaqc}: provides a basis, same samples sequenced at different places
+shows that \emph{relative} expression agrees across platforms. But, limitations:
+the samples are really different biologically (Universal Human Reference RNA) and
+Human Brain Reference RNA (see~\mycite{MAQC_Consortium2006-hs})
+(from the \gls{MAQC} consortium).
 
-Although, many atlases have been released to help on this issue,
-there is still not any direct method that would allow you more than check the
-presence (or lack of detection) of specific genes in a given condition.
+\TK{anything relevant to the discussion of this chapter}
 
-With the increasing number of studies of normal tissues with overlapping conditions
-\cref{fig:VennStudiesT}, we are investigating the consistency of gene-tissue
-associations on one side but moreover we would like to assess the expression
-levels across the datasets in the aim of integrating all the available data in a
-gene expression baseline reference.
+%\section{Results}\label{sec:Trans_Results}
 
-When I started this project no study (either comprehensive or not) was
-investigating in-depth the consistency of transcriptome expression measurements.
-However, in August 2014 a paper comparing different preparation methods,
-sequencing technologies operated in different laboratories
-on samples from the same biological source concludes that while absolute
-measurements are not consistent, the relative expression is highly consistent
-(95\% Pearson correlation?)
-
-\begin{comment}
-The main question when I started this project was to appraise how much consistent
-(robust) is the \Rnaseq\ technology to quantify the gene expression. While it
-is comparable to microarrays for differential gene expression analysis study
-\TK{add reference},
-\Rnaseq\ plus: detect new things - minus: sampling problems (stuff might be there
-but won't be ``fished''.
-\end{comment}
-
-When I started this work in 2013, there were only three complying
-datasets at that time. Fortunately, I was later
-able to incorporate two other datasets to my study. One of them is the \Gtex\
-(v4) data and the other one is the Uhlén et al.\ dataset (first
-published as \citet{Uhlen2014} and then extended for the \citet{Uhlen2015} publication).
-The number of provided samples and covered tissues for these two datasets
-is far greater than the other ones. These \dataset{\Gtex} and \dataset{Uhlén}
-datasets are indeed presenting a greater set of common tissues. Moreover,
-the more recent and similar technology used (either for the libraries preparation,
-the sequencer or the paired-end protocols) and the studies design that includes
-biological replicates for every tissue had motivated a more focused comparison
-based only on these two datasets.
-
-\begin{comment}
-While I downloaded and entirely processed four of the transcriptomic datasets
-myself, it was not the case for the \Gtex\ dataset. Since this
-data is involved in many project within the \EBI\ and due to its huge amount of
-data, it was agreed that this would be processed centrally by one person and then
-redistributed to all the other interested parties. Dr Nuno Fonseca had this
-tremendous task and provided me with quantification data,
-both for each sample separately and then for each tissue (all relevant samples
-pooled together).
-
-For the sake of consistency, that led me to reprocess all the other four datasets
-to comply with the reference used for the \Gtex\ samples. The silver lining
-was that they were built with the new reference of the
-Human genome GRCH 38 (ENSEMBL v. 76).
-\end{comment}
-
-
-With each version of annotation and addition of new data,
-the results presented in this work got more refined. Nevertheless, the general
-trends of the outcomes remained consistent which supports the robustness of the
-methodology and the presented conclusions.
-
+\section{Limited number of tissue overlaps for available normal human samples}
 
 \begin{figure}%[!htbp]
-    \includegraphics[scale=0.6]{transcriptomics/VennStudiesT}\centering
-    \caption[Distribution of unique and shared tissues between the
-    transcriptomic datasets]
-    {\label{fig:VennStudiesT}\textbf{Distribution of unique and shared tissues
-    between the transcriptomic datasets.} The 5 datasets share 4
-    common tissues: \tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and
-    \tissue{Testis}. The biggest overlap of tissues (23) is between Uhlén et \Gtex.
-    These two sets of tissues are the focus of the current study.}
+\includegraphics[scale=0.55]{transcriptomics/TransVennTissue.pdf}\centering
+\caption[Distribution of unique and shared tissues between the
+transcriptomic datasets]
+{\label{fig:VennStudiesT}\textbf{Distribution of unique and shared tissues
+between the transcriptomic datasets.} The 5 datasets share 4
+common tissues: \tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and
+\tissue{Testis}. The biggest overlap of tissues (23) is between Uhlén et \Gtex.
+These two sets of tissues are the main focus of the transcriptomic part of the
+study.}
 \end{figure}
 
 \Cref{fig:VennStudiesT} presents the five datasets overlapping tissues. We notice
 that they all share at least four tissues: \tissue{Heart}, \tissue{Kidney},
 \tissue{Liver} and \tissue{Testis}.
-
 We also observe the great number of shared tissues between the two most recent
 datasets: \dataset{Uhlen} and \dataset{GTEx}. Indeed, they share together twenty-three
 tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
@@ -124,18 +75,115 @@ tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
 \tissue{Small intestine}, \tissue{Spleen}, \tissue{Stomach}, \tissue{Testis},
 \tissue{Thyroid} and \tissue{Uterus}.
 
-As we can see in the \cref{tab:Trans5DF}, many of the transcriptomic datasets I
-use have been produced through
-polyA-selected library protocols, notably the \dataset{Uhlén} dataset which is
-used in both study parts.
-To avoid as many artefacts as possible, I
-focus my study on the \mRNAs\ pool: most of the analyses are excluding
-any gene that the biotype is not annotated as \emph{protein coding}.
+As we have seen in the \Cref{tab:Trans5DF},
+many of the transcriptomic datasets I use have been produced through
+polyA-selected library protocols.
+Hence, most of the analyses are limiting to genes with a biotype annotated as
+\emph{protein coding} (see \Cref{subsec:protcodingOnly}).
+
+\begin{table}[]
+\centering
+\caption[Expressed protein coding genes]{\textbf{Expressed protein coding genes.}\\
+{\small In \ens{76}, there are 22,469 genes that
+have a biotype annotated as \enquote{\emph{protein coding}}.}}
+\label{tab:expGenesPcoding}
+\begin{tabular}{@{}cccccccc@{}}
+\toprule
+\multirow{4}{*}{Dataset} &
+\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Number of \\ Tissues\end{tabular}} &
+    \multicolumn{2}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Number of mRNAs \\
+    expressed across \\ all tissue\end{tabular}}} &
+    \multicolumn{4}{c}{Number of mRNAs expressed at least once} \\
+\cmidrule(l){5-8}
+ &  & \multicolumn{2}{c}{} &
+\multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}in the 4 common\\  tissues\end{tabular}} &
+\multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}in the 23 common\\  tissues\end{tabular}} \\
+\cmidrule(l){3-8}
+&  & ›0 FPKM & ≥ 1FPKM & ›0 FPKM & ≥ 1FPKM &
+\multicolumn{1}{l}{›0 FPKM} & \multicolumn{1}{l}{≥ 1FPKM} \\
+\midrule
+Castle & 11 & 19,066 & 15,798 & 18,477 & 13,443 & --- & --- \\
+Brawand & 8 & 19,505 & 16,410 & 19,324 & 15,327 & --- & --- \\
+IBM & 16 & 19,776 & 17,171 & 19,334 & 15,058 & --- & --- \\
+Uhlén & 32 & 19,807 & 18,060 & 19,379 & 15,739 & 19,737 & 17,832 \\
+GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.55]{transcriptomics/PcodingGenesExpressed1_4tissues.pdf}\centering
+    \caption[Unique and shared protein coding genes expressed
+    in the 4 common tissues (≥1 FPKM)]{\label{ExpGenePcoding1}\textbf{Unique and
+    shared protein coding genes expressed ≥ 1 FPKM in the 4 common tissues.}}
+\end{figure}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.45]{transcriptomics/vennTissue23_1protcodgenes.pdf}\centering
+    \caption[Unique and shared protein coding genes expressed
+    in the 23 common tissues (≥1 FPKM)]{\label{ExpGenePcoding1_t23}\textbf{Unique
+    and shared protein coding genes expressed ≥ 1 FPKM in the 23 common tissues
+    of \uhlen\ and \gtex\ datasets.}}
+\end{figure}
 
 
-\section{Results}\label{sec:Trans_Results}
+\section{Prevalence of biological signal over technical variabilities}
+\label{sec:Trans_ReproExpresTissue}
 
-\subsection{Reproducibility of expression profile at tissue level}\label{subsec:Trans_ReproExpresTissue}
+Biological signal prevails over the technical variabilities at tissue level for
+the transcriptome studied by \Rnaseq.
+\begin{figure}[htpb]
+    \includegraphics[scale=0.95]{transcriptomics/heatmapT4NoMitoAndwithRep_1.pdf}\centering
+    \caption[Heatmap no Mito]{\label{noMitoRep4T}\textbf{No mito, all rep, 4T}}
+\end{figure}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.95]{transcriptomics/heatmap4TnoMitonoRep_1.pdf}\centering
+    \caption[NoMitoNorep4T]{\label{fig:noMitonoRep4T}\textbf{noMito4T}}
+\end{figure}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.75]%
+{transcriptomics/TransPearsonDistributionIdenticalDifferent.pdf}\centering
+\caption[Distribution of the Pearson correlation of same tissues samples and
+random matches of tissues samples.]{\label{fig:distribPearsCorr}\textbf{Distribution
+of the Pearson correlation of same tissues samples and random matches of tissues
+samples.}}
+\end{figure}
+
+\subsection{What is the driving force of closer similarity of tissues than datasets}
+
+\subsubsection{Most variable genes}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.8]{transcriptomics/distributionCV_4commonTissues.pdf}%
+    \centering
+    \caption[Coefficient of variation across the datasets for the set of common
+expressed genes]{\label{fig:HistCV4T}\textbf{Distribution of the coefficients of
+variation across the 5 datasets for the set of common expressed protein coding
+genes in the common set of tissues:
+\{\tissue{Heart},\tissue{Kidney},\tissue{Liver},\tissue{Testis}\}.}}
+\end{figure}
+
+\begin{itemize}
+    \item Is that the highest expressed genes?
+    \item Is that the highest variable genes? (These both questions legacy of microarrays day)
+    \item Something else\ldots that we define as \enquote{Genes with outlier expression}
+        for some tissues.
+    \item \uhlen\ classification
+\end{itemize}
+
+Overall good correlation may be translated by similar variation pattern (but no).
+
+Are the most expressed/ and lowest expressed genes that are driving the results? Nope.
+
+
+
+\TK{start speaking about the normalisation a bit, deseq, tpm, \ldots}
+
+Ouverture: là, où au début on avait pas beaucoup de data avec des réplicats
+biologiques pour le normal, on a commencé en avoir pas mal. Du coup, \nuno\
+a analysé les genes avec un faible coeff de var. On a défini ca comme housekeeping
+genes.
 
 
 \subsection{Tissue specific,housekeeping genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
@@ -143,33 +191,35 @@ any gene that the biotype is not annotated as \emph{protein coding}.
 \subsection{Curated sets}\label{subsec:Trans_curatedSets}
 
 
-RNA-seq is consistent across datasets; samples are more likely to cluster by
-biological origins than by studies. (Figure 2)
-While Pearson correlations are higher, without any a priori Spearman correlations
-allow a better separation of the different tissues in distinct clusters across
-datasets.
-
-Many genes have a consistent profile of expression levels through the different
-datasets.
-To help EBI Expression Atlas has developed a feature that allows the visualisation
-of the expression of a gene (or protein) across the different dataset that it
-integrates. (Figure 3)
-
-Reuse of data allows the assessment of the biological quality of a sample.
-While RNA-seq workflows integrate numerous quality checks for their different steps,
-it is not always easy to appraise the original quality of the samples. Comparing
-similar conditions from different sources allow some high level biological check.
-Indeed, we noticed that some tissues have a more unique profile in specific
-datasets.
-
-Overall gene expressions for protein coding genes across different tissues
-correlated highly between datasets. (See part 3. Integration of Transcriptomics
-and Proteomics studies – Figure 15)
-
-
-
 
 \section{Discussion}\label{sec:Trans_discussion}
+\TK{when I started no paper, now overloads}: list them and compare to my own
+work. Meta-analysis\ldots
+
+Small overlap of tissues: so scientifically not very good.
+However, most of the genes expressed everywhere.
+But, in general Biology >>> Technical.
+
+Apart Castle but Castle method not really used anymore. So it might be because of
+the protocol which is harder to set up or not mature (maybe can be improved) or
+maybe the method gives different measurements due to what it fishes and
+normalisation methods which are not very good for that (biases).
+
+
+Petit blabla sur la normalisation (de nouveau), normalisation pas adapté
+ERCC ptet 1 idée mais pas vraiment un internal standard.
+
+
+
+
+New set of tissue spe.
+Hampel method
+Quantile normalisation\ldots
+
+MAJ tissues spe de Tiger (ne pas oublier la discussion sur l'annotation)
+
+tend vers une 1 limite mais pas mal de redéfinition
+
 
 
 
