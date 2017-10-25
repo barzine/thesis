@@ -29,8 +29,8 @@ In the present chapter, I describe post-processing quality (or sanity) checks
 that examine higher (and fuzzier) aspects, \eg:
 %\KOMAoptions{parskip=never}
 \begin{itemize}[topsep=0pt,nosep]
-    \item Any outlier in the data?
-    \item Systematic and unsystematic \emph{batch effects} within each study
+    \item Possible outliers in the data
+    \item Systematic and unsystematic \emph{batch effect} within each study
     \item Adequacy of data, concepts and statistical models
 \end{itemize}
 %\KOMAoptions{parskip=half*}
@@ -154,6 +154,10 @@ as showed in \Cref{fig:scatBiolRep}.
 
 \section{Main statistical approaches}
 
+Due to the general normal distribution shape of the gene expression levels,
+I computed correlation coefficients to assess the similarity of the replicates
+intra and inter studies.
+
 \subsection{Correlation}
 %Cum hoc ergo propter hoc
 
@@ -173,6 +177,33 @@ in all the datasets (see~\cref{sec:ExpressedOrNot}).
 Among the several methods available to compute the correlation coefficient, I
 tried both the Spearman and the Pearson correlations
 (see respectively \cref{subsec:SpearmanCor} and \cref{subsec:PearsonCor}).
+
+\begin{table}[]
+\centering
+\caption{Correlation coefficients between \Rnaseq\ replicates}
+\label{tab:repCorr}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+Tissue & Replicates type & Pearson Correlation & Spearman Correlation \\ \midrule
+\vt\ & Biological & 0.90 $[$0.45;1$]$ & 0.93 $[$0.80;0.99$]$ \\
+\gtex\ & Biological &  0.75 $[$0;1$]$ & 0.93 $[$0.06;0.99$]$ \\
+\uhlen\ & Biological & 0.81 $[$0.15;1$]$  &
+0.95 $[$0.70;0.99$]$ \\
+       & Technical & 0.99 $[$0.68;1$]$ & 0.99 $[$0.92;1$]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:repCorr} presents the Pearson and Spearman correlation coefficients
+for the technical replicates for \uhlen\ study and
+the biological replicates within \vt, \gtex\ and \uhlen\ studies.
+Averagely the correlation coefficients are high either for the technical or
+the biological replicates.
+Technical replicates present higher Pearson correlations,
+while biological replicates have higher Spearman correlations.
+\gtex\ study presents the same average correlation coefficients but extreme range.
+This may be explained by great strong batch effect as the samples were collected
+and sequenced at different time by different laboratories.
 
 \subsection{Clustering analysis}
 
