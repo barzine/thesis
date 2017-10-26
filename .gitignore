@@ -5,11 +5,13 @@ nanowrimo.tex
 
 #other stuff
 _minted-thesis/
+_minted-zest/
+_minted-frigo/
 lib/
 misc/
 
 ### automatically created
-thesis.aux 
+thesis.aux
 thesis.bbl
 thesis.bcf
 thesis.blg
@@ -25,12 +27,19 @@ thesis.glo
 thesis.gls
 thesis.xdy
 thesis.html
+thesis.fdb_latexmk
+thesis.fls
+
+
 
 *.aux
 
 *.swp
 *.swo
 *.svg
+
+*.log
+
 
 ## appendix
 app/*.txt
@@ -44,3 +53,14 @@ gfx/integration/cleanup-later
 gfx/ppt/
 gfx/integration/barPlotunique5grey.png
 gfx/integration/expressedNotExp.png
+
+gfx/**/**/*pptx
+gfx/inkscape/*
+
+gfx/**/.Rhistory
+
+## frigo
+frigo*
+
+## zest
+zest*
