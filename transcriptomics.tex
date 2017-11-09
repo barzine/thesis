@@ -1,73 +1,81 @@
-\chapter{Consistency through different transcriptomics studies with RNA-Seq}
+\chapter{Expression in normal human tissues across RNA-Seq studies}
 \label{ch:Transcriptomics}
 
-Multiplication of atlases for many species: quel est le bien fondé de ces pratiques
+In the perspective of paving the way towards
+a generalised baseline expression reference for normal human,
+in this chapter I assess the similarity
+of the tissues sourced from different \Rnaseq\ studies and
+the general profiles of their expressed genes.
 
-On the past few years, a large number of gene expression studies based on
-\Rnaseq\ have been used to create gene expression
-atlases, for examples see~\mycite{Krupp2012,Freeman2012,Ringwald2012,
-Jimenez-Lozano2012,Wu2009-lw,Clark2017-mw,Lu2017-df,Pazhamala2017-ig,
-Stelpflug2016-sm,Yao2016-se,Gerrard2016-zu}.
+All the work presented in this chapter was performed by myself under the
+supervision of \alvis.
+I received invaluable advise and help from my discussions with \nuno.
+I also received general feedback and comments from \mar, \johan, \sarah, \gos\
+and \wolfgang.
 
-The incentive is that compared to microarrays, there should be a lot less
-batch effects and that these studies, in addition to explore the transcriptome
-for new (undiscovered until now) transcripts, the relationships (coexpression,
-coregulation between them) due to the fact that there are not these biases (as
-microarrays) these studies can be used as reference for later studies.
+When I started this project in 2013,
+little was then known on either the robustness or
+the shortcomings and pitfalls of \Rnaseq\ and
+its related processing.
+Since then, several studies were published assessing \Rnaseq.
+A few present a closely related scope to my own investigations, thus
+whenever relevant,
+I present and discuss my results in relation to the published ones.
 
-Problem: while they don't present some of the batch effects of the microarrays,
-there was no real studies \emph{at that time} on how good is the \Rnaseq.
-
-While at the beginning of my thesis,
-the subject was little known,
-since then several other studies have been published on the matter.
-Whenever relevant, I present and discuss those results them relation to my owns.
-
-The first piece towards this goal was done by the~\mycite{seqcmaqc}.
-
-\TK{put back in context why}
-\TK{who supervised, help and etc.}
 
 \minisec{Publications derived from this chapter}
 \begin{itemize}[topsep=0pt,nosep]
     \item \fullcite{EBIgxa}
-    \item (flash talk) CSAMA2013 --- How quantitative is RNA-seq?
+    \item (flash talk) CSAMA 2013 --- How quantitative is RNA-seq?
     \item (invited talk) GM$^2$ 2013 --- Baseline Gene expression Atlas
-    \item (poster) ECCB14 --- A feasibility study:
+    \item (poster) ECCB 2014 --- A feasibility study:
         Integration of independent RNAseq datasets
 \end{itemize}
 
+\clearpage
 
-\mycite{seqcmaqc}: provides a basis, same samples sequenced at different places
-shows that \emph{relative} expression agrees across platforms. But, limitations:
-the samples are really different biologically (Universal Human Reference RNA) and
-Human Brain Reference RNA (see~\mycite{MAQC_Consortium2006-hs})
-(from the \gls{MAQC} consortium).
+\section{Working sets}
 
-\TK{anything relevant to the discussion of this chapter}
+While other approaches may be used,
+I usually consider the most conservative routes.
+Thus, I first reduced my working sets to the tissues and genes that were
+commonly explored and measured in each study.
 
-%\section{Results}\label{sec:Trans_Results}
+Through this chapter, I use two working sets:
+\begin{itemize}[topsep=0pt,nosep]
+    \item 4 tissues --- 12,268 genes across the 5 \Rnaseq\ studies, and
+    \item 23 tissues --- 17,551 genes across 2 of these studies.
+\end{itemize}
 
-\section{Limited number of tissue overlaps for available normal human samples}
+The following \cref{subsec:tran_tissueOverlap,subsec:trans_GeneOverlap}
+illustrate the construction of these sets.
 
-\begin{figure}%[!htbp]
-\includegraphics[scale=0.55]{transcriptomics/TransVennTissue.pdf}\centering
+\subsection{Tissue overlaps across the available normal human RNA-Seq studies}
+\label{subsec:tran_tissueOverlap}
+
+\Cref{fig:VennStudiesT} presents the five datasets overlapping tissues.
+We notice that they all share at least four tissues:
+\tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and \tissue{Testis}.
+This 4-tissue set is the base of one working set.
+
+\begin{figure}[h]%[!htbp]
+\includegraphics[scale=0.50]{transcriptomics/TransVennTissue.pdf}\centering
 \caption[Distribution of unique and shared tissues between the
 transcriptomic datasets]
 {\label{fig:VennStudiesT}\textbf{Distribution of unique and shared tissues
 between the transcriptomic datasets.} The 5 datasets share 4
 common tissues: \tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and
-\tissue{Testis}. The biggest overlap of tissues (23) is between Uhlén et \Gtex.
+\tissue{Testis}.
+The biggest overlap of tissues (23) is between Uhlén et \Gtex.
 These two sets of tissues are the main focus of the transcriptomic part of the
 study.}
 \end{figure}
 
-\Cref{fig:VennStudiesT} presents the five datasets overlapping tissues. We notice
-that they all share at least four tissues: \tissue{Heart}, \tissue{Kidney},
-\tissue{Liver} and \tissue{Testis}.
-We also observe the great number of shared tissues between the two most recent
-datasets: \dataset{Uhlen} and \dataset{GTEx}. Indeed, they share together twenty-three
-tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
+We also observe that greatest number of shared tissues is
+between the two most recent datasets:
+\dataset{Uhlen} and \dataset{GTEx}.
+They constitutes the base of a second 23-tissue working set that includes
+\tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
 \tissue{Cerebral cortex}, \tissue{Colon}, \tissue{Oesophagus},
 \tissue{Fallopian tube}, \tissue{Heart}, \tissue{Kidney}, \tissue{Liver},
 \tissue{Lung}, \tissue{Ovary}, \tissue{Pancreas}, \tissue{Prostate},
@@ -75,84 +83,97 @@ tissues: \tissue{Adipose}, \tissue{Adrenal}, \tissue{Bladder},
 \tissue{Small intestine}, \tissue{Spleen}, \tissue{Stomach}, \tissue{Testis},
 \tissue{Thyroid} and \tissue{Uterus}.
 
+\subsection{Common measured genes for each of the common tissues sets}
+\label{subsec:trans_GeneOverlap}
 As we have seen in the \Cref{tab:Trans5DF},
 many of the transcriptomic datasets I use have been produced through
 polyA-selected library protocols.
 Hence, most of the analyses are limiting to genes with a biotype annotated as
-\emph{protein coding} (see \Cref{subsec:protcodingOnly}).
+\emph{protein coding}
+to avoid unnecessary biases\footnote{See \Cref{subsec:protcodingOnly}}.
 
-\begin{table}[]
-\centering
-\caption[Expressed protein coding genes]{\textbf{Expressed protein coding genes.}\\
-{\small In \ens{76}, there are 22,469 genes that
-have a biotype annotated as \enquote{\emph{protein coding}}.}}
-\label{tab:expGenesPcoding}
-\begin{tabular}{@{}cccccccc@{}}
-\toprule
-\multirow{4}{*}{Dataset} &
-\multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Number of \\ Tissues\end{tabular}} &
-    \multicolumn{2}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}Number of mRNAs \\
-    expressed across \\ all tissue\end{tabular}}} &
-    \multicolumn{4}{c}{Number of mRNAs expressed at least once} \\
-\cmidrule(l){5-8}
- &  & \multicolumn{2}{c}{} &
-\multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}in the 4 common\\  tissues\end{tabular}} &
-\multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}in the 23 common\\  tissues\end{tabular}} \\
-\cmidrule(l){3-8}
-&  & ›0 FPKM & ≥ 1FPKM & ›0 FPKM & ≥ 1FPKM &
-\multicolumn{1}{l}{›0 FPKM} & \multicolumn{1}{l}{≥ 1FPKM} \\
-\midrule
-Castle & 11 & 19,066 & 15,798 & 18,477 & 13,443 & --- & --- \\
-Brawand & 8 & 19,505 & 16,410 & 19,324 & 15,327 & --- & --- \\
-IBM & 16 & 19,776 & 17,171 & 19,334 & 15,058 & --- & --- \\
-Uhlén & 32 & 19,807 & 18,060 & 19,379 & 15,739 & 19,737 & 17,832 \\
-GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[htpb]
-    \includegraphics[scale=0.55]{transcriptomics/PcodingGenesExpressed1_4tissues.pdf}\centering
+\begin{figure}[h]
+    \includegraphics[scale=0.50]{transcriptomics/PcodingGenesExpressed1_4tissues.pdf}\centering
     \caption[Unique and shared protein coding genes expressed
-    in the 4 common tissues (≥1 FPKM)]{\label{ExpGenePcoding1}\textbf{Unique and
-    shared protein coding genes expressed ≥ 1 FPKM in the 4 common tissues.}}
+    in the 4 common tissues (≥1 FPKM)]{\label{fig:ExpGenePcoding1}\textbf{Unique
+    and shared protein coding genes expressed ≥ 1 FPKM in the 4 common tissues
+    across the 5 studies.}}
 \end{figure}
 
-\begin{figure}[htpb]
+The Venn diagram presented in \Cref{fig:ExpGenePcoding1} only includes protein
+genes that are observed\footnote{See \Cref{sec:ExpressedOrNot}}
+at least once at 1 \FPKM\ for one of the four common tissues.
+As we can notice, the bulk of genes expressed at this threshold is common
+across the five datasets.
+Indeed, while each study presents a very small portion of genes
+that are unique,
+overall most genes are detected in two or more studies.
+The greatest contingent of shared genes is between \uhlen\ and \gtex.
+
+\begin{figure}[h]
     \includegraphics[scale=0.45]{transcriptomics/vennTissue23_1protcodgenes.pdf}\centering
     \caption[Unique and shared protein coding genes expressed
-    in the 23 common tissues (≥1 FPKM)]{\label{ExpGenePcoding1_t23}\textbf{Unique
+    in the 23 common tissues (≥1 FPKM)]%
+    {\label{fig:ExpGenePcoding1_t23}\textbf{Unique
     and shared protein coding genes expressed ≥ 1 FPKM in the 23 common tissues
-    of \uhlen\ and \gtex\ datasets.}}
+    of \uhlen\ and \gtex\ studies.}}
 \end{figure}
 
+In this respect, \Cref{fig:ExpGenePcoding1_t23} presents a similar Venn diagram
+while focusing on the common twenty-three tissue set between \uhlen\ and \gtex.
+The number of unique genes to each study is negligible compared to the bulk:
+that number represents less than 0.03\% of the measured genes in each of the study.
+\begin{comment}
+    Gtex:   462/17551 hence 0.02632329\%
+    Uhlen:  281/17551 hence 0.01601048\%
+\end{comment}
 
-\section{Prevalence of biological signal over technical variabilities}
+
+\section{Prevalence of biological signal over technical variabilities at
+tissue level}
 \label{sec:Trans_ReproExpresTissue}
 
 Biological signal prevails over the technical variabilities at tissue level for
 the transcriptome studied by \Rnaseq.
-\begin{figure}[htpb]
-    \includegraphics[scale=0.95]{transcriptomics/heatmapT4NoMitoAndwithRep_1.pdf}\centering
-    \caption[Heatmap no Mito]{\label{noMitoRep4T}\textbf{No mito, all rep, 4T}}
-\end{figure}
+\Cref{fig:noMitoRep4T} and \Cref{fig:noMitonoRep4T} are heatmaps presenting
+the hierarchical clustering of the four common tissues across the five datasets
+based on their similarity (computed on their Pearson correlation coefficients).
 
 \begin{figure}[htpb]
-    \includegraphics[scale=0.95]{transcriptomics/heatmap4TnoMitonoRep_1.pdf}\centering
+    \includegraphics[scale=0.85]{transcriptomics/heatmap4TnoMitonoRep_1.pdf}\centering
     \caption[NoMitoNorep4T]{\label{fig:noMitonoRep4T}\textbf{noMito4T}}
 \end{figure}
 
 \begin{figure}[htpb]
+    \includegraphics[scale=0.85]{transcriptomics/heatmap23TnoMitonoRep_1.pdf}\centering
+    \caption[Heatmap of 23 tissues for the 2 datasets]{\label{fig:noMitonoRep23T}%
+    \textbf{Heatmap 23 tissues for the 2 datasets} (≥ 1 FPKM).}
+\end{figure}
+
+\begin{figure}[htpb]
     \includegraphics[scale=0.75]%
-{transcriptomics/TransPearsonDistributionIdenticalDifferent.pdf}\centering
-\caption[Distribution of the Pearson correlation of same tissues samples and
-random matches of tissues samples.]{\label{fig:distribPearsCorr}\textbf{Distribution
-of the Pearson correlation of same tissues samples and random matches of tissues
-samples.}}
+{transcriptomics/TransPearsonDistributionIdenticalOnly.pdf}\centering
+\caption[Distribution of the correlation of same tissue pairs for the 4 and 23
+tissues working sets.]{\label{fig:SamedistribPearsCorr}\textbf{Distribution
+of the Pearson correlation of same tissues pairs for the 4 and the 23 tissues
+working sets.}}
 \end{figure}
 
 \subsection{What is the driving force of closer similarity of tissues than datasets}
+\begin{comment}
+\begin{itemize}
+    \item Is that the highest expressed genes?
+    \item Is that the highest variable genes? (These both questions legacy of microarrays day)
+    \item Something else\ldots that we define as \enquote{Genes with outlier expression}
+        for some tissues.
+    \item \uhlen\ classification
+\end{itemize}
+\end{comment}
 
 \subsubsection{Most variable genes}
+
+Overall distribution of the gene coefficients of variation across the studies
+very similar.
 
 \begin{figure}[htpb]
     \includegraphics[scale=0.8]{transcriptomics/distributionCV_4commonTissues.pdf}%
@@ -164,17 +185,51 @@ genes in the common set of tissues:
 \{\tissue{Heart},\tissue{Kidney},\tissue{Liver},\tissue{Testis}\}.}}
 \end{figure}
 
-\begin{itemize}
-    \item Is that the highest expressed genes?
-    \item Is that the highest variable genes? (These both questions legacy of microarrays day)
-    \item Something else\ldots that we define as \enquote{Genes with outlier expression}
-        for some tissues.
-    \item \uhlen\ classification
-\end{itemize}
 
 Overall good correlation may be translated by similar variation pattern (but no).
 
-Are the most expressed/ and lowest expressed genes that are driving the results? Nope.
+Are the most expressed (and lowest expressed genes) that are driving the results? Nope.
+
+\subsection{Highest expressed genes}
+
+\begin{sidewaysfigure}[htpb]
+    \centering
+    \begin{subfigure}[b]{0.50\textwidth}\centering
+        \includegraphics[width=\textwidth]{transcriptomics/HeartEvolHighExp4P-1.pdf}
+        \caption{Heart}\label{fig:CorHighExpHeart4T}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.50\textwidth}\centering
+        \includegraphics[width=\textwidth]{transcriptomics/KidneyEvolHighExp4P-1.pdf}
+        \caption{Kidney}\label{fig:CorHighExpKidney4T}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.50\textwidth}\centering
+        \includegraphics[width=\textwidth]{transcriptomics/LiverEvolHighExp4P-1.pdf}
+        \caption{Liver}\label{fig:CorHighExpLiver4T}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.50\textwidth}\centering
+        \includegraphics[width=\textwidth]{transcriptomics/TestisEvolHighExp4P-1.pdf}
+        \caption{Testis}\label{fig:CorHighExpTestis4T}
+    \end{subfigure}
+    \caption[Pearson correlation coefficient evolution based on the expression
+    levels of the genes considered for each of the 4 common tissues]{%
+\label{fig:CorHighExp4T}\textbf{Pearson correlation coefficient evolution
+    based on the expression levels of the genes considered for each of the 4
+    common tissues across the 5 studies.}}
+\end{sidewaysfigure}
+
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.8]{transcriptomics/T23EvolHighExp23P-1.pdf}\centering
+    \caption[Pearson correlation coefficient evolution based on the expression
+    levels of the genes considered for each of the 23 common tissues]{%
+\label{fig:CorHighExp23T}\textbf{Pearson correlation coefficient evolution based on the
+expression levels of the genes considered for each of the 23 common tissues
+between \uhlen\ and \gtex.}}
+\end{figure}
+
 
 
 
@@ -185,12 +240,116 @@ biologiques pour le normal, on a commencé en avoir pas mal. Du coup, \nuno\
 a analysé les genes avec un faible coeff de var. On a défini ca comme housekeeping
 genes.
 
-
 \subsection{Tissue specific,housekeeping genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
+
+\subsubsection{Hampel method}
+
+\subsubsection{Specific genes}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=1]{transcriptomics/mostSpe4TP.pdf}\centering
+    \caption[Cumulative shared set of genes sorted by their specificity in each
+    tissue across the 5 datasets]{\label{fig:mostSpe4T}\textbf{Cumulative shared
+    set of genes sorted by their decreasing order of specificity in each tissue
+    across the 5 datasets.} Results are better than for the highest expressed or
+    the most variable genes.}
+\end{figure}
+
+\subsubsection{TIGER genes}
+
+
+
 
 \subsection{Curated sets}\label{subsec:Trans_curatedSets}
 
 
+\subsubsection{Uhlén categories}
+
+They change the definition between their two related papers~\mycite{Uhlen2014}
+and~\mycite{Uhlen2015}, hence the definition I am using is a based on the second
+one but with some subdivisions they presented in the first version.
+
+\begin{sidewaystable}[]
+\centering
+\caption{My caption}
+\label{tab:UhlenCategoriesProtCoding}
+%\begin{tabular}{@{}lllllllllll@{}}
+\begin{tabular}{@{}ccccccccccc@{}}
+\toprule
+\multicolumn{2}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\ens{76}
+    \\(22,469 protein\\coding genes) \end{tabular}}} &
+\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\\Not\\detected\end{tabular}} &
+\multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Not expressed\\ at 1 \gls{FPKM}\\
+    cut-off\end{tabular}} &
+\multicolumn{2}{c}{Mixed expression} &
+\multicolumn{2}{c}{Ubiquitous expression} &
+\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\\Group \\Enhanced\end{tabular}} &
+    \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\\Tissue\\ Enhanced\end{tabular}} &
+        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\\Tissue\\ Enriched\end{tabular}} \\
+    \cmidrule(lr){5-8}
+\multicolumn{2}{c}{}
+    &  &  &
+    \begin{tabular}[c]{@{}c@{}}Low\\ (\textless\ 10 \gls{FPKM})\end{tabular} &
+        \begin{tabular}[c]{@{}c@{}}High\\ (≥ 10 \gls{FPKM})\end{tabular} &
+            \begin{tabular}[c]{@{}c@{}}Low\\ (\textless\ 10 \gls{FPKM})\end{tabular} &
+    \begin{tabular}[c]{@{}c@{}}High\\ (≥ 10 FPKM)\end{tabular} &  &  &  \\
+        \midrule
+        \multicolumn{1}{c}{%
+        \multirow{7}{*}{\rotatebox[origin=c]{90}{\parbox[c]{4cm}{\centering Whole
+        dataset}}}} &
+        Castle & 3,403 & 3,268 & 8,773 & 1,033  &
+        1,399  & 634   & 11   & 3,664   & 1,975 \\
+        \multicolumn{1}{c}{} & Brawand & 2,964 & 3,095 &
+        8,034 & 1,788  & 1,760 & 958   & 0  &
+        2,729  & 2,548 \\
+        \multicolumn{1}{c}{} & IBM & 2,693 & 2,605  &
+        7,325  & 1,406  & 1,135 & 858  & 322 &
+        5,248  & 2,453  \\
+        \multicolumn{1}{c}{} & Uhlen & 2,662 & 1,747 &
+        5,769 & 1,053  & 456 & 406  & 2,511  &
+        5,201  & 2,333  \\
+        \multicolumn{1}{c}{} & Gtex & 2,197  & 1,886  &
+        5,556  & 1,117 & 687  & 698  & 3,859  &
+        4,356  & 1,919 \\ \cmidrule(l){2-11}
+        \multicolumn{1}{c}{} & Consensus & 2,197 & 486  &
+        1,749  & 221  & 33  & 161  & 0  & 677  &
+        \begin{tabular}[c]{@{}c@{}}531 $[$518$]$\end{tabular} \\
+            %\multicolumn{1}{c}{} & \footnotesize{without Gtex} &
+            %\footnotesize{2,413} & \footnotesize{638} & \footnotesize{2,152} &
+            %\footnotesize{286} & \footnotesize{63}  & \footnotesize{179} &
+            %\footnotesize{0}  & \footnotesize{814} &  \footnotesize{587}  \\
+            \midrule
+\multirow{7}{*}{\rotatebox[origin=c]{90}{\parbox[c]{3cm}{\centering Common\\
+4 tissues\\ Working datasets}}} &
+Castle & 19,066 & 2,994 & 8,589 & 1,513 &
+2,994 & 1094 & --- & --- & 2,185 \\
+& Brawand & 19,505  & 2,962  & 8,626  & 2,228
+& 2,962  & 1251 & --- & --- & 3,672  \\
+& IBM & 19,776  & 2,989 & 8,534 & 1,954 &
+2,989  & 1212  & --- & --- & 2,824  \\
+& Uhlen & 19,807 & 2,917 & 8,367 & 2,227 &
+2,917  & 1190  & --- & --- & 3,730  \\
+& Gtex & 20,272 & 3,870 & 8,988  & 2,312 &
+3,870  & 1427  & --- & --- & 3,554  \\
+\cmidrule(l){2-11}
+& Consensus & 1,973 & 550 & 3,351 & 649 &
+550  & 439 & --- & --- & 1,412  \\
+%& \footnotesize{without Gtex} & \footnotesize{2,413}  & \footnotesize{2,186}  &
+%\footnotesize{3538}  & \footnotesize{639}  & \footnotesize{576}  &
+%\footnotesize{439}  & \footnotesize{---} & \footnotesize{---} & \footnotesize{1,462}
+\\ \midrule
+\multirow{3}{*}{\rotatebox[origin=c]{90}{\parbox[c]{1.7cm}{\centering Common\\ 23
+tissues\\ Working datasets}}} & Uhlen & 2,662  & 1,970  &
+6,160 & 1,135 & 594  & 427 & 1,285 &
+5,776 & 2,518 \\
+& Gtex & 2,197 & 2,258 & 6,966  & 1,540 &
+1,822  & 997 & 1,048 & 5,496  & 2,460 \\
+\cmidrule(l){2-11}
+& Consensus & 2,197 & 1,544 & 4,936 & 791 &
+423 & 417 & 558 & 4,223 & 1,885 \\
+\bottomrule
+\end{tabular}
+\end{sidewaystable}
 
 \section{Discussion}\label{sec:Trans_discussion}
 \TK{when I started no paper, now overloads}: list them and compare to my own
@@ -200,7 +359,7 @@ Small overlap of tissues: so scientifically not very good.
 However, most of the genes expressed everywhere.
 But, in general Biology >>> Technical.
 
-Apart Castle but Castle method not really used anymore. So it might be because of
+Apart Castle but Castle method not really used any more. So it might be because of
 the protocol which is harder to set up or not mature (maybe can be improved) or
 maybe the method gives different measurements due to what it fishes and
 normalisation methods which are not very good for that (biases).
