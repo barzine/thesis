@@ -48,6 +48,19 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 %%%
 %\usepackage[explicit]{titlesec}
 \RequirePackage[dottedtoc,eulerchapternumbers]{classicthesis}
+%\RequirePackage{arsclassica}
+%%%if arsclassica:
+%\renewcommand{\sfdefault}{lmss}
+%\renewcommand\formatchapter[1]{%
+%  \begin{minipage}[b]{0.15\linewidth}
+%    \chapterNumber
+%  \end{minipage}%
+%  \begin{minipage}[b]{0.75\linewidth}
+%    \raggedright\spacedallcaps{#1}
+%  \end{minipage}
+%}
+%%%%%%%%%
+
 \RequirePackage[english=british]{csquotes}
 %\RequirePackage{epigraph}
 %\renewcommand{\epigraphflush}{center}
@@ -70,6 +83,7 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 \RequirePackage{xltxtra}
 \RequirePackage{xcolor}
 \RequirePackage{calc}
+\RequirePackage{libertine}
 \RequirePackage[font=bf,format=hang,labelfont={bf,normal},textfont=normal,up,margin=5pt,labelformat=default,labelsep=period]{caption}
 %format=hang
 %\usepackage[font=small,format=plain,labelfont=bf,up,textfont=normal,up,justification=justified,singlelinecheck=false,margin=5pt]{caption}
@@ -85,8 +99,8 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 \RequirePackage{expdlist}
 \RequirePackage{pdflscape}
 \RequirePackage{longtable}
-\RequirePackage{eqlist}
 \RequirePackage{enumitem}
+\RequirePackage{eqlist}
 \RequirePackage{tracklang}
 \RequirePackage{mfirstuc}
 \RequirePackage{etoolbox}
@@ -171,6 +185,8 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 \setkomafont{title}{\rmfamily\Huge}
 \setkomafont{subject}{\normalfont\normalcolor}
 \isodash{\ensuremath{\cdot}}% Replacement for `‧` = U+‧2027 HYPHENATION POINT
+\setkomafont{minisec}{\libertineSB}
+
 
 \definecolor{cambridgeblue}{RGB}{163, 193, 173}
 \definecolor{cambridgebluedark}{RGB}{17, 94, 103}
@@ -383,4 +399,58 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 %\titleformat*{\paragraph}{\large\bfseries}
 %\titleformat*{\subparagraph}{\large\bfseries}
 
+
+
+%%%%%% from arsclassica code %%%%%
+
+%% pages headers
+%\renewcommand{\sectionmark}[1]{\markright{\textsc%
+%{\MakeTextLowercase{\thesection}} \spacedlowsmallcaps{#1}}}
+%\lehead{\mbox{\llap{\small\kern1em\color{halfgray}%
+%}%
+%\color{halfgray}\hspace{0.5em}\headmark\hfil}}
+%\rohead{\mbox{\hfil{\color{halfgray}%
+%\headmark\hspace{0.5em}}%
+%\rlap{\small{\color{halfgray}}\kern1em}}}
+%% Bullet list
+\renewcommand\labelitemi{\color{halfgray}$\bullet$}
+
+%title format
+
+\newcommand\formatchapter[1]{%
+\vbox to \ht\strutbox{
+\setbox0=\hbox{\chapterNumber\thechapter\hspace{10pt}\vline\
+}
+\advance\hsize-\wd0 \advance\hsize-10pt\raggedright
+\spacedallcaps{#1}\vss}}
+\titleformat{\chapter}[block]
+{\normalfont\Large}
+{\textcolor{halfgray}{\chapterNumber\thechapter}
+\hspace{10pt}\vline\ }{10pt}
+{\formatchapter}
+
+
+
+\renewcommand\formatchapter[1]{%
+  \begin{minipage}[b]{0.15\linewidth}
+    \chapterNumber
+  \end{minipage}%
+  \begin{minipage}[b]{0.75\linewidth}
+    \raggedright\spacedallcaps{#1}
+  \end{minipage}
+}
+
+
+%%%% ugly hack needed to fix the headers in the \chapter*{}
+%helped found here:https://tex.stackexchange.com/q/226327/102519 and a bit more
+% from Konrad Rudolph
+\newcommand{\replaceText}{\spacedlowsmallcaps{Introduction%
+%Answer to the Ultimate Question of Life, the Universe, and Everything%
+}}
+
+%\lehead{\mbox{\llap{\small\kern2em}\ifnum\value{page}=42\replaceText\else\headmark\fi\hfil}}
+%\rohead{\mbox{\hfil{\ifnum\value{page}=42\replaceText\else\headmark\fi}\rlap{\small\kern2em}}}
+
+\lehead{\mbox{\llap{\small\kern2em\color{halfgray}}\ifnum\value{page}=3\replaceText\else\ifnum\value{page}=2\replaceText\else\headmark\fi\fi\hfil}}
+\rohead{\mbox{\hfil{\ifnum\value{page}=3\replaceText\else\ifnum\value{page}=2\replaceText\else\headmark\fi\fi}\rlap{\small\kern2em\color{halfgray}}}}
 
