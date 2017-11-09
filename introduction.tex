@@ -1,7 +1,6 @@
-\chapter{Introduction}
+\chapter*{Introduction}
 \label{ch:intro}
-
-
+\addcontentsline{toc}{chapter}{INTRODUCTION}
 
 Over the past few years, a large number of gene expression atlases based on
 \Rnaseq\ have been released for many different organisms\footnote{E.g.,
@@ -53,3 +52,51 @@ the subject was little known.
 Since then several other studies have been published on the matter.
 Whenever relevant, I present and discuss those results them relation to my owns.
 The first piece towards this goal was done by the~\mycite{seqcmaqc}.
+
+
+Despite individual hereditary and environmental variations,
+normal tissue samples are phenotypically very similar.
+At the molecular level, in addition to the technical noise,
+more variations are also expected.
+
+Microarray studies have illustrated that integrating data
+from different assays (even from the same platform and laboratory)
+is challenging~\mycite{Walsh2015-nf},
+which also explain the abundance of methods and tools~\mycite{Tseng2012-if}.
+While meta-analyses or cross-normalisation of microarrays are still
+used~\mycite{Afroz2016-xk} and they may be very pertinent and
+useful,
+microarray technology is subject to saturation effects and is semi-quantitative
+while suffering from great batch effects~\mycite{Rung2013-ul}.
+
+\Rnaseq\ nurtures the hope of enabling true quantitative measurements.
+
+
+In \Paper{seqcmaqc}~\mycite{seqcmaqc} many facts that
+we had observed within the lab have been reported.
+Indeed, this paper highlights several consistent points
+across sites and platforms,
+such as:
+\begin{itemize}[topsep=0pt,nolistsep,noitemsep]
+        \setlength{\itemsep}{1pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{0pt}
+    \item Detection of the same unannotated isoforms (provided a significant expression)
+    \item Absolute quantification seems unachievable yet,
+        but relative quantification is robust and even agrees well with \gls{qPCR}
+        and microarrays.
+    \item Comprehensive gene model crucial for accurate expression profiling.
+    \item They advise to profile multiple libraries or samples per conditions.
+    \item Gene-specific biases are observed for every platforms
+        (including \gls{qPCR}).
+    \item To achieve absolute quantification, it would need to estimate and
+        remove background noise (improves accuracy but at the expense of precision)
+    \item Pipelines have an impact on the final results.
+\end{itemize}
+
+Their results are sound as they have used the same samples across the different
+sites and platforms which are very different biologically (Universal
+Human Reference RNA) and Human Brain Reference RNA
+(see~\mycite{MAQC_Consortium2006-hs}) (from the \gls{MAQC} consortium).
+
+

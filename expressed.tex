@@ -307,8 +307,8 @@ and they usually dominate manifolds the expression of the other genes.
 
 Removing the 37 mitochondrial genes from the bulk of expressed genes
 (above 10,000 protein coding genes) produces more defined clusters as showed on
-\Cref{fig:MitoNomito} (see also \Cref{ExpGenePcoding1_withMito} in comparison
-of \Cref{ExpGenePcoding1}).
+\Cref{fig:MitoNomito} (see also \Cref{fig:ExpGenePcoding1_withMito} in comparison
+of \Cref{fig:ExpGenePcoding1}).
 
 \begin{figure}
     \centering
@@ -404,9 +404,13 @@ identified and quantified. In other words, if the expression value of a protein
 is greater than zero in a sample, I consider it as expressed.
 
 \minisec{Expressed transcript}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
-It is a bit more complex on the transcriptomic side as we have to account for
-technical noise, but we can also expect \enquote{translational noise}~\mycite{rnaseq-2009},
+It is a bit more complex on the transcriptomic side as
+we have to account for technical noise,
+but we can also expect \enquote{translational noise}~\mycite{rnaseq-2009},
 \mycite{lowNoiseLimit}.
+Indeed, \cite{seqcmaqc} reports that
+excluding low-expression measurements reduce the \gls{FDR} considerably.
+
 While we can empirically evaluate it for each \Rnaseq\
 dataset~\mycite{ramskoldan:2009},
 there is a widespread threshold used in the literature:
