@@ -133,6 +133,9 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 \Crefname{appsec}{Appendix}{Appendices}
 \RequirePackage{isotope}
 \RequirePackage[mark]{gitinfo2}
+%\RequirePackage[inline]{showlabels}
+%\renewcommand{\showlabelsetlabel}[1]
+%{\begin{turn}{10}\color{red}\showlabelfont #1\end{turn}}
 
 \setmainfont[Mapping=tex-text, Numbers=OldStyle]{TeX Gyre Pagella}
 %\setmainfont[Ligatures={NoRequired,NoCommon,NoContextual}]{Font Name}
@@ -185,7 +188,7 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 \setkomafont{title}{\rmfamily\Huge}
 \setkomafont{subject}{\normalfont\normalcolor}
 \isodash{\ensuremath{\cdot}}% Replacement for `‧` = U+‧2027 HYPHENATION POINT
-\setkomafont{minisec}{\libertineSB}
+\setkomafont{minisec}{\libertineSB\small}
 
 
 \definecolor{cambridgeblue}{RGB}{163, 193, 173}
