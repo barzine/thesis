@@ -83,20 +83,63 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
 
 \begin{figure}[htpb]
     \includegraphics[scale=0.95]{transcriptomics/heatmapT4NoMitoAndwithRep_1.pdf}\centering
-    \caption[Heatmap no Mito]{\label{fig:noMitoRep4T}\textbf{No mito, all rep, 4T}}
+    \caption[Heatmap including all the replicates of the 4 common tissues
+    across the 5 datasets]{\label{fig:noMitoRep4T}\textbf{Heatmap including all
+    the replicates of the 4 common tissues across the 5 datasets.} All protein
+    coding genes (except the mitochondrial ones)
+    at least expressed at 1 \FPKM\ are included. All the samples, except from the
+    \castle\ study are clustering by their tissue of origin.
+    Remarkably, while the replicates may cluster by their study in each of the
+    tissue groups, many pairs with higher correlations are involving replicates
+    from different studies. \castle\ study is not a polyA-selected study, hence,
+    its samples clustering may be due entirely to the effect size bias of the
+    \FPKM\ normalisation method.}
 \end{figure}
 
+\begin{figure}[htpb]
+    \includegraphics[scale=0.95]{transcriptomics/heatmap23Replicates.jpg}\centering
+    \caption[Heatmap including all the replicates of the 23 common tissues
+    between Uhlén and GTEx studies]{\label{fig:noMitoRep23T}\textbf{Heatmap
+    including all the replicates of the 23 common tissues between \uhlen\ and
+    \gtex\ studies.} All protein coding genes (except the mitochondrial ones)
+    at least expressed at 1 \FPKM\ are included. Most samples are clustering by
+    their tissue of origin while we can observe than many single replicates may
+    cluster less expectedly. Many small mixtures are observed, often they involve
+    closely related tissues, \ie\ \tissue{Heart} and \tissue{Skeletal muscle} or
+    \tissue{Ovary} and \tissue{Fallopian tube}.}
+\end{figure}
 
 
 \begin{figure}[htpb]
-\includegraphics[scale=0.75]%
-{transcriptomics/TransPearsonDistributionIdenticalDifferent.pdf}\centering
-\caption[Distribution of the Pearson correlation of matched and unmatched tissue
-pairs across the 5 studies]{\label{fig:distribPearsCorr}\textbf{Distribution
-of the Pearson correlation of matched and unmatched tissue pairs across the 5
-studies.}}
-\end{figure}
+\centering
+\begin{minipage}{\textwidth}
+\begin{subfigure}[b]{0.95\textwidth}
+\centering
+\includegraphics[scale=0.9]%
+{transcriptomics/TransPearsonDistributionIdenticalDifferent.pdf}
+\caption[Pearson correlation]{\label{fig:distribPearsCorr}\textbf{Pearson
+correlation}}
+\end{subfigure}
 
+
+
+\begin{subfigure}[b]{0.95\textwidth}
+\centering
+\includegraphics[scale=0.9]%
+{transcriptomics/TransSpearmanDistributionIdenticalDifferent.pdf}
+\caption[Spearman correlation]{\label{fig:distribSpearCorr}\textbf{Spearman
+correlation}}
+\end{subfigure}
+\caption[Distribution of the correlation of matched and unmatched tissues pairs
+across the two working sets.]{\label{fig:distribCorr}%
+\textbf{Distribution of the correlation of matched
+and unmatched tissues pairs for the two working sets.} The displayed
+p-values\footnote{Thresholds above which the $H_0$ hypothesis
+is safe to be rejected.\\$H_0$: The correlations of same tissue pairs and
+different tissues pairs are similar.} have been computed with
+a Welch two-sample t-test.}
+\end{minipage}
+\end{figure}
 
 
 \begin{sidewaysfigure}[htpb]
@@ -120,7 +163,6 @@ datasets]{\label{fig:highExpress4T}\textbf{Cumulative shared set of genes
 ranked by their decreasing order of expression across the 5 datasets.} Not
 very good and make a parallel with \Cref{fig:highExpress23T}.}
 \end{figure}
-
 
 
 \begin{comment}

@@ -72,7 +72,8 @@ Aside from the \pandey\ data (\cref{fig:densityPandey_log2}),
 the expression of the proteins is more heterogeneous
 (in particular \cutler\ data, see \cref{fig:densityCutler_log2}).
 This is concordant to the more disparate and various techniques involved in
-the proteomic sample preparation (see \cref{subsec:ProtSampPrep}).
+the proteomic sample preparation (see \Cref{subsec:ProtSampPrep}:
+\nameref{subsec:ProtSampPrep}).
 
 
 \begin{figure}
@@ -165,18 +166,20 @@ Correlation coefficients are a measure of the statistic dependence between two
 continuous variables\footnote{In the context of this study: either expression
 levels of a given gene across samples/tissues or expression levels of all genes
 \emph{between} two samples or tissues} (\eg\
-$X$ and $Y$) and always ranges within $[-1,1]$ (see also \cref{sec:CorrMore}).
+$X$ and $Y$) and always ranges within $[-1,1]$ (see also
+\cref{sec:CorrMore}: \nameref{sec:CorrMore}).
 
 The correlation coefficient is computed by pairwise comparing observations
 between the two variable. Most implementation methods
 will manage an unbalanced number of observations by excluding the incomplete pairs.
 To ease the interpretation I preferred to filter the data \latin{a priori}
 myself; I only kept expression values \emph{effectively observed}
-in all the datasets (see~\cref{sec:ExpressedOrNot}).
+in all the datasets (see~\cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot}).
 
 Among the several methods available to compute the correlation coefficient,
 I tried both the Spearman and the Pearson correlations
-(see respectively \cref{subsec:SpearmanCor} and \cref{subsec:PearsonCor}).
+(see respectively \cref{subsec:SpearmanCor}: \nameref{subsec:SpearmanCor} and
+\cref{subsec:PearsonCor}: \nameref{subsec:PearsonCor}).
 
 \begin{table}[]
 \centering
@@ -275,9 +278,32 @@ Indeed, this later method was used in~\mycite{Uhlen2014}
 (first release of the \uhlen\ dataset) where
 the original authors have to discard a few samples as they were clustering
 incoherently in regards of their biological nature.
+\Cref{fig:fabergerOriginal} presents the effect of the different clustering
+method.
+We notice that all the tissue clusters are more well defined when the Ward's
+method is used.
 However, the Ward's method allows to conserve all the samples for the analysis
-as long as another bias source is corrected (see \cref{subsec:mito}).
+as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{subsec:mito}).
 
+\begin{figure}[!htb]
+    \centering
+       \begin{subfigure}[h]{0.70\textwidth}
+       \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerAnnotated2_noLog_NoMito_htseqSpearman.png}
+    \caption{Clustering based on the Ward method}\label{fig:FabergerRedone}
+   \end{subfigure}
+
+     \begin{subfigure}[h]{0.70\textwidth}
+      \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerOriginal.png}
+      \caption{Clustering from the original study
+      {\footnotesize \mycite{Uhlen2014}}}\label{fig:fabergerOriginal}
+       \end{subfigure}
+    \caption[Comparison of clustering methods on a subset of the \uhlen\ study]{%
+    \textbf{Comparison of clustering methods on a subset of the \uhlen\ study}.
+    (\subref{fig:FabergerRedone}) includes all the samples and
+    we observe that only of them are mixed with other samples from other tissues.
+    This mixture is only observed between  \tissue{Small intestine} and \tissue{Duodenum}.
+ }\label{fig:versusFaberger}
+\end{figure}
 
 \section{Reducing obvious bias sources}
 
@@ -290,7 +316,6 @@ in the context of this thesis, this is a smaller concern as I am interested into
 consistent traits across the datasets that may be consolidated into a reference.
 Nonetheless, prior to the analysis and while its early stages,
 I found a few easily avertible biases that I describe hereinafter.
-
 
 \subsection{Mitochondria issue}\label{subsec:mito}
 
@@ -310,26 +335,25 @@ Removing the 37 mitochondrial genes from the bulk of expressed genes
 \Cref{fig:MitoNomito} (see also \Cref{fig:ExpGenePcoding1_withMito} in comparison
 of \Cref{fig:ExpGenePcoding1}).
 
-\begin{figure}
+\begin{figure}[!htb]
     \centering
-    \begin{subfigure}[b]{0.79\textwidth}
+    \begin{subfigure}[h]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{expressed/Uhlen_noLog_mito_htseq.jpeg}
-        \caption{With the 37 mitochondrial genes}\label{fig:withMito}
+        \includegraphics[width=0.85\textwidth]{expressed/Uhlen_noLog_mito_htseq.jpeg}
+        \caption{With the 37 mitochondrial genes kept}\label{fig:withMito}
     \end{subfigure}
 
-    \begin{subfigure}[b]{0.79\textwidth}
+    \begin{subfigure}[h]{0.85\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{%
+        \includegraphics[width=0.85\textwidth]{%
             expressed/Uhlen_noLog_NoMito_htseqPearson.jpeg}
         \caption{Without the mitochondrial genes}\label{fig:NoMito}
     \end{subfigure}
     \caption[Clustering of the biological samples of \uhlen\
     dataset based on the Pearson correlation]{\label{fig:MitoNomito}\textbf{Clustering
-    of the biological samples of \uhlen\ dataset based on the Pearson correlation}
+    of the biological samples of \uhlen\ study based on the Pearson correlation}
     --- all expressed genes are included.}
 \end{figure}
-
 
 \subsection{Protein coding genes}\label{subsec:protcodingOnly}
 I have focused my analyses on the \mRNAs\ (\ie\ \glspl{RNA} that have a
@@ -337,11 +361,10 @@ biotype described as \emph{protein coding} in \ens{76}).
 
 In addition of the obvious reason to match with the proteomic data,
 most of the transcriptomic data is the produce of poly-A selected protocols
-(see \cref{msec:polyA}).
+(see \Cref{msec:polyA}: \nameref{msec:polyA}).
 Thus, aside of the \mRNAs, all the other \glspl{RNA} are off-target
 and, for many of them,
 their expression levels estimations may be highly imprecise.
-
 
 
 \subsection{Expressed or not expressed}
@@ -359,7 +382,7 @@ Hence, it is important that the data used for the analysis is meaningful in
 its whole, \ie\ a null value has still to be an observation and translates
 a lack of expression (and not a lack of observation).
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
     \includegraphics[scale=0.7]{expressed/expressedNotExp.pdf}\centering
       \caption[Expressed or not: several cases illustrated]
       {\label{fig:DefineExpression}\textbf{Expressed or not: several cases
@@ -441,9 +464,10 @@ one sample in \emph{every and each} of the datasets used for the analyses,
 I then exclude it.
 
 \subsection{Averaging tissue expression}
-
+\label{subsec:averagedTissue}
 Finally, to avoid unnecessary skewness in the meta-analysis due to
-the biological replicates unbalance across the datasets (see \cref{sec:expDesign}),
+the biological replicates unbalance across the datasets (see \Cref{sec:expDesign}:
+\nameref{sec:expDesign}),
 I computed a \emph{\enquote{virtual} reference} for each tissue
 for the datasets that present more than one biological sample per tissue,
 \ie\ \vt, \uhlen\ and \gtex\ datasets.
@@ -510,6 +534,6 @@ Indeed, while two of the three body sites present great similarities
 to \tissue{Oesophagus} samples of the \uhlen\ dataset,
 the last body site expression is very dissimilar.
 Thus, excluding this body site will significantly improve
-the overall correlation of \gtex\ and \uhlen\ \tissue{Oesophagus}.
+the overall correlation of \gtex\ and \uhlen\ for the \Oesophagus.
 
 
