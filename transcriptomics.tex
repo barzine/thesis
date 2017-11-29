@@ -253,32 +253,46 @@ high correlations are also observed (see also \Cref{fig:noMitoNoRep23T}).
 \subsection{What is the driving force of closer similarity of tissues than
 datasets}
 
-Once biological reason suspected, the question was shifted to what is driving
-this correlation.
+Once established that \Rnaseq\ allows to distinguished a common biological source
+of most samples across different studies,
+the question then arises as to what is driving these inter-study
+strong correlations.
 
-Correlation coefficients are ``susceptible'' to different things.
-Explore different venues(?) of causes.
-
-It is a bit of legacy from the microarrays studies (while microarrays are differently
-constructed, see ch:background): Most expressed and most variables.
-
-\begin{comment}
-\begin{itemize}
-    \item Is that the highest expressed genes?
-    \item Is that the highest variable genes? (These both questions legacy of microarrays day)
-    \item Something else\ldots that we define as \enquote{Genes with outlier expression}
-        for some tissues.
-    \item \uhlen\ classification
-\end{itemize}
-\end{comment}
+As discussed in \Cref{ch:expression} (see \Cref{sec:ExpressedOrNot}:
+\nameref{sec:ExpressedOrNot}),
+correlation coefficients measure the dependence between (here) two samples
+and are subject to outliers and the skewness of the distributions.
+Thus, the next intuitive step is to test
+whether a particular subset of the genes may drive the correlation coefficients,
+\ie, as the \emph{unobserved} genes are excluded from the analyses,
+are the highest or the most variable genes the underlying reasons of the strong
+correlations.
 
 \subsubsection{Highest expressed genes}
 
-Definition of highest expressed genes.
+The notion of highest expressed genes may be trivial,
+but it is worth remembering that the normalisation methods are impacting
+the final expression values.
+Note that individual genes may have, or not,
+the highest expression values for a given condition
+depending on the normalisation methods
+(see \Cref{subsub:norm}:~\nameref{subsub:norm})
+Although, in the present case,
+by processing the data with consistent methods and annotation
+and by excluding selected sets of
+genes\footnote{See \Cref{sec:bias_sources}:~\nameref{sec:bias_sources}}
+I avoid many biases.
 
-Not expressed at the same levels (it is dependent also to the normalisation
-method);
-chose to look at the evolution of the correlation coefficient based on
+\NB\ If I had picked another normalisation method than \FPKM,
+I would have needed another exclusion filter set.
+
+
+
+
+
+
+
+Chose to look at the evolution of the correlation coefficient based on
 the cutoff picked to compute the correlation coefficient see \Cref{fig:CorHighExp4T}
 and \Cref{fig:CorHighExp23T}.
 
@@ -333,9 +347,9 @@ to consider the subset of high expressed genes.
     \includegraphics[scale=0.8]{transcriptomics/T23EvolHighExp23P-1.pdf}\centering
     \caption[Pearson correlation coefficient evolution based on the expression
     levels of the genes considered for each of the 23 common tissues]{%
-\label{fig:CorHighExp23T}\textbf{Pearson correlation coefficient evolution based on the
-expression levels of the genes considered for each of the 23 common tissues
-between \uhlen\ and \gtex.}}
+\label{fig:CorHighExp23T}\textbf{Pearson correlation coefficient evolution based
+on the expression levels of the genes considered
+for each of the 23 common tissues between \uhlen\ and \gtex.}}
 \end{figure}
 
 
@@ -343,6 +357,7 @@ Hence, while a study of the highly expressed genes can be interesting, in
 the context of finding what is the driving force of similarity for a baseline
 expression genes is not the solution. Not adequate.
 Need to find something else; hence, most variable genes.
+
 
 
 \subsubsection{Most variable genes}
@@ -364,12 +379,6 @@ genes in the common set of tissues:
 Overall good correlation may be translated by similar variation pattern (but no).
 
 Are the most expressed (and lowest expressed genes) that are driving the results? Nope.
-
-
-
-
-
-
 
 
 \subsection{Tissue specific,housekeeping genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
@@ -401,15 +410,20 @@ They change the definition between their two related papers~\mycite{Uhlen2014}
 and~\mycite{Uhlen2015}, hence the definition I am using is a based on the second
 one but with some subdivisions they presented in the first version.
 
-\begin{sidewaystable}[]
+\pagestyle{plain}
+\begin{landscape}
+\begin{table}[]
 \centering
-\caption{My caption}
-\label{tab:UhlenCategoriesProtCoding}
+\caption[Uhlén et al.\ gene categories]{\label{tab:UhlenCategoriesProtCoding}%
+\textbf{Uhlén et al.\ gene categories}\\
+\footnotesize{Apart the undetected genes and the ones expressed below 1 \FPKM,
+a gene may be referenced in several categories.}}
+
 %\begin{tabular}{@{}lllllllllll@{}}
 \begin{tabular}{@{}ccccccccccc@{}}
 \toprule
 \multicolumn{2}{c}{\multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\ens{76}
-    \\(22,469 protein\\coding genes) \end{tabular}}} &
+    \\($\sim$22,500 protein\\coding genes) \end{tabular}}} &
 \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}\\Not\\detected\end{tabular}} &
 \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}Not expressed\\ at 1 \gls{FPKM}\\
     cut-off\end{tabular}} &
@@ -427,7 +441,7 @@ one but with some subdivisions they presented in the first version.
     \begin{tabular}[c]{@{}c@{}}High\\ (≥ 10 FPKM)\end{tabular} &  &  &  \\
         \midrule
         \multicolumn{1}{c}{%
-        \multirow{7}{*}{\rotatebox[origin=c]{90}{\parbox[c]{4cm}{\centering Whole
+        \multirow{6}{*}{\rotatebox[origin=c]{90}{\parbox[c]{3cm}{\centering Whole
         dataset}}}} &
         Castle & 3,403 & 3,268 & 8,773 & 1,033  &
         1,399  & 634   & 11   & 3,664   & 1,975 \\
@@ -437,10 +451,10 @@ one but with some subdivisions they presented in the first version.
         \multicolumn{1}{c}{} & IBM & 2,693 & 2,605  &
         7,325  & 1,406  & 1,135 & 858  & 322 &
         5,248  & 2,453  \\
-        \multicolumn{1}{c}{} & Uhlen & 2,662 & 1,747 &
+        \multicolumn{1}{c}{} & Uhlén & 2,662 & 1,747 &
         5,769 & 1,053  & 456 & 406  & 2,511  &
         5,201  & 2,333  \\
-        \multicolumn{1}{c}{} & Gtex & 2,197  & 1,886  &
+        \multicolumn{1}{c}{} & GTEx & 2,197  & 1,886  &
         5,556  & 1,117 & 687  & 698  & 3,859  &
         4,356  & 1,919 \\ \cmidrule(l){2-11}
         \multicolumn{1}{c}{} & Consensus & 2,197 & 486  &
@@ -451,7 +465,7 @@ one but with some subdivisions they presented in the first version.
             %\footnotesize{286} & \footnotesize{63}  & \footnotesize{179} &
             %\footnotesize{0}  & \footnotesize{814} &  \footnotesize{587}  \\
             \midrule
-\multirow{7}{*}{\rotatebox[origin=c]{90}{\parbox[c]{3cm}{\centering Common\\
+\multirow{6}{*}{\rotatebox[origin=c]{90}{\parbox[c]{3.5cm}{\centering Common\\
 4 tissues\\ Working datasets}}} &
 Castle & 19,066 & 2,994 & 8,589 & 1,513 &
 2,994 & 1094 & --- & --- & 2,185 \\
@@ -459,9 +473,9 @@ Castle & 19,066 & 2,994 & 8,589 & 1,513 &
 & 2,962  & 1251 & --- & --- & 3,672  \\
 & IBM & 19,776  & 2,989 & 8,534 & 1,954 &
 2,989  & 1212  & --- & --- & 2,824  \\
-& Uhlen & 19,807 & 2,917 & 8,367 & 2,227 &
+& Uhlén & 19,807 & 2,917 & 8,367 & 2,227 &
 2,917  & 1190  & --- & --- & 3,730  \\
-& Gtex & 20,272 & 3,870 & 8,988  & 2,312 &
+& GTEx & 20,272 & 3,870 & 8,988  & 2,312 &
 3,870  & 1427  & --- & --- & 3,554  \\
 \cmidrule(l){2-11}
 & Consensus & 1,973 & 550 & 3,351 & 649 &
@@ -469,19 +483,22 @@ Castle & 19,066 & 2,994 & 8,589 & 1,513 &
 %& \footnotesize{without Gtex} & \footnotesize{2,413}  & \footnotesize{2,186}  &
 %\footnotesize{3538}  & \footnotesize{639}  & \footnotesize{576}  &
 %\footnotesize{439}  & \footnotesize{---} & \footnotesize{---} & \footnotesize{1,462}
-\\ \midrule
+\midrule
 \multirow{3}{*}{\rotatebox[origin=c]{90}{\parbox[c]{1.7cm}{\centering Common\\ 23
-tissues\\ Working datasets}}} & Uhlen & 2,662  & 1,970  &
+tissues\\ Working datasets}}} & Uhlén & 2,662  & 1,970  &
 6,160 & 1,135 & 594  & 427 & 1,285 &
 5,776 & 2,518 \\
-& Gtex & 2,197 & 2,258 & 6,966  & 1,540 &
+& GTEx & 2,197 & 2,258 & 6,966  & 1,540 &
 1,822  & 997 & 1,048 & 5,496  & 2,460 \\
 \cmidrule(l){2-11}
 & Consensus & 2,197 & 1,544 & 4,936 & 791 &
 423 & 417 & 558 & 4,223 & 1,885 \\
 \bottomrule
 \end{tabular}
-\end{sidewaystable}
+\end{table}
+\end{landscape}
+\pagestyle{scrheadings}
+
 
 \section{Discussion}\label{sec:Trans_discussion}
 \TK{when I started no paper, now overloads}: list them and compare to my own
