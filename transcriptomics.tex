@@ -2,8 +2,8 @@
 \label{ch:Transcriptomics}
 
 In the perspective of paving the way towards
-a generalised baseline expression reference for normal human,
-in this chapter I assess the similarity
+a generalised baseline expression reference for the normal human,
+in this chapter, I assess the similarity
 of the tissues sourced from different \Rnaseq\ studies and
 the general profiles of their expressed genes.
 
@@ -20,7 +20,7 @@ its related processing.
 Since then, several studies were published assessing \Rnaseq.
 A few present a closely related scope to my own investigations, thus
 whenever relevant,
-I present and discuss my results in relation to the published ones.
+I introduce and discuss my results in relation to the published ones.
 
 
 \derivativeWork{}
@@ -43,8 +43,8 @@ commonly explored and measured in each study.
 
 Through this chapter, I use two working sets:
 \begin{itemize}[topsep=0pt,nosep]
-    \item 4 tissues --- 12,268 genes across the 5 \Rnaseq\ studies, and
-    \item 23 tissues --- 17,551 genes across 2 of these studies.
+    \item \setOne: 4 tissues --- 12,268 genes across the 5 \Rnaseq\ studies, and
+    \item \setTwo: 23 tissues --- 17,551 genes across 2 of these studies.
 \end{itemize}
 
 The following \cref{subsec:tran_tissueOverlap,subsec:trans_GeneOverlap}
@@ -81,46 +81,46 @@ They constitutes the base of a second 23-tissue working set that includes
 
 \subsection{Common measured genes for each of the common tissues sets}
 \label{subsec:trans_GeneOverlap}
-As shown in the \Cref{tab:Trans5DF},
+As shown in \Cref{tab:Trans5DF},
 many of the transcriptomic datasets I use have been produced through
 polyA-selected library protocols.
 Hence, most of the analyses are limiting to genes with a biotype annotated as
-\emph{protein coding}
+\emph{\pc}
 to avoid unnecessary biases\footnote{See
 \Cref{subsec:protcodingOnly}: \nameref{subsec:protcodingOnly}.}.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.50]{transcriptomics/PcodingGenesExpressed1_4tissues.pdf}\centering
-    \caption[Unique and shared protein coding genes expressed
+    \caption[Unique and shared \pcgs\ expressed
     in the 4 common tissues (≥1 \FPKM)]{\label{fig:ExpGenePcoding1}\textbf{Unique
-    and shared protein coding genes expressed ≥ 1 \FPKM\ in the 4 common tissues
+    and shared \pcgs\ expressed ≥ 1 \FPKM\ in the 4 common tissues
     across the 5 studies.}}
 \end{figure}
 
 The Venn diagram presented in \Cref{fig:ExpGenePcoding1} only includes protein
 genes that are observed\footnote{See
 \Cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot}.}
-at least once at 1 \FPKM\ for one of the four common tissues.
+at least once at 1 \FPKM\ for one of the four shared tissues.
 Plainly, the bulk of genes expressed at this threshold is common
 across the five datasets.
-Indeed, while each study presents a very small portion of genes
+Indeed, while each study presents a tiny portion of genes
 that are unique,
 overall most genes are detected in two or more studies.
 The greatest contingent of shared genes is between \uhlen\ and \gtex.
 
 \begin{figure}[h]
     \includegraphics[scale=0.45]{transcriptomics/vennTissue23_1protcodgenes.pdf}\centering
-    \caption[Unique and shared protein coding genes expressed
+    \caption[Unique and shared \pcgs\ expressed
     in the 23 common tissues (≥1 \FPKM)]%
     {\label{fig:ExpGenePcoding1_t23}\textbf{Unique
-    and shared protein coding genes expressed ≥ 1 FPKM in the 23 common tissues
+    and shared \pcgs\ expressed ≥ 1 FPKM in the 23 common tissues
     of \uhlen\ and \gtex\ studies.}}
 \end{figure}
 
 In this respect, \Cref{fig:ExpGenePcoding1_t23} presents a similar Venn diagram
-while focusing on the common twenty-three tissue set between \uhlen\ and \gtex.
+while focusing on the twenty-three common tissue set between \uhlen\ and \gtex.
 The number of unique genes to each study is negligible compared to the bulk:
-that number represents less than 0.03\% of the measured genes in each of the study.
+it represents less than 0.03\% of the measured genes in each of the studies.
 \begin{comment}
     Gtex:   462/17551 hence 0.02632329\%
     Uhlen:  281/17551 hence 0.01601048\%
@@ -137,10 +137,11 @@ As I show in \Cref{ch:expression}, within the same study,
 the expression levels of same-tissue samples are highly correlated and
 allow to group the samples based on their biological source.
 In fact, clustering the samples across the studies offers a quick assessment of
-the underlying causes of the expression levels measurements:
-a clustering by study means that the technical variabilities are stronger
-than any biological expression signature and, on the other hand,
-an inter-study sample clustering by tissue means that \Rnaseq\ measurements
+the underlying causes of the expression levels measurements.
+A clustering by study means that the technical variabilities are stronger
+than any biological expression signature.
+On the other hand,
+an interstudy sample clustering by tissue implies that \Rnaseq\ measurements
 are less prone to batch effects and more robust than measurements by
 microarray assays~\mycite{Taminau2014-hr,Walsh2015-nf}.
 
@@ -152,23 +153,24 @@ for the four common tissues across the five datasets and the
 twenty-three common tissues between \uhlen\ and \gtex\ studies.
 The heatmaps are based on the clustering of these references based on
 their Pearson correlation coefficients with the Ward's method
-of the protein coding genes (≥ 1 \FPKM, and excluding
+of the \pcgs\ (≥ 1 \FPKM, and excluding
 the mitochondrial genes).
 
 The clustering plainly highlights a greater similarity of samples
 due to their biological origins over any possible
 similarity due to technical variations of library preparation or processing.
 Indeed, each cluster concordes to a tissue in \Cref{fig:noMitoNoRep4T}.
-While we may object that this result may be driven by
+While we may object that
 the very different gene expression (and levels) in
 \tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and \tissue{Testis},
+may drive this result,
 \Cref{fig:noMitoNoRep23T} confirms that the biological origin of the tissues
-is the major criterion for the clustering of the samples.
+is the dominant criterion for the clustering of the samples.
 Even if we observe a few mixture of samples,
 the majority of the samples cluster by tissue.
 Moreover, in many cases, the mixture are from close biologically related tissues,
-\eg\ \tissue{Fallopian tube} and \tissue{Ovary} samples, \tissue{Salivary gland}
-with \tissue{Esophagus} or \tissue{Stomach} samples.
+\eg\ \fallopian\ and \Ovary\ samples, \salivary\
+with \Esophagus\ or \Stomach\ samples.
 \Cref{fig:noMitoRep4T} and \Cref{fig:noMitoRep23T}
 present heatmaps for the same tissues and studies,
 but where every available sample is included\footnote{I.e\
@@ -176,22 +178,22 @@ there may be several samples for a same tissue in each study.}.
 These two supplementary figures also support that
 the biological signal is in overall stronger than the technical variations.
 
-\begin{figure}[!tpb]
+\begin{figure}[!htpb]
     \includegraphics[scale=0.85]{transcriptomics/heatmap4TnoMitonoRep_1.pdf}\centering
     \caption[Heatmap of the 4 common tissues across the 5 studies]%
     {\label{fig:noMitoNoRep4T}\textbf{Heatmap of the 4 common tissues
-    across the 5 studies.}\\All protein coding genes (except the mitochondrial
+    across the 5 studies.}\\All \pcgs\ (except the mitochondrial
     ones) at least expressed at 1 \FPKM\ are included.\\We observe that all the
     different samples cluster by tissue (instead, for example, of studies)
     of origin.}
 \end{figure}
 
-\begin{figure}[!tpb]
+\begin{figure}[!htpb]
     \includegraphics[scale=0.85]{transcriptomics/heatmap23TnoMitonoRep_1.pdf}\centering
     \caption[Heatmap of 23 common tissues between Uhlén and GTEx studies]%
     {\label{fig:noMitoNoRep23T}%
     \textbf{Heatmap of 23 common tissues between Uhlén and GTEx studies.}\\
-    All protein coding genes (≥ 1 FPKM with the exclusion of the mitochondrial
+    All \pcgs\ (≥ 1 FPKM with the exclusion of the mitochondrial
     genes) are included.\\Most samples cluster by tissues but a few exception.
     Indeed, we observe a mixture of the \tissue{Fallopian tube}
     and \tissue{Ovary} samples.
@@ -206,7 +208,7 @@ coefficients for the pairs of same tissue \emph{reference} samples
 sourced from the different studies
 for both of the working datasets.
 
-Most of the Pearson correlation are above 0.5\footnote{Indeed, apart of the
+Most of the Pearson correlations are above 0.5\footnote{Indeed, apart of the
 correlation between the \tissue{Testis} samples of \castle\ and \vt\ (0.42)
 for the 4-tissues working set and
 \tissue{Salivary gland} samples of \uhlen\ and \gtex\ (0.2)
@@ -215,8 +217,9 @@ even with the lack of any batch effect correction.
 The median correlation for the four common tissues across the five datasets is
 about 0.7 and 0.84 for the twenty-three tissues between \uhlen\ and \gtex\ studies.
 Results are even better with Spearman Correlation:
-the average are 0.49 for the 4-tissues sets and 0.9 for the 23-tissues set and
-the median correlation are respectively 0.88 and 0.93.
+the averages are respectively 0.49 for the 4-tissues sets
+and 0.9 for the 23-tissues set and
+the median correlations are 0.88 and 0.93.
 
 Thus, both the Pearson\footnote{despite one major outlier in the second
 working set (\tissue{Salivary gland} --- Pearson correlation: 0.2)} and the
@@ -230,7 +233,7 @@ Three main reasons may explain this situation:
         for these two studies;
     \item The instrument used for the sequencing were
         from the same series (HiSeq 2000 and HiSeq 2500); and
-    \item These studies present a greater number of replicates per tissue.
+    \item These studies present a higher number of replicates per tissue.
 \end{itemize}
 
 \begin{figure}[!htpb]
@@ -244,16 +247,16 @@ working sets.} In general, the Pearson correlation are high even though we are
 \end{figure}
 
 \Cref{fig:distribCorr} presents the different pairs of tissues across the
-datasets in addition of the same tissue pairs.
+datasets in addition to the same tissue pairs.
 The pairs comprising different tissues are very lowly correlated in general.
 However, in few cases, for the 23-tissues working set,
 high correlations are also observed (see also \Cref{fig:noMitoNoRep23T}).
 
 
-\subsection{What is the driving force of closer similarity of tissues than
-datasets}
+\section{Possible driving force of the closer intratissue rather intrastudy
+similarity}
 
-Once established that \Rnaseq\ allows to distinguished a common biological source
+Once established that \Rnaseq\ allows distinguishing a common biological source
 of most samples across different studies,
 the question then arises as to what is driving these inter-study
 strong correlations.
@@ -264,11 +267,14 @@ correlation coefficients measure the dependence between (here) two samples
 and are subject to outliers and the skewness of the distributions.
 Thus, the next intuitive step is to test
 whether a particular subset of the genes may drive the correlation coefficients,
-\ie, as the \emph{unobserved} genes are excluded from the analyses,
+\ie\ --- as I have excluded the
+\emph{undefined}\footnote{\ie\ \emph{unobserved} --- See also
+\Cref{subsec:ExpressedOrNot-undefined}: \nameref{subsec:ExpressedOrNot-undefined}}
+genes from the analyses ---
 are the highest or the most variable genes the underlying reasons of the strong
 correlations.
 
-\subsubsection{Highest expressed genes}
+\subsection{Highest expressed genes}
 
 The notion of highest expressed genes may be trivial,
 but it is worth remembering that the normalisation methods are impacting
@@ -283,18 +289,32 @@ and by excluding selected sets of
 genes\footnote{See \Cref{sec:bias_sources}:~\nameref{sec:bias_sources}}
 I avoid many biases.
 
-\NB\ If I had picked another normalisation method than \FPKM,
+\NB\ If I had picked another normalisation method than \FPKM\footnote{See
+\Cref{eq:rpkm-fx}},
 I would have needed another exclusion filter set.
 
+To test the influence of highest expressed genes on correlation coefficients,
+I chose to visualise the evolution of the correlation
+in function of expression value thresholds.
+Indeed, for \Cref{fig:CorHighExp4T} and \Cref{fig:CorHighExp23T},
+I computed the correlation of genes expressed above a cut-off
+for each pair of identical tissues within each of the two working datasets.
+The cut-off is a range of possible (integer number) value of gene expression
+(using 10 as a step).
 
-
-
-
-
-
-Chose to look at the evolution of the correlation coefficient based on
-the cutoff picked to compute the correlation coefficient see \Cref{fig:CorHighExp4T}
-and \Cref{fig:CorHighExp23T}.
+In \Cref{fig:CorHighExp4T}, that shows the 4-tissues working set,
+except for very few pairs, the highest correlations correspond to
+the lowest cut-off of 1 \FPKM\@.
+Indeed, except for the following couples:
+\begin{eqlist}[\eqliststarinit\def\makelabel#1{\bfseries#1}\labelsep1em]
+\item[Heart] \uhlen{}-\gtex\ pair
+\item[Kidney] \uhlen{}-\gtex, \castle{}-\uhlen\ and \castle{}-\gtex\ pairs,
+\item[Liver]  \vt{}-\ibm, \ibm{}-\uhlen\ and \ibm{}-\uhlen\ pairs;
+\item[Testis] \ibm{}-\uhlen, \vt{}-\gtex, \vt{}-\uhlen\ and \uhlen{}-\gtex\ pairs
+\end{eqlist}
+in most cases,
+the correlation coefficients are increasing as the cut-off is lowered
+(and that the calculations comprise more genes).
 
 \begin{sidewaysfigure}[htpb]
     \centering
@@ -324,24 +344,17 @@ and \Cref{fig:CorHighExp23T}.
     common tissues across the 5 studies.}}
 \end{sidewaysfigure}
 
-Aside from very few pairs,
-\ie\ in the context of the 4-tissues working set:
-\tissue{Heart} for the \uhlen{}-\gtex\ pair,
-\tissue{Kidney} for the \uhlen{}-\gtex, the \castle{}-\uhlen\ and the \castle{}-\gtex\
-pairs,
-\tissue{Liver} for the \vt{}-\ibm, the \ibm{}-\uhlen\ and the \ibm{}-\uhlen\ pairs
-and for \tissue{Testis} for the \ibm{}-\uhlen, the \vt{}-\gtex, the \vt{}-\uhlen\
-and \uhlen{}-\gtex\ pairs.
-
 In the context of the 23-tissues working set,
-many more tissues present very high correlation from a subset of their highly
-expressed genes, \ie\ skeletal muscle, Thyroid, Cortex, Uterus, Kidney, but
-no consensual threshold that could be used as a rule outside of these specific
-examples. (No way to use that as a cause/predictor).
+showed in \Cref{fig:CorHighExp23T},
+many more tissue pairs present very high correlation for subsets of their highly
+expressed genes, \ie\ \skeletal, \Thyroid, \Cortex, \Uterus, \Kidney.
+Unfortunately, these specific examples are insuffisant
+to able any consensual threshold to be derived for future work.
 
-Moreover, aside from the Kidney pairs, in all the other situations taking all the
-protein coding genes expressed at least at  1 \FPKM\ is as good if not better than
-to consider the subset of high expressed genes.
+Moreover, the \kidney\ pairs aside,
+for all the other tissues,
+considering every protein gene expressed at least at 1 \FPKM\ is as good, when
+not better, than including only the high expressed genes subset.
 
 \begin{figure}[htpb]
     \includegraphics[scale=0.8]{transcriptomics/T23EvolHighExp23P-1.pdf}\centering
@@ -352,38 +365,124 @@ on the expression levels of the genes considered
 for each of the 23 common tissues between \uhlen\ and \gtex.}}
 \end{figure}
 
+To ponder for the possible difference in the expression magnitude
+across the studies\footnote{Due to particular batch effects in each study},
+while the highest expressed \pc\ may have similar ranks
+for a given tissue,
+I have explored the ratio evolution of the common highest expressed
+genes across the studies to the number of genes considered.
 
-Hence, while a study of the highly expressed genes can be interesting, in
-the context of finding what is the driving force of similarity for a baseline
-expression genes is not the solution. Not adequate.
-Need to find something else; hence, most variable genes.
+This hypothesis is backed by the Spearman correlations that are higher
+than the Pearson ones.
 
+\Cref{fig:highExpress4T} shows the cumulative ratios of the number of
+common \pcgs\ in a given number of highest expressed \pcgs\
+in each tissue across the studies to that very number.
+Notice that for a minimal subset of the genes
+(below 10 across all the tissues),
+there are very high ratios which drop dramatically and increase slowly then
+to reach the expected ratio of 1 as the \pcgs\ set
+across the studies is identical.
 
+\Cref{fig:highExpress23T} presents the same kind of ratios,
+however, limited to \uhlen\ and \gtex\ solely.
+Here as well, aside from the expected perfect ratio for the complete set of
+\pcgs,
+only a tiny subset of the highest expressed genes produce high ratios of
+highly expressed common genes to the number of considered ranked genes.
+These results are quite unsurprising as they involve only two studies.
+In addition to increasing probabilistically the number of overlaps,
+these two studies are also the two most recent ones
+and they comprise a greater number of replicates per tissues;
+thus the measures for each gene in each condition are likely more robust.
 
-\subsubsection{Most variable genes}
+\NB\ The grey lines on \Cref{fig:highExpress4T,fig:highExpress23T} represent
+the calculated ratios for the randomly permuted data.
+They plainly show that across the assortment of studies,
+the real data present common (biological) structures
+that are not fortuitous.
 
-Overall distribution of the gene coefficients of variation across the studies
-very similar.
+While a study of the highly expressed \pcgs\ is interesting,
+its potential ability on explaining the underlying reasons
+of the strong interstudy tissue correlations seems limited at best
+or even inadequate.
+Thus, it is necessary to consider other fields of enquiry,
+such as the most variable genes.
 
-\begin{figure}[htpb]
+\subsection{Most variable genes}
+
+Similar variation patterns in the \pcgs\ across the tissues within each dataset
+may explain the strong variations.
+
+They are several available estimators to describe the variability of a gene,
+\eg\ the coefficient of variation.
+
+The coefficient of variation allows assessing
+the dispersion of the gene expression values
+across the tissues within each dataset.
+As it contextualises the values to the mean,
+it is a more straightforward estimator to interpret than the standard variation,
+in particular for interstudy comparisons.
+
+Visualising the distribution of the coefficients of variation of
+gene expression for the working set \setOne\ (see \Cref{fig:HistCV4T})
+allows determining whether they are similar across the five transcriptomic studies
+or that inferring conclusions requires cautions.
+
+\Cref{fig:HistCV4T} reveals that the coefficients of variation are bimodally
+distributed in addition to sharing very similar profiles.
+Observe that there are two pics: one at $0.5$ and a second one at $2$ for
+the \cvs.
+After more extensive investigation, it appears that
+the \pcgs\ with a coefficient of variation equal to or greater
+than $1.5$ have two kind of distinct profiles:
+\begin{itemize}[topsep=0pt,nosep]
+    \item The gene expression is low across the four tissues and
+        it is above the cut-off of $1$ \FPKM\ only once; or
+    \item The gene expression is particularly high for one single tissue
+        in regards to the three others.
+\end{itemize}
+
+The expression profiles of the genes with a \cv\ lesser than or equal to $0.5$
+are similar to the expression profiles in \Cref{fig:distribPlot}, set apart
+the left side which is truncated (due to the $1$ \FPKM\ cut-off).
+
+\begin{figure}[!htpb]
     \includegraphics[scale=0.8]{transcriptomics/distributionCV_4commonTissues.pdf}%
     \centering
-    \caption[Coefficient of variation across the datasets for the set of common
-expressed genes]{\label{fig:HistCV4T}\textbf{Distribution of the coefficients of
-variation across the 5 datasets for the set of common expressed protein coding
-genes in the common set of tissues:
-\{\tissue{Heart},\tissue{Kidney},\tissue{Liver},\tissue{Testis}\}.}}
+    \caption[Coefficients of variation across the 5 studies for the set of common
+expressed genes and tissues]{\label{fig:HistCV4T}\textbf{Distribution of the
+\cvs\ (cv) across \setOne\ (5 studies, set of
+common expressed \pcgs\ in the 4 common tissues:
+\{\Heart, \Kidney, \Liver, \Testis\}).}\\
+The coefficients of variation of the \pcgs\ of the four tissues present
+the same bimodal distribution profile across the five studies.}
 \end{figure}
 
 
-Overall good correlation may be translated by similar variation pattern (but no).
 
-Are the most expressed (and lowest expressed genes) that are driving the results? Nope.
+\begin{figure}[htpb]
+    \includegraphics[scale=0.90]%
+    {transcriptomics/Heatmap_25p_mostCoeffVariablesgenes.pdf}\centering
+    \caption[ee]{\label{fig:ee}\textbf{ee}ee}
+\end{figure}
 
 
-\subsection{Tissue specific,housekeeping genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
+\begin{figure}[htpb]
+    \includegraphics[scale=0.90]%
+    {transcriptomics/Reverse_heatmap_25p_mostCoeffVariablesgenes.pdf}\centering
+    \caption[ff]{\label{fig:ff}\textbf{ff}ff}
+\end{figure}
+
+\NB\ The same analysis involving the variance in lieu of
+the coefficient of variation is also unable to give more insights
+into the correlation strength.
+
 
 \subsubsection{Hampel method}
+
+
+\subsection{Tissue specific genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
 
 \subsubsection{Specific genes}
 
@@ -397,12 +496,6 @@ Are the most expressed (and lowest expressed genes) that are driving the results
 \end{figure}
 
 \subsubsection{TIGER genes}
-
-
-
-
-\subsection{Curated sets}\label{subsec:Trans_curatedSets}
-
 
 \subsubsection{Uhlén categories}
 
@@ -500,6 +593,12 @@ tissues\\ Working datasets}}} & Uhlén & 2,662  & 1,970  &
 \pagestyle{scrheadings}
 
 
+\subsection{Curated sets}\label{subsec:Trans_curatedSets}
+Protein coding genes that were characterised consistently
+as any of the previous categories across the five datasets
+are provided as supplementary data.
+
+
 \section{Discussion}\label{sec:Trans_discussion}
 \TK{when I started no paper, now overloads}: list them and compare to my own
 work. Meta-analysis\ldots
@@ -516,8 +615,6 @@ normalisation methods which are not very good for that (biases).
 
 Petit blabla sur la normalisation (de nouveau), normalisation pas adapté
 ERCC ptet 1 idée mais pas vraiment un internal standard.
-
-
 
 
 New set of tissue spe.
@@ -545,3 +642,10 @@ genes.
       {\label{fig:}\textbf{}}
   \end{figure}
 \end{comment}
+
+
+
+
+
+
+

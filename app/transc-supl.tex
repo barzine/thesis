@@ -74,18 +74,18 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
 
 \begin{figure}[htpb]
     \includegraphics[scale=0.85]{transcriptomics/heatmap4TWithMitoNoRep_1.pdf}\centering
-    \caption[Comparison of profiles across the 5 datasets for their
+    \caption[Comparison of profiles across the 5 studies for their
     4 common tissues --- with the 37 mitochondrial genes
     included]{\label{fig:ExpGenePcoding1_withMito}\textbf{Comparison of profiles
-    across the 5 datasets for their 4 common tissues --- with the 37
+    across the 5 studies for their 4 common tissues --- with the 37
     mitochondrial genes.}}
 \end{figure}
 
 \begin{figure}[htpb]
     \includegraphics[scale=0.95]{transcriptomics/heatmapT4NoMitoAndwithRep_1.pdf}\centering
     \caption[Heatmap including all the replicates of the 4 common tissues
-    across the 5 datasets]{\label{fig:noMitoRep4T}\textbf{Heatmap including all
-    the replicates of the 4 common tissues across the 5 datasets.} All protein
+    across the 5 studies]{\label{fig:noMitoRep4T}\textbf{Heatmap including all
+    the replicates of the 4 common tissues across the 5 studies.} All protein
     coding genes (except the mitochondrial ones)
     at least expressed at 1 \FPKM\ are included. All the samples, except from the
     \castle\ study are clustering by their tissue of origin.
@@ -109,6 +109,29 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
     \tissue{Ovary} and \tissue{Fallopian tube}.}
 \end{figure}
 
+\begin{figure}[htpb]
+\includegraphics[scale=1]{transcriptomics/highExpress4TP.pdf}\centering
+\caption[Cumulative shared set of genes ranked by expression across the 5
+studies]{\label{fig:highExpress4T}\textbf{Cumulative shared set of genes
+ranked by their decreasing order of expression across the 5 studies.}
+Except a very small subset for the highest expressed protein coding genes,
+the overlap of the gene ranks across the 5 studies is rather small.
+The grey line presents the evolution of the ratios for the randomly
+permuted data which highlights that there is an underlying structure.}
+\end{figure}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=1]{transcriptomics/highExpress23TP.pdf}\centering
+    \caption[Cumulative shared set of genes, sorted by their expression, between
+    Uhlen and GTEx]{\label{fig:highExpress23T}\textbf{Cumulative shared set of
+    genes, ranked by their decreasing order of expression, between \uhlen\ and
+    \gtex\ studies.}
+    The highest expressed genes present greater ratios than
+    when the 5 studies are considered (see \Cref{fig:highExpress4T}).
+    The fewer number of studies considered, which, additionally to be the most
+    recent studies, are the ones to comprise greater number of biological
+    replicates per tissues may be the sole reasons for the improved results.}
+\end{figure}
 
 \begin{figure}[htpb]
 \centering
@@ -120,8 +143,6 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
 \caption[Pearson correlation]{\label{fig:distribPearsCorr}\textbf{Pearson
 correlation}}
 \end{subfigure}
-
-
 
 \begin{subfigure}[b]{0.95\textwidth}
 \centering
@@ -151,27 +172,11 @@ a Welch two-sample t-test.}
 
 \begin{figure}[htpb]
     \includegraphics[scale=0.7]{transcriptomics/Overlap_25p_mostCoeffVariablesgenes.pdf}\centering
-    \caption[Overlap of the most variables genes across the datasets for the set
+    \caption[Overlap of the most variables genes across the 5 studies for the set
     of four common tissues]{\label{fig:vennMostVar4T}\textbf{Overlap of the most
-    variable genes across the datasets for the set of the four common tissues.}}
+    variable genes across the 5 studies for the set of the four common tissues.}}
 \end{figure}
 
-\begin{figure}[htpb]
-\includegraphics[scale=1]{transcriptomics/highExpress4TP.pdf}\centering
-\caption[Cumulative shared set of genes ranked by expression across the 5
-datasets]{\label{fig:highExpress4T}\textbf{Cumulative shared set of genes
-ranked by their decreasing order of expression across the 5 datasets.} Not
-very good and make a parallel with~\Cref{fig:highExpress23T}.}
-\end{figure}
-
-\begin{figure}[htpb]
-    \includegraphics[scale=1]{transcriptomics/highExpress23TP.pdf}\centering
-    \caption[Cumulative shared set of genes, sorted by their expression, between
-    Uhlen and GTEx]{\label{fig:highExpress23T}\textbf{Cumulative shared set of
-    genes, ranked by their decreasing order of expression, between \uhlen\ and
-    \gtex\ datasets.} The ratios are overall better. \TK{There is the fact that
-    it is easier because less datasets are considered, but not only reason.}}
-\end{figure}
 
 \begin{comment}
 \begin{figure}[htpb]
