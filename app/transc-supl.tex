@@ -1,5 +1,6 @@
 \chapter{Supplementary material for Chapter \getrefnumber{ch:Transcriptomics}}
 
+\begin{comment}
 \begin{figure}
 \centering
 \begin{subfigure}[b]{0.60\textwidth}
@@ -33,6 +34,8 @@
 \end{subfigure}
 \caption{Protein coding genes expressed per tissues}
 \end{figure}
+\end{comment}
+
 
 \begin{figure}[htpb]
 \includegraphics[scale=0.65]{transcriptomics/PcodingGenesExpressed0_4tissues.pdf}\centering
@@ -164,18 +167,56 @@ a Welch two-sample t-test.}
 
 
 \begin{sidewaysfigure}[htpb]
-    \includegraphics[scale=1]{transcriptomics/MitoVariance.jpg}\centering
+    \includegraphics[scale=1]{transcriptomics/MitoVarianceFinale.png}\centering
     \caption[Mean expression of genes compared to their coefficient of variation]%
     {\label{fig:MitoVar}\textbf{Mean expression of genes compared to their
     coefficient of variation.}}
 \end{sidewaysfigure}
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
     \includegraphics[scale=0.7]{transcriptomics/Overlap_25p_mostCoeffVariablesgenes.pdf}\centering
     \caption[Overlap of the most variables genes across the 5 studies for the set
     of four common tissues]{\label{fig:vennMostVar4T}\textbf{Overlap of the most
-    variable genes across the 5 studies for the set of the four common tissues.}}
+    variable genes across the 5 studies for the set of the four common tissues.}
+    In each study, I rank the \pcgs\ in decreasing order.
+    This Venn diagram presents the shared and unique \pcgs\ in the top
+    quarter of the most variable genes.
+    }
 \end{figure}
+
+\minisec{Two-sample test}\label{mini:ttest}
+\TK{Explain Welch, Student}
+The Welch test,
+also known as the unequal variances \ttest,
+is an adaptation of the Student \ttest.
+Except in case of (true) paired data (sampled on the same source),
+it gives better or at least equal results than the traditional Student \ttest.
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.90]%
+    {transcriptomics/Heatmap_25p_mostCoeffVariablesgenes_spearman.pdf}\centering
+    \caption[Clustering of the four common tissues across the five studies for
+    the most common variable genes]%
+    {\label{fig:heatmapMost25pVariable}\textbf{Clustering of the four common
+    tissues across the five studies for the most common variable genes.}
+    The samples cluster by tissue of origin
+    rather than by original study.
+    Each cluster of tissue presents a different hierarchy of study:
+    for \kidney, \uhlen\ sample is closer to the \ibm\ sample,
+    while for \testis, \uhlen\ sample is closer to the \gtex\ one.}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.90]%
+    {transcriptomics/Reverse_heatmap_25p_mostCoeffVariablesgenes_Spearman.pdf}\centering
+    \caption[Clustering of the the four common tissues across the five studies
+    (excluding the most common variable genes)]{\label{fig:ReverseheatmapMost25pVariable}%
+    \textbf{Clustering of the four common tissues across the five studies
+    (excluding the most variable genes).} Except the Castle samples,
+    the samples cluster by tissue of origin rather than by original study.
+    (Note that Pearson correlations give more results.)}
+\end{figure}
+
 
 
 \begin{comment}

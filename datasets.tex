@@ -1,4 +1,4 @@
-\chapter{Available high-throughput normal human Datasets}
+\chapter{Available high-throughput normal human datasets}
 \label{ch:datasets}
 
 \begin{comment}
@@ -11,11 +11,11 @@
 
 
 In the past few years, many laboratories studied the expression
-of the genes within normal humans at the transcriptome and at
+of genes within normal humans at the transcriptome and at
 the proteome levels. In this chapter, I review the data I use within my thesis
-and how it has been reprocessed.
+and explain how it has been reprocessed.
 Besides the results I report in the subsequent chapters,
-this chapter also provides the basis for work
+the present one also provides the basis for work
 I have co-authored\footfullcite{Wright-2016}.
 
 When not stated otherwise, all the computational processing of the \Rnaseq\ part
@@ -26,16 +26,17 @@ Dr Johan Rung and \nuno. The proteome data has been processed by \james.
 
 \section{Introduction}
 
-Every dataset with which I worked is fitting three main criteria.
-First, they comprise human normal samples from at least three kinds of tissues.
-Secondly, they are non-targeted high-throughput \ie\ gene expression
+Every dataset with which I worked fits three main criteria.
+First, they comprise normal human samples from at least three kinds of tissues.
+Secondly, gene expression
 quantifications are based on \Rnaseq\ for the transcriptome or on label-free \ms\
-for the proteome\footnote{These technologies allow in theory to study the whole
+for the proteome, \ie\ they are non-targeted high-throughput\footnote{These
+technologies allow in theory to study the whole
 repertoire of \glspl{RNA} or proteins in a sample.}.
 Finally, the \emph{raw} data is available and reusable.
 
-In the next section, I first describe the \Rnaseq\ and then the \ms\ data I use
-in my thesis; then I detailed how these data have been processed to be
+In the next section, I first describe the \Rnaseq\ and the \ms\ data I use
+in my thesis; then I detail how these data have been processed to be
 employed in the next chapters for various analyses that explore the transcriptome,
 the proteome and finally, the comparison and integration of these two
 biological layers.
@@ -44,15 +45,13 @@ biological layers.
 \section{Transcriptome RNA-Seq studies}
 \label{sec:rnaseq-data}
 
-For my thesis, I retrieve as many available studies as I can get. There are a
-few more studies that I wanted to use on the
-transcriptomic side, but the reusability point was often the critical reason
-why I disregarded them.
+For my thesis, I have to disregard a few studies as the raw data was not fitting
+the reusability point.
+Indeed, many times I came across (outdated) studies with ambiguous encoding
+format for the raw data.
+I was also unable to get the information from the original authors either.
 
-Indeed, many times I encountered data with ambiguous encoding format. As
-those studies were a bit outdated,
-I was unable to get the information from the original authors either.
-I describe hereinafter the 5 transcriptomic datasets I used
+I describe hereinafter the five transcriptomic datasets I used
 in the chronological order of their first public release.
 \Cref{tab:Trans5DF} summarises the main characteristics of these datasets.
 
@@ -114,13 +113,13 @@ in the chronological order of their first public release.
 \label{subsec:castlepresentation}
 This dataset has been published along with the~\paper{\citetitle{castleData}}
 by~\citet{castleData} who were interested in exploring the whole RNA repertoire
-with sequencing-based technology. They essentially focused their study
+with sequencing-based technology. They primarily focused their study
 on the non-coding part.
 
 They used multiple-donors pooled tissues created from purchased total \gls{RNA}
 samples and prepared the 11 libraries following a whole transcriptomic protocol
 where nonribosomal \gls{RNA} transcripts are
-specifically amplified by \gls{PCR}~\mycite{Armour:2009}.
+amplified specifically by \gls{PCR}~\mycite{Armour:2009}.
 
 They generated an average of 50 million sequence reads per tissue
 using an Illumina Genome Analyser-II sequencer (single-end).
@@ -134,7 +133,7 @@ I used this dataset for two main reasons. First, it is the oldest available
 results congruence of this dataset to the others gives a rough assessment about
 the extent of \Rnaseq\ datasets that can be integrated together in an atlas.
 Secondly, as \Rnaseq\ studies are prepared mainly with polyA-selected protocols
-nowadays, I was interested to gauge how the library preparation
+nowadays, I was interested in gauging how the library preparation
 protocols --- and the presence of \glspl{ncRNA} --- can affect the
 quantifications and then the final outcomes.
 
@@ -143,11 +142,11 @@ quantifications and then the final outcomes.
 \label{subsec:brawandpresentation}
 In the corresponding article entitled~\paper{\citetitle{VTpaper}},%
 ~\citet{VTpaper} focused their interest on the
-evolution of the mammalian transcriptomes --- while there were existing studies
-on the matter, the sequencing approach was then creating new perspectives.
+evolution of the mammalian transcriptomes\footnote{While there were existing
+studies on the matter, the sequencing approach was then creating new perspectives.}.
 
 They collected 6 organs from 10 different vertebrates:
-9 mammalians (including Human) and a bird. There is no technical replicate
+9 mammalians (including Human) and a bird. There is no technical replicate,
 but there are two biological replicates per tissue:
 one male and one female for every tissue but the testis (two males).
 They used a polyA-selected protocol to prepare their 131 libraries (including 23
@@ -167,31 +166,33 @@ datasets from \gls{GEO} on a weekly basis.}.
 This dataset has been first created in 2010 and released in
 2011\footnote{See:~\citetitle{ibmEnsembl} -~\cite{ibmEnsembl}} by Illumina
 mostly to advertise its most recent technology improvement at that time:
-the paired-end sequencing. Indeed, until then, all the sequencing was done
+the paired-end sequencing. Actually, until then, all the sequencing was done
 from only one end of the \gls{DNA} or \gls{cDNA} fragments.\footnote{From that
 date, most of the following transcriptome studies based on \Rnaseq\ are using
 paired-end sequencing.}
 
-It comprises 16 tissues (one donor per tissue) and was prepared with a
+The dataset comprises 16 tissues (one donor per tissue) and was prepared with a
 polyA-selected preparation protocol to enrich the libraries with protein
 coding genes. Indeed, Illumina main incentive to develop its paired-end
 technology was to improve the accurate identification of spliced \glspl{mRNA}.
 
-Although each sample has been sequenced twice and that we have in principle
+Although each sample has been sequenced twice and despite having in principle
 \emph{technical} replicates, these are not ``regular'' technical replicates.
 \emph{Technical} replicates, by contrast to \emph{biological} replicates,
 usually imply that their processing uses the same sample source and protocols.
 Thus, the error and the noise due to a specific technique could be determined.
-Here, however, each tissue has been sequenced once with a singled-end protocol
+Here, however, each tissue has been sequenced once with a single-end protocol
 and once with a paired-end one to compare them together.
 
-The sequencing was performed with an Illumina HiSeq 2000 and the reads were
+The sequencing was performed with an Illumina HiSeq 2000, and the reads were
 released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}), from where I
 retrieved the single-end and paired-end mono-tissue samples.
 
-Despite the lack of biological replicates, I used this dataset as it was for an
-extended time the most extensive freely available \Rnaseq\ dataset of human
-tissues and as such has been referenced many times since it was released.
+I use this dataset despite the lack of biological replicates.
+Indeed, for an extended time,
+it was the most extensive freely available \Rnaseq\ dataset of human
+tissues. Hence, it has been referenced many times in the literature
+since its release.
 
 \subsection{Uhlén et al.\ dataset}\label{subsec:uhlenPresentation}
 
@@ -205,7 +206,7 @@ data of 27 normal tissues as a part of their article~\paper{\citetitle{Uhlen2014
 tissues. The latest version was published within~\paper{\citetitle{Uhlen2015}}%
 ~\mycite{Uhlen2015} in \textit{Science}.
 
-They provide (at least two) biological replicates for the 32 tissues.
+They provide (at least two) biological replicates for each of the 32 tissues.
 Except for a very small number, the tissues have both male and female donors.
 There are also technical replicates for many of the tissues. The total set
 comprise two hundred samples, which have been picked by pathologists based on the
@@ -214,7 +215,7 @@ screening of frozen biopsy samples.
 Then they prepared the libraries following a polyA-selected protocol and
 paired-end sequenced them with an Illumina HiSeq 2000 or 2500. I first started
 to work with the early version of this dataset
-(\ArrayExpress{E-MTAB-1733} --- 171 samples for 27 tissues)
+(\ArrayExpress{E-MTAB-1733} --- 171 samples for 27 tissues),
 and then I upgraded my work with the extended more recent version
 (\ArrayExpress{E-MTAB-2836}).
 
@@ -239,9 +240,10 @@ of \gls{RNA} expression in function of \glspl{SNP}. The results of the
 analyses are released through the \hFo{\Gtex}{http://gtexportal.org}.
 
 As the project is quite ambitious and the collection and sequencing of the samples
-are taking time, several freezes of the data have been released. My work is
+are taking time, several \enquote{\emph{freezes}} of the data have been released.
+My work is
 including samples up to the fourth release of the pilot phase (v4). This
-release includes 54 tissue/cell types (53 normal and 1 tumour)
+release includes 54 tissue/cell types (53 normal and 1 tumoral)
 collected on 551 individuals for a total of 3,276 samples.
 
 The libraries were prepared from whole tissue \gls{RNA} extracts and then
@@ -251,23 +253,23 @@ sequencers which produced an average of 80 million reads.
 For privacy reasons, the raw data is available only through controlled access via
 \dbGaP{phs000424.v4.p1} (access number specific to the version of the data I used
 in my study). While getting access can take time, in principle every request for
-academic research should be granted.
+academic research is granted.
 
 \section{Proteome (MS) bottom-down studies}\label{sec:ProteoData}
 
-While the transcriptomic data was retrieved and then processed within the \EBI\
+While the transcriptomic data were retrieved and then processed within the \EBI\
 either by \nuno\ or myself, the proteomic data have been picked and
 handled by \jyoti\ and \james.
 
-Until a couple of years ago, compared to the transcriptome, the proteome world
-was regrettably lacking on normal human tissues expression quantification
+Until recently, compared to the transcriptome, the proteome world
+was lacking in normal human tissues expression quantification
 experiments. In fact, while there were human protein maps available
 (\eg\ the \hFo{Human Protein Atlas}{www.proteinatlas.org}), these
 are mostly reporting the spatial expression of proteins (as they are based
 on immunohistochemistry or other means of identification) than quantifying
 their (non-targeted) abundance in each tissue.
 
-Then, in 2014, two different groups of authors, M.-S.\ Kim et al.\
+In 2014, two independent groups of authors, M.-S.\ Kim et al.\
 and Wilhelm et al., published (in \textit{Nature},
 issue 7502) their own \textquote{\emph{draft of the human proteome}}
 based on the study of tissues with \ms. These two datasets complement a previous
