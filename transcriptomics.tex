@@ -156,21 +156,21 @@ their Pearson correlation coefficients with the Ward's method
 of the \pcgs\ (≥ 1 \FPKM, and excluding
 the mitochondrial genes).
 
-The clustering plainly highlights a greater similarity of samples
+The clustering plainly highlights a greater similarity of the references
 due to their biological origins over any possible
 similarity due to technical variations of library preparation or processing.
 Indeed, each cluster concordes to a tissue in \Cref{fig:noMitoNoRep4T}.
 While we may object that
 the very different gene expression (and levels) in
-\tissue{Heart}, \tissue{Kidney}, \tissue{Liver} and \tissue{Testis},
+\Heart, \Kidney, \Liver\ and \Testis,
 may drive this result,
 \Cref{fig:noMitoNoRep23T} confirms that the biological origin of the tissues
-is the dominant criterion for the clustering of the samples.
-Even if we observe a few mixture of samples,
-the majority of the samples cluster by tissue.
+is the dominant criterion for the clustering of the references.
+Even if we observe a few mixture of references,
+the majority of them cluster by tissue.
 Moreover, in many cases, the mixture are from close biologically related tissues,
-\eg\ \fallopian\ and \Ovary\ samples, \salivary\
-with \Esophagus\ or \Stomach\ samples.
+\eg\ \fallopian\ and \Ovary, \salivary\
+with \Esophagus\ or \Stomach\ references.
 \Cref{fig:noMitoRep4T} and \Cref{fig:noMitoRep23T}
 present heatmaps for the same tissues and studies,
 but where every available sample is included\footnote{I.e\
@@ -184,7 +184,7 @@ the biological signal is in overall stronger than the technical variations.
     {\label{fig:noMitoNoRep4T}\textbf{Heatmap of the 4 common tissues
     across the 5 studies.}\\All \pcgs\ (except the mitochondrial
     ones) at least expressed at 1 \FPKM\ are included.\\We observe that all the
-    different samples cluster by tissue (instead, for example, of studies)
+    different references cluster by tissue (instead, for example, of studies)
     of origin.}
 \end{figure}
 
@@ -204,14 +204,14 @@ the biological signal is in overall stronger than the technical variations.
 \end{figure}
 
 \Cref{fig:SamedistribPearsCorr} shows the distribution of the Pearson correlation
-coefficients for the pairs of same tissue \emph{reference} samples
+coefficients for the pairs of same tissue references
 sourced from the different studies
 for both of the working datasets.
 
 Most of the Pearson correlations are above 0.5\footnote{Indeed, apart of the
-correlation between the \tissue{Testis} samples of \castle\ and \vt\ (0.42)
+correlation between the \Testis\ references of \castle\ and \vt\ (0.42)
 for the 4-tissues working set and
-\tissue{Salivary gland} samples of \uhlen\ and \gtex\ (0.2)
+\Salivary\ references of \uhlen\ and \gtex\ (0.2)
 for the 23-tissues working set.}
 even with the lack of any batch effect correction.
 The median correlation for the four common tissues across the five datasets is
@@ -237,33 +237,42 @@ Three main reasons may explain this situation:
 \end{itemize}
 
 \begin{figure}[!htpb]
-    \includegraphics[scale=0.75]%
+    \includegraphics[scale=0.70]%
 {transcriptomics/TransPearsonDistributionIdenticalOnly.pdf}\centering
 \caption[Distribution of the correlation of same tissue pairs for the 4 and 23
 tissues working sets.]{\label{fig:SamedistribPearsCorr}\textbf{Distribution
 of the Pearson correlation of same tissues pairs for the 4 and the 23 tissues
 working sets.} In general, the Pearson correlation are high even though we are
-\emph{directly} comparing samples from different studies.}
+\emph{directly} comparing samples from different studies.\\
+The 23-tissues working set (\setTwo) presents a higher median correlation ($0.85$)
+and narrower distribution for the pairs bulk than
+the 4-tissues working set (\setOne) (median$ = 0.74$).
+However, \setTwo\ displays one outlier with
+a very low Pearson correlation ($0.2$: \salivary\ tissue.).
+This outlier may be just as well explained by sampling, biological or processing
+issues.}
 \end{figure}
 
 \Cref{fig:distribCorr} presents the different pairs of tissues across the
 datasets in addition to the same tissue pairs.
 The pairs comprising different tissues are very lowly correlated in general.
-However, in few cases, for the 23-tissues working set,
-high correlations are also observed (see also \Cref{fig:noMitoNoRep23T}).
 
+\NB\ In few cases, for the 23-tissues working set,
+high correlations are also observed (see also \Cref{fig:noMitoNoRep23T}).
+It is rather hard to decipher if this may not be due to an issue at the collection
+or library preparation stage or because these tissues are biologically very close.
 
 \section{Possible driving force of the closer intratissue rather intrastudy
 similarity}
 
-Once established that \Rnaseq\ allows distinguishing a common biological source
+Since \Rnaseq\ allows distinguishing a common biological source
 of most samples across different studies,
-the question then arises as to what is driving these inter-study
+the question then arises as to what is driving these interstudy
 strong correlations.
 
 As discussed in \Cref{ch:expression} (see \Cref{sec:ExpressedOrNot}:
 \nameref{sec:ExpressedOrNot}),
-correlation coefficients measure the dependence between (here) two samples
+correlation coefficients measure the dependence between (here) two tissue references
 and are subject to outliers and the skewness of the distributions.
 Thus, the next intuitive step is to test
 whether a particular subset of the genes may drive the correlation coefficients,
@@ -271,8 +280,8 @@ whether a particular subset of the genes may drive the correlation coefficients,
 \emph{undefined}\footnote{\ie\ \emph{unobserved} --- See also
 \Cref{subsec:ExpressedOrNot-undefined}: \nameref{subsec:ExpressedOrNot-undefined}}
 genes from the analyses ---
-are the highest or the most variable genes the underlying reasons of the strong
-correlations.
+are the highest, the most variable or another group of genes
+the underlying reasons of the strong correlations.
 
 \subsection{Highest expressed genes}
 
@@ -291,7 +300,7 @@ I avoid many biases.
 
 \NB\ If I had picked another normalisation method than \FPKM\footnote{See
 \Cref{eq:rpkm-fx}},
-I would have needed another exclusion filter set.
+the exclusion filter would impact a different set of genes.
 
 To test the influence of highest expressed genes on correlation coefficients,
 I chose to visualise the evolution of the correlation
@@ -411,11 +420,15 @@ such as the most variable genes.
 
 \subsection{Most variable genes}
 
-Similar variation patterns in the \pcgs\ across the tissues within each dataset
+Similar variation patterns in the expression of the \pcgs\
+across the tissues within each dataset
 may explain the strong variations.
-
 They are several available estimators to describe the variability of a gene,
 \eg\ the coefficient of variation.
+
+\NB\ The same analysis involving the variance in lieu of
+the coefficient of variation gives less insights into the correlation strength
+between the tissues across the datasets.
 
 The coefficient of variation allows assessing
 the dispersion of the gene expression values
@@ -428,55 +441,127 @@ Visualising the distribution of the coefficients of variation of
 gene expression for the working set \setOne\ (see \Cref{fig:HistCV4T})
 allows determining whether they are similar across the five transcriptomic studies
 or that inferring conclusions requires cautions.
-
-\Cref{fig:HistCV4T} reveals that the coefficients of variation are bimodally
-distributed in addition to sharing very similar profiles.
-Observe that there are two pics: one at $0.5$ and a second one at $2$ for
-the \cvs.
-After more extensive investigation, it appears that
-the \pcgs\ with a coefficient of variation equal to or greater
-than $1.5$ have two kind of distinct profiles:
-\begin{itemize}[topsep=0pt,nosep]
-    \item The gene expression is low across the four tissues and
-        it is above the cut-off of $1$ \FPKM\ only once; or
-    \item The gene expression is particularly high for one single tissue
-        in regards to the three others.
-\end{itemize}
-
-The expression profiles of the genes with a \cv\ lesser than or equal to $0.5$
-are similar to the expression profiles in \Cref{fig:distribPlot}, set apart
-the left side which is truncated (due to the $1$ \FPKM\ cut-off).
+As the \cvs\ present the same pattern across the five studies,
+it suggests that extra steps are non compulsory here.
 
 \begin{figure}[!htpb]
-    \includegraphics[scale=0.8]{transcriptomics/distributionCV_4commonTissues.pdf}%
+    \captionsetup{singlelinecheck=off}
+    \includegraphics[scale=0.75]{transcriptomics/distributionCV_4commonTissues.pdf}%
     \centering
     \caption[Coefficients of variation across the 5 studies for the set of common
 expressed genes and tissues]{\label{fig:HistCV4T}\textbf{Distribution of the
 \cvs\ (cv) across \setOne\ (5 studies, set of
 common expressed \pcgs\ in the 4 common tissues:
 \{\Heart, \Kidney, \Liver, \Testis\}).}\\
-The coefficients of variation of the \pcgs\ of the four tissues present
-the same bimodal distribution profile across the five studies.}
+The coefficients of variation of the \pcgs\ (12,268) of the four tissues present
+the same bimodal distribution profile across the five studies.
+There are two pics:
+one at $0.5$ and a second one at $2$ for the \cvs.
+After more extensive investigation, it appears that
+the genes with a \cv\ lesser than or equal to $0.5$ have expression profiles
+similar to the complete set of genes as in \Cref{fig:distribPlot}, set apart
+the truncated left side (due to the $1$ \FPKM\ cut-off).
+On the other hand, the \pcgs\ with a coefficient of variation
+equal to or greater than $1.5$ have two kind of distinct profiles:
+{\small
+\begin{itemize}[topsep=0pt,nosep,leftmargin=95pt,listparindent=5pt]
+    \item The gene expression is low across the four tissues and
+        it is above the cut-off of $1$ \FPKM\ only once; or
+    \item The gene expression is particularly high for one single tissue
+        in regards to the three others.
+\end{itemize}
+}}
+\end{figure}
+
+The following analysis tests the difference of correlation
+between the set of the commonly most variable genes of \setOne\ across the studies
+and all the other remaining ones.
+After ranking the \pcgs\ in decreasing order of their \cv\ within each study,
+I select the intersection the most (top quarter) variable genes across them.
+I use these first group of \pcgs\
+to calculate the coefficients of correlation for all possible tissue couples
+within \setOne.
+The remaining genes are constituting a second group for
+which I also compute the correlations for all possible combination of tissues.
+
+If the most variable \pcgs\ are driving the correlation
+then their group has to present higher correlation than the second one.
+One-sided \Welchttest\footnote{See \Cref{mini:ttest}.}
+at 95\% of confidence,
+allows discarding the null hypothesis $H_0$ and
+to state that the mean of the (Pearson and Spearman) correlation coefficients
+calculated with the common most variable \pcgs\ are significantly greater than
+the ones calculated with the remaining set of genes in \setOne\footnote{Though,
+a two-sided \Welchttest\ compels to accept the $H_0$ hypothesis:\\
+the two populations of coefficients correlation are not significantly different
+(\pvalue{= 0.06594}).}, \eg\ for the Pearson correlations:
+$mean_{most Variable}=0.76$ and $mean_{all Other Genes}=0.68$
+(\pvalue{= 0.03295}).
+
+\Cref{fig:test_mostvaribleVSevery} shows the distribution
+of the correlation for these two groups of \pcgs.
+Notice than either for the most variable genes group or the other,
+the interstudy correlation of identical tissues of two different studies
+are higher than any intrastudy correlation of different tissues.
+However, the common \pcgs\ with the highest \cv\ discriminate better between
+the identical and different tissues.
+
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.75]%
+    {transcriptomics/TransPearsonDistributionIdenticalDifferentHighestCVgenes.pdf}%
+    \centering
+    \caption[Comparison between the most variable genes with all the other ones]%
+    {\label{fig:test_mostvaribleVSevery}\textbf{Comparison between
+    the most variable \pcgs\ with the remaining genes in \setOne\ set.}
+    The clustering is based on Pearson correlation between the different
+    tissue samples of the various studies.
+    Either for the most variables genes than for the other genes,
+    the correlation between identical interstudy tissues are greater
+    than any correlation between different (even intrastudy) tissues.}
+\end{figure}
+
+\Cref{fig:heatmapMost25pVariable,fig:ReverseheatmapMost25pVariable} present
+respectively the heatmaps (with clusterings) of the tissues
+based on their Spearman correlation for the most variable (\cv) \pcgs\
+and all other remaining genes of \setOne.
+The references tend to cluster by tissue rather than
+by original study in both cases.
+In fact, only the \castle\ tissues cluster by study
+once the most variable genes are excluded.
+
+While the most variable genes have a significant influence
+on the strong and biological meaningful correlations,
+there are other contributing genes.
+In addition, it is worth mentioning that the results presented here
+improve greatly when \uhlen\ and the \gtex\ studies are included.
+Indeed, results for the preliminary sets
+(without these two most recent studies)
+are far worse.
+Unsurprisingly, 
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.8]{transcriptomics/Heatmap_25p_mostCoeffVariablesgenesTheirExpression.pdf}\centering
+    \caption[Expression of the most common variable genes]{\label{fig:expressionMostvariableG}
+    \textbf{Expression of the most common variable genes.} }
+\end{figure}
+
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.9]{transcriptomics/ConceptOverlap.png}\centering
+    \caption[Overlap concept explaination]{\label{fig:overlapConcept}%
+    \textbf{Overlap concept} something}
+\end{figure}
+
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.7]{transcriptomics/CVevolCumul5DF.pdf}\centering
+    \caption[Cumulative curve of overlap across the five datasets]%
+    {\label{fig:cvEvol5DF}\textbf{Cumulative} Plus random permutation}
 \end{figure}
 
 
 
-\begin{figure}[htpb]
-    \includegraphics[scale=0.90]%
-    {transcriptomics/Heatmap_25p_mostCoeffVariablesgenes.pdf}\centering
-    \caption[ee]{\label{fig:ee}\textbf{ee}ee}
-\end{figure}
-
-
-\begin{figure}[htpb]
-    \includegraphics[scale=0.90]%
-    {transcriptomics/Reverse_heatmap_25p_mostCoeffVariablesgenes.pdf}\centering
-    \caption[ff]{\label{fig:ff}\textbf{ff}ff}
-\end{figure}
-
-\NB\ The same analysis involving the variance in lieu of
-the coefficient of variation is also unable to give more insights
-into the correlation strength.
 
 
 \subsubsection{Hampel method}
@@ -611,6 +696,14 @@ Apart Castle but Castle method not really used any more. So it might be because 
 the protocol which is harder to set up or not mature (maybe can be improved) or
 maybe the method gives different measurements due to what it fishes and
 normalisation methods which are not very good for that (biases).
+
+Quite expectedly, as these analyses were incorporating more studies,
+the results improved greatly.
+Indeed, as I focalise the study on the shared genes across the studies,
+I bias the analyses towards the genes with more robust expression profiles
+that may be measured with \Rnaseq.
+
+
 
 
 Petit blabla sur la normalisation (de nouveau), normalisation pas adapté
