@@ -237,7 +237,7 @@ Three main reasons may explain this situation:
 \end{itemize}
 
 \begin{figure}[!htpb]
-    \includegraphics[scale=0.70]%
+    \includegraphics[scale=0.65]%
 {transcriptomics/TransPearsonDistributionIdenticalOnly.pdf}\centering
 \caption[Distribution of the correlation of same tissue pairs for the 4 and 23
 tissues working sets.]{\label{fig:SamedistribPearsCorr}\textbf{Distribution
@@ -314,16 +314,34 @@ The cut-off is a range of possible (integer number) value of gene expression
 In \Cref{fig:CorHighExp4T}, that shows the 4-tissues working set,
 except for very few pairs, the highest correlations correspond to
 the lowest cut-off of 1 \FPKM\@.
-Indeed, except for the following couples:
+Indeed, the correlation coefficients between same tissue references
+are increasing as the expression cut-off is lowered
+and the calculations involve more genes.
+Here bellow, the few exceptions grouped by tissue:
 \begin{eqlist}[\eqliststarinit\def\makelabel#1{\bfseries#1}\labelsep1em]
 \item[Heart] \uhlen{}-\gtex\ pair
 \item[Kidney] \uhlen{}-\gtex, \castle{}-\uhlen\ and \castle{}-\gtex\ pairs,
 \item[Liver]  \vt{}-\ibm, \ibm{}-\uhlen\ and \ibm{}-\uhlen\ pairs;
 \item[Testis] \ibm{}-\uhlen, \vt{}-\gtex, \vt{}-\uhlen\ and \uhlen{}-\gtex\ pairs
 \end{eqlist}
-in most cases,
-the correlation coefficients are increasing as the cut-off is lowered
-(and that the calculations comprise more genes).
+
+In the context of the 23-tissues working set,
+showed in \Cref{fig:CorHighExp23T},
+many more tissue pairs present very high correlation for subsets of their highly
+expressed genes, \ie\ \skeletal, \Thyroid, \Cortex, \Uterus, \Kidney.
+Unfortunately, these specific examples are insuffisant
+to derive any consensual threshold for future work.
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.8]{transcriptomics/T23EvolHighExp23P-1.pdf}\centering
+    \caption[Pearson correlation coefficient evolution based on the expression
+    levels of the genes considered for each of the 23 common tissues]{%
+\label{fig:CorHighExp23T}\textbf{Pearson correlation coefficient evolution based
+on the expression levels of the genes considered
+for each of the 23 common tissues between \uhlen\ and \gtex.}
+Almost only the complete set of common expressed \pcgs\ of each tissue gives
+the highest correlations.}
+\end{figure}
 
 \begin{sidewaysfigure}[htpb]
     \centering
@@ -353,45 +371,32 @@ the correlation coefficients are increasing as the cut-off is lowered
     common tissues across the 5 studies.}}
 \end{sidewaysfigure}
 
-In the context of the 23-tissues working set,
-showed in \Cref{fig:CorHighExp23T},
-many more tissue pairs present very high correlation for subsets of their highly
-expressed genes, \ie\ \skeletal, \Thyroid, \Cortex, \Uterus, \Kidney.
-Unfortunately, these specific examples are insuffisant
-to able any consensual threshold to be derived for future work.
+Moreover, \kidney\ aside,
+for any similar tissue pair of \setTwo,
+considering every protein gene expressed at least at 1 \FPKM\ is usually
+far better than selecting any high expressed genes subset.
 
-Moreover, the \kidney\ pairs aside,
-for all the other tissues,
-considering every protein gene expressed at least at 1 \FPKM\ is as good, when
-not better, than including only the high expressed genes subset.
-
-\begin{figure}[htpb]
-    \includegraphics[scale=0.8]{transcriptomics/T23EvolHighExp23P-1.pdf}\centering
-    \caption[Pearson correlation coefficient evolution based on the expression
-    levels of the genes considered for each of the 23 common tissues]{%
-\label{fig:CorHighExp23T}\textbf{Pearson correlation coefficient evolution based
-on the expression levels of the genes considered
-for each of the 23 common tissues between \uhlen\ and \gtex.}}
-\end{figure}
-
-To ponder for the possible difference in the expression magnitude
-across the studies\footnote{Due to particular batch effects in each study},
+As the interstudy Spearman correlations of same tissue pairs
+are higher than the Pearson ones,
+I have tried to ponder for the possible difference in the expression magnitude
+across the studies\footnote{Due to particular batch effects in each study}
 while the highest expressed \pc\ may have similar ranks
-for a given tissue,
-I have explored the ratio evolution of the common highest expressed
+for a given tissue.
+Thus, I have explored the ratio evolution of the common highest expressed
 genes across the studies to the number of genes considered.
 
-This hypothesis is backed by the Spearman correlations that are higher
-than the Pearson ones.
-
-\Cref{fig:highExpress4T} shows the cumulative ratios of the number of
-common \pcgs\ in a given number of highest expressed \pcgs\
-in each tissue across the studies to that very number.
-Notice that for a minimal subset of the genes
-(below 10 across all the tissues),
-there are very high ratios which drop dramatically and increase slowly then
-to reach the expected ratio of 1 as the \pcgs\ set
-across the studies is identical.
+\Cref{fig:highExpress4T} shows across the studies and for each tissue,
+the ratios of the number of
+common \pcgs\ for a given number of highest expressed \pcgs\
+to that very number.
+Among these (cumulative) ratios,
+a few present very high value for
+a minimal subset of genes (below $10$ \FPKM\ across all the tissues)
+which then drop dramatically to finally increase slowly
+to reach the expected ratio of $1$ \FPKM{}.
+\begin{comment}
+as the \pcgs\ set across the studies is identical.
+\end{comment}
 
 \Cref{fig:highExpress23T} presents the same kind of ratios,
 however, limited to \uhlen\ and \gtex\ solely.
@@ -405,42 +410,57 @@ these two studies are also the two most recent ones
 and they comprise a greater number of replicates per tissues;
 thus the measures for each gene in each condition are likely more robust.
 
-\NB\ The grey lines on \Cref{fig:highExpress4T,fig:highExpress23T} represent
-the calculated ratios for the randomly permuted data.
-They plainly show that across the assortment of studies,
-the real data present common (biological) structures
+Comparing the calculated ratios between the real (colour) and
+the randomly permuted data (grey)
+on \Cref{fig:highExpress4T,fig:highExpress23T}
+plainly show that across the assortment of studies,
+there are common (biological) structures
 that are not fortuitous.
 
 While a study of the highly expressed \pcgs\ is interesting,
-its potential ability on explaining the underlying reasons
+its ability on explaining the underlying reasons
 of the strong interstudy tissue correlations seems limited at best
 or even inadequate.
-Thus, it is necessary to consider other fields of enquiry,
+Thus, I have considered other candidates
 such as the most variable genes.
 
 \subsection{Most variable genes}
 
-Similar variation patterns in the expression of the \pcgs\
-across the tissues within each dataset
-may explain the strong variations.
-They are several available estimators to describe the variability of a gene,
-\eg\ the coefficient of variation.
+Similar expression variation patterns across the tissues
+within the independent datasets may explain the strong correlations.
 
-\NB\ The same analysis involving the variance in lieu of
-the coefficient of variation gives less insights into the correlation strength
+There are several available estimators to describe
+the variability of gene expression,
+\eg\ the variance or \gls{cv}.
+
+However,
+I only report here the results based on the coefficients of variation
+as the analyses involving the variance instead give
+less insights into the correlation strength
 between the tissues across the datasets.
+In addition, it is worth mentioning that the results presented here
+improve greatly when the analyses also include \uhlen\ and the \gtex\ studies.
+\begin{comment}
+Indeed, preliminary results (only based on \castle, \vt\ and \ibm\ studies)
+were far worse.
+\end{comment}
+Unsurprisingly, updating the human genome version from \hg{37} to \hg{38}
+for the reconstruction
+step\footnote{See \Cref{subsec:reconstruction}: \nameref{subsec:reconstruction}}
+also enhances significantly the results.
 
-The coefficient of variation allows assessing
+The coefficient of variation (\gls{cv}) allows assessing
 the dispersion of the gene expression values
 across the tissues within each dataset.
 As it contextualises the values to the mean,
-it is a more straightforward estimator to interpret than the standard variation,
+it is a more straightforward estimator to interpret than
+the standard variance,
 in particular for interstudy comparisons.
 
-Visualising the distribution of the coefficients of variation of
+Visualising the \gls{cv} distribution of
 gene expression for the working set \setOne\ (see \Cref{fig:HistCV4T})
 allows determining whether they are similar across the five transcriptomic studies
-or that inferring conclusions requires cautions.
+or that inferring conclusions requires more cautions.
 As the \cvs\ present the same pattern across the five studies,
 it suggests that extra steps are non compulsory here.
 
@@ -450,17 +470,18 @@ it suggests that extra steps are non compulsory here.
     \centering
     \caption[Coefficients of variation across the 5 studies for the set of common
 expressed genes and tissues]{\label{fig:HistCV4T}\textbf{Distribution of the
-\cvs\ (cv) across \setOne\ (5 studies, set of
-common expressed \pcgs\ in the 4 common tissues:
-\{\Heart, \Kidney, \Liver, \Testis\}).}\\
-The coefficients of variation of the \pcgs\ (12,268) of the four tissues present
-the same bimodal distribution profile across the five studies.
-There are two pics:
-one at $0.5$ and a second one at $2$ for the \cvs.
-After more extensive investigation, it appears that
-the genes with a \cv\ lesser than or equal to $0.5$ have expression profiles
-similar to the complete set of genes as in \Cref{fig:distribPlot}, set apart
-the truncated left side (due to the $1$ \FPKM\ cut-off).
+\cvs\ (cv) across \setOne: common set of expressed \pcgs\
+across the  4 common tissues:
+\{\Heart, \Kidney, \Liver, \Testis\}
+across the 5 studies.}\\
+The coefficients of variation (\gls{cv}) of the \pcgs\ (12,268) of the four tissues
+present the same bimodal distribution profile across the five studies.
+\\These profiles present two pics: at $0.5$ and $2$.\\
+After more investigation, it appears that
+the genes with a \gls{cv} lesser than or equal to $0.5$ have
+a similar expression profile to a left-truncated version of
+the complete gene set ones (due to the $1$ \FPKM\ cut-off)
+as in \Cref{fig:distribPlot}.
 On the other hand, the \pcgs\ with a coefficient of variation
 equal to or greater than $1.5$ have two kind of distinct profiles:
 {\small
@@ -473,39 +494,37 @@ equal to or greater than $1.5$ have two kind of distinct profiles:
 }}
 \end{figure}
 
-The following analysis tests the difference of correlation
-between the set of the commonly most variable genes of \setOne\ across the studies
-and all the other remaining ones.
-After ranking the \pcgs\ in decreasing order of their \cv\ within each study,
-I select the intersection the most (top quarter) variable genes across them.
-I use these first group of \pcgs\
-to calculate the coefficients of correlation for all possible tissue couples
-within \setOne.
-The remaining genes are constituting a second group for
-which I also compute the correlations for all possible combination of tissues.
-
+A simple approach to test if the commonly most variable genes
+are the driving force of the correlation is
+to study the difference of their correlation with
+the remaining set of considered \pcgs.
 If the most variable \pcgs\ are driving the correlation
-then their group has to present higher correlation than the second one.
+then their group has to present higher correlations than the second one.
+\Cref{fig:test_mostvaribleVSevery} summarises this analysis.
+
+\Cref{fig:test_mostvaribleVSevery} shows the Pearson correlation distribution
+for these two groups of \pcgs\ in \setOne.
+After ranking the \pcgs\ in decreasing order of their \cv\ within each study,
+I select the intersection of genes in the first quarter across them
+to create the first group ($S_{most~Variable}$).
+The remaining genes are constituting the second group ($S_{remaining}$ and
+$S_{remaining} =$ \setOne{}$- S_{most~Variable}$).
+For both of these gene groups, $S_{most~Variable}$ and $S_{remaining}$,
+I calculate the coefficients of correlation for all possible tissue couples.
+
 One-sided \Welchttest\footnote{See \Cref{mini:ttest}.}
 at 95\% of confidence,
-allows discarding the null hypothesis $H_0$ and
-to state that the mean of the (Pearson and Spearman) correlation coefficients
+allows discarding the null hypothesis $H_0$.
+The mean of the (Pearson and Spearman) correlation coefficients
 calculated with the common most variable \pcgs\ are significantly greater than
 the ones calculated with the remaining set of genes in \setOne\footnote{Though,
 a two-sided \Welchttest\ compels to accept the $H_0$ hypothesis:\\
 the two populations of coefficients correlation are not significantly different
 (\pvalue{= 0.06594}).}, \eg\ for the Pearson correlations:
-$mean_{most Variable}=0.76$ and $mean_{all Other Genes}=0.68$
+$mean_{most~Variable}=0.76$ and $mean_{remaining}=0.68$
 (\pvalue{= 0.03295}).
-
-\Cref{fig:test_mostvaribleVSevery} shows the distribution
-of the correlation for these two groups of \pcgs.
-Notice than either for the most variable genes group or the other,
-the interstudy correlation of identical tissues of two different studies
-are higher than any intrastudy correlation of different tissues.
-However, the common \pcgs\ with the highest \cv\ discriminate better between
-the identical and different tissues.
-
+Thus, the common \pcgs\ with the highest \cv\
+discriminate better between the identical and different tissues.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.75]%
@@ -521,30 +540,24 @@ the identical and different tissues.
     than any correlation between different (even intrastudy) tissues.}
 \end{figure}
 
-\Cref{fig:heatmapMost25pVariable,fig:ReverseheatmapMost25pVariable} present
-respectively the heatmaps (with clusterings) of the tissues
+However, for both groups,
+$S_{most~Variable}$ and $S_{remaining}$,
+the tissue references across the studies cluster mostly by tissue rather than
+by original study.
+See \Cref{fig:heatmapMost25pVariable,fig:ReverseheatmapMost25pVariable}.\footnote{They
+respectively present the heatmaps (with clusterings) of the tissues
 based on their Spearman correlation for the most variable (\cv) \pcgs\
-and all other remaining genes of \setOne.
-The references tend to cluster by tissue rather than
-by original study in both cases.
-In fact, only the \castle\ tissues cluster by study
+and all other remaining genes of \setOne.}
+In fact, the only exception is that
+\castle\ tissues cluster primarily by study
 once the most variable genes are excluded.
 
-While the most variable genes have a significant influence
-on the strong and biological meaningful correlations,
-there are other contributing genes.
-In addition, it is worth mentioning that the results presented here
-improve greatly when \uhlen\ and the \gtex\ studies are included.
-Indeed, results for the preliminary sets
-(without these two most recent studies)
-are far worse.
-Unsurprisingly, 
-
-\begin{figure}[!htpb]
-    \includegraphics[scale=0.8]{transcriptomics/Heatmap_25p_mostCoeffVariablesgenesTheirExpression.pdf}\centering
-    \caption[Expression of the most common variable genes]{\label{fig:expressionMostvariableG}
-    \textbf{Expression of the most common variable genes.} }
-\end{figure}
+To avoid any oversight due to the arbitrary chosen number (first quarter)
+of the most variable genes,
+I have also studied the evolution of the ratio of common genes in function of
+the number of sorted genes that is considered within \setOne.
+\Cref{fig:overlapConcept} illustrates my general approach.
+\Cref{fig:cvEvol5DF} shows this evolution:
 
 
 \begin{figure}[!htpb]
@@ -555,23 +568,55 @@ Unsurprisingly,
 
 
 \begin{figure}[!htpb]
-    \includegraphics[scale=0.7]{transcriptomics/CVevolCumul5DF.pdf}\centering
-    \caption[Cumulative curve of overlap across the five datasets]%
-    {\label{fig:cvEvol5DF}\textbf{Cumulative} Plus random permutation}
+    \includegraphics[scale=0.9]{transcriptomics/CVevolCumul5DF_line.pdf}\centering
+    \caption[Evolution of the intersection size of \setOne\ genes (ranked by cv)]%
+    {\label{fig:cvEvol5DF}\textbf{Evolution of the intersection size
+    of \setOne\ genes (based on their coefficient of variation rank
+    in each of the five studies).}
+    There is an initial strong growth (a),
+    followed by a very small plateau (b)
+    before a very small decrease (c)
+    which then settles a plateau (d).
+    Eventually, the ratio increases slowly again
+    until reaching the expected ratio of $1$ once all the genes from \setOne\
+    are included (e).
+    The first quarter of the genes covers (a), (b), (c) and a very small part of (d).
+    The dashed line is based on randomised }
 \end{figure}
 
 
+While the most variable genes have a significant influence
+on the strong and biologically meaningful correlations,
+there are incontestably other contributing genes.
 
+Side note: when look at the expression of these most variable genes:
+we notice that there are pattern of specific expression for many of them.
+Indeed, many look to be quite specific to one tissue.
 
+\begin{comment}
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.8]{transcriptomics/Heatmap_25p_mostCoeffVariablesgenesTheirExpression.pdf}\centering
+    \caption[Expression of the most common variable genes]{\label{fig:expressionMostvariableG}
+    \textbf{Expression of the most common variable genes.} }
+\end{figure}
+\end{comment}
 
 \subsubsection{Hampel method}
+To expand on this last observation. I use the Hampel method.
+Explain a bit the Hampel method and how I have used as a test.
 
+\begin{figure}[!htpb]
+    \includegraphics[scale=1]{transcriptomics/hampel5DF4Tissues.pdf}\centering
+    \caption[Expression of the genes picked with Hampel method]{\label{fig:hampelExp}%
+    \textbf{Expression of the genes picked constitently with the Hampel method
+    in each study solely in one tissue}<++>}
+\end{figure}
 
 \subsection{Tissue specific genes and other categories}\label{subsec:Trans_TissueSpeAndHK}
 
 \subsubsection{Specific genes}
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
     \includegraphics[scale=1]{transcriptomics/mostSpe4TP.pdf}\centering
     \caption[Cumulative shared set of genes sorted by their specificity in each
     tissue across the 5 datasets]{\label{fig:mostSpe4T}\textbf{Cumulative shared
