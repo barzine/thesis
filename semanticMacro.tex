@@ -50,6 +50,10 @@
 \newcommand*\ms{\gls{MS}}
 \newcommand*\orbi{Orbitrap™}
 
+\newcommand*\trep{\gls{TREP}}
+\newcommand*\treps{\glspl{TREP}}
+
+
 \newcommand*\Gtex{\gls{GTEx}}
 \newcommand*\EBI{\gls{EBI}}
 \newcommand*\egxa{\EBI\ Gene Expression Atlas}
@@ -123,10 +127,13 @@
 \newcommand*\softFull[4]{\href{#2}{\soft{#1}}\footnote{\soft{#1} ---
 \Href{#2}} ({#4})~\mycite{#3}}
 
+\newcommand*\crefp[2]{\cref{#1}#2 (\vpageref{#1})}
+\newcommand*\Crefp[2]{\Cref{#1}#2 (\vpageref{#1})}
+
 %url to different part of the github repo for this thesis
 \newcommand*\addressToirapConfFiles{%
 \href{https://github.com/barzine/BaselineAtlas/tree/master/data/irap/config/human}%
-{at my personal Github repository}\footnote{%
+{my personal Github repository}\footnote{%
 \href{https://github.com/barzine/BaselineAtlas/tree/master/data/irap/config/human}%
 {https://github.com/barzine/BaselineAtlas/tree/master/data/irap/config/human}}}
 

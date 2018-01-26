@@ -465,11 +465,11 @@ I then exclude it.
 
 \subsection{Averaging tissue expression}
 \label{subsec:averagedTissue}
-Finally, to avoid unnecessary skewness in the meta-analysis due to
+Finally, to avoid unnecessary skewness in the meta-analyses due to
 the biological replicates unbalance across the datasets (see \Cref{sec:expDesign}:
 \nameref{sec:expDesign}),
 I computed a \emph{\enquote{virtual} reference} for each tissue
-for the datasets that present more than one biological sample per tissue,
+within the datasets that present more than one biological sample per tissue,
 \ie\ \vt, \uhlen\ and \gtex\ datasets.
 Indeed, \castle, \cutler, \kuster\ and \pandey\ datasets present by design only
 one measure of expression per gene per tissue.
@@ -504,6 +504,16 @@ biological replicates of that tissue.
 %see more for esophagus in next chapter.
 \end{itemize}
 \KOMAoptions{parskip=half*}
+
+The meta-analyses of the following chapters use
+a \glsxtrfull{TREP} for each tissue of each study, \ie\
+there is only one measure per gene for each tissue.
+These measures are either
+the primary sample expressions for \castle\ and \ibm\ studies or
+these \emph{\enquote{virtual}} constructed \emph{references}
+for \brawand, \uhlen\ and \gtex.
+
+
 
 \section{Discussion}
 
@@ -556,33 +566,33 @@ locale:
 [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
 
 attached base packages:
- [1] stats4    parallel  grid      stats     graphics  grDevices utils     datasets  methods   base     
+ [1] stats4    parallel  grid      stats     graphics  grDevices utils     datasets  methods   base
 
 other attached packages:
- [1] topGO_2.28.0          SparseM_1.77          GO.db_3.4.1           org.Hs.eg.db_3.4.1    AnnotationDbi_1.38.2 
- [6] IRanges_2.10.5        S4Vectors_0.14.7      Biobase_2.36.2        clusterProfiler_3.4.4 DOSE_3.2.0           
-[11] Rgraphviz_2.20.0      graph_1.54.0          BiocGenerics_0.22.1   VennDiagram_1.6.17    futile.logger_1.4.3  
-[16] gridExtra_2.3         mgcv_1.8-22           nlme_3.1-131          scales_0.5.0          WGCNA_1.61           
-[21] fastcluster_1.1.24    dynamicTreeCut_1.63-1 gplots_3.0.1          reshape2_1.4.2        extrafont_0.17       
-[26] ggplot2_2.2.1        
+ [1] topGO_2.28.0          SparseM_1.77          GO.db_3.4.1           org.Hs.eg.db_3.4.1    AnnotationDbi_1.38.2
+ [6] IRanges_2.10.5        S4Vectors_0.14.7      Biobase_2.36.2        clusterProfiler_3.4.4 DOSE_3.2.0
+[11] Rgraphviz_2.20.0      graph_1.54.0          BiocGenerics_0.22.1   VennDiagram_1.6.17    futile.logger_1.4.3
+[16] gridExtra_2.3         mgcv_1.8-22           nlme_3.1-131          scales_0.5.0          WGCNA_1.61
+[21] fastcluster_1.1.24    dynamicTreeCut_1.63-1 gplots_3.0.1          reshape2_1.4.2        extrafont_0.17
+[26] ggplot2_2.2.1
 
 loaded via a namespace (and not attached):
- [1] bitops_1.0-6          matrixStats_0.52.2    robust_0.4-18         fit.models_0.5-14     bit64_0.9-7          
- [6] doParallel_1.0.11     RColorBrewer_1.1-2    tools_3.4.2           backports_1.1.1       DT_0.2               
-[11] rpart_4.1-11          KernSmooth_2.23-15    Hmisc_4.0-3           DBI_0.7               lazyeval_0.2.0       
+ [1] bitops_1.0-6          matrixStats_0.52.2    robust_0.4-18         fit.models_0.5-14     bit64_0.9-7
+ [6] doParallel_1.0.11     RColorBrewer_1.1-2    tools_3.4.2           backports_1.1.1       DT_0.2
+[11] rpart_4.1-11          KernSmooth_2.23-15    Hmisc_4.0-3           DBI_0.7               lazyeval_0.2.0
 [16] colorspace_1.3-2      nnet_7.3-12           bit_1.1-12            compiler_3.4.2        preprocessCore_1.38.1
-[21] extrafontdb_1.0       htmlTable_1.9         labeling_0.3          caTools_1.17.1        checkmate_1.8.4      
-[26] DEoptimR_1.0-8        mvtnorm_1.0-6         robustbase_0.92-7     stringr_1.2.0         digest_0.6.12        
-[31] foreign_0.8-69        rrcov_1.4-3           base64enc_0.1-3       pkgconfig_2.0.1       htmltools_0.3.6      
-[36] htmlwidgets_0.9       rlang_0.1.2           RSQLite_2.0           impute_1.50.1         jsonlite_1.5         
-[41] BiocParallel_1.10.1   gtools_3.5.0          GOSemSim_2.2.0        acepack_1.4.1         magrittr_1.5         
-[46] Formula_1.2-2         Matrix_1.2-11         Rcpp_0.12.13          munsell_0.4.3         stringi_1.1.5        
-[51] yaml_2.1.14           MASS_7.3-47           qvalue_2.8.0          plyr_1.8.4            blob_1.1.0           
-[56] DO.db_2.9             gdata_2.18.0          lattice_0.20-35       splines_3.4.2         knitr_1.17           
-[61] igraph_1.1.2          fgsea_1.2.1           codetools_0.2-15      fastmatch_1.1-0       futile.options_1.0.0 
-[66] glue_1.1.1            latticeExtra_0.6-28   lambda.r_1.2          data.table_1.10.4-1   foreach_1.4.3        
-[71] Rttf2pt1_1.3.4        purrr_0.2.3           tidyr_0.7.1           gtable_0.2.0          survival_2.41-3      
-[76] pcaPP_1.9-72          tibble_1.3.4          rvcheck_0.0.9         iterators_1.0.8       memoise_1.1.0        
+[21] extrafontdb_1.0       htmlTable_1.9         labeling_0.3          caTools_1.17.1        checkmate_1.8.4
+[26] DEoptimR_1.0-8        mvtnorm_1.0-6         robustbase_0.92-7     stringr_1.2.0         digest_0.6.12
+[31] foreign_0.8-69        rrcov_1.4-3           base64enc_0.1-3       pkgconfig_2.0.1       htmltools_0.3.6
+[36] htmlwidgets_0.9       rlang_0.1.2           RSQLite_2.0           impute_1.50.1         jsonlite_1.5
+[41] BiocParallel_1.10.1   gtools_3.5.0          GOSemSim_2.2.0        acepack_1.4.1         magrittr_1.5
+[46] Formula_1.2-2         Matrix_1.2-11         Rcpp_0.12.13          munsell_0.4.3         stringi_1.1.5
+[51] yaml_2.1.14           MASS_7.3-47           qvalue_2.8.0          plyr_1.8.4            blob_1.1.0
+[56] DO.db_2.9             gdata_2.18.0          lattice_0.20-35       splines_3.4.2         knitr_1.17
+[61] igraph_1.1.2          fgsea_1.2.1           codetools_0.2-15      fastmatch_1.1-0       futile.options_1.0.0
+[66] glue_1.1.1            latticeExtra_0.6-28   lambda.r_1.2          data.table_1.10.4-1   foreach_1.4.3
+[71] Rttf2pt1_1.3.4        purrr_0.2.3           tidyr_0.7.1           gtable_0.2.0          survival_2.41-3
+[76] pcaPP_1.9-72          tibble_1.3.4          rvcheck_0.0.9         iterators_1.0.8       memoise_1.1.0
 [81] cluster_2.0.6
 
 \end{comment}

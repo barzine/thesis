@@ -4,6 +4,7 @@
 \setdefaultlanguage[variant=uk]{english}
 %\setmainlanguage[variant=uk]{english}
 \RequirePackage[english, iso]{isodate}
+\RequirePackage{varioref}
 \RequirePackage[breaklinks=true,colorlinks]{hyperref}
 \RequirePackage{refcount}
 \RequirePackage[natbib=true,backend=biber,style=authoryear,isbn=false,%url=false,%
@@ -456,4 +457,5 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 
 \lehead{\mbox{\llap{\small\kern2em\color{halfgray}}\ifnum\value{page}=3\replaceText\else\ifnum\value{page}=2\replaceText\else\headmark\fi\fi\hfil}}
 \rohead{\mbox{\hfil{\ifnum\value{page}=3\replaceText\else\ifnum\value{page}=2\replaceText\else\headmark\fi\fi}\rlap{\small\kern2em\color{halfgray}}}}
+
 
