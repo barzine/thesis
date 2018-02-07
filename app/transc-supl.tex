@@ -233,6 +233,50 @@ and \gtex.}}
 \end{figure}
 \end{comment}
 
+\section{Hampel method}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{Expression matrix; Genes as rows and conditions as columns}
+\KwResult{Indicates if a gene presents an \emph{outlier} expression for any condition
+(as a boolean or a numeric ratio)}
+\BlankLine\
+\While{not at end of this document}{
+read current\;
+\eIf{understand}{
+go to next section\;
+current section becomes this one\;
+}{
+go back to the beginning of current section\;
+}
+}
+\caption{Hampel method}\label{algo:hampel}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{Numerical vector $v$}
+\KwResult{\gls{MAD} of the vector $v$}
+
+\caption{Median absolute deviation (MAD)}\label{algo:mad}
+\end{algorithm}
+
+
+
+\begin{comment}
+\begin{algorithm}[H]
+\SetAlgoLined\
+\KwData{\KwResult{}
+\Input{An expression matrix $m$}
+\Output{A boolean or numeric matrix $mo$}
+\BlankLine\
+\lForEach{gene $g$ of the matrix $m$}{\\
+   $median \leftarrow\ computeMedian(g)$\;
+   $MAD \leftarrow\ computeMAD(g)$\;}
+
+\caption{\end{algorithm}
+\end{comment}
+
 \section{List of the tissues available in TiGER}\label{sec:supplTiger}
 
 Thirty tissues (or equivalent) are available through this database:

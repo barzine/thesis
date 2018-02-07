@@ -13,6 +13,8 @@ I received invaluable advise and help from my discussions with \nuno.
 I also received general feedback and comments from \mar, \johan, \sarah, \gos\
 and \wolfgang.
 
+\TK{Add summary of the chapter.}
+
 When I started this project in 2013,
 little was then known on either the robustness or
 the shortcomings and pitfalls of \Rnaseq\ and
@@ -426,31 +428,37 @@ Thus, I have considered other candidates
 such as the most variable genes.
 
 \subsection{Most variable genes}
+As correlations translate the relationship strength,
+similar expression variation patterns for the tissues
+across the independent studies can also explain the strong correlations.
 
-Similar expression variation patterns across the tissues
-within the independent datasets may explain the strong correlations.
+Moreover, other things being equal,
+Pearson correlations are higher
+when the observations are more (rather than less) variable.
+This effect is often referred as
+\emph{restricted range}.~\mycite{CorrelationImpactingFactors}
 
-There are several available estimators to describe
-the variability of gene expression,
-\eg\ the variance or \gls{cv}.
+There are several available estimators to describe the gene expression variability
+\eg\ the standard deviation~(sd) the variance~($sd^2$) or the coefficient of
+variation~($\frac{sd}{mean}$).
 
-However,
-I only report here the results based on the coefficients of variation
-as the analyses involving the variance instead give
-fewer insights into the correlation strength
-between the tissues across the datasets.
+\NB\ I only report here the results based on the coefficients of variation.
+\begin{comment}
+Indeed, the analyses involving the variance instead give
+fewer insights.
+\end{comment}
 Also, it is worth mentioning that the results presented here
-improve considerably when the analyses also include \uhlen\ and the \gtex\ studies.
+improve considerably when analyses include \uhlen\ \etal\ and the \gtex\ studies.
 \begin{comment}
 Indeed, preliminary results (only based on \castle, \vt\ and \ibm\ studies)
 were far worse.
 \end{comment}
-Unsurprisingly, updating the human genome version from \hg{37} to \hg{38}
+And unsurprisingly, updating the human genome version from \hg{37} to \hg{38}
 for the reconstruction
 step\footnote{See \Cref{subsec:reconstruction}: \nameref{subsec:reconstruction}}
 also enhances significantly the results.
 
-The coefficient of variation (\gls{cv}) allows assessing
+The \gls{cv} allows assessing
 the dispersion of the gene expression values
 across the tissues within each dataset.
 As it contextualises the values to the mean,
@@ -477,7 +485,7 @@ across the  4 common tissues:
 across the 5 studies.}\\
 The coefficients of variation (\gls{cv}) of the \pcgs\ (12,268) of the four tissues
 present the same bimodal distribution profile across the five studies.
-\\These profiles present two pics: at $0.5$ and $2$.\\
+\\These profiles present two peaks: at $0.5$ and $2$.\\
 After more investigation, it appears that
 the genes with a \gls{cv} lesser than or equal to $0.5$ have
 a similar expression profile to a left-truncated version of
@@ -508,8 +516,8 @@ for these two groups of \pcgs\ in \setOne.
 After ranking the \pcgs\ in decreasing order of their \cv\ within each study,
 I select the intersection of genes in the first quarter across them
 to create the first group ($S_{most~Variable}$).
-The remaining genes are constituting the second group ($S_{remaining}$ and
-$S_{remaining} =$ \setOne{}$- S_{most~Variable}$).
+The remaining genes are constituting the second group ($S_{remaining}$).
+%and $S_{remaining} =$ \setOne{}$- S_{most~Variable}$).
 For both of these gene groups, $S_{most~Variable}$ and $S_{remaining}$,
 I calculate the coefficients of correlation for all possible tissue couples.
 
@@ -619,12 +627,43 @@ In conclusion, while the most variable genes have a significant influence
 on the strong and biologically meaningful correlations,
 there are incontestably other contributing genes.
 
+\begin{comment}
+The most variable genes present overall a distinct expression pattern
+where one tissue stands out with a much higher expression.
+Moreover, these patterns are mostly consistent across the independent studies
+(see \Cref{fig:expressionMostvariableG}).
+\end{comment}
+
+
+\subsection{Hampel's test}\label{subsub:Hampel}
+
+\cite{CorrelationImpactingFactors} recommend to control six factors
+when working with Pearson correlation.
+One of these factors that increases the correlation size is the presence
+of outliers.
+
+
+
+The Hampel's test is robust for detecting outliers
+while easy to implement and use~\mycite{LinsingerHampel}.
+
+After implementing the method (see \cref{algo:hampel}),
+I have applied it on the whole original datasets, \setOne and \setTwo.
+
+
 Genes that undeniably have an expression profile
 that varies in function of the tissue,
-and thus impact positively the correlations,
+%and thus impact positively the correlations,
 are the tissue specific genes.
 
 \subsection{Tissue specific genes}\label{sub:TisSpeGene}
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=1]{transcriptomics/hampel5DF4Tissues.pdf}\centering
+    \caption[Expression of the genes picked with Hampel method]{\label{fig:hampelExp}%
+    \textbf{Expression of the genes picked consistently with the Hampel method
+    in each study solely in one tissue.}}
+\end{figure}
 
 Another good candidate to drive higher correlations
 between identical interstudy \treps\ than intrastudy ones are
@@ -658,22 +697,6 @@ all the genes identifiers that I found in more than one tissue.
 Thus, for each tissue,
 I have a list of identifiers that are specific to that tissue only.
 
-
-\subsubsection{Hampel method}\label{subsub:Hampel}
-To expand on the most variable observation, I use the Hampel method.
-Explain a bit the Hampel method and how I have used as a test.
-
-This method is robust for detecting outliers and has been run on the original datasets.
-Once again, this part is not entirely done: I need to aggregate the results per condition within dataset before comparison with the other datasets.
-
-
-
-\begin{figure}[!htpb]
-    \includegraphics[scale=1]{transcriptomics/hampel5DF4Tissues.pdf}\centering
-    \caption[Expression of the genes picked with Hampel method]{\label{fig:hampelExp}%
-    \textbf{Expression of the genes picked consistently with the Hampel method
-    in each study solely in one tissue.}}
-\end{figure}
 
 
 
