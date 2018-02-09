@@ -112,29 +112,8 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
     \tissue{Ovary} and \tissue{Fallopian tube}.}
 \end{figure}
 
-\begin{figure}[htpb]
-\includegraphics[scale=1]{transcriptomics/highExpress4TP.pdf}\centering
-\caption[Cumulative shared set of genes ranked by expression across the 5
-studies]{\label{fig:highExpress4T}\textbf{Cumulative shared set of genes
-ranked by their decreasing order of expression across the 5 studies.}
-Except a very small subset for the highest expressed protein coding genes,
-the overlap of the gene ranks across the 5 studies is rather small.
-The grey line presents the evolution of the ratios for the randomly
-permuted data which highlights that there is an underlying structure.}
-\end{figure}
 
-\begin{figure}[htpb]
-    \includegraphics[scale=1]{transcriptomics/highExpress23TP.pdf}\centering
-    \caption[Cumulative shared set of genes, sorted by their expression, between
-    Uhlen and GTEx]{\label{fig:highExpress23T}\textbf{Cumulative shared set of
-    genes, ranked by their decreasing order of expression, between \uhlen\ and
-    \gtex\ studies.}
-    The highest expressed genes present greater ratios than
-    when the 5 studies are considered (see \Cref{fig:highExpress4T}).
-    The fewer number of studies considered, which, additionally to be the most
-    recent studies, are the ones to comprise greater number of biological
-    replicates per tissues may be the sole reasons for the improved results.}
-\end{figure}
+
 
 \begin{figure}[htpb]
 \centering
@@ -165,6 +144,65 @@ a Welch two-sample t-test.}
 \end{minipage}
 \end{figure}
 
+\section{Overlap of the top high expressed genes between the five datasets}\label{sec:overlapHighExp}
+
+\begin{figure}[htpb]
+\includegraphics[scale=1]{transcriptomics/highExpress4TP.pdf}\centering
+\caption[Cumulative shared set of genes ranked by expression across the 5
+studies]{\label{fig:highExpress4T}\textbf{Cumulative shared set of genes
+ranked by their decreasing order of expression across the 5 studies.}
+Except a very small subset for the highest expressed protein coding genes,
+the overlap of the gene ranks across the 5 studies is rather small.
+The grey line presents the evolution of the ratios for the randomly
+permuted data which highlights that there is an underlying structure.}
+\end{figure}
+
+\Cref{fig:highExpress4T} shows across the studies and for each tissue,
+the ratios of the number of
+common \pcgs\ for a given amount of highest expressed \pcgs\
+to that very number.
+Among these (cumulative) proportions,
+a few present very high value for
+a minimal subset of genes (below $10$ \FPKM\ across all the tissues)
+which then drop dramatically to finally increase slowly
+to reach the expected ratio of $1$ \FPKM{}.
+\begin{comment}
+as the \pcgs\ set across the studies is identical.
+\end{comment}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=1]{transcriptomics/highExpress23TP.pdf}\centering
+    \caption[Cumulative shared set of genes, sorted by their expression, between
+    Uhlen and GTEx]{\label{fig:highExpress23T}\textbf{Cumulative shared set of
+    genes, ranked by their decreasing order of expression, between \uhlen\ and
+    \gtex\ studies.}
+    The highest expressed genes present greater ratios than
+    when the 5 studies are considered (see \Cref{fig:highExpress4T}).
+    The fewer number of studies considered, which, additionally to be the most
+    recent studies, are the ones to comprise greater number of biological
+    replicates per tissues may be the sole reasons for the improved results.}
+\end{figure}
+
+\Cref{fig:highExpress23T} presents the same kind of ratios,
+however, limited to \uhlen\ and \gtex\ solely.
+Here as well, aside from the expected perfect ratio for the complete set of
+\pcgs,
+only a tiny subset of the highest expressed genes produce high rates of
+highly expressed common genes to the number of considered ranked genes.
+These results are quite unsurprising as they involve only two studies.
+In addition to increasing the number of overlaps probabilistically,
+these two studies are also the two most recent ones
+and comprise a higher number of replicates per tissues;
+thus the measures for each gene in each condition are likely more robust.
+
+Comparing the calculated ratios between the real (colour) and
+the randomly permuted data (grey)
+on \Cref{fig:highExpress4T,fig:highExpress23T}
+plainly show that across the assortment of studies,
+there are common (biological) structures
+that are not fortuitous.
+
+\section{Variable genes}
 
 \begin{sidewaysfigure}[htpb]
     \includegraphics[scale=1]{transcriptomics/MitoVarianceFinale.png}\centering
