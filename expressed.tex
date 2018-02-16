@@ -183,8 +183,12 @@ I tried both the Spearman and the Pearson correlations
 
 \begin{table}[]
 \centering
-\caption{Correlation coefficients between \Rnaseq\ replicates}
-\label{tab:repCorr}
+\caption[Correlation coefficients between \Rnaseq\ replicates]{%
+\label{tab:repCorr}\textbf{Correlation coefficients between \Rnaseq\ replicates}
+{\footnotesize The mean correlations are high across the studies with replicates.
+However, the range of the correlations (in brackets) are quite extreme in a few
+case. Spearman correlations are better than the Pearson ones.
+See \Cref{subsec:PearsonVsSpearman}.}}
 \begin{tabular}{@{}cccc@{}}
 \toprule
 Tissue & Replicates type & Pearson Correlation & Spearman Correlation \\ \midrule

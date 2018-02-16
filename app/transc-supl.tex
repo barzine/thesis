@@ -114,7 +114,6 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
 
 
 
-
 \begin{figure}[htpb]
 \centering
 \begin{minipage}{\textwidth}
@@ -157,10 +156,9 @@ The grey line presents the evolution of the ratios for the randomly
 permuted data which highlights that there is an underlying structure.}
 \end{figure}
 
-\Cref{fig:highExpress4T} shows across the studies and for each tissue,
-the ratios of the number of
+\Cref{fig:highExpress4T} shows the ratios of the number of
 common \pcgs\ for a given amount of highest expressed \pcgs\
-to that very number.
+to that very number across the studies and for each tissue.
 Among these (cumulative) proportions,
 a few present very high value for
 a minimal subset of genes (below $10$ \FPKM\ across all the tissues)
@@ -184,7 +182,7 @@ as the \pcgs\ set across the studies is identical.
 \end{figure}
 
 \Cref{fig:highExpress23T} presents the same kind of ratios,
-however, limited to \uhlen\ and \gtex\ solely.
+however, limited to \uhlen\ and \gtex\ only.
 Here as well, aside from the expected perfect ratio for the complete set of
 \pcgs,
 only a tiny subset of the highest expressed genes produce high rates of
@@ -193,14 +191,14 @@ These results are quite unsurprising as they involve only two studies.
 In addition to increasing the number of overlaps probabilistically,
 these two studies are also the two most recent ones
 and comprise a higher number of replicates per tissues;
-thus the measures for each gene in each condition are likely more robust.
+thus the measurements for each gene in each condition are likely more robust.
 
 Comparing the calculated ratios between the real (colour) and
 the randomly permuted data (grey)
 on \Cref{fig:highExpress4T,fig:highExpress23T}
-plainly show that across the assortment of studies,
-there are common (biological) structures
-that are not fortuitous.
+plainly show that there are common (biological) structures
+that are nonfortuitous across studies.
+
 
 \section{Variable genes}
 
@@ -271,20 +269,21 @@ and \gtex.}}
 \end{figure}
 \end{comment}
 
+
 \section{Hampel method}
 
 \begin{algorithm}[H]
-\SetAlgoLined
+\SetAlgoLined\
 \KwData{Expression matrix; Genes as rows and conditions as columns}
 \KwResult{Indicates if a gene presents an \emph{outlier} expression for any condition
 (as a boolean or a numeric ratio)}
 \BlankLine\
-\While{not at end of this document}{
+\While{not at end of this document}{%
 read current\;
-\eIf{understand}{
+\eIf{understand}{%
 go to next section\;
 current section becomes this one\;
-}{
+}{%
 go back to the beginning of current section\;
 }
 }
@@ -292,7 +291,7 @@ go back to the beginning of current section\;
 \end{algorithm}
 
 \begin{algorithm}[H]
-\SetAlgoLined
+\SetAlgoLined\
 \KwData{Numerical vector $v$}
 \KwResult{\gls{MAD} of the vector $v$}
 
@@ -304,7 +303,7 @@ go back to the beginning of current section\;
 \begin{comment}
 \begin{algorithm}[H]
 \SetAlgoLined\
-\KwData{\KwResult{}
+\KwData{}
 \Input{An expression matrix $m$}
 \Output{A boolean or numeric matrix $mo$}
 \BlankLine\
@@ -312,7 +311,8 @@ go back to the beginning of current section\;
    $median \leftarrow\ computeMedian(g)$\;
    $MAD \leftarrow\ computeMAD(g)$\;}
 
-\caption{\end{algorithm}
+\caption{}
+\end{algorithm}
 \end{comment}
 
 \section{List of the tissues available in TiGER}\label{sec:supplTiger}
@@ -436,4 +436,46 @@ tissues\\ Working datasets}}} & Uhlen & 17,345  & 27,575  &
 \end{tabular}
 \end{sidewaystable}
 
+
+\section{List of publications based on RNA-Seq and covering at least partially its robustness}\label{sec:TranssCoop}
+
+\begin{itemize}
+    \item~\fullcite{seqcmaqc}
+    \item~\fullcite{Rau2014-va}
+    \item~\fullcite{Santos2015-rj}
+    \item~\fullcite{Sudmant2015-zt}
+    \item~\fullcite{Danielsson2015-cn}
+    \item~\fullcite{Uhlen:2016}
+    \item~\fullcite{ruvseqComQN}
+    \item~\fullcite{Wang2017-hc}
+\end{itemize}
+
+
+\section{Complement to the highest genes anticorrelations}\label{sec:whyAnticor}
+
+As very few genes are involved,
+the slightest changes in their respective order of magnitude
+may imply reversed trends.
+
+\begin{table}[!h]
+\centering
+\caption{Example of gene subsets for a two studies (A and B) for a tissue}
+\label{tab:anticorExample}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+ & $Gene_a$ & $Gene_b$ & $Gene_c$ & $Gene_d$ & $Gene_e$ \\
+\midrule
+Study A, \trep\ $T_1$ ($T^{Study A}_1$) & 5000 & 4000 & 3000 & 4000 & 5000 \\
+Study B, \trep\ $T_1$ ($T^{Study B}_1$) & 4000 & 50 & 7000 & 6000 & 500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For example,
+if we consider $T^{Study A}_1$ and $T^{Study B}_1$
+for a set of genes ${a, \ldots, e}$ (see \Cref{tab:anticorExample})
+and a cut-off at 3,000 \FPKMs,
+then the correlation will only involve $Gene_a$, $Gene_c$ and $Gene_d$.
+
+$ corr(T^{Study A}_1,T^{Study B}_1) = -0.9819 $
 
