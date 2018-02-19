@@ -368,23 +368,27 @@ The cut-off is a range of possible (integer number) value of gene expression
 %\begin{sidewaysfigure}[!htpb]
 \begin{figure}[!htpb]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}\centering
-        \includegraphics[height=0.4\textheight]{transcriptomics/HeartEvolHighExp4P-1.pdf}
+    \begin{subfigure}[b]{0.4\textwidth}\centering
+        \includegraphics%[height=0.4\textheight]
+        {transcriptomics/HeartEvolHighExp4P-1.pdf}
         \caption{Heart}\label{fig:CorHighExpHeart4T}
     \end{subfigure}%
 ~%
-    \begin{subfigure}[b]{0.45\textwidth}\centering
-        \includegraphics[height=0.4\textheight]{transcriptomics/KidneyEvolHighExp4P-1.pdf}
+    \begin{subfigure}[b]{0.4\textwidth}\centering
+        \includegraphics%[height=0.4\textheight]
+        {transcriptomics/KidneyEvolHighExp4P-1.pdf}
         \caption{Kidney}\label{fig:CorHighExpKidney4T}
     \end{subfigure}
 
-    \begin{subfigure}[b]{0.45\textwidth}\centering
-        \includegraphics[height=0.4\textheight]{transcriptomics/LiverEvolHighExp4P-1.pdf}
+    \begin{subfigure}[b]{0.4\textwidth}\centering
+        \includegraphics%[height=0.4\textheight]
+        [scale=0.4]{transcriptomics/LiverEvolHighExp4P-1.pdf}
         \caption{Liver}\label{fig:CorHighExpLiver4T}
     \end{subfigure}%
 ~%
-    \begin{subfigure}[b]{0.45\textwidth}\centering
-        \includegraphics[height=0.4\textheight]{transcriptomics/TestisEvolHighExp4P-1.pdf}
+    \begin{subfigure}[b]{0.4\textwidth}\centering
+        \includegraphics%[height=0.4\textheight]
+        [scale=0.4]{transcriptomics/TestisEvolHighExp4P-1.pdf}
         \caption{Testis}\label{fig:CorHighExpTestis4T}
     \end{subfigure}
     \caption[Pearson correlation coefficient evolution based on the expression
@@ -689,14 +693,15 @@ Moreover, these patterns are mostly consistent across the independent studies
 (see \Cref{fig:expressionMostvariableG}).
 \end{comment}
 
-\subsection{Outliers}\label{subsub:Hampel}
+\NB\ One main drawback when considering the most variable genes is
+the descriptor summarises the genes across all the tissues.
+So,
+the results may significantly vary
+depending of the composition of the working set
+and this analysis ought to be rerun.
 
-While \cite{CorrelationImpactingFactors} recommend to control
-the variability range of the possible observations
-when working with Pearson correlation,
-they also list other factors.
-Among those, they cover the presence of outliers
-that can increase the correlation strength.
+\subsubsection{Detecting variable genes by tissue with Hampel's test}\label{subsub:Hampel}
+
 
 The Hampel's test is robust for detecting outliers~\mycite{Davies1993-nv,Pearson2002-im}
 in data that are identically and independently distributed (i.i.d.)~\mycite{Liu2004-kf},
