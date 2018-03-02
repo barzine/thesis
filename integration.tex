@@ -1,24 +1,24 @@
 \chapter{Integration of Transcriptomic and Proteomic data}
 \label{ch:Integration}
-The work presented in this chapter was done in collaboration with Dr James Wright,
+The work presented in this chapter was done in collaboration with \james,
 Principal Bioinformatician within the Proteomics and Mass Spectrometry unit of the
-Wellcome Trust Sanger Institute and Nuno Fonseca. James performed all the
+Wellcome Trust Sanger Institute and \nuno. \james\ performed all the
 identification and quantification of the proteins, which also includes the
 implementation of the new method of protein quantification presented in
-the~\Cref{subsec:IntegrationNewMethQuant}. Nuno performed the quality
+the~\Cref{subsec:IntegrationNewMethQuant}. \nuno\ performed the quality
 control, the mapping and the quantification of the \dataset{Gtex} data.
-I have performed the quality control, the mapping and the quantification of the
-\dataset{Uhlén \etal} dataset. I have also performed
-all the data analysis and integration under the supervision of Dr Alvis Brazma
-(EMBL-EBI) and Dr Jyoti Choudhary (Wellcome Trust Sanger Institute).
+I have completed the quality control, the mapping and the quantification of the
+\uhlen\ \etal\ dataset. I have also performed
+all the data analysis and integration under the supervision of \alvis\
+(EMBL-EBI) and \jyoti\ (Wellcome Trust Sanger Institute).
 
-A manuscript describing this work is being prepared with the aforementioned authors.
+A manuscript describing this work is being prepared by the authors as mentioned above.
 
 Furthermore, while this thesis redaction, \citet*{SciRep2016} published
 \citetitle{SciRep2016} in \emph{Scientific Reports}.
 
 As their work is highly similar to my own, particularly as they are using data
-from the Gtex consortium and from the Pandey laboratory, I will describe the
+from the \gtex\ consortium and from the Pandey laboratory, I will describe the
 paper's relevant findings and discuss them jointly with my own.
 
 \section{Introduction}
@@ -29,10 +29,10 @@ will be transcribed as one \mRNA\ transcript and will be in turn translated in
 one protein --- still holds true even though we now know the truth is not as
 linear as we thought first. Many regulation processes are implied before
 and after the transcription and translation steps.
-In~\cref{fig:dogma} which is the reconstruction by~\citet{Crick:1958} of
-what was conceived circa 1958: the solid lines present the proven mode of
+\Cref{fig:dogma} is the reconstruction by~\citet{Crick:1958} of
+what was conceived circa 1958: the solid lines present the proven modes of
 information transfers, the dashed ones are the ones that were postulated but
-have yet to be proven. To update this figure to our current knowledge, the line
+have yet to be established. To update this figure to our current knowledge, the line
 starting from the RNA to the DNA should be a solid one.
 
 \begin{figure}%[!htbp]
@@ -40,47 +40,50 @@ starting from the RNA to the DNA should be a solid one.
     \caption[Central dogma of molecular biology proposed by F. Crick circa 1958]
     {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
     F. Crick circa 1958.} The solid lines are proved direct transfer, the dashed
-    ones the still have to be proven. Nowadays, we know that the arrow from RNA
-    to DNA should be a solid one, even though this happens in very specific
-    occasions}
+    ones the still have to be established. Nowadays, we know that the arrow from RNA
+    to DNA should be a solid one, even though this happens on particular occasions.}
 \end{figure}
 
 However, as we still have to prove that proteins can be produced directly
-from \DNA\footnote{which seems pretty unlikely to me}, it is assumed that
-each protein is created by translation, hence studying
+from \DNA\footnote{which seems pretty unlikely to me},
+it is assumed that translation creates each protein,
+hence studying
 transcriptomics and proteomics together for the same conditions should give us
-insights on these regulation processes.
+insights on these regulatory processes.
 
 Whereas it was implicitly assumed for a long time that for similar conditions
 there should be a proportional relationship between transcriptomics and
 proteomics, many studies\
 \TK{add references, see TAC report 3}
-done in cells have failed to show high correlation between the two biological
-layers. From then, while there are still studies done jointly on transcriptomics
-and proteomics, the focus has greatly shift either on the presence or absence of
+done in cells have failed to show a high correlation between the two biological
+layers.
+From then, while there are still studies done jointly on transcriptomics and proteomics,
+the focus has considerably shift either on the presence or absence of
 a protein/transcript in a specific condition or if both transcript and protein
-are differential expressed between two conditions in the same way.
+are differentially expressed between two conditions in the same way.
 Nowadays, there are not many efforts to directly link their actual expression.
 
-Previous studies did not managed to show correlation between proteomics and
+Previous studies lack to show a correlation between proteomics and
 transcriptomics above $0.5$ (Pearson correlation coefficient).
 However, while cell populations could have external factors impacting their
-overall expression, an easy assumption is that tissue samples should be driven
+overall expression, a natural assumption is that tissue samples should be driven
 by their function first. As such we expect that what makes a liver a liver and
 what makes a heart a heart would overcome most of the technical variability.
 
 In fact, here, even though I have only access to independent data, the average
 Pearson correlation per tissue is above $0.5$
-[min: $0.45$ (\tissue{Oesophagus}); max: $0.666$ (\tissue{Liver})].
+$[$min: $0.45$ (\Oesophagus); max: $0.666$ (\Liver)$]$.
 
-In 2014, two large proteomics assays focusing on normal human tissues have been
-released for the first time.
-\TK{add citation for Pandey and Kuster}
-Until now, there was not such availability of large-scale and extensive tissues
-both on transcriptomic and proteomic layer to jointly study the genes
-translation into proteins across a consequent set of tissues
-at the same time. Alike the \dataset{Uhlén \etal} dataset and the \dataset{Gtex}
-these datasets have not the same scope of tissues. However, the overlap of
+In 2014, for the first time,
+two significant proteomics assays focusing on normal human tissues had been released
+\mycite{PandeyData,KusterData}.
+Until now, there was no such availability of large-scale and extensive tissues
+both on transcriptomic and proteomic layers to jointly study the genes
+translation into proteins across a substantial set of tissues
+at the same time.
+Alike the \uhlen\ \etal\ and the \gtex\ studies,
+these proteome datasets have not the same scope of tissues.
+However, the overlap of
 studied tissues is enough to draw an overview of the current technology.
 
 In their review,~\citet{Uhlen:2016}, the authors outline one on-going debate
@@ -90,21 +93,23 @@ Indeed, first investigations found low or no correlation. More recent
 studies reported improved correlations although these correlations were around
 $0.4$ (Pearson correlation coefficient). Such discrepancies could be explained
 partially by the difference of the technology for proteomic and transcriptomic
-assays. Sequencing-based technologies, as \Rnaseq\, enhanced greatly the
-assessment of transcripts. While true absolute quantification is not reached yet,
+assays.
+Sequencing-based technologies, like \Rnaseq,
+enhanced the assessment of transcripts greatly.
+While true absolute quantification is not reached yet,
 there is not saturation any more or, more importantly, out-of-scope issues as
-they could have been observed with microarrays. In theory, on one hand, with
+they could have been observed with microarrays. In theory, on the one hand, with
 enough sequencing depth, every transcript expressed in a cell or tissue could be
-catch by high-throughput sequencing and in the other hand, two transcripts with
-different level of expression would be differentiate whereas they are very highly
+caught by high-throughput sequencing, and in the other hand, two transcripts with
+different level of expression would be distinguished whereas they are very highly
 expressed or not. If there is a difference in their level of expression, this
-difference should be catch.
+difference should be caught.
 
 Unfortunately, technology on the proteomic side is not as advanced yet.
 Mass spectrometry is still one of the most accurate ways to quantify the
 abundance of proteins. However, often the top 25 most abundant proteins can
-amount for more than half of the signal collected for a sample. Therefore, the
-identification (and hence quantification) of the scarcer proteins is harder.
+amount to more than half of the signal collected for a sample. Therefore, the
+identification (and hence quantification) of the scarcer proteins is more laborious.
 \TK{find reference -> ask Jyoti}
 
 These technical divergences and specificities call for an underlying premise:
@@ -183,22 +188,23 @@ data, all the analyses have been run with this threshold. It is worth mentioning
 that parts of the analyses have also been done either without
 any threshold (\ie\ the same definition used with the proteins has been applied)
 or with a threshold of $5$ \glspl{FPKM}.
+
 \end{comment}
 
 \subsection{Limitations of the current study}
-Apart of the most obvious limitation: the transcriptome and the proteome used in
+Apart from the most obvious limitation: the transcriptome and the proteome used in
 this study have been collected from independent human donors, there are
 two other main constraints I would like to highlight.
 
 First, there is a lack of samples per tissue on the proteomic side of the study.
 
-On one hand, we have the \dataset{Uhlén \etal} data, which have \emph{technical}
-and \emph{biological} replicates for each tissue, and the \dataset{Gtex}, which
+On one hand, we have the \uhlen\ \etal\ data, which have \emph{technical}
+and \emph{biological} replicates for each tissue, and the \gtex, which
 provides many \emph{biological} replicates per tissue. On the other hand, no
-replicate was produced in the proteomic dataset (\dataset{Pandey \etal}) used
-within this study. Hence, the expression found in \emph{one} library is
-\textit{de facto} the proteomic expression for that tissue. This
-is far from an ideal set-up.
+replicate was produced in the proteomic dataset (\pandey\ \etal) used
+in this study. Hence, the expression found in \emph{one} library is
+\textit{de facto} the proteomic expression for that tissue.
+This set-up is far from ideal.
 
 Secondly, while I have compared the list of \emph{undefined} transcripts and
 proteins (between \dataset{Pandey \etal} and \dataset{Uhlén \etal} data and
@@ -226,34 +232,37 @@ see \cref{fig:visualexp}
 \subsection{Transcriptome}
 For this study, the processed \dataset{Uhlén \etal} and \dataset{Gtex} datasets
 used are a subset of the processed data previously presented in
-the~\Cref{ch:Transcriptomics} (see:~\cref{sec:Trans_ReproExpresTissue}
+\TK{change the chapter reference to the second one?}
+\Cref{ch:Transcriptomics} (see:~\cref{sec:Trans_ReproExpresTissue}
 for the processing methods). Indeed, only the set of tissues also available
-on the proteome side were kept. Parallely, as we are interested to compare each
-protein to its corresponding \mRNA\, only the genes annotated as protein coding
-for biotype (in Ensembl 76 release) have been kept.
+on the proteome side were kept. Parallelly, as we are interested to compare each
+protein to its corresponding \mRNA, only the genes annotated as protein coding
+for biotype (in \ens{76} release) have been kept.
 
-The 14 common tissues between \dataset{Gtex} and the proteomic data
+The fourteen shared tissues between \dataset{Gtex} and the proteomic data
 (\dataset{Pandey \etal}) are
-(by alphabetical order):  \tissue{Adrenal gland}, \tissue{Bladder}\footnote{Also
+(by alphabetical order): \adrenal, \Bladder{}\footnote{Also
 sometimes reported as \tissue{Urinary Bladder}},
-\tissue{Colon}, \tissue{Frontal cortex}, \tissue{Oesophagus}, \tissue{Heart},
-\tissue{Kidney}, \tissue{Liver}, \tissue{Lung}, \tissue{Ovary}, \tissue{Pancreas},
-\tissue{Prostate}, \tissue{Spinal cord} and \tissue{Testis}.
+\hColon, \fcortex, \Oesophagus, \Heart,
+\Kidney, \Liver, \Lung, \Ovary, \Pancreas,
+\Prostate, \Spinal\ and \Testis.
 
-The 15 common tissue between \dataset{Uhlén \etal} and the proteomic data
+The fifteen shared tissue between \dataset{Uhlén \etal} and the proteomic data
 (\dataset{Pandey \etal} are)
-an enlarged version of the previous set, with the addition of \tissue{Gall
-bladder}, \tissue{Placenta} and \tissue{Rectum}.
+an enlarged version of the previous set, with the addition of \Gall,
+\Placenta\ and \Rectum.
 
 Most of the results reported and displayed in the main body
-of the following chapter are using this later bigger set. As the whole analysis
-pipeline as been applied to the three datasets
-for the same 12 tissues, some of the figures have a counterpart in the
+of the following chapter are using this later more extensive set.
+As the whole analysis
+pipeline has been applied to the three datasets
+for the same twelve tissues, some of the figures have a counterpart in the
 appendices displaying the results for all three datasets when focusing only on
-that smaller subset of tissues. To ease the comparison, the references of the
-supplementary figures are given in green (and in brackets) in the legend of the
-main one. Overall, the main results and conclusions remain the same either if
-I use Gtex or Uhlén \etal\ data.
+that smaller subset of tissues.
+The references of the supplementary figures are given in green (and in brackets)
+in the legend of the main one to help the comparison.
+Overall, the primary results and conclusions remain the same either if
+I use \gtex\ or \uhlen\ \etal\ data.
 
 To calculate the aggregate expression per tissue\footnote{to be on par with the
 proteomic data}, I used the median\footnote{When there were more than
@@ -261,25 +270,26 @@ two samples, otherwise it is the mean of expression of the two biological
 replicates.} of the transcript expression after having computed the mean of its
 expression for the technical replicates of each individual.
 
-I ran the analyses on both quantification (HTSeq and Cufflinks); if not stated
+I ran the analyses on both quantifications (HTSeq and Cufflinks); if not stated
 otherwise the quantification used for the figures are based on the normalised
 \glspl{FPKM} computed on the output of HTseq.
-Overall, either if we use \dataset{Uhlén et al} or
-\dataset{Gtex} datasets with any of the quantification methods, the high level
+Overall, either if we use \uhlen\ \etal\ or
+\gtex\ datasets with any of the quantification methods, the high-level
 results, discussions and conclusions remain the same.
 
 \subsection{Proteome}
 The available data on the proteomic side is by far more limited than the
-transcriptomic side. There are really two datasets that could be suitable for
+transcriptomic one. There are only two datasets that could be suitable for
 the study: \dataset{Kuster \etal} or \dataset{Pandey \etal} datasets.
 
 While the \dataset{Kuster} dataset presents more tissues in common
 with the \dataset{Gtex} and \dataset{Uhlén \etal} datasets
 (see~\cref{fig:VennTissuePandeyGtexUhlen}
 and~\cref{fig:VennTissueKusterGtexUhlen}), I had focused the study on
-the \dataset{Pandey \etal} dataset. Indeed, we managed to quantify the biggest
-number of proteins in this later dataset: 10,272 proteins across 24 samples for
-\dataset{Pandey} versus 7,223 across 24 samples for \dataset{Kuster}\footnote{Even
+the \dataset{Pandey \etal} dataset.
+Indeed, we managed to quantify the greatest number of proteins
+in the \pandey\ dataset: 10,272 proteins across twenty-four samples for
+\dataset{Pandey} versus 7,223 across twenty-four samples for \dataset{Kuster}\footnote{Even
 if the number of samples is the same for the \dataset{Pandey} and
 the \dataset{Kuster} datasets, this is purely fortuitous.}.
 
@@ -320,13 +330,13 @@ the \dataset{Kuster} datasets, this is purely fortuitous.}.
     \tissue{Cervix}.}
 \end{figure}
 
-While one could have argue that the greater diversity of proteins in
-\dataset{Pandey \etal} data might been due to the nature of the tissues within
+While one could argue that the higher diversity of proteins in
+\dataset{Pandey \etal} data might be due to the nature of the tissues within
 each of the proteomic datasets, this is not the case. The number of proteins
-detected within a same tissue is greater for  \dataset{Pandey \etal},
+detected within the same tissue is greater for  \dataset{Pandey \etal},
 as shown in~\cref{fig:KusterPandeyFQM} (A and B).
 
-This has an increased importance as the study goes beyond the correlation of
+This has increased importance as the study goes beyond the correlation of
 proteomics and transcriptomics for a same tissue.
 
 \newcommand{\figKustPandFQM}{\textbf{Distribution of proteins across the
@@ -336,10 +346,10 @@ tissue (within each dataset).
 A\textbar\ Kuster (first quantification method).
 B\textbar\ Pandey (first quantification method).
 C\textbar\ Pandey (second quantification method).
-There are by far many more detected and quantified proteins per tissue in the
+There are far much more detected and quantified proteins per tissue in the
 \dataset{Pandey \etal} dataset (B\textbar) than the
 \dataset{Kuster \etal} dataset (A\textbar). We can notice that while
-\tissue{Testis} is the tissue that presents the highest number and greatest
+\tissue{Testis} is the tissue that presents the highest number and
 diversity of expressed proteins for both datasets, the other tissues are not in
 the same order.}
 
@@ -360,28 +370,30 @@ the same order.}
 
 Furthermore, all the \dataset{Pandey \etal} data has been
 collected on the same platform while the \dataset{Kuster \etal} data has been
-collected on different ones. On a side note, as each of the proteomic datasets
-proposes only one sample per tissue, it is difficult to assess if the high or low
-correlation between the \dataset{Kuster \etal} or the \dataset{Pandey \etal}
-proteomic data and the available transcriptomic data is due to the technology or
-to the nature of the tissue.
+collected on different ones.
+On a side note,
+as each of the proteome studies proposes only one sample per tissue,
+it is difficult to assess if the high or low correlation
+between the proteome (either \pandey\ or \kuster) data and
+the available transcriptome data is due to technology or the tissue nature.
 
-In the same fashion as the transcriptomic data, which have been reprocessed
-before being employed in our studies, the proteomic data have been reprocessed
-by James from the raw files he has downloaded from ProteomeXchange
+In the same fashion as the transcriptomic data,
+the proteomic data have been reprocessed before the study
+by \james\ from the raw files he has downloaded from ProteomeXchange
 \citep{ProteomeXchange:2014} via the PRIDE database \citep{Pride:2016}.
 \TK{Ask James for the methods}
 
 At first, the quantification used for the proteomic data was following
 state-of-the-art protocols for which we applied very stringent parameters:
 to identify and quantify a given protein, three different unique peptides
-(with a \gls{FDR} $< 0.01 \%$) have to be mapped solely to that protein. A main
-issue of this approach is that many proteins have similar sequences; hence, some
-peptides can only be attributed to clusters of proteins. A naive approach would
-be to aggregate the corresponding transcriptomic expressions together to enable
+(with an \gls{FDR} $< 0.01 \%$) have to be mapped solely to that protein.
+A major issue of this approach is that many proteins have similar sequences;
+hence, some peptides can only be attributed to clusters of proteins.
+A naive approach would
+be to aggregate the similar transcriptomic expressions together to enable
 the comparison\footnote{Which then would also require further steps of
 normalisation on the transcriptomic part.}. However, we found that the cluster
-of peptides/proteins are not consistent from one study to another. Indeed, we do
+of peptides/proteins is not consistent from one study to another. Indeed, we do
 not always observe the same set of peptides and, moreover, the proteins clusters
 they support are quite different. That is why I have not investigate this option
 further as for each study I would need a new aggregate annotation as a reference.
@@ -389,7 +401,7 @@ It would then be quite difficult to assess the discrepancy due to the
 variations of aggregation. For this first method of quantification, I choose to
 exclude the cluster of peptides/proteins from the study\footnote{Since I also work
 with a subset of the tissues, out of context, the number of quantified proteins
-could seem a bit low compare to the original study.}.
+could seem a bit low compared to the original study.}.
 
 
 \section{Results}
@@ -403,31 +415,57 @@ could seem a bit low compare to the original study.}.
 After discussions where we were comparing the different quantification algorithms
 and methods used for \Rnaseq\ data, we have decided to try a new quantification
 method\footnote{Inspired by algorithms as Cufflinks} for the proteomics:
-the amount of proteins would still take in account the \emph{unique} peptides,
+the quantification of proteins would still take in account the \emph{unique} peptides,
 but also the peptides that could be attributed to several proteins.
 These \emph{ambiguous} peptides are then probabilistically assigned to the
 mapped proteins they are more likely to come from (based on the distribution of
 the other peptides that could be mapped to each protein).
 
-Both quantification methods have been implemented by James Wright.
+\james\ has implemented both quantification methods.
 
 In the context of this work (\ie\ when focusing on the 15 common tissues between
 the \dataset{Uhlén \etal} and the \dataset{Pandey \etal} datasets),
 he has quantified about 6,400 proteins with
-the standard method. With the new method, he has quantified a bigger set of
-proteins: about 12,300 proteins. This new number is quite closer to the original
-reported number of protein by Kim \etal\.  Indeed the original paper is
-reporting proteins encoded by 17,294 genes.
+the standard method. With the new approach, he has quantified a more substantial set of
+proteins: about 12,300 proteins. This new number is quite close to the initially
+reported number of protein by Kim \etal\ study.
+Indeed the original paper is describing proteins encoded by 17,294 genes.
 
 As shown in~\cref{fig:KusterPandeyFQM} (B and C),
-all tissues and cell lines benefits from this new quantification and there isn't
-any tissue or cell line that is dramatically impacted compared to the others.
+all tissues and cell lines benefit from this new quantification.
+Moreover, all tissues and cell lines are evenly impacted
+(\ie\ none of them is dramatically affected compared to the others).
 
 As shown in~\cref{fig:VennGeneTransProt15}, there are 14,617 pairs of
-proteins/genes. While, we expect a greater number of transcripts than proteins,
-it could however be primarily surprising that there are proteins
-(See supplementary Table~\cref{tab:protNoTrans}) which don't have
-a match in the transcriptomic data. There are actual several possible explanations.
+proteins/genes.
+We expect a greater number of transcripts than proteins \TK{add references}.
+Thus, it may be primarily surprising that
+few proteins lack a match in the transcriptome data
+(see supplementary Table~\cref{tab:protNoTrans}).
+There are several possible explanations.
+\begin{itemize}[topsep=0pt,nosep]
+\item It may be a technical issue or an artefact on the transcriptomic side.
+    \begin{itemize}[topsep=0pt,nosep]
+        \item \mRNAs\ are present but the capture missed them at the library preparation
+        step (see \cref{subsec:libPrep}) for a reason or another.
+        \item Mapping algorithms have misassigned reads of
+        \mRNAs\ with a high sequence-similarity to others.
+        \item The annotation lacks \mRNAs\ definitions.
+    \end{itemize}
+\item It might also be that the protein doesn't belong to the sample: the identification
+is a false positive or incorrect; the sample\footnote{Or the instrument used for
+the capture} might also have been contaminated at some point with some foreign
+proteins.
+\item It can also be due to an underlying biological phenomenon:
+the turnover of the \mRNA\ is very low, while the protein is very stable;
+the proteins have been expressed somewhere else and then has been imported in the
+current tissue (\eg\ hormones or cytokines). Finally, as the proteome
+and transcriptome used for this study have been collected independently, if the
+gene is individual- or population-specific, we will then detected in one of the
+study and not in the other one. However, as we have biological replicates on the
+transcriptomic side, this last hypothesis seems the most unlikely.
+Of course, a mixture of the previous causes is also highly probable.
+\end{itemize}
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.15]{integration/VennGeneTransProt15}\centering
@@ -440,27 +478,6 @@ a match in the transcriptomic data. There are actual several possible explanatio
     transcriptomic (only the protein coding genes are considered)
     and the proteomic dataset.}
 \end{figure}
-
-It could be a technical issue or an artefact on the transcriptomic side, \eg\
-the \mRNAs\ were present but were not capture for a reason or another at the
-library preparation step; the \mRNAs\ have a high sequence-similarity with other
-\mRNAs\ and the reads haven't been accurately assigned; the lacking \mRNAs\ are
-not properly annotated in the version of the genome I used at the mapping step.
-
-It might also be that the protein doesn't belong to the sample: the identification
-is a false positive or incorrect; the sample\footnote{Or the instrument used for
-the capture} might also have been contaminated at some point with some foreign
-proteins.
-
-It can also be due to an underlying biological phenomenon:
-the turnover of the \mRNA\ is very low, while the protein is very stable;
-the proteins have been expressed somewhere else and then has been imported in the
-current tissue (\eg\ hormones or cytokines). Finally, as the proteome
-and transcriptome used for this study have been collected independently, if the
-gene is individual- or population-specific, we will then detected in one of the
-study and not in the other one. However, as we have biological replicates on the
-transcriptomic side, this last hypothesis seems the most unlikely.
-Of course, a mixture of the previous causes is also highly probable.
 
 I have performed the analyses presented in this chapter on both sets of
 quantification. As the high-level results and conclusions are remaining the same,

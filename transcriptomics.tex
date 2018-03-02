@@ -28,6 +28,8 @@ I introduce and discuss my results in relation to the published ones.
 \derivativeWork{}
 \begin{itemize}[topsep=0pt,nosep]
     \item \fullcite{EBIgxa}
+    \item (short talk) Quantitative Genomics 2015 --- Integration of
+        independent human RNA-seq datasets - a feasibility study
     \item (poster) ECCB 2014 --- A feasibility study:
         Integration of independent RNAseq datasets
     \item (invited talk) GM$^2$ 2013 --- Baseline Gene expression Atlas
@@ -812,19 +814,25 @@ are more specific to another tissue than the initially stated one.
 
 Without any additional knowledge it is difficult to predict which \gls{TIGER}
 definitions will be confirm (or not) by expression data.
-Remarkably, most of the genes (regardless their group) present the same trends
-through the tissues within each of the studies.
-Once again, \castle\ expression data is exhibiting the most discrepancies
-(which are occurring in a limited number).
-
+Remarkably, most of the genes present the same trends
+through the tissues within each of the studies regardless of their category.
+Once again, \castle\ expression data is exhibiting
+the only few observed discrepancies\footnote{Reminder:
+the \gls{FPKM} quantification (used here) is sensitive
+to the number of identified genes (see \Cref{eq:rpkm-fx})
+and \castle\ study uses a whole \RNA\ protocol
+while the others studies are using polyA-enrichment (see \Cref{ch:datasets}).}.
 
 \subsubsection{Hampel's test: detection of \emph{untypical} expression}\label{subsub:Hampel}
 
-The Hampel's test is robust for detecting outliers~\mycite{Davies1993-nv,Pearson2002-im}
+The Hampel's test is a robust method for detecting outliers~\mycite{Davies1993-nv,Pearson2002-im}
 in data that are identically and independently distributed (i.i.d.)~\mycite{Liu2004-kf},
 while easy to implement and use~\mycite{LinsingerHampel}.
-Many interstudy researches in the literature use Hampel's tests,
+Many interlaboratory or interstudy researches in the literature use this test,
 \eg~\mycite{LinsingerHampel,Lewczuk2006-wq,Rocke1983-qa,Apfalter1999-ca}.
+
+
+
 
 After implementing the method (see \cref{algo:hampel}),
 I have applied it on the whole original datasets, \setOne\ and \setTwo.
