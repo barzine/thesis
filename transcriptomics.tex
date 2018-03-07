@@ -722,31 +722,44 @@ seems a reasonable approach to explain the high correlations.
 only for genes expressed solely in one tissue,
 and then \emph{tissue selectivity} for genes expressed in more than one tissue
 with an expression enriched in one or a subset of tissues.
-Other studies have a broader definition of tissue specificity
-which is the one I am using within this thesis.
-They identify genes as tissue-specific above a given threshold
-of tissue selectivity (or enrichment),
-see for examples~\mycite{Uhlen2014,Jiang2016-sv}.
+Other studies have a broader definition of tissue specificity.
+They identify genes above a given threshold of tissue selectivity (or enrichment)
+as tissue-specific genes.
+See for examples~\mycite{Uhlen2014,Jiang2016-sv}.
 In this second case,
 genes with a single-tissue expression are an extreme case of \gls{TS} genes.
 
-There are many methods to define the genes tissue-specificity in the literature,
-see~\mycite{Cavalli2011-bo,Xiao2010-mz,Karthik2016-mu,Kim2017-dz,Kryuchkova-Mostacci2017-mk}
+Within this thesis, I use the second definition,
+\ie\ I consider genes as \gls{TS}
+as long as they display a higher tissue selectivity than a preset threshold,
+regardless how many tissues express them.
+
+Even when considering only the second definition,
+there are many methods to characterise genes tissue-specificity in the literature,
+see~\mycite{Cavalli2011-bo,Xiao2010-mz,Karthik2016-mu,Kim2017-dz,Kryuchkova-Mostacci2017-mk,Kadota2006-eb,Yu2006-ha,Martinez2008-bm}
 for some examples.
 There are also databases that record previously identified \gls{TS} genes,
 for normal conditions,
 \eg\ \WebFoCi{TiGER}{http://bioinfo.wilmer.jhu.edu/tiger/}{tiger} or
-more specialised ones, \eg\ for cancer
+\WebFoCi{TiSGeD}{http://bioinf.xmu.edu.cn:8080/databases/TiSGeD/index.html}{Xiao2010-mz}
+and more specialised ones, \eg\ for cancer
 \WebFoCi{TissGDB}{https://bioinfo.uth.edu/TissGDB/index.html}{Kim2017-dz}.
 
 Amongst all the possible approaches to characterise the \gls{TS} \pcgs,
-I detail three different ones in the following subsections.
-I have queried \gls{TIGER} to capitalise on previous knowledge.
-I have also tried to identify the \gls{TS} genes directly from the data through
-a first method that relies on the variations of the overall gene expression
-to detect untypical expression (Hampel's test), and
-a second one that relies on the gene expression \emph{fold change} ratio
-across the tissues.
+I detail three that I used in the following subsections.
+First, I have queried \gls{TIGER} to capitalise on previous knowledge.
+Then, to derive the \gls{TS} genes directly from \setOne\ and \setTwo,
+I have used a common accepted method described in the literature,
+that uses the gene expression \emph{fold change} ratio across the tissues.
+Finally, I have diverted a robust method to detect outliers,
+\ie\ the Hampel's test \mycite{Hampel1974},
+to identify genes which present an unusual expression level in a single tissue.
+In fact, as the genes tissue selectivity and tissue specificity are defined relatively
+to a context,
+if the later changes,
+the status of the former may change as well
+(\eg\ one gene that is unspecific in \setTwo\ may be \heart{}-specific in \setOne).
+
 
 \subsubsection{Use of prior knowledge: TiGER database}\label{subsub:Tiger}
 
@@ -764,19 +777,6 @@ but the modification in the annotation may also explain part of the
 repetitive genes.
 Thus, for each tissue,
 I have a list of identifiers that are specific to that tissue only.
-
-\Cref{fig:TigerGenes} is an expression heatmap based on
-a (partial) subset of \pcgs\
-that are present in this final list of translated \gls{TIGER} genes.
-There are three main types of genes.
-The largest group comprises the genes with a corroborating profile
-between the \gls{TIGER} definition and the real data.
-Then, a second smaller group encompasses genes
-listed as \gls{TS} in \gls{TIGER},
-but lack to demonstrate expression specificity
-towards any tissue in the real data.
-And finally, the third group includes a very tiny subset of genes which
-are more specific to another tissue than the initially stated one.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.85]{transcriptomics/Tiger5DF4Tissues.pdf}\centering
@@ -812,6 +812,19 @@ are more specific to another tissue than the initially stated one.
     }
 \end{figure}
 
+\Cref{fig:TigerGenes} is an expression heatmap based on
+a (partial) subset of \pcgs\
+that are present in this final list of translated \gls{TIGER} genes.
+There are three main types of genes.
+The largest group comprises the genes with a corroborating profile
+between the \gls{TIGER} definition and the real data.
+Then, a second smaller group encompasses genes
+listed as \gls{TS} in \gls{TIGER},
+but lack to demonstrate expression specificity
+towards any tissue in the real data.
+And finally, the third group includes a very tiny subset of genes which
+are more specific to another tissue than the initially stated one.
+
 Without any additional knowledge it is difficult to predict which \gls{TIGER}
 definitions will be confirm (or not) by expression data.
 Remarkably, most of the genes present the same trends
@@ -823,6 +836,48 @@ to the number of identified genes (see \Cref{eq:rpkm-fx})
 and \castle\ study uses a whole \RNA\ protocol
 while the others studies are using polyA-enrichment (see \Cref{ch:datasets}).}.
 
+\subsubsection{Fold change method}\label{subsub:TisSpeGeneMethodPerso}
+
+As \cite{DESeq2} noted the most common approach to detect
+a gene expression difference between two conditions is
+to study the expression fold change (FC) ratio between these conditions.
+This approach is inappropriate for a direct use
+with differential study\footnote{I.e.\ treated (diseased)
+versus control samples comparaison study.}
+designs for many reasons and
+needs corrections~\mycite{Anders2010-vq,DESeq2,Soneson2013-pd,edgeR}.
+However, this method is still broadly present in the literature,
+especially for studies other than differential gene expression analyses.
+As examples, see \cite{Uhlen2015}, \cite{Zhu2016-xo} and \cite{Yu2015-uh}.
+
+Besides, \egxa\ \mycite{EBIgxa} allows visualising the most specific genes
+for each study and relies on this method to rank the genes
+when the study is a \enquote{baseline} study\footnote{In contrast with
+differential gene studies, the baseline studies focus to depict the expression
+landscape of each covered condition instead of focusing on the gene expression
+through these conditions.}
+instead of a \enquote{differential} study.
+
+Pour chaque gene, dans chaque tissue, je divise l'expression du gene par le maximum
+des valeurs d'expression du genes dans les autres tissues.
+This method: on ne réduit pas à une mesure par gene mais pour chaque tissue,
+on a une valeur ce qui permet d'ordonner les genes dans chaque tissue.
+Une fois cela fait, j'ai appliqué l'approche expliqué dans \Cref{fig:overlapConcept}.
+Le résultat est \Cref{fig:mostSpe4T}.
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=1]{transcriptomics/mostSpe4TP.pdf}\centering
+    \caption[Cumulative shared set of genes sorted by their specificity in each
+    tissue across the 5 datasets]{\label{fig:mostSpe4T}\textbf{Cumulative shared
+    set of genes sorted by their decreasing order of specificity in each tissue
+    across the five datasets.} Results are better than for the highest expressed or
+    the most variable genes.}
+\end{figure}
+
+
+Thus, the tissue specific genes are also contributing to provide a stronger
+biological signal over the technological noise.
+
 \subsubsection{Hampel's test: detection of \emph{untypical} expression}\label{subsub:Hampel}
 
 The Hampel's test is a robust method for detecting outliers~\mycite{Davies1993-nv,Pearson2002-im}
@@ -830,8 +885,6 @@ in data that are identically and independently distributed (i.i.d.)~\mycite{Liu2
 while easy to implement and use~\mycite{LinsingerHampel}.
 Many interlaboratory or interstudy researches in the literature use this test,
 \eg~\mycite{LinsingerHampel,Lewczuk2006-wq,Rocke1983-qa,Apfalter1999-ca}.
-
-
 
 
 After implementing the method (see \cref{algo:hampel}),
@@ -845,21 +898,11 @@ I have applied it on the whole original datasets, \setOne\ and \setTwo.
 \end{figure}
 
 
-\subsubsection{Fold change method}\label{subsub:TisSpeGeneMethodPerso}
-
-\begin{figure}[!htpb]
-    \includegraphics[scale=1]{transcriptomics/mostSpe4TP.pdf}\centering
-    \caption[Cumulative shared set of genes sorted by their specificity in each
-    tissue across the 5 datasets]{\label{fig:mostSpe4T}\textbf{Cumulative shared
-    set of genes sorted by their decreasing order of specificity in each tissue
-    across the five datasets.} Results are better than for the highest expressed or
-    the most variable genes.}
-\end{figure}
-
-Thus, the tissue specific genes are also contributing to provide a stronger
-biological signal over the technological noise.
-
 \subsection{Uhlén categories}\label{sub:UhlenGeneCat}
+
+utiliser dans \cite{Uhlen2014} \cite{Yu2015-uh}
+
+\cite{Zhu2016-xo}
 
 Finally, best may be to use different categories to describe the data as have
 done Uhlén and co for example. Ca change de répartir les gènes que en exprimé/pas exprimé
