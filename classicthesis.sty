@@ -395,16 +395,16 @@
     }
     % sections \FloatBarrier
     \titleformat{\section}[hang]
-        {\relax}{\textsc{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
+        {\relax}{\sbseries\textsc{\MakeTextLowercase{\thesection}}}{1em}{\sbseries\spacedlowsmallcaps}
     % subsections
-    \titleformat{\subsection}
-        {\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize\itshape}
+    \titleformat{\subsection}[hang]
+        {\relax}{\sbseries\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize\itshape\sbseries}
     % subsubsections
     \titleformat{\subsubsection}
-        {\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\small}
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\normalsize\itshape}
     % paragraphs
     \titleformat{\paragraph}[runin]
-        {\normalfont\normalsize}{\theparagraph}{0pt}{\spacedlowsmallcaps}    
+        {\normalfont\normalsize}{\theparagraph}{0pt}{\spacedlowsmallcaps}
     % descriptionlabels
         \renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}\spacedlowsmallcaps{#1}}   % spacedlowsmallcaps textit textsc                  
     % spacing

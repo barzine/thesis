@@ -9,7 +9,7 @@
 \RequirePackage{refcount}
 \RequirePackage[natbib=true,backend=biber,style=authoryear,isbn=false,%url=false,%
 doi=false,url=false,dashed=false,eprint=false,giveninits=true,hyperref=true,%
-maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draft
+maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init]{biblatex} %add backref for draft
 \renewbibmacro{in:}{} %from: https://tex.stackexchange.com/a/10686/102519
 %from https://tex.stackexchange.com/a/27107/102519
 % so name in citations are also link
@@ -147,9 +147,17 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 %\setmainfont[Ligatures=TeX, Numbers=OldStyle]{GaramondNo8}
 
 %\setmainfont[Ligatures=TeX, Numbers=OldStyle]{TeX Gyre Pagella}
-\setmainfont[Ligatures=NoCommon]{Linux Libertine O}
+%\setmainfont[Ligatures=NoCommon]{Linux Libertine O}
 
 %\setmainfont[Ligatures=TeX, Numbers=OldStyle]{Helvetica}
+
+\setmainfont[Ligatures=NoCommon,
+    FontFace = {sb}{n}{Linux Libertine O Semibold},
+    FontFace = {sb}{it}{Linux Libertine O Semibold Italic},
+    BoldFont = {Linux Libertine O Bold},
+    BoldItalicFont = {Linux Libertine O Bold Italic},
+]{Linux Libertine O}
+
 
 \setsansfont[
     Ligatures=TeX,
@@ -166,6 +174,10 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 ]{xits-math}
 
 \setmathfont[bold-style=TeX]{Latin Modern Math}
+
+\DeclareOldFontCommand{\sbseries}{\fontseries{sb}\selectfont}{\mathbf}
+\DeclareTextFontCommand{\textsb}{\sbseries}
+
 
 
 %%%% Libertinus instead?
@@ -214,7 +226,7 @@ maxcitenames=1,maxbibnames=99,useprefix,backref]{biblatex} %add backref for draf
 %\graphicspath{{gfxRasterOnly/}} %as instructed in classicthesis
 % For debugging: showframe=true to see the layout frames
 \geometry{bottom=65mm,showframe=false,margin=35mm,marginparsep=3mm,marginparwidth=20mm}
-
+%have a look at innermargin
 
 \pagestyle{scrheadings}
 

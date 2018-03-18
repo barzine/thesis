@@ -51,6 +51,7 @@ the reusability point.
 Indeed, many times I came across (outdated) studies with ambiguous encoding
 format for the raw data.
 I was also unable to get the information from the original authors.
+\cite{Burge} is one example of study that I unfortunately had to dismiss.
 
 I describe hereinafter the five transcriptomic datasets I used
 in the chronological order of their first public release.
@@ -60,7 +61,7 @@ in the chronological order of their first public release.
            \centering
            \caption[General description of the 5 transcriptomic datasets
            (\Rnaseq) used for this study]{\label{tab:Trans5DF}\textbf{General
-           description of the 5 transcriptomic datasets (\Rnaseq) used for this
+           description of the five transcriptomic datasets (\Rnaseq) used for this
            study}\\\footnotesize{Illumina Body Map (IBM) has not \enquote{regular}
            technical replicates as the \enquote{replicates} are the product of
            different protocols,\\thus are unfit to estimate the specific noise of
@@ -260,7 +261,8 @@ For privacy reasons, the raw data is available only through controlled access vi
 in my study). While getting access can take time, in principle every request for
 academic research is granted.
 
-\section{Proteome Mass Spectrometry (MS) bottom-down studies}\label{sec:ProteoData}
+\section[Proteome Mass Spectrometry bottom-down studies]%
+{Proteome Mass Spectrometry bottom-down studies \quad}\label{sec:ProteoData}
 
 While the transcriptomic data were retrieved and then processed within the \EBI\
 either by \nuno\ or myself, the proteomic data have been picked and
@@ -280,7 +282,7 @@ issue 7502) their own \textquote{\emph{draft of the human proteome}}
 based on the study of tissues with \ms. These two datasets complement a previous
 smaller one that was publicly released but was never the object of a publication.
 
-Hereinafter, I present these 3 datasets that I use in my thesis.
+Hereinafter, I present these three datasets that I use in my thesis.
 See \Crefp{fig:pipelineProt}{A} for a short summary.
 
 \subsection{Pandey Lab data}
@@ -396,10 +398,12 @@ methods also greatly impact the final expression figures~\mycite{Dillies2013},%
 ~\mycite{normSigCancerHelp}. For all these reasons,
 I decided to  reprocess all transcriptomic datasets with the same exact protocol
 as the first step of my study.
+Recently,~\cite{Danielsson2015-cn} compare results based on prepublished data and
+reprocessed ones and conclude that using a single processing pipeline ensures better results.
 
 Likewise, there are various tools and many parameters for each processing step
 needed to quantify the proteomic data. Therefore, \james\ reprocessed
-uniformly the 3 datasets from the raw spectra up to the normalisation of the
+uniformly the three datasets from the raw spectra up to the normalisation of the
 protein expression values.
 
 \subsection{RNA-Seq raw data processing}
@@ -441,7 +445,7 @@ five datasets which have been processed through the same identical pipeline.
 \begin{table}
 \centering
 \caption[Technical description of the 5 transcriptomic datasets]{%
-\label{tab:Lib5DF}\textbf{Technical description of the 5 transcriptomic
+\label{tab:Lib5DF}\textbf{Technical description of the five transcriptomic
     datasets}\\\footnotesize{I processed all the datasets but the one in
     \textit{\color{darkgray}italic}.\\
     For the Brawand dataset, I only included and processed the \species{Homo sapiens} part.}}
@@ -648,7 +652,7 @@ See~\mycite{Wright-2016,Weisser2016-pipeline} for more details.
       \caption[General steps for processing the proteome
       data]{\label{fig:pipelineProt}\textbf{General steps for processing the
       proteome.} [Adaptation of courtesy materials from \james].\\
-      (\textbf{A}) The 3 datasets have been processed through the
+      (\textbf{A}) The three datasets have been processed through the
       same pipeline. I only use their normal tissues samples and I also discard
       the cell lines. (\textbf{B}) Extensive sources of protein sequences were
       used for the search database, including prediction of novel proteins.
@@ -788,7 +792,7 @@ also released through \egxa\ under the accession: E\textminus{}PROT\textminus{}1
 
 \section{Discussion}
 
-In this chapter, I introduced the 5 transcriptomic and 3 proteomic normal
+In this chapter, I introduced the five transcriptomic and three proteomic normal
 human tissues datasets on which I based my thesis.
 I described how both the transcriptomic and the proteomic datasets have been
 reprocessed from raw files with state-of-the-art unified pipelines

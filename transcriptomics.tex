@@ -1,18 +1,13 @@
 \chapter{Expression in normal human tissues across RNA-Seq studies}
 \label{ch:Transcriptomics}
 
+\vspace*{0.7in}
+
 In the perspective of paving the way towards
 a generalised baseline expression reference for the normal human,
 in this chapter, I assess the similarity
 of the tissues sourced from different \Rnaseq\ studies and
 the general profiles of their expressed genes.
-
-All the work presented in this chapter was performed by myself under the
-supervision of \alvis.
-I received invaluable advise and help from my discussions with \nuno.
-I also received general feedback and comments from \mar, \johan, \sarah, \gos\
-and \wolfgang.
-
 When I started this project in 2013,
 little was then known on either the robustness or
 the shortcomings and pitfalls of \Rnaseq\ and
@@ -23,16 +18,30 @@ A few present a closely related scope to my own investigations, thus
 whenever relevant,
 I introduce and discuss my results in relation to the published ones.
 
-\TK{Add summary of the chapter.}
+In the first part of this chapter,
+I introduce the working datasets on which
+I then base my analyses to appraise the congruence of the gene expression profiles
+across the transcriptome studies (described in \Cref{ch:datasets}).
+In the third and final part of the chapter,
+I dissect the different components that
+may contribute the most to (and thus explain)
+the overly biological strong correlations that are observed between the studies.
+
+All the work presented in this chapter was performed by myself under the
+supervision of \alvis.
+I received invaluable advise and help from my discussions with \nuno.
+I also received general feedback and comments from \mar, \johan, \sarah, \gos\
+and \wolfgang.
+\clearpage
 
 \derivativeWork{}
 \begin{itemize}[topsep=0pt,nosep]
     \item \fullcite{EBIgxa}
     \item (short talk) Quantitative Genomics 2015 --- Integration of
-        independent human RNA-seq datasets - a feasibility study
+        independent human RNA-seq datasets: a feasibility study
     \item (poster) ECCB 2014 --- A feasibility study:
         Integration of independent RNAseq datasets
-    \item (invited talk) GM$^2$ 2013 --- Baseline Gene expression Atlas
+    \item (invited short talk) GM$^2$ 2013 --- Baseline Gene expression Atlas
     \item (flash talk) CSAMA 2013 --- How quantitative is RNA-seq?
 \end{itemize}
 \clearpage
@@ -48,11 +57,11 @@ to batch effects and are semiquantitative \mycite{lee:2006}.
 However, \Rnaseq\ studies had shown variation in their conclusions. \mycite{seqcmaqc}
 At that time,
 it appeared that
-\Rnaseq\ may share at least partially the problems encountered
+\Rnaseq\ might share at least partially the problems encountered
 with microarray assays.
 In fact, \emph{batch effects} restrain the use of direct approaches
-for the comparison of independent microarray data
-as the resulting insights are poor.\TK{add references}
+for the comparison of independent microarray data,
+and the resulting insights are usually limited \mycite{Walsh2015-nf,Rung2013-ul,Lazar2013-lj}.
 
 \section{Working sets}
 
@@ -73,9 +82,9 @@ Through this chapter, I use two working sets:
 The following \cref{subsec:transtissueOverlap,subsec:transGeneOverlap}
 illustrate the construction of these sets.
 
-\subsection{Tissue overlaps across the available normal human RNA-Seq studies}%
+\subsection{Tissue overlaps across the available normal human RNA-Seq studies \quad}%
 \label{subsec:transtissueOverlap}
-
+\vspace*{-5mm}
 \Cref{fig:VennStudiesT} presents the tissue overlap between the five datasets.
 All datasets share at least four tissues:
 \heart, \kidney, \liver\ and \testis.
@@ -103,9 +112,10 @@ These two sets of tissues are the primary focus of the transcriptomic part of th
 study.}
 \end{figure}
 
-\subsection{Common measured genes for each of the common tissues sets}%
+\subsection{Common measured genes for each of the common tissues sets\quad}%
 \label{subsec:transGeneOverlap}
-As shown in \Cref{tab:Trans5DF},
+\vspace*{-7mm}
+As shown in \Crefp{tab:Trans5DF}{},
 many of the transcriptomic datasets I use have been produced through
 polyA-selected library protocols.
 Hence,
@@ -161,18 +171,19 @@ for any functional annotation enrichment.
 Neither the \gls{gsea} or the \gls{goa} provided any conclusive result.
 
 \section{Prevalence of biological signal over technical variabilities at
-tissue level}
+tissue-level}
 \label{sec:Trans_ReproExpresTissue}
 
 As I show in \Cref{ch:expression},
-the expression levels of identical tissue samples are highly correlated
-within the same study
+the expression levels of biological replicates (\ie\ identical tissue samples)
+are highly correlated within the same study
 and allow to group the samples based on their biological source.
 Thus, clustering the samples across studies offers a quick assessment of
 the underlying driving forces for the observed gene expression levels.
 A clustering by study means that the technical variabilities are stronger
-than any biological expression signature (which is common to microarray studies
-\TK{add ref}).
+than any biological expression signature
+(which is a recurrent observation with microarray studies
+due to their stronger batch effects \mycite{Sudmant2015-zt}).
 On the other hand,
 an interstudy sample clustering by tissue implies that \Rnaseq\ measurements
 demonstrate a good (biological) signal over (technical) noise ratio.
@@ -187,7 +198,7 @@ of the \treps{}\footnote{\glsxtrlong{TREP}. See \Cref{subsec:averagedTissue}:
 \nameref{subsec:averagedTissue}.}
 for the four shared tissues across the five datasets and the
 twenty-three shared tissues between \uhlen\ and \gtex\ studies.
-The heatmaps are based on clustering (Ward's method linkage)
+The heatmaps are based on clustering (Ward's method linkage \mycite{Ward1963})
 the \treps\ Pearson correlation coefficients
 (\pcgs\ expressed at least at 1 \FPKM\
 and with the exclusion of mitochondrial genes).
@@ -200,15 +211,15 @@ technical similarity due to library preparation or processing variations.
 We may object that
 the very different gene expression (and levels) in
 \Heart, \Kidney, \Liver\ and \Testis\
-\mycite{ramskoldan:2009,Danielsson2015-cn,Sudmant2015-zt,GTExTranscript,Uhlen2015}
+\mycite{ramskoldan:2009,Lukk2010-op,Danielsson2015-cn,Sudmant2015-zt,GTExTranscript,Uhlen2015}
 may drive this untypical result
 and other (less differentiated) tissues may exhibit mitigated ones.
 \Cref{fig:noMitoNoRep23T} confirms that the biological origin of the tissues
 is the dominant criterion for the clustering of the \treps.
-Even if there are a few mixture of \treps,
+Even if there are a few mixtures of \treps,
 the majority of them cluster by tissue.
 Moreover, in many cases, the mixture occurs in close biologically related tissues,
-\eg\ \fallopian\ and \Ovary. Or also, \salivary\
+\eg\ \fallopian\ and \Ovary. Alternatively, there is also \salivary\
 with \Esophagus\ and \Stomach\ \treps.
 \Cref{fig:noMitoRep4T} and \Cref{fig:noMitoRep23T}
 present heatmaps for the same tissues and studies,
@@ -245,7 +256,7 @@ the biological signal is overly stronger than the technical variations.
 \end{figure}
 
 \Cref{fig:SamedistribPearsCorr} shows the distribution of the Pearson correlation
-coefficients for the pairs of identical tissue \treps\
+coefficients for the pairs of identical tissue profiles (\treps)
 sourced from the different studies
 for both of the working datasets \setOne\ and \setTwo.
 Most of the Pearson correlations are above 0.5\footnote{Indeed,
@@ -268,10 +279,11 @@ the averages are respectively 0.49 for the 4-tissues sets
 and 0.9 for the 23-tissues set and
 the median correlations are 0.88 and 0.93.
 
+\label{seg:betterTreps}
 Both the Pearson\footnote{Despite one major outlier in the second
 working set (\tissue{Salivary gland} --- Pearson correlation: 0.2)} and the
 Spearman correlation coefficients for the more exhaustive 23-tissues working set
-\setTwo\
+\setTwo,
 comprising the two most recent studies,
 are higher than the observed correlation for the 4-tissues working set.
 Three main reasons may explain this situation:
@@ -280,12 +292,12 @@ Three main reasons may explain this situation:
         the library preparation protocols were better established
         for these two studies;
     \item The instrument used for the sequencing were
-        from the same series (HiSeq 2000 and HiSeq 2500); and
+        from the same series (HiSeq~2000 and HiSeq~2500); and
     \item These studies present a higher number of replicates per tissue.
 \end{itemize}
 
 \begin{figure}[!htpb]
-    \includegraphics[scale=0.65]%
+    \includegraphics[scale=0.55]%
 {transcriptomics/TransPearsonDistributionIdenticalOnly.pdf}\centering
 \caption[Distribution of the correlation of same tissue pairs for the 4 and 23
 tissues working sets.]{\label{fig:SamedistribPearsCorr}\textbf{Distribution
@@ -325,7 +337,7 @@ correlations.
 
 As discussed in \Cref{ch:expression}\footnote{See \Cref{sec:ExpressedOrNot}:
 \nameref{sec:ExpressedOrNot}},
-correlation coefficients measure the dependence between (here) two tissue \treps\
+correlation coefficients measure the dependence between (here) two tissue profiles (\treps)
 and are subject to outliers and the skewness of the distributions.
 As I have excluded the \emph{undefined}\footnote{I.e.\
 \emph{unobserved} --- See also
@@ -340,32 +352,27 @@ the underlying reasons of the strong correlations.
 \subsection{Highest expressed genes}
 
 The notion of highest expressed genes may be trivial,
-but it is worth remembering that the normalisation methods are impacting
-the final expression values.
-As presented in \Cref{ch:background} all \Rnaseq\ values are inherently relative
-to the observed genes and the assumptions underlying the normalisation.
-Thus, from the same unnormalised (\ie\ \emph{raw count}) processed sample,
-depending on the normalisation method
+but it depends on the normalisation method.
+\Cref{ch:background} presents how all \Rnaseq\ values are inherently relative
+to the observed genes and the normalisation assumptions.
+Thus, from a same unnormalised (\ie\ \emph{raw count}) sample,
+depending on the chosen normalisation
 (see \Cref{subsub:norm}:~\nameref{subsub:norm}),
-the gene expression values and their final ranked order may be very different.
-In the present case though,
-I avoid many biases
-by processing the data with consistent methods and annotation
-and by excluding selected sets of
+gene expression values and their final ranked order may be very different.
+To avoid many biases though,
+I have processed the data with consistent methods and annotation
+and excluded selected sets of
 genes\footnote{See \Cref{sec:bias_sources}:~\nameref{sec:bias_sources}}.
-Concomitantly, if I had picked another normalisation method than \FPKM\footnote{See
+Incidentally, if I pick another normalisation than \FPKM\footnote{See
 \Cref{eq:rpkm-fx}},
-the exclusion filters applied to create \setOne\ and \setTwo\ would impact
-a different set of genes.
+the exclusion filters may impact a different set of genes.
 
-To test the influence of highest expressed genes on correlation coefficients,
-I chose to visualise the trend of the correlation
-as a function of expression value thresholds.
-For \Cref{fig:CorHighExp4T} and \Cref{fig:CorHighExp23T},
-I computed the correlations of genes expressed above a cut-off
-for each pair of identical tissues within each of the two working datasets.
-The cut-off is a range of possible (integer number) value of gene expression
-(using 10 as a step).
+To test the highest expressed genes influence on correlation,
+I chose to visualise its trend as a function of expression value thresholds.
+Thus, for \Cref{fig:CorHighExp4T} and \Cref{fig:CorHighExp23T},
+I computed correlations of genes that are expressed above a cut-off
+for each possible corresponding tissue pair of both working datasets \setOne\ and \setTwo.
+The cut-off is a range (with step 10) of possible values (integers) of gene expression.
 
 \begin{sidewaysfigure}[!htpb]
 %\begin{figure}[!htpb]
@@ -411,7 +418,7 @@ Here below, the few exceptions grouped by tissue:
 \item[Testis] \ibm{}-\uhlen, \vt{}-\gtex, \vt{}-\uhlen\ and \uhlen{}-\gtex\ pairs
 \end{eqlist}
 
-In the context of the 23-tissues working set (\Cref{fig:CorHighExp23T}),
+In the context of the 23-tissues working set (\setTwo) (\Cref{fig:CorHighExp23T}),
 many more tissue pairs present very high correlation for subsets of their highly
 expressed genes, \ie\ \skeletal, \Thyroid, \Cortex, \Uterus, \Kidney.
 Unfortunately, these specific examples are insufficient
@@ -496,7 +503,7 @@ gene expression for the working set \setOne\ (see \Cref{fig:HistCV4T})
 allows determining whether they are similar across the five transcriptomic studies
 or that inferring conclusions requires more cautions.
 \end{comment}
-As depicted in \Cref{fig:HistCV4T},
+As depicted in \Cref{fig:HistCV4T} (and \Cref{fig:HistCV23T}),
 the distribution of gene expression \cvs\ presents a similar pattern
 across the five studies of \setOne,
 and it suggests that extra steps to infer conclusions are non-compulsory here.
@@ -507,8 +514,8 @@ and it suggests that extra steps to infer conclusions are non-compulsory here.
     \centering
     \caption[Coefficients of variation across the 5 studies for the set of common
 expressed genes and tissues]{\label{fig:HistCV4T}\textbf{Distribution of the
-\cvs\ (cv) across \setOne: common set of expressed \pcgs\
-across the four common tissues:
+\cvs\ (cv) across \setOne\ (common set of expressed \pcgs\
+across the four common tissues):
 \{\Heart, \Kidney, \Liver, \Testis\}
 across the five studies.}\\
 The coefficients of variation (\gls{cv}) of the \pcgs\ (12,268) of the four tissues
@@ -523,12 +530,28 @@ On the other hand, the \pcgs\ with a coefficient of variation
 equal to or greater than $1.5$ have two kinds of distinct profiles:
 {\small
 \begin{itemize}[topsep=0pt,nosep,leftmargin=95pt,listparindent=5pt]
-    \item The gene expression is low across the four tissues and
+    \item The gene expression is low across the four tissues, and
         it is above the cut-off of $1$ \FPKM\ only once; or
     \item The gene expression is specifically high for one single tissue
-        in regard to the three others.
+        regarding the three others.
 \end{itemize}
 }}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.75]{transcriptomics/distributionCV_23commonTissues.pdf}\centering
+    \caption[Coefficients of variation across \setTwo\ 2 studies and their set
+    of common genes across the 23 tissues]{\label{fig:HistCV23T}\textbf{Distribution
+    of the \cvs\ across \setTwo.}
+    The bimodal distribution is more unbalanced than in \Cref{fig:HistCV4T}.
+    Indeed, as more tissues are included for the calculation of the \cvs,
+    the second peak is found around $5$.
+    This peak has a smaller amplitude than the peaks at $2$ in \Cref{fig:HistCV23T}.
+    There are still many genes that have a \cv\ around $2$.
+    However, the overall distribution of the higher \cvs\ is smoother than
+    for \setOne.
+    Hence, most genes present a similar profile of expression through the various
+    tissues.}
 \end{figure}
 
 The five datasets present two peaks.
@@ -540,6 +563,10 @@ These last group of genes are the most variable ones in each dataset.
 While there is some overlap of the most variable genes
 between the five datasets,
 it is only partial (see further \Cref{fig:cvEvol5DF}).
+
+
+\Cref{fig:HistCV23T} highlights that most genes seem to have roughly the same
+expression profile across many tissues.
 
 A simple approach to test if the commonly most variable genes
 are the driving force of the correlation is
@@ -568,8 +595,8 @@ I calculate the coefficients of correlation for all possible tissue couples.
     the correlations between identical interstudy tissues are greater
     than any correlation between different (even intrastudy) tissues.
     The distribution of the intertissue correlations for $S_{most~Variable}$
-    show that these genes are showing a tissue signature
-    while they are lacking an interstudy linear relationship for same tissue
+    shows that these genes are showing a tissue signature
+    while they lack an interstudy linear relationship for same tissue
     couples.}
 \end{figure}
 
@@ -581,7 +608,7 @@ allows rejecting the null hypothesis $H_0$ at 95\% of confidence.
 The mean of the %(Pearson and Spearman)
 correlation coefficients
 calculated with the common most variable \pcgs\ is significantly greater than
-the ones calculated with the remaining set of \setOne genes\footnote{Though,
+the ones calculated with the remaining set of \setOne\ genes\footnote{Though,
 a two-sided \Welchttest\ compels to accept the $H_0$ hypothesis:\\
 the two populations of coefficients correlation are not significantly different
 (\pvalue{= 0.06594}).}.
@@ -606,6 +633,19 @@ In fact, the only exception is that
 \castle\ tissues cluster primarily by study
 once I exclude the most variable genes.
 
+To avoid any oversight due to the arbitrarily chosen number (first quarter)
+of the most variable genes,
+I have also studied the course of the intersection size of the common genes
+across the five studies
+as a function of the number of \setOne\ genes that I consider.
+\Cref{fig:overlapConcept} illustrates my general approach.
+After ordering the genes by decreasing order of their \cv\
+within each of the datasets comprised in \setOne,
+I have calculated the size of overlap for each rank (\ie\ from 1 to 12,268)
+between the five datasets.
+To help with the interpretation,
+I finally divide the previous figure by the rank.
+
 \begin{figure}[!htpb]
     \includegraphics[scale=0.9]{transcriptomics/ConceptOverlap.png}\centering
     \caption[Overview for the comparison of the genes across the five
@@ -624,7 +664,16 @@ once I exclude the most variable genes.
     in function of the number of considered genes (\ie\ rank).}
 \end{figure}
 
-\begin{figure}[!htpb]
+\Cref{fig:cvEvol5DF} presents the result.
+Many of the most variable genes are commonly present in the top tier of the
+five studies, though they have different individual rank.
+Indeed, there is a strong growth for about the first 1,250 genes that then
+settles a plateau which increases toward the final ratio ($1$).
+Using the first quarter of the most variables genes as a cut-off appears
+to be an acceptable threshold
+as it comprises the primal growth and part of the plateau.
+
+\begin{figure}[!ht]
     \includegraphics[scale=0.9]{transcriptomics/CVevolCumul5DF_line-abc.pdf}\centering
     \caption[Intersection size of \setOne\ genes (ranked by cv)]%
     {\label{fig:cvEvol5DF}\textbf{Intersection size course
@@ -650,27 +699,33 @@ once I exclude the most variable genes.
     There is a significant dissimilarity between the real and the randomised data.}
 \end{figure}
 
-To avoid any oversight due to the arbitrarily chosen number (first quarter)
-of the most variable genes,
-I have also studied the course of the intersection size of the common genes
-across the five studies
-as a function of the number of \setOne\ genes that I consider.
-\Cref{fig:overlapConcept} illustrates my general approach.
-After ordering the genes by decreasing order of their \cv\
-within each of the datasets comprised in \setOne,
-I have calculated the size of overlap for each rank (\ie\ from 1 to 12,268)
-between the five datasets.
-To help with the interpretation,
-I finally divide the previous figure by the rank.
-
-\Cref{fig:cvEvol5DF} presents the result.
-Many of the most variable genes are commonly present in the top tier of the
-five studies, though they have different individual rank.
-Indeed, there is a strong growth for about the first 1,250 genes that then
-settles a plateau which increases toward the final ratio ($1$).
-Using the first quarter of the most variables genes as a cut-off appears
-to be an acceptable threshold
-as it comprises the primal growth and part of the plateau.
+\begin{figure}[!ht]
+    \captionsetup{singlelinecheck=off}
+    \includegraphics[scale=0.75]{transcriptomics/CVevolCumul2DF_line-abc.pdf}\centering
+    \caption[Intersection size of \setTwo\ genes (ranked by cv)]%
+    {\label{fig:cvEvol2DF}\textbf{Intersection size course
+    of \setTwo\ genes (based on their coefficient of variation rank
+    in each of the two studies).}
+    Globally, there are two parts: one initial strong growth (a) and
+    a second part (b) where the curve shifts shallowly towards
+    the expected final ratio of 1.
+    While the number of genes involved in \setTwo\ is higher than in \setOne,
+    the ratio of common genes that are the twentieth most variable in each study
+    is above 75\%.
+    There are three main reasons that may explain this improved result compared
+    to \Cref{fig:cvEvol5DF}.
+    {\small
+    \begin{itemize}[topsep=0pt,nosep,leftmargin=95pt,listparindent=5pt]
+       \item \setTwo\ involves a smaller degree (\ie\ number of studies)
+           than \setOne\ (respectively 2 and 5).
+           Hence, bigger intersection sizes are easier to occur.
+       \item As previously mentioned, \gtex\ and \uhlen\ studies provide probably
+           more accurate \treps\ than the other studies (see~\vref{seg:betterTreps}).
+       \item The greater number of tissues induces a wider range of \cvs,
+           which allows picking up genes with more subtle variations.
+   \end{itemize}}
+    }
+\end{figure}
 
 \begin{comment}
 If the previous analysis was to include
@@ -684,19 +739,12 @@ In conclusion, while the most variable genes have a significant influence
 on the strong and biologically meaningful correlations,
 there must be other gene categories contributing.
 
-\begin{comment}
-The most variable genes present overall a distinct expression pattern
-where one tissue stands out with a much higher expression.
-Moreover, these patterns are mostly consistent across the independent studies
-(see \Cref{fig:expressionMostvariableG}).
-\end{comment}
-
 One main drawback when considering the most variable genes is
 the descriptor summarises the genes across all the tissues.
 So,
 the results may significantly vary
-depending on the composition of the working set
-and this analysis ought to be rerun.
+depending on the composition of the working set,
+and this analysis may need to be rerun.
 
 \subsection{Genes with tissue-specific (TS) expression}\label{sub:TisSpeGene}
 
@@ -706,18 +754,19 @@ are the genes that have an expression profile
 that varies according to the tissues.
 As reported before,
 most \mRNAs\ are expressed in every tissue~\mycite{ramskoldan:2009}
-(see also \mycite{Uhlen2015,GTExTranscript} for other examples) and
+(see also~\cite{Uhlen2015,GTExTranscript} for other examples) and
 their expression is relatively invariant across the tissues (\Cref{fig:HistCV4T}).
 Moreover,
 many of the most variable genes
-have globally a uniform gene expression across the different tissues
-aside one or two where the expression is notably higher
+have a regular gene expression across the different tissues
+aside one or two where the expression is notably higher globally
 (see \Cref{fig:expressionMostvariableG}).
 Thus,
 considering genes with a \gls{TS} expression
 seems a reasonable approach to explain the high correlations.
 
-\NB\ The definition of tissue specificity varies from one study to another.
+The definition of tissue specificity is unclear and
+varies from one study to another (see also~\cite{Santos2015-rj}).
 \cite{Liang2006-mk} define \emph{tissue specificity}
 only for genes expressed solely in one tissue,
 and then \emph{tissue selectivity} for genes expressed in more than one tissue
@@ -725,7 +774,7 @@ with an expression enriched in one or a subset of tissues.
 Other studies have a broader definition of tissue specificity.
 They identify genes above a given threshold of tissue selectivity (or enrichment)
 as tissue-specific genes.
-See for examples~\mycite{Uhlen2014,Jiang2016-sv}.
+See for examples~\cite{Uhlen2014,Jiang2016-sv}.
 In this second case,
 genes with a single-tissue expression are an extreme case of \gls{TS} genes.
 
@@ -734,9 +783,9 @@ Within this thesis, I use the second definition,
 as long as they display a higher tissue selectivity than a preset threshold,
 regardless how many tissues express them.
 
-Even when considering only the second definition,
-there are many methods to characterise genes tissue-specificity in the literature,
-see~\mycite{Cavalli2011-bo,Xiao2010-mz,Karthik2016-mu,Kim2017-dz,Kryuchkova-Mostacci2017-mk,Kadota2006-eb,Yu2006-ha,Martinez2008-bm}
+Even for the second definition only,
+there are many methods to characterise genes tissue-specificity in the literature.
+See~\cite{Cavalli2011-bo,Xiao2010-mz,Karthik2016-mu,Kim2017-dz,Kryuchkova-Mostacci2017-mk,Kadota2006-eb,Yu2006-ha,Martinez2008-bm}
 for some examples.
 There are also databases that record previously identified \gls{TS} genes,
 for normal conditions,
@@ -749,15 +798,15 @@ Amongst all the possible approaches to characterise the \gls{TS} \pcgs,
 I detail three that I used in the following subsections.
 First, I have queried \gls{TIGER} to capitalise on previous knowledge.
 Then, to derive the \gls{TS} genes directly from \setOne\ and \setTwo,
-I have used a common accepted method described in the literature,
+I have used a commonly accepted method described in the literature,
 that uses the gene expression \emph{fold change} ratio across the tissues.
 Finally, I have diverted a robust method to detect outliers,
 \ie\ the Hampel's test \mycite{Hampel1974},
 to identify genes which present an unusual expression level in a single tissue.
-In fact, as the genes tissue selectivity and tissue specificity are defined relatively
-to a context,
+In fact, as gene tissue selectivity and tissue specificity definitions are
+relative to a context,
 if the later changes,
-the status of the former may change as well
+the genes attributes may change as well
 (\eg\ one gene that is unspecific in \setTwo\ may be \heart{}-specific in \setOne).
 
 
@@ -778,7 +827,7 @@ repetitive genes.
 Thus, for each tissue,
 I have a list of identifiers that are specific to that tissue only.
 
-\begin{figure}[!htpb]
+\begin{figure}[!ht]
     \includegraphics[scale=0.85]{transcriptomics/Tiger5DF4Tissues.pdf}\centering
     \caption[Expression heatmap of the four tissues across the five datasets based on
     TiGER]{\label{fig:TigerGenes}\textbf{Expression heatmap of the four tissues
@@ -789,7 +838,7 @@ I have a list of identifiers that are specific to that tissue only.
     genes with mismatching tissue specificity between \gls{TIGER}
     definition and the expression data.
     The colorbar above the heatmap is representing the tissue
-    for which \gls{TIGER} annotates the genes (presented as column) as \gls{TS}
+    for which \gls{TIGER} annotates the genes (presented as columns) as \gls{TS}
     (red for \Heart, green for \kidney, light orange for \liver\ and blue for \testis).
     %{\small
     %    \begin{itemize}[topsep=0pt,nosep,leftmargin=15pt,listparindent=5pt]
@@ -822,96 +871,187 @@ Then, a second smaller group encompasses genes
 listed as \gls{TS} in \gls{TIGER},
 but lack to demonstrate expression specificity
 towards any tissue in the real data.
-And finally, the third group includes a very tiny subset of genes which
+Finally, the third group includes a very tiny subset of genes which
 are more specific to another tissue than the initially stated one.
 
-Without any additional knowledge it is difficult to predict which \gls{TIGER}
-definitions will be confirm (or not) by expression data.
+Without any additional knowledge,
+it is difficult to predict which \gls{TIGER}
+definitions will be confirmed (or not) by expression data.
 Remarkably, most of the genes present the same trends
 through the tissues within each of the studies regardless of their category.
 Once again, \castle\ expression data is exhibiting
 the only few observed discrepancies\footnote{Reminder:
 the \gls{FPKM} quantification (used here) is sensitive
-to the number of identified genes (see \Cref{eq:rpkm-fx})
-and \castle\ study uses a whole \RNA\ protocol
-while the others studies are using polyA-enrichment (see \Cref{ch:datasets}).}.
+to the number of identified genes (see \Cref{eq:rpkm-fx}~\vref{eq:rpkm-fx})
+and \castle\ study identifies and quantifies many more \glspl{RNA} than the
+other studies as it uses a whole \RNA\ protocol
+while the others are using polyA-enrichment (see \Cref{ch:datasets}).}.
 
 \subsubsection{Fold change method}\label{subsub:TisSpeGeneMethodPerso}
 
-As \cite{DESeq2} noted the most common approach to detect
+As~\cite{DESeq2} noted the most common approach to detecting
 a gene expression difference between two conditions is
 to study the expression fold change (FC) ratio between these conditions.
-This approach is inappropriate for a direct use
+This approach is inappropriate for direct use
 with differential study\footnote{I.e.\ treated (diseased)
-versus control samples comparaison study.}
+versus control samples comparison study.}
 designs for many reasons and
 needs corrections~\mycite{Anders2010-vq,DESeq2,Soneson2013-pd,edgeR}.
 However, this method is still broadly present in the literature,
 especially for studies other than differential gene expression analyses.
-As examples, see \cite{Uhlen2015}, \cite{Zhu2016-xo} and \cite{Yu2015-uh}.
+As examples, see~\cite{Uhlen2015,Zhu2016-xo,Yu2015-uh}.
+Besides, \egxa\ \mycite{EBIgxa} relies on this method to select the genes
+it displays as the most specific for \emph{baseline} studies\footnote{In
+contrast with differential gene studies,
+the baseline studies focus on
+depicting the expression landscape of each covered condition
+instead of focusing on the gene expression through these conditions.}.
 
-Besides, \egxa\ \mycite{EBIgxa} allows visualising the most specific genes
-for each study and relies on this method to rank the genes
-when the study is a \enquote{baseline} study\footnote{In contrast with
-differential gene studies, the baseline studies focus to depict the expression
-landscape of each covered condition instead of focusing on the gene expression
-through these conditions.}
-instead of a \enquote{differential} study.
+There are also a few variations
+on how to compute this ratio (see~\cite{Zhu2016-xo,Uhlen2015}).
+In this thesis,
+I compute the FC ratio by dividing the expression
+of each gene in a given tissue
+by the maximum expression of this gene across all the other tissues of that study
+in the working set.
+Studies usually pick arbitrary cut-offs to characterise the specific genes.
+\cite{Uhlen2015} uses $2$ and $5$ cut-offs
+to determine \emph{enriched} and \emph{enhanced} tissue genes.
+\cite{Zhu2016-xo} set their cut-off at $2$ to characterise \gls{TS} protein-coding
+and noncoding transcripts.
+However,
+I avoid arbitrary cut-offs, and
+I use the FC ratio to rank the \pcgs\ of my working datasets according
+to their specificity within each tissue:
+higher FC ratios indicate genes with higher specificity.
+I then assess the consistency of the tissue specificity of the genes through the
+various studies.
+For that, I have followed the \emph{T-approach} overviewed in \Cref{fig:overlapConcept}.
 
-Pour chaque gene, dans chaque tissue, je divise l'expression du gene par le maximum
-des valeurs d'expression du genes dans les autres tissues.
-This method: on ne réduit pas à une mesure par gene mais pour chaque tissue,
-on a une valeur ce qui permet d'ordonner les genes dans chaque tissue.
-Une fois cela fait, j'ai appliqué l'approche expliqué dans \Cref{fig:overlapConcept}.
-Le résultat est \Cref{fig:mostSpe4T}.
-
-\begin{figure}[!htpb]
-    \includegraphics[scale=1]{transcriptomics/mostSpe4TP.pdf}\centering
-    \caption[Cumulative shared set of genes sorted by their specificity in each
-    tissue across the 5 datasets]{\label{fig:mostSpe4T}\textbf{Cumulative shared
-    set of genes sorted by their decreasing order of specificity in each tissue
-    across the five datasets.} Results are better than for the highest expressed or
-    the most variable genes.}
+\begin{figure}[!ht]
+    \includegraphics[scale=0.8]{transcriptomics/mostSpe4TP1.pdf}\centering
+    \caption[Intersection size curve of \setOne\ genes based on their FC ratio
+    rank in each tissue across the five studies]{\label{fig:mostSpe4T}\textbf{Intersection
+    size curve of \setOne\ genes based on their specificity (FC ratio rank)
+    in each tissue across the five studies.}
+    One-fortieth of \setOne\ \pcgs,
+    when ranked by specificity in \heart, \kidney\ and \liver,
+    are commonly shared between the five studies.
+    For \testis, the shared amount of genes reaches more than one-tenth of \setOne\
+    whole set of genes.
+    Compared to the most variable genes (\Cref{fig:cvEvol5DF}:
+    \nameref{fig:cvEvol5DF}),
+    the most specific genes seem to be more consistent across the studies.
+    }
 \end{figure}
 
+\Cref{fig:mostSpe4T} presents the shifts in the intersection size curves of the
+four tissues of \setOne.
+The most specific genes in each tissue of \setOne\ are shared between the
+five studies.
+Indeed, the slopes are very sharp before reaching a peak and dropping as sharply
+for the first fortieth genes in \heart, \kidney\ and \liver.
+The intersection of the most specific genes is even greater for \testis\ as
+it concerns more than a tenth of \setOne\ genes.
 
-Thus, the tissue specific genes are also contributing to provide a stronger
+\begin{figure}[!ht]
+    \includegraphics[scale=0.75]{transcriptomics/mostSpe23TP1.pdf}\centering
+    \caption[Intersection size curve of \setTwo\ genes based on their FC ratio
+    rank in each tissue across the two studies]{\label{fig:mostSpe23T}\textbf{Intersection
+    size curve of \setTwo\ genes based on their specificity (FC ratio rank)
+    in each of the twenty-three tissues across the two studies.}
+    }
+\end{figure}
+
+Thus, the \gls{TS} genes are also contributing to provide a stronger
 biological signal over the technological noise.
 
 \subsubsection{Hampel's test: detection of \emph{untypical} expression}\label{subsub:Hampel}
 
-The Hampel's test is a robust method for detecting outliers~\mycite{Davies1993-nv,Pearson2002-im}
+Much interlaboratory or interstudy research in the literature use the Hampel's test,
+\eg~\cite{LinsingerHampel,Lewczuk2006-wq,Rocke1983-qa,Apfalter1999-ca}.
+In fact, the Hampel's test is a robust method
+for detecting outliers~\mycite{Davies1993-nv,Pearson2002-im}
 in data that are identically and independently distributed (i.i.d.)~\mycite{Liu2004-kf},
 while easy to implement and use~\mycite{LinsingerHampel}.
-Many interlaboratory or interstudy researches in the literature use this test,
-\eg~\mycite{LinsingerHampel,Lewczuk2006-wq,Rocke1983-qa,Apfalter1999-ca}.
+This method uses the median, the \gls{MAD} and a cut-off to define the outliers.
 
+For this thesis, I have derived this test to identify conditions (\ie\ tissues)
+where the gene expression is \emph{untypical}.
+I rely on the two facts that
+most genes are expressed everywhere \mycite{ramskoldan:2009,Uhlen2015,GTExTranscript},
+and they mostly present a limited variation in their expression
+through the various tissues (see \Cref{fig:HistCV4T,fig:HistCV23T}).
+Thus, when the expression of the gene is untypical
+(\ie\ an outlier to the average profile of that gene expression across the many tissues),
+it denotes a tissue specificity.
+Besides,
+this test allows detecting genes that are over- or under-expressed in specific tissues.
+(Whereas the other methods are only detecting the overexpressed genes.)
 
-After implementing the method (see \cref{algo:hampel}),
-I have applied it on the whole original datasets, \setOne\ and \setTwo.
+After implementing the method (see \cref{algo:hampel})
+with a (widespread) cut-off of $5.2$, % (which assumes a normal-like distribution),
+I have applied it to the whole original datasets and \setTwo.
+\setOne\ comprises too few tissues to allow detecting \emph{untypical} expression.
+Overall, there are always more than 60\% of congruence between the genes tagged
+as untypical in a specific tissue for the whole dataset
+and the subset of twenty-three tissue.
+The proportion of agreement between the partial and whole datasets increases,
+even more, when I filter the results to keep only the genes that are recurrently
+picked for both \uhlen\ and \gtex\ data.
+Thus, though known as a robust method,
+the Hampel test outcomes are still dependent on the set of considered tissues.
 
-\begin{figure}[!htpb]
+\begin{figure}[!ht]
     \includegraphics[scale=1]{transcriptomics/hampel5DF4Tissues.pdf}\centering
     \caption[Expression of the genes picked with Hampel method]{\label{fig:hampelExp}%
     \textbf{Expression of the genes picked consistently with the Hampel method
     in each study solely in one tissue.}}
 \end{figure}
 
+\Cref{fig:hampelExp} regroups the genes that the Hampel test detects
+as outliers for the five studies for their four shared tissues.
+All corresponding-tissue \treps\ present similar patterns of expression
+regardless of their original study,
+although the \castle\ \treps\ have overly lower expression than the others.
+Other filters may improve the results:
+\eg\ selecting genes with higher expression or
+increasing the cut-off above $5.2$ in selected tissues.
 
 \subsection{Uhlén categories}\label{sub:UhlenGeneCat}
 
-utiliser dans \cite{Uhlen2014} \cite{Yu2015-uh}
+Put together the results from the previous sections seem to describe that
+the strong correlations are driven by different categories of genes.
 
-\cite{Zhu2016-xo}
+Uhlén laboratory papers \mycite{Uhlen2014,Uhlen2015,Uhlen:2016},
+use different categories of genes to describe the normal human transcriptome.
+As their classification changes between these related papers,
+I have redefined a classification based on them
+(presented in \Cref{tab:UhlenCat})
+before applying it to \setOne\ and \setTwo\ (\Cref{tab:UhlenCategoriesProtCoding}).
 
-Finally, best may be to use different categories to describe the data as have
-done Uhlén and co for example. Ca change de répartir les gènes que en exprimé/pas exprimé
-et en niveau d'expression.
+\begin{table}[!htpb]
+\centering
+\caption[Gene classification]{\textbf{Gene classification}\label{tab:UhlenCat}\\
+\footnotesize{adaptation of \uhlen\ \etal\ classification~\mycite{Uhlen2014,Uhlen2015,Uhlen:2016}}}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Category        & Definition                                                                                           \\ \midrule
+Not detected    & Never detected above 0 FPKM                                                                    \\
+Not expressed   & Never detected above 1 FPKM                                                                    \\
+Mixed high      & Expressed in a subset of tissues and always $\geq 10$ FPKMs                                     \\
+Mixed Low       & Expressed in a subset of tissues and always $< 10$ FPKMs                                 \\
+Ubiquitous High & Expressed in all the tissues and always $\geq$ 10 FPKMs                                         \\
+Ubiquitous Low  & Expressed in all the tissues and always $< 10$ FPKMs                                     \\
+Group enhanced  & Expressed in a subset of tissues with an expression $\geq 5*mean_{all~the~tissues}$             \\
+Tissue enhanced & Expressed in a single tissue with an expression $\geq 5*mean_{all~the~tissues}$                 \\
+Tissue enriched & Expressed in a single tissue with an expression $\geq 5*Max_{all~the~other~tissues}$ \\ \bottomrule
+\end{tabular}
+\end{table}
 
-They change the definition of their categorisation
-between their two related papers~\mycite{Uhlen2014} and~\mycite{Uhlen2015}.
-The definition I am using is a based on their second paper,
-but with some subdivisions they presented in the first one.
+\Cref{tab:UhlenCategoriesProtCoding} shows that for many of these categories,
+the number of shared \pcgs\ is high between the different studies of the
+two working datasets.
 
 \pagestyle{plain}
 \begin{landscape}
@@ -1004,68 +1144,262 @@ tissues\\ Working datasets}}} & Uhlén & 2,662  & 1,970  &
 
 
 \subsection{Curated sets}\label{subsec:Trans_curatedSets}
-Protein coding genes that were characterised consistently
-as any of the previous categories across the five datasets
+\Pcgs\ that were characterised consistently
+as any of the aforementioned categories across the five datasets of \setOne\
+or the two of \setTwo\
 are provided as supplementary data.
 
 
 \section{Discussion}\label{sec:Trans_discussion}
-\TK{when I started no paper, now overloads}: list them and compare to my own
-work. Meta-analysis\ldots
 
-Small overlap of tissues: so scientifically not very good.
-However, most of the genes expressed everywhere.
-But, in general Biology >>> Technical.
+In this chapter,
+I have directly combined and compared
+the most extensive number to date of~\Rnaseq\ transcriptome
+of normal human tissues together.
+From them,
+I have constructed two working datasets of \pcgs.
+The first one (\setOne) comprises four tissues
+and 12,268 shared genes
+extracted from five independent studies
+(\cite{Krupp2012,VTpaper,Uhlen2015,GTExTranscript} and \ibm)
+and the second one (\setTwo) comprises twenty-three tissues
+and 17,554 shared genes
+from two studies (\cite{Uhlen2015,GTExTranscript}).
+Clustering analyses (and \Welchttest) of these two sets
+confirm that \Rnaseq\ technical noise is
+lower that relevant biological signals present in the data.
+Indeed,~\cite{Sudmant2015-zt,Danielsson2015-cn,Yu2015-uh} and~\cite{Uhlen:2016}
+also observe that interstudy corresponding tissues pairs are more related than
+intrastudy non-corresponding tissue ones
+(average correlation for corresponding tissue-pairs $r=0.75$, $\rho=0.88$;
+average for non-corresponding tissue-pairs $r=0.20$, $\rho=0.75$).
+In an attempt to inspect possible underlying forces for the close \treps\
+similarities across the studies,
+I have considered different attributes and groups of genes:
+\emph{highest expressed}, \emph{most variable}, \emph{most specific}.
+The top highest expressed genes show a very small (if any) impact on
+the interstudy tissue expression profile strong correlations.
+The most variables and most specific genes have a real contribution even though
+their importance may be relative compared to the whole set of expressed genes.
+As the definition of \gls{TS} genes is very variable from one study to another
+(see \cref{sub:TisSpeGene}),
+I have relaid on three methods to pick them.
+For one of the method,
+I have extracted from an existent resources
+\WebCi{TiGER}{http://bioinfo.wilmer.jhu.edu/tiger/}{tiger},
+the list of \gls{TS} genes that I have then update to the more recent annotation
+I use within my thesis.
+Mining the experimental data with this updated list highlights
+the need of cautiousness when dealing with older resources.
+While the congruence of the three methods is partial,
+the \gls{TS} genes show distinct expression profiles across tissues
+that are rather consistent through the different studies.
+Finally, through a classification inspired
+by Uhlén et al.\ \mycite{Uhlen2014,Uhlen2015,Uhlen:2016}
+and which considers together the breadth, the level and the specificity of expression,
+I have explored the congruence of the genes categories across the studies.
 
-\begin{comment}
-Apart Castle but Castle method not really used any more. So it might be because of
-the protocol which is harder to set up or not mature (maybe can be improved) or
-maybe the method gives different measurements due to what it fishes and
-normalisation methods which are not very good for that (biases).
+Concomitantly, other research groups have published similar studies
+since I started this project.
+However, at the time of writing this thesis,
+all the other studies (including the aforementioned ones)
+were still based on the human genome built \hg{37} (or hg19),
+while I am using the more recent \hg{38} one.
+Moreover, these studies either have different focus, aims,
+approaches or more limited scopes.
+Thus, my work expands or completes theirs on different points.
+\begin{itemize}[topsep=0pt,nosep]
+%Feb 2016 -Uhlén
+\item\fullcite{Uhlen:2016} In this review paper,
+the authors present the results of~\cite{Yu2015-uh} and~\cite{Danielsson2015-cn}
+that I discuss there below.
+They also compare the \gtex\ released data~\mycite{Bahcall2015-mh,GTEx_Consortium2015-si,Gibson2015-wh}
+to their own~(\uhlen\ data~\mycite{Uhlen2014,Uhlen2015}).
+As they rely on other studies to confirm many findings,
+their comparison of these two studies is
+limited to the examination of
+the proportion of genes in each category of their simplified classification
+for (only) nineteen tissues.
+We reach the same conclusions:
+overall, there are significant overlaps across the datasets for each of the
+categories (\enquote{Expressed in all}, \enquote{Not detected},
+\enquote{Tissue enriched}, \enquote{Group enriched}, \enquote{Enhanced} and
+\enquote{Mixed}).
+%December2015 -Burge
+\item\fullcite{Sudmant2015-zt}
+The authors focus on interspecies, intertissue and interstudy comparisons.
+The major issue of the study is its use of \gls{TMM} as gene expression unit.
+\gls{TMM} normalisation has the assumption that
+genes have a stable expression across the conditions.
+They, however, limit their scope to very specific orthologs
+since they explore \Rnaseq\ expression data across species, tissues and studies.
+They also confirm that with \Rnaseq\ expression profiling,
+the interstudy technical variation is generally lower than
+the intrastudy biological one, \ie\
+interstudy homologous tissues of the same species are usually
+closer in similarity than intrastudy different tissues of the same species
+(or matched tissues of different species).
+They found that interstudy comparisons are more variable for \species{human}
+than other species.
+They finally note that this kind of meta-analysis is dependent on
+the choice of tissues to be studied.
+%June2015 - Yu
+\item\fullcite{Yu2015-uh} integrate \uhlen\ \etal\ data~\mycite{Uhlen2014}
+with \gls{CAGE} peak expression data from the \gls{FANTOM5}
+consortium~\mycite{FANTOM5-cage}.
+Overall, their analyses are very similar to the ones I have presented in this
+chapter.
+In fact, we reach similar conclusions as well:
+\begin{itemize}[nosep,topsep=0pt]
+\item Overall gene expression is comparable through their two datasets.
+\item Tissue expression signatures are independent of the data set (and profiling method).
+\item Global comparison of ubiquitously expressed and \gls{TS} genes are comparable
+    across the two studies
+\item They compare the two datasets at gene levels because of the lack of accuracy
+    of the current \Rnaseq\ protocols and algorithms and focus on the \pcgs\
+    as the level of agreement between the two studies is low
+    (which they attribute to the polyA-selected protocol of \uhlen\ \etal\ data).
+\end{itemize}
+Besides the choice of the original studies,
+the few differences are (1) the version of the annotation
+(they use the previous human genome built (\hg{37})) and
+(2) their more simplified classification for ubiquitous and \gls{TS} genes.
+They are also more lenient to assess the congruence (\eg\ expressed in all tissues
+in one dataset and 95\% of the tissues in the other datasets is considered as
+concordant).
+Strikingly, they also find a discrepancy with \salivary\ compared to the other tissues
+as I have noticed myself\footnote{\salivary\
+is the only tissue for which \uhlen\ and \gtex\ show a Pearson correlation coefficient
+$r<0.65$.}
+%March2015
+\item\fullcite{Danielsson2015-cn} cover three different tissues
+(\brain{}\footnote{Either \cortex\ or \hypothalamus}, \heart, \kidney)
+extracted from five projects (\cite{Burge,VTpaper,Uhlen2015,Krupp2012} and \ibm).
+Their study is limited to
+the comparison of precomputed to uniformly reprocessed data.
+They are exploring experimental factors of variation and possible correction strategies.
+They reveal that original precomputed data have considerable study-specific biases.
+Their results on interstudy tissue similarities are superficial.
+One of their most \enquote{fine-grained} results is the very low number of shared
+genes amongst the hundred most expressed genes
+for the three tissues across their five datasets.
+%June2015 - SciRep-Zhu
+%\item\fullcite{Zhu2016-xo}
+%June2015 -Santos
+\item\fullcite{Santos2015-rj} focus on the congruence of gene---tissue association
+through different types of expression data (transcriptome and proteome)
+and resources.
+They report that most genes are either expressed in every
+considered tissue or in small subsets in their constructed working dataset.
+They also find that tissue specificity global trends are similar,
+even if there are many discrepancies of gene presence for a same tissue
+across the original datasets.
+They have integrated together five tissues
+(\heart, \kidney, \liver, \nervous\ and \intestine)
+from five transcriptome datasets that they use \enquote{as-is}\footnote{%
+In fact, even for their follow-up paper \mycite{Palasca2018-fh}
+where they reprocess all the \Rnaseq\ data
+for \species{mouse}, \species{rat}, \species{pig},
+they do not mention any improvement made on the \species{human} \Rnaseq\
+data (either in the results or methods and data).},
+before refining a complementary set that comprises only the three highest-quality
+datasets: \WebFoCi{UniGene database}{https://www.ncbi.nlm.nih.gov/unigene}%
+{Wheeler2003-dv,unigeneNcbi}, \uhlen\ \etal\ data (HPA \Rnaseq)~\mycite{Uhlen2014,Uhlen2015}
+and \castle\ \etal\ (\Rnaseq\ atlas)~\mycite{Krupp2012} for which they provide
+association data for 14,722 genes.
+They forsake the exploration of gene expression by correlations
+but examine the tissue association enrichment
+through the gene expression fold change.
+The main issue with their transcriptomic study is their
+assumption that higher expression\footnote{\FPKM\ values are directly
+used as score for true presence and selectivity to a tissue} means
+more robust gene---tissue association
+which may often be translated (but wrongly) to a greater tissue-specificity.
+%Sep2017
+\item\fullcite{Wang2017-hc} (unreviewed paper) have used
+subsets of \gtex\ and \tcga\ raw data that they have quantified \mRNAs\ at
+transcript levels with \hg{37} (hg19).
+They have corrected for the study effect with \softCi{ComBat}{Johnson2007-xh}
+and have released the normalised data to the community.\\
+\NB\ \egxa\ provides more recent versions of the \gtex\ and \tcga\
+(as a part of the \pcawg\ project) data.
+%Sept.2014
+\item\fullcite{seqcmaqc} have found that relative expression measurements
+by \Rnaseq\ are accurate and reproducible across sites.
+The authors also showed that the overlap of identified and characterised genes
+is imperfect (~91\%)
+even when the design includes
+the same two well-characterised reference RNA samples across all sites.
+Also,
+this specific design prevents inferring how the biological signal
+may compare to the individual variations and the possible noise introduced
+by collection, storage and extraction protocols.
+\item Several papers (\cite{Khang2015-qt,ruvseqComQN,Rau2014-va})
+    explore the reliability of \Rnaseq\ in the context of
+    \gls{DGEA} that I will not discuss.
+\end{itemize}
 
-Quite expectedly, as these analyses were incorporating more studies,
-the results improved greatly.
-Indeed, as I focalise the study on the shared genes across the studies,
-I bias the analyses towards the genes with more robust expression profiles
-that may be measured with \Rnaseq.
-
-
-
-Petit blabla sur la normalisation (de nouveau), normalisation pas adapté
-ERCC ptet 1 idée mais pas vraiment un internal standard.
-
-
-New set of tissue spe.
-Hampel method
-Quantile normalisation\ldots
-
-MAJ tissues spe de Tiger (ne pas oublier la discussion sur l'annotation)
-
-tend vers une 1 limite mais pas mal de redéfinition
-
-\TK{start speaking about the normalisation a bit, deseq, tpm, \ldots}
-
-Ouverture: là, où au début on avait pas beaucoup de data avec des réplicats
-biologiques pour le normal, on a commencé en avoir pas mal. Du coup, \nuno\
-a analysé les genes avec un faible coeff de var. On a défini ca comme housekeeping
-genes.
-
-
-\NB\
-\begin{comment}
-Indeed, the analyses involving the variance instead give
-fewer insights.
-\end{comment}
-Also, it is worth mentioning that the results presented here
-improve considerably when analyses include \uhlen\ \etal\ and the \gtex\ studies.
-\begin{comment}
-Indeed, preliminary results (only based on \castle, \vt\ and \ibm\ studies)
-were far worse.
-\end{comment}
-And unsurprisingly, updating the human genome version from \hg{37} to \hg{38}
+Unsurprisingly,
+updating the human genome version from \hg{37} to \hg{38}
 for the reconstruction
 step\footnote{See \Cref{subsec:reconstruction}: \nameref{subsec:reconstruction}}
-also enhances significantly the results.
+enhances the results significantly.
+
+Besides, as my analyses were incorporating more studies,
+the results improved greatly
+(in particular with the inclusion of \uhlen\ and \gtex\ studies).
+Indeed, as I focalise my analyses on the common set of genes across the studies,
+I remove the most interstudy variant genes, and
+I bias the analyses towards the genes
+for which \Rnaseq\ is more robust to quantify their expression profiles.
+Hence, it may be interesting to relax the filters by including genes
+that are found in any two or more datasets as a follow-up study.
 
 
+\section{Conclusion}
+
+While the expression levels are hard to translate directly from one study
+to another~\mycite{Yu2015-uh,Santos2015-rj},
+many facts have been confirmed in this thesis and the studies mentioned before,
+\eg:\begin{itemize}[nosep,topsep=0pt]
+        \item Tissues are clustering preferably with corresponding
+            (or closely biologically related) tissues even across studies
+            rather than clustering with different tissues from the same study
+            (\ie\ biological signal $>>>$ technical noise due to \Rnaseq\ protocols).
+        \item More recent transcriptome studies are more congruent than previous ones.
+        \item \testis\ presents the most variety of expressed genes, and
+            many of them are testis-specific only. \TK{add plots in supplement}
+        \item \liver\ has the most robust \gls{TS} \pcgs,
+            which may be explained by greater knowledge
+            and better annotation than the other tissues.
+        \item Most genes are expressed everywhere (ubiquitous) and
+          a smaller proportion of them are expressed in a very limited set of tissues.
+        \item well-differentiated tissues have specific expression profiles
+            that allow using processed data \enquote{as-is} for rough comparisons
+            such as sample swap checks
+            or quality controls (\eg\ \salivary\ \uhlen\ \etal\ data).
+        \item Annotations have an essential effect on the final results.
+              Thus, we ought to keep whenever possible the resources up-to-date.
+\end{itemize}
+
+In addition,
+put together the results seem to indicate that
+gene expression profiles are comparable from one study to another even though
+it is challenging to describe them for particular given genes.
+Also, single distinct gene attributes have a reduced effect on the correlations.
+The equivalent gene expression tissue profiles across the studies
+are probably due to additive effects from every (or almost) expressed gene.
+This is rather concerning as many studies (\eg{}~\cite{Sudmant2015-zt})
+use normalisation methods explicitly developed for \glsxtrfull{DGEA}
+for other kinds of analyses (similar to this chapter analyses).
+
+Thus, there is an evident need for more multi-tissue studies
+with biological replicates to refine and complete these findings.
+New strategies, notably normalisation methods, have to be also developed
+to allow the easy reuse of uniformly processed and quantified data by
+the community.
+Ideally, the final aim should be to provide a general human transcriptome build
+as it already exists for the genome.
+Finally, as long as the annotations are redefined and refined,
+it also means that periodic resources reprocessing may be inevitable.
 

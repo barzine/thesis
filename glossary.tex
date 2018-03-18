@@ -38,6 +38,9 @@ feature (\ie\ transcript in most cases) per \textbf{M}illion mapped
 a feature (\ie\ transcript in most cases) per \textbf{M}illion mapped
 \textbf{F}ragments}
 
+\newacronym{TMM}{TMM}{\textbf{T}rimmed \textbf{m}ean of \textbf{M} values (M: log expression ratios)}
+
+
 \newacronym{FDR}{FDR}{\textbf{F}alse \textbf{d}iscovery \textbf{r}ate}
 
 \newacronym{SNR}{SNR}{\textbf{S}ignal-to-\textbf{N}oise \textbf{r}atio}
@@ -70,9 +73,11 @@ a feature (\ie\ transcript in most cases) per \textbf{M}illion mapped
 
 \newacronym{TREP}{TREP}{Tissue Reference Expression Profile}
 
-\newabbreviation{gsea}{GSEA}{Gene set enrichment  analysis}
+\newabbreviation{gsea}{GSEA}{Gene set enrichment analysis}
 \newabbreviation{goa}{GOA}{\glsxtrshort{go} enrichment analysis}
 \newabbreviation{go}{GO}{Gene ontology}
+
+\newabbreviation{DGEA}{DGEA}{Differential Gene Expression Analysis}
 
 \newabbreviation%
 [description={\textit{B}GZF-compressed
@@ -93,6 +98,7 @@ a feature (\ie\ transcript in most cases) per \textbf{M}illion mapped
 
 \newacronym{FF}{FF}{\textbf{F}resh-\textbf{F}rozen}
 
+\newacronym{CAGE}{CAGE}{Cap analysis gene expression}
 \newabbreviation%
 [description={\textit{N}on-\textit{c}oding \glsxtrshort{RNA}}]
 {ncRNA}{ncRNA}{Non-coding RNA}
@@ -159,6 +165,10 @@ Thymine (T))}]{dNTP}{dNTP}{deoxynucleoside triphosphate}
 \newglossaryentry{DNA-Seq}{name={DNA-Seq},
     description={DNA sequencing, which can also be called whole genome
     shotgun sequencing}}
+
+
+\newglossaryentry{CAGE-Seq}{name={CAGE-Seq},
+description={\glsxtrshort{CAGE} Sequencing}}
 
 \newglossaryentry{miRNA-Seq}{name={miRNA-Seq},
     description={miRNA sequencing, which can also be called miRNA shotgun
@@ -228,6 +238,13 @@ annotation data.}}
 bank for the scientific community to study the relationship between genetic
 variation and gene expression in human tissues.}}
 
+\newglossaryentry{TCGA}{name=The Cancer Genome Atlas,
+description={The Cancer Genome Atlas}}
+
+\newglossaryentry{pcawg}{name=Pan-Cancer Analysis of Whole Genomes,
+description={The Pan-Cancer Analysis of Whole Genomes project analyses
+conjointly all available kind of research data related to cancer.}}
+
 \newglossaryentry{TIGER}{name=TiGER,
 description={\textbf{Ti}ssue-specific \textbf{G}ene \textbf{E}xpression and \textbf{R}egulation is a database created by the Bioinformatics lab at Wilmer
 Institute, Johns Hopkins University}}
@@ -290,13 +307,13 @@ Spectrometry}
 followed by \glsxtrshort{MS}}]%
 {LC-MS}{LC-MS}{Liquid Chromatography (LC) followed by Mass Spectrometry}
 
-\newglossaryentry{Bottom-up}{name={Bottom-up approach (proteomics)},
+\newglossaryentry{Bottom-up}{name={Bottom-up approach},
 text={bottom-up},
 description={In proteomics, bottom-up approaches (in contrast to
 \emph{top-down} approaches) involve a step of proteolytic digestion prior
 to the Mass Spectrometry analysis.}}
 
-\newglossaryentry{Top-down}{name={Top-down approach (proteomics)},
+\newglossaryentry{Top-down}{name={Top-down approach},
 text={top-down},
 description={In proteomics, top-down approaches (in contrast to the
 \emph{bottom-up} approaches) analyses directly the proteins without any prior
@@ -413,3 +430,10 @@ description={Molecule which can both gives or accepts a proton (H$^+$).}}
 
 \newglossaryentry{q-value}{name={q-value},text={q-value},
 description={TBA}}
+
+\newglossaryentry{FANTOM5}{name=FANTOM5,
+description={FANTOM5 is a consortium that systematically investigated
+the genes expressed in all cell types the human body and the genomic regions that
+contains the \glsxtrlong{TSS}.}}
+
+\newacronym{TSS}{TSS}{Transcription starting site}

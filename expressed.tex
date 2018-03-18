@@ -34,8 +34,8 @@ that examine higher (and fuzzier) aspects, \eg:
     \item Adequacy of data, concepts and statistical models
 \end{itemize}
 %\KOMAoptions{parskip=half*}
-Even if every aspect may not be addressed or corrected the
-final results and their interpretations are more solid.
+Even if every aspect may not be addressed or corrected,
+the final results and their interpretations are then more solid.
 
 \section{Visualisation of expression data}
 
@@ -53,6 +53,8 @@ Furthermore, the log-scale allows to transform count data to continuous
 while smoothing the global distribution shape towards a normal distribution.
 Thus, another advantage of this transformation is to conform the data
 to many ready available statistical models.
+Besides,others (\eg{}~\cite{Danielsson2015-cn}) advocate
+for logarithmic transformation before analysing interstudy samples.
 
 \NB\ Whenever removing the null values is harmful statistically
 or for correct interpretation,
@@ -298,7 +300,7 @@ as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{su
 
      \begin{subfigure}[hp]{0.70\textwidth}
       \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerOriginal.png}
-      \caption{Clustering from the original study
+      \caption{Clustering directly extracted from the original study
       {\footnotesize \mycite{Uhlen2014}}}\label{fig:fabergerOriginal}
        \end{subfigure}
     \caption[Comparison of clustering methods on a subset of the \uhlen\ study]{%
@@ -359,7 +361,7 @@ of \Cref{fig:ExpGenePcoding1}).
     --- all expressed genes are included.}
 \end{figure}
 
-\subsection{Protein-coding genes}\label{subsec:protcodingOnly}
+\subsection{Protein-coding genes only}\label{subsec:protcodingOnly}
 I have focused my analyses on the \mRNAs\ (\ie\ \glspl{RNA} that have a
 biotype described as \emph{\pc} in \ens{76}).
 

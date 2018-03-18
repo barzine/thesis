@@ -8430,3 +8430,507 @@
 }
 
 
+@ARTICLE{Lukk2010-op,
+  title    = "A global map of human gene expression",
+  author   = "Lukk, Margus and Kapushesky, Misha and Nikkilä, Janne and
+              Parkinson, Helen and Goncalves, Angela and Huber, Wolfgang and
+              Ukkonen, Esko and Brazma, Alvis",
+  journal  = "Nature biotechnology",
+  volume   =  28,
+  number   =  4,
+  pages    = "322--324",
+  month    =  apr,
+  year     =  2010,
+  language = "en",
+  issn     = "1087-0156, 1546-1696",
+  pmid     = "20379172",
+  doi      = "10.1038/nbt0410-322",
+  pmc      = "PMC2974261"
+}
+
+
+
+@ARTICLE{Lazar2013-lj,
+  title    = "Batch effect removal methods for microarray gene expression data
+              integration: a survey",
+  author   = "Lazar, Cosmin and Meganck, Stijn and Taminau, Jonatan and
+              Steenhoff, David and Coletta, Alain and Molter, Colin and
+              Weiss-Solís, David Y and Duque, Robin and Bersini, Hugues and
+              Nowé, Ann",
+  abstract = "Genomic data integration is a key goal to be achieved towards
+              large-scale genomic data analysis. This process is very
+              challenging due to the diverse sources of information resulting
+              from genomics experiments. In this work, we review methods
+              designed to combine genomic data recorded from microarray gene
+              expression (MAGE) experiments. It has been acknowledged that the
+              main source of variation between different MAGE datasets is due
+              to the so-called 'batch effects'. The methods reviewed here
+              perform data integration by removing (or more precisely
+              attempting to remove) the unwanted variation associated with
+              batch effects. They are presented in a unified framework together
+              with a wide range of evaluation tools, which are mandatory in
+              assessing the efficiency and the quality of the data integration
+              process. We provide a systematic description of the MAGE data
+              integration methodology together with some basic recommendation
+              to help the users in choosing the appropriate tools to integrate
+              MAGE data for large-scale analysis; and also how to evaluate them
+              from different perspectives in order to quantify their
+              efficiency. All genomic data used in this study for illustration
+              purposes were retrieved from InSilicoDB
+              http://insilico.ulb.ac.be.",
+  journal  = "Briefings in bioinformatics",
+  volume   =  14,
+  number   =  4,
+  pages    = "469--490",
+  month    =  jul,
+  year     =  2013,
+  keywords = "Microarray gene expression data; batch effect removal; combining
+              microarray datasets; data integration; large-scale genomic data
+              analysis; microarray gene expression data merging",
+  language = "en",
+  issn     = "1467-5463, 1477-4054",
+  pmid     = "22851511",
+  doi      = "10.1093/bib/bbs037"
+}
+
+
+@ARTICLE{Wang2014-xd,
+  title    = "Optimising parallel {R} correlation matrix calculations on gene
+              expression data using {MapReduce}",
+  author   = "Wang, Shicai and Pandis, Ioannis and Johnson, David and Emam,
+              Ibrahim and Guitton, Florian and Oehmichen, Axel and Guo, Yike",
+  abstract = "BACKGROUND: High-throughput molecular profiling data has been
+              used to improve clinical decision making by stratifying subjects
+              based on their molecular profiles. Unsupervised clustering
+              algorithms can be used for stratification purposes. However, the
+              current speed of the clustering algorithms cannot meet the
+              requirement of large-scale molecular data due to poor performance
+              of the correlation matrix calculation. With high-throughput
+              sequencing technologies promising to produce even larger datasets
+              per subject, we expect the performance of the state-of-the-art
+              statistical algorithms to be further impacted unless efforts
+              towards optimisation are carried out. MapReduce is a widely used
+              high performance parallel framework that can solve the problem.
+              RESULTS: In this paper, we evaluate the current parallel modes
+              for correlation calculation methods and introduce an efficient
+              data distribution and parallel calculation algorithm based on
+              MapReduce to optimise the correlation calculation. We studied the
+              performance of our algorithm using two gene expression
+              benchmarks. In the micro-benchmark, our implementation using
+              MapReduce, based on the R package RHIPE, demonstrates a 3.26-5.83
+              fold increase compared to the default Snowfall and 1.56-1.64 fold
+              increase compared to the basic RHIPE in the Euclidean, Pearson
+              and Spearman correlations. Though vanilla R and the optimised
+              Snowfall outperforms our optimised RHIPE in the micro-benchmark,
+              they do not scale well with the macro-benchmark. In the
+              macro-benchmark the optimised RHIPE performs 2.03-16.56 times
+              faster than vanilla R. Benefiting from the 3.30-5.13 times faster
+              data preparation, the optimised RHIPE performs 1.22-1.71 times
+              faster than the optimised Snowfall. Both the optimised RHIPE and
+              the optimised Snowfall successfully performs the Kendall
+              correlation with TCGA dataset within 7 hours. Both of them
+              conduct more than 30 times faster than the estimated vanilla R.
+              CONCLUSIONS: The performance evaluation found that the new
+              MapReduce algorithm and its implementation in RHIPE outperforms
+              vanilla R and the conventional parallel algorithms implemented in
+              R Snowfall. We propose that MapReduce framework holds great
+              promise for large molecular data analysis, in particular for
+              high-dimensional genomic data such as that demonstrated in the
+              performance evaluation described in this paper. We aim to use
+              this new algorithm as a basis for optimising high-throughput
+              molecular data correlation calculation for Big Data.",
+  journal  = "BMC bioinformatics",
+  volume   =  15,
+  pages    = "351",
+  month    =  nov,
+  year     =  2014,
+  language = "en",
+  issn     = "1471-2105",
+  pmid     = "25371114",
+  doi      = "10.1186/s12859-014-0351-9",
+  pmc      = "PMC4246436"
+}
+
+
+@ARTICLE{Khang2015-qt,
+  title    = "Getting the most out of {RNA-seq} data analysis",
+  author   = "Khang, Tsung Fei and Lau, Ching Yee",
+  abstract = "Background. A common research goal in transcriptome projects is
+              to find genes that are differentially expressed in different
+              phenotype classes. Biologists might wish to validate such gene
+              candidates experimentally, or use them for downstream systems
+              biology analysis. Producing a coherent differential gene
+              expression analysis from RNA-seq count data requires an
+              understanding of how numerous sources of variation such as the
+              replicate size, the hypothesized biological effect size, and the
+              specific method for making differential expression calls
+              interact. We believe an explicit demonstration of such
+              interactions in real RNA-seq data sets is of practical interest
+              to biologists. Results. Using two large public RNA-seq data
+              sets-one representing strong, and another mild, biological effect
+              size-we simulated different replicate size scenarios, and tested
+              the performance of several commonly-used methods for calling
+              differentially expressed genes in each of them. We found that,
+              when biological effect size was mild, RNA-seq experiments should
+              focus on experimental validation of differentially expressed gene
+              candidates. Importantly, at least triplicates must be used, and
+              the differentially expressed genes should be called using methods
+              with high positive predictive value (PPV), such as NOISeq or
+              GFOLD. In contrast, when biological effect size was strong,
+              differentially expressed genes mined from unreplicated
+              experiments using NOISeq, ASC and GFOLD had between 30 to 50\%
+              mean PPV, an increase of more than 30-fold compared to the cases
+              of mild biological effect size. Among methods with good PPV
+              performance, having triplicates or more substantially improved
+              mean PPV to over 90\% for GFOLD, 60\% for DESeq2, 50\% for
+              NOISeq, and 30\% for edgeR. At a replicate size of six, we found
+              DESeq2 and edgeR to be reasonable methods for calling
+              differentially expressed genes at systems level analysis, as
+              their PPV and sensitivity trade-off were superior to the other
+              methods'. Conclusion. When biological effect size is weak,
+              systems level investigation is not possible using RNAseq data,
+              and no meaningful result can be obtained in unreplicated
+              experiments. Nonetheless, NOISeq or GFOLD may yield limited
+              numbers of gene candidates with good validation potential, when
+              triplicates or more are available. When biological effect size is
+              strong, NOISeq and GFOLD are effective tools for detecting
+              differentially expressed genes in unreplicated RNA-seq
+              experiments for qPCR validation. When triplicates or more are
+              available, GFOLD is a sharp tool for identifying high confidence
+              differentially expressed genes for targeted qPCR validation; for
+              downstream systems level analysis, combined results from DESeq2
+              and edgeR are useful.",
+  journal  = "PeerJ",
+  volume   =  3,
+  pages    = "e1360",
+  month    =  oct,
+  year     =  2015,
+  keywords = "Biological effect size; Biological replicate size; Differential
+              gene expression analysis; RNA-seq",
+  language = "en",
+  pmid     = "26539333",
+  doi      = "10.7717/peerj.1360",
+  pmc      = "PMC4631466"
+}
+
+
+@ARTICLE{Palasca2018-fh,
+  title     = "{TISSUES} 2.0: an integrative web resource on mammalian tissue
+               expression",
+  author    = "Palasca, Oana and Santos, Alberto and Stolte, Christian and
+               Gorodkin, Jan and Jensen, Lars Juhl",
+  abstract  = "Physiological and molecular similarities between organisms make
+               it possible to translate findings from simpler experimental
+               systems—model organisms—into more complex ones, such as human.
+               This translation facilitates the understanding of biological
+               processes under normal or disease conditions. Researchers aiming
+               to identify the similarities and differences between organisms
+               at the molecular level need resources collecting multi-organism
+               tissue expression data. We have developed a database of
+               gene–tissue associations in human, mouse, rat and pig by
+               integrating multiple sources of evidence: transcriptomics
+               covering all four species and proteomics (human only), manually
+               curated and mined from the scientific literature. Through a
+               scoring scheme, these associations are made comparable across
+               all sources of evidence and across organisms. Furthermore, the
+               scoring produces a confidence score assigned to each of the
+               associations. The TISSUES database (version 2.0) is publicly
+               accessible through a user-friendly web interface and as part of
+               the STRING app for Cytoscape. In addition, we analyzed the
+               agreement between datasets, across and within organisms, and
+               identified that the agreement is mainly affected by the quality
+               of the datasets rather than by the technologies used or
+               organisms compared.Database URL: http://tissues.jensenlab.org/",
+  journal   = "Database: the journal of biological databases and curation",
+  publisher = "Oxford University Press",
+  volume    =  2018,
+  month     =  jan,
+  year      =  2018,
+  doi       = "10.1093/database/bay003"
+}
+
+
+@ARTICLE{Wheeler2003-dv,
+  title    = "Database resources of the National Center for Biotechnology",
+  author   = "Wheeler, David L and Church, Deanna M and Federhen, Scott and
+              Lash, Alex E and Madden, Thomas L and Pontius, Joan U and
+              Schuler, Gregory D and Schriml, Lynn M and Sequeira, Edwin and
+              Tatusova, Tatiana A and Wagner, Lukas",
+  abstract = "In addition to maintaining the GenBank(R) nucleic acid sequence
+              database, the National Center for Biotechnology Information
+              (NCBI) provides data analysis and retrieval resources for the
+              data in GenBank and other biological data made available through
+              NCBI's Web site. NCBI resources include Entrez, PubMed, PubMed
+              Central (PMC), LocusLink, the NCBITaxonomy Browser, BLAST, BLAST
+              Link (BLink), Electronic PCR (e-PCR), Open Reading Frame (ORF)
+              Finder, References Sequence (RefSeq), UniGene, HomoloGene,
+              ProtEST, Database of Single Nucleotide Polymorphisms (dbSNP),
+              Human/Mouse Homology Map, Cancer Chromosome Aberration Project
+              (CCAP), Entrez Genomes and related tools, the Map Viewer, Model
+              Maker (MM), Evidence Viewer (EV), Clusters of Orthologous Groups
+              (COGs) database, Retroviral Genotyping Tools, SAGEmap, Gene
+              Expression Omnibus (GEO), Online Mendelian Inheritance in Man
+              (OMIM), the Molecular Modeling Database (MMDB), the Conserved
+              Domain Database (CDD), and the Conserved Domain Architecture
+              Retrieval Tool (CDART). Augmenting many of the Web applications
+              are custom implementations of the BLAST program optimized to
+              search specialized data sets. All of the resources can be
+              accessed through the NCBI home page at:
+              http://www.ncbi.nlm.nih.gov.",
+  journal  = "Nucleic acids research",
+  volume   =  31,
+  number   =  1,
+  pages    = "28--33",
+  month    =  jan,
+  year     =  2003,
+  language = "en",
+  issn     = "0305-1048, 1362-4962",
+  pmid     = "12519941",
+  doi      = "10.1093/nar/gkg033",
+  pmc      = "PMC165480"
+}
+
+
+
+@INCOLLECTION{unigeneNcbi,
+  title     = "{UniGene}: A Unified View of the Transcriptome",
+  booktitle = "The {NCBI} Handbook [Internet]",
+  author    = "{Pontius, Joan U. and Wagner, Lukas and Schuler, Gregory D.}",
+  editor    = "McEntyre J, Ostell J",
+  abstract  = "2002 Oct 9 [Updated 2003 Aug 13]. In: , editors. . Bethesda
+               (MD): National Center for Biotechnology Information (US); 2002-.
+               Chapter 21.",
+  publisher = "National Center for Biotechnology Information (US),",
+  year      =  2002,
+  address   = "Bethesda (MD)"
+}
+
+
+
+@ARTICLE{Johnson2007-xh,
+  title    = "Adjusting batch effects in microarray expression data using
+              empirical Bayes methods",
+  author   = "Johnson, W Evan and Li, Cheng and Rabinovic, Ariel",
+  abstract = "Non-biological experimental variation or ``batch effects'' are
+              commonly observed across multiple batches of microarray
+              experiments, often rendering the task of combining data from
+              these batches difficult. The ability to combine microarray data
+              sets is advantageous to researchers to increase statistical power
+              to detect biological phenomena from studies where logistical
+              considerations restrict sample size or in studies that require
+              the sequential hybridization of arrays. In general, it is
+              inappropriate to combine data sets without adjusting for batch
+              effects. Methods have been proposed to filter batch effects from
+              data, but these are often complicated and require large batch
+              sizes ( > 25) to implement. Because the majority of microarray
+              studies are conducted using much smaller sample sizes, existing
+              methods are not sufficient. We propose parametric and
+              non-parametric empirical Bayes frameworks for adjusting data for
+              batch effects that is robust to outliers in small sample sizes
+              and performs comparable to existing methods for large samples. We
+              illustrate our methods using two example data sets and show that
+              our methods are justifiable, easy to apply, and useful in
+              practice. Software for our method is freely available at:
+              http://biosun1.harvard.edu/complab/batch/.",
+  journal  = "Biostatistics",
+  volume   =  8,
+  number   =  1,
+  pages    = "118--127",
+  month    =  jan,
+  year     =  2007,
+  language = "en",
+  issn     = "1465-4644",
+  pmid     = "16632515",
+  doi      = "10.1093/biostatistics/kxj037"
+}
+
+
+@ARTICLE{FANTOM5-cage,
+  title    = "A promoter-level mammalian expression atlas",
+  author   = "{FANTOM Consortium and the RIKEN PMI and CLST (DGT)} and Forrest,
+              Alistair R R and Kawaji, Hideya and Rehli, Michael and Baillie, J
+              Kenneth and de Hoon, Michiel J L and Haberle, Vanja and Lassmann,
+              Timo and Kulakovskiy, Ivan V and Lizio, Marina and Itoh,
+              Masayoshi and Andersson, Robin and Mungall, Christopher J and
+              Meehan, Terrence F and Schmeier, Sebastian and Bertin, Nicolas
+              and Jørgensen, Mette and Dimont, Emmanuel and Arner, Erik and
+              Schmidl, Christian and Schaefer, Ulf and Medvedeva, Yulia A and
+              Plessy, Charles and Vitezic, Morana and Severin, Jessica and
+              Semple, Colin A and Ishizu, Yuri and Young, Robert S and
+              Francescatto, Margherita and Alam, Intikhab and Albanese, Davide
+              and Altschuler, Gabriel M and Arakawa, Takahiro and Archer, John
+              A C and Arner, Peter and Babina, Magda and Rennie, Sarah and
+              Balwierz, Piotr J and Beckhouse, Anthony G and Pradhan-Bhatt,
+              Swati and Blake, Judith A and Blumenthal, Antje and Bodega,
+              Beatrice and Bonetti, Alessandro and Briggs, James and
+              Brombacher, Frank and Burroughs, A Maxwell and Califano, Andrea
+              and Cannistraci, Carlo V and Carbajo, Daniel and Chen, Yun and
+              Chierici, Marco and Ciani, Yari and Clevers, Hans C and Dalla,
+              Emiliano and Davis, Carrie A and Detmar, Michael and Diehl,
+              Alexander D and Dohi, Taeko and Drabløs, Finn and Edge, Albert S
+              B and Edinger, Matthias and Ekwall, Karl and Endoh, Mitsuhiro and
+              Enomoto, Hideki and Fagiolini, Michela and Fairbairn, Lynsey and
+              Fang, Hai and Farach-Carson, Mary C and Faulkner, Geoffrey J and
+              Favorov, Alexander V and Fisher, Malcolm E and Frith, Martin C
+              and Fujita, Rie and Fukuda, Shiro and Furlanello, Cesare and
+              Furino, Masaaki and Furusawa, Jun-Ichi and Geijtenbeek, Teunis B
+              and Gibson, Andrew P and Gingeras, Thomas and Goldowitz, Daniel
+              and Gough, Julian and Guhl, Sven and Guler, Reto and Gustincich,
+              Stefano and Ha, Thomas J and Hamaguchi, Masahide and Hara,
+              Mitsuko and Harbers, Matthias and Harshbarger, Jayson and
+              Hasegawa, Akira and Hasegawa, Yuki and Hashimoto, Takehiro and
+              Herlyn, Meenhard and Hitchens, Kelly J and Ho Sui, Shannan J and
+              Hofmann, Oliver M and Hoof, Ilka and Hori, Furni and Huminiecki,
+              Lukasz and Iida, Kei and Ikawa, Tomokatsu and Jankovic, Boris R
+              and Jia, Hui and Joshi, Anagha and Jurman, Giuseppe and
+              Kaczkowski, Bogumil and Kai, Chieko and Kaida, Kaoru and Kaiho,
+              Ai and Kajiyama, Kazuhiro and Kanamori-Katayama, Mutsumi and
+              Kasianov, Artem S and Kasukawa, Takeya and Katayama, Shintaro and
+              Kato, Sachi and Kawaguchi, Shuji and Kawamoto, Hiroshi and
+              Kawamura, Yuki I and Kawashima, Tsugumi and Kempfle, Judith S and
+              Kenna, Tony J and Kere, Juha and Khachigian, Levon M and
+              Kitamura, Toshio and Klinken, S Peter and Knox, Alan J and
+              Kojima, Miki and Kojima, Soichi and Kondo, Naoto and Koseki,
+              Haruhiko and Koyasu, Shigeo and Krampitz, Sarah and Kubosaki,
+              Atsutaka and Kwon, Andrew T and Laros, Jeroen F J and Lee, Weonju
+              and Lennartsson, Andreas and Li, Kang and Lilje, Berit and
+              Lipovich, Leonard and Mackay-Sim, Alan and Manabe, Ri-Ichiroh and
+              Mar, Jessica C and Marchand, Benoit and Mathelier, Anthony and
+              Mejhert, Niklas and Meynert, Alison and Mizuno, Yosuke and de
+              Lima Morais, David A and Morikawa, Hiromasa and Morimoto, Mitsuru
+              and Moro, Kazuyo and Motakis, Efthymios and Motohashi, Hozumi and
+              Mummery, Christine L and Murata, Mitsuyoshi and Nagao-Sato,
+              Sayaka and Nakachi, Yutaka and Nakahara, Fumio and Nakamura,
+              Toshiyuki and Nakamura, Yukio and Nakazato, Kenichi and van
+              Nimwegen, Erik and Ninomiya, Noriko and Nishiyori, Hiromi and
+              Noma, Shohei and Noma, Shohei and Noazaki, Tadasuke and Ogishima,
+              Soichi and Ohkura, Naganari and Ohimiya, Hiroko and Ohno, Hiroshi
+              and Ohshima, Mitsuhiro and Okada-Hatakeyama, Mariko and Okazaki,
+              Yasushi and Orlando, Valerio and Ovchinnikov, Dmitry A and Pain,
+              Arnab and Passier, Robert and Patrikakis, Margaret and Persson,
+              Helena and Piazza, Silvano and Prendergast, James G D and
+              Rackham, Owen J L and Ramilowski, Jordan A and Rashid, Mamoon and
+              Ravasi, Timothy and Rizzu, Patrizia and Roncador, Marco and Roy,
+              Sugata and Rye, Morten B and Saijyo, Eri and Sajantila, Antti and
+              Saka, Akiko and Sakaguchi, Shimon and Sakai, Mizuho and Sato,
+              Hiroki and Savvi, Suzana and Saxena, Alka and Schneider, Claudio
+              and Schultes, Erik A and Schulze-Tanzil, Gundula G and
+              Schwegmann, Anita and Sengstag, Thierry and Sheng, Guojun and
+              Shimoji, Hisashi and Shimoni, Yishai and Shin, Jay W and Simon,
+              Christophe and Sugiyama, Daisuke and Sugiyama, Takaai and Suzuki,
+              Masanori and Suzuki, Naoko and Swoboda, Rolf K and 't Hoen, Peter
+              A C and Tagami, Michihira and Takahashi, Naoko and Takai, Jun and
+              Tanaka, Hiroshi and Tatsukawa, Hideki and Tatum, Zuotian and
+              Thompson, Mark and Toyodo, Hiroo and Toyoda, Tetsuro and Valen,
+              Elvind and van de Wetering, Marc and van den Berg, Linda M and
+              Verado, Roberto and Vijayan, Dipti and Vorontsov, Ilya E and
+              Wasserman, Wyeth W and Watanabe, Shoko and Wells, Christine A and
+              Winteringham, Louise N and Wolvetang, Ernst and Wood, Emily J and
+              Yamaguchi, Yoko and Yamamoto, Masayuki and Yoneda, Misako and
+              Yonekura, Yohei and Yoshida, Shigehiro and Zabierowski, Susan E
+              and Zhang, Peter G and Zhao, Xiaobei and Zucchelli, Silvia and
+              Summers, Kim M and Suzuki, Harukazu and Daub, Carsten O and
+              Kawai, Jun and Heutink, Peter and Hide, Winston and Freeman, Tom
+              C and Lenhard, Boris and Bajic, Vladimir B and Taylor, Martin S
+              and Makeev, Vsevolod J and Sandelin, Albin and Hume, David A and
+              Carninci, Piero and Hayashizaki, Yoshihide",
+  abstract = "Regulated transcription controls the diversity, developmental
+              pathways and spatial organization of the hundreds of cell types
+              that make up a mammal. Using single-molecule cDNA sequencing, we
+              mapped transcription start sites (TSSs) and their usage in human
+              and mouse primary cells, cell lines and tissues to produce a
+              comprehensive overview of mammalian gene expression across the
+              human body. We find that few genes are truly 'housekeeping',
+              whereas many mammalian promoters are composite entities composed
+              of several closely separated TSSs, with independent
+              cell-type-specific expression profiles. TSSs specific to
+              different cell types evolve at different rates, whereas promoters
+              of broadly expressed genes are the most conserved. Promoter-based
+              expression analysis reveals key transcription factors defining
+              cell states and links them to binding-site motifs. The functions
+              of identified novel transcripts can be predicted by coexpression
+              and sample ontology enrichment analyses. The functional
+              annotation of the mammalian genome 5 (FANTOM5) project provides
+              comprehensive expression profiles and functional annotation of
+              mammalian cell-type-specific transcriptomes with wide
+              applications in biomedical research.",
+  journal  = "Nature",
+  volume   =  507,
+  number   =  7493,
+  pages    = "462--470",
+  month    =  mar,
+  year     =  2014,
+  language = "en",
+  issn     = "0028-0836, 1476-4687",
+  pmid     = "24670764",
+  doi      = "10.1038/nature13182",
+  pmc      = "PMC4529748"
+}
+
+
+
+@ARTICLE{Bahcall2015-mh,
+  title    = "Human genetics: {GTEx} pilot quantifies {eQTL} variation across
+              tissues and individuals",
+  author   = "Bahcall, Orli G",
+  journal  = "Nature reviews. Genetics",
+  volume   =  16,
+  number   =  7,
+  pages    = "375",
+  month    =  jul,
+  year     =  2015,
+  language = "en",
+  issn     = "1471-0056, 1471-0064",
+  pmid     = "26077371",
+  doi      = "10.1038/nrg3969"
+}
+
+
+@ARTICLE{GTEx_Consortium2015-si,
+  title    = "Human genomics. The {Genotype-Tissue} Expression ({GTEx}) pilot
+              analysis: multitissue gene regulation in humans",
+  author   = "{GTEx Consortium}",
+  abstract = "Understanding the functional consequences of genetic variation,
+              and how it affects complex human disease and quantitative traits,
+              remains a critical challenge for biomedicine. We present an
+              analysis of RNA sequencing data from 1641 samples across 43
+              tissues from 175 individuals, generated as part of the pilot
+              phase of the Genotype-Tissue Expression (GTEx) project. We
+              describe the landscape of gene expression across tissues, catalog
+              thousands of tissue-specific and shared regulatory expression
+              quantitative trait loci (eQTL) variants, describe complex network
+              relationships, and identify signals from genome-wide association
+              studies explained by eQTLs. These findings provide a systematic
+              understanding of the cellular and biological consequences of
+              human genetic variation and of the heterogeneity of such effects
+              among a diverse set of human tissues.",
+  journal  = "Science",
+  volume   =  348,
+  number   =  6235,
+  pages    = "648--660",
+  month    =  may,
+  year     =  2015,
+  language = "en",
+  issn     = "0036-8075, 1095-9203",
+  pmid     = "25954001",
+  doi      = "10.1126/science.1262110",
+  pmc      = "PMC4547484"
+}
+
+
+
+@ARTICLE{Gibson2015-wh,
+  title    = "Human genetics. {GTEx} detects genetic effects",
+  author   = "Gibson, Greg",
+  journal  = "Science",
+  volume   =  348,
+  number   =  6235,
+  pages    = "640--641",
+  month    =  may,
+  year     =  2015,
+  language = "en",
+  issn     = "0036-8075, 1095-9203",
+  pmid     = "25953996",
+  doi      = "10.1126/science.aab3002"
+}
+

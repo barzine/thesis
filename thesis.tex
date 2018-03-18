@@ -14,9 +14,10 @@
 ]{scrbook}
 \KOMAoptions{headsepline = true, footsepline = false}
 
+%TC:ignore
 \input{config.tex}
 \input{glossary.tex}
-
+%TC:endignore
 
 
 \title{Investigating Human Gene Expression in Normal Tissues%.\\
@@ -45,9 +46,9 @@
 %\addtokomafont{subsection}{\large}
 
 %\tolerance=1
-%\emergencystretch=\maxdimen
-%\hyphenpenalty=10000
-%\hbadness=10000
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
 
 \begin{document}
 \hyphenation{%
@@ -78,7 +79,7 @@
     \pdfbookmark{\contentsname}{toc}
     \tableofcontents
     \phantomsection
-    \printglossary[title=List of Terms and Abbreviations,toctitle=List of Terms and Abbreviations]\raggedbottom
+    \printglossary[title={Terms and Abbreviations},toctitle=List of Terms and Abbreviations]\raggedbottom
     \phantomsection
     \listoffigures
     \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ \clearpage \thispagestyle{empty}

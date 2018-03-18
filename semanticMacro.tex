@@ -32,6 +32,9 @@
 \newcommand*\mycheckmark{\Large ✔}
 \newcommand*\mynormalcheckmark{✔}
 \newcommand*\NB{\textbf{N.B.}: }
+\newcommand*\opbr{U+005B}
+\newcommand*\clbr{U+005D}
+
 
 %\newcommand*\mRNAs{\mol{mRNAs}}
 %\newcommand*\mRNA{\mol{mRNA}}
@@ -57,6 +60,9 @@
 \newcommand*\Gtex{\gls{GTEx}}
 \newcommand*\EBI{\gls{EBI}}
 \newcommand*\egxa{\EBI\ Gene Expression Atlas}
+\newcommand*\GNF{GNF Gene expression Atlas}
+\newcommand*\tcga{\gls{TCGA}}
+\newcommand*\pcawg{\gls{pcawg}}
 
 %%%% datasets
 \newcommand*\ibm{\dataset{\gls{IBM}}}
@@ -97,8 +103,11 @@
 %other abbr related to this project
 \newcommand*\derivativeWork{\minisec{Communication to the community derived from this chapter}}
 \newcommand*\pc{protein-coding}
+\newcommand*\PC{Protein-coding}
 \newcommand*\pcg{\pc\ gene}
+\newcommand*\Pcg{\PC\ gene}
 \newcommand*\pcgs{\pcg{}s}
+\newcommand*\Pcgs{\Pcg{}s}
 \newcommand*\cv{coefficient of variation}
 \newcommand*\cvs{coefficients of variation}
 \newcommand*\ttest{\textit{t}-test}
@@ -130,6 +139,7 @@
 \newcommand*\WebFull[4]{\softFull{#1}{#2}{#3}{#4}}
 \newcommand*\WebFoCi[3]{\softFoCi{#1}{#2}{#3}}
 \newcommand*\WebFo[2]{\softFo{#1}{#2}}
+\newcommand*\WebCi[3]{\href{#2}{\soft{#1}}~\mycite{#3}}
 
 \newcommand*\crefp[2]{\cref{#1}#2 (\vpageref{#1})}
 \newcommand*\Crefp[2]{\Cref{#1}#2 (\vpageref{#1})}
@@ -178,6 +188,11 @@
 \newcommand*\Spinal{\tissue{Spinal cord}}
 \newcommand*\Placenta{\tissue{Placenta}}
 \newcommand*\Rectum{\tissue{Rectum}}
+\newcommand*\Brain{\tissue{Brain}}
+\newcommand*\Hypothalamus{\tissue{Hypothalamus}}
+\newcommand*\Nervous{\tissue{Nervous system}}
+
+
 \newcommand*\heart{\Heart}
 \newcommand*\kidney{\Kidney}
 \newcommand*\liver{\Liver}
@@ -187,7 +202,7 @@
 \newcommand*\adrenal{\Adrenal}
 \newcommand*\urinarybladder{\Bladder}
 \newcommand*\bladder{\Bladder}
-\newcommand*\cortex{\cortex}
+\newcommand*\cortex{\Cortex}
 \newcommand*\hcolon{\hColon}
 \newcommand*\lung{\Lung}
 \newcommand*\esophagus{\Oesophagus}
@@ -210,4 +225,6 @@
 \newcommand*\rectum{\Rectum}
 \newcommand*\gall{\Gall}
 \newcommand*\gallbladder{\Gall}
-
+\newcommand*\brain{\Brain}
+\newcommand*\hypothalamus{\Hypothalamus}
+\newcommand*\nervous{\Nervous}
