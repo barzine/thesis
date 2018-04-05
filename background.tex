@@ -109,7 +109,7 @@ individual is considered, the transcriptome varies\ldots
 [add references]}
 
 \section[Transcriptome exploration with RNA sequencing]%
-{Transcriptome exploration with RNA sequencing \quad}
+{Transcriptome~exploration~with~RNA~sequencing}
 
 \TK{Two lines about microarrays}
 
@@ -324,7 +324,7 @@ strands has the same sequence than the original \gls{RNA}. Several techniques,
 called \emph{strand-specific}, have been developed to compensate for this
 (\mycite{strandSpecific}, \mycite{strandSpe}).
 
-\subsubsection{Adapter ligation, PCR amplification and size selection \quad}
+\subsubsection{Adapter~ligation,~PCR~amplification~and~size~selection}
 
 After generating blunt edges by restriction digest of the \glspl{cDNA}, adapters
 (small known sequences of oligonucleotides) are ligated to their both ends.
@@ -516,7 +516,7 @@ program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
 the base being called wrongly. There are several possible encoding formats
 (see \cref{sec:PhredScore}).
 
-\subsection{A typical bioinformatic workflow for \Rnaseq\ study}\label{sub;RNAseqworflow}
+\subsection{A typical bioinformatic workflow for \Rnaseq\ study\quad}\label{sub:RNAseqworflow}
 
 From the reconstruction of the
 transcriptome to the normalisation of expression in each sample, the various
@@ -1011,7 +1011,7 @@ A few of them may correct \emph{batch effect} (see \cref{sec:expDesign}) or
 other confounding factors. The \gls{BiocR} package \soft{RUVSeq} \mycite{ruvseq}
 is one example.
 
-\section{Proteome exploration with Mass spectrometry \quad}
+\section{Proteome~exploration~with~Mass~spectrometry}
 
 High-throughput protein identification and quantification (\ie\ characterisation)
 use \ms\ as the primary method of choice since it allies a good dynamic range
@@ -1492,8 +1492,11 @@ and \href{http://proteowizard.sourceforge.net/}{\soft{ProteoWizard}}\footnote{%
 however, they may lack recording a few key points of the raw data and thus they
 may also be unfit to analysis.
 
+There are many different pipelines
 
-\subsubsection[Peptide identification]{From peptide identification \ldots}
+%Bottom-up approaches tend to dominate the \ms{}-based proteomics~\mycite{Lee2015-di}.
+
+\subsubsection{Peptide identification}\label{subsub:peptideID}
 
 An essential early step of proteomic data processing is to identify a peptide
 sequence for each mass that has been detected. This requires to first retrieve
@@ -1529,7 +1532,7 @@ systematic trends) and signal normalisation (\enquote{centroiding})
 \mycite{Codrea2016,Nahnsen2013}.
 
 
-\minisec{Database of candidate peptides}
+\minisec{Spectra  }
 For the matching step of the fragmentation spectra to a peptide database,
 there are three main possibilities.
 \begin{itemize}
@@ -1628,7 +1631,7 @@ for the shorter proteins and a saturating effect for the larger proteins.
 
 
 \section{Reproducibility and Experimental design}\label{sec:expDesign}
-\TK{Do not forget to explain why the use of different numbers of samples in 
+\TK{Do not forget to explain why the use of different numbers of samples in
 meta-analysis creates problem!!!}
     \subsection{Batch effect}\label{sub:BatchEffect}
     Batch effect: \mycite{batchEffect}
