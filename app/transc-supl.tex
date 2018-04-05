@@ -2,10 +2,6 @@
 {Supplementary material for Chapter \getrefnumber{ch:Transcriptomics}}\label{ch:app-Transcriptomics}
 \chaptermark{Supplementary material for Chapter \getrefnumber{ch:Transcriptomics}}
 
-\TK{add correlation values for all corresponding tissues pairs across \setOne\ and \setTwo}
-
-
-\begin{comment}
 \begin{figure}
 \centering
 \begin{subfigure}[b]{0.60\textwidth}
@@ -37,9 +33,43 @@
 {transcriptomics/UniqueExpression/Gtex_1b.pdf}
 \caption{Gtex}\label{fig:UniqueExprGtex}
 \end{subfigure}
-\caption{Protein coding genes expressed per tissues}
+\caption{Protein coding genes expressed per tissues}\label{fig:UniqExprPC1}
 \end{figure}
-\end{comment}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.60\textwidth}
+\centering \includegraphics[width=\textwidth]%
+{transcriptomics/UniqueExpression/CastleBreadthP1.pdf}
+\caption{Castle}\label{fig:breadthCastleP1}
+\end{subfigure}%
+~%
+\begin{subfigure}[b]{0.60\textwidth}
+\centering \includegraphics[width=\textwidth]%
+{transcriptomics/UniqueExpression/BrawandBreadthP1.pdf}
+\caption{Brawand}\label{fig:breadthBrawandP1}
+\end{subfigure}%
+
+\begin{subfigure}[b]{0.60\textwidth}
+\centering \includegraphics[width=\textwidth]%
+{transcriptomics/UniqueExpression/IBMBreadthP1.pdf}
+\caption{IBM}\label{fig:breadthIBMP1}
+\end{subfigure}%
+~%
+\begin{subfigure}[b]{0.60\textwidth}
+\centering \includegraphics[width=\textwidth]%
+{transcriptomics/UniqueExpression/UhlenBreadthP1.pdf}
+\caption{Uhlen}\label{fig:breadthUhlenP1}
+\end{subfigure}%
+
+\begin{subfigure}[b]{0.95\textwidth}
+\includegraphics[width=\textwidth]%
+{transcriptomics/UniqueExpression/GtexBreadthP1.pdf}
+\caption{Gtex}\label{fig:breadthGtexP1}
+\end{subfigure}
+\caption{Breadth of expression of the Protein coding genes expressed above 1 \FPKM}\label{fig:breadthGenesP1}
+\end{figure}
 
 
 \begin{figure}[htpb]
@@ -279,46 +309,42 @@ and \gtex.}}
 
 \begin{algorithm}[H]
 \SetAlgoLined\
-\KwData{Expression matrix; Genes as rows and conditions as columns}
-\KwResult{Indicates if a gene presents an \emph{outlier} expression for any condition
-(as a boolean or a numeric ratio)}
+\KwData{Expression matrix; Genes as rows and conditions (tissues) as columns}\
+\KwIn{threshold: numeric}\
+\KwIn{bool: boolean}\
+\KwResult{Indicates if a gene presents an \emph{untypical} (outlier) expression
+for any condition (as a boolean or a numeric ratio)}
 \BlankLine\
-\While{not at end of this document}{%
-read current\;
-\eIf{understand}{%
-go to next section\;
-current section becomes this one\;
+\ForEach{Gene g (\ie\ row) of the input matrix}{%
+    med=compute median(g)\;
+    \tcc{compute the m.a.d. (median absolute deviation)}
+    mad=median(absolute(g-med))\;
+\eIf{!bool}{%
+\tcc{Return boolean answer}
+newg=absolute(g-med) > threshold*mad\;
 }{%
-go back to the beginning of current section\;
+\tcc{Return ratios that can be later sorted}
+newg=(absolute(g-med))/mad\;
 }
+return(newg)\;
 }
 \caption{Hampel method}\label{algo:hampel}
 \end{algorithm}
 
-\begin{algorithm}[H]
-\SetAlgoLined\
-\KwData{Numerical vector $v$}
-\KwResult{\gls{MAD} of the vector $v$}
+\subsection{Median}
+Median can be found by listing all values from smallest to greatest.\\
+If the number of values is odd, the median is the middle value.\\
+If the number of values is even, the median is the mean of the two middle values.
 
-\caption{Median absolute deviation (MAD)}\label{algo:mad}
-\end{algorithm}
+\subsection{Median absolute deviation (M.A.D)}
 
+For a give variable X, m.a.d.\ is defined as follow:
 
+\begin{equation}\label{eq:mad}
+    \tag{M.A.D.}
+MAD = median(|X_{i}-median(X)|)
+\end{equation}
 
-\begin{comment}
-\begin{algorithm}[H]
-\SetAlgoLined\
-\KwData{}
-\Input{An expression matrix $m$}
-\Output{A boolean or numeric matrix $mo$}
-\BlankLine\
-\lForEach{gene $g$ of the matrix $m$}{\\
-   $median \leftarrow\ computeMedian(g)$\;
-   $MAD \leftarrow\ computeMAD(g)$\;}
-
-\caption{}
-\end{algorithm}
-\end{comment}
 
 \section{List of the tissues available in TiGER}\label{sec:supplTiger}
 
