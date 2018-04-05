@@ -77,48 +77,56 @@ This is concordant to the more disparate and various techniques involved in
 the proteomic sample preparation (see \Cref{subsec:ProtSampPrep}:
 \nameref{subsec:ProtSampPrep}).
 
-
 \begin{figure}
+   \vspace*{-0.5cm}
     \centering
-    \begin{subfigure}[b]{0.35\textwidth}
+%    \parbox{\textwidth}{%
+%    \parbox{.9\textwidth}{%
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/castle.pdf}
-        \caption{Castle}\label{fig:densityCastle_log2}
+        \caption{\small Castle}\label{fig:densityCastle_log2}
     \end{subfigure}%
 ~%
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/vt.pdf}
-        \caption{Brawand}\label{fig:densityBrawand_log2}
+        \caption{\small Brawand}\label{fig:densityBrawand_log2}
     \end{subfigure}
 
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/ibm.pdf}
-        \caption{Illumina Body Map}\label{fig:densityIBM_log2}
+        \caption{\small Illumina Body Map}\label{fig:densityIBM_log2}
     \end{subfigure}%
 ~%
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/uhlen.pdf}
-        \caption{Uhlen}\label{fig:densityUhlen_log2}
+        \caption{\small Uhlen}\label{fig:densityUhlen_log2}
     \end{subfigure}
 
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/gtex.pdf}
-        \caption{Gtex}\label{fig:densityGtex_log2}
+        \caption{\small Gtex}\label{fig:densityGtex_log2}
     \end{subfigure}%
 ~%
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/cutler.pdf}
-        \caption{Cutler}\label{fig:densityCutler_log2}
+        \caption{\small Cutler}\label{fig:densityCutler_log2}
     \end{subfigure}
 
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/kuster.pdf}
-        \caption{Kuster}\label{fig:densityKuster_log2}
+        \caption{\small Kuster}\label{fig:densityKuster_log2}
     \end{subfigure}%
 ~%
-    \begin{subfigure}[b]{0.35\textwidth}
+    \begin{subfigure}[b]{0.38\textwidth}
         \centering \includegraphics[width=\textwidth]{expressed/density_Log2/pandey.pdf}
-        \caption{Pandey}\label{fig:densityPandey_log2}
+        \caption{\small Pandey}\label{fig:densityPandey_log2}
     \end{subfigure}
+   % }
+   % \parbox{0.4\textwidth}{%
+   %     \begin{subfigure}[b]{0.4\textwidth}
+   %         \centering \includegraphics{expressed/densityplotLegend.pdf}
+   %     \end{subfigure}
+   %     }}
     \caption{Profile of expression across the transcriptome (\pcgs\ only)
     and proteome datasets}\label{fig:distribPlot}
 \end{figure}
@@ -135,12 +143,12 @@ Even a non-linear but strong relationship is promptly highlighted
 (\eg\ top right corner of~\cref{fig:Anscombe}).
 
 \begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/RepTechscat_heart.png}
+    \hspace*{-2cm}
+    \begin{subfigure}[b]{0.61\textwidth}
+      \centering  \includegraphics[width=\textwidth]{expressed/RepTechscat_heart.png}
         \caption{Technical replicates (Heart)}\label{fig:scatTechRep}
     \end{subfigure}~%
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.61\textwidth}
     \centering \includegraphics[width=\textwidth]{expressed/RepBiolscat_kidney.png}
         \caption{Biological replicates (Kidney)}\label{fig:scatBiolRep}
     \end{subfigure}
@@ -226,7 +234,7 @@ In \Cref{ch:datasets}, we have seen it is also unwise to rely solely on the
 normalised data provided by the original authors\footnote{Eventual bias
 corrections in \Rnaseq\ vary according to planed downstream analyses and
 proteomic data is hard to handle and two processing pipelines may rather give
-quite different results (see~\Cref{ch:proteomics}).}.
+quite different results (see~\Cref{subsec:IntegrationNewMethQuant}).}.
 
 To assess the consistency of the quantification across the different datasets,
 in particular for \Rnaseq,

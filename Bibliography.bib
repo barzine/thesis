@@ -7962,14 +7962,14 @@
 }
 
 
-@ARTICLE{Cavalli2011-bo,
-  title       = "{SpeCond}: a method to detect condition-specific gene
-                 expression",
-  author      = "Cavalli, Florence M G and Bourgon, Richard and Huber, Wolfgang
-                 and Vaquerizas, Juan M and Luscombe, Nicholas M",
-  affiliation = "EMBL-European Bioinformatics Institute, Wellcome Trust Genome
-                 Campus, Cambridge CB10 1SD, UK. florence@ebi.ac.uk",
-  abstract    = "Transcriptomic studies routinely measure expression levels
+@article{Cavalli2011-bo,
+  Title       = {{SpeCond}: a method to detect condition-specific gene
+                 expression},
+  Author      = {Cavalli, Florence M G and Bourgon, Richard and Huber, Wolfgang
+                 and Vaquerizas, Juan M and Luscombe, Nicholas M},
+  Affiliation = {EMBL-European Bioinformatics Institute, Wellcome Trust Genome
+                 Campus, Cambridge CB10 1SD, UK. florence@ebi.ac.uk},
+  Abstract    = {Transcriptomic studies routinely measure expression levels
                  across numerous conditions. These datasets allow
                  identification of genes that are specifically expressed in a
                  small number of conditions. However, there are currently no
@@ -7979,18 +7979,18 @@
                  method to a dataset of 32 human tissues to determine 2,673
                  specifically expressed genes. An implementation of SpeCond is
                  freely available as a Bioconductor package at
-                 http://www.bioconductor.org/packages/release/bioc/html/SpeCond.html.",
-  journal     = "Genome biology",
-  volume      =  12,
-  number      =  10,
-  pages       = "R101",
-  month       =  oct,
-  year        =  2011,
-  language    = "en",
-  issn        = "1465-6906",
-  pmid        = "22008066",
-  doi         = "10.1186/gb-2011-12-10-r101",
-  pmc         = "PMC3333772"
+                 http://www.bioconductor.org/packages/release/bioc/html/SpeCond.html.},
+  Journal     = {Genome Biology},
+  Volume      = {12},
+  Number      = {10},
+  Pages       = {R101},
+  Month       = {10},
+  Year        = {2011},
+  Language    = {en},
+  Issn        = {1465-6906},
+  Pmid        = {22008066},
+  Doi         = {10.1186/gb-2011-12-10-r101},
+  Pmc         = {PMC3333772}
 }
 
 
@@ -8934,3 +8934,127 @@
   doi      = "10.1126/science.aab3002"
 }
 
+
+@PHDTHESIS{Lee2015-di,
+  title  = "{QUANTITATIVE} {AND} {FUNCTIONAL} {ANALYSIS} {PIPELINE} {FOR}
+            {LABEL} {-FREE} {METAPROTEOMICS} {DATA} {AND} {ITS} {APPLICATIONS}",
+  author = "Lee, Lang Ho",
+  editor = "VerBerkmoes, Nathan",
+  year   =  2015,
+  school = "University of Tennessee"
+}
+
+
+@ARTICLE{Franks2017-bp,
+  title    = "Post-transcriptional regulation across human tissues",
+  author   = "Franks, Alexander and Airoldi, Edoardo and Slavov, Nikolai",
+  abstract = "Transcriptional and post-transcriptional regulation shape
+              tissue-type-specific proteomes, but their relative contributions
+              remain contested. Estimates of the factors determining protein
+              levels in human tissues do not distinguish between (i) the
+              factors determining the variability between the abundances of
+              different proteins, i.e., mean-level-variability and, (ii) the
+              factors determining the physiological variability of the same
+              protein across different tissue types, i.e., across-tissues
+              variability. We sought to estimate the contribution of transcript
+              levels to these two orthogonal sources of variability, and found
+              that scaled mRNA levels can account for most of the
+              mean-level-variability but not necessarily for across-tissues
+              variability. The reliable quantification of the latter estimate
+              is limited by substantial measurement noise. However,
+              protein-to-mRNA ratios exhibit substantial across-tissues
+              variability that is functionally concerted and reproducible
+              across different datasets, suggesting extensive
+              post-transcriptional regulation. These results caution against
+              estimating protein fold-changes from mRNA fold-changes between
+              different cell-types, and highlight the contribution of
+              post-transcriptional regulation to shaping tissue-type-specific
+              proteomes.",
+  journal  = "PLoS computational biology",
+  volume   =  13,
+  number   =  5,
+  pages    = "e1005535",
+  month    =  may,
+  year     =  2017,
+  language = "en",
+  issn     = "1553-734X, 1553-7358",
+  pmid     = "28481885",
+  doi      = "10.1371/journal.pcbi.1005535",
+  pmc      = "PMC5440056"
+}
+
+
+@ARTICLE{Zhuo2016-qi,
+  title    = "Identifying stably expressed genes from multiple {RNA-Seq} data
+              sets",
+  author   = "Zhuo, Bin and Emerson, Sarah and Chang, Jeff H and Di, Yanming",
+  abstract = "We examined RNA-Seq data on 211 biological samples from 24
+              different Arabidopsis experiments carried out by different labs.
+              We grouped the samples according to tissue types, and in each of
+              the groups, we identified genes that are stably expressed across
+              biological samples, treatment conditions, and experiments. We fit
+              a Poisson log-linear mixed-effect model to the read counts for
+              each gene and decomposed the total variance into between-sample,
+              between-treatment and between-experiment variance components.
+              Identifying stably expressed genes is useful for count
+              normalization and differential expression analysis. The variance
+              component analysis that we explore here is a first step towards
+              understanding the sources and nature of the RNA-Seq count
+              variation. When using a numerical measure to identify stably
+              expressed genes, the outcome depends on multiple factors: the
+              background sample set and the reference gene set used for count
+              normalization, the technology used for measuring gene expression,
+              and the specific numerical stability measure used. Since
+              differential expression (DE) is measured by relative frequencies,
+              we argue that DE is a relative concept. We advocate using an
+              explicit reference gene set for count normalization to improve
+              interpretability of DE results, and recommend using a common
+              reference gene set when analyzing multiple RNA-Seq experiments to
+              avoid potential inconsistent conclusions.",
+  journal  = "PeerJ",
+  volume   =  4,
+  pages    = "e2791",
+  month    =  dec,
+  year     =  2016,
+  keywords = "Numerical stability measure; RNA-Seq; Reference gene set; Stably
+              expressed gene",
+  language = "en",
+  pmid     = "28028467",
+  doi      = "10.7717/peerj.2791",
+  pmc      = "PMC5178351"
+}
+
+
+
+
+@ARTICLE{Roca2017-zi,
+  title    = "Variation-preserving normalization unveils blind spots in gene
+              expression profiling",
+  author   = "Roca, Carlos P and Gomes, Susana I L and Amorim, Mónica J B and
+              Scott-Fordsmand, Janeck J",
+  abstract = "RNA-Seq and gene expression microarrays provide comprehensive
+              profiles of gene activity, but lack of reproducibility has
+              hindered their application. A key challenge in the data analysis
+              is the normalization of gene expression levels, which is
+              currently performed following the implicit assumption that most
+              genes are not differentially expressed. Here, we present a
+              mathematical approach to normalization that makes no assumption
+              of this sort. We have found that variation in gene expression is
+              much larger than currently believed, and that it can be measured
+              with available assays. Our results also explain, at least
+              partially, the reproducibility problems encountered in
+              transcriptomics studies. We expect that this improvement in
+              detection will help efforts to realize the full potential of gene
+              expression profiling, especially in analyses of cellular
+              processes involving complex modulations of gene expression.",
+  journal  = "Scientific reports",
+  volume   =  7,
+  pages    = "42460",
+  month    =  mar,
+  year     =  2017,
+  language = "en",
+  issn     = "2045-2322",
+  pmid     = "28276435",
+  doi      = "10.1038/srep42460",
+  pmc      = "PMC5343588"
+}
