@@ -1,19 +1,19 @@
-\chapter{Expression in normal human tissues across RNA-Seq studies}
+\chapter{Gene Expression in normal human tissues across RNA-Seq studies}
 \label{ch:Transcriptomics}
 
 \vspace*{0.7in}
 
-In the perspective of paving the way towards
+To pave the way towards
 a generalised baseline expression reference for the normal human,
 in this chapter, I assess the similarity
 of the tissues sourced from different \Rnaseq\ studies and
 the general profiles of their expressed genes.
 When I started this project in 2013,
-little was then known on either the robustness or
+little was known on either the robustness or
 the shortcomings and pitfalls of \Rnaseq\ and
 its related processing.
-Since then, several studies were published assessing \Rnaseq\footnote{See
-\Cref{sec:TranssCoop}: \nameref{sec:TranssCoop}}.
+Since then, several studies were published assessing \Rnaseq\
+robustness\footnote{See \Cref{sec:TranssCoop}: \nameref{sec:TranssCoop}}.
 A few present a closely related scope to my own investigations, thus
 whenever relevant,
 I introduce and discuss my results in relation to the published ones.
@@ -782,6 +782,12 @@ Within this thesis, I use the second definition,
 \ie\ I consider genes as \gls{TS}
 as long as they display a higher tissue selectivity than a preset threshold,
 regardless how many tissues express them.
+Indeed, every study present a subset of genes
+that are expressed above 1\FPKM\
+in a sole tissue (see \Cref{fig:breadthGenesP1}).
+However, the decreasing number of these genes
+when increasing the number of considered tissues highlights
+the arbitrary relativity introduced by the study design.
 
 Even for the second definition only,
 there are many methods to characterise genes tissue-specificity in the literature.
@@ -979,7 +985,8 @@ This method uses the median, the \gls{MAD} and a cut-off to define the outliers.
 For this thesis, I have derived this test to identify conditions (\ie\ tissues)
 where the gene expression is \emph{untypical}.
 I rely on the two facts that
-most genes are expressed everywhere \mycite{ramskoldan:2009,Uhlen2015,GTExTranscript},
+most genes are expressed everywhere \mycite{ramskoldan:2009,Uhlen2015,GTExTranscript}
+(see also \Cref{fig:breadthGenesP1}),
 and they mostly present a limited variation in their expression
 through the various tissues (see \Cref{fig:HistCV4T,fig:HistCV23T}).
 Thus, when the expression of the gene is untypical
@@ -1337,6 +1344,9 @@ by collection, storage and extraction protocols.
 \item Several papers (\cite{Khang2015-qt,ruvseqComQN,Rau2014-va})
     explore the reliability of \Rnaseq\ in the context of
     \gls{DGEA} that I will not discuss.
+\item\cite{Zhuo2016-qi} explore the stable expressed genes across multiple
+    (24) \Rnaseq\ studies for \species{Arabidopsis}
+    which is why I will not discuss it further.
 \end{itemize}
 
 Unsurprisingly,
@@ -1360,24 +1370,30 @@ that are found in any two or more datasets as a follow-up study.
 
 While the expression levels are hard to translate directly from one study
 to another~\mycite{Yu2015-uh,Santos2015-rj},
-many facts have been confirmed in this thesis and the studies mentioned before,
-\eg:\begin{itemize}[nosep,topsep=0pt]
+many facts have been confirmed in this thesis and the studies mentioned before:\begin{itemize}[nosep,topsep=0pt]
         \item Tissues are clustering preferably with corresponding
             (or closely biologically related) tissues even across studies
             rather than clustering with different tissues from the same study
             (\ie\ biological signal $>>>$ technical noise due to \Rnaseq\ protocols).
         \item More recent transcriptome studies are more congruent than previous ones.
-        \item \testis\ presents the most variety of expressed genes, and
-            many of them are testis-specific only. \TK{add plots in supplement}
+        \item \testis\ presents the highest number of \gls{TS} \pcgs\
+            (see \Cref{fig:UniqExprPC1}).
+            It also presents the most variety of expressed \pcgs\ ($≥1$ \FPKM)
+            \castle, \brawand, \ibm\ and \uhlen\ studies.
+            (This extend to \gtex\ study if all detected genes (\ie\ above 0 \FPKM)
+            are considered.)
         \item \liver\ has the most robust \gls{TS} \pcgs,
             which may be explained by greater knowledge
             and better annotation than the other tissues.
         \item Most genes are expressed everywhere (ubiquitous) and
           a smaller proportion of them are expressed in a very limited set of tissues.
-        \item well-differentiated tissues have specific expression profiles
+        \item Well-differentiated tissues have specific expression profiles
             that allow using processed data \enquote{as-is} for rough comparisons
             such as sample swap checks
-            or quality controls (\eg\ \salivary\ \uhlen\ \etal\ data).
+            or quality controls, \eg\ \salivary\ in \uhlen\ \etal\ data which
+            presents low correlation with
+            \gtex\ data (see \Crefp{fig:SamedistribPearsCorr}{}) and with
+            FANTOM5 data~\mycite{Yu2015-uh}.
         \item Annotations have an essential effect on the final results.
               Thus, we ought to keep whenever possible the resources up-to-date.
 \end{itemize}
@@ -1393,13 +1409,16 @@ This is rather concerning as many studies (\eg{}~\cite{Sudmant2015-zt})
 use normalisation methods explicitly developed for \glsxtrfull{DGEA}
 for other kinds of analyses (similar to this chapter analyses).
 
+
 Thus, there is an evident need for more multi-tissue studies
 with biological replicates to refine and complete these findings.
 New strategies, notably normalisation methods, have to be also developed
 to allow the easy reuse of uniformly processed and quantified data by
 the community.
+%\cite{Roca2017-zi} have developed a new normalisation method in an attempt
+%to provide a potential alternative solution.
 Ideally, the final aim should be to provide a general human transcriptome build
 as it already exists for the genome.
 Finally, as long as the annotations are redefined and refined,
-it also means that periodic resources reprocessing may be inevitable.
+it~also~means~that~periodic~resources~reprocessing~may~be~inevitable.
 
