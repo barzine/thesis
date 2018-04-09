@@ -47,6 +47,37 @@ maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init]{biblatex} %add 
     \restorebibmacro{textcite}%
     \usebibmacro{textcite}}}
 %%%
+%%% follow code to remove the langage entry from the \fullcite
+%%% mix of https://tex.stackexchange.com/a/146438/102519
+%%% and https://tex.stackexchange.com/a/104502/102519
+%\DeclareCiteCommand{\fullcite}
+%  {\usebibmacro{prenote}}
+%  {\clearlist{language}\usedriver
+%     {\DeclareNameAlias{sortname}{default}}
+%     {\thefield{entrytype}}}
+%  {\multicitedelim}
+%  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\fullcite}
+  {\usebibmacro{prenote}}
+  {\clearlist{language}
+  \iffieldundef{doi}
+    {\iffieldundef{url}
+      {\usedriver
+       {\DeclareNameAlias{sortname}{default}}
+       {\thefield{entrytype}}}
+      {\href{\thefield{url}}
+        {\usedriver
+          {\DeclareNameAlias{sortname}{default}}
+          {\thefield{entrytype}}}}}
+    {\href{http://dx.doi.org/\thefield{doi}}{\usedriver
+     {\DeclareNameAlias{sortname}{default}}
+     {\thefield{entrytype}}}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+
+
 %\usepackage[explicit]{titlesec}
 \RequirePackage[dottedtoc,eulerchapternumbers]{classicthesis}
 %\RequirePackage{arsclassica}
