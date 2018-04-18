@@ -1,5 +1,4 @@
-\chapter{Available high-throughput normal human datasets}
-\label{ch:datasets}
+\chapter{Available high-throughput normal human datasets}\label{ch:datasets}
 
 \begin{comment}
 \setlength{\epigraphwidth}{0.8\textwidth}%0.57
@@ -20,8 +19,8 @@ I have co-authored\footfullcite{Wright-2016}.
 
 When not stated otherwise, all the computational processing of the \Rnaseq\ part
 described here have been performed by myself under the supervision of
-\alvis. I also received general feedback from Dr Mar Gonzalez-Portà,
-Dr Johan Rung and \nuno. The proteome data has been processed by \james.
+\alvis. I also received general feedback from \mar,
+\johan\ and \nuno. The proteome data has been processed by \james.
 
 
 \section{Introduction}
@@ -43,15 +42,14 @@ the proteome and finally, the comparison and integration of these two
 biological layers.
 
 
-\section{Transcriptome RNA-Seq studies}
-\label{sec:rnaseq-data}
+\section{Transcriptome RNA-Seq studies}\label{sec:rnaseq-data}
 
 For my thesis, I had to disregard a few studies as the raw data was not fitting
 the reusability point.
 Indeed, many times I came across (outdated) studies with ambiguous encoding
 format for the raw data.
 I was also unable to get the information from the original authors.
-\cite{Burge} is one example of study that I unfortunately had to dismiss.
+\citet{Burge} is one example of study that I unfortunately had to dismiss.
 
 I describe hereinafter the five transcriptomic datasets I used
 in the chronological order of their first public release.
@@ -111,8 +109,7 @@ in the chronological order of their first public release.
       \end{tabular}
 \end{sidewaystable}
 
-\subsection{Castle et al.\ dataset}
-\label{subsec:castlepresentation}
+\subsection{Castle et al.\ dataset}\label{subsec:castlepresentation}
 This dataset has been published along with the~\paper{\citetitle{castleData}}
 by~\citet{castleData} who were interested in exploring the whole RNA repertoire
 with sequencing-based technology. They primarily focused their study
@@ -140,10 +137,9 @@ protocols --- and the presence of \glspl{ncRNA} --- can affect the
 quantifications and then the final outcomes.
 
 
-\subsection{Brawand et al.\ dataset}
-\label{subsec:brawandpresentation}
-In the corresponding article entitled~\paper{\citetitle{VTpaper}},%
-~\citet{VTpaper} focused their interest on the
+\subsection{Brawand et al.\ dataset}\label{subsec:brawandpresentation}
+In the corresponding article entitled~\paper{\citetitle{VTpaper}},
+\citet{VTpaper} focused their interest on the
 evolution of the mammalian transcriptomes\footnote{While there were existing
 studies on the matter, the sequencing approach was then creating new perspectives.}.
 
@@ -163,10 +159,9 @@ I personally retrieved the human data from
 datasets from \gls{GEO} on a weekly basis.}.
 
 
-\subsection{Illumina Body Map 2.0 (IBM)}
-\label{subsec:ibmpresentation}
+\subsection{Illumina Body Map 2.0 (IBM)}\label{subsec:ibmpresentation}
 This dataset has been first created in 2010 and released in
-2011\footnote{See:~\citetitle{ibmEnsembl} -~\cite{ibmEnsembl}} by Illumina
+2011\footnote{See~\citetitle{ibmEnsembl} -~\cite{ibmEnsembl}} by Illumina
 mostly to advertise its most recent technology improvement at that time:
 the paired-end sequencing. Actually, until then, all the sequencing was done
 from only one end of the \gls{DNA} or \gls{cDNA} fragments.\footnote{From that
@@ -187,8 +182,8 @@ Here, however, each tissue has been sequenced once with a single-end protocol
 and once with a paired-end one to compare them together.
 
 The sequencing was performed with an Illumina HiSeq 2000, and the reads were
-released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}), from where I
-retrieved the single-end and paired-end mono-tissue samples.
+released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}),
+from where I have retrieved the single-end and paired-end mono-tissue samples.
 
 I use this dataset despite the lack of biological replicates.
 Indeed, for an extended time,
@@ -228,14 +223,13 @@ or the number of samples (see \Cref{tab:Lib5DF}). Therefore, its growing
 number of references is unsurprising.
 
 
-\subsection{GTEx data}
-\label{subsec:gtexPresentation}
+\subsection{GTEx data}\label{subsec:gtexPresentation}
 The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the \gls{NIH}
 Common Fund and aims to establish, in its authors own words,
 \textquote{a resource database and associated tissue bank for the study of the
 relationship between genetic variation and gene expression
-and other molecular phenotypes in multiple reference tissues}. The project was first
-explained in a paper from the~\cite{GTEx2013}. It consists to quickly collect
+and other molecular phenotypes in multiple reference tissues}.
+The project was first explained in~\citet{GTEx2013}. It consists to quickly collect
 many tissues from postmortem donors so genotype-tissue expression analyses could
 be done, notably \gls{eQTL} variants studies which study the modulation
 of \gls{RNA} expression in function of \glspl{SNP}. The results of the
@@ -311,7 +305,7 @@ The raw spectra were retrieved from ProteomeXchange via the repository
 While their effort to generate technical high quality raw data was highly
 appraised by the scientific community, their processing
 (identification and quantification) methods were
-criticised (see~\mycite{Ezkurdia2014-qx,Deutsch2015}).
+criticised (see~\citet{Ezkurdia2014-qx,Deutsch2015}).
 Thus, for this thesis I only use
 quantification that \james\ provided to me after reprocessing the dataset
 from the raw spectra.
@@ -351,7 +345,7 @@ In final, there are 1,618 \gls{CID} profiles which counts for 13 million of raw
 \gls{CID} spectra from \gls{LTQ}-\orbi\ instrument.
 
 While this data was never published on its own, it has been used in different
-studies (\eg~\mycite{KusterData}).
+studies (\eg~\cite{KusterData}).
 
 The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
 
@@ -376,7 +370,7 @@ for the proteomic data.
 
 In fact, each study has been originally processed with different protocols,
 \eg\ \gtex\ data~\mycite{GTExTranscript} and \castle\
-data \mycite{Krupp2012}. While the \egxa\ reprocesses raw data through the same
+data~\mycite{Krupp2012}. While the \egxa\ reprocesses raw data through the same
 methods and has nowadays quantification for most of the aforementioned
 datasets\footnote{\egxa\ is still lacking the \castle.},
 these were still the products of different protocols\footnote{Since
@@ -394,11 +388,11 @@ contamination~\mycite{contaminationRNAseq},
 quality controls~\mycite{qualityRNAseq},
 mapping and quantifications pipelines~\mycite{Fonseca2014}
 have great effects on the final quantification. Lastly, normalisation
-methods also greatly impact the final expression figures~\mycite{Dillies2013},%
-~\mycite{normSigCancerHelp}. For all these reasons,
+methods also greatly impact the final expression figures~\mycite{Dillies2013,%
+normSigCancerHelp}. For all these reasons,
 I decided to  reprocess all transcriptomic datasets with the same exact protocol
 as the first step of my study.
-Recently,~\cite{Danielsson2015-cn} compare results based on prepublished data and
+Recently,\citet{Danielsson2015-cn} compare results based on prepublished data and
 reprocessed ones and conclude that using a single processing pipeline ensures better results.
 
 Likewise, there are various tools and many parameters for each processing step
@@ -414,7 +408,7 @@ files to the quantification matrices on which this thesis analyses are based.
 protocol I used.
 
 \begin{figure}
-    \includegraphics[scale=0.75]{datasets/pipelineTrans.pdf}\centering
+    \includegraphics[scale=0.75]{datasets/pipelineTrans1.pdf}\centering
     \caption[General steps for processing the transcriptomic
     data]{\label{fig:pipelineTrans}\textbf{General steps for processing the
     transcriptome.} The pipeline \irap\ integrates
@@ -645,7 +639,7 @@ datasets in a consistent and optimal manner. I summarise this protocol
 in \Crefp{fig:pipelineProt}{}
 and in the following \cref{subsub:spectralProcessing,subsub:seqDBseeking,%
 subsub:spectralIDDBsearch,subsub:resultsFiltering}.
-See~\mycite{Wright-2016,Weisser2016-pipeline} for more details.
+See~\citet{Wright-2016,Weisser2016-pipeline} for more details.
 
   \begin{sidewaysfigure}
       \includegraphics[scale=0.75]{datasets/pipelineMS-2.pdf}\centering
@@ -747,7 +741,7 @@ the precursor tolerance was set to 10 \gls{ppm};
 fragment tolerance for \gls{HCD} spectra to $0.02$ \gls{Da} and
 to $0.5$ \gls{Da} for \gls{CID} spectra;
 the allowed missed cleavages limit to $3$; several amino acid modifications were
-also used for the research (see~\mycite{Wright-2016}).
+also used for the research (see~\citet{Wright-2016}).
 
 The research results were converted into mzTab formatted files and uploaded along
 with the mzML spectra and FASTA search database to \gls{Pride}
@@ -808,7 +802,7 @@ If the results may vary for individual genes,
 the overall outcomes are congruent together hence
 supporting the robustness of the findings presented in this thesis.
 In addition, the products of these pipelines are in agreement with the original
-studies findings --- apart for~\mycite{PandeyData}.
+studies findings --- apart for~\citet{PandeyData}.
 
 While we are in the era of \emph{data deluge} and \emph{big data},
 the number of tissue overlaps for independent normal human studies is surprisingly small.
