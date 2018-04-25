@@ -1,67 +1,166 @@
-\chapter{Integration of Transcriptomic and Proteomic data}
-\label{ch:Integration}
-The work presented in this chapter was done in collaboration with \james,
-Principal Bioinformatician within the Proteomics and Mass Spectrometry unit of the
-Wellcome Trust Sanger Institute and \nuno. \james\ performed all the
-identification and quantification of the proteins, which also includes the
-implementation of the new method of protein quantification presented in
-the~\Cref{subsec:IntegrationNewMethQuant}. \nuno\ performed the quality
-control, the mapping and the quantification of the \dataset{Gtex} data.
-I have completed the quality control, the mapping and the quantification of the
-\uhlen\ \etal\ dataset. I have also performed
-all the data analysis and integration under the supervision of \alvis\
-(EMBL-EBI) and \jyoti\ (Wellcome Trust Sanger Institute).
+\chapter{Integration of Transcriptomic with Proteomic (MS) data}\label{ch:Integration}
+After assessing the similarity of the human gene expression profiles
+across various tissues and \Rnaseq\ studies,
+my next step is to review how these gene expression profiles
+compare their corresponding protein ones.
 
-A manuscript describing this work is being prepared by the authors as mentioned above.
+I first briefly compare the three proteome datasets introduced
+in \Cref{ch:datasets}.
 
-Furthermore, while this thesis redaction, \citet*{SciRep2016} published
-\citetitle{SciRep2016} in \emph{Scientific Reports}.
+The work presented in this chapter was done in collaboration with \james\
+who has implemented the new method of protein quantification presented in
+the~\Cref{subsec:IntegrationNewMethQuant}.
+I have performed all the data analysis and integration under the supervision
+of \alvis\ and \jyoti.
+A manuscript describing this work is being prepared.
 
-As their work is highly similar to my own, particularly as they are using data
-from the \gtex\ consortium and from the Pandey laboratory, I will describe the
-paper's relevant findings and discuss them jointly with my own.
+Furthermore, while this thesis redaction,
+\citet{Franks2017-bp} and
+\citet{SciRep2016}
+published closely related studies to my work,
+particularly as they are using data that I have included in my analyses
+(\eg\ \gtex\ transcriptome data or \pandey\ proteome data),
+I will describe their relevant findings and discuss them jointly with my own.
 
-\section{Introduction}
-\label{sec:IntegrationIntro}
+\derivativeWork{}
+\begin{itemize}[topsep=0pt,nosep]
+    \item (poster) CSHL  Biology of Genomes 2015 --- A feasibility study:
+        Integration of independent human \Rnaseq\ and proteomic datasets
+\end{itemize}
 
-The core of central dogma of molecular biology --- \ie\ one \DNA\ (coding) gene
-will be transcribed as one \mRNA\ transcript and will be in turn translated in
-one protein --- still holds true even though we now know the truth is not as
-linear as we thought first. Many regulation processes are implied before
-and after the transcription and translation steps.
-\Cref{fig:dogma} is the reconstruction by~\citet{Crick:1958} of
-what was conceived circa 1958: the solid lines present the proven modes of
-information transfers, the dashed ones are the ones that were postulated but
-have yet to be established. To update this figure to our current knowledge, the line
-starting from the RNA to the DNA should be a solid one.
+\clearpage\
 
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.6]{integration/dogma}\centering
-    \caption[Central dogma of molecular biology proposed by F. Crick circa 1958]
-    {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
-    F. Crick circa 1958.} The solid lines are proved direct transfer, the dashed
-    ones the still have to be established. Nowadays, we know that the arrow from RNA
-    to DNA should be a solid one, even though this happens on particular occasions.}
+
+On the subject of comparing proteome and transcriptome data,
+\citet{Uhlen:2016} outline in their review
+one related on-going debate in the literature:
+whereas good correlations should be observed (or not).
+For a long time, it was implicitly assumed that
+for similar conditions there should be a proportional relationship
+between Transcriptomics and Proteomics
+and that the limiting factors were technological~\mycite{Vogel2012-sq}.
+In fact, \citet{Ramakrishnan2009-lv} have reported
+that \mRNAs\ abundance are roughly sufficient to predict the protein
+presence or absence from a sample.
+\citet{Vogel2010-ux} argue that two-thirds of the human protein abundance variation
+can be explained by \mRNA\ estimations.
+This proportion seems to vary according to species (see~\citet{Wang2014-av} for
+a short overview).
+Mostly, post-transcriptional modifications and technical noise
+are (still) perceived as the main probable sources
+of \mRNA/protein concentration discrepancies~\mycite{Vogel2012-sq,Plotkin2010-ug}.
+Nevertheless, early investigations found low or no correlation
+between the observed expression profiles of the \mRNAs\ and
+proteins~\mycite{Anderson1997-le,Tian2004-hh,Gry2009-zv,Lundberg2010-gk}.
+Fascinatingly, this observation is unrestricted to human or
+even mammals~\mycite{Maier2009-pb,Maier2011-tz,Palmblad2013-ji,Freiberg2016-fu}.
+Many other cell studies have also lacked to show high correlation
+between expression of the two biological layers~\mycite{Chen2002-ob,Pascal2008-gh,%
+Gygi1999-fl,Yeung2011-sl,Ghazalpour2011-nb}.
+Additionally,
+\citet{schwanhausserglobal:2011} presented
+(in the original publication version)
+rather modest correlations ($r<0.61$)
+for their encompassing and quite cleverly designed experiment.
+Their model was comprising absolute \mRNAs\ and proteins levels,
+and, for more than 5,000 genes,
+their half-lives, and the transcription and translation rates.
+Overall, their research highlighted that
+the best predictor of protein levels in steady state cells
+is the translational efficiency,
+while only about 40\% of protein variations are explained by \mRNAs\ levels.
+
+This is probably why
+following studies jointly done on the transcriptome
+and the proteome
+have mostly shifted their focus
+from trying to link their actual expression
+to comparing qualitative attributes
+such as the presence or absence of given proteins and related \mRNAs\
+in a specific condition or tissue~\mycite{Santos2015-rj,Freiberg2016-fu,Uhlen2015}
+or if they are differential expressed
+in the same set of conditions~\mycite{Varemo2015-uk}.
+A few recent studies however are reporting improved correlations.
+\citet{Li2014-ai} propose a rescaling method
+to correct the general underestimation of protein abundance by label-free \ms.
+Although their approach allows to improve correlations observed
+in previous studies~\mycite{schwanhausserglobal:2011},
+the overall Pearson correlations
+between the \Rnaseq\ and label-free \ms\ data
+remain limited ($r≤0.45$).
+In the meanwhile,
+the authors of the original paper~\mycite{schwanhausserglobal:2011}
+realised that a computational mistake happen at their scaling step
+and that the true Pearson correlations are about $0.64$~\mycite{Schwanhausser2013-et}.
+
+
+\citet{Marguerat2012-sn} report higher \mRNAs/proteins Pearson correlations
+(up to )
+in yeast which are based on the $\log_{2}$-scales of
+their respective copies per cell.
+They have measured the \mRNAs\ and the proteins with great care;
+their \Rnaseq\ libraries,
+which were prepared with strand-specific protocols (see \Crefu{strand-specific}),
+are recalibrated based on 49 \mRNAs\
+for which absolute data was acquired from cell extracts spiked with
+known quantities of external \RNA\ controls;
+their protein samples were also recalibrated:
+
+
+Although these correlations are around
+$0.4$ (Pearson correlation coefficient).
+
+
+There are different ways to integrate transcriptomic and proteomic data\label{sec:IntegrationPossibleApproaches}.
+
+\begin{figure}[!htbp]
+    \includegraphics{integration/VisualExplaination}\centering
+    \caption[Integration approaches used]{\label{fig:visualexp}\textbf{Integration
+    approaches used}
+    }
+\end{figure}
+see \cref{fig:visualexp}
+
+
+Sequencing-based technologies, like \Rnaseq,
+enhanced the assessment of transcripts greatly.
+While true absolute quantification is not reached yet,
+there is not saturation any more or, more importantly, out-of-scope issues as
+they could have been observed with microarrays. In theory, on the one hand, with
+enough sequencing depth, every transcript expressed in a cell or tissue could be
+caught by high-throughput sequencing, and in the other hand, two transcripts with
+different level of expression would be distinguished whereas they are very highly
+expressed or not. If there is a difference in their level of expression, this
+difference should be caught.
+
+High-throughput technologies for proteomics are still lacking
+when compared to sequencing technology.
+Mass spectrometry (\ms) is however one of the most accurate ways to quantify
+proteins abundance. However, often the top most abundant proteins can
+amount to more than half of the signal collected for a sample. Therefore, the
+identification (and hence quantification) of the scarcer proteins is more laborious.
+
+
+As recently, there were two big releases of Proteomics studies of normal human
+tissues, we attend to found out if the lesser correlations reported at cell levels would
+hold at tissue level.
+Our findings are actually supporting the first assumption; there is a good correlation
+between the transcriptomic and proteomic data, even though all the samples used in
+the study are all completely independent. Moreover, there is a high consistency
+between tissue-specific proteins and tissues-specific genes.
+
+\section{Introduction}\label{sec:IntegrationIntro}
+
+
+Intro should be about the proteome that is included for integration.
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.5]{proteomics/VennDiagProtCond.pdf}\centering
+    \caption[Distribution of unique shared tissues between
+    the 3 MS-based proteomic studies]{\label{VennDiagProt3}\textbf{Distribution
+    of unique and shared tissues between the 3 \ms{}-based proteomic studies.}}
 \end{figure}
 
-However, as we still have to prove that proteins can be produced directly
-from \DNA\footnote{which seems pretty unlikely to me},
-it is assumed that translation creates each protein,
-hence studying
-transcriptomics and proteomics together for the same conditions should give us
-insights on these regulatory processes.
-
-Whereas it was implicitly assumed for a long time that for similar conditions
-there should be a proportional relationship between transcriptomics and
-proteomics, many studies\
-\TK{add references, see TAC report 3}
-done in cells have failed to show a high correlation between the two biological
-layers.
-From then, while there are still studies done jointly on transcriptomics and proteomics,
-the focus has considerably shift either on the presence or absence of
-a protein/transcript in a specific condition or if both transcript and protein
-are differentially expressed between two conditions in the same way.
-Nowadays, there are not many efforts to directly link their actual expression.
 
 Previous studies lack to show a correlation between proteomics and
 transcriptomics above $0.5$ (Pearson correlation coefficient).
@@ -70,8 +169,8 @@ overall expression, a natural assumption is that tissue samples should be driven
 by their function first. As such we expect that what makes a liver a liver and
 what makes a heart a heart would overcome most of the technical variability.
 
-In fact, here, even though I have only access to independent data, the average
-Pearson correlation per tissue is above $0.5$
+In fact, here, even though I have only access to independent data,
+the average Pearson correlation per tissue is above $0.5$
 $[$min: $0.45$ (\Oesophagus); max: $0.666$ (\Liver)$]$.
 
 In 2014, for the first time,
@@ -86,110 +185,10 @@ these proteome datasets have not the same scope of tissues.
 However, the overlap of
 studied tissues is enough to draw an overview of the current technology.
 
-In their review,~\citet{Uhlen:2016}, the authors outline one on-going debate
-in the literature, which could be formulated whereas we should observe (or not)
-good correlations between proteomic and transcriptomic data.
-Indeed, first investigations found low or no correlation. More recent
-studies reported improved correlations although these correlations were around
-$0.4$ (Pearson correlation coefficient). Such discrepancies could be explained
-partially by the difference of the technology for proteomic and transcriptomic
-assays.
-Sequencing-based technologies, like \Rnaseq,
-enhanced the assessment of transcripts greatly.
-While true absolute quantification is not reached yet,
-there is not saturation any more or, more importantly, out-of-scope issues as
-they could have been observed with microarrays. In theory, on the one hand, with
-enough sequencing depth, every transcript expressed in a cell or tissue could be
-caught by high-throughput sequencing, and in the other hand, two transcripts with
-different level of expression would be distinguished whereas they are very highly
-expressed or not. If there is a difference in their level of expression, this
-difference should be caught.
-
-Unfortunately, technology on the proteomic side is not as advanced yet.
-Mass spectrometry is still one of the most accurate ways to quantify the
-abundance of proteins. However, often the top 25 most abundant proteins can
-amount to more than half of the signal collected for a sample. Therefore, the
-identification (and hence quantification) of the scarcer proteins is more laborious.
-\TK{find reference -> ask Jyoti}
 
 These technical divergences and specificities call for an underlying premise:
 when is a specific protein or transcript considered as expressed in a dataset?
 In a particular tissue?
-
-\begin{comment}
-\section{Expressed or not expressed}
-\label{sec:IntegrationExpressedOrNot}
-While it can seem as a trivial concept and might be overlook, whether a specific
-molecule is expressed --- or not --- in a given condition, can actually have
-an extensive impact on the results of the analyses, particularly when integrating
-proteome and transcriptome together.
-
-Indeed, the Pearson correlation is very sensitive to outliers and null values,
-\TK{Add reference}
-hence it is important that the data used for the analysis is meaningful in
-its whole.
-
-\begin{figure}[!htbp]
-\includegraphics[scale=0.8]{integration/expressedNotExp.pdf}\centering
-    \caption[Expressed or not: several cases illustrated]
-    {\label{fig:DefineExpression}\textbf{Expressed or not: several cases
-    illustrated.}\smallbreak{}Genes as \emph{gene 1} are unequivocal: they have been
-    detected in all the different tissues. Genes that have been quantified in
-    \emph{some} of the conditions are, in principal, detectable with the
-    protocol of sampling and quantification used for the assay.
-    For these genes, when no signal is collected, I assume this is a true $0$.
-    The genes without any quantification
-    in any tissue, \eg\ gene 4, are discarded from the remaining analysis as
-    I can't state
-    either there are truly absent from the biological sample or it has to due
-    to the protocol at use; they are \emph{undefined}. The same approach is used
-    for the transcriptome and the proteome.}
-\end{figure}
-
-\subsection{The undefined}\KOMAoptions{parskip=false}
-\label{subsec:IntegrationExpressedOrNot-undefined}
-If a protein or transcript is never found in any of the samples of a dataset,
-then I considered that we can not determine if the protein or transcript was
-either truly not expressed or, for any reason, was not capture while the library
-preparation or the identification/quantification steps. Hence, those are
-excluded from the analyses as I can not resolve precisely if this is a
-technical artefact or a biological truth. This case is illustrate by the row
-circled in red in~\cref{fig:DefineExpression}.
-
-\subsection{Expression in a dataset}
-\label{subsec:IntegrationExpressedOrNot--expDataset}
-By contrast, if a protein or a transcript is expressed in some samples of the
-dataset, then, whenever no expression was recorded in the other
-samples, I consider that the expression of the considered macromolecule is truly
-null for those samples.
-
-\subsection{Expression within a sample}
-Due to the technical (and biological) differences between proteomics and
-transcriptomics, I use different thresholds to define the expression of a protein
-or a transcript.
-
-\subsubsection{Expressed protein}
-On the proteomic side, I consider that a protein is expressed if it has been
-identified and quantified. In other words, if the expression value of a protein
-is greater than zero in a sample, I consider it as expressed.
-
-\subsubsection{Expressed transcript}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
-It is a bit more complex on the transcriptomic side as there can be
-\TK{find reference on translational noise in RNAseq}
-translational noise. While this noise could be evaluate by empirical methods for
-each \Rnaseq\ dataset, there is a widespread threshold used in the literature:
-$1$ \gls{FPKM} (or \gls{RPKM}). In fact,~\citet{Hebenstreit:2011} showed in
-their study \paper{RNA sequencing reveals two major classes of gene expression
-levels in metazoan cells}, that to be translated into a protein, a \mRNA\ should
-present an expression at least equals to $1$ \gls{RPKM}.
-
-As our current study focuses on the comparison of proteomic and transcriptomic
-data, all the analyses have been run with this threshold. It is worth mentioning
-that parts of the analyses have also been done either without
-any threshold (\ie\ the same definition used with the proteins has been applied)
-or with a threshold of $5$ \glspl{FPKM}.
-
-\end{comment}
 
 \subsection{Limitations of the current study}
 Apart from the most obvious limitation: the transcriptome and the proteome used in
@@ -215,19 +214,7 @@ In other words, if the proteins and their corresponding transcripts are not
 expressed at least in one sample in each dataset, they are unfortunately excluded
 from many many steps of the analysis workflow.
 
-\section{Possible integration approaches}
-\label{sec:IntegrationPossibleApproaches}
-
-\begin{figure}[!htbp]
-    \includegraphics{integration/VisualExplaination}\centering
-    \caption[Integration approaches used]{\label{fig:visualexp}\textbf{Integration
-    approaches used}
-    }
-\end{figure}
-see \cref{fig:visualexp}
-
-\section{Data}
-\label{sec:IntegrationData}
+\section{Data}\label{sec:IntegrationData}
 
 \subsection{Transcriptome}
 For this study, the processed \dataset{Uhlén \etal} and \dataset{Gtex} datasets
@@ -379,8 +366,9 @@ the available transcriptome data is due to technology or the tissue nature.
 
 In the same fashion as the transcriptomic data,
 the proteomic data have been reprocessed before the study
-by \james\ from the raw files he has downloaded from ProteomeXchange
-\citep{ProteomeXchange:2014} via the PRIDE database \citep{Pride:2016}.
+by \james\ from the raw files he has downloaded
+from ProteomeXchange~\mycite{ProteomeXchange:2014}
+via the PRIDE database~\mycite{Pride:2016}.
 \TK{Ask James for the methods}
 
 At first, the quantification used for the proteomic data was following
@@ -404,8 +392,23 @@ with a subset of the tissues, out of context, the number of quantified proteins
 could seem a bit low compared to the original study.}.
 
 
+\subsection{Limited availability of tissues overlaps between proteomes
+or between proteomes and transcriptomes}
+
+
 \section{Results}
 \label{sec:IntegrationResults}
+
+\subsection{Disparate universe: High-throughput proteomics have
+a greater variability of detection and quantification
+than high-throughput transcriptomics}
+
+\subsubsection{About half of the quantified proteins for a given tissue
+are found in different datasets}
+
+\subsubsection{Technical variability seems to prevail over biological signal: correlations between samples from a same tissue are globally lesser
+than correlation between samples from a same study}
+
 
 \subsection{New quantification method for the proteomic data}
 \label{subsec:IntegrationNewMethQuant}
@@ -783,7 +786,7 @@ expression breadth}
 determine if the closeness of two tissues are conserved between proteomic and
 transcriptomic tissues.}
 
-\subsection{Tissue clusters differs between Proteomic and Transcriptomic}
+\subsection{Tissue clusters differ between Proteomic and Transcriptomic}
 \begin{figure}[!htbp]
 \includegraphics[scale=0.8]{integration/heatmapPairs}\centering
     \caption[Clusters of tissues based on number of proteins or \mRNAs\ shared
@@ -963,10 +966,9 @@ particularly as the proteome and the transcriptome have completely different
 biological sources.
 
 
-
 People look at the highest and lowest expressed genes (in one condition, or very
-similar conditions) for the correlation (which is supported by the scatter plot
-(indeed, it seems that the greatest bulk is closely correlated) {\Large BUT} if we
+similar conditions) for the correlation (which is supported by the scatter plot:
+indeed, it seems that the greatest bulk is closely correlated) {\Large BUT} if we
 want to unlock a deeper understanding of the regulation of the translation, we need
 to compare multiple conditions (as all the pairs won't behave in the same fashion
 depending which is the considered condition) and more importantly it's it not
@@ -1027,3 +1029,23 @@ So big need of an external/outliers sample(s) or external source.
 
 
 %As the \mRNAs\ are expressed in more tissues in general, I tried to take account for this in the following analysis I run.
+
+
+
+Possible explanation of the anticorrelations may be due
+at the number of transcript or their definition or some other
+attributes that can be found in
+\textbf{APRIS} (Apris transcript codant (or content?)) (suggested by Nuno).
+
+
+From~\citet{Marguerat2012-sn} protein copies exceed \mRNA\ ones a lot.
+And if proteins not detected for \mRNAs, proteins that are tightly regulated
+(but they have different states where they can check the presence of the proteins
+in the data in general).
+
+From~\citet{Vogel2012-sq} which is citing~\citet{schwanhausserglobal:2011}
+RNAs and proteins from mammalian metabolic genes tend to be very stable
+and (citing~\citet{Vogel2010-ux}) have high protein-per-mRNA ratios.
+
+\ms\ label-free absolute quantification proteomics
+underestimate a large dynamic range of proteins~\mycite{TOP3isbetter}.
