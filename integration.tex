@@ -33,7 +33,7 @@ I describe and discuss together my results and theirs whenever relevant.
 
 \clearpage\
 
-\vspace*{-0.15in}
+%\vspace*{-0.15in}
 
 On the subject of comparing proteome and transcriptome data,
 \citet{Uhlen:2016} outline in their review
@@ -75,15 +75,15 @@ the best predictor of protein levels in steady state cells
 is the translational efficiency,
 while \mRNAs\ levels explain only about 40\% of protein variations.
 
-This is probably why
-following joint transcriptome/proteome studies
-have mostly shifted their focus
-from trying to link their actual expression
-to comparing qualitative attributes
-such as the presence or absence of given proteins and related \mRNAs\
-in a specific condition or tissue~\mycite{Santos2015-rj,Freiberg2016-fu,Uhlen2015}
-or if they are differentially expressed
-in the same set of conditions~\mycite{Varemo2015-uk}.
+These mitigated results probably explain the focus shift of
+the subsequent joint transcriptome/proteome studies.
+While previous efforts were about linking the actual expression levels,
+more recent studies primarily compare qualitative attributes
+of given proteins and related \mRNAs,
+such as their presence or absence in a specific condition
+or tissue~\mycite{Santos2015-rj,Freiberg2016-fu,Uhlen2015}
+or their differential expression profiles across the same set of conditions
+to detect any discrepancy~\mycite{Varemo2015-uk}.
 A few recent studies, however, are reporting improved correlations.
 \citet{Li2014-ai} propose a new rescaling approach
 to correct the general underestimation of protein abundance by label-free \ms.
@@ -95,7 +95,7 @@ are still considered moderate ($r^2≤0.41,\ie~r≤0.64$).
 In the meanwhile,
 the authors of the original paper~\mycite{schwanhausserglobal:2011}
 discovered a computational mistake in their protein scaling step
-and confirmed that the true Pearson correlations are
+and confirmed that the correct Pearson correlations are
 about $0.64$ ($r^2≤0.41$)~\mycite{Schwanhausser2013-et}.
 In the interval,
 \citet{Marguerat2012-sn} report $\log_{2}$-scale based
@@ -103,7 +103,7 @@ In the interval,
 Steady-state cells present an equivalent level of correlation ($r^2=0.36,
 \ie~r=0.6$),
 while cells in proliferating state are better correlated ($r^2=0.55, \ie~r=0.74$).
-This study measures \mRNA\ and corresponding protein copies per cell
+\citet{Marguerat2012-sn} measures \mRNA\ and corresponding protein copies per cell
 with great care;
 strand-specific \Rnaseq\ libraries (see \Crefu{strand-specific}) were
 recalibrated based on 49 \mRNAs\
@@ -144,42 +144,27 @@ the non-diseased human proteome at tissue level
 were published~\mycite{PandeyData,KusterData}.
 These are the MS studies that
 I present in \Cref{ch:datasets} (see \Crefu{sec:ProteoData}).
+For the first time,
+there is an unparalleled availability of large-scale tissue studies
+both at the transcriptomic and proteomic layers to compare and integrate together.
+It is worth exploring if the observations made at cell level
+extend to the tissue one.
+Even though the data are independent
+(collected from various individuals, prepared,
+and characterised (\ie\ either sequenced (\RNAs) or ionised/fragmented (proteins))
+by different laboratories),
+they may help to provide general estimations
+of the relationship between the transcriptome and proteome at tissue level.
+In fact, the transcriptome datasets present high Pearson correlations
+(median $r_{\setOneMath}=0.75; r_{\setTwoMath}=0.85$)
+and higher Spearman ones ($\rho_{\setOneMath}=0.88 ; \rho_{\setTwoMath}=0.93$)
+as I show in \Cref{ch:Transcriptomics}.
+Additionally, the literature has reported that
+the proteome is more conserved than the transcriptome
+(across individuals and species)~\mycite{Laurent2010-rg}.
 
-
-
-Until now, there was no such availability of large-scale and extensive tissues
-both on transcriptomic and proteomic layers to jointly study the genes
-translation into proteins across a substantial set of tissues
-at the same time.
-
-While all the available data sets have been collected from different individuals,
-and then prepared and characterised (\ie\ sequenced for the transcriptome samples
-or ionised/fragmented for the proteome)
-in independent laboratories,
-the idea is to see how the findings at cells levels are `translatable' at tissue
-level.
-
-Alike the \uhlen\ \etal\ and the \gtex\ studies,
-these proteome datasets have not the same scope of tissues.
-However, the overlap of
-studied tissues is enough to draw an overview of the current technology.
-
-We attend to found out if the lesser correlations reported at cell levels would
-hold at tissue level.
-Our findings are actually supporting the first assumption; there is a good correlation
-between the transcriptomic and proteomic data, even though all the samples used in
-the study are all completely independent. Moreover, there is a high consistency
-between tissue-specific proteins and tissues-specific genes.
-
-
-\citet{Edfors2016-kv} have found that cell lines derived from a tissue don't present
-the same (absolute) amount of proteins than tissue samples and warned to be cautious
-if cell lines are used as model for normal tissue.
-
-
-
-
-There are different ways to integrate transcriptomic and proteomic data\label{sec:IntegrationPossibleApproaches}.
+There are different ways to integrate transcriptomic and proteomic data.
+\Cref{fig:visualexp}
 
 \begin{figure}[!htbp]
     \includegraphics{integration/VisualExplaination}\centering
@@ -187,53 +172,7 @@ There are different ways to integrate transcriptomic and proteomic data\label{se
     approaches used}
     }
 \end{figure}
-see \cref{fig:visualexp}
 
-
-
-
-
-Intro should be about the proteome that is included for integration.
-
-\begin{figure}[htpb]
-    \includegraphics[scale=0.5]{proteomics/VennDiagProtCond.pdf}\centering
-    \caption[Distribution of unique shared tissues between
-    the 3 MS-based proteomic studies]{\label{VennDiagProt3}\textbf{Distribution
-    of unique and shared tissues between the 3 \ms{}-based proteomic studies.}}
-\end{figure}
-
-In fact, here, even though I have only access to independent data,
-the average Pearson correlation per tissue is above $0.5$
-$[$min: $0.45$ (\Oesophagus); max: $0.666$ (\Liver)$]$.
-
-
-
-These technical divergences and specificities call for an underlying premise:
-when is a specific protein or transcript considered as expressed in a dataset?
-In a particular tissue?
-
-Apart from the most obvious limitation: the transcriptome and the proteome used in
-this study have been collected from independent human donors, there are
-two other main constraints I would like to highlight.
-
-First, there is a lack of samples per tissue on the proteomic side of the study.
-
-On one hand, we have the \uhlen\ \etal\ data, which have \emph{technical}
-and \emph{biological} replicates for each tissue, and the \gtex, which
-provides many \emph{biological} replicates per tissue. On the other hand, no
-replicate was produced in the proteomic dataset (\pandey\ \etal) used
-in this study. Hence, the expression found in \emph{one} library is
-\textit{de facto} the proteomic expression for that tissue.
-This set-up is far from ideal.
-
-Secondly, while I have compared the list of \emph{undefined} transcripts and
-proteins (between \dataset{Pandey \etal} and \dataset{Uhlén \etal} data and
-between \dataset{Pandey \etal} and \dataset{Gtex}), I have done the bulk of the
-analyses on pairwise (or three-way) \emph{defined} protein and \mRNA(s).
-
-In other words, if the proteins and their corresponding transcripts are not
-expressed at least in one sample in each dataset, they are unfortunately excluded
-from many many steps of the analysis workflow.
 
 \section{Data}\label{sec:IntegrationData}
 
@@ -415,6 +354,69 @@ could seem a bit low compared to the original study.}.
 
 \subsection{Limited availability of tissues overlaps between proteomes
 or between proteomes and transcriptomes}
+
+Alike the \uhlen\ \etal\ and the \gtex\ studies,
+these proteome datasets have not the same scope of tissues.
+However, the overlap of
+studied tissues is enough to draw an overview of the current technology.
+
+We attempt to found out if the lesser correlations reported at cell levels would
+hold at tissue level.
+Our findings are actually supporting the first assumption; there is a good correlation
+between the transcriptomic and proteomic data, even though all the samples used in
+the study are all completely independent. Moreover, there is a high consistency
+between tissue-specific proteins and tissues-specific genes.
+
+
+
+
+
+
+
+
+
+
+Intro should be about the proteome that is included for integration.
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.5]{proteomics/VennDiagProtCond.pdf}\centering
+    \caption[Distribution of unique shared tissues between
+    the 3 MS-based proteomic studies]{\label{VennDiagProt3}\textbf{Distribution
+    of unique and shared tissues between the 3 \ms{}-based proteomic studies.}}
+\end{figure}
+
+In fact, here, even though I have only access to independent data,
+the average Pearson correlation per tissue is above $0.5$
+$[$min: $0.45$ (\Oesophagus); max: $0.666$ (\Liver)$]$.
+
+
+
+These technical divergences and specificities call for an underlying premise:
+when is a specific protein or transcript considered as expressed in a dataset?
+In a particular tissue?
+
+Apart from the most obvious limitation: the transcriptome and the proteome used in
+this study have been collected from independent human donors, there are
+two other main constraints I would like to highlight.
+
+First, there is a lack of samples per tissue on the proteomic side of the study.
+
+On one hand, we have the \uhlen\ \etal\ data, which have \emph{technical}
+and \emph{biological} replicates for each tissue, and the \gtex, which
+provides many \emph{biological} replicates per tissue. On the other hand, no
+replicate was produced in the proteomic dataset (\pandey\ \etal) used
+in this study. Hence, the expression found in \emph{one} library is
+\textit{de facto} the proteomic expression for that tissue.
+This set-up is far from ideal.
+
+Secondly, while I have compared the list of \emph{undefined} transcripts and
+proteins (between \dataset{Pandey \etal} and \dataset{Uhlén \etal} data and
+between \dataset{Pandey \etal} and \dataset{Gtex}), I have done the bulk of the
+analyses on pairwise (or three-way) \emph{defined} protein and \mRNA(s).
+
+In other words, if the proteins and their corresponding transcripts are not
+expressed at least in one sample in each dataset, they are unfortunately excluded
+from many many steps of the analysis workflow.
 
 
 \section{Results}
@@ -1003,12 +1005,15 @@ which would be found would be consistent with the technology and not just a flin
 Which is a weakness of the data (not the same people) create a force (what is found
 is probably universal). (We can't say anything about the non-findings!!!)
 
-This ``demarche'' even more important in case that you study the tissue specific
-(or condition) specific pair, they globally the more correlated (Are they actually???)
+This approach is even more important in case that you study the tissue specific
+(or condition) specific pair, they globally the more correlated. (Are they actually???)
 
 So big need of an external/outliers sample(s) or external source.
 
 
+\begin{comment}
+\TK{Proteome sensé être plus conserver que le RNA : citation}
+\end{comment}
 
 %%%%%%%
 
@@ -1052,7 +1057,6 @@ So big need of an external/outliers sample(s) or external source.
 %As the \mRNAs\ are expressed in more tissues in general, I tried to take account for this in the following analysis I run.
 
 
-
 Possible explanation of the anticorrelations may be due
 at the number of transcript or their definition or some other
 attributes that can be found in
@@ -1070,3 +1074,8 @@ and (citing~\citet{Vogel2010-ux}) have high protein-per-mRNA ratios.
 
 \ms\ label-free absolute quantification proteomics
 underestimate a large dynamic range of proteins~\mycite{TOP3isbetter}.
+
+
+\citet{Edfors2016-kv} have found that cell lines derived from a tissue don't present
+the same (absolute) amount of proteins than tissue samples and warned to be cautious
+if cell lines are used as model for normal tissue.
