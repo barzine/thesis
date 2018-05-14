@@ -8,7 +8,9 @@ declare -a arr=(".out" ".aux"
                 "run.xml" ".blg"
                 ".bbl" ".glo"
                 ".gls" ".xdy"
-                ".glg" ".run.xml")
+                ".glg" ".run.xml"
+                ".fdb_latexmk" ".run.xml"
+                ".xdv" ".xdy")
 
 for f in "$@"; do
     for i in "${arr[@]}"; do

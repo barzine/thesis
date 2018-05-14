@@ -1,4 +1,4 @@
-LATEXMK = latexmk -xelatex -r .latexmkrc 
+LATEXMK = latexmk -xelatex -r .latexmkrc
 
 target = thesis
 references := Bibliography.bib
