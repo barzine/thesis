@@ -38,7 +38,7 @@ I describe and discuss together my results and theirs whenever relevant.
 On the subject of comparing proteome and transcriptome data,
 \citet{Uhlen:2016} outline in their review
 one related on-going debate in the literature:
-whereas good correlations should prevail (or not).
+whereas good correlations should prevail or not.
 For a long time, it was implicitly assumed that
 for similar conditions there should be a proportional relationship
 between Transcriptomics and Proteomics
@@ -57,7 +57,8 @@ of \mRNA/protein concentration discrepancies~\mycite{Vogel2012-sq,Plotkin2010-ug
 Nevertheless, early investigations found low or no correlation
 between the observed expression profiles of the \mRNAs\ and
 proteins~\mycite{Anderson1997-le,Tian2004-hh,Gry2009-zv,Lundberg2010-gk}.
-Fascinatingly, this observation is unrestricted to human or
+%Fascinatingly,
+This observation is unrestricted to human or
 even mammals~\mycite{Maier2009-pb,Maier2011-tz,Palmblad2013-ji,Freiberg2016-fu}.
 Many other cell studies have also lacked to show high correlations
 between expression of the two biological layers~\mycite{Chen2002-ob,Pascal2008-gh,%
@@ -85,7 +86,7 @@ or tissue~\mycite{Santos2015-rj,Freiberg2016-fu,Uhlen2015}
 or their differential expression profiles across the same set of conditions
 to detect any discrepancy~\mycite{Varemo2015-uk}.
 A few recent studies, however, are reporting improved correlations.
-\citet{Li2014-ai} propose a new rescaling approach
+\citet{Li2014-ai} propose a rescaling approach
 to correct the general underestimation of protein abundance by label-free \ms.
 Although their approach allows improving correlations observed
 in previous studies~\mycite{schwanhausserglobal:2011},
@@ -105,7 +106,7 @@ Steady-state cells present an equivalent level of correlation ($r^2=0.36,
 while cells in proliferating state are better correlated ($r^2=0.55, \ie~r=0.74$).
 \citet{Marguerat2012-sn} measures \mRNA\ and corresponding protein copies per cell
 with great care;
-strand-specific \Rnaseq\ libraries (see \Crefu{strand-specific}) were
+strand-specific \Rnaseq\ libraries\footnote{See \Crefu{strand-specific}.} were
 recalibrated based on 49 \mRNAs\
 for which absolute data was acquired from cell extracts spiked with
 known quantities of external \RNA\ controls;
@@ -138,40 +139,112 @@ by post-transcriptional regulations
 
 The aforementioned studies have all turned to cells
 for their joint analyses of transcriptome and proteome.
-Indeed, it was not until 2014 that the first studies
+Indeed, the first studies~\mycite{PandeyData,KusterData}\footnote{%
+MS studies that
+I present in \Cref{ch:datasets} --- see \Crefu{sec:ProteoData}.}
 to extensively investigate and quantify
 the non-diseased human proteome at tissue level
-were published~\mycite{PandeyData,KusterData}.
-These are the MS studies that
-I present in \Cref{ch:datasets} (see \Crefu{sec:ProteoData}).
+were only published in 2014.
 For the first time,
 there is an unparalleled availability of large-scale tissue studies
-both at the transcriptomic and proteomic layers to compare and integrate together.
-It is worth exploring if the observations made at cell level
-extend to the tissue one.
-Even though the data are independent
-(collected from various individuals, prepared,
-and characterised (\ie\ either sequenced (\RNAs) or ionised/fragmented (proteins))
-by different laboratories),
-they may help to provide general estimations
-of the relationship between the transcriptome and proteome at tissue level.
-In fact, the transcriptome datasets present high Pearson correlations
-(median $r_{\setOneMath}=0.75; r_{\setTwoMath}=0.85$)
-and higher Spearman ones ($\rho_{\setOneMath}=0.88 ; \rho_{\setTwoMath}=0.93$)
-as I show in \Cref{ch:Transcriptomics}.
-Additionally, the literature has reported that
+both at the transcriptomic and proteomic layers to explore and integrate together.
+The data are independent
+as they have been collected from various individuals, prepared,
+and characterised (\ie\ either sequenced (\RNAs)
+or ionised/fragmented (proteins))
+by different laboratories.
+Nonetheless,
+their combined study may help
+to shed light on the relationship
+between the transcriptome and proteome at tissue level.
+Indeed as I show in \Cref{ch:Transcriptomics},
+the transcriptome datasets present high Pearson correlations
+(median $r_{\setOneMath}=0.75$; $r_{\setTwoMath}=0.85$)
+and higher Spearman ones ($\rho_{\setOneMath}=0.88$; $\rho_{\setTwoMath}=0.93$).
+Furthermore, the literature has also reported that
 the proteome is more conserved than the transcriptome
-(across individuals and species)~\mycite{Laurent2010-rg}.
+(across individuals and species)~\mycite{Laurent2010-rg,Liu2016-re}.
+Thus, the current available data collection ought to provide
+a crude estimate on the extent of observations that hold
+from cell to tissue level.
+\Cref{fig:visualexp} summarises the two analytical approaches I use
+to compare transcriptomic and proteomic data.
+In fact,
+\citet{Liu2016-re} emphasise how important it is to clearly define
+the approach when reporting results to avoid many confusions.
+The \emph{tissue-centric} approach compares for each tissue
+the global expression of its transcriptomic landscape to its proteomic one.
+In contrast,
+the \emph{gene-centric} approach compares for each gene
+the expression levels of its \mRNA\ to its protein ones across all the tissues.
 
-There are different ways to integrate transcriptomic and proteomic data.
-\Cref{fig:visualexp}
-
-\begin{figure}[!htbp]
-    \includegraphics{integration/VisualExplaination}\centering
-    \caption[Integration approaches used]{\label{fig:visualexp}\textbf{Integration
-    approaches used}
+\begin{figure}
+    \includegraphics[scale=0.75]{integration/VisualExplaination-Lin.png}\centering
+    \caption[Summary of the expression comparison approaches between
+    the transcriptome and proteome]{\label{fig:visualexp}\textbf{Approaches
+    summary of the expression comparison between the transcriptome and proteome.}
+    \emph{Tissue-centric} analyses focus on
+    how the transcriptome and proteome relate to each other within the same tissue.
+    \emph{Gene-centric} analyses study for each gene how its \mRNA\ expression
+    levels across all the tissues may relate to the quantified expression levels
+    of its corresponding protein.
     }
 \end{figure}
+
+\FloatBarrier\
+    %\emph{Tissue-centric} analyses focus on one tissue at a time and
+    %how its transcriptome and proteome relate to each other, \eg\ which are the
+    %expressed \mRNAs\ and proteins in the tissue, or how their expression levels
+    %correlate.
+    %\emph{Gene-centric} analyses focus one one gene at the time and study
+    %how changes at the \mRNA\ level may translate to the protein one, \eg\
+    %is the protein version of the gene found wherever the \mRNA\ is or
+    %how much are the specificity (or any other expression variation) of
+    %the gene \mRNA\ and its corresponding protein are related.%
+
+
+
+\section{Available~human~proteome:~a~disparate~universe}
+
+\begin{comment}
+(1) Etat des lieux méthode 1
+(2) En travaillant sur l'integration·
+(3) Etat des lieux méthode 2
+\end{comment}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.5]{proteomics/VennDiagProtCond.pdf}\centering
+    \caption[Distribution of unique shared tissues between the MS-based proteomic
+    studies]{\label{VennDiagProt3}\textbf{Distribution of unique and shared
+    tissues between the \ms{}-based proteomic studies.}}
+\end{figure}
+
+High-throughput proteomics has a greater variability of detection and
+quantification than High-throughput transcriptomics.
+
+Limited tissues and proteins overlap
+
+About half of the quantified proteins in a given tissue are found in more than
+one a dataset.
+
+Technical variability seems to prevail over biological signal:
+correlations between samples from a same tissue are globally lesser than
+correlation between samples from a same study.
+
+Cutler: older and no publication,
+hard to know exactly what were the methodological protocols;but then we  2 need to
+be sure.
+
+Super set of proteins: they are expressed in every tissues.
+
+And then the tissues spe proteins: the one that are found in the same    2 tissues
+over the three datasets.
+
+Need to use Pandey (as it is the best for the analysis:
+greater range of expressed proteins); pooled people (3, 2 males and one female)
+and confere chapter expressed: they have better expression profile shapes.
+
+
 
 
 \section{Data}\label{sec:IntegrationData}
