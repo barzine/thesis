@@ -10170,3 +10170,271 @@
 }
 
 
+@ARTICLE{Guinand2002-ad,
+  title    = "Comparisons of likelihood and machine learning methods of
+              individual classification",
+  author   = "Guinand, B and Topchy, A and Page, K S and Burnham-Curtis, M K
+              and Punch, W F and Scribner, K T",
+  abstract = "Classification methods used in machine learning (e.g., artificial
+              neural networks, decision trees, and k-nearest neighbor
+              clustering) are rarely used with population genetic data. We
+              compare different nonparametric machine learning techniques with
+              parametric likelihood estimations commonly employed in population
+              genetics for purposes of assigning individuals to their
+              population of origin (``assignment tests''). Classifier accuracy
+              was compared across simulated data sets representing different
+              levels of population differentiation (low and high F(ST)), number
+              of loci surveyed (5 and 10), and allelic diversity (average of
+              three or eight alleles per locus). Empirical data for the lake
+              trout (Salvelinus namaycush) exhibiting levels of population
+              differentiation comparable to those used in simulations were
+              examined to further evaluate and compare classification methods.
+              Classification error rates associated with artificial neural
+              networks and likelihood estimators were lower for simulated data
+              sets compared to k-nearest neighbor and decision tree classifiers
+              over the entire range of parameters considered. Artificial neural
+              networks only marginally outperformed the likelihood method for
+              simulated data (0-2.8\% lower error rates). The relative
+              performance of each machine learning classifier improved relative
+              likelihood estimators for empirical data sets, suggesting an
+              ability to ``learn'' and utilize properties of empirical
+              genotypic arrays intrinsic to each population. Likelihood-based
+              estimation methods provide a more accessible option for reliable
+              assignment of individuals to the population of origin due to the
+              intricacies in development and evaluation of artificial neural
+              networks.",
+  journal  = "The Journal of heredity",
+  volume   =  93,
+  number   =  4,
+  pages    = "260--269",
+  month    =  jul,
+  year     =  2002,
+  language = "en",
+  issn     = "0022-1503",
+  pmid     = "12407212",
+  doi      = "10.1093/jhered/93.4.260"
+}
+
+
+
+@ARTICLE{Leek2014-bl,
+  title    = "svaseq: removing batch effects and other unwanted noise from
+              sequencing data",
+  author   = "Leek, Jeffrey T",
+  abstract = "It is now known that unwanted noise and unmodeled artifacts such
+              as batch effects can dramatically reduce the accuracy of
+              statistical inference in genomic experiments. These sources of
+              noise must be modeled and removed to accurately measure
+              biological variability and to obtain correct statistical
+              inference when performing high-throughput genomic analysis. We
+              introduced surrogate variable analysis (sva) for estimating these
+              artifacts by (i) identifying the part of the genomic data only
+              affected by artifacts and (ii) estimating the artifacts with
+              principal components or singular vectors of the subset of the
+              data matrix. The resulting estimates of artifacts can be used in
+              subsequent analyses as adjustment factors to correct analyses.
+              Here I describe a version of the sva approach specifically
+              created for count data or FPKMs from sequencing experiments based
+              on appropriate data transformation. I also describe the addition
+              of supervised sva (ssva) for using control probes to identify the
+              part of the genomic data only affected by artifacts. I present a
+              comparison between these versions of sva and other methods for
+              batch effect estimation on simulated data, real count-based data
+              and FPKM-based data. These updates are available through the sva
+              Bioconductor package and I have made fully reproducible analysis
+              using these methods available from:
+              https://github.com/jtleek/svaseq.",
+  journal  = "Nucleic acids research",
+  volume   =  42,
+  number   =  21,
+  month    =  dec,
+  year     =  2014,
+  language = "en",
+  issn     = "0305-1048, 1362-4962",
+  pmid     = "25294822",
+  doi      = "10.1093/nar/gku864",
+  pmc      = "PMC4245966"
+}
+
+
+@ARTICLE{Yi2018-rv,
+  title    = "Detecting hidden batch factors through data-adaptive adjustment
+              for biological effects",
+  author   = "Yi, Haidong and Raman, Ayush T and Zhang, Han and Allen, Genevera
+              I and Liu, Zhandong",
+  abstract = "Motivation: Batch effects are one of the major source of
+              technical variations that affect the measurements in
+              high-throughput studies such as RNA sequencing. It has been well
+              established that batch effects can be caused by different
+              experimental platforms, laboratory conditions, different sources
+              of samples and personnel differences. These differences can
+              confound the outcomes of interest and lead to spurious results. A
+              critical input for batch correction algorithms is the knowledge
+              of batch factors, which in many cases are unknown or inaccurate.
+              Hence, the primary motivation of our paper is to detect hidden
+              batch factors that can be used in standard techniques to
+              accurately capture the relationship between gene expression and
+              other modeled variables of interest. Results: We introduce a new
+              algorithm based on data-adaptive shrinkage and semi-Non-negative
+              Matrix Factorization for the detection of unknown batch effects.
+              We test our algorithm on three different datasets: (i) Sequencing
+              Quality Control, (ii) Topotecan RNA-Seq and (iii) Single-cell RNA
+              sequencing (scRNA-Seq) on Glioblastoma Multiforme. We have
+              demonstrated a superior performance in identifying hidden batch
+              effects as compared to existing algorithms for batch detection in
+              all three datasets. In the Topotecan study, we were able to
+              identify a new batch factor that has been missed by the original
+              study, leading to under-representation of differentially
+              expressed genes. For scRNA-Seq, we demonstrated the power of our
+              method in detecting subtle batch effects. Availability and
+              implementation: DASC R package is available via Bioconductor or
+              at https://github.com/zhanglabNKU/DASC. Contact:
+              zhanghan@nankai.edu.cn or zhandonl@bcm.edu. Supplementary
+              information: Supplementary data are available at Bioinformatics
+              online.",
+  journal  = "Bioinformatics",
+  volume   =  34,
+  number   =  7,
+  pages    = "1141--1147",
+  month    =  apr,
+  year     =  2018,
+  language = "en",
+  issn     = "1367-4803, 1367-4811",
+  pmid     = "29617963",
+  doi      = "10.1093/bioinformatics/btx635"
+}
+
+
+@ARTICLE{Li2014-cv,
+  title    = "Detecting and correcting systematic variation in large-scale
+              {RNA} sequencing data",
+  author   = "Li, Sheng and Łabaj, Paweł P and Zumbo, Paul and Sykacek, Peter
+              and Shi, Wei and Shi, Leming and Phan, John and Wu, Po-Yen and
+              Wang, May and Wang, Charles and Thierry-Mieg, Danielle and
+              Thierry-Mieg, Jean and Kreil, David P and Mason, Christopher E",
+  abstract = "High-throughput RNA sequencing (RNA-seq) enables comprehensive
+              scans of entire transcriptomes, but best practices for analyzing
+              RNA-seq data have not been fully defined, particularly for data
+              collected with multiple sequencing platforms or at multiple
+              sites. Here we used standardized RNA samples with built-in
+              controls to examine sources of error in large-scale RNA-seq
+              studies and their impact on the detection of differentially
+              expressed genes (DEGs). Analysis of variations in
+              guanine-cytosine content, gene coverage, sequencing error rate
+              and insert size allowed identification of decreased
+              reproducibility across sites. Moreover, commonly used methods for
+              normalization (cqn, EDASeq, RUV2, sva, PEER) varied in their
+              ability to remove these systematic biases, depending on sample
+              complexity and initial data quality. Normalization methods that
+              combine data from genes across sites are strongly recommended to
+              identify and remove site-specific effects and can substantially
+              improve RNA-seq studies.",
+  journal  = "Nature biotechnology",
+  volume   =  32,
+  number   =  9,
+  pages    = "888--895",
+  month    =  sep,
+  year     =  2014,
+  language = "en",
+  issn     = "1087-0156, 1546-1696",
+  pmid     = "25150837",
+  doi      = "10.1038/nbt.3000",
+  pmc      = "PMC4160374"
+}
+
+
+@ARTICLE{Stegle2012-td,
+  title    = "Using probabilistic estimation of expression residuals ({PEER})
+              to obtain increased power and interpretability of gene expression
+              analyses",
+  author   = "Stegle, Oliver and Parts, Leopold and Piipari, Matias and Winn,
+              John and Durbin, Richard",
+  abstract = "We present PEER (probabilistic estimation of expression
+              residuals), a software package implementing statistical models
+              that improve the sensitivity and interpretability of genetic
+              associations in population-scale expression data. This approach
+              builds on factor analysis methods that infer broad variance
+              components in the measurements. PEER takes as input transcript
+              profiles and covariates from a set of individuals, and then
+              outputs hidden factors that explain much of the expression
+              variability. Optionally, these factors can be interpreted as
+              pathway or transcription factor activations by providing prior
+              information about which genes are involved in the pathway or
+              targeted by the factor. The inferred factors are used in genetic
+              association analyses. First, they are treated as additional
+              covariates, and are included in the model to increase detection
+              power for mapping expression traits. Second, they are analyzed as
+              phenotypes themselves to understand the causes of global
+              expression variability. PEER extends previous related surrogate
+              variable models and can be implemented within hours on a desktop
+              computer.",
+  journal  = "Nature protocols",
+  volume   =  7,
+  number   =  3,
+  pages    = "500--507",
+  month    =  feb,
+  year     =  2012,
+  language = "en",
+  issn     = "1754-2189, 1750-2799",
+  pmid     = "22343431",
+  doi      = "10.1038/nprot.2011.457",
+  pmc      = "PMC3398141"
+}
+
+
+@ARTICLE{Pearce2015-xa,
+  title    = "{WheatExp}: an {RNA-seq} expression database for polyploid wheat",
+  author   = "Pearce, Stephen and Vazquez-Gross, Hans and Herin, Sayer Y and
+              Hane, David and Wang, Yi and Gu, Yong Q and Dubcovsky, Jorge",
+  abstract = "BACKGROUND: For functional genomics studies, it is important to
+              understand the dynamic expression profiles of transcribed genes
+              in different tissues, stages of development and in response to
+              environmental stimuli. The proliferation in the use of
+              next-generation sequencing technologies by the plant research
+              community has led to the accumulation of large volumes of
+              expression data. However, analysis of these datasets is
+              complicated by the frequent occurrence of polyploidy among
+              economically-important crop species. In addition, processing and
+              analyzing such large volumes of sequence data is a technical and
+              time-consuming task, limiting their application in functional
+              genomics studies, particularly for smaller laboratories which
+              lack access to high-powered computing infrastructure. Wheat is a
+              good example of a young polyploid species with three similar
+              genomes (97 \% identical among homoeologous genes), rapidly
+              accumulating RNA-seq datasets and a large research community.
+              DESCRIPTION: We present WheatExp, an expression database and
+              visualization tool to analyze and compare homoeologue-specific
+              transcript profiles across a broad range of tissues from
+              different developmental stages in polyploid wheat. Beginning with
+              publicly-available RNA-seq datasets, we developed a pipeline to
+              distinguish between homoeologous transcripts from annotated genes
+              in tetraploid and hexaploid wheat. Data from multiple studies is
+              processed and compiled into a database which can be queried
+              either by BLAST or by searching for a known gene of interest by
+              name or functional domain. Expression data of multiple genes can
+              be displayed side-by-side across all expression datasets
+              providing immediate access to a comprehensive panel of expression
+              data for specific subsets of wheat genes. CONCLUSIONS: The
+              development of a publicly accessible expression database hosted
+              on the GrainGenes website - http://wheat.pw.usda.gov/WheatExp/ -
+              coupled with a simple and readily-comparable visualization tool
+              will empower the wheat research community to use RNA-seq data and
+              to perform functional analyses of target genes. The presented
+              expression data is homoeologue-specific allowing for the analysis
+              of relative contributions from each genome to the overall
+              expression of a gene, a critical consideration for breeding
+              applications. Our approach can be expanded to other polyploid
+              species by adjusting sequence mapping parameters according to the
+              specific divergence of their genomes.",
+  journal  = "BMC plant biology",
+  volume   =  15,
+  pages    = "299",
+  month    =  dec,
+  year     =  2015,
+  language = "en",
+  issn     = "1471-2229",
+  pmid     = "26705106",
+  doi      = "10.1186/s12870-015-0692-1",
+  pmc      = "PMC4690421"
+}
+

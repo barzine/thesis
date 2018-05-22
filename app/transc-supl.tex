@@ -2,7 +2,7 @@
 {Supplementary material for Chapter \getrefnumber{ch:Transcriptomics}}\label{ch:app-Transcriptomics}
 \chaptermark{Supplementary material for Chapter \getrefnumber{ch:Transcriptomics}}
 
-\begin{figure}
+\begin{figure}[!htbp]
 \centering
 \begin{subfigure}[b]{0.60\textwidth}
 \centering \includegraphics[width=\textwidth]%
@@ -33,11 +33,11 @@
 {transcriptomics/UniqueExpression/Gtex_1b.pdf}
 \caption{Gtex}\label{fig:UniqueExprGtex}
 \end{subfigure}
-\caption{Protein coding genes expressed per tissues}\label{fig:UniqExprPC1}
+\caption{Number of protein-coding genes expressed per tissue}\label{fig:UniqExprPC1}
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[!htbp]
 \centering
 \begin{subfigure}[b]{0.60\textwidth}
 \centering \includegraphics[width=\textwidth]%
@@ -68,11 +68,11 @@
 {transcriptomics/UniqueExpression/GtexBreadthP1.pdf}
 \caption{Gtex}\label{fig:breadthGtexP1}
 \end{subfigure}
-\caption{Breadth of expression of the Protein coding genes expressed above 1 \FPKM}\label{fig:breadthGenesP1}
+\caption{Breadth of expression of the protein-coding genes expressed above 1 \FPKM}\label{fig:breadthGenesP1}
 \end{figure}
 
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
 \includegraphics[scale=0.65]{transcriptomics/PcodingGenesExpressed0_4tissues.pdf}\centering
 \caption[Unique and shared protein coding genes expressed
 in the 4 common tissues]{\label{fig:ExpGenePcoding0_4T}\textbf{Unique and
@@ -80,11 +80,11 @@ shared protein coding genes expressed (at any level) in the 4 common tissues.}}
 \end{figure}
 
 
-\begin{table}[]
+\begin{table}[!htbp]
 \centering
-\caption[Expressed protein coding genes]{\textbf{Expressed protein coding genes.}\\
+\caption[Expressed protein-coding genes]{\textbf{Expressed protein-coding genes.}\\
 {\small In \ens{76}, there are 22,469 genes that
-have a biotype annotated as \enquote{\emph{protein coding}}.}}
+have a biotype annotated as \enquote{\emph{protein-coding}}.}}
 \label{tab:expGenesPcoding}
 \begin{tabular}{@{}cccccccc@{}}
 \toprule
@@ -110,12 +110,12 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
 \end{table}
 
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
     \includegraphics[scale=0.85]{transcriptomics/heatmap4TWithMitoNoRep_1.pdf}\centering
     \caption[Comparison of profiles across the 5 studies for their
-    4 common tissues --- with the 37 mitochondrial genes
+    4 common tissues --- including the 37 mitochondrial genes
     included]{\label{fig:ExpGenePcoding1_withMito}\textbf{Comparison of profiles
-    across the 5 studies for their 4 common tissues --- with the 37
+    across the 5 studies for their 4 common tissues --- including the 37
     mitochondrial genes.}}
 \end{figure}
 
@@ -123,8 +123,8 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
     \includegraphics[scale=0.95]{transcriptomics/heatmapT4NoMitoAndwithRep_1.pdf}\centering
     \caption[Heatmap including all the replicates of the 4 common tissues
     across the 5 studies]{\label{fig:noMitoRep4T}\textbf{Heatmap including all
-    the replicates of the 4 common tissues across the 5 studies.} All protein
-    coding genes (except the mitochondrial ones)
+    the replicates of the four common tissues across the five studies.}
+    All protein-coding genes (except the mitochondrial ones)
     at least expressed at 1 \FPKM\ are included. All the samples, except from the
     \castle\ study are clustering by their tissue of origin.
     Remarkably, while the replicates may cluster by their study in each of the
@@ -138,18 +138,18 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
     \includegraphics[scale=0.95]{transcriptomics/heatmap23Replicates.jpg}\centering
     \caption[Heatmap including all the replicates of the 23 common tissues
     between Uhlén and GTEx studies]{\label{fig:noMitoRep23T}\textbf{Heatmap
-    including all the replicates of the 23 common tissues between \uhlen\ and
-    \gtex\ studies.} All protein coding genes (except the mitochondrial ones)
+    including all the replicates of the twenty-three common tissues between
+    Uhlén et al.\ and GTEx studies.} All protein-coding genes (except the mitochondrial ones)
     at least expressed at 1 \FPKM\ are included. Most samples are clustering by
     their tissue of origin while we can observe than many single replicates may
-    cluster less expectedly. Many small mixtures are observed, often they involve
+    cluster less expectedly. Many small mixtures are observed; often they involve
     closely related tissues, \ie\ \tissue{Heart} and \tissue{Skeletal muscle} or
     \tissue{Ovary} and \tissue{Fallopian tube}.}
 \end{figure}
 
 
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
 \centering
 \begin{minipage}{\textwidth}
 \begin{subfigure}[b]{0.95\textwidth}
@@ -180,12 +180,12 @@ a Welch two-sample t-test.}
 
 \section{Overlap of the top high expressed genes between the five datasets}\label{sec:overlapHighExp}
 
-\begin{figure}[htpb]
+\begin{figure}[!htbp]
 \includegraphics[scale=1]{transcriptomics/highExpress4TP.pdf}\centering
 \caption[Cumulative shared set of genes ranked by expression across the 5
 studies]{\label{fig:highExpress4T}\textbf{Cumulative shared set of genes
-ranked by their decreasing order of expression across the 5 studies.}
-Except a very small subset for the highest expressed protein coding genes,
+ranked by their decreasing order of expression across the five studies.}
+Apart from a very small subset for the highest expressed protein coding genes,
 the overlap of the gene ranks across the 5 studies is rather small.
 The grey line presents the evolution of the ratios for the randomly
 permuted data which highlights that there is an underlying structure.}
@@ -207,8 +207,8 @@ as the \pcgs\ set across the studies is identical.
     \includegraphics[scale=1]{transcriptomics/highExpress23TP.pdf}\centering
     \caption[Cumulative shared set of genes, sorted by their expression, between
     Uhlen and GTEx]{\label{fig:highExpress23T}\textbf{Cumulative shared set of
-    genes, ranked by their decreasing order of expression, between \uhlen\ and
-    \gtex\ studies.}
+    genes, ranked by their decreasing order of expression, between Uhlén et al.\
+    and GTEx studies.}
     The highest expressed genes present greater ratios than
     when the 5 studies are considered (see \Cref{fig:highExpress4T}).
     The fewer number of studies considered, which, additionally to be the most
@@ -248,7 +248,7 @@ that are nonfortuitous across studies.
     \includegraphics[scale=0.7]{transcriptomics/Overlap_25p_mostCoeffVariablesgenes.pdf}\centering
     \caption[Overlap of the most variables genes across the 5 studies for the set
     of four common tissues]{\label{fig:vennMostVar4T}\textbf{Overlap of the most
-    variable genes across the 5 studies for the set of the four common tissues.}
+    variable genes across the five studies for the set of the four common tissues.}
     In each study, I rank the \pcgs\ in decreasing order.
     This Venn diagram presents the shared and unique \pcgs\ in the top
     quarter of the most variable genes.
@@ -256,11 +256,11 @@ that are nonfortuitous across studies.
 \end{figure}
 
 \minisec{Two-sample test}\label{mini:ttest}
-\TK{Explain Welch, Student}
+%\TK{Explain Welch, Student}
 The Welch test,
 also known as the unequal variances \ttest,
 is an adaptation of the Student \ttest.
-Except in case of (true) paired data (sampled on the same source),
+Except in the case of (true) paired data (sampled on the same source),
 it gives better or at least equal results than the traditional Student \ttest.
 
 \begin{figure}[!htpb]
@@ -283,9 +283,10 @@ it gives better or at least equal results than the traditional Student \ttest.
     \caption[Clustering of the the four common tissues across the five studies
     (excluding the most common variable genes)]{\label{fig:ReverseheatmapMost25pVariable}%
     \textbf{Clustering of the four common tissues across the five studies
-    (excluding the most variable genes).} Except the Castle samples,
+    (excluding the most variable genes).} Apart from the Castle samples,
     the samples cluster by tissue of origin rather than by original study.
-    (Note that Pearson correlations give more results.)}
+    (Note that Pearson correlations give stronger clustering results towards
+    the biological origin of the \treps.)}
 \end{figure}
 
 \begin{figure}[!htpb]
@@ -312,12 +313,12 @@ and \gtex.}}
 \KwData{Expression matrix; Genes as rows and conditions (tissues) as columns}\
 \KwIn{threshold: numeric}\
 \KwIn{bool: boolean}\
-\KwResult{Indicates if a gene presents an \emph{untypical} (outlier) expression
+\KwResult{Indicates if a gene presents an \emph{atypical} (outlier) expression
 for any condition (as a boolean or a numeric ratio)}
 \BlankLine\
 \ForEach{Gene g (\ie\ row) of the input matrix}{%
     med=compute median(g)\;
-    \tcc{compute the m.a.d. (median absolute deviation)}
+    \tcc{compute the M.A.D.\ (median absolute deviation)}
     mad=median(absolute(g-med))\;
 \eIf{!bool}{%
 \tcc{Return boolean answer}
@@ -336,9 +337,9 @@ Median can be found by listing all values from smallest to greatest.\\
 If the number of values is odd, the median is the middle value.\\
 If the number of values is even, the median is the mean of the two middle values.
 
-\subsection{Median absolute deviation (M.A.D)}
+\subsection{Median absolute deviation (M.A.D.)}
 
-For a give variable X, m.a.d.\ is defined as follow:
+For a give variable X, M.A.D.\ is defined as follow:
 
 \begin{equation}\label{eq:mad}
     \tag{M.A.D.}
@@ -349,7 +350,7 @@ MAD = median(|X_{i}-median(X)|)
 \section{List of the tissues available in TiGER}\label{sec:supplTiger}
 
 Thirty tissues (or equivalent) are available through this database:
-\tissue{Bladder}, \tissue{blood}, \tissue{Bone}, \tissue{Bone marrow},
+\tissue{Bladder}, \tissue{Blood}, \tissue{Bone}, \tissue{Bone marrow},
 \tissue{Brain}, \tissue{Cervix}, \tissue{Colon}, \tissue{Eye},
 \tissue{Heart}, \tissue{Kidney}, \tissue{Larynx}, \tissue{Liver},
 \tissue{Lung}, \tissue{Lymph node}, \tissue{Mammary gland}, \tissue{Muscle},
@@ -361,7 +362,7 @@ Thirty tissues (or equivalent) are available through this database:
 \begin{comment}
 \begin{sidewaystable}[]
 \centering
-\caption{My caption}
+\caption{Shared definition of TIGER's \emph{specific} genes across tissues}
 \label{tab:TiGERperTissue}
 \begin{tabular}{@{}cccccccccccccccccc@{}}
 \toprule
@@ -397,7 +398,7 @@ Uterus & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 2 & 39 \\
 
 \begin{sidewaystable}[]
 \centering
-\caption{My caption}
+\caption{Uhlén et al.\ gene categories for all genes (\ie\ unrestricted to protein-coding genes)}
 \label{tab:uhlenCatAllgenes}
 \begin{tabular}{@{}ccccccccccc@{}}
 \toprule
@@ -478,7 +479,7 @@ tissues\\ Working datasets}}} & Uhlen & 17,345  & 27,575  &
     \item~\fullcite{Danielsson2015-cn}
     \item~\fullcite{Uhlen:2016}
     \item~\fullcite{ruvseqComQN}
-    \item~\fullcite{Wang2017-hc}
+    \item~\fullcite{Wang2017-hc}, \textit{bioRxiv}, 110734 (unreviewed paper)
 \end{itemize}
 
 
@@ -496,8 +497,8 @@ may imply reversed trends.
 \toprule
  & $Gene_a$ & $Gene_b$ & $Gene_c$ & $Gene_d$ & $Gene_e$ \\
 \midrule
-Study A, \trep\ $T_1$ ($T^{Study A}_1$) & 5000 & 4000 & 3000 & 4000 & 5000 \\
-Study B, \trep\ $T_1$ ($T^{Study B}_1$) & 4000 & 50 & 7000 & 6000 & 500 \\
+Study A, \trep\ $T_1$ ($T^{Study A}_1$) & 1000 & 2000 & 3000 & 4000 & 5000 \\
+Study B, \trep\ $T_1$ ($T^{Study B}_1$) & 500 & 2800 & 6000 & 5000 & 4000 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -506,7 +507,13 @@ For example,
 if we consider $T^{Study A}_1$ and $T^{Study B}_1$
 for a set of genes ${a, \ldots, e}$ (see \Cref{tab:anticorExample})
 and a cut-off at 3,000 \FPKMs,
-then the correlation will only involve $Gene_a$, $Gene_c$ and $Gene_d$.
+then the correlation will only involve $Gene_c$, $Gene_d$ and $Gene_e$.
+Thus,\\
+while $corr_{T^{Study A}_1,T^{Study B}_1}(c,d,e)= -1 $,\\
+$corr_{T^{Study A}_1,T^{Study B}_1}(a,b,c,d,e)= 0.6836$
 
-$ corr(T^{Study A}_1,T^{Study B}_1) = -0.9819 $
+\begin{figure}[!htpb]
+    \includegraphics[scale=1]{transcriptomics/AnticorrExample.pdf}\centering
+    \caption{Example on how correlation may change to cut-offs}\label{fig:anticorrExample}
+\end{figure}
 

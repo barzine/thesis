@@ -1,5 +1,5 @@
 \chapter[Supp. material for chap. \getrefnumber{ch:expression}]%
-{Supplementary material for Chapter \getrefnumber{ch:expression}}
+{Supplementary material for Chapter \getrefnumber{ch:expression}}%
 \label{ch:SupplExpress}
 \chaptermark{Supplementary material for Chapter \getrefnumber{ch:expression}}
 
@@ -8,11 +8,12 @@ Correlation can be considered as a scaled version of the covariance
 (\Cref{eq:covariance}) of two random variables.
 Correlation coefficients are adimensional and varie in a restricted range $[-1,1]$.
 While $1$ and $-1$ mean a perfect correlation (either positive or negative),
-a value equals to $0$ expresses that the two variables are independent.
-A value within $\mathopen]-1,0\mathclose[$
-or $\mathopen]0,1\mathclose[$ needs more interpretation. In biology, if the
-coefficient is within $[-0.5,0.5]$, the variables are often considered as
-independent.
+a value equal to $0$ expresses
+that the two variables are not sharing any linear relationship.
+A value within $(-1,0)$
+or $(0,1)$ needs more interpretation.
+In gene expression studies, if the coefficient is within $[-0.5,0.5]$,
+the variables are generally considered as independent.
 
 \emph{Spearman} and \emph{Pearson} are only two methods to compute correlations
 among other ones.
@@ -144,13 +145,14 @@ in the general context of gene expression study.
 
 \begin{figure}[!ht]
     \includegraphics[scale=0.40]{expressed/AnscombePanel.pdf}\centering
-    \caption[Anscombe quartet --- why data should always visualy checked]
+    \caption[Anscombe quartet --- why data should always be visualy checked]
     {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
     visually checked.}\smallbreak{} All the datasets, while presenting
-    different distribution, have equal or very similar descriptive statistic
-    indicators. Their means and variances (for both $x$ and $y$ variables),
-    their Pearson correlation between $x$ and $y$,
-    as their linear regressions are very similar when not equal.}
+    different distributions, have equal or very similar descriptive statistic
+    indicators;
+    the means and variances for both $x$ and $y$ variables and
+    the Pearson correlation between $x$ and $y$, and
+    their linear regressions are very similar.}
 \end{figure}
 
 

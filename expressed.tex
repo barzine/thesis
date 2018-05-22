@@ -1,6 +1,5 @@
-\chapter{About expression, visualisation, correlation and clustering}
+\chapter{About expression, visualisation, correlation and clustering}\label{ch:expression}
 %\chapter{More quality checks and data preparation}
-\label{ch:expression}
 
 \begin{comment}
 \setlength{\epigraphwidth}{\textwidth}%0.6
@@ -11,20 +10,20 @@ understanding the data.}{\cite{Dasu2003-bg}}%
 }
 \end{comment}
 
-As a first step towards the meta-analyses\footnote{Across transcriptomes,
-across proteomes and then across transcriptomes/proteomes.},
+As a first step towards the different meta-analyses presented in this thesis,
 I have opted for a semi-empirical approach to determine
 a consensus set of methods and parameters on each individual study
 before applying them across all the datasets in the further chapters.
 This strategy has also allowed me
-to estimate the data overall quality per dataset and to tidy them appropriately.
+to estimate the overall data quality per dataset
+and to structure them appropriately for the upcoming analyses.
 
-I report quality checks in \Cref{ch:datasets}
+I mentioned in \Cref{ch:datasets} quality checks
 that happened before the processing of the data.
 Those quality assessments are rather technical\footnote{Is it true signal
 or noise?
 Are all the nucleotides called?
-Is it a true identification or a \gls{FDR}?~\ldots}.
+Is it a true identification or a false positive?~\ldots}.
 In the present chapter, I describe post-processing quality (or sanity) checks
 that examine higher (and fuzzier) aspects, \eg:
 %\KOMAoptions{parskip=never}
@@ -34,115 +33,88 @@ that examine higher (and fuzzier) aspects, \eg:
     \item Adequacy of data, concepts and statistical models
 \end{itemize}
 %\KOMAoptions{parskip=half*}
-Even if every aspect may not be addressed or corrected,
-the final results and their interpretations are then more solid.
+Even if every of these aspects may not be addressed or corrected,
+the final results and interpretations of this study are then more solid.
 
 \section{Visualisation of expression data}
 
-Visualising the data first is a very effective method towards adequate analyses
-and more pertinent results by uncovering
-the detection of underlying structures and possible unwanted artefacts.
+Data visualisation is a simple, but very effective method
+towards adequate analyses and thus more pertinent results.
+It allows uncovering the detection of underlying structures
+and possible unwanted artefacts.
 
 \subsection{Distribution plots}\label{subsec:distribPlot}
-
-In the literature, the distribution of expression values are frequently
+In the literature, expression values are frequently
 visualised on a log-scale ($\log_{2}(x)$).
-\Cref{fig:distribPlot} and~\Cref{fig:distribPlot_noLog2} illustrate how
+\Cref{fig:distribPlot}a and b illustrate how
 this scaling improves the readability of the figure.
-Furthermore, the log-scale allows to transform count data to continuous
+Furthermore, the log-scale allows one to transform count data to continuous
 while smoothing the global distribution shape towards a normal distribution.
-Thus, another advantage of this transformation is to conform the data
-to many ready available statistical models.
+Thus, this transformation enables
+the use of many readily available statistical models
+that require normally distributed data.
 Besides, others (\eg{}~\cite{Danielsson2015-cn}) advocate
 for logarithmic transformation before analysing interstudy samples.
+To overcome the lack of definition of $\log_{2}(0)$,
+I have added a common \emph{pseudocount} (equal to $1$)
+whenever removing the null values is harmful statistically
+or for correct interpretation.
 
-\NB\ Whenever removing the null values is harmful statistically
-or for correct interpretation,
-I have added a common \emph{pseudocount} (equals to $1$)
-to overcome the lack of definition of $\log_{2}(0)$.
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.7]{expressed/IBMexpression.png}
+    \caption{Untransformed and Log$_{2}$-transformed profile
+    of expression levels (\FPKM, \pcgs\ only and all null values excluded)
+    for the \ibm\ dataset}\label{fig:distribPlot}
+\end{figure}
 
-\Cref{fig:distribPlot} shows that all \gls{RNA} samples present a similar
-profile on this $\log_{2}(x+1)$ scale:
-a peak near $0$ for the lowly (and not expressed genes) and a long-trailing tail.
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.7]{expressed/transLog2_1.pdf}
+    \caption{Profile of expression levels across the transcriptomic (\pcgs\ only) studies
+    }\label{fig:distribTrans}
+\end{figure}
+
+\Cref{fig:distribTrans} shows all the remaining transcriptome datasets.
+Overall,
+on this $\log_{2}(x)$ scale (and with all null values excluded):
+all the samples present a similar shape;
+a peak near $0$ for the lowly expressed and undetected genes and a long-trailing tail.
 The bulk of the expressed genes on this scale is below $6$ (\ie\ below 63 \FPKM).
-Besides, in \Cref{fig:densityUhlen_log2}, we can observe that the general expression
-of the pancreas is shifted towards the left in comparison of the other tissue.
-This is probably an artefact as this shift is absent in the other pancreas
-tissue samples of other transcriptomic datasets.
+In \Cref{fig:distribTrans}c, we can observe that the general expression
+of the pancreas is shifted towards the left in comparison to the other tissues.
+This may be an artefact as this shift of the values distribution
+is absent in the pancreas of the other transcriptomic studies
+(\Cref{fig:distribPlot}b and \Cref{fig:distribTrans}d).
+Moreover, as highlighted by the next chapter analyses,
+\uhlen's and  \gtex's pancreas are strongly
+correlated ($r = 0.83$;$\rho = 0.96$).
 
-Aside from the \pandey\ data (\cref{fig:densityPandey_log2}),
+\begin{figure}[!htbp]
+\includegraphics[scale=0.85]{expressed/protLog2.png}
+\caption{Profile of expression levels across the proteomic studies
+    }\label{fig:distribProt}
+\end{figure}
+
+Aside from the \pandey\ data (\cref{fig:distribProt}c),
 the expression of the proteins is more heterogeneous
-(in particular \cutler\ data, see \cref{fig:densityCutler_log2}).
-This is concordant to the more disparate and various techniques involved in
+(in particular \cutler\ data, see \cref{fig:distribProt}a).
+This is concordant to the more disparate and variable techniques involved in
 the proteomic sample preparation (see \Cref{subsec:ProtSampPrep}:
 \nameref{subsec:ProtSampPrep}).
 
-\begin{figure}
-   \vspace*{-0.5cm}
-    \centering
-%    \parbox{\textwidth}{%
-%    \parbox{.9\textwidth}{%
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/castle.pdf}
-        \caption{\small Castle}\label{fig:densityCastle_log2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/vt.pdf}
-        \caption{\small Brawand}\label{fig:densityBrawand_log2}
-    \end{subfigure}
-
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/ibm.pdf}
-        \caption{\small Illumina Body Map}\label{fig:densityIBM_log2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/uhlen.pdf}
-        \caption{\small Uhlen}\label{fig:densityUhlen_log2}
-    \end{subfigure}
-
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/gtex.pdf}
-        \caption{\small Gtex}\label{fig:densityGtex_log2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/cutler.pdf}
-        \caption{\small Cutler}\label{fig:densityCutler_log2}
-    \end{subfigure}
-
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/kuster.pdf}
-        \caption{\small Kuster}\label{fig:densityKuster_log2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.38\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_Log2/pandey.pdf}
-        \caption{\small Pandey}\label{fig:densityPandey_log2}
-    \end{subfigure}
-   % }
-   % \parbox{0.4\textwidth}{%
-   %     \begin{subfigure}[b]{0.4\textwidth}
-   %         \centering \includegraphics{expressed/densityplotLegend.pdf}
-   %     \end{subfigure}
-   %     }}
-    \caption{Profile of expression across the transcriptome (\pcgs\ only)
-    and proteome datasets}\label{fig:distribPlot}
-\end{figure}
-
 \subsection{Scatter plots}
 
-\cite{anscombe} created four datasets (see \Cref{fig:Anscombe})
+\citet{anscombe} created four datasets (see \Cref{fig:Anscombe})
 which share similar descriptive statistics to show the importance
 of data visualisation even through a simple scatter plot.
 He demonstrated that checking the datasets graphically with scatter plots
-allows to quickly detect outliers and roughly estimate
+allows one to quickly detect outliers and roughly estimate
 the relationship between two variables.
 Even a non-linear but strong relationship is promptly highlighted
 (\eg\ top right corner of~\cref{fig:Anscombe}).
 
-\begin{figure}
+\begin{figure}[!htbp]
     \hspace*{-2cm}
     \begin{subfigure}[b]{0.61\textwidth}
       \centering  \includegraphics[width=\textwidth]{expressed/RepTechscat_heart.png}
@@ -152,11 +124,16 @@ Even a non-linear but strong relationship is promptly highlighted
     \centering \includegraphics[width=\textwidth]{expressed/RepBiolscat_kidney.png}
         \caption{Biological replicates (Kidney)}\label{fig:scatBiolRep}
     \end{subfigure}
-    \caption{Examples of scatter plot for replicates from \uhlen\
-    (transcriptome)}\label{fig:scatEg}
+    \caption[Examples of scatter plot for replicates from \uhlen\ (transcriptome)
+    ]{\textbf{Examples of scatter plot for replicates from \uhlen\ (transcriptome)}
+     Technical replicates present very strong correlations particularly for
+    higher expressed \mRNAs\ (≥ 32 \FPKM).
+    Biological replicates present lower but still strong correlations within
+    the same dataset.
+    }\label{fig:scatEg}
 \end{figure}
 
-\Cref{fig:scatTechRep} illustrates how very lowly expressed \gls{RNA}
+\Cref{fig:scatTechRep} illustrates how very lowly detected \glspl{RNA}
 diverge even in technical replicates.
 Biological replicates, within a same dataset,
 may present very close profiles though with a greater spread
@@ -165,9 +142,11 @@ as showed in \Cref{fig:scatBiolRep}.
 
 \section{Main statistical approaches}
 
-Due to the general normal distribution shape of the gene expression levels,
-I computed correlation coefficients to assess the similarity of the replicates
-intra and inter studies.
+Due to the general normal distribution shape of the gene expression levels
+on log-scale,
+I was able to compute Pearson correlation coefficients
+to assess the similarity of the replicates
+within (intra) and between (inter) studies.
 
 \subsection{Correlation}
 %Cum hoc ergo propter hoc
@@ -179,25 +158,32 @@ levels of a given gene across samples/tissues or expression levels of all genes
 $X$ and $Y$) and always ranges within $[-1,1]$ (see also
 \cref{sec:CorrMore}: \nameref{sec:CorrMore}).
 
-The correlation coefficient is computed by pairwise comparing observations
-between the two variable. Most implementation methods
+The correlation coefficient is computed by the pairwise comparison of observations
+between two variables. Most implementation methods
 will manage an unbalanced number of observations by excluding the incomplete pairs.
-To ease the interpretation I preferred to filter the data \latin{a priori}
-myself; I only kept expression values \emph{effectively observed}
-in all the datasets (see~\cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot}).
+To ease the interpretation I filtered the data \latin{a priori};
+I only kept expression values \emph{effectively observed}
+in all the datasets
+(as I explain in~\cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot}).
 
-Among the several methods available to compute the correlation coefficient,
-I tried both the Spearman and the Pearson correlations
-(see respectively \cref{subsec:SpearmanCor}: \nameref{subsec:SpearmanCor} and
+From the several methods available to compute the correlation coefficient,
+I chose both the Spearman and the Pearson correlations.
+As Spearman correlations are computed on ranks,
+they report any kind of relationship,
+while Pearson correlations are computed on the values
+and report only linear relationships.
+However, Pearson correlations are easier to interpret
+and can be used with one of the variable to predict the other one.
+(See also respectively \cref{subsec:SpearmanCor}: \nameref{subsec:SpearmanCor} and
 \cref{subsec:PearsonCor}: \nameref{subsec:PearsonCor}).
 
-\begin{table}[]
+\begin{table}[!htbp]
 \centering
 \caption[Correlation coefficients between \Rnaseq\ replicates]{%
 \label{tab:repCorr}\textbf{Correlation coefficients between \Rnaseq\ replicates}
 {\footnotesize The mean correlations are high across the studies with replicates.
 However, the range of the correlations (in brackets) are quite extreme in a few
-case. Spearman correlations are better than the Pearson ones.
+case. Spearman correlations are higher than the Pearson ones.
 See \Cref{subsec:PearsonVsSpearman}.}}
 \begin{tabular}{@{}cccc@{}}
 \toprule
@@ -214,96 +200,98 @@ Tissue & Replicates type & Pearson Correlation & Spearman Correlation \\ \midrul
 \Cref{tab:repCorr} presents the Pearson and Spearman correlation coefficients
 for the technical replicates for \uhlen\ study and
 the biological replicates within \vt, \gtex\ and \uhlen\ studies.
-Averagely the correlation coefficients are high either for the technical or
+On average the correlation coefficients are high either for the technical or
 the biological replicates.
-Technical replicates present higher Pearson correlations,
-while biological replicates have higher Spearman correlations.
-\gtex\ study presents the same average correlation coefficients but extreme range.
-This may be explained by great strong batch effect as the samples were collected
-and sequenced at different time by different laboratories.
+The \gtex\ study presents the same average correlation coefficients
+but a more extreme range.
+This may be explained by a strong batch effect as the samples were collected
+and sequenced at different times by different laboratories.
 
 \subsection{Clustering analysis}
 
 As we know the tissue type for each sample of each dataset,
-we may debate that supervised analyses can be more informative.
+we may debate that supervised analyses can be more informative
+than unsupervised ones.
 However, they would involve proper corrections for batch effects and
 other technical biases for each dataset.
-This is challenging as that often requires more knowledge than the available one
+This is challenging as that often requires more knowledge than what is available
 through the repositories.
 In \Cref{ch:datasets}, we have seen it is also unwise to rely solely on the
-normalised data provided by the original authors\footnote{Eventual bias
+normalised data provided by the original authors
+when working with various datasets
+that are non-uniformly processed\footnote{Eventual bias
 corrections in \Rnaseq\ vary according to planed downstream analyses and
 proteomic data is hard to handle and two processing pipelines may rather give
 quite different results (see~\Cref{subsec:IntegrationNewMethQuant}).}.
 
 To assess the consistency of the quantification across the different datasets,
 in particular for \Rnaseq,
-I picked a widely used and unsupervised method for gene expression studies:
-a clustering analysis.
-This method uncovers possible hidden
-structures within the data, therefore,
-it is well designed for exploratory studies.
-I can thus confirm if samples are more alike either due to their
-biological or their study origins.
+I picked a widely used unsupervised method
+for exploratory analysis in gene expression studies:
+clustering analysis.
+More precisely,
+(as there are many available approaches and algorithms from which to pick)
+I~chose a (bottom-up) \emph{hierarchical} clustering (a.k.a.\
+\emph{connectivity-based} clustering).
+This sort of clustering is widely used in gene expression studies,
+as it is relevant: embryologically (\eg\ for a multi-tissues study) within one organism
+or evolutionary when different species are compared.
+Broadly speaking,
+this method groups samples by similarity in an extensive hierarchy,
+which allows uncovering possible hidden structures within the data;
+thus establishing if samples are more alike biologically or by study origin
+for instance.
 
 In general, we expect biology to be a better predictor when we only consider
-data from either transcriptome or proteome. Even more so, if the
+data from either transcriptome or proteome. Even more so if the
 identification technology and the quantification workflows are
-consistent. Yet, a technical predictor can not be excluded straightforwardly.
+consistent. Yet, a technical predictor can not be directly excluded.
 Indeed, most transcripts (in particular \mRNAs) are expressed in many tissues
-and two random tissues share about 60 to 90\% of their pool of
+and two tissues chosen at random share about 60 to 90\% of their pool of
 \mRNAs~\mycite{ramskoldan:2009,UhlenGastro}.
-Coincidentally, on the proteome side,~\cite{PandeyData}
+Parallelly, on the proteome side, \citet{PandeyData}
 estimate that 75\% of the mass of a cell is due to ubiquitous proteins and
-\cite{KusterData} estimate that about 10,000
+\citet{KusterData} estimate that about 10,000
 to 12,000 proteins are ubiquitously detected, which represent about 60 to 75\%
 of the proteins that they identified per tissue. Thus, if the variation of
 expression are too subtle from one tissue to another, a strong sample collection
 or data processing bias may hide any relevant biological signal.
 
-There are many available approaches and algorithms for clustering analysis.
-I~chose a (bottom-up) \emph{hierarchical} clustering (a.k.a.\
-\emph{connectivity-based} clustering).
-
-This sort of clustering is broadly used in gene expression studies as it is
-embryologically\footnote{Or evolutionary, when different species are compared}
-pertinent\footnote{The whole organism develops from
-an original single cell.}. The data is portioned in an extensive hierarchy:
-each cluster merges with another at a certain distance.
 In practice, each sample starts in its own cluster and then
 by iteration, each cluster is merged with its nearest one.
 The method has two parameters: the distance and the linkage method.
-Debate is still going on how to pick these parameters (for more details
-see~\mycite{Jaskowiak2014}).
+Debate is still going on how to pick these parameters among the many possible
+choices (for more details see~\mycite{Jaskowiak2014,Guinand2002-ad}).
 
 The distance measures the dissimilarity between two samples and one common
 approach is to calculate the subtraction result of
 the correlation coefficient from $1$ (hence, a greater similarity between the two
-samples means a smaller distance). As previously, I have also used both Spearman
+samples means a smaller distance).
+In analogy to previous analyses, I have also used both Spearman
 and Pearson correlation methods.
 
 The linkage parameter specifies which part of each cluster is used as reference
 for computing the distance between the clusters. There are many methods and after
-trying several, I have arbitrary selected the one that divides the most accurately
+trying several, I have arbitrary selected the one that divides most accurately
 the samples by their tissue source across the different datasets.
-In fact, I noticed that the Ward's method~\mycite{Ward1963}
+In fact, I noticed that Ward's method~\mycite{Ward1963}
 was the best for this task and was outperforming the complete-linkage method.
 
-Indeed, this later method was used in~\mycite{Uhlen2014}
+Indeed, this latter method was used in~\mycite{Uhlen2014}
 (first release of the \uhlen\ dataset) where
-the original authors have to discard a few samples as they were clustering
+the authors have discarded a few samples as they were clustering
 incoherently in regards of their biological nature.
 \Cref{fig:fabergerOriginal} presents the effect of the different clustering
-method.
-Notice that all the tissue clusters are better defined when the Ward's
-method is used.
-However, the Ward's method allows to conserve all the samples for the analysis
+methods.
+Notice that all the tissue clusters are better defined when Ward's
+method is used:
+this method allows conserving all the samples for the analysis
 as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{subsec:mito}).
 \begin{figure}[!htpb]
     \centering
        \begin{subfigure}[hp]{0.70\textwidth}
        \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerAnnotated2_noLog_NoMito_htseqSpearman.png}
-    \caption{Clustering based on the Ward method}\label{fig:FabergerRedone}
+    \caption{Clustering based on Ward's method}\label{fig:FabergerRedone}
    \end{subfigure}
 
      \begin{subfigure}[hp]{0.70\textwidth}
@@ -311,25 +299,29 @@ as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{su
       \caption{Clustering directly extracted from the original study
       {\footnotesize \mycite{Uhlen2014}}}\label{fig:fabergerOriginal}
        \end{subfigure}
-    \caption[Comparison of clustering methods on a subset of the \uhlen\ study]{%
-    \textbf{Comparison of clustering methods on a subset of the \uhlen\ study}.
+    \caption[Comparison of two clustering methods on a subset of the \uhlen\ study]{%
+    \textbf{Comparison of two clustering methods on a subset of the Uhlén study}.
     (\subref{fig:FabergerRedone}) includes all the samples and
-    we observe that only of them are mixed with other samples from other tissues.
-    This mixture is only observed between  \tissue{Small intestine} and \tissue{Duodenum}.
+    we observe that only a few of them are mixed with other samples from other tissues.
+    This mixture is only observed between \tissue{Small intestine} and \tissue{Duodenum}.
  }\label{fig:versusFaberger}
 \end{figure}
 
-\section{Reducing obvious bias sources}\label{sec:bias_sources}
+\section{Reducing sources of bias}\label{sec:bias_sources}
 
-Many non-trivial methods correct for the skewness presents in
+Many non-trivial methods correct for the skewness present in
 \Rnaseq\ and \ms-based proteome global expression distributions
-and for other possible bias sources.
+and for other possible bias sources (for some examples, see \citet{batchEffect,%
+Leek2014-bl,Yi2018-rv,Li2014-cv,Stegle2012-td}).
+
 However, it may be complex to assess the biological relevance of those corrections.
-Hence, while it may be better to correct for every bias in principle,
-in the context of this thesis, this is a smaller concern as I am interested into
+Moreover, many require more metadata that I managed to access.
+In the context of this thesis, I am interested in
 consistent traits across the datasets that may be consolidated into a reference.
-Nonetheless, prior to the analysis and while its early stages,
-I found a few easily avertible biases that I describe hereinafter.
+Thus, biases that are common to all the different included studies are in practice
+negligible.
+On the other hand, I have adjusted for a few easily avertible biases
+that I describe hereinafter.
 
 \subsection{Mitochondria issue}\label{subsec:mito}
 
@@ -337,24 +329,30 @@ Gene expression levels of mitochondria can report very useful information,
 \eg\ the stress level of a cell in a single cell experiment~\mycite{Ilicic2016}.
 However, it is unwise to keep them for a bulk analysis, particularly when
 comparing different biological sources.
-Indeed, it is very hard to properly normalise their expression.
-It involves knowing the amount of mitochondria in the studied samples.
-I have decided to remove them from the analysis as they skew anything relying
+Indeed, it is very hard to properly normalise their expression;
+it involves knowing the amount of mitochondrial genome copies
+in the studied samples, while the mitochondria are from an unknown polyploidy
+and \Rnaseq\ protocols are badly suited for polyploid organisms~\mycite{Pearce2015-xa}.
+Thus, I have decided to remove them from the analysis as they skew anything relying
 on correlation.
 In fact, there are always mitochondrial genes among the highest expressed genes
 and they usually dominate manifolds the expression of the other genes.
 
-Removing the 37 mitochondrial genes from the bulk of expressed genes
-(above 10,000 \pcgs) produces more defined clusters as showed on
-\Cref{fig:MitoNomito} (see also \Cref{fig:ExpGenePcoding1_withMito} in comparison
-of \Cref{fig:ExpGenePcoding1}).
+Removing the (37) mitochondrial genes from the bulk of expressed genes
+(more than 10,000 \pcgs) produces more defined clusters as showed on
+\Cref{fig:MitoNomito}
+(see also, in the next chapter analysis,
+\Cref{fig:noMitoNoRep4} in comparison of \Cref{fig:ExpGenePcoding1_withMito},
+where the simple exclusion of the mitochondrial genes allows all tissues
+to cluster by biological origin rather than the mixtures observed
+when they are kept).
 
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[hp]{0.85\textwidth}
         \centering
         \includegraphics[width=0.85\textwidth]{expressed/Uhlen_noLog_mito_htseq.jpeg}
-        \caption{With the 37 mitochondrial genes kept}\label{fig:withMito}
+        \caption{With the 37 mitochondrial genes included}\label{fig:withMito}
     \end{subfigure}
 
     \begin{subfigure}[hp]{0.85\textwidth}
@@ -373,19 +371,18 @@ of \Cref{fig:ExpGenePcoding1}).
 I have focused my analyses on the \mRNAs\ (\ie\ \glspl{RNA} that have a
 biotype described as \emph{\pc} in \ens{76}).
 
-In addition of the obvious reason to match with the proteomic data,
-most of the transcriptomic data is the produce of poly-A selected protocols
+In addition to the obvious reason to match with the proteomic data,
+most of the transcriptomic data is the product of poly-A selected protocols
 (see \Cref{msec:polyA}: \nameref{msec:polyA}).
-Thus, aside of the \mRNAs, all the other \glspl{RNA} are off-target
+Thus, aside from the \mRNAs, all the other \glspl{RNA} are off-target
 and, for many of them,
 their expression levels estimations may be highly imprecise.
 
 
-\subsection{Expressed or not expressed}
-\label{sec:ExpressedOrNot}
+\subsection{Expressed or not expressed}\label{sec:ExpressedOrNot}
 
-While it can seem as a trivial concept and might be overlook, whether a specific
-molecule is expressed --- or not --- in a given condition, can actually have
+While it can seem a trivial concept and might be overlooked, whether a specific
+molecule is truly expressed --- or not --- in a given condition, can actually have
 an extensive impact on the results of the analyses, particularly when integrating
 proteome and transcriptome together.
 
@@ -393,23 +390,23 @@ For example, the Pearson correlation coefficient is very
 sensitive to outliers and null values. If for both samples, a vast number of
 null values are recorded, this will lead to a greater similarity.
 Hence, it is important that the data used for the analysis is meaningful in
-its whole, \ie\ a null value has still to be an observation and translates
-a lack of expression (and not a lack of observation).
+its entirety, \ie\ a null value is a truly an observation and translates to
+a lack of expression, rather than a lack of observation.
 
 \begin{figure}[!htb]
     \includegraphics[scale=0.7]{expressed/expressedNotExp.pdf}\centering
       \caption[Expressed or not: several cases illustrated]
       {\label{fig:DefineExpression}\textbf{Expressed or not: several cases
-      illustrated.}\smallbreak{} Genes as \emph{gene 1} are unequivocal: they have been
+      illustrated.}\smallbreak{} Genes like \emph{Gene 1} are unequivocal: they have been
       detected in all the different tissues. Genes that have been quantified in
       \emph{some} of the conditions are, in principle, detectable with the
       protocol of sampling and quantification used for the assay.
-      For these genes, when no signal is collected, I assume this is a true $0$.
-      The genes without any quantification
-      in any tissue, \eg\ gene 4, are discarded from the remaining analysis as
-      I can't state
-      either there are truly absent from the biological sample or it has to due
-      to the protocol at use; they are \emph{undefined}. The same approach is used
+      For these genes, when no signal is collected, I assume this is a true $0$ signal.
+      In contrast, genes without any quantification
+      in any tissue, \eg\ \emph{Gene 4}, are discarded from the remaining analysis as
+      it is impossible to state
+      whether they are truly absent from the biological sample or if it is due
+      to the protocol used; they are \emph{undefined}. The same approach is used
       for the transcriptome and the proteome.}
 \end{figure}
 
@@ -417,14 +414,13 @@ a lack of expression (and not a lack of observation).
 \label{subsec:ExpressedOrNot-undefined}
 If a protein or transcript is never found in any of the samples of a dataset,
 then I considered that we can not determine if the protein or transcript was
-either truly not expressed or, for any reason, was not capture while the library
+either truly not expressed or, for any reason, was not captured during the library
 preparation or the identification/quantification steps. Hence, those are
 excluded from the analyses as I can not resolve precisely if this is a
-technical artefact or a biological truth. This case is illustrate by the row
-circled in red in~\cref{fig:DefineExpression}.
+technical artefact or a biological truth. An example is illustrated by the row
+circled in red in~\Cref{fig:DefineExpression}.
 
-\subsubsection{Expression in a dataset}
-\label{subsec:ExpressedOrNot--expDataset}
+\subsubsection{Expression in a dataset}\label{subsec:ExpressedOrNot--expDataset}
 By contrast, if a protein or a transcript is expressed in some samples of the
 dataset, then, whenever no expression was recorded in the other
 samples, I consider that the expression of the considered macromolecule is truly
@@ -432,7 +428,7 @@ null for those samples.
 
 \subsubsection{Expression within a sample}
 Due to the technical (and biological) differences between proteomics and
-transcriptomics, I use different thresholds to define the expression of a protein
+transcriptomics, I use different thresholds to classify the presence of a protein
 or a transcript.
 
 \minisec{Expressed protein}
@@ -443,29 +439,26 @@ is greater than zero in a sample, I consider it as expressed.
 \minisec{Expressed transcript}\KOMAoptions{parskip=half*}\label{subsubsec:exprTrans}
 It is a bit more complex on the transcriptomic side as
 we have to account for technical noise,
-but we can also expect \enquote{translational noise}~\mycite{rnaseq-2009},
+but also \enquote{transcriptional noise}~\mycite{rnaseq-2009},
 \mycite{lowNoiseLimit}.
-Indeed, \cite{seqcmaqc} reports that
+Indeed, \citet{seqcmaqc} reports that
 excluding low-expression measurements reduce the \gls{FDR} considerably.
 
 While we can empirically evaluate it for each \Rnaseq\
 dataset~\mycite{ramskoldan:2009},
-there is a widespread threshold used in the literature:
+there is a widespread threshold used in the literature
+(\eg\~citet{Uhlen2014,Uhlen2015}):
 1 \gls{FPKM} (or \gls{RPKM}).
-In fact,~\citet{Hebenstreit:2011} showed in their study
+In fact, \citet{Hebenstreit:2011} showed in their study
 \paper{\citetitle{Hebenstreit:2011}},
-that to be detected and quantified as a protein,
+that to be detected and quantified at protein level,
 a \mRNA\ should at least present an expression equals to 1 \gls{RPKM}.
 
-Hence, I have used this threshold to run (at least once) all the analyses.
 As an important part of my thesis focuses on
 the comparison of proteomic and transcriptomic data (see \Cref{ch:Integration}),
-I have run all the analyses at least with this threshold of $1$ \gls{FPKM}.
-
-It may worth mentioning that I have also redone parts of the analyses without
-any threshold (\ie\ I use then the same definition for the \mRNAs\ than for the
-proteins) or with a threshold of $5$ \glspl{FPKM}\footnote{While this threshold
-may be found in the literature, it remains rather arbitrary.}.
+I have conducted all the analyses at least once with this threshold of $1$ \gls{FPKM}
+(I have also used $0$ (\ie\ using the same threshold for \mRNAs\
+for the proteins) and $5$ \FPKM\ as other thresholds for a few specific analyses).
 
 \subsubsection{Limitation of the study}
 While I may have compared the list of
@@ -474,13 +467,15 @@ the bulk of the analyses has been done on the common expressed genes across
 the datasets.
 
 In other words, if a \mRNA\ --- or protein --- is not expressed in at least
-one sample in \emph{every and each} of the datasets used for the analyses,
+one sample in \emph{each and every} dataset used for the analyses,
 I then exclude it.
+This led me to define different working sets for the following chapters analyses
+to limit the number of omitted \mRNAs/proteins.
 
-\subsection{Averaging tissue expression}
-\label{subsec:averagedTissue}
+\subsection{Averaging tissue expression}\label{subsec:averagedTissue}
 Finally, to avoid unnecessary skewness in the meta-analyses due to
-the biological replicates unbalance across the datasets (see \Cref{sec:expDesign}:
+imbalanced number of
+biological replicates across the datasets (see \Cref{sec:expDesign}:
 \nameref{sec:expDesign}),
 I computed a \emph{\enquote{virtual} reference} for each tissue
 within the datasets that present more than one biological sample per tissue,
@@ -495,16 +490,17 @@ biological replicates of that tissue.
 \textbf{Notes:}
 \KOMAoptions{parskip=never}
 \begin{itemize}[topsep=0pt,nosep]
-        \item For \ibm\ dataset, I discard the single-end sequenced samples.
-        \item The \uhlen\ dataset has required an extra \emph{prior} step to
+        \item For \ibm\ dataset, I have discarded the single-end sequenced samples
+            (as already mentioned in \Cref{ch:datasets}).
+        \item The \uhlen\ dataset required an extra \latin{a priori} step to
             the averaging of the biological replicates
             for some of the tissues as they present technical replicates.
             For these, I have first averaged the gene expression levels
-            for each subject-tissue pairs before computing
+            for each subject-tissue pair before computing
             the gene expression level medians of each tissue.
-        \item On the other hand, the \gtex\ dataset has required another
-            \emph{post} step after the averaging of the biological replicates.
-            Indeed, in \gtex, the samples are described based on their
+        \item The \gtex\ dataset required another \emph{post}-processing
+            step after the averaging of the biological replicates.
+            Indeed, the samples are described based on their
             body site sources while the other datasets describe their samples
             only based on their tissue origin.
             Thus, while there is only \tissue{Heart} samples in \castle, \vt,
@@ -513,8 +509,32 @@ biological replicates of that tissue.
             and from the \tissue{Atrial appendage of the Heart}.
             For this case and other similar ones,
             I have average the virtual reference of the body sites in \gtex\
-            that I have appraised as relevant for comparison with tissues found
+            that I considered relevant for comparison with tissues found
             in the other datasets.
+        \item While I have detected many samples that seem outliers to their
+            biological replicates within the same datasets,
+            I have decided to keep all the samples for the tissues expression
+            averaging step. On this matter,
+            in my many exchanges with the community,
+            I was repetitively asked about the inclusion of all the \gtex\ dataset samples
+            related to \tissue{Oesophagus} for the averaging step.
+            Indeed, while two of the three \gtex{}'s body sites
+            (\ie\ \tissue{Gastro oesophageal junction} and \tissue{Oesophageal muscularis})
+            present great similarities together ($r = 0.99$) and more modest correlations
+            to \uhlen{}'s \tissue{Oesophagus} samples ($r < 0.80$),
+            the last body site (\ie\ \tissue{Oesophageal muscularis}) expression,
+            very dissimilar to the two former ones ($r < 0.64$),
+            presents higher correlation to \uhlen's ($r = 0.94$).
+            Thus, while only considering this latter body site significantly improves
+            the overall \oesophagus\ correlation between \gtex\ and \uhlen,
+            I have decided to include all three body sites (as one tissue)
+            in my study.
+            Indeed, there are no suitable reasons or information that allows excluding
+            any of the body site \latin{prior} to the analyses,
+            and the scatter plots of the \uhlen{}'s samples versus any of these three body
+            sites present two trend for the gene expression which suggest that
+            \uhlen{}'s \oesophagus\ samples are a more composite.
+
 %see more for esophagus in next chapter.
 \end{itemize}
 \KOMAoptions{parskip=half*}
@@ -531,7 +551,7 @@ for \brawand, \uhlen\ and \gtex.
 
 \section{Discussion}
 
-In this chapter, I quickly review many fine points that
+In this chapter, I have reviewed many fine quality control points that
 may be (and often are) overlooked.
 While it may be perceived as nitpicking,
 these details have critical impact on the results of the analyses
@@ -541,24 +561,16 @@ and the included references.}.
 
 Aside the datasets selection criteria,
 this phase is by far the most subjective one of the whole thesis.
-Hence, to avoid excessive \emph{data massaging\footnote{I.e.\ data cleaning.}}
+Hence, to avoid excessive \emph{data cleaning}
 and possible cognitive biases,
 I have formulated the aforementioned filtering rules
 that are important but simple.
 
-Overall, I am quite conservative and I have preferred to keep more data
+Overall, I am quite stringent and I have preferred to keep more data
 without any strong rationale to discard them.
 Therefore, there are sharper filters and samples exclusion options that
 may easily improve the results I present in this thesis.
 
-For example, in my many exchanges with the community,
-I was repetitively asked about the inclusion of all the \gtex\ dataset samples
-related to \tissue{Oesophagus} for the averaging step.
-Indeed, while two of the three body sites present great similarities
-to \tissue{Oesophagus} samples of the \uhlen\ dataset,
-the last body site expression is very dissimilar.
-Thus, excluding this body site will significantly improve
-the overall correlation of \gtex\ and \uhlen\ for the \Oesophagus.
 
 \begin{comment}
 \section{Methods}
