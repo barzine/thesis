@@ -44,6 +44,7 @@ It allows uncovering the detection of underlying structures
 and possible unwanted artefacts.
 
 \subsection{Distribution plots}\label{subsec:distribPlot}
+\vspace{-0.2in}
 In the literature, expression values are frequently
 visualised on a log-scale ($\log_{2}(x)$).
 \Cref{fig:distribPlot}a and b illustrate how
@@ -62,7 +63,7 @@ or for correct interpretation.
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[scale=0.7]{expressed/IBMexpression.png}
+    \includegraphics[scale=0.65]{expressed/IBMexpression.png}
     \caption{Untransformed and Log$_{2}$-transformed profile
     of expression levels (\FPKM, \pcgs\ only and all null values excluded)
     for the \ibm\ dataset}\label{fig:distribPlot}
@@ -487,6 +488,8 @@ Thus, for each tissue of \vt, \uhlen\ and \gtex\ datasets, I compute gene
 expression levels by taking the median value of each gene across all the
 biological replicates of that tissue.
 
+
+
 \textbf{Notes:}
 \KOMAoptions{parskip=never}
 \begin{itemize}[topsep=0pt,nosep]
@@ -539,6 +542,7 @@ biological replicates of that tissue.
 \end{itemize}
 \KOMAoptions{parskip=half*}
 
+\label{def:trep}
 The meta-analyses of the following chapters use
 a \glsxtrfull{TREP} for each tissue of each study, \ie\
 there is only one measure per gene for each tissue.

@@ -1,4 +1,4 @@
-\chapter{Gene Expression in normal human tissues across RNA-Seq studies}
+\chapter{Integrating gene expression data from normal tissues across RNA-Seq studies}%
 \label{ch:Transcriptomics}
 
 \vspace*{0.7in}
@@ -14,7 +14,7 @@ little was known on either the robustness or
 the shortcomings and pitfalls of \Rnaseq\ and
 its related processing of output data.
 Since then, several studies were published assessing \Rnaseq\
-robustness (See \Cref{sec:TranssCoop}: \nameref{sec:TranssCoop}).
+robustness (See \Cref{sec:TranssCoop}).
 A few present a closely related scope to my own investigations, thus
 whenever relevant,
 I introduce and discuss my results in relation to the published ones.
@@ -52,12 +52,12 @@ In the past years,
 \Rnaseq\ rapidly gained popularity
 for gene expression studies
 due to a broader dynamic range than previous technologies
-and the promise to enable quantitative profiling\footnote{%
-Prior high-throughput technology microarray assays are very prone
-to batch effects and are semiquantitative \mycite{lee:2006}.
-}.
-However, \Rnaseq\ studies had shown variation in their conclusions. \mycite{seqcmaqc}
-At that time,
+and the promise to enable quantitative profiling.
+That technology was an advancement with respect to microarray assays
+that are very prone to batch effects and are semiquantitative~\mycite{lee:2006}.
+However, \Rnaseq\ studies had shown variation in their conclusions on various
+occasions for similar research topics~\mycite{seqcmaqc}.
+At the time that I started my \phd,
 it appeared that
 \Rnaseq\ might share at least partially the problems encountered
 with microarray assays.
@@ -67,15 +67,8 @@ and the resulting insights are usually limited \mycite{Walsh2015-nf,Rung2013-ul,
 
 \section{Working sets}
 
-While many approaches exist,
-I usually consider the most conservative routes,
-\ie\ I rather exclude part of the data to infer conclusions than
-keep wider datasets and more partial, biased or ambiguous results.
-Thus, I identified the identical core of
-explored tissues and expressed genes across the studies.
-From this base, I created more robust working sets for my meta-analyses.
-
-Through this chapter, I use two working sets:
+Through this chapter, I use two working sets
+based on subsets of the transcriptomic studies introduced in \Cref{ch:datasets}:
 \begin{itemize}[topsep=0pt,nosep]
     \item \setOne: 4 tissues --- 12,268 genes across the 5 \Rnaseq\ studies, and
     \item \setTwo: 23 tissues --- 17,551 genes across 2 of these studies.
@@ -83,6 +76,14 @@ Through this chapter, I use two working sets:
 
 The following \cref{subsec:transtissueOverlap,subsec:transGeneOverlap}
 illustrate the construction of these sets.
+
+While many approaches exist,
+I usually consider the most stringent routes,
+\ie\ I rather exclude part of the data to infer conclusions than
+keep wider datasets and more partial, biased or ambiguous results.
+Thus, I identified the identical core of
+explored tissues and expressed genes across the studies.
+From this base, I created more robust working sets for my meta-analyses.
 
 \subsection{Tissue overlaps across the available normal human RNA-Seq studies \quad}%
 \label{subsec:transtissueOverlap}
@@ -110,8 +111,7 @@ transcriptomic datasets]
 between the transcriptomic datasets.} The five datasets share four
 common tissues: \heart, \kidney, \liver\ and \testis.
 The most prominent overlap of tissues (23) is between \uhlen\ and \gtex.
-These two sets of tissues are the primary focus of the transcriptomic part of the
-study.}
+}
 \end{figure}
 
 \subsection{Common measured genes for each of the common tissues sets\quad}%
@@ -122,32 +122,32 @@ many of the transcriptomic datasets I use have been produced through
 polyA-selected library protocols.
 Hence,
 to avoid unnecessary biases\footnote{See
-\Cref{subsec:protcodingOnly}: \nameref{subsec:protcodingOnly}.}
-I have limited most of my analyses to genes with an annotated biotype as
-\emph{\pc} (in \ens{76}),
-\ie\ I specifically filtered out all the other genes even if they were observed.
+\Cref{subsec:protcodingOnly}: \nameref{subsec:protcodingOnly}.},
+I have limited most of my analyses to \pcgs\ (\ens{76}).
+All mitochondrial genes have been filtered out as specified in \Cref{subsec:mito}.
 
 \begin{figure}[!hptb]
-    \includegraphics[scale=0.46]{transcriptomics/PcodingGenesExpressed1_4tissues.pdf}\centering
-    \caption[Unique and shared \pcgs\ expressed
-    in the 4 common tissues (≥1 \FPKM)]{\label{fig:ExpGenePcoding1}\textbf{Unique
-    and shared \pcgs\ expressed ≥ 1 \FPKM\ in the four common tissues
-    across the five studies.}}
-\end{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[scale=0.6]{transcriptomics/PcodingGenesExpressed1_4tissues.pdf}
+        \caption{Four common tissues across the five tissues (\setOne)}\label{fig:ExpGenePcoding1}
+    \end{subfigure}
 
-\begin{figure}[!hptb]
-    \includegraphics[scale=0.43]{transcriptomics/vennTissue23_1protcodgenes.pdf}\centering
-    \caption[Unique and shared \pcgs\ expressed
-    in the 23 common tissues (≥1 \FPKM)]%
-    {\label{fig:ExpGenePcoding1_t23}\textbf{Unique
-    and shared \pcgs\ expressed ≥ 1 FPKM in the twenty-three common tissues
-    of \uhlen\ and \gtex\ studies.}}
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[scale=0.55]{transcriptomics/vennTissue23_1protcodgenes.pdf}
+        \caption{Twenty-three common tissues\\ between Uhlén et al.\
+        and GTEx studies (\setTwo)}\label{fig:ExpGenePcoding1_t23}
+    \end{subfigure}
+    \caption[Unique and shared \pcgs\ expressed (≥1 \FPKM) across RNA-Seq studies]%
+    {\textbf{Unique and shared \pcgs\ expressed (≥ 1 \FPKM) across the \Rnaseq\ studies
+    for \setOne\ and \setTwo}}
 \end{figure}
 
 The Venn diagram presented in \Cref{fig:ExpGenePcoding1} only includes \pcgs\
 that are observed\footnote{See
 \Cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot}.}
 at least once at 1 \FPKM\ for one of the four shared tissues.
+As mentioned in the previous chapter (\Cref{subsec:averagedTissue}~p.~\pageref{def:trep})
 The bulk of expressed genes at this threshold is common
 to all five datasets.
 While each study presents a tiny portion of genes
@@ -157,7 +157,7 @@ The most considerable contingent of shared gene expression is observed
 between \uhlen\ and \gtex.
 
 \Cref{fig:ExpGenePcoding1_t23} presents a similar Venn diagram
-while focusing on the twenty-three shared tissue set
+which focuses on the twenty-three shared tissues set (\setTwo)
 between \uhlen\ and \gtex\ studies.
 The unique genes to each study are negligible compared to the bulk.
 They represent less than 0.03\% of the measured genes in each of the studies
@@ -170,7 +170,7 @@ They represent less than 0.03\% of the measured genes in each of the studies
 I analysed all the other subgroups of genes
 (\ie\ unique to each study or shared only between two to four datasets)
 for any functional annotation enrichment.
-Neither the \gls{gsea} or the \gls{goa} (See \Cref{ch:background})
+Neither the \gls{gsea} or the \gls{goa}
 provided any conclusive result.
 
 \section{Prevalence of biological signal over technical variabilities at
@@ -180,7 +180,7 @@ As I show in \Cref{ch:expression},
 the expression levels of biological replicates (\ie\ identical tissue samples)
 are highly correlated within the same study
 and allow one to group the samples based on their biological source.
-Thus, clustering the samples across studies offers a quick assessment of
+Thus, clustering the samples across studies should offer a rough assessment of
 the underlying driving forces for the observed gene expression levels.
 A clustering by study means that the technical variabilities are stronger
 than any biological expression signature
@@ -188,7 +188,7 @@ than any biological expression signature
 due to their stronger batch effects \mycite{Sudmant2015-zt}).
 On the other hand,
 an interstudy sample clustering by tissue implies that \Rnaseq\ measurements
-demonstrate a good (biological) signal over (technical) noise ratio.
+would demonstrate a good (biological) signal over (technical) noise ratio.
 In other words,
 and as shown on the following heatmaps \Cref{fig:noMitoNoRep4T,fig:noMitoNoRep23T},
 \Rnaseq\ is less prone to batch effects and more robust than
@@ -198,39 +198,31 @@ microarray assays~\mycite{Taminau2014-hr,Walsh2015-nf}.
 are the respective heatmaps of the hierarchical clustering
 of the \treps{}\footnote{\glsxtrlong{TREP}. See \Cref{subsec:averagedTissue}:
 \nameref{subsec:averagedTissue}.}
-for the four shared tissues across the five datasets and the
-twenty-three shared tissues between \uhlen\ and \gtex\ studies.
+for \setOne\ (four shared tissues across the five studies) and \setTwo\
+(twenty-three shared tissues between \uhlen\ \eta\ and \gtex\ studies).
 The heatmaps are based on clustering (Ward's method linkage \mycite{Ward1963})
 the \treps\ Pearson correlation coefficients
-(\pcgs\ expressed at least at 1 \FPKM\
-and with the exclusion of mitochondrial genes).
+(\pcgs\ expressed at least at 1 \FPKM).
 
 In \Cref{fig:noMitoNoRep4T},
 each cluster concurs to a tissue.
-The clustering highlights a greater biological similarity of the \treps\
+The clustering signal by tissue dominates over the signal from the dataset.
+Thus, it highlights a greater biological similarity of the \treps\
 due to their sampling origins than any possible
-technical similarity due to library preparation or processing variations.
-We may object that
-the very different gene expression (and levels) in
-\Heart, \Kidney, \Liver\ and \Testis\
+technical similarity due to laboratory protocol variations.
+One may object that
+the very different gene expression landscapes of \Heart, \Kidney, \Liver\ and \Testis\
 \mycite{ramskoldan:2009,Lukk2010-op,Danielsson2015-cn,Sudmant2015-zt,GTExTranscript,Uhlen2015}
-may drive this untypical result
-and other (less differentiated) tissues may exhibit mitigated correlations.
+may drive this atypical result
+and lesser differentiated tissues may exhibit more mitigated correlations.
 \Cref{fig:noMitoNoRep23T} confirms that the biological origin of the tissues
 is the dominant criterion for the clustering of the \treps.
-Even if there are a few mixtures of \treps,
-the majority of them cluster by tissue.
-Moreover, in many cases, the mixture occurs in close biologically related tissues,
-\eg\ \fallopian\ and \Ovary. Alternatively, there is also \salivary\
-with \Esophagus\ and \Stomach\ \treps.
-\Cref{fig:noMitoRep4T} and \Cref{fig:noMitoRep23T}
-present heatmaps for the same tissues and studies,
-but where every available sample is included\footnote{I.e.\
-A few tissues in some studies have more than one sample.
-These are either biological or technical (or both) replicates.}
-(see also \Crefu{sec:rnaseq-data} and \Crefu{tab:repCorr}).
-These two supplementary figures also support that
-the biological signal is mainly stronger than the technical variations.
+Moreover, in many cases, \treps\ mixtures occur in close biologically related tissues,
+\eg\ \fallopian\ and \Ovary.
+Alternatively, there is also \salivary\ with \Esophagus\ and \Stomach\ \treps.
+These observations prevail when I extend the analysis to include all the available
+tissue samples (see \Cref{fig:noMitoRep4T} and \Cref{fig:noMitoRep23T}).
+See also \Crefu{sec:rnaseq-data} and \Crefu{tab:repCorr}.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.84]{transcriptomics/heatmap4TnoMitonoRep_1TC.pdf}\centering
@@ -238,8 +230,8 @@ the biological signal is mainly stronger than the technical variations.
     {\label{fig:noMitoNoRep4T}\textbf{Heatmap of the four common tissues
     across the five studies.}\\All \pcgs\ (except the mitochondrial
     ones) at least expressed at 1 \FPKM\ are included.\\All the
-    different \treps\ cluster by tissue of origin
-    (instead for example by studies).}
+    different \treps\ cluster by tissue of origin (y-axis colourbar)
+    (instead for example by studies that is represented on the x-axis colourbar).}
 \end{figure}
 
 \begin{figure}[!htpb]
@@ -248,7 +240,8 @@ the biological signal is mainly stronger than the technical variations.
     {\label{fig:noMitoNoRep23T}%
     \textbf{Heatmap of twenty-three common tissues between Uhlén and GTEx studies.}
     All \pcgs\ (≥ 1 \FPKM\ with the exclusion of the mitochondrial
-    genes) are included.\\Most \treps\ cluster by tissues except for a few exceptions:
+    genes) are included.\\Most \treps\ cluster by tissues (y-axis colourbar)
+    except for a few exceptions:
     There is a mixture of the \fallopian\
     and \Ovary\ \treps.
     In addition, \Salivary\ \treps\ is more correlated to
@@ -261,25 +254,25 @@ the biological signal is mainly stronger than the technical variations.
 coefficients for the pairs of identical tissue profiles (\treps)
 sourced from the different studies
 for both of the working datasets \setOne\ and \setTwo.
-Most of the Pearson correlations are above 0.5\footnote{Indeed,
+Even with the lack of any batch effect correction,
+most of the Pearson correlations are above 0.5.
+Indeed,
 there are two exceptions: the
 correlation between the \Testis\ \treps\ of \castle\ and \vt\ (0.42)
 for the 4-tissues working set and
 \Salivary\ \treps\ of \uhlen\ and \gtex\ (0.2)
-for the 23-tissues working set.}
-even with the lack of any batch effect correction.
+for the 23-tissues working set.
 The median correlation for the four common tissues across the five datasets is
 about 0.7 and 0.84 for the twenty-three tissues between \uhlen\ and \gtex\ studies.
-As I mentioned in \Cref{ch:expression},
-Pearson correlations are easier to understand, interpret
-and then be used as predictors
-while Spearman correlations are more robust and thus better fitted for interstudy
-comparisons.
-See \Crefu{subsec:PearsonVsSpearman}.
 Results are even better with Spearman Correlation:
 the averages are respectively 0.49 for the 4-tissues sets
 and 0.9 for the 23-tissues set and
 the median correlations are 0.88 and 0.93.
+As I mentioned in \Cref{ch:expression},
+Pearson correlations are easier to understand and interpret
+while Spearman correlations are more robust and thus better fitted for interstudy
+comparisons.
+See \Crefu{subsec:PearsonVsSpearman}.
 
 \label{seg:betterTreps}
 Both the Pearson\footnote{Despite one major outlier in the second
@@ -301,9 +294,9 @@ Three main reasons may explain this situation:
 \begin{figure}[!htpb]
     \includegraphics[scale=0.55]%
 {transcriptomics/TransPearsonDistributionIdenticalOnly.pdf}\centering
-\caption[Distribution of the correlation of same tissue pairs for the 4 and 23
+\caption[Distribution of the correlations of same tissue pairs for the 4 and 23
 tissues working sets.]{\label{fig:SamedistribPearsCorr}\textbf{Distribution
-of the Pearson correlation of same tissues pairs for the four and
+of the Pearson correlation coefficients of same tissues pairs for the four and
 the twenty-three tissues working sets.}
 In general, the Pearson correlations are high when we are
 \emph{directly} comparing \treps\ from different studies.\\
@@ -313,15 +306,14 @@ and narrower distribution than
 in the 4-tissues working set (\setOne) (median$ = 0.74$).
 However, \setTwo\ displays one outlier with
 a very low Pearson correlation ($0.2$: \salivary\ tissue).
-Sampling, processing issues or biological reasons
+Sampling, processing differences or biological reasons
 may just as well explain this outlier.}
 \end{figure}
 
-\Cref{fig:distribCorr} presents the different pairs of tissues across the
-datasets in addition to the same tissue pairs.
-The pairs comprising different tissues are very lowly correlated in general.
-
-In a few cases of the 23-tissues working set,
+On the other hand,
+the pairs comprising different tissues are very lowly correlated in general
+(see \Cref{fig:distribCorr}).
+Although, in a few cases of \setTwo\ (23-tissues working set),
 high correlations are also observed for different-tissues pairs
 (\eg\ \Fallopian\ and \Uterus\ from \gtex\ study)
 (see also \Cref{fig:noMitoNoRep23T}).
@@ -337,9 +329,8 @@ of most \treps\ across different studies,
 the question then arises as to what is driving these strong interstudy
 correlations.
 
-As discussed in \Cref{ch:expression}\footnote{See \Cref{sec:ExpressedOrNot}:
-\nameref{sec:ExpressedOrNot}},
-correlation coefficients measure the dependence between (here) two tissue profiles (\treps)
+As discussed in \Cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot},
+correlation coefficients measure the dependence between two tissue profiles (\treps)
 and are subject to outliers and the skewness of the distributions.
 As I have excluded the \emph{undefined}\footnote{I.e.\
 \emph{unobserved} --- See also
@@ -353,7 +344,7 @@ the underlying reasons of the strong correlations.
 
 \subsection{Highest expressed genes}
 
-The notion of highest expressed genes may be trivial,
+The notion of highest expressed genes may seem trivial,
 but it depends on the normalisation method.
 \Cref{ch:background} presents how all \Rnaseq\ values are inherently relative
 to the observed genes and the normalisation assumptions.
@@ -361,7 +352,7 @@ Thus, from a same unnormalised (\ie\ \emph{raw count}) sample,
 depending on the chosen normalisation
 (see \Cref{subsub:norm}:~\nameref{subsub:norm}),
 gene expression values and their final ranked order may be very different.
-To avoid many biases though,
+To avoid such biases,
 I have processed the data with consistent methods and annotation
 and excluded selected sets of
 genes\footnote{See \Cref{sec:bias_sources}:~\nameref{sec:bias_sources}}.
@@ -369,8 +360,10 @@ Incidentally, if I pick another normalisation than \FPKM\footnote{See
 \Cref{eq:rpkm-fx}},
 the exclusion filters may impact a different set of genes.
 
-To test the highest expressed genes influence on correlation,
-I chose to visualise its trend as a function of expression value thresholds.
+To test how the highest expressed genes may influence the correlation,
+I chose to visualise how the correlation trends vary
+when I increase the expression threshold that genes have to comply to be
+included in the correlation calculation.
 Thus, for \Cref{fig:CorHighExp4T} and \Cref{fig:CorHighExp23T},
 I computed correlations of genes that are expressed above a cut-off
 for each possible corresponding tissue pair of both working datasets \setOne\ and \setTwo.
@@ -398,11 +391,11 @@ The cut-off is a range (with step 10) of possible values (integers) of gene expr
         \includegraphics[width=\textwidth]{transcriptomics/TestisEvolHighExp4P-1.png}
         \caption{Testis}\label{fig:CorHighExpTestis4T}
     \end{subfigure}
-    \caption[Pearson correlation coefficient evolution based on the expression
-    levels of the genes considered for each of the 4 common tissues]{%
+    \caption[Pearson correlation coefficient trends based on the expression
+    levels of the genes considered for \setOne]{%
 \label{fig:CorHighExp4T}\textbf{Pearson correlation coefficient evolution
-    based on the expression levels of the genes considered for each of the four
-    common tissues across the five studies.}}
+    based on the expression levels of the genes considered for each of the tissues
+    of \setOne.}}
 %\end{figure}
 \end{sidewaysfigure}
 
@@ -410,8 +403,8 @@ For the 4-tissues working set \setOne\ (\Cref{fig:CorHighExp4T}),
 except for very few pairs, the highest correlations correspond to
 the lowest cut-off of 1 \FPKM\@.
 In fact, the same tissue \trep\ correlation coefficients
-are increasing as the expression cut-off is lowered
-(the calculations involve then more genes).
+are decreasing as the expression cut-off is increased
+(the calculations involve then fewer genes).
 Here below, the few exceptions grouped by tissue:
 \begin{eqlist}[\eqliststarinit\def\makelabel#1{\bfseries#1}\labelsep1em]
 \item[Heart] \uhlen{}-\gtex\ pair
@@ -430,6 +423,11 @@ for any similar tissue pair of \setTwo,
 considering every \pcg\ expressed at least at 1 \FPKM\ is usually
 far better than selecting any highly expressed genes subset
 (except for \kidney).
+In any case, \setTwo{}'s results should be interpreted more carefully as
+there are only two studies involved and
+there are no actual means to distinguish
+between an artefact or a true biological reason
+that may drive the higher correlations.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.8]{transcriptomics/T23EvolHighExp23P.pdf}\centering
@@ -449,7 +447,7 @@ and as such the correlations are more sensitive to any change
 (see \Cref{sec:whyAnticor}).
 
 As the interstudy Spearman correlations of same tissue pairs
-are higher than the Pearson ones,
+are higher than the Pearson ones (\Cref{fig:distribCorr}),
 I have explored the ratio of the common most top expressed
 genes across the studies to the number of genes considered
 (see \Cref{sec:overlapHighExp}).
@@ -472,7 +470,7 @@ Thus, I have considered other candidates
 such as the most variable genes.
 
 
-\subsection{Most variable genes}
+\subsection{Most variable genes across tissues}
 As correlations translate the relationship strength,
 similar gene expression variation patterns for the tissues
 across the independent studies can also explain the strong correlations.
@@ -486,7 +484,6 @@ There are several available estimators to describe the gene expression variabili
 \eg\ the standard deviation~(sd) the variance~($sd^2$) or the coefficient of
 variation~($\frac{sd}{mean}$).
 I only report here the results based on the coefficients of variation.
-
 The \gls{cv} allows assessing
 the dispersion of the gene expression values
 across the tissues within each dataset.
@@ -503,8 +500,7 @@ or that inferring conclusions requires more cautions.
 \end{comment}
 As depicted in \Cref{fig:HistCV4T} (and \Cref{fig:HistCV23T}),
 the distribution of gene expression \cvs\ presents a similar pattern
-across the five studies of \setOne,
-and it suggests that extra steps to infer conclusions are non-compulsory here.
+across the five studies of \setOne.
 
 \begin{figure}[!htpb]
     \captionsetup{singlelinecheck=off}
@@ -557,16 +553,19 @@ One at 0.5 which characterises genes
 that are quite invariant in their expression across the four tissues within each
 dataset.
 Another subset of genes forms peak for the \cvs\ equal to 2.
-These last group of genes are the most variable ones in each dataset.
+This last group of genes are the most variable ones in each dataset.
 While there is some overlap of the most variable genes
 between the five datasets,
 it is only partial (see further \Cref{fig:cvEvol5DF}).
 
 
 \Cref{fig:HistCV23T} highlights that most genes seem to have roughly the same
-expression profile across many tissues.
+expression profile across many tissues as the distribution of the coefficients
+of variation across \uhlen\ \etal\ and \gtex\ studies are very alike
+and \Cref{fig:noMitoNoRep23T} has already established that
+the tissue expression profiles are very similar.
 
-A simple approach to test if the commonly most variable genes
+A simple approach to test if the common most variable genes
 are the driving force of the correlation is
 to study the difference of their correlation with
 the remaining set of considered \pcgs.
