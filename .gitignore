@@ -9,6 +9,9 @@ _minted-zest/
 _minted-frigo/
 lib/
 misc/
+nohup.out
+.Rhistory
+outputPNG/
 
 ### automatically created
 thesis.aux
@@ -29,15 +32,15 @@ thesis.xdy
 thesis.html
 thesis.fdb_latexmk
 thesis.fls
-
+thesis.xdv
 
 
 *.aux
-
+*.xdv
 *.swp
 *.swo
 *.svg
-
+*.pdf
 *.log
 
 
@@ -61,6 +64,8 @@ gfx/**/.Rhistory
 
 ## frigo
 frigo*
+old-integration.tex
+
 
 ## zest
 zest*
