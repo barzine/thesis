@@ -73,12 +73,23 @@
 
 
 \begin{figure}[!htpb]
-\includegraphics[scale=0.65]{transcriptomics/PcodingGenesExpressed0_4tissues.pdf}\centering
-\caption[Unique and shared protein coding genes expressed
-in the 4 common tissues]{\label{fig:ExpGenePcoding0_4T}\textbf{Unique and
-shared protein coding genes expressed (at any level) in the 4 common tissues.}}
-\end{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[scale=0.6]{transcriptomics/PcodingGenesExpressed0_4tissues.pdf}
+        \caption{Four common tissues across the five studies
+        (\setOne)}\label{fig:ExpGenePcoding0_4T}
+    \end{subfigure}
 
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[scale=0.55]{transcriptomics/vennTissue23_0protcodgenes.pdf}
+        \caption{Twenty-three tissues across Uhlén et al.\
+        and GTEx studies.}\label{fig:ExpGenePcoding0_23T}
+    \end{subfigure}
+    \caption[Unique and shared protein coding genes expressed
+    in the common tissues]{\label{fig:ExpGenePcoding0}\textbf{Unique and
+        shared protein coding genes expressed at any level (> 0 \FPKM) in \setOne\
+        and \setTwo.}}
+\end{figure}
 
 \begin{table}[!htbp]
 \centering
@@ -177,7 +188,7 @@ different tissues pairs are similar.} have been computed with
 a Welch two-sample t-test.}
 \end{minipage}
 \end{figure}
-
+\clearpage
 \section{Overlap of the top high expressed genes between the five datasets}\label{sec:overlapHighExp}
 
 \begin{figure}[!htbp]
@@ -204,7 +215,7 @@ as the \pcgs\ set across the studies is identical.
 \end{comment}
 
 \begin{figure}[htpb]
-    \includegraphics[scale=1]{transcriptomics/highExpress23TP.pdf}\centering
+    \includegraphics[scale=0.8]{transcriptomics/highExpress23TP.pdf}\centering
     \caption[Cumulative shared set of genes, sorted by their expression, between
     Uhlen and GTEx]{\label{fig:highExpress23T}\textbf{Cumulative shared set of
     genes, ranked by their decreasing order of expression, between Uhlén et al.\
@@ -234,7 +245,6 @@ on \Cref{fig:highExpress4T,fig:highExpress23T}
 plainly show that there are common (biological) structures
 that are nonfortuitous across studies.
 
-
 \section{Variable genes}
 
 \begin{sidewaysfigure}[htpb]
@@ -256,12 +266,21 @@ that are nonfortuitous across studies.
 \end{figure}
 
 \minisec{Two-sample test}\label{mini:ttest}
-%\TK{Explain Welch, Student}
-The Welch test,
+Welch's test~\mycite{Welch1947-rv},
 also known as the unequal variances \ttest,
-is an adaptation of the Student \ttest.
+is an adaptation of the Student \ttest{}~\mycite{student_1908}
+and it is better fitted for groups that have different variance and sample sizes.
 Except in the case of (true) paired data (sampled on the same source),
-it gives better or at least equal results than the traditional Student \ttest.
+it gives better or at least equal results than the traditional
+Student \ttest~\mycite{Fagerland2012-vl,Derrick2016-mc,Delacre2017-ya}.
+
+Student's two-sample location test (\ie\ \ttest) is a test
+where the null hypothesis is defines as the means of the two populations
+which have been sampled are equal.
+Student's \ttest\ relies on the assumption that the variance of the population is
+also equal.
+
+
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.90]%
@@ -305,6 +324,55 @@ and \gtex.}}
 \end{figure}
 \end{comment}
 
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[width=0.4\textwidth]%
+        {transcriptomics/breadthMostVariable/CastleMostVarGenesBreadth.pdf}
+        \caption{Castle}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[width=0.4\textwidth]%
+        {transcriptomics/breadthMostVariable/BrawandMostVarGenesBreadth.pdf}
+        \caption{Brawand}
+    \end{subfigure}%
+
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[width=0.4\textwidth]%
+        {transcriptomics/breadthMostVariable/IBMMostVarGenesBreadth.pdf}
+        \caption{IBM}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[width=0.4\textwidth]%
+        {transcriptomics/breadthMostVariable/UhlenMostVarGenesBreadth.pdf}
+        \caption{Uhlen}
+    \end{subfigure}%
+
+    \begin{subfigure}[b]{\textwidth}
+        \centering \includegraphics[width=0.4\textwidth]%
+        {transcriptomics/breadthMostVariable/GtexMostVarGenesBreadth.pdf}
+        \caption{GTEx}
+    \end{subfigure}%
+    \caption[Breadth of expression (≥1 FPKM) for the most variable mRNAs]%
+    {\label{fig:mostVarBreadth}%
+    \textbf{Breadth of expression (≥1 FPKM) for the most variable mRNAs (cv≥1.5)
+    across \setOne.} Most of these \mRNAs\ are expressed only at 1 \FPKM\ or above.}
+\end{figure}
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.8]{transcriptomics/MaxSumExpressionHighCVgenes4TStackedHistogram.pdf}\centering
+    \caption[Maximum of expression / Sum of expression for the most variable genes]%
+    {\label{fig:highestCVhist}\textbf{Ratio of Maximum of expression/Sum of expression
+    for the most variable genes (cv≥1.5) in \setOne that are expressed at least
+    in two different tissues at 1 FPKM.} The lowest ratio is above $0.79$ and the highest
+    ratio is close to 1. This range shows that the most variable genes are
+    expressed in one tissue more specifically than the three others as the tissue
+    where they are the highest expressed accounts for more than 79\% of the sum
+    of expression across the four tissues.}
+\end{figure}
+
 
 \section{Hampel method}
 
@@ -338,7 +406,7 @@ If the number of values is odd, the median is the middle value.\\
 If the number of values is even, the median is the mean of the two middle values.
 
 \subsection{Median absolute deviation (M.A.D.)}
-
+\vspace{-1in}
 For a give variable X, M.A.D.\ is defined as follow:
 
 \begin{equation}\label{eq:mad}
@@ -393,6 +461,57 @@ Uterus & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 2 & 39 \\
 \end{sidewaystable}
 \end{comment}
 
+
+
+
+\clearpage
+\section{List of publications based on RNA-Seq and covering at least partially its robustness}\label{sec:TranssCoop}
+\begin{flushleft}
+\begin{itemize}
+    \item\fullcite{seqcmaqc}
+%    \item~\fullcite{Rau2014-va}
+    \item\fullcite{Santos2015-rj}
+    \item\fullcite{Sudmant2015-zt}
+    \item\fullcite{Danielsson2015-cn}
+    \item\fullcite{Uhlen:2016}
+    \item\fullcite{ruvseqComQN}
+    \item\fullcite{Wang2017-hc}, \textit{bioRxiv}, 110734 (unreviewed paper)
+\end{itemize}
+\end{flushleft}
+
+\section{Complement to the highest genes anticorrelations}\label{sec:whyAnticor}
+
+As very few genes are involved,
+the slightest changes in their respective order of magnitude
+may imply reversed trends.
+
+\begin{table}[!h]
+\centering
+\caption{Example of gene subsets for a two studies (A and B) for a tissue}
+\label{tab:anticorExample}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+ & $Gene_a$ & $Gene_b$ & $Gene_c$ & $Gene_d$ & $Gene_e$ \\
+\midrule
+Study A, \trep\ $T_1$ ($T^{Study A}_1$) & 1000 & 2000 & 3000 & 4000 & 5000 \\
+Study B, \trep\ $T_1$ ($T^{Study B}_1$) & 500 & 2800 & 6000 & 5000 & 4000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For example,
+if we consider $T^{Study A}_1$ and $T^{Study B}_1$
+for a set of genes ${a, \ldots, e}$ (see \Cref{tab:anticorExample})
+and a cut-off at 3,000 \FPKMs,
+then the correlation will only involve $Gene_c$, $Gene_d$ and $Gene_e$.
+Thus,\\
+while $corr_{T^{Study A}_1,T^{Study B}_1}(c,d,e)= -1 $,\\
+$corr_{T^{Study A}_1,T^{Study B}_1}(a,b,c,d,e)= 0.6836$
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=1]{transcriptomics/AnticorrExample.pdf}\centering
+    \caption{Example on how correlation may change to cut-offs}\label{fig:anticorrExample}
+\end{figure}
 
 \section{Uhlén categories}\label{sec:suppUhlen}
 
@@ -468,52 +587,4 @@ tissues\\ Working datasets}}} & Uhlen & 17,345  & 27,575  &
 \end{tabular}
 \end{sidewaystable}
 
-
-\section{List of publications based on RNA-Seq and covering at least partially its robustness}\label{sec:TranssCoop}
-
-\begin{itemize}
-    \item~\fullcite{seqcmaqc}
-%    \item~\fullcite{Rau2014-va}
-    \item~\fullcite{Santos2015-rj}
-    \item~\fullcite{Sudmant2015-zt}
-    \item~\fullcite{Danielsson2015-cn}
-    \item~\fullcite{Uhlen:2016}
-    \item~\fullcite{ruvseqComQN}
-    \item~\fullcite{Wang2017-hc}, \textit{bioRxiv}, 110734 (unreviewed paper)
-\end{itemize}
-
-
-\section{Complement to the highest genes anticorrelations}\label{sec:whyAnticor}
-
-As very few genes are involved,
-the slightest changes in their respective order of magnitude
-may imply reversed trends.
-
-\begin{table}[!h]
-\centering
-\caption{Example of gene subsets for a two studies (A and B) for a tissue}
-\label{tab:anticorExample}
-\begin{tabular}{@{}llllll@{}}
-\toprule
- & $Gene_a$ & $Gene_b$ & $Gene_c$ & $Gene_d$ & $Gene_e$ \\
-\midrule
-Study A, \trep\ $T_1$ ($T^{Study A}_1$) & 1000 & 2000 & 3000 & 4000 & 5000 \\
-Study B, \trep\ $T_1$ ($T^{Study B}_1$) & 500 & 2800 & 6000 & 5000 & 4000 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-For example,
-if we consider $T^{Study A}_1$ and $T^{Study B}_1$
-for a set of genes ${a, \ldots, e}$ (see \Cref{tab:anticorExample})
-and a cut-off at 3,000 \FPKMs,
-then the correlation will only involve $Gene_c$, $Gene_d$ and $Gene_e$.
-Thus,\\
-while $corr_{T^{Study A}_1,T^{Study B}_1}(c,d,e)= -1 $,\\
-$corr_{T^{Study A}_1,T^{Study B}_1}(a,b,c,d,e)= 0.6836$
-
-\begin{figure}[!htpb]
-    \includegraphics[scale=1]{transcriptomics/AnticorrExample.pdf}\centering
-    \caption{Example on how correlation may change to cut-offs}\label{fig:anticorrExample}
-\end{figure}
 

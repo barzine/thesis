@@ -11,11 +11,13 @@
 
 In the past few years, many laboratories have studied the expression
 of genes within normal humans at the transcriptome and at
-the proteome levels by taking advantage of high-throughput techniques.
-In this chapter, I review the publicly available (for research) data
+the proteome levels by taking advantage of high-throughput techniques
+(\eg\ \citet{Krupp2012,VTpaper,ramskoldan:2009,Uhlen2014,%
+Uhlen2015,UhlenGastro,GTExTranscript,PeptideAtlas,PandeyData,KusterData}).
+In this chapter, I review the openly available (for research) data
 I use within my thesis
 and explain how they have been reprocessed.
-Besides the results I report in this thesis subsequent chapters,
+Besides the results I report in the subsequent chapters,
 the present chapter also provides the basis for work
 I have co-authored\footfullcite{Wright-2016}.
 
@@ -36,7 +38,12 @@ for the proteome\footnote{These
 technologies are non-targeted high-throughput and
 allow one, in theory, to study the whole
 repertoire of \glspl{RNA} or proteins in a sample.}.
-Finally, the \emph{raw} data is available and reusable.
+Finally, the \emph{raw} data is openly available and reusable\footnote{%
+In this context, \emph{reusable} means that the data can be processed
+as accurately by third-party researchers than the original authors,
+and this without the need to access additional information
+that have been not openly released}.
+
 
 In the next section, I first describe the \Rnaseq\ and the \ms\ data I use
 in my thesis; then I detail how these data have been processed to be
@@ -49,8 +56,8 @@ biological layers.
 
 During the data selection process,
 I had to disregard a few studies as the raw data was not fitting
-the reusability criterion.
-Indeed, many times I came across studies with ambiguous encoding
+the reusability criterion \mycite{Burge,Pan2008-di}.
+Many times I came across studies with ambiguous encoding
 format for the raw data such
 as the \ArrayExpress{E-GEOD-41637} dataset~\mycite{Burge}.
 Despite my best efforts,
@@ -120,7 +127,7 @@ in the chronological order of their first public release.
 \subsection{Castle et al.\ dataset}\label{subsec:castlepresentation}
 \vspace*{-0.1in}
 \citet{castleData} released this dataset along with their study:
-\paper{\citetitle{castleData}}
+\paper{\citetitle{castleData}}.
 The authors were interested in exploring the whole RNA repertoire
 with sequencing-based technology and they primarily focused their study
 on the non-coding part.
@@ -144,7 +151,7 @@ Firstly, it is the oldest available
 \Rnaseq\ data I found that was performed on normal human tissues.
 Thus, the congruence of results for this dataset with the following ones
 gives a rough idea on the extent of \Rnaseq\ datasets
-that may be integrated together in an atlas.
+that may be integrated together.
 Secondly, as \Rnaseq\ studies are prepared mainly with polyA-selected protocols
 nowadays, I was interested in gauging how the library preparation
 protocols --- and the presence of \glspl{ncRNA} --- can affect the
@@ -177,12 +184,12 @@ While not automatically, \gls{GEO} data are still included in \egxa.}.
 
 \subsection{Illumina Body Map 2.0 (IBM)}\label{subsec:ibmpresentation}
 \vspace*{-0.2in}
-This dataset, first created in 2010, has been released in
+This dataset, created in 2010, has been released in
 2011\footnote{See~\citetitle{ibmEnsembl} -~\cite{ibmEnsembl}} by Illumina
 mostly to advertise its most recent technology improvement at that time:
 the paired-end sequencing. Actually, until then, all the sequencing was done
 from only one end of the \gls{DNA} or \gls{cDNA} fragments. From that
-date, most of the following transcriptome studies based on \Rnaseq\ are using
+date, most of the following transcriptome studies based on \Rnaseq\ use
 paired-end sequencing.
 
 The dataset covers 16 tissues (one donor per tissue) and
@@ -207,10 +214,18 @@ from where I have retrieved both the single-end and paired-end mono-tissue sampl
 that have been created with the tissue samples).
 
 Despite the lack of biological replicates,
-I have included this data
-as it was for an extended time
+it was for an extended time
 the most extensive freely available \Rnaseq\ dataset of human tissues.
-Hence, it has been referenced many times in the literature since its release.
+Hence, it has been referenced many times
+(\eg\ \citet{Asmann2012-in,ibmrelatedpaper,Smith2012-jw,Derrien2012-ej,%
+Florea2013-in,tophat2,Kechavarzi2014-oi,Zhao2014-xj,Pasquali2014-zj,Corpas2014-ej,%
+Petryszak2014-kj,Brown2015-co,Janes2015-wn,%
+De_Simone2016-fb,Kern2016-dv,Iwakiri2016-sr,Yao2017-gj,Akers2018-cf})
+in the literature since its release.
+In fact, this dataset is the most viewed one in \gls{ArrayExpress}
+(with 68,020 views on 31 May 2018 ---
+the second most viewed dataset (46,247 views)
+being \ArrayExpress{E-MTAB-62}\mycite{Lukk2010-op}).
 
 \subsection{Uhlén et al.\ dataset}\label{subsec:uhlenPresentation}
 \vspace*{-0.1in}
@@ -247,7 +262,7 @@ either regarding the number of tissues (see \Cref{tab:Trans5DF})
 or the number of samples (see \Cref{tab:Lib5DF}).
 Therefore, its growing number of references is unsurprising.
 
-\subsection{GTEx data}\label{subsec:gtexPresentation}
+\subsection{GTEx dataset}\label{subsec:gtexPresentation}
 \vspace*{-0.1in}
 The Genotype-Tissue Expression (\gls{GTEx}) project is funded by the \gls{NIH}
 Common Fund and aims to establish, in its authors' own words,
@@ -304,7 +319,7 @@ smaller one that was publicly released but was never the object of a publication
 Hereinafter, I present these three datasets that I use in my thesis.
 See \Crefp{fig:pipelineProt}{A} for a short summary.
 
-\subsection{Pandey Lab data}
+\subsection{Pandey Lab dataset}
 
 The Pandey Lab~\mycite{PandeyData} created the
 \hFo{Human Proteome Map}{http://www.humanproteomemap.org} which
@@ -329,14 +344,14 @@ high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 The raw spectra were retrieved from ProteomeXchange via the repository
 \Pride{PXD000561}.
 
-While their effort to generate technical high quality raw data was highly
+While the authors' effort to generate technical high quality raw data was highly
 appraised by the scientific community, their processing
 (identification and quantification) methods were heavily
 criticised (see~\citet{Ezkurdia2014-qx,Deutsch2015}).
 Thus, for this thesis I have relied only on
 quantifications provided by \james\ who reprocessed the raw spectra.
 
-\subsection{Kuster data}
+\subsection{Kuster dataset}
 
 In their approach of the human proteome map, the Kuster Lab~\mycite{KusterData}
 combined newly generated \gls{LC-MS/MS} spectrum data (about 40\% of their
@@ -358,7 +373,7 @@ digestion into peptides with trypsin, they processed the samples with
 (including an \orbi).
 This specific raw data subpart was downloaded from \Proteomicsdb{PRDB000042}.
 
-\subsection{Cutler data}
+\subsection{Cutler dataset}
 
 This dataset was generated prior to the \pandey\ and the \kuster\
 data as it was released in 2011 through
@@ -391,14 +406,14 @@ or after reprocessing the raw data as the \egxa~\mycite{EBIgxa} does.
 To primarily reduce for avoidable technical variability,
 and despite readily available quantifications for most of the
 datasets, I only used data reprocessed from raw files by myself or \nuno\
-(\gtex\ data) for the transcriptomic data and by \james\
+(\gtex\ dataset) for the transcriptomic data and by \james\
 for the proteomic data as already mentioned.
 
 In fact, each study has been originally processed with different protocols,
-\eg\ \gtex\ data~\mycite{GTExTranscript} and \castle\
-data~\mycite{Krupp2012}. While the \egxa\ reprocesses raw data through the same
+\eg\ \gtex{}~\mycite{GTExTranscript} and \castle{}~\mycite{Krupp2012}.
+While the \egxa\ reprocesses raw data through the same
 methods and has nowadays quantification for most of the aforementioned
-datasets (it is still lacking the \castle\ \etal\ dataset.),
+datasets (it is still lacking the \castle\ \etal\ one.),
 these were still the products of different protocols when I started my work.
 Indeed, the datasets were processed with different versions of
 reference (Human genome build and annotation) and tools.
@@ -544,7 +559,7 @@ reproducibility on other platforms.
 
 Fortunately, \nuno\ developed
 an \enquote{integrated RNA-seq analysis Pipeline}:
-\hFo{\irap}{https://nunofonseca.github.io/irap/}.
+\softFoCi{\irap}{https://nunofonseca.github.io/irap/}{Fonseca2014-si}.
 This tool allows the automation of the typical
 state-of-the-art and optimised workflow to study
 \Rnaseq. It takes full advantages of the capacities provided by computer clusters.
@@ -579,7 +594,7 @@ assessment and the trimming. The usual uninformative and ambiguous reads
 have been discarded as were any with an overall quality score below
 a threshold of 10.
 
-As reported in the \crefu{subsub:sequencing}, as the base calling progresses,
+As reported in the \Crefu{subsub:sequencing}, as the base calling progresses,
 the quality of the call decreases.
 On another note, some tools (mappers in particular) need
 all the reads to be trimmed to the same length. \irap\ optimises the compromise
@@ -589,15 +604,16 @@ original length while discarding more reads if necessary to maximise the length.
 
 Reads that could be assigned to a likely contamination source, here
 \species{Escherichia coli} (as I work with \species{Homo sapiens}),
-are also discarded. A splice non-aware mapper,
-\softFo{BWA}{http://bio-bwa.sourceforge.net/} (0.7.4) maps all the reads to the
+are also discarded. A non-splice aware mapper,
+\softFo{Bowtie}{http://bowtie-bio.sourceforge.net/}~(1.1.1)~\mycite{Bowtie}
+maps all the reads to the
 contaminant genome and all the reads mapping perfectly and unambiguously are
 discarded.
 
 \minisec{Mapping}
 I mapped the reads to the genome (\hg{38.p1})
 and the transcriptome (\ens{76} gene set annotation)
-with \irap's proposed default splice-aware mapper
+with \irap's (0.6.3b) proposed default splice-aware mapper
 \hFo{\toph}{https://ccb.jhu.edu/software/tophat/index.shtml}
 (2.0.12)~\mycite{tophat2}
 with its set of default predefined arguments.
@@ -822,7 +838,7 @@ and quantification of \gls{LC-MS/MS}. The quantifications were released along
 our paper~\mycite{Wright-2016} and the reanalysis of the \pandey\ data was
 also released through \egxa\ under the accession: E\textminus{}PROT\textminus{}1.
 
-\section{Discussion}
+\section{Discussion and Conclusion}
 
 In this chapter, I introduced the five transcriptomic and three proteomic normal
 human tissues datasets on which I based my thesis.
@@ -845,7 +861,8 @@ data) are in agreement with the original studies findings ---
 except for~\citet{PandeyData}.
 
 While we are in the era of \emph{data deluge} and \emph{big data},
-the number of tissue overlaps for independent normal human studies is surprisingly small.
+the number of tissue overlaps for independent normal human studies is surprisingly small
+--- see \Crefp{fig:VennStudiesT}.
 Most of these datasets have been (and will be) referenced through
 many papers for comparison (or as control) purposes;
 hence, it is essential to assess the soundness of these practices by assessing

@@ -94,6 +94,28 @@ along with six other statistical methods.
 They also summarise many use cases of each of these methods
 in the general context of gene expression study.
 
+
+\begin{table}[!htbp]
+   \centering
+   \caption[Correlation coefficients between \Rnaseq\ replicates]{%
+   \label{tab:repCorr}\textbf{Correlation coefficients between \Rnaseq\ replicates}
+   {\footnotesize Numeric summary of \Cref{fig:repCorr} ---
+   The correlation means are high across the studies replicates.
+   However, the range of the correlations (in brackets) are quite extreme in a few
+   case.}}
+   \begin{tabular}{@{}cccc@{}}
+   \toprule
+   Tissue & Replicates type & Pearson Correlation & Spearman Correlation \\ \midrule
+   \vt\ & Biological & 0.90 $[$0.45;1$]$ & 0.93 $[$0.80;0.99$]$ \\
+   \gtex\ & Biological &  0.75 $[$0.01;1$]$ & 0.93 $[$0.06;0.99$]$ \\
+   \uhlen\ & Biological & 0.81 $[$0.15;1$]$  &
+   0.95 $[$0.70;0.99$]$ \\
+          & Technical & 0.99 $[$0.68;1$]$ & 0.99 $[$0.92;1$]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
 \section{Data visualisation}
 %\subsection{Unlogged expression profiles}
 \begin{figure}[!ht]
