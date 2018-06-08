@@ -47,15 +47,15 @@ and possible unwanted artefacts.
 \vspace{-0.2in}
 In the literature, expression values are frequently
 visualised on a log-scale ($\log_{2}(x)$).
-\Cref{fig:distribPlot}a and b illustrate how
+\Cref{fig:distribPlot} illustrates how
 this scaling improves the readability of the plot.
-Furthermore, the log-scale allows one to transform count data to continuous
-while smoothing the global distribution shape towards a normal distribution.
-Thus, this transformation enables
-the use of many readily available statistical models
-that require normally distributed data.
-Besides, others (\eg\ \citet{Danielsson2015-cn}) advocate
-for logarithmic transformation before analysing interstudy samples.
+%Furthermore, the log-scale allows one to transform count data to continuous
+%while smoothing the global distribution shape towards a normal distribution.
+%Thus, this transformation enables
+%the use of many readily available statistical models
+%that require normally distributed data.
+%Besides, others (\eg\ \citet{Danielsson2015-cn}) advocate
+%for logarithmic transformation before analysing interstudy samples.
 To overcome the lack of definition of $\log_{2}(0)$,
 I have added a common \emph{pseudocount} (equal to $1$)
 to all the observations.
@@ -69,8 +69,8 @@ as the norm is the pseudocount addition.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[scale=0.7]{expressed/IBMexpression.png}
-    \caption{Untransformed and Log$_{2}$-transformed (null values removed) profile
-    of expression levels (\FPKM, \pcgs\ only and all null values excluded)
+    \caption{Untransformed (left) and Log$_{2}$-transformed (null values removed)
+    (right) profile of expression levels (\FPKM, \pcgs\ only and all null values excluded)
     for the \ibm\ dataset}\label{fig:distribPlot}
 \end{figure}
 
@@ -374,7 +374,7 @@ of the mitochondrial genes expression levels.
 \end{figure}
 
 \subsection{Protein-coding genes only}\label{subsec:protcodingOnly}
-\vspace{-0.3in}
+\vspace{-0.15in}
 I have focused my analyses on the \mRNAs\ (\ie\ \glspl{RNA} that have a
 biotype described as \emph{\pc} in \ens{76}).
 
@@ -389,7 +389,7 @@ their expression levels estimations may be highly imprecise.
 \subsection{Expressed or not expressed}\label{sec:ExpressedOrNot}
 \vspace{-0.3in}
 \begin{figure}[!htb]
-    \includegraphics[scale=0.7]{expressed/expressedNotExp.pdf}\centering
+    \includegraphics[scale=0.9]{expressed/expressedOrNot3.pdf}\centering
       \caption[Expressed or not: several cases illustrated]
       {\label{fig:DefineExpression}\textbf{Expressed or not: several cases
       illustrated.}\smallbreak{} Genes like \emph{Gene 1} are unequivocal: they have been
