@@ -20,8 +20,8 @@ maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init]{biblatex} %add 
 \DeclareFieldFormat{textcitehyperref}{%
   \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
   \bibhyperref{%
-    #1%
-    \ifbool{cbx:parens}
+#1%
+\ifbool{cbx:parens}
       {\bibcloseparen\global\boolfalse{cbx:parens}}
       {}}}
 
@@ -59,22 +59,20 @@ maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init]{biblatex} %add 
 %  {\usebibmacro{postnote}}
 
 \DeclareCiteCommand{\fullcite}
-  {\usebibmacro{prenote}}
-  {\clearlist{language}
-  \iffieldundef{doi}
-    {\iffieldundef{url}
-      {\usedriver
+{\usebibmacro{prenote}}
+{\clearlist{language}
+\iffieldundef{doi}
+    {\iffieldundef{url}{\usedriver
        {\DeclareNameAlias{sortname}{default}}
        {\thefield{entrytype}}}
-      {\href{\thefield{url}}
-        {\usedriver
-          {\DeclareNameAlias{sortname}{default}}
-          {\thefield{entrytype}}}}}
+      {\href{\thefield{url}}{\usedriver
+       {\DeclareNameAlias{sortname}{default}}
+       {\thefield{entrytype}}}}}
     {\href{http://dx.doi.org/\thefield{doi}}{\usedriver
-     {\DeclareNameAlias{sortname}{default}}
-     {\thefield{entrytype}}}}}
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
+    {\DeclareNameAlias{sortname}{default}}
+    {\thefield{entrytype}}}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
 
 
 

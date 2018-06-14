@@ -113,6 +113,9 @@ individual is considered, the transcriptome varies\ldots
 {Transcriptome~exploration~with~RNA~sequencing}
 
 \TK{Two lines about microarrays}
+\TK{one line about \gls{EST}~\mycite{EST}%
+%https://web.archive.org/web/20070829194022/http://www.biolinfo.org/EST/
+ Expressed sequence tags (EST) are short, unedited, single pass sequence reads derived from randomly selected complementary DNA (cDNA) libraries. ESTs can be rapidly generated from either the 5' or 3' end of a cDNA clone in a high-throughput manner from a particular cell, tissue or organism of interest at a low cost to get a quick insight into transcriptionally active regions. ESTs accelerate gene discovery, complement genome annotation, aid gene structure identification, establish the viability of alternative transcripts, guide SNP characterization and facilitate proteome analysis.}
 
 \begin{comment}
 Biological research uses mainly two approaches to
@@ -131,9 +134,11 @@ and/or not settled yet. This is the case for this study.
 \end{comment}
 
 With the recent era of short-sequencing technology and the completion of the
-Human genome, understanding the genome expression is increasingly a more
+Human genome~\mycite{Venter2001-sn,Lander2001-wj,%
+International_Human_Genome_Sequencing_Consortium2004-hr},
+understanding the genome expression is increasingly a more
 reachable aim.
-\TK{extend a little}
+%\TK{extend a little}
 
 \begin{comment}
 While microarrays are measuring many \mRNAs\ at once, their number is limited,
@@ -163,12 +168,26 @@ while not by conscious design, all the transcriptomes analysed in this thesis ar
 the product of Illumina sequencing (see
 \crefrange{subsec:castlepresentation}{subsec:gtexPresentation}).
 It is not surprising as Illumina was by far
-the most popular platform for the last decade \mycite{popularIllumina}.
+the most popular platform for the last decade \mycite{popularIllumina} and
+have been used to generate most of the data in \gls{ENA} and \gls{ArrayExpress}.
 Indeed, Illumina proposes a very
-good ratio between the accuracy and the fact that it achieves the highest
-throughput and the lowest per-base cost \mycite{IlluminaCheap}.
+good ratio between accuracy and achieving the highest
+throughput for the lowest per-base cost \mycite{IlluminaCheap}.
+I will emphasise the approaches and
+the tools I used to estimate the gene expression levels from raw nucleotide
+sequences.
+\Cref{fig:OverviewRnaseqPrepSeq} presents an overview of the typical steps of a
+\Rnaseq\ workflow from the libraries preparation to the sequencing.
 
-Experimental protocols for other platforms will need various and specific
+\begin{figure}
+    \includegraphics[scale=0.60]{background/IntroWorkflow.png}\centering
+    \caption[Overview of a \Rnaseq\ workflow: library preparation
+    and sequencing]{\label{fig:OverviewRnaseqPrepSeq}\textbf{Overview of
+    a typical \Rnaseq\ workflow:
+    library preparation and sequencing}}
+\end{figure}
+
+Experimental protocols for other platforms may need various and specific
 modifications that are outside of the realm of this thesis and thus will not be
 cover here\footnote{More details on the other main sequencing platforms and their
 relevant protocols may be found in~\citet{rnaseqProtocols} review paper or at the
@@ -176,23 +195,7 @@ online resource \enquote{\href{http://rnaseq.uoregon.edu/}{RNA-seqlopedia}}
 (\href{http://rnaseq.uoregon.edu/}{http://rnaseq.uoregon.edu/})
 \mycite{rnaseqlopedia}.}.
 
-As I discuss the concepts behind the Illumina sequencing technology and the
-most common related methods to process it, I will emphasise the approaches and
-the tools I used to estimate the gene expression levels from raw nucleotide
-sequences.
-
-\Cref{fig:OverviewRnaseqPrepSeq} presents an overview of the typical steps of a
-\Rnaseq\ workflow from the libraries preparation to the sequencing.
-
-\begin{figure}
-    \includegraphics[scale=0.60]{introduction/IntroWorkflow.png}\centering
-    \caption[Overview of a \Rnaseq\ workflow: library preparation
-    and sequencing]{\label{fig:OverviewRnaseqPrepSeq}\textbf{Overview of
-    a typical \Rnaseq\ workflow:
-    library preparation and sequencing}}
-\end{figure}
-
-\NB\ Albeit the collection and the conservation\footnote{E.g.\ between fresh-frozen
+Albeit the collection and the conservation\footnote{E.g.\ between fresh-frozen
 samples and \gls{FFPE} samples see~\citet{sampleConservationMatters}.}
 of the samples prior to the
 \gls{RNA} extraction most definitely affects the final estimations,
@@ -436,9 +439,9 @@ the paired-end approach produces more information and hence facilitates
 the detection of genomic rearrangements (as indels or inversions) and
 repetitive sequence elements.
 It also allows an easier distinction between isoforms of a same gene and provides
-greater support to the novel transcripts (new isoform or new gene) and fusion
+greater support to detect the novel transcripts (new isoform or new gene) and fusion
 genes\footnote{A \gls{fusionG} is a gene that is the product of the fusion of
-parts of two different genes.}.
+parts of two (or more) different genes.}.
 
 In both cases, the sequencing process is the same. It is an Illumina proprietary
 process and it is called \emph{Sequencing-by-Synthesis}~\mycite{seqBySynth}.
@@ -446,8 +449,13 @@ It uses the \gls{DNA} replication mechanism with modified \dNTPs.
 It relies on the step-by-step incorporation of
 reversible fluorescent tagged \dNTPs\ who are protected at
 their 3'end to block any further elongation.
-The product of this synthesis is called a \emph{read} and it supports the base
-calling.
+The product of this synthesis is called a \emph{read} and
+it supports the \emph{base calling}\footnote{Base calling:
+identification of the nucleosides in a sequence
+by assigning chromatogram peaks
+or an other kind of signal variations
+to (nucleo){}bases.}.
+
 
 The sequencing occurs simultaneously on every identical fragment
 of every cluster of the flow cell.
@@ -499,7 +507,7 @@ At the end of the sequencing process, the set of images (one per sequencing cycl
 is produced. While it is possible to work with the images themselves, in most
 cases, the sequencing facilities will perform the base calling and provide the
 end-user with text files. In single-end sequencing, there is one file per sample.
-In paired-end sequencing, the reads are separated based on their associated
+In paired-end sequencing, the reads are usually separated based on their associated
 indexes into two ordered files: all the reads from the forward strands (one end)
 are grouped in one file, and the ones from the reverse strands (other end)
 in a second one.
@@ -510,9 +518,8 @@ a nucleotide sequence and a \gls{Phred} quality score for each base of the
 sequence. A few optional information can also be provided, \eg\
 the position of the read on the \gls{flow} (See \Cref{sec:fastq-format} for
 a random read example).
-
 The \gls{Phred} quality score ($Q$) measures the accuracy of the identification
-of the nucleobase to which it refers. These scores are set by the base-calling
+of the nucleobase to which it refers. These scores are set by the base calling
 program and are defined as $Q = -10\log_{10}(P)$ with $P$ the probability of
 the base being called wrongly. There are several possible encoding formats
 (see \cref{sec:PhredScore}).
@@ -571,7 +578,6 @@ words with uncalled bases --- reported as \emph{N}).
 Indeed, these reads will hamper the processing time as they
 usually map to several parts of the genome while also decreasing the accuracy of
 the global gene expression estimations.
-
 For similar reasons, it is judicious to remove reads with a low overall quality
 score\footnote{It may vary based on the complete set of reads to analyse.}.
 
@@ -604,21 +610,13 @@ possible subsequences of length
 
 Two main approaches can be used for the very computationally expensive step of
 identification. I will present them in a decreasing order of complexity:
-the \latin{de novo} assembly of the reads and then the Reads alignment approach
+the \latin{de novo} assembly of the reads and then the reads alignment approach
 (to a genome reference or a transcriptome one).
 
 Regardless of the approaches, the reconstructed transcriptome is usually reported
 as a \emph{\gls{SAM}} file~\mycite{SAMformat} (or one of its derivative formats:
 either \emph{\gls{BAM}} or more recently \emph{CRAM}).
 
-\begin{comment}
-\begin{figure}
-    \includegraphics[scale=0.60]{introduction/MappingStrategies3.pdf}\centering
-    \caption[Overview of main reconstruction strategies for
-    \Rnaseq\ transcriptome]{\label{fig:OverviewRnaseqMapping}\textbf{Overview of main
-    reconstruction strategies for an \Rnaseq\ transcriptome}}
-\end{figure}
-\end{comment}
 
 \minisec{\latin{de novo} Assembly}
 This approach is favoured when the reference genome of the species of interest
@@ -644,7 +642,7 @@ novo} transcriptome assembly~\mycite{algorithmsDenovo},
 though the most prevalent one is the de Bruijn representation~\mycite{deBruijn}.
 
 \begin{figure}
-    \includegraphics[scale=0.60]{introduction/denovo.png}\centering
+    \includegraphics[scale=0.60]{background/denovo.png}\centering
     \caption[\textit{de novo} Assembly]{\label{fig:denovo}\textbf{\latin{de novo}
     Assembly.} From overlapping regions of raw reads, \emph{contigs} are
     created by integrating the reads sequences together.}
@@ -653,13 +651,13 @@ though the most prevalent one is the de Bruijn representation~\mycite{deBruijn}.
 \begin{figure}
     \centering
     \begin{subfigure}{1.1\textwidth}\label{fig:genoAlignment}
-        \includegraphics[scale=0.60]{introduction/genomeAlignment.png}\centering
+        \includegraphics[scale=0.60]{background/genomeAlignment.png}\centering
         \caption{Alignment to the genome}
         %\label{fig:genoAlignment}
     \end{subfigure}
 
     \begin{subfigure}{1.1\textwidth}\label{fig:transAlignment}
-        \includegraphics[scale=0.6]{introduction/transcriptomeAlignment.png}\centering
+        \includegraphics[scale=0.6]{background/transcriptomeAlignment.png}\centering
         \caption{Alignment to the transcriptome}
         %\label{fig:transAlignment}
     \end{subfigure}
@@ -697,15 +695,26 @@ the sequence of this exon is transcribed only once in the reference.
 
 \subminisec{Transcriptome reference}
 Using a transcriptome for reference instead of a genome reduces the complexity
-of the aligning step due to the lack of intronic sequences. However, it also
-limits the potential downstream analyses, \eg\ any new (or unannotated) gene
-or isoform will be missed. This approach is the easiest, but a pre-existing
+of the aligning step due to the lack of intronic sequences.
+However, it also limits the potential downstream analyses,
+\eg\ any new (or unannotated) gene or isoform will be missed.
+This approach is the easiest, but a pre-existing
 accurate and well-annotated gene models is required.
 \Cref{fig:transAlignment} shows in fact that this approach is simpler
 to the previous one as a direct read alignment is done against the
-transcriptome of reference. This enables to quantify accurately the expression
-of gene isoforms, provided that the gene model is correct and the reads may be
+transcriptome of reference.
+This enables to quantify accurately the expression
+of gene isoforms,
+provided that the gene model is correct and the reads may be
 attributed unambiguously to a single isoform for each gene.
+However, in practice this approach produces many multimapped reads,
+particularly for shorter reads as
+many isoforms are very similar in sequence and vary only in the exons
+they retain.
+If the difference in the exon compositions is towards the end of the gene,
+reads from two isoforms may be indistinguishable.
+Paired-end sequencing helps to resolve part of the ambiguity encountered
+with single-end protocols.
 
 To mitigate between very computational greedy approaches and more constraining
 ones, several tools complementary use the previous strategies.
@@ -737,10 +746,12 @@ called seed. Any read with a seed is then checked for a longer or even complete
 alignment to the exons on both side of the junction.
 
 In the case of paired-end data, each read of the pair is first processed
-separately. Then, they are a valuable resource as a pair in the final evaluation
-phase, where with additional
-information sources, they help to determinate among the many possibilities which
-are the most credible ones. Both parts of a paired-end data once aligned to a
+separately.
+Then, in the final evaluation phase and
+with the help of additional information sources,
+they are used as a pair to infer among the many possibilities which
+are the most credible ones.
+Both parts of a paired-end data once aligned to a
 concordant region of the genome is then called a \emph{fragment} instead of a
 \emph{read}. Nowadays, there is an assimilation between the \enquote{\emph{read}}
 and the \enquote{\emph{fragment}} terms. Even though the locution \emph{fragment}
@@ -748,12 +759,13 @@ is more accurate and may be used in any situation (as it equals to one read for
 single-end data and to a pair of related reads for paired-end data), it is
 frequent to see the denomination \emph{read} instead (even for paired-end data).
 
-Despite being a slow splice-aware mapper~\mycite{hisat},
-\toph\ --- along with
-\soft{STAR}\footnote{\soft{STAR} --- \href{https://github.com/alexdobin/STAR}%
-{https://github.com/alexdobin/STAR}}~\mycite{STARpaper} --- is the most
-popular mapper for genomes with a near-complete annotation (such as
-\species{Homo sapiens} for example)~\mycite{tamaraRNA}.
+\toph\ ---
+along with \soft{STAR}\footnote{\soft{STAR} ---
+\Href{https://github.com/alexdobin/STAR}}~\mycite{STARpaper} ---
+is the most popular splice-aware mapper for genomes with a near-complete annotation
+(\eg\ for \species{Homo sapiens})~\mycite{tamaraRNA}
+although being slower than the latter~\mycite{hisat}.
+
 
 
 \NB\ As many concepts or terms in Science, \enquote{\emph{Read mapping}} can
@@ -788,9 +800,9 @@ One early strategy to solve multireads is to discard them from later analyses;
 another one is to attribute them to the most credible locus based on
 the overall distribution of the reads for a given sample. \mycite{Mortazavi2008}
 Paired-end data help in many cases to discriminate between possible genomic
-original sites, thus decreasing the overall number of multi-mapped fragments.
+original sites, thus decreasing the overall number of multimapped fragments.
 
-I personally use two popular tools for this thesis,
+Two popular tools were used in this thesis,
 \cuffl\footnote{\cuffl\ ---
 \href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
 {http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1)~\mycite{cufflinks} and
@@ -814,14 +826,18 @@ Occam's razor, which may be a debatable strategy~\mycite{OccamRazorAndBiology}}
 and credible set of transcripts (and their isoforms) that can explain the
 complete set of observed fragments.
 
-This task is challenging as many isoforms are sharing a common set of exons and
-while most genes present a dominant isoform for a specific condition,
+This task is challenging as many isoforms are sharing a common set of exons.
+While most genes present a dominant isoform for a specific condition,
 there are often a few other isoforms expressed along, even though their amount
-may be very limited~\mycite{oneDominant}. Furthermore, \cuffl\ tries to
-redistribute the multireads to the set of isoforms.
+may be very limited~\mycite{oneDominant}.
 
-Then to estimate the abundance of each isoform, \cuffl\ integrates many
-information sources together. For example, the overall distribution of fragments
+Furthermore, \cuffl\ tries assigning the multimapped reads to one isoform only.
+First, sets of fragments are separated into sets of isoforms
+(all fragments that are likely produce from the same set of isoforms
+are grouped together).
+Then to estimate the abundance of each isoform of one set,
+\cuffl\ integrates many information sources together.
+For example, the overall distribution of fragments
 (or reads), if these are spanning over known (or novel) splice-junctions.
 Particular attention is drawn to the fragments that map unambiguously to one
 unique isoform. When available, paired-end fragments are critical:
@@ -846,7 +862,7 @@ with the following main steps (see also \Cref{fig:cuffEstimation}):
 
 
 \begin{figure}
-    \includegraphics[scale=0.60]{introduction/CufflEstimation.png}\centering
+    \includegraphics[scale=0.60]{background/CufflEstimation.png}\centering
     \caption[Abundance estimation of isoforms by
     Cufflinks]{\label{fig:cuffEstimation}\textbf{Abundance estimation of isoforms
     by \cuffl} following an \gls{EM} algorithmic approach. [Adapted
@@ -869,7 +885,7 @@ annotation file (usually either as \gls{GTF} or \gls{GFF} format) and refer
 to a specific reference (genome or transcriptome).}.
 
 \begin{figure}
-    \includegraphics[scale=0.60]{introduction/htseqQuant.png}\centering
+    \includegraphics[scale=0.60]{background/htseqQuant.png}\centering
     \caption[Abundance estimation of genes by
     HTSeq-count]{\label{fig:htseqEstimation}\textbf{Abundance estimation of genes
     by \htseq}. The unambiguous reads (or fragments for paired-end data)
@@ -990,7 +1006,7 @@ and will entangle the interpretation.
 
 
 \minisec{Other normalisation approaches}
-Differential expression analyses (DEA)  have required the development of distinct
+Differential expression analyses (DEA) have led to the development of distinct
 models and methods. Indeed, they generally involve a model where for most of the
 genes, the expression is stable between conditions\footnote{The comparison is
 usually between diseased (or treated) samples to control (healthy).} (\eg\
@@ -1471,7 +1487,7 @@ by a human and need to be processed before being meaningful.
 proteomics pipelines remains the data analysis~\mycite{Chen2016,perseus2016} and
 most particularly, the data matching (\ms\ spectra to database content) and
 protein naming~\mycite{Nilsson2010}. Indeed, the sheer amount of produced data
-is in the \gls{TB} range which prohibits any manual handling and requires
+is in the terabyte (\gls{TB}) range which prohibits any manual handling and requires
 automation~\mycite{Codrea2016}.
 
 There are various tools for each proteomics analysis step (as there was for
@@ -1633,6 +1649,9 @@ for the shorter proteins and a saturating effect for the larger proteins.
 
 
 
+\section{Possible downstream expression analyses}\label{sec:enrichmentAnalysis}
+\subsection{Gene set enrichment analysis}
+\subsection{GO enrichment analysis}
 \section{Reproducibility and Experimental design}\label{sec:expDesign}
 \TK{Do not forget to explain why the use of different numbers of samples in
 meta-analysis creates problem!!!}
