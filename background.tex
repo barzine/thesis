@@ -112,57 +112,26 @@ individual is considered, the transcriptome varies\ldots
 \section[Transcriptome exploration with RNA sequencing]%
 {Transcriptome~exploration~with~RNA~sequencing}
 
-\TK{Two lines about microarrays}
-\TK{one line about \gls{EST}~\mycite{EST}%
-%https://web.archive.org/web/20070829194022/http://www.biolinfo.org/EST/
- Expressed sequence tags (EST) are short, unedited, single pass sequence reads derived from randomly selected complementary DNA (cDNA) libraries. ESTs can be rapidly generated from either the 5' or 3' end of a cDNA clone in a high-throughput manner from a particular cell, tissue or organism of interest at a low cost to get a quick insight into transcriptionally active regions. ESTs accelerate gene discovery, complement genome annotation, aid gene structure identification, establish the viability of alternative transcripts, guide SNP characterization and facilitate proteome analysis.}
-
-\begin{comment}
-Biological research uses mainly two approaches to
-study the cell life intricacy and its underlying mechanisms.\\
-The oldest approach is descriptive:
-
-
-Small bits: corrections for Rnaseq are already part of the analysis and
-requires often as much flair than skills.
-Contrarily to \Dnaseq\ where corrections can be applied \TK{add reference} and
-then the analysis be done, in Rnaseq each analysis requires a set of conform
-quantification and normalisation methods.
-While, there are quite established protocols for differential expression analysis,
-there are presently many other downstream analyses that are cumbersome
-and/or not settled yet. This is the case for this study.
-\end{comment}
-
 With the recent era of short-sequencing technology and the completion of the
 Human genome~\mycite{Venter2001-sn,Lander2001-wj,%
 International_Human_Genome_Sequencing_Consortium2004-hr},
 understanding the genome expression is increasingly a more
 reachable aim.
-%\TK{extend a little}
+From the early 1980s,
+technologies involved in transcriptome studies
+have greatly improved through many successive innovations~\mycite{Lowe2017-kj,Parkinson2009-pj}
+that include Sanger sequencing~\mycite{Sanger1975-io} or
+\gls{PCR} (reviewed by \citet{VanGuilder2008-xs}).
+Among the various transcriptomic study approaches,
+there are three key methods~\mycite{Lowe2017-kj}:
+\gls{EST} sequencing (for gene discovery --- see \Cref{sec:EST}),
+microarrays (for gene quantification --- see \Cref{sec:microarray})
+and, the one with which all the transcriptomic data used in this thesis have
+been generated:
+\Rnaseq\ (which is both used for gene discovery and gene quantification).
 
-\begin{comment}
-While microarrays are measuring many \mRNAs\ at once, their number is limited,
-
-\TK{history of \Rnaseq.}
-In the past decade, \gls{RNA-Seq} technology has risen as the method of choice
-for  transcriptome.
-
-Many methods and technologies through the years but more recently, boom of study:
-next generation sequencing (1st generation, 2nd generation and 3rd)\ldots So
-much that now the expression doesn't mean anything.
-
-Completion of the Human genome project : key changer: probes with microarrays
-possible (as there were then template). Next key changer: shotgun sequencing
-instead of Sanger sequencing (slow). + advance in computer science: needs of
-parallelisation and storage.
-
-So, In 2008, shift from microarrays to \Rnaseq.
-
-\clearpage
-
-\end{comment}
-
-In the following section, I introduce the typical steps of the required workflow
+In the following section,
+I introduce the typical steps of the required workflow
 to study the transcriptome through sequencing on an Illumina platform. In fact,
 while not by conscious design, all the transcriptomes analysed in this thesis are
 the product of Illumina sequencing (see

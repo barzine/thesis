@@ -1,8 +1,53 @@
-\chapter[Supp. material for chap. \getrefnumber{ch:background}]{Supplementary material for Chapter \getrefnumber{ch:background}}
+\chapter{Suppl\texorpdfstring{ementary}{.} material for Chap\texorpdfstring{ter}{.} \getrefnumber{ch:background}}%
 \label{ch:SupplBack}
+
+
+\section[EST-sequencing]{Expressed~Sequence~Tag~(EST)~sequencing}\label{sec:EST}
+\vspace{-5mm}
+\glspl{EST} are short nucleotide sequence generated
+from randomly selected \gls{RNA} transcript~\mycite{Parkinson2009-pj}.
+\mRNAs\ are reverse transcribed into double-stranded \glspl{cDNA}
+(either from the 5' or 3' end of the transcript)~\mycite{Lowe2017-kj}.
+These \glspl{cDNA} are cloned to create libraries~\mycite{Harbers2008-qh}
+and then sequenced either by Sanger method~\mycite{Sanger1975-io} or
+a more high-throughput one such as
+the sequencing-by-synthesis (\Cref{subsub:sequencing}).
+Although this technique is subject to sampling bias~\mycite{EST} and
+often account for only 60\% of an organism expressed genes~\mycite{Bonaldo1996-lx},
+it remains a relatively low cost alternative approach to study the transcriptome
+(gene discovery).
+
+
+\section{Microarrays}\label{sec:microarray}
+\vspace{-5mm}
+Microarrays require prior knowledge
+(\eg\ annotated genome or \glspl{EST} libraries)
+of the organism of interest
+as they exploit it to design \emph{probes} (short nucleotide oligomers)
+that are arrayed on a solid support (\eg\ glass, silicon thin film cell)%
+~\mycite{Lowe2017-kj,Schena1995-tg,Bumgarner2013-ey}.
+For transcriptome profiling,
+the expressed \glspl{RNA} are first reverse transcribed into \glspl{cDNA}
+(also referred as \emph{targets})
+and then, after being fluorescently labelled, they are complimentary hybridised
+to the microarray probes;
+the relative abundance of the transcripts is assessed
+by measuring the intensity of the fluorescence
+after the excess of unhybridised \glspl{cDNA} is washed away~\mycite{Lowe2017-kj}.
+This technology is extremely powerful and popular
+as it allows global and parallel analyses of cellular activity.
+Microarray technology has also many variations~\mycite{Hoheisel2006-lw}
+in addition to its original \gls{cDNA} version
+for transcriptional profiling~\mycite{Schena1995-tg}, \eg\
+for genotyping~\mycite{Wang1998-rs,Gunderson2006-pp},
+protein profiling~\mycite{Hall2007-gt,Sutandy2013-tj,Duarte2017-ao},
+splice-variant analysis~\mycite{Cuperlovic-Culf2006-rg} or
+transcription factor binding~\mycite{Bulyk2002-ii,Bulyk2007-jc} studies.
 
 \section{FASTQ format}\label{sec:fastq-format}
 
+\begin{figure}[!htbp]
+\begin{minipage}[adjusting]{\textwidth}
 {\color[rgb]{0.447059,0.678431,0.274510}\verb!@ERR030856.1!}
 {\color[rgb]{0.500000,0.500000,0.500000}\verb!HWI-BRUNOP16X_0001:1:1:2669:1073#0!}%
 {\color[rgb]{1.000000,0.000000,0.000000}\verb!/1!}\\
@@ -25,13 +70,15 @@ Legende:\\
 \quad{\color[rgb]{0.698039,0.145098,0.450980}\textbullet Separator (+ or any string of character)}\\
 \quad{\color[rgb]{0.000000,0.000000,0.555711}\textbullet Phred score (here Phred 33)}
 }
-
+\end{minipage}
+\caption{FASTQ format}\label{fig:fastqFormat}
+\end{figure}
 
 \section{Phred score}\label{sec:PhredScore}
 
-\begin{table}
+\begin{table}[!htbp]
 \centering
-\caption{Phred quality score to accuracy significance}
+\caption{Phred quality score to accuracy significance}%
 \label{PhredtoAccuracy}
 \begin{tabular}{@{}lll@{}}
 \toprule
@@ -43,8 +90,10 @@ Legende:\\
 \end{tabular}
 \end{table}
 
-The \gls{Phred} quality score can be encoded in several standards.
-
+The \gls{Phred} quality score can be encoded in several standards as shown in \Cref{phredformat}.
+%https://en.wikipedia.org/wiki/FASTQ_format#Encoding
+\begin{figure}[htbp]
+\begin{minipage}[adjusting]{\textwidth}
 \begin{verbatim}
 SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS.....................................................
 ..........................XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX......................
@@ -60,16 +109,19 @@ LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL......................................
                                    3.....9.............................40
  0........................26...31........41
 
-S - Sanger        Phred+33,   cores des séquences brutes compris entre 0 et 40
-X - Solexa        Phred+64, scores des séquences brutes compris entre -5 et 40
-I - Illumina 1.3+ Phred+64,  scores des séquences brutes compris entre 0 et 40
-J - Illumina 1.5+ Phred+64,  scores des séquences brutes compris entre 3 et 40
-     avec 0=inutilisé, 1=inutilisé, 2=Indicateur de contrôle qualité de segment de séquence (en gras)
-L - Illumina 1.8+ Phred+33,  scores des séquences brutes compris entre 0 et 41
+S - Sanger        Phred+33, raw reads scores between  0 and 40
+X - Solexa        Phred+64, raw reads scores between -5 and 40
+I - Illumina 1.3+ Phred+64, raw reads scores between  0 and 40
+J - Illumina 1.5+ Phred+64, raw reads scores between  3 and 40
+        with 0=unused, 1=unused, 2=Read segment Quality Control Indicator
+L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
 \end{verbatim}
+\end{minipage}
+\caption{The available Phred score quality score encoding formats}\label{phredformat}
+\end{figure}
 
-\begin{figure}
-    \includegraphics[scale=0.60]{introduction/interestHtseq}\centering
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.60]{background/interestHtseq}\centering
     \caption[Overlap resolution effects for each \htseq\
     mode]{\label{fig:htseqMode}\textbf{Overlap resolution effects for each \htseq\
     mode.} Each mode resolves a number of overlap situations differently. The
@@ -102,41 +154,43 @@ L - Illumina 1.8+ Phred+33,  scores des séquences brutes compris entre 0 et 41
 
 \section{Isotopes of common elements and their natural
 frequency}\label{app:isotopes}
+\Cref{tab:isotope} lists the mass~\mycite{Audi1993-qn,Audi1995-uk}
+and the percent natural abundance~\mycite{Rosman1998-xu}
+for stable nuclides (\ie\ atom distinctly characterised by its number of protons (Z)
+and number of neutrons (N)) that may be found in \glspl{DNA}, \glspl{RNA} and proteins.
 
-\TK{Mettre en page et récuperer la biblio}
-\begin{comment}
-This table lists the mass and percent natural abundance for the stable nuclides. The mass of the longest lived
-isotope is given for elements without a stable nuclide. Nuclides marked with an asterisk (*) in the abundance column
-indicate that it is not present in nature or that a meaningful natural abundance cannot be given. The isotopic mass
-data is from G. Audi, A. H. Wapstra Nucl. Phys A. 1993, 565, 1-65 and G. Audi, A. H. Wapstra Nucl. Phys A. 1995,
-595, 409-480. The percent natural abundance data is from the 1997 report of the IUPAC Subcommittee for Isotopic
-Abundance Measurements by K.J.R. Rosman, P.D.P. Taylor Pure Appl. Chem. 1999, 71, 1593-1607.
-(trouver là : https://chemistry.sciences.ncsu.edu/msf/pdf/IsotopicMass_NaturalAbundance.pdf) 
-\end{comment}
-
-\begin{table}[]
+\begin{table}[!htbp]
 \centering
-\caption{Most common constitutive elements and their isotopes of proteins}
+\caption[Most common elements and their stable isotopes]%
+{\textbf{Most common constitutive elements and their stable isotopes\\ found in DNAs,
+RNAs and proteins.} Asterisks (*) mark abundances that are not available.}
 \label{tab:isotope}
-\begin{tabular}{@{}clcr@{}}
+\begin{tabular}{@{}clccr@{}}
 \toprule
-\begin{tabular}[c]{@{}c@{}}Z \\ (Atomic number)\end{tabular} &
-    \multicolumn{1}{c}{Isotope} &
+\begin{tabular}[c]{@{}c@{}}%
+    z \\ (Atomic number)\end{tabular} &
+    \multicolumn{1}{c}{Name} & Isotope &
     \begin{tabular}[c]{@{}c@{}}Mass atomic\\ (u)\end{tabular} &
-    \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Natural frequency\\ (\%)\end{tabular}}\\
-    \midrule
-    1   & \isotope[1]{H}    & 1.007825  & 99.9885   \\
-        & \isotope[2]{H}    & 2.014102  & 0.0115    \\
-        & \isotope[3]{H}    & 3.016049  & *         \\
-    6   & \isotope[12]{C}   & 12.000000 & 98.93     \\
-        & \isotope[13]{C}   & 13.003355 & 1.07      \\
-        & \isotope[14]{C}   & 14.003242 & *         \\
-    7   & \isotope[14]{N}   & 14.003074 & 99.632    \\
-        & \isotope[15]{N}   & 15.000109 & 0.368     \\
-    8   & \isotope[16]{O}   & 15.994915 & 99.757    \\
-        & \isotope[17]{O}   & 16.999132 & 0.038     \\
-        & \isotope[18]{O}   & 17.999160 & 0.205     \\
-    \bottomrule
+        \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Natural frequency\\ (\%)\end{tabular}} \\
+\midrule
+1  & Hydrogen & \isotope[1]{H} & 1.007825 & 99.9885 \\
+   & Deuterium & \isotope[2]{H} & 2.014102 & 0.0115 \\
+   & Tritium & \isotope[3]{H} & 3.016049 & * \\
+6  & Carbon & \isotope[12]{C} & 12.000000 & 98.93 \\
+   &  & \isotope[13]{C} & 13.003355 & 1.07 \\
+   &  & \isotope[14]{C} & 14.003242 & * \\
+7  & Nitrogen & \isotope[14]{N} & 14.003074 & 99.632 \\
+   &  & \isotope[15]{N} & 15.000109 & 0.368 \\
+8  & Oxygen & \isotope[16]{0} & 15.994915 & 99.757 \\
+   &  & \isotope[17]{0} & 16.999132 & 0.038 \\
+   &  & \isotope[18]{0} & 17.999160 & 0.205 \\
+15 & Phosphorus & \isotope[31]{P} & 30.973762 & 100 \\
+16 & Sulphur & \isotope[32]{S} & 31.972071 & 94.93 \\
+   &  & \isotope[33]{S} & 32.971458 & 0.76 \\
+   &  & \isotope[34]{S} & 33.967867 & 4.29 \\
+   &  & \isotope[35]{S} & 35.967081 & 0.02 \\
+53 & Iodine & \isotope[127]{I} & 126.904468 & 100 \\
+\bottomrule
 \end{tabular}
 \end{table}
 
