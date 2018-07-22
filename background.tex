@@ -6,47 +6,22 @@
 %\setlength{\epigraphrule}{0.1pt}
 \epigraphhead[70]{%
     \epigraph{It would probably be oversimplifying the
-    matter,\\but I am strongly tempted to say,\\ \textquote{All life is nucleic acid; the rest is
+    matter,\\but I am strongly tempted to say,\\
+    \textquote{All life is nucleic acid; the rest is
     commentary}.}{\citet{asimov:WrongRel}}%
 }
 \end{comment}
 
+The following pages present a summary of facts and techniques
+that form the biological and technological context
+of the work presented in this thesis.
+The different sections may be read on their own
+or skipped without understandability issues.
+
 \begin{comment}
-When Asimov concluded with these words his chapter \textquote{Beginning with bone},
-scientists had already started unfolding one of the most mesmerising biological
-mystery: how does the Nature manage and organise the production of specific
-effectors in specific locations. In other words how from one cell
-\TK{revoir cette phrase: idea initiale pourquoi
-organisme A different
-de B, ou un foie et un foie et pas un coeur + comment d'une cellule-oeuf on a un
-organisme complet qui se creée\ldots ne pas s'étendre dessus par contre}.\
-Watson and Crick by publishing the double-helix structure of \DNA~\mycite{DNA1953}
-unlocked our path to understand
-how the natural world stores and manipulates information.
-As the whole past six decades were packed with major
-discoveries and technological achievements, there are many, fascinating,
-milestones that could be discussed.
-The following pages present a summary of the facts and techniques
-that form the biological and technical context of the work backing this thesis.
-
---- ici intro par rapport à Asimov et le fait que l'ADN est un \enquote{blueprint}
-    et qu'en fonction du l'organe ou du develepment stage l'expression est régulé.
-    On sait maitenant que la régulation se passe à différent niveau\ldots Finir
-    peut être la section sur Harvey qui a élucider la circulation sanguine car
-    il a utilisé l'observation et quantification du sang ---
-
-
-As where the situation stands for now, we know that between the unique common
-blueprint, which is the \DNA\ and the different phenotypes displayed by the tissues
-comprising our bodies, they are many regulatory processes occurring at different
-layers (transcription, and translation).
-
-
 \Rough{%
 Gene expression, transcription, translation, regulation at each stage,
 expected and reported correlation between transcripts and proteins
-Measuring transcript expression by RNAseq, wet-lab part, analysis methods,
-available large scale datasets on human tissues
 Measuring protein expression by MS, data analysis – spectral counts, top 3, etc,
 available large scale datasets on human tissues
 The problem of comparing and integrating independent datasets, EBI’s GXA \\ \\
@@ -54,55 +29,112 @@ key concepts: DNA storage, RNA transfert of information and regulation,
 protein effectors ==\textgreater phenotype.\\ \\
 %
 Do not forget the (tissues) specifications and the structural functions. =\textgreater Embryology.\\ \\
-%
-introduction real possible start: la soupe primaire -\textgreater creation de RNA, aa,
-oeuf/poule
-premiere cellule, \ldots (lire Darwin, il y a ptet moyen d ajouter une citation ou
-    quelque chose).%
 }
-
-\begin{itemize}[topsep=0pt,nosep]
-    \item Proteomics messy and noisy, challenging \ldots
-    \item Transcriptomics seem a good proxy to study the phenotype => one kind of molecule made of the same pieces.
-    \item Technology improved a lot from the microarrays to sequencing.
-\end{itemize}
-
 \end{comment}
 
 
-\section{Diversity and universality of Life}
+\section{Universality and diversity of Life}
 
-\Rough{\begin{itemize}
-    \item What we speak about (\gls{DNA},\gls{RNA}, protein)
-    \item Why we speak about/study it. Speak of identification of unique features,
-        differential expression analysis.
-\end{itemize}}
+Every known form of life depends on a common set of molecule types.
+85 to 70\% of the total mass of these molecules are identical
+through every organism, and
+15 to  30\% of them are very specific to each species.
+While the inorganic molecules (water and salts) and
+the smaller organic molecules
+(such as simple sugars, amino or organic acids, nitrogenous bases,
+lipids or their precursors) composed the main number of molecules present in a cell,
+most studies focus on the macromolecules,
+\ie\ \gls{DNA}, \gls{RNA} or protein populations of the cell.~\mycite{Callen2005-ik}
 
-\TK{The central dogma of Molecular biology => Crick describes the cycle}
-\TK{add reference on replication? (a priori no review of that part)}
+\Cref{fig:dogma} is the reconstruction by \citet{Crick:1958} of
+what was conceived circa 1958 and is now known as
+the core of the central dogma of molecular biology.
+It presents the relationship between these three types of macromolecules:
+one gene will be transcribed from \DNA\ to one \mRNA,
+which will be in turn translated in one protein.
+This still holds true even though the truth is not as linear as first thought.
 
-\TK{proteins: polar molecules}
+\begin{figure}%[!htbp]
+    \includegraphics[scale=0.45]{background/dogma}\centering
+    \caption[Central dogma of molecular biology proposed by F. Crick circa 1958]%
+    {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
+    F. Crick circa 1958.} The solid lines present the proven modes of
+    information transfers, the dashed ones are the ones that were postulated but
+    have yet to be established.
+    Nowadays, we know that the arrow from \gls{RNA} to \gls{DNA}
+    should be a solid one, even though this happens on particular occasions.}
+\end{figure}
+
+All the genetic material of a living organism
+(\ie all its coding and non-coding \gls{DNA})
+constitutes its genome.
+In most cells,
+strands of \gls{DNA} are tightly packaged around proteins called histones
+and they form superstructures known as chromosomes;
+for example, the human genome is split into 23 pairs of chromosomes.
+The coding sections of the \gls{DNA} are the genes,
+which contain the instructions for making the proteins.
+When a gene is switched on,
+it triggers a process called transcription.
+An \gls{RNA} polymerase attaches to the start of the gene,
+and uses the \gls{DNA} strand as a template
+to create a corresponding \gls{mRNA}.
+Usually, a few modifications occur
+before the \mRNA\ is in turn used as template to make the protein.
 
 
-\subsection{Transcription: From \gls{DNA} to \gls{RNA}}
-\begin{comment}
-Transcriptome is the complete population of \gls{RNA} in a cell or a group of
-cells. There are many kinds of them:
-\begin{itemize}
-    \item \gls{ncRNA}
-    \item \gls{tRNA}
-    \item \gls{miRNA}
-    \item \gls{snRNA}
-    \item \gls{scaRNA}
-    \item \gls{snoRNA}
-    \item \gls{scRNA}
-\end{itemize}
-\end{comment}
+\mRNAs\ constitute one part of the transcriptome,
+which is the total repertoire of transcripts (\ie\ \glspl{RNA}
+molecules) expressed in a cell (or group of cells such as a tissue)
+at a given time and condition.
+Unlike the genome which is roughly identical
+regardless which cell of a particular individual is considered,
+the transcriptome may vary, sometimes dramatically,
+depending of the biological context and time.
 
-The transcriptome is the total repertoire of transcripts (\ie\ \glspl{RNA}
-molecules) expressed in a cell or tissue at a given time and condition. Unlike
-the genome which is roughly identical regardless which cell of a particular
-individual is considered, the transcriptome varies\ldots
+Before the messenger RNA can be used as a template for the production of proteins,
+it needs to be processed.
+This involves removing and adding sections of RNA.
+The messenger RNA then moves out of the nucleus
+into the cytoplasm.
+Protein factories in the cytoplasm, called ribosomes,
+bind to the messenger RNA.
+The ribosome reads the code in the messenger RNA
+to produce a chain made up of amino acids.
+There are 20 different types of amino acid.
+Transfer RNA molecules carry the amino acids
+to the ribosome.
+The messenger RNA is read three bases at a time.
+As each triplet is read, a transfer RNA
+delivers the corresponding amino acid.
+This is added to a growing chain of amino acids.
+Once the last amino acid has been added,
+the chain folds into a complex 3D shape
+to form the protein.
+
+While double-stranded \gls{DNA} (which is the most common form for \gls{DNA})
+and proteins are very stable,
+\glspl{RNA} have rather short life.
+
+Physicochemical properties of the \glspl{DNA} and \glspl{RNA} are very similar
+as the notable differences are the nature of the monosaccharide they include and
+the methylated or demethylated form of one of the pyrimidine nucleobase.
+Proteins are a lot more diverse, because the amino acids are a lot more diverse
+(and 3D folding are more complex and such may exhibe one type of or another kind
+of hydrophobic or hydrophily or amphiphily and charges). Additionally,
+many post-translational modifications can occurs (addition of phophorylated groupment,
+addition of saccharides or lipides or a combination of these).
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Translation: From \gls{RNA} to protein}
 
@@ -145,7 +177,7 @@ throughput for the lowest per-base cost \mycite{IlluminaCheap}.
 I will emphasise the approaches and
 the tools I used to estimate the gene expression levels from raw nucleotide
 sequences.
-\Cref{fig:OverviewRnaseqPrepSeq} presents an overview of the typical steps of a
+\Cref{fig:OverviewRnaseqPrepSeq} presents an overview of the typical steps of an
 \Rnaseq\ workflow from the libraries preparation to the sequencing.
 
 \begin{figure}
@@ -168,7 +200,7 @@ Albeit the collection and the conservation\footnote{E.g.\ between fresh-frozen
 samples and \gls{FFPE} samples see~\citet{sampleConservationMatters}.}
 of the samples prior to the
 \gls{RNA} extraction most definitely affects the final estimations,
-I will let aside these steps from my review.
+I will set aside these steps from my review.
 
 \subsection{Library preparation}\label{subsec:libPrep}
 
@@ -255,7 +287,7 @@ Datasets produced following a ribodepletion protocol are usually called
 \emph{whole \gls{RNA}} or \emph{total \gls{RNA}} as a contrast to the
 \emph{polyA-selected} ones.
 
-\citet{castleData} created a total \gls{RNA} dataset but they use another
+\citet{castleData} created a total \gls{RNA} dataset, but they use another
 approach where they amplify \emph{every} other \gls{RNA} with the help of
 specifically designed probes (see \cref{subsec:castlepresentation}). Hence,
 the protocol they have used is closer to the following one.
@@ -289,7 +321,7 @@ involving oligo-dTs or \emph{random} hexamer primers, respectively only
 for polyA-selected datasets or any dataset (polyA-selected included).
 The set of \emph{random} hexamer has been designed to cover the whole
 transcriptome. Unfortunately, these \emph{random} hexamer primers have been
-proven to actually lack full randomness \mycite{notSoRandom}.
+proven to lack full randomness \mycite{notSoRandom}.
 
 At the end of the most common protocol, the order of synthesis of each \gls{cDNA}
 strands is lost, \ie\ it is impossible to distinguish which of the \gls{cDNA}
@@ -339,10 +371,10 @@ requirement to many downstream analyses.
 \emph{Multiplexed} protocols easily achieve
 the distinction between the multiple samples as they incorporate \emph{barcodes}
 before ligating the adapters. These barcodes are also small sequences of
-nucleotides and each sample has its own unique associated
+nucleotides, and each sample has its unique associated
 barcode. In practice, each sample is prepared separately with the added extra
-step (before the adapters ligation) where the barcode is incorporated, then all
-the samples are pooled together before the next step that consists to hybridise
+step (before the adapters ligation) where the barcode is incorporated; then all
+the samples are pooled together before the next step, which consists of hybridising
 the \glspl{cDNA} to the flow cell.
 
 Other extra steps occur just after the sequencing and before any other data
@@ -399,15 +431,16 @@ the oldest method}, the sequencing begins at one (and only one) of the fragment
 ends and progresses towards the second. Whereas in \emph{paired-end sequencing},
 once the first end has been sequenced (as in the single-end approach), after a
 single new bridge replication, the other end of the original fragment is
-sequenced as well. Hence, in paired-end, the sequencing occurs at \emph{both}
-ends of each original fragment. This has been allowed by a small change in
-the original single-end adapters~\mycite{pairedEndAdapters}.
+sequenced as well.
+Hence, with a small change in the original single-end adapters~\mycite{pairedEndAdapters},
+in paired-end protocols, the sequencing occurs at \emph{both}
+ends of each original fragment.
 
 Though more expensive and more challenging to programmatically handle,
 the paired-end approach produces more information and hence facilitates
 the detection of genomic rearrangements (as indels or inversions) and
 repetitive sequence elements.
-It also allows an easier distinction between isoforms of a same gene and provides
+It also allows an easier distinction between isoforms of the same gene and provides
 greater support to detect the novel transcripts (new isoform or new gene) and fusion
 genes\footnote{A \gls{fusionG} is a gene that is the product of the fusion of
 parts of two (or more) different genes.}.
@@ -422,7 +455,7 @@ The product of this synthesis is called a \emph{read} and
 it supports the \emph{base calling}\footnote{Base calling:
 identification of the nucleosides in a sequence
 by assigning chromatogram peaks
-or an other kind of signal variations
+or another kind of signal variations
 to (nucleo){}bases.}.
 
 
@@ -497,10 +530,10 @@ the base being called wrongly. There are several possible encoding formats
 
 From the reconstruction of the
 transcriptome to the normalisation of expression in each sample, the various
-steps may be addressed through a number of different algorithmic approaches.
+steps may be addressed through many different algorithmic approaches.
 Often, the choice of a method at one stage implies a more limited number of
-alternatives from which to pick at later points in the pipeline. Actually,
-the choice is frequently driven by the kind of downstream analyses planned for
+alternatives from which to pick at later points in the pipeline.
+The choice is frequently driven by the kind of downstream analyses planned for
 the study. More than the practical format of the data for these, it is the
 assumptions and the methods used upstream that are critical for a
 rigorous investigation and, later, for an accurate interpretation of the results.
@@ -518,11 +551,11 @@ In short, any genomic region with an annotated function.}. In other words,
 the transcriptome needs to be reconstructed from the short reads and annotated
 (\ie\ identify which features have been expressed in each library).
 
-Two main different strategies (see further `Reconstruction strategies' segment)
+Two different main strategies (see further `Reconstruction strategies' segment)
 manage to accomplish this identification step. Independently of the
 approach, this step is the most challenging and time-consuming
-of the workflow. Tools, that tackle the reconstruction, usually provide a
-number of tunable heuristic parameters (\eg\ maximum number of allowed mismatches
+of the workflow. Tools, which tackle the reconstruction, usually provide
+many tunable heuristic parameters (\eg\ maximum number of allowed mismatches
 or indels per read before discarding a possible identification\footnote{Indeed,
 many reads will have many identifications, these reads are defined as
 \emph{ambiguous reads}.})
@@ -530,7 +563,7 @@ to speed up the task.
 Unfortunately, as on Illumina platforms, the base calling accuracy decreases
 along the read length, this may lead to an information loss~\mycite{TrimRNAseq}.
 To prevent informative reads to be discarded, it is opportune to perform a quality
-check of the raw data prior to the identification step. Thus, reads with a drop of
+check of the raw data before the identification step. Thus, reads with a drop of
 accuracy in their 3'end may be shortened (\ie\ trimmed) and rescued for the next
 reconstruction step. Similarly, low-quality reads may be discarded hence
 lowering the complexity
@@ -556,19 +589,20 @@ segment) every read to the \species{Escherichia coli} genome.}.
 Indeed, as these reads are ambiguous, it is safer
 to discard them than skew the expression estimations.
 
-Finally, as a number of tools (mappers in particular) only accept reads
+Finally, as many tools (mappers in particular) only accept reads
 with a unique length, the purity-length balance requires optimisation.
 Indeed, the trimming has to compromise between
-an approach too lenient (where many unfit reads are discarded
-by the mappers at a later step) and
-a too stringent one (where too little reads are left for a pertinent analyses or
-where shorter reads increase the overall complexity and therefore hinder
-the mapping both on time and accuracy~\mycite{Trimwisely}).
+an approach too lenient (where the mappers discard many unfit reads at a later step),
+and
+a too stringent one (where either the reads are shorter,
+which increases the overall complexity and therefore hinder
+the mapping both on time and accuracy~\mycite{Trimwisely},
+or too few are left for pertinent analyses).
 
 \NB\ Generally, after the sequencer calls the reads, a first trimming removes
 all the adaptors and barcodes needed by the sequencing protocols. Thus,
 in principle, they are not to be found in the \enquote{raw data}.
-However, to avert any latter contingency, a research against
+However, to avert any latter contingency, a search against
 a list of the most common adaptors and an over-representation assessment of small
 sequences (\emph{k-mers}\footnote{\emph{k-mer}: In the present context, all
 possible subsequences of length
@@ -578,7 +612,7 @@ possible subsequences of length
 \subsubsection{Reconstruction strategies}\label{subsec:reconstruction}
 
 Two main approaches can be used for the very computationally expensive step of
-identification. I will present them in a decreasing order of complexity:
+identification. I will present them in decreasing order of complexity:
 the \latin{de novo} assembly of the reads and then the reads alignment approach
 (to a genome reference or a transcriptome one).
 
@@ -605,7 +639,7 @@ with the construction of the longest possible \emph{contigs} (\ie\ contiguously
 expressed regions) based on sets of overlapping reads (see also
 \Cref{fig:denovo}). Short length reads add
 to the overall complexity of this approach. While paired-end reads may help to
-solve a number of genomic regions, lowly expressed or repetitive regions remain
+solve many genomic regions, lowly expressed or repetitive regions remain
 challenging to determine. There are several algorithmic approaches for \latin{de
 novo} transcriptome assembly~\mycite{algorithmsDenovo},
 though the most prevalent one is the de Bruijn representation~\mycite{deBruijn}.
@@ -648,15 +682,15 @@ Aligning to the genome allows discovering new genes or isoforms. However, it
 requires splice-aware algorithms, \ie\ they need to align the
 reads across the splice-junctions (which is possible but non-trivial).
 As illustrated in \Cref{fig:genoAlignment},
-the reads might span a number of discontinued regions of the reference.
-While on one hand, aligning to the genome avoids \emph{multiple mapping
+the reads might span many discontinued regions of the reference.
+While on the one hand, aligning to the genome avoids \emph{multiple mapping
 issues}\footnote{Due to sequence similarity, a same read or subpart of a read
-may be attributed to a number of different loci in the genome. As it is
-impossible to directly attribute the read to its original locus of expression,
-distribution models have to be pondered to avoid unnecessary skewness while
-the quantification step.} for a same exon, this also implies that
+may be attributed to many different loci in the genome. As it is
+impossible to attribute the read to its original locus of expression directly,
+distribution models have to be pondered to avoid unnecessary skewness during
+the quantification step.} for the same exon, this also implies that
 the genome needs to provide the coordinates for the different isoforms
-which will then require further analyses for correct quantifications at that
+which will then require further analyses for accurate quantifications at that
 isomeric level.
 Indeed, irrespectively of the number of isoforms including a specific exon,
 the sequence of this exon is transcribed only once in the reference.
@@ -672,11 +706,10 @@ accurate and well-annotated gene models is required.
 \Cref{fig:transAlignment} shows in fact that this approach is simpler
 to the previous one as a direct read alignment is done against the
 transcriptome of reference.
-This enables to quantify accurately the expression
-of gene isoforms,
+This enables the accurate gene isoforms expression quantification,
 provided that the gene model is correct and the reads may be
 attributed unambiguously to a single isoform for each gene.
-However, in practice this approach produces many multimapped reads,
+However, in practice, this approach produces many multimapped reads,
 particularly for shorter reads as
 many isoforms are very similar in sequence and vary only in the exons
 they retain.
@@ -711,8 +744,8 @@ possible new split events via a seed-and-extend approach. Potential new events
 are considered when these smaller segments, first, match exactly the reference
 for their good-quality score regions and, secondly, they have overlaps
 (for a user-defined length) with a splice junction. These segment sections are
-called seed. Any read with a seed is then checked for a longer or even complete
-alignment to the exons on both side of the junction.
+called seeds. Any read with a seed is then checked for a longer or even complete
+alignment to the exons on both sides of the junction.
 
 In the case of paired-end data, each read of the pair is first processed
 separately.
@@ -722,10 +755,10 @@ they are used as a pair to infer among the many possibilities which
 are the most credible ones.
 Both parts of a paired-end data once aligned to a
 concordant region of the genome is then called a \emph{fragment} instead of a
-\emph{read}. Nowadays, there is an assimilation between the \enquote{\emph{read}}
+\emph{read}. Nowadays, there is assimilation between the \enquote{\emph{read}}
 and the \enquote{\emph{fragment}} terms. Even though the locution \emph{fragment}
 is more accurate and may be used in any situation (as it equals to one read for
-single-end data and to a pair of related reads for paired-end data), it is
+single-end data and a pair of related reads for paired-end data), it is
 frequent to see the denomination \emph{read} instead (even for paired-end data).
 
 \toph\ ---
@@ -739,7 +772,7 @@ although being slower than the latter~\mycite{hisat}.
 
 \NB\ As many concepts or terms in Science, \enquote{\emph{Read mapping}} can
 have different (however very closely related) meanings.
-Hence, while for a number of people, \emph{Read mapping} will encompass any
+Hence, while for many people, \emph{Read mapping} will encompass any
 transcriptome reconstruction strategy (including \latin{de novo} assembly) since
 the main point is to map the features to functional annotations,
 for others the locution will only refer to
@@ -750,7 +783,7 @@ Tools as \soft{TopHat2} contributes to this locution vagueness.
 
 When working with \Rnaseq\ data, the typical next step after mapping the reads or
 fragments to the reference is to quantify the expression of the
-feature\footnote{E.g.\ genes, isoforms, exons, spicing events, \ldots}
+feature\footnote{E.g.\ genes, isoforms, exons, splicing events, \ldots}
 of interest.\footnote{In fact, while genotyping, heredity
 studies and other genetically focused studies are in principle possible, the usual
 main focus is centred on expression estimation. For example, instead of
@@ -787,10 +820,10 @@ I briefly present them below in their chronological release.
 \href{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}%
 {https://groups.google.com/forum/\#!forum/tuxedo-tools-users}} which also includes
 \toph\ and \soft{Bowtie}. In fact, the first releases of \soft{TopHat} and
-\soft{Cufflinks} share many common authors and \cuffl\ is able to assemble
+\soft{Cufflinks} share many common authors, and \cuffl\ can assemble
 \latin{de novo} novel transcripts and isoforms following the same principles
 than \toph. Likewise, using good references is faster and more useful.
-In both case, \cuffl\ infers the most parsimonious\footnote{As a requirement to
+In both cases, \cuffl\ infers the most parsimonious\footnote{As a requirement to
 Occam's razor, which may be a debatable strategy~\mycite{OccamRazorAndBiology}}
 and credible set of transcripts (and their isoforms) that can explain the
 complete set of observed fragments.
@@ -802,7 +835,7 @@ may be very limited~\mycite{oneDominant}.
 
 Furthermore, \cuffl\ tries assigning the multimapped reads to one isoform only.
 First, sets of fragments are separated into sets of isoforms
-(all fragments that are likely produce from the same set of isoforms
+(all fragments that are likely produced from the same set of isoforms
 are grouped together).
 Then to estimate the abundance of each isoform of one set,
 \cuffl\ integrates many information sources together.
@@ -813,7 +846,7 @@ unique isoform. When available, paired-end fragments are critical:
 as they cover longer regions, the probability
 that they span multiple adjacent exons is increased which helps to resolve
 the possible structure of the original isoforms. \mycite{CufflinksPaper2}\\
-The abundance are finally estimated through
+The abundance is finally estimated through
 an \gls{EM} algorithm~\mycite{EM-what,EM-algo-latest},
 with the following main steps (see also \Cref{fig:cuffEstimation}):
 \begin{enumerate}
@@ -870,8 +903,7 @@ overlaps with any of its annotated exons --- indeed, \htseq\ defines a gene
 as the union of all its exons. However, while quantifying exon expression, many
 of these same reads may be discarded as they overlap several exon annotations
 with overlaying definitions.}
-\htseq\ provides
-three modes to fine-tune the overlap definition.
+\htseq\ provides three modes for fine-tuning the overlap definition.
 For this thesis, I used the \enquote{\texttt{intersection non-empty}} mode
 (see \Cref{fig:htseqMode}).
 This mode avoids discarding too many reads due to a too tolerant annotation
@@ -895,16 +927,16 @@ as \htseq\ provides \emph{raw counts} (\ie\ unnormalised counts).
 
 
 \subsubsection{Normalisation}\label{subsub:norm}
-Actually, regardless of the quantification method, a normalisation is usually
+Regardless of the quantification method, a normalisation is usually
 necessary to avoid a few statistical biases (mainly due to the sampling). The
 normalisation method, though, is generally determined based on the quantification
 (method or tool\footnote{Many quantification tools (\eg\ \cuffl) perform
-automatically the normalisation step as well. They may also (or not) provide
+the normalisation step automatically as well. They may also (or not) provide
 raw counts.}) and they have to be suitable for the planned downstream analyses.
 As unfortunately, \Rnaseq\ lacks (still) to assess the true concentration of each
 expressed gene (or transcript) in a sample, each normalisation method is based on
 a specific set of assumptions that may be incompatible to the ones required by
-a number of investigation approaches.
+many investigation approaches.
 
 Many papers review or compare normalisation methods (See~\citet{Dillies2013,%
 normSigCancerHelp,NormImpact,ruvseqComQN}).
@@ -912,10 +944,10 @@ normSigCancerHelp,NormImpact,ruvseqComQN}).
 \minisec{RPKM and FPKM}
 The first evident source of sampling bias is the total number of \emph{mapped}
 reads (or fragments) between two \Rnaseq\ libraries (shortened as
-\enquote{libraries} from now on). Indeed, there may be huge discrepancies in
+\enquote{libraries} from now on). Indeed, there may be considerable discrepancies in
 their respective amount of starting material loaded on a
 \gls{flow}\footnote{In fact, this would involve the monitoring of many parameters
-or assessments of the samples before the library preparation. And, while
+or assessments of the samples before the library preparation. Moreover, while
 it \emph{may} be possible to weight each sample before extracting the \gls{RNA},
 the many steps (involving the fragmentation of the \glspl{RNA},
 \gls{PCR} syntheses or size-selection) and their associated biases
@@ -951,7 +983,7 @@ The canonical formula for \FPKM\ (or \RPKM) is:
 \end{equation}
 
 where: \\{\small
-$\hat{\mu}_{ij}$ is the normalised expression for \emph{feature} (\eg\ gene or
+$\hat{\mu}_{ij}$ is the normalised expression for the \emph{feature} (\eg\ gene or
 transcript) $i$ in sample $j$,\\
 $f_i$ is the count number of the fragments (or reads) mapped to
 \emph{feature} $i$ in sample $j$,\\
@@ -966,7 +998,7 @@ has been observed in other papers (see for example~\cite{Hebenstreit:2011}) and
 also explains why $1$\ \FPKM\ is a commonly used threshold.
 
 This normalisation is quite intuitive and still largely used nowadays. In fact,
-I use this normalisation thorough the thesis. However, it is also unsuitable for
+I use this normalisation through the thesis. However, it is also unsuitable for
 a popular type of analysis: \emph{Differential expression analysis}. Indeed,
 if a set of genes are expressed in a specific condition and are undetected in
 another (either for biological or technical reasons), the \emph{normalised counts}
@@ -982,7 +1014,7 @@ usually between diseased (or treated) samples to control (healthy).} (\eg\
 \soft{edgeR}\footnote{\label{footnote:1}Bioconductor package}~\mycite{edgeR}
 or \soft{DESeq2}\footref{footnote:1}~\mycite{DESeq2}).
 
-Also, a number of normalisation methods applied first to microarrays are used, \eg\
+Also, many normalisation methods applied first to microarrays are used, \eg\
 the most common ones include a quantile normalisation method or a simple scaling
 normalisation.
 
@@ -1001,7 +1033,7 @@ High-throughput protein identification and quantification (\ie\ characterisation
 use \ms\ as the primary method of choice since it allies a good dynamic range
 with high sensitivity and specificity~\mycite{Aebersold2003,Broshphd,Cox2011}.
 Indeed, on the last decade, the field has shifted from technical research on the
-instruments and methods to an extensive and routine use of \ms\ as an analytical
+instruments and methods to the extensive and routine use of \ms\ as an analytical
 tool for life sciences, in particular for proteins~\mycite{AebersoldMann2016}.
 As \ms\ is very versatile and supports many proteomic investigation
 approaches\footnote{E.g.\ Proteome sequences, quantity, modification sites,
@@ -1019,7 +1051,7 @@ perspectives~\mycite{AebersoldMann2016}.}\sepfootnote\footnote{Bottom-up
 approaches are
 also used for \emph{targeted proteomics} (see~\cite{Shi2016}) and for
 \gls{DIA} studies to generate, for instance, comprehensive fragment-ion maps for
-specific proteoforms (see~\cite{Chapman2014})}, and more exactly, the
+specific proteoforms (see~\cite{Chapman2014})}, and more precisely, the
 typical \emph{\enquote{shotgun}} proteomics approach that
 relies on \gls{LC-MS/MS}~\mycite{Cox2011,Zhang2013}. In fact, all
 three proteomic datasets used within this thesis are the product of this specific
@@ -1048,19 +1080,19 @@ other additional methods can deliver adequate samples for proteome analysis.
 
 \minisec{Conservation}
 Recent developments have significantly improved proteome analysis from
-\gls{FFPE} samples \mycite{Steiner2014}. Actually, as they are still evolving,
+\gls{FFPE} samples \mycite{Steiner2014}.
+As they are still evolving,
 they may compare soon to fresh-frozen (\gls{FF}) samples.
-However, for now, fresh or \gls{FF} samples are still remaining the best initial
-sources.
+However, for now, fresh or \gls{FF} samples are remaining the best primary sources.
 
 \subsubsection{Protein extraction and contaminant removal}
 \minisec{Protein extraction}
 Contrariwise to the collection step, \citet{Feist2015} explain that the crucial
 consideration is the cell lysis and the extraction approaches used on
 the protein as they may interact and disrupt the later characterisation step and
-thus require appropriate picking. In addition, the physico-chemical properties of
+thus require appropriate picking. Besides, the physicochemical properties of
 the proteins are far more heterogeneous than for \DNA\ or \RNA\ molecules~\mycite{Bruce2013}
-and may be incompatible with a number of extraction protocols.
+and may be incompatible with many extraction protocols.
 
 \minisec{Contaminant removal}
 \citet{Gutstein2008,Bodzon-Kulakowska2007,Visser2005,Hilbrig2003} review various
@@ -1074,7 +1106,7 @@ extraction solvents are inappropriate for \ms. Precipitations may denature the
 proteins, but this is usually irrelevant in this situation.
 \citet{Feist2015} review different precipitation protocols
 and emphasises that caution is needed
-for the next re-suspension step to avoid missing a consequent part of the
+for the next re-suspension step to avoid missing a substantial part of the
 sample proteome. They list several techniques and approaches in this regard.
 
 \subsection{\enquote{Simplification} of the samples}
@@ -1083,7 +1115,7 @@ High-throughput bottom-up workflows (including \gls{LC-MS/MS}) generally
 aim to decrease the sample complexity to analyse while increasing the depth
 of proteomic coverage~\mycite{Zhang2014,Bruce2013,Cox2011}. Indeed,
 many aspects may impede the characterisation of the proteins.
-For example, the wide physico-chemical property scope of the proteins will
+For example, the broad physicochemical property scope of the proteins will
 require various protocols to be handled efficiently.
 Their concentrations in a sample may saturate the \ms\ characterisation capacity
 as the very abundant proteins are easily detected and quantified while rarer
@@ -1107,17 +1139,17 @@ and then \emph{peptides} fractioning as a later one.
 \subsubsection{Denaturation, Reduction and alkylation}
 
 These steps may happen simultaneously to other steps. For example, they may
-occur while the extraction, the depletion or the digestion. They help to protect
+occur during the extraction, the depletion or the digestion. They help to protect
 the proteins from endogenous proteases and separate the protein complexes. They
-also help to the relative linearisation of the proteins and to some extent to
+also help to the relative linearisation of the proteins and, to some extent,
 the homogenisation of the crude mixtures~\mycite{Feist2015,Bruce2013}.
 
 \subsubsection{Depletion of highly abundant proteins}
 
-Regrettably, the proteomic field lacks amplification method and
+Regrettably, the proteomic field lacks amplification methods and
 there are very few strategies to remove the highly abundant proteins. Fortunately,
 these are very limited in number and may be precisely targeted.
-\citet{Zhang2014} reports two useful strategies. The first one aims to remove
+\citet{Zhang2014} report two useful strategies. The first one aims to remove
 them completely from the sample, either by selective
 precipitation or by (more expensive) specific antibody-arrays.
 The second approach aims to the equalisation of the proteome.
@@ -1144,8 +1176,8 @@ to distinguish between proteoforms~\mycite{Bruce2013}, it improves the proteins
 characterisation on several points.
 \begin{itemize}
     \item It helps to homogenise the sample: peptides present closer
-        physico-chemical properties to each other than proteins~\mycite{Zhang2014}.
-        In addition, peptide separations (by gel or \gls{LC}) are easier than
+        physicochemical properties to each other than proteins~\mycite{Zhang2014}.
+        Also, peptide separations (by gel or \gls{LC}) are easier than
         for proteins (see \cref{subsub:sepMethods}).
     \item \ms\ is also more sensitive to the peptides than to the proteins as
         \ms\ is more sensitive towards lower molecular-weight molecules~%
@@ -1154,7 +1186,7 @@ characterisation on several points.
     \item It is also easier to accurately characterise (identification and
         quantification) smaller molecules. In fact, large proteins with alike
         compositions present very similar molecular mass and may be impossible
-        to discriminate. On the other hand, a sequence-specific enzymatic
+        to discriminate. On the other hand, the sequence-specific enzymatic
         digestion gives hints on the protein sequence.
     \item Finally, it increases the coverage of the less abundant proteins~\mycite{Zhang2014}.
         Indeed, each protein is represented by multiple
@@ -1167,7 +1199,7 @@ characterisation on several points.
 
 The digestion may happen in-gel or in-solution. Both are very well-used.
 In-gel digestion is very common in bottom-up approaches based on \gls{LC-MS/MS}
-as it provides also directly the fractioning and it is better adapted to more
+as it also provides directly the fractioning and it is better adapted to more
 complex samples. Often, the gel will contain, in addition to the protease, a few
 chemical reagents that handle other steps (\eg\ chaotropic reagents to denature
 the proteins at the same time). However, it requires greater time and amount of
@@ -1179,15 +1211,16 @@ combining both methods has been developed and
 named \acrfull{FASP}~\mycite{Manza2005,Wisniewski2009}.
 
 Although there are other enzymes for restrictive digestion, trypsin is the gold
-standard protease~\mycite{Zhang2014}. Its popularity is also explained by
-circularity: as more studies are using it, more data are available for comparison,
+standard protease~\mycite{Zhang2014}.
+Circularity also explains its popularity:
+as more studies are using it, more data are available for comparison;
 hence more studies use it.
 
 \subsubsection{Separation methods (fractioning)}\label{subsub:sepMethods}
 Fractioning is the principal method to simplify sample complexity. It also allows
 focusing selectively on subcellular fractions when needed. Indeed, one may want
-to study in particular organelles, cell compartments or other kinds of proteome
-(\eg\ phosphorylated or glycosylated proteins)~\mycite{Cox2011}. In addition,
+to study in particular organelles, cell compartments or other kinds of the proteome
+(\eg\ phosphorylated or glycosylated proteins)~\mycite{Cox2011}. Besides,
 fractioning is also a good strategy to reduce the impact of undersampling and
 increase repeatability between analyses. In fact, \gls{MS} is prone to
 undersampling which means that repeated analyses may lack yielding the same
@@ -1205,7 +1238,7 @@ for protein mixtures as other separation methods (based either on gel or
 capillarity such as \gls{LC}), are more performant.
 
 \minisec{Gel electrophoresis based separation}
-Many protocols involve a first gel-based separation method prior to the
+Many protocols involve a first gel-based separation method before the
 liquid-based separation and fragmentation of\enspace\gls{LC-MS/MS}~\mycite{Feist2015}.
 
 The gel separation may comprise one step or two, which are respectively referred
@@ -1219,7 +1252,7 @@ then on the length of the proteins. Indeed, \gls{SDS} molecules are negatively
 charged and they bind to the proteins proportionally to their length and as an
 electric field is applied to the gel, the proteins migrate towards the positive
 side of the gel at different speeds due to their difference in their mass-charge
-ratio. This 1D protocol is more common than the 2D as it is faster. The later is
+ratio. This 1D protocol is more common than the 2D as it is faster. The latter is
 usually more selective as it relies on very similar principles but in two separate
 steps\footnote{Usually, the proteins are first separated based on their
 isoelectric point in a \emph{native} gel (as opposed to a denaturing one).
@@ -1235,11 +1268,11 @@ instead.
 \minisec{Liquid chromatography (LC)}
 
 Chromatography is a technique of choice for the separation of mixtures into their
-components or --- at least --- in simpler mixtures. \gls{LC}, as any kind of
+components or --- at least --- in simpler mixtures. \gls{LC}, as any
 chromatography, involves a \emph{mobile} and a \emph{stationary} phase.
 The mobile phase comprises an eluent (\ie\ a solvent) and the mixture to be
 separated. A column plays the stationary phase part. To fasten the process, high
-pressure may be used (\eg\ \glsxtrfull{HPLC} or \glsxtrfull{UPLC}).
+pressure may be applied (\eg\ \glsxtrfull{HPLC} or \glsxtrfull{UPLC}).
 
 The separation relies on the difference of affinity of the mixture components
 towards the mobile and stationary phases. Many combinations may be used. However,
@@ -1267,7 +1300,7 @@ The first reported use of the principle underlying \ms\ happened in 1913 when
 Sir Joseph John Thomson channelled a stream of neon ions through an electromagnetic
 field and captured its deflection on a photographic plate~\mycite{Thomson1913}.
 Arthur Dempster built a first mass spectrometer in 1918. Francis  William
-Aston (Thomson's student) created his own complete one in 1919~\mycite{Aston1919}.
+Aston (Thomson's student) created his complete one in 1919~\mycite{Aston1919}.
 \begin{comment}
 \ms\ became rapidly a pillar
 of the so-called \emph{modern analytical techniques} in Chemistry as it allows
@@ -1293,13 +1326,13 @@ reactions that will result to the production of many spectra. The collection
 of spectra obtained from a single peptide ultimately increases the accuracy of
 the mass measurement and the identification of the peptide~\mycite{BiomolBio}.
 Indeed, these peptide-mass profiles are a very effective way to identify
-proteins in very short laps of time as long a reference database is available
+proteins in very short lapses of time as long a reference database is available
 for the studied organism~\mycite{Pappin1993}. The recent completion of the human
 genome sequence and many other organisms has accelerated the general use of this
-analytical method~\mycite{Luge2016}. In addition, recent developments have
-showed that the use of two mass spectrometers in tandem (\gls{MS/MS}) reduces
-significantly the number of missed proteins while keeping reasonable running
-times and it is more powerful than excessive fractioning as is the improvement
+analytical method~\mycite{Luge2016}. Besides, recent developments have
+shown that the use of two mass spectrometers in tandem (\gls{MS/MS}) reduces
+the number of missed proteins significantly while keeping reasonable running
+times and it is more potent than excessive fractioning as is the improvement
 of \gls{HPLC}~\mycite{Cox2011}.
 
 \subsubsection{Ionisation}
@@ -1312,19 +1345,19 @@ two \emph{soft} ionisation methods are routinely used for proteomic samples:
 minimum of fragmentation (if none at all). The molecules are fixed onto a matrix
 (a gel) and then a pulsed \gls{laser} irradiates the sample which provokes the
 ablation and then the desorption from the matrix and ionisation of the molecules.
-This method had an increased popularity as separation gels (\eg\ \gls{SDS-PAGE})
+This method had increased popularity as separation gels (\eg\ \gls{SDS-PAGE})
 may be used directly for both steps. \mycite{BiomolBio}.\\However, many
 manufactured mass spectrometers are incompatible
 with this ionisation technique~\mycite{Zhang2014,Walther2010}.
 
-\gls{ESI} is currently the most popular technique of ionisation, particularly
+\gls{ESI} is currently the most popular technique of ionisation, mainly
 because it may be used with a large panel of different analysers and that it
 interfaces efficiently with \gls{HPLC} or \gls{UPLC}. The ionisation is realised
 through an electrostatic method. The application of a high electric potential on
 a needle through which a liquid (containing the dissolved analyte peptides)
 is passing provokes its dispersion into small and highly charged droplets.
 These droplets start to evaporate to the point where the charge on their surface
-is so high that a desorption of the analytes occurs.  The analytes are then
+is so high that the desorption of the analytes occurs.  The analytes are then
 in an ionised form (often many charges). They are then released into the mass
 spectrometer. \mycite{Walther2010}
 
@@ -1333,7 +1366,7 @@ spectrometer. \mycite{Walther2010}
 Many different mass analyser designs are available. They all share two properties:
 they accelerated the ions (in a vacuum) so all the ions share the same kinetic
 energy and then they deflect (and thus resolve) the ions based on
-their various $m/z$.  A number of them are also
+their various $m/z$. Many are also
 capable of trapping and storing specific ranges of ions for deeper analyses until
 they release them based on their $m/z$.
 The most common commercial analysers include quadrupole (Q), \acrfull{LIT},
@@ -1350,8 +1383,8 @@ types of analysers.)
 \minisec{Quadrupole analyser}
 
 It is one of the most popular analysers. In fact, they are cheap compared to the
-others. They are also compact, durable and reliable. The quadrupole analyser is
-able to filter the ions based on their difference of $m/z$. They are adequately
+others. They are also compact, durable and reliable. The quadrupole analyser can
+filter the ions based on their difference of $m/z$. They are adequately
 named quadrupole as they comprise four cylindrical or hyperbolic rods in
 parallel to each other. Opposite rods are connected together electrically and
 \gls{RF} potential is applied. A \gls{DC} potential is superimposed on the
@@ -1361,20 +1394,20 @@ the \gls{RF} and \gls{DC}, it is easy to select for which range of $m/z$ ions
 will have a stable trajectory and thus the only one detected. Indeed, the
 ions with unstable trajectory will collide with the rods and be \enquote{filtered}
 out. If used in \enquote{\gls{RF}-only} mode (\gls{DC} reduced to a minimum),
-the quadripole may have other applications. For example, it can guide specific
+the quadrupole may have other applications. For example, it can guide specific
 $m/z$ ions to other areas (while the bulk of ions will remain trapped).
 It may also be used as collision cells for \gls{CID}: by introducing an inert
 gas and tuning with the \gls{RF}-energy, the amount of fragmentation undergone
 by the targeted ions can be precisely controlled. \mycite{Haag2016}\\
-The quadrupole analyser is also qualified as \emph{mass filter}.
+The quadrupole analyser is also qualified as the \emph{mass filter}.
 
 \minisec{\Acrfull{LTQ}}
 \gls{LTQ} is a particular kind of \acrfull{LIT} which is in principle a sort of
-a quadripole mass analyser~\mycite{Zhang2014}. A \gls{LTQ} uses a set of
+a quadrupole mass analyser~\mycite{Zhang2014}. A \gls{LTQ} uses a set of
 quadrupole rods and a two-dimensional \gls{RF} field confines the ions radially.
 In addition, a static electrical potential is applied to end electrodes which
-forbid the ions to escape axially. However, the quadripole is commonly segmented
-into three parts which ensures a perfect homogeneity of the electric field of the
+forbid the ions to escape axially. However, the quadrupole is commonly segmented
+into three parts which ensure a perfect homogeneity of the electric field of the
 trap area and thus avoiding ion loss when the trapping is done.
 While they may be used as an ion trap, they
 may be also used as a simple mass filter. \gls{RF} voltage is tuned to produce
@@ -1394,7 +1427,7 @@ being released into another mass analyser~\mycite{Madalinski2008}.
 
 \minisec{\orbi}
 It is a very recent analyser and it relies on \gls{FT}. Recently,
-there is an increasing use of \glspl{FTMS} for proteomic studies. Indeed, these
+there is increasing use of \glspl{FTMS} for proteomic studies. Indeed, these
 \glspl{FTMS} are more precise than previous analysers and allow the detection of
 a greater range of ions in very short lapses of time~\mycite{Scigelova2011}.
 In this kind of analyser, ions are trapped and both orbit around and oscillate
@@ -1402,9 +1435,9 @@ in an electrostatic field between an inner and outer part of a central electrode
 shaped as a spindle.
 The ions can only move following the spindle long axis~\mycite{Makarov2000}.
 While moving around the spindle the ions create a current.
-Images of this current are recorded by the outer part of the spindle and after
-Fourier transformation of these images allow to obtain very high mass accurate
-and high sensitive mass spectra for a greater dynamic range than most of the
+The outer part of the spindle records images of this current.
+Fourier transformation of these images allows obtaining very highly accurate
+and sensitive mass spectra for a greater dynamic range than most of the
 other analysers.~\mycite{Hu2005}
 
 \minisec{\gls{LTQ}-\orbi}
@@ -1422,9 +1455,10 @@ and enhanced dynamic range with respect to mass accuracy~\mycite{Madalinski2008}
 \subsubsection{Fragmentation techniques~\mycite{Zhang2014}}
 
 The overall quality and success of peptide (and then proteins)
-identification depends largely on the quality of ion fragmentation. To improve
-the identification of the peptides, the number of fragmentations are increased,
-but in a rather clever way thanks to \gls{MS/MS} use. Indeed, the first \ms\ is
+identification depends largely on the quality of ion fragmentation.
+Tandem-\gls{MS} (\gls{MS/MS}) improves the identification of the peptides
+by cleverly increasing the number of fragmentations.
+Indeed, the first \ms\ is
 used to select specific ions (hence known $m/z$) to pass to a second \ms.
 Thus for each \emph{precursor} ion, a collection of fragmentation mass spectra
 can be gathered. The peptide sequences are then more likely to be accurate and
@@ -1449,12 +1483,12 @@ literature.
 
 \subsection{Bioinformatic strategies for proteomics studies}
 
-Mass spectrometers raw data output for proteomics are directly uninterpretable
+Mass spectrometers raw data output for proteomics is directly uninterpretable
 by a human and need to be processed before being meaningful.
 
 \ms-based proteomics is quite challenging and the major bottleneck of
 proteomics pipelines remains the data analysis~\mycite{Chen2016,perseus2016} and
-most particularly, the data matching (\ms\ spectra to database content) and
+most notably, the data matching (\ms\ spectra to database content) and
 protein naming~\mycite{Nilsson2010}. Indeed, the sheer amount of produced data
 is in the terabyte (\gls{TB}) range which prohibits any manual handling and requires
 automation~\mycite{Codrea2016}.
@@ -1477,7 +1511,7 @@ their appropriate converters) exist (\eg\ \mzml\ format~\mycite{mzML}
 and \href{http://proteowizard.sourceforge.net/}{\soft{ProteoWizard}}\footnote{%
 \soft{ProteoWizard}: \href{http://proteowizard.sourceforge.net/}%
 {http://proteowizard.sourceforge.net/}}~\mycite{proteowizard2012}),
-however, they may lack recording a few key points of the raw data and thus they
+however, they may lack recording a few critical points of the raw data and thus they
 may also be unfit to analysis.
 
 There are many different pipelines. See \citet{Vitek2009}.
@@ -1499,7 +1533,7 @@ for reviews.
 \minisec{Detecting mass peaks}
 While this may be done manually for a chemical study, the number of
 spectra in proteomics require the automation of this \emph{peak picking} task.
-It may look trivial, particularly as the resolution of the instruments greatly
+It may look trivial, particularly as the resolution of the instruments significantly
 improved the last decade. However, depending on the noise, the peaks may be
 smooth (with a large signal-to-noise ratio \gls{SNR}) and easy to pick or noisy
 (barely distinct from the background) and more tricky to identify.

@@ -1,17 +1,50 @@
-\chapter{Human MS-based Protein expression landscape}
-\label{ch:proteomics}
+\chapter{Human MS-based Protein expression landscape}\label{ch:proteomics}
 
-\section{Introduction}
+
+In this chapter, I present the comparison of
+the three proteomic datasets presented in \Cref{ch:datasets}.
+Although these datasets have been previously
+reviewed~\mycite{Ezkurdia2014-qx,Deutsch2015},
+as they have been reprocessed through a uniformed pipeline
+%with more stringent parameters than the original studies have used,
+it is pertinent to reassess them before any integration with the transcriptomic data.
+
+\section{An~overall~fragmented~world~to~explore}
+
+As I have described in \Cref{ch:background},
+proteins present a wider range of physicochemical properties than \glspl{RNA},
+which makes the high-throughput study of the proteome
+harder than the transcriptome one.
+Thus, it comes as no real surprise that
+the first attempts to draft the human proteome occurred only recently
+in 2014~\mycite{PandeyData,KusterData}
+(or 2010 for the unpublished \cutler\ et al.\ dataset)
+while the use of \ms\ for proteomics is developing since the 1980s~\mycite{BiomolBio}.
+
+
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.8]{proteomics/VennDiagProtCond.pdf}\centering
+    \caption[Distribution of unique shared tissues between
+    the 3 MS-based proteomic studies]{\label{fig:VennDiagProt3}\textbf{Distribution
+    of unique and shared tissues between the 3 \ms{}-based proteomic studies.}}
+\end{figure}
+
+
+%\begin{figure}[!htpb]
+%    \includegraphics[scale=1]{ }\centering
+%    \caption[<++>]{\label{<++>}\textbf{<++>}<++>}
+%\end{figure}
+
+
+%\Cref{fig:VennDiagProt3}.
+
+
 
 
 (1) Etat des lieux méthode 1
 (2) En travaillant sur l'integration 
-3) Etat des lieux méthode 2
-
-
-
-Under the impulse of \jyoti, \james\ has reprocessed \enquote{more diverse}
-large-scale \ms-based proteomic studies on normal human tissues to this day.
+(3) Etat des lieux méthode 2
 
 See \Cref{sec:ProteoData} for more details about the details of the datasets and
 the pipeline.
@@ -23,18 +56,8 @@ After exploring the transcriptomic side (way more data) I have explored the
 proteomic (\ms-based) before integrating the trancriptomic to the proteomic.
 It seems to be the obvious/sensible thing to do.
 
-\begin{figure}[htpb]
-    \includegraphics[scale=0.5]{proteomics/VennDiagProtCond.pdf}\centering
-    \caption[Distribution of unique shared tissues between
-    the 3 MS-based proteomic studies]{\label{VennDiagProt3}\textbf{Distribution
-    of unique and shared tissues between the 3 \ms{}-based proteomic studies.}}
-\end{figure}
 
 \section{Results}
-
-\subsection{Limited availability (and overlap) of tissues}
-
-
 
 
 \subsection{Disparate universe: High-throughput proteomics has a greater
@@ -81,7 +104,6 @@ And then the tissues spe proteins: the one that are found in the same tissues
 over the three datasets.
 
 
-Less things to do than transcriptomics
 
 Conclusion Proteomics: Very hard to quantify;
 
