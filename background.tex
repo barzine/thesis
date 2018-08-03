@@ -16,11 +16,10 @@ The following pages present a summary of facts and techniques
 that form the biological and technological context
 of the work presented in this thesis.
 The different sections may be read on their own
-or skipped without understandability issues.
+or skipped by informed readers without understandability issues.
 
 \begin{comment}
 \Rough{%
-Gene expression, transcription, translation, regulation at each stage,
 expected and reported correlation between transcripts and proteins
 Measuring protein expression by MS, data analysis – spectral counts, top 3, etc,
 available large scale datasets on human tissues
@@ -35,111 +34,208 @@ Do not forget the (tissues) specifications and the structural functions. =\textg
 
 \section{Universality and diversity of Life}
 
-Every known form of life depends on a common set of molecule types.
-85 to 70\% of the total mass of these molecules are identical
-through every organism, and
-15 to  30\% of them are very specific to each species.
-While the inorganic molecules (water and salts) and
-the smaller organic molecules
-(such as simple sugars, amino or organic acids, nitrogenous bases,
-lipids or their precursors) composed the main number of molecules present in a cell,
-most studies focus on the macromolecules,
-\ie\ \gls{DNA}, \gls{RNA} or protein populations of the cell.~\mycite{Callen2005-ik}
+Every known form of life depends on a common set of molecule types,
+within which the \glspl{DNA}, \glspl{RNA} and proteins
+are arguably the most specific ones and have the widest variety.
+The other molecules are either inorganic (water and salts)
+or small organic ones (simple sugars, organic or amino acids,
+nitrogenous bases, lipids or their precursors).~\mycite{Callen2005-ik}
 
-\Cref{fig:dogma} is the reconstruction by \citet{Crick:1958} of
-what was conceived circa 1958 and is now known as
-the core of the central dogma of molecular biology.
-It presents the relationship between these three types of macromolecules:
-one gene will be transcribed from \DNA\ to one \mRNA,
-which will be in turn translated in one protein.
-This still holds true even though the truth is not as linear as first thought.
+All the \gls{DNA} (coding and non-coding) of a living organism
+constitutes its genetic material (or genome).
+%In most cells,
+%strands of \gls{DNA} are tightly packaged around proteins called histones
+%and are organised into superstructures known as chromosomes;
+%the human genome is split into 23 pairs of chromosomes.
+The coding sections of the \gls{DNA} are the genes.
+They contain the instructions for making the proteins,
+which are the main effectors supporting life functions.
+When a gene is switched on,
+it triggers a process,
+illustrated in \Cref{fig:transcriptionTranslation},
+and which the first step is called transcription
+and the second one translation.~\mycite{Callen2005-ik,Pierce2005-ib}
 
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.45]{background/dogma}\centering
-    \caption[Central dogma of molecular biology proposed by F. Crick circa 1958]%
-    {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
-    F. Crick circa 1958.} The solid lines present the proven modes of
-    information transfers, the dashed ones are the ones that were postulated but
-    have yet to be established.
-    Nowadays, we know that the arrow from \gls{RNA} to \gls{DNA}
-    should be a solid one, even though this happens on particular occasions.}
+\begin{figure}[!htpb]
+    \vspace{-3mm}
+    \includegraphics[scale=0.60]{background/transcriptionTranslation.png}\centering
+    \vspace{-2.3mm}
+    \caption[Transcription and Translation: an overview]%
+    {\label{fig:transcriptionTranslation}\textbf{Transcription and Translation: an overview.}
+    {\small This work, \enquote{Transcription and Translation: an overview},
+    is a derivative work of
+    \href{https://commons.wikimedia.org/wiki/File:MRNA.svg}{Simplified diagram of mRNA synthesis and processing. Enzymes not shown.}
+    and
+    \href{https://commons.wikimedia.org/wiki/File:Protein\_synthesis.svg}{Protein synthesis}
+    both by \href{https://commons.wikimedia.org/wiki/User:Kelvinsong}{Kelvinsong},
+    used under \href{https://creativecommons.org/licenses/by/3.0/}{[CC BY]}
+    (see \Cref{sec:kelvinsong}).
+    \enquote{Transcription and Translation: an overview} is licensed under
+    \href{https://creativecommons.org/licenses/by/4.0/}{[CC BY]} by Mitra P. Barzine.
+    }}
 \end{figure}
 
-All the genetic material of a living organism
-(\ie all its coding and non-coding \gls{DNA})
-constitutes its genome.
-In most cells,
-strands of \gls{DNA} are tightly packaged around proteins called histones
-and they form superstructures known as chromosomes;
-for example, the human genome is split into 23 pairs of chromosomes.
-The coding sections of the \gls{DNA} are the genes,
-which contain the instructions for making the proteins.
-When a gene is switched on,
-it triggers a process called transcription.
-An \gls{RNA} polymerase attaches to the start of the gene,
+The transcription initiation happens when
+an \gls{RNA} polymerase attaches to the start of the gene
 and uses the \gls{DNA} strand as a template
-to create a corresponding \gls{mRNA}.
-Usually, a few modifications occur
-before the \mRNA\ is in turn used as template to make the protein.
-
-
-\mRNAs\ constitute one part of the transcriptome,
-which is the total repertoire of transcripts (\ie\ \glspl{RNA}
-molecules) expressed in a cell (or group of cells such as a tissue)
-at a given time and condition.
+to create a corresponding \emph{messenger} \gls{RNA} (\gls{mRNA})
+from free \gls{RNA} nucleotides~\mycite{molBiolCell}.
+The transcription is a directional process and
+always happens from the 5' end of the gene towards its 3' end~\mycite{Callen2005-ik}.
+There are other kinds of \glspl{RNA},
+\eg\ \glspl{rRNA} (which are the most numerous \glspl{RNA} in the cell),
+\glspl{tRNA} and many others~\mycite{Callen2005-ik}.
+The entire repertoire of transcripts (\ie\ \gls{RNA} molecules) expressed
+in a cell or group of cells (such as in a tissue)
+is called transcriptome~\mycite{Velculescu1997-rs,Pietu1999-uf,rnaseq-2009}.
 Unlike the genome which is roughly identical
 regardless which cell of a particular individual is considered,
 the transcriptome may vary, sometimes dramatically,
-depending of the biological context and time.
+according to the biological context (different organs or tissues,
+or different conditions, \eg\ healthy or in a reaction to a disease)
+and through time.~\mycite{molBiolCell}
 
-Before the messenger RNA can be used as a template for the production of proteins,
-it needs to be processed.
-This involves removing and adding sections of RNA.
-The messenger RNA then moves out of the nucleus
-into the cytoplasm.
-Protein factories in the cytoplasm, called ribosomes,
-bind to the messenger RNA.
-The ribosome reads the code in the messenger RNA
-to produce a chain made up of amino acids.
-There are 20 different types of amino acid.
-Transfer RNA molecules carry the amino acids
-to the ribosome.
-The messenger RNA is read three bases at a time.
-As each triplet is read, a transfer RNA
-delivers the corresponding amino acid.
-This is added to a growing chain of amino acids.
-Once the last amino acid has been added,
-the chain folds into a complex 3D shape
-to form the protein.
+Before the \mRNA\ is in turn used as a template to make the protein,
+a few modifications may occur.
+Among the typical post-transcriptional regulations,
+there are
+the capping and the addition of a polyadenylated (polyA) tail
+(both increasing the half-life of the \mRNA),
+splicing
+(where internal parts of the \mRNA\ ---
+either non coding (\ie\ \emph{introns}) or coding (\ie\ \emph{exons}) --- are removed),
+or \gls{RNA} editing~\mycite{Darnell2013-xf}.
+For eukaryotic species (\eg\ \species{Human}),
+the \mRNAs\ have have to be exported
+from the nucleus to the cytoplasm for the next step to happen~\mycite{Callen2005-ik}.
 
-While double-stranded \gls{DNA} (which is the most common form for \gls{DNA})
-and proteins are very stable,
-\glspl{RNA} have rather short life.
+The \glspl{mRNA} initiate the translation,
+\ie\ creation of new proteins,
+by binding to protein factories called ribosomes
+(complexes formed from \glspl{rRNA} and ribosomal proteins).
+The ribosomes read the \mRNA\ codons (\ie\ groups of three consecutive bases)
+and produce the corresponding protein by synthesising a polypeptide chain
+from the free amino acids carried by \glspl{tRNA}
+with the corresponding anticodons (\ie\ complementary sequence to the \mRNA\ codons).
+Once the polypeptide chain is completed,
+it folds into a three-dimensional structure,
+which is essential for fulfilling its role~\mycite{Morris2016-qv}.
+Many proteins need to undergo post-translational modifications (\glspl{PTM})
+before being functional.
+\glspl{PTM} allow the regulation of the proteins' activity (activation and deactivation).
+They can involve the creation of new covalent bonds,
+as many proteins comprise more than one polypeptide chain to be functional.
+Other frequent \glspl{PTM} include the phosphorylation, acetylation,
+or glycosylation of the amino acids (also called residues).~\mycite{molBiolCell,Morris2016-qv}
 
-Physicochemical properties of the \glspl{DNA} and \glspl{RNA} are very similar
-as the notable differences are the nature of the monosaccharide they include and
-the methylated or demethylated form of one of the pyrimidine nucleobase.
-Proteins are a lot more diverse, because the amino acids are a lot more diverse
-(and 3D folding are more complex and such may exhibe one type of or another kind
-of hydrophobic or hydrophily or amphiphily and charges). Additionally,
-many post-translational modifications can occurs (addition of phophorylated groupment,
-addition of saccharides or lipides or a combination of these).
+Besides the variety of possible \glspl{PTM} and their combination,
+there are twenty different amino acids,
+with a vast range of physicochemical properties,
+that can constitute the proteins (\Cref{sec:aa}).
+Subsequently,
+the latter also present an extensive range of physicochemical properties.
+Although the diversity of the proteome
+(\ie\ entire repertoire of expressed proteins)
+is the primary contributor to
+the ending phenotype and functions of cells and tissues,
+its exhaustive study remains particularly challenging.
+Most proteins are quite stable,
+but their physicochemical diversity prevents
+the use of uniformed and straightforward protocols
+that would encompass all the proteins
+in a given cell or tissue type.~\mycite{Morris2016-qv,Callen2005-ik}
 
+On the other hand,
+all \gls{DNA} and \glspl{RNA} have very similar chemical properties,
+as their structures are very close as shown in \Cref{fig:DNARNAstruct}.
+They are polymeric molecules that are made by a chain of nucleotides.
+Nucleotides have three distinct chemical subunits: a phosphate group,
+a pentose (either ribose for \gls{RNA} or deoxyribose for \gls{DNA})
+and a nitrogenous base, which can be a purine (adenine (A) or guanine (G))
+or a pyrimidine (cytosine (C) and
+either thymine (T) for \gls{DNA} or uracil (U) for \gls{RNA}).
+The alternation of phosphate groups and the pentoses create the biomolecules backbone,
+while the information is encoded into the nitrogenous bases sequence.
+\gls{DNA} and \glspl{RNA} all share the same directional reading frame,
+\ie\ 5' end to 3' end, or in other words,
+from the phosphate group that is linked to the pentose carbon (C) annotated 5'
+to the phosphate group that is linked to the pentose carbon (C) annotated 3'.~\mycite{Morris2016-qv,molBiolCell,Callen2005-ik}
 
+\vspace{-2mm}
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.50]{background/DNA-RNAstruct1.png}\centering
+    \vspace{-2mm}
+    \caption[DNA and RNA structures]{\label{fig:DNARNAstruct}%
+    \textbf{DNA and RNA structures} © 2014 Nature Education ---
+    Adapted from \citet{Pierce2005-ib}.}
+\end{figure}
 
+\vspace{-2mm}
+The difference in physical properties between \gls{DNA} and
+\gls{RNA} molecules is primarily due to
+the predominantly particular arrangement of \gls{DNA} (double-stranded) and
+\gls{RNA} (single-stranded).
+The double-stranded configuration of the \gls{DNA} dramatically improves
+the stability of the \gls{DNA} by involving many mechanisms,
+which includes many hydrogen bonds
+(three for each couple of G/C and two for each A/T).
+Besides,
+in eukaryotic cells,
+while the genome is protected in organelles such as the nucleus,
+most of the \mRNAs\ life is spent in the cytoplasm,
+which contains many enzymes (\eg\ endonucleases and exonucleases)
+that cleave the nucleotide sequences and can ultimately degrade the \mRNAs.
+Thus, even though \mRNAs\ half-lives are quite variable,
+the \mRNAs\ have generally the lowest stability
+when compared to the \glspl{DNA} and proteins.~\mycite{molBiolCell,Pierce2005-ib}
 
+Since its formulation by Crick \mycite{Crick:1958,Crick:1970},
+the core of the central dogma of molecular biology, shown in \Cref{fig:dogma}
+still holds true:
+\textquote{Once information has got into a protein it can’t get out again}.
+In other words, the genome contains all the information needed to produce
+functional proteins,
+and in theory, if we reach a total understanding of the information encoded
+into the \gls{DNA},
+we will be able to predict the phenotype due to the proteome.
+As \gls{DNA} is static, genome studies are easier
+than transcriptomic or proteomic ones.
+However,
+depending on the tissue or cell type,
+the coding portion (about 2\%) of the human genome~\mycite{Venter2001-sn}
+varies in its expression (both in concentration and composition);
+there are ubiquitous proteins
+(generally qualified as \emph{housekeeping}),
+cell/tissue/condition specific proteins and
+everything in-between.
 
+The transcriptome, like the proteome, has a dynamic dimension,
+and as such its study has emerged as a reasonable trade-off strategy to study phenotypes.
+High-throughput \gls{RNA} studies are more well-established
+and standardised than proteomic studies.
+While over the years, the central dogma is being refined,
+and its underlying molecular mechanisms are discovered, and
+better understood~\mycite{Rudolph2015-it},
+the first apparent linearity of the theory tended to persist,
+and this is why assumptions of strong correlations between \mRNA\
+and protein levels have lasted so long.
+In fact, many regulations processes may occur after the creation of a \mRNA{}.
+Thus, the existence of a given \mRNA\ transcript or
+its concentration are insufficient
+to ensure the presence of a protein,
+but they have already helped to highlight links
+between genotype and phenotype~\mycite{Vogel2012-sq}.
 
-
-
-
-
-
-
-\subsection{Translation: From \gls{RNA} to protein}
-
-\TK{Small conclusion: Assumption mRNA and proteins: highly correlated
-[add references]}
+\begin{figure}%[!htbp]
+    \includegraphics[scale=0.75]{background/dogma1.pdf}\centering
+    \caption[Central dogma of molecular biology proposed by F. Crick]%
+    {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
+    F. Crick}. The proven modes of information transfers are for the general ones
+    in solid lines and in dashed lines for the special transfers
+    (\gls{RNA} to \gls{RNA} or \gls{DNA}) and the transfers that have yet to
+    be established (\gls{DNA} to protein).
+    }
+\end{figure}
 
 \section[Transcriptome exploration with RNA sequencing]%
 {Transcriptome~exploration~with~RNA~sequencing}
@@ -1683,7 +1779,7 @@ meta-analysis creates problem!!!}
 
 
 
-\section{`Conclusion'}
+\section{Discussion}
 
 \begin{comment}
 \Rnaseq\ as \Dnaseq\ needs many corrections as to prevent biases in the downstream
@@ -1694,5 +1790,17 @@ in \Rnaseq, corrections are already part of
 the analysis and requires often as much skills than flair. It is possible that
 future protocols will overcome this issue.
 \end{comment}
+
+
+Intrinsic variability of proteins make them difficult to study,
+\eg\ there are less available tools when compared to \gls{RNA} or \gls{DNA}.
+Many tools developed for \gls{RNA} expression downstream analyses can be adapted
+for proteins analyses; many things should be adapted (can not be used directly).
+
+This diversity creates also problems with the experimental design: many protocols
+have to be used, and many technical samples are used as well (fractions) as such
+biological replicates are not a lot (if even any used)
+since they are not the main concern at the moment.
+(Biological not the focus, as too many technical problems still left to resolve).
 
 

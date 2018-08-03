@@ -1,7 +1,29 @@
 \chapter{Suppl\texorpdfstring{ementary}{.} material for Chap\texorpdfstring{ter}{.} \getrefnumber{ch:background}}%
 \label{ch:SupplBack}
 
+\section{Amino acids}\label{sec:aa}
 
+As shown in \Cref{fig:aaformulas},
+the amino acids have different chemical properties.
+
+\begin{figure}[htpb]
+    \includegraphics[scale=0.75]{background/aaformulas.jpg}\centering
+    \caption[Amino acids formulas]{\label{fig:aaformulas}%
+    \textbf{Amino acids formulas} --- from \citet{Morris2016-qv}}
+\end{figure}
+
+\section{Original material}\label{sec:kelvinsong}
+\vspace{-5mm}
+To create \Cref{fig:transcriptionTranslation},
+I used original material
+by Kelvinsong (\href{https://commons.wikimedia.org/wiki/User:Kelvinsong}{https://commons.wikimedia.org/wiki/User:Kelvinsong}):
+\enquote{Simplified diagram of mRNA synthesis and processing. Enzymes not shown.}
+(\href{https://commons.wikimedia.org/wiki/File:MRNA.svg}{https://commons.wikimedia.org/wiki/File:MRNA.svg})
+and
+\enquote{Protein synthesis} (\href{https://commons.wikimedia.org/wiki/File:Protein\_synthesis.svg}%
+{https://commons.wikimedia.org/wiki/File:Protein\_synthesis.svg}).
+
+\vspace{-3mm}
 \section[EST-sequencing]{Expressed~Sequence~Tag~(EST)~sequencing}\label{sec:EST}
 \vspace{-5mm}
 \glspl{EST} are short nucleotide sequence generated
@@ -18,6 +40,7 @@ it remains a relatively low cost alternative approach to study the transcriptome
 (gene discovery).
 
 
+\vspace{-3mm}
 \section{Microarrays}\label{sec:microarray}
 \vspace{-5mm}
 Microarrays require prior knowledge
@@ -44,10 +67,12 @@ protein profiling~\mycite{Hall2007-gt,Sutandy2013-tj,Duarte2017-ao},
 splice-variant analysis~\mycite{Cuperlovic-Culf2006-rg} or
 transcription factor binding~\mycite{Bulyk2002-ii,Bulyk2007-jc} studies.
 
+\clearpage
 \section{FASTQ format}\label{sec:fastq-format}
 
 \begin{figure}[!htbp]
 \begin{minipage}[adjusting]{\textwidth}
+{\small
 {\color[rgb]{0.447059,0.678431,0.274510}\verb!@ERR030856.1!}
 {\color[rgb]{0.500000,0.500000,0.500000}\verb!HWI-BRUNOP16X_0001:1:1:2669:1073#0!}%
 {\color[rgb]{1.000000,0.000000,0.000000}\verb!/1!}\\
@@ -60,7 +85,7 @@ transcription factor binding~\mycite{Bulyk2002-ii,Bulyk2007-jc} studies.
 \verb!GATAGATTATCAGAANGACAGTTACTTNNNNNNNNNNNNNGGGCACTTNNNNNNNNNNNNNNNNNNATNNNTCATAAGNNCTGTTGCCAAATNAGTGATA!\\
 {\color[rgb]{0.698039,0.145098,0.450980}+}\\
 {\color[rgb]{0.000000,0.000000,0.555711}\verb!HHHHHHHHHHDDDDD#@@AAGGGGG###########################################################################!}
-
+}
 {\footnotesize
 Legende:\\
 \quad{\color[rgb]{0.447059,0.678431,0.274510}\textbullet Read identifier}\\
@@ -73,6 +98,8 @@ Legende:\\
 \end{minipage}
 \caption{FASTQ format}\label{fig:fastqFormat}
 \end{figure}
+
+\FloatBarrier
 
 \section{Phred score}\label{sec:PhredScore}
 
@@ -133,7 +160,6 @@ L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
 \end{figure}
 
 
-
 \begin{table}[]
 \centering
 \caption{\gls{FPKM} are unsuitable for differential expression analysis}
@@ -151,6 +177,7 @@ L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
 \end{tabular}
 \end{table}
 
+\FloatBarrier
 
 \section{Isotopes of common elements and their natural
 frequency}\label{app:isotopes}
