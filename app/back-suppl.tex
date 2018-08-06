@@ -179,6 +179,82 @@ L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
 
 \FloatBarrier
 
+
+\section{Mass analysers}\label{sec:appMassAnalysers}
+
+See~\citet{Haag2016} for more details on other types of analysers.
+
+\minisec{Quadrupole analyser}
+It is one of the most popular analysers. In fact, they are cheap compared to the
+others. They are also compact, durable and reliable. The quadrupole analyser can
+filter the ions based on their difference of $m/z$. They are adequately
+named quadrupole as they comprise four cylindrical or hyperbolic rods in
+parallel to each other. Opposite rods are connected together electrically and
+\gls{RF} potential is applied. A \gls{DC} potential is superimposed on the
+\gls{RF} one. These combinations of \gls{RF} and \gls{DC} potentials constrain the
+ions to oscillate between the rods as they pass through them. Hence, by tuning
+the \gls{RF} and \gls{DC}, it is easy to select for which range of $m/z$ ions
+will have a stable trajectory and thus the only one detected. Indeed, the
+ions with unstable trajectory will collide with the rods and be \enquote{filtered}
+out. If used in \enquote{\gls{RF}-only} mode (\gls{DC} reduced to a minimum),
+the quadrupole may have other applications. For example, it can guide specific
+$m/z$ ions to other areas (while the bulk of ions will remain trapped).
+It may also be used as collision cells for \gls{CID}: by introducing an inert
+gas and tuning with the \gls{RF}-energy, the amount of fragmentation undergone
+by the targeted ions can be precisely controlled. \mycite{Haag2016}\\
+The quadrupole analyser is also qualified as the \emph{mass filter}.
+
+\minisec{\Acrfull{LTQ}}
+\gls{LTQ} is a particular kind of \acrfull{LIT} which is in principle a sort of
+a quadrupole mass analyser~\mycite{Zhang2014}. A \gls{LTQ} uses a set of
+quadrupole rods and a two-dimensional \gls{RF} field confines the ions radially.
+In addition, a static electrical potential is applied to end electrodes which
+forbid the ions to escape axially. However, the quadrupole is commonly segmented
+into three parts which ensure a perfect homogeneity of the electric field of the
+trap area and thus avoiding ion loss when the trapping is done.
+While they may be used as an ion trap, they
+may be also used as a simple mass filter. \gls{RF} voltage is tuned to produce
+multi-frequency resonance ejection waveforms are applied as to
+eliminate all the undesirable ions in the trap before the fragmentation and mass
+analysis of the remaining ones. Frequently, these \glspl{LTQ} are used as a
+front-end to other mass analysers as they have high injection efficiencies and
+high ion storage capacities. They may be equipped then with two biased radial
+ejection slits and then be used with two detectors hence the signal-to-noise
+ratio may be doubled.
+
+Compared with other traps, linear ion traps provide an enhanced dynamic range
+with a reduced low mass cut-off as the ion cloud is
+spatially distributed on a linear axis and not a 3D centre which improves the
+sensitivity. And then, for example, the ions may then be accumulated before
+being released into another mass analyser~\mycite{Madalinski2008}.
+
+\minisec{\orbi}
+It is a very recent analyser and it relies on \gls{FT}. Recently,
+there is increasing use of \glspl{FTMS} for proteomic studies. Indeed, these
+\glspl{FTMS} are more precise than previous analysers and allow the detection of
+a greater range of ions in very short lapses of time~\mycite{Scigelova2011}.
+In this kind of analyser, ions are trapped and both orbit around and oscillate
+in an electrostatic field between an inner and outer part of a central electrode
+shaped as a spindle.
+The ions can only move following the spindle long axis~\mycite{Makarov2000}.
+While moving around the spindle the ions create a current.
+The outer part of the spindle records images of this current.
+Fourier transformation of these images allows obtaining very highly accurate
+and sensitive mass spectra for a greater dynamic range than most of the
+other analysers.~\mycite{Hu2005}
+
+\minisec{\gls{LTQ}-\orbi}
+It is a hybrid (tandem) mass spectrometer that uses \gls{ESI} for the ionisation
+step and has an \gls{LTQ} as a first analyser (MS$^1$)
+and an \orbi\ as a second one (MS$^2$).
+This \gls{MS/MS} enables multiple levels of
+fragmentation for the elucidation of a wide range of peptides and can be coupled
+with an \gls{ESI} which is a continuous source of ionisation. This instrument
+allows analysing proteomic samples optimally both in terms of starting material,
+time~\mycite{Scigelova2011} and provides \enquote{ultrahigh} mass resolution,
+high mass accuracy
+and enhanced dynamic range with respect to mass accuracy~\mycite{Madalinski2008}.
+
 \section{Isotopes of common elements and their natural
 frequency}\label{app:isotopes}
 \Cref{tab:isotope} lists the mass~\mycite{Audi1993-qn,Audi1995-uk}
