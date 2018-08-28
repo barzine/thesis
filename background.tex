@@ -48,7 +48,7 @@ constitutes its genetic material (or genome).
 %and are organised into superstructures known as chromosomes;
 %the human genome is split into 23 pairs of chromosomes.
 The coding sections of the \gls{DNA} are the genes.
-They contain the instructions for making the proteins,
+They contain the instructions for making (via \glspl{mRNA}) the proteins,
 which are the main effectors supporting life functions.
 When a gene is switched on,
 it triggers a process,
@@ -78,10 +78,13 @@ and the second one translation.~\mycite{Callen2005-ik,Pierce2005-ib}
 The transcription initiation happens when
 an \gls{RNA} polymerase attaches to the start of the gene
 and uses the \gls{DNA} strand as a template
-to create a corresponding \emph{messenger} \gls{RNA} (\gls{mRNA})
+to create a corresponding \gls{RNA}
 from free \gls{RNA} nucleotides~\mycite{molBiolCell}.
 The transcription is a directional process and
-always happens from the 5' end of the gene towards its 3' end~\mycite{Callen2005-ik}.
+always happens from the gene 5' end towards its 3' end~\mycite{Callen2005-ik}.
+(For 5' and 3', see \Cref{fig:DNARNAstruct} and related section.)
+\glspl{mRNA} are \glspl{RNA} that are produced from a gene
+and used as a template for translation to synthesise proteins.
 There are other kinds of \glspl{RNA},
 \eg\ \glspl{rRNA} (which are the most numerous \glspl{RNA} in the cell),
 \glspl{tRNA} and many others~\mycite{Callen2005-ik}.
@@ -93,7 +96,7 @@ regardless which cell of a particular individual is considered,
 the transcriptome may vary, sometimes dramatically,
 according to the biological context (different organs or tissues,
 or different conditions, \eg\ healthy or in a reaction to a disease)
-and through time.~\mycite{molBiolCell}
+and through time and life stages.~\mycite{molBiolCell}
 
 Before the \mRNA\ is in turn used as a template to make the protein,
 a few modifications may occur.
@@ -106,7 +109,7 @@ splicing
 either non coding (\ie\ \emph{introns}) or coding (\ie\ \emph{exons}) --- are removed),
 or \gls{RNA} editing~\mycite{Darnell2013-xf}.
 For eukaryotic species (\eg\ \species{Human}),
-the \mRNAs\ have have to be exported
+the \mRNAs\ have to be exported
 from the nucleus to the cytoplasm for the next step to happen~\mycite{Callen2005-ik}.
 
 The \glspl{mRNA} initiate the translation,
@@ -129,17 +132,17 @@ Other frequent \glspl{PTM} include the phosphorylation, acetylation,
 or glycosylation of the amino acids (also called residues).~\mycite{molBiolCell,Morris2016-qv}
 
 Besides the variety of possible \glspl{PTM} and their combination,
-there are twenty different amino acids,
+proteins can comprise twenty different amino acids (\Cref{sec:aa}),
 with a vast range of physicochemical properties,
-that can constitute the proteins (\Cref{sec:aa}).
-Subsequently,
-the latter also present an extensive range of
-physicochemical properties.~\mycite{Morris2016-qv,Callen2005-ik}
+thus proteins too.
+%present an extensive range of physicochemical properties.
+\mycite{Morris2016-qv,Callen2005-ik}
 
 Although the diversity of the proteome
 (\ie\ entire repertoire of expressed proteins)
 is the primary contributor to
-the ending phenotype and functions of cells and tissues,
+the ending \gls{phenotype}\footnote{Phenotype: \glsentrydesc{phenotype}}
+and functions of cells and tissues,
 its exhaustive study remains particularly challenging.
 Most proteins are quite stable,
 but their physicochemical diversity prevents
@@ -160,12 +163,17 @@ The alternation of phosphate groups and the pentoses create the biomolecules bac
 while the information is encoded into the nitrogenous bases sequence.
 \gls{DNA} and \glspl{RNA} all share the same directional reading frame,
 \ie\ 5' end to 3' end, or in other words,
-from the phosphate group that is linked to the pentose carbon (C) annotated 5'
-to the phosphate group that is linked to the pentose carbon (C) annotated 3'.~\mycite{Morris2016-qv,molBiolCell,Callen2005-ik}
+from the phosphate group that is linked to the pentose carbon annotated 5'
+to the phosphate group
+that is linked to the pentose carbon annotated 3'.~\mycite{Morris2016-qv,molBiolCell,Callen2005-ik}
+Pentoses are monosaccharides containing a chain of five carbons.
+When the pentose is part of a nucleotide,
+these carbons are annotated from 1' to 5'
+to avoid confusion with the carbons of nitrogenous cycles.
 
 \vspace{-2mm}
 \begin{figure}[!htpb]
-    \includegraphics[scale=0.48]{background/DNA-RNAstruct1.png}\centering
+    \includegraphics[scale=0.55]{background/DNA-RNAstruct1.png}\centering
     \vspace{-2mm}
     \caption[DNA and RNA structures]{\label{fig:DNARNAstruct}%
     \textbf{DNA and RNA structures} © 2014 Nature Education ---
@@ -183,7 +191,7 @@ which includes many hydrogen bonds
 (three for each couple of G/C and two for each A/T).
 Besides,
 in eukaryotic cells,
-while the genome is protected in organelles such as the nucleus,
+while the genome (\gls{DNA}) is protected in organelles such as the nucleus,
 most of the \mRNAs\ life is spent in the cytoplasm,
 which contains many enzymes (\eg\ endonucleases and exonucleases)
 that cleave the nucleotide sequences and can ultimately degrade the \mRNAs.
@@ -191,28 +199,8 @@ Thus, even though \mRNAs\ half-lives are quite variable,
 the \mRNAs\ have generally the lowest stability
 when compared to the \glspl{DNA} and proteins.~\mycite{molBiolCell,Pierce2005-ib}
 
-Since its formulation by Crick \mycite{Crick:1958,Crick:1970},
-the core of the central dogma of molecular biology, shown in \Cref{fig:dogma}
-still holds true:
-\textquote{Once information has got into a protein it can’t get out again}.
-In other words, the genome contains all the information needed to produce
-functional proteins,
-and in theory, if we reach a total understanding of the information encoded
-into the \gls{DNA},
-we will be able to predict the phenotype due to the proteome.
-As \gls{DNA} is static, genome studies are easier
-than transcriptomic or proteomic ones.
-However,
-depending on the tissue or cell type,
-the coding portion (about 2\%) of the human genome~\mycite{Venter2001-sn}
-varies in its expression (both in concentration and composition);
-there are ubiquitous proteins
-(generally qualified as \emph{housekeeping}),
-cell/tissue/condition specific proteins and
-everything in-between.
-
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.60]{background/dogma1.pdf}\centering
+    \includegraphics[scale=0.70]{background/dogma.pdf}\centering
     \caption[Central dogma of molecular biology proposed by F. Crick]%
     {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
     F. Crick}. The proven modes of information transfers are for the general ones
@@ -222,22 +210,27 @@ everything in-between.
     }
 \end{figure}
 
-The transcriptome, like the proteome, has a dynamic dimension,
-and as such its study has emerged as a reasonable trade-off strategy to study phenotypes.
-High-throughput \gls{RNA} studies are more well-established
-and standardised than proteomic studies.
-While over the years, the central dogma is being refined,
-and its underlying molecular mechanisms are discovered, and
-better understood~\mycite{Rudolph2015-it},
-the first apparent linearity of the theory tended to persist,
-and this is why assumptions of strong correlations between \mRNA\
-and protein levels have lasted so long.
-In fact, many regulations processes may occur after the creation of a \mRNA{}.
-Thus, the existence of a given \mRNA\ transcript or
-its concentration are insufficient
-to ensure the presence of a protein,
-but they have already helped to highlight links
-between genotype and phenotype~\mycite{Vogel2012-sq}.
+This overall process, which allows the creation of the proteins and
+based on a flow of information initiated from the \gls{DNA},
+had been foreseen by Francis Crick \mycite{Crick:1958,Crick:1970}.
+He stated what is now known as the core of the central dogma of molecular biology
+(shown in \Cref{fig:dogma}):
+\textquote{Once information has got into a protein it can’t get out again}.
+In other words, the genome contains all the information needed to produce
+functional proteins,
+and in theory, if we reach a total understanding of the information encoded
+into the \gls{DNA},
+we will be able to predict the \gls{phenotype} due to the proteome.
+As \gls{DNA} is static, genome studies are easier
+than transcriptomic or proteomic ones.
+However,
+depending on the tissue or cell type,
+the coding portion (about 2\%) of the human genome~\mycite{Venter2001-sn}
+varies in its expression (both in concentration and composition).
+There are different types of proteins: ubiquitous ones
+(generally qualified as \emph{housekeeping}),
+cell/tissue/condition specific ones and
+everything in-between.
 
 
 \section[Transcriptome exploration with RNA sequencing]%
@@ -1847,18 +1840,26 @@ A few variations of the original algorithm are nowadays available.
 \section{Reproducibility~and~Experimental~design}\label{sec:expDesign}
 %\TK{Do not forget to explain why the use of different numbers of samples in
 %meta-analysis creates problem!!!}
+
+
+
 \subsection{Batch effects}\label{sub:BatchEffect}
-Batch effects are due to all the variables that the investigator can not control
-(either by lack of technology, design or knowledge), for example
+Batch effects are artefactual and due to all the variables that the investigator can not control
+(either by lack of technology, design or knowledge), for example,
 environmental conditions, reagent or sample lots,
 genetic population background.
-Batch effects are often the source of complication for many studies,
-including the high-throughput genomic studies~\mycite{batchEffect}.
+They are often the source of complication for many studies
+(including high-throughput genomic ones)~\mycite{batchEffect}.
 
-The danger lies in overlooking them, and then confound these artefacts
+The danger lies in overlooking them, and then confounding these artefacts
 with biological results, which will lead to flawed interpretation and conclusions.
+Several studies have been refuted in the past due to batch effects unaccounted for.
+Usually, issues in the initial results are detected by others laboratories,
+which notice high correlations between the \enquote{biological} findings
+of the original study and the running dates or processing groups.
+Thus, questions on the biological validity arise.
 
-The first step to address them is through well-designed experiments,
+The first step to address them is through well-designed experiments~\mycite{batchEffect},
 which include technical and biological replicates.
 
 A replicate is a set of measurements done in the same condition.
@@ -1866,18 +1867,29 @@ A replicate is a set of measurements done in the same condition.
 \subsection{Technical replicates}
 Technical replicates are initially from the same sample,
 which has been tested multiple times through a given experimental protocol.
-It allows to test for the variability of the protocol itself.
-While, using the same sample to test different protocols
-may also literary referred as \enquote{technical},
+It allows testing for the variability of the protocol itself.
+While using the same sample to test different protocols
+may also literary referred to as \enquote{technical},
 it is better to avoid this appellation as this creates confusion.
 
 \subsection{Biological replicates}
 Biological replicates are testing the same cells or tissues from different individuals
 through the same protocol.
-They allow to assess the biological variability
+They allow assessing the biological variability
 (which is greater than the technical variability, since it also encompasses it).
 
-    \subsection{Bioinformatic pipeline}
+\subsection{Data processing pipelines}
+
+Evolving fields (high-throughput transcriptomics and proteomics),
+many tools and algorithms are developed to handle different issues that
+are found along the way.
+They allow their users to fine tune them through many parameters.
+Thus, it is unsurprising that
+the agreement between the results
+from different tools are unsatisfactory~\mycite{reviewRNAseqBestpractice}.
+
+
+
 
 \begin{comment}
 \begin{itemize}
@@ -1892,11 +1904,29 @@ They allow to assess the biological variability
 \end{comment}
 
 
-\mycite{reviewRNAseqBestpractice}
 
 
 
 \section{Discussion}
+
+The transcriptome, like the proteome, has a dynamic dimension,
+and as such its study has emerged as a reasonable trade-off strategy
+to study \glspl{phenotype}.
+High-throughput \gls{RNA} studies are more well-established
+and standardised than proteomic studies.
+While over the years, the central dogma is being refined,
+and its underlying molecular mechanisms are discovered, and
+better understood~\mycite{Rudolph2015-it},
+the first apparent linearity of the theory tended to persist,
+and this is why assumptions of strong correlations between \mRNA\
+and protein levels have lasted so long.
+In fact, many regulations processes may occur after the creation of a \mRNA{}.
+Thus, the existence of a given \mRNA\ transcript or
+its concentration are insufficient
+to ensure the presence of a protein,
+but they have already helped to highlight links
+between genotype and phenotype~\mycite{Vogel2012-sq}.
+
 
 \begin{comment}
 \Rnaseq\ as \Dnaseq\ needs many corrections as to prevent biases in the downstream
