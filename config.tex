@@ -9,7 +9,8 @@
 \RequirePackage{refcount}
 \RequirePackage[natbib=true,backend=biber,style=authoryear,isbn=false,%url=false,%
 doi=false,url=false,dashed=false,eprint=false,giveninits=true,hyperref=true,%
-maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init]{biblatex} %add backref for draft
+maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init,
+labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 \renewbibmacro{in:}{} %from: https://tex.stackexchange.com/a/10686/102519
 %from https://tex.stackexchange.com/a/27107/102519
 % so name in citations are also link
