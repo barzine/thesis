@@ -12,6 +12,7 @@
 }
 \end{comment}
 
+\vspace{-1mm}
 The following pages present a summary of facts and techniques
 that form the biological and technological context
 of the work presented in this thesis.
@@ -31,8 +32,9 @@ Do not forget the (tissues) specifications and the structural functions. =\textg
 }
 \end{comment}
 
-
+\vspace{-1mm}
 \section{Universality and diversity of Life}
+\vspace{-1mm}
 
 Every known form of life depends on a common set of molecule types,
 within which the \glspl{DNA}, \glspl{RNA} and proteins
@@ -118,25 +120,35 @@ by binding to protein factories called ribosomes
 (complexes formed from \glspl{rRNA} and ribosomal proteins).
 The ribosomes read the \mRNA\ codons (\ie\ groups of three consecutive bases)
 and produce the corresponding protein by synthesising a polypeptide chain
-from the free amino acids carried by \glspl{tRNA}
+from the free amino acids (\glspl{aa}) carried by \glspl{tRNA}
 with the corresponding anticodons (\ie\ complementary sequence to the \mRNA\ codons).
+The \glspl{aa} are linked by peptide bonds formed
+through the reaction of functional groups on their primary chain:
+the carboxyl group (--\chemForm{COOH}) of the first amino acid \gls{aa}
+with the amine group (\chemForm{NH_2}--) of the next one.
+This succession of primary chains and peptide bonds constitutes
+the protein backbone.
+This sequence is by convention described
+from the free amino group of the first \gls{aa} (\ie\ N-terminal)
+to the free carboxyl group of the last \gls{aa} (\ie\ C-terminal).
+
 Once the polypeptide chain is completed,
 it folds into a three-dimensional structure,
 which is essential for fulfilling its role~\mycite{Morris2016-qv}.
 Many proteins need to undergo post-translational modifications (\glspl{PTM})
 before being functional.
-\glspl{PTM} allow the regulation of the proteins' activity (activation and deactivation).
+\glspl{PTM} allow the regulation of the proteins' activity
+(activation and deactivation).
 They can involve the creation of new covalent bonds,
 as many proteins comprise more than one polypeptide chain to be functional.
 Other frequent \glspl{PTM} include the phosphorylation, acetylation,
-or glycosylation of the amino acids (also called residues).~\mycite{molBiolCell,Morris2016-qv}
-
+or glycosylation of the \glspl{aa} (also called residues)~\mycite{molBiolCell,Morris2016-qv}.
 Besides the variety of possible \glspl{PTM} and their combination,
-proteins can comprise twenty different amino acids (\Cref{sec:aa}),
+proteins can comprise twenty different\glspl{aa} (\Cref{sec:aa}),
 with a vast range of physicochemical properties,
-thus proteins too.
+thus proteins too
 %present an extensive range of physicochemical properties.
-\mycite{Morris2016-qv,Callen2005-ik}
+\mycite{Morris2016-qv,Callen2005-ik}.
 
 Although the diversity of the proteome
 (\ie\ entire repertoire of expressed proteins)
@@ -149,6 +161,14 @@ but their physicochemical diversity prevents
 the use of uniformed and straightforward protocols
 that would encompass all the proteins
 in a given cell or tissue type.~\mycite{Bruce2013}
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.49]{background/DNA-RNAstruct1.png}\centering
+    \vspace{-2mm}
+    \caption[DNA and RNA structures]{\label{fig:DNARNAstruct}%
+    \textbf{DNA and RNA structures} © 2014 Nature Education ---
+    Adapted from \citet{Pierce2005-ib}.}
+\end{figure}
 
 On the other hand,
 all \gls{DNA} and \glspl{RNA} have very similar chemical properties,
@@ -165,22 +185,12 @@ while the information is encoded into the nitrogenous bases sequence.
 \ie\ 5' end to 3' end, or in other words,
 from the phosphate group that is linked to the pentose carbon annotated 5'
 to the phosphate group
-that is linked to the pentose carbon annotated 3'.~\mycite{Morris2016-qv,molBiolCell,Callen2005-ik}
+that is linked to the pentose carbon annotated 3'\footnote{%
 Pentoses are monosaccharides containing a chain of five carbons.
 When the pentose is part of a nucleotide,
-these carbons are annotated from 1' to 5'
-to avoid confusion with the carbons of nitrogenous cycles.
+these carbons are annotated from 1' to 5' to avoid confusion
+with the carbons of nitrogenous cycles.}.~\mycite{Morris2016-qv,molBiolCell,Callen2005-ik}
 
-\vspace{-2mm}
-\begin{figure}[!htpb]
-    \includegraphics[scale=0.55]{background/DNA-RNAstruct1.png}\centering
-    \vspace{-2mm}
-    \caption[DNA and RNA structures]{\label{fig:DNARNAstruct}%
-    \textbf{DNA and RNA structures} © 2014 Nature Education ---
-    Adapted from \citet{Pierce2005-ib}.}
-\end{figure}
-
-\vspace{-2mm}
 The difference in physical properties between \gls{DNA} and
 \gls{RNA} molecules is primarily due to
 the predominantly particular arrangement of \gls{DNA} (double-stranded) and
@@ -200,7 +210,8 @@ the \mRNAs\ have generally the lowest stability
 when compared to the \glspl{DNA} and proteins.~\mycite{molBiolCell,Pierce2005-ib}
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.70]{background/dogma.pdf}\centering
+    \includegraphics[scale=0.60]{background/dogma.pdf}\centering
+    \vspace{-4mm}
     \caption[Central dogma of molecular biology proposed by F. Crick]%
     {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
     F. Crick}. The proven modes of information transfers are for the general ones
@@ -212,7 +223,7 @@ when compared to the \glspl{DNA} and proteins.~\mycite{molBiolCell,Pierce2005-ib
 
 This overall process, which allows the creation of the proteins and
 based on a flow of information initiated from the \gls{DNA},
-had been foreseen by Francis Crick \mycite{Crick:1958,Crick:1970}.
+had been foreseen by Francis Crick~\mycite{Crick:1958,Crick:1970}.
 He stated what is now known as the core of the central dogma of molecular biology
 (shown in \Cref{fig:dogma}):
 \textquote{Once information has got into a protein it can’t get out again}.
@@ -221,17 +232,18 @@ functional proteins,
 and in theory, if we reach a total understanding of the information encoded
 into the \gls{DNA},
 we will be able to predict the \gls{phenotype} due to the proteome.
-As \gls{DNA} is static, genome studies are easier
-than transcriptomic or proteomic ones.
-However,
+As \gls{DNA} is static
+while the coding portion (about 2\%) of the human genome~\mycite{Venter2001-sn}
+varies in expression (both in concentration and composition)
 depending on the tissue or cell type,
-the coding portion (about 2\%) of the human genome~\mycite{Venter2001-sn}
-varies in its expression (both in concentration and composition).
+genome studies are easier than transcriptomic or proteomic ones,
+but the latter ones are more biologically insightful.
+\begin{comment}
 There are different types of proteins: ubiquitous ones
 (generally qualified as \emph{housekeeping}),
 cell/tissue/condition specific ones and
 everything in-between.
-
+\end{comment}
 
 \section[Transcriptome exploration with RNA sequencing]%
 {Transcriptome~exploration~with~RNA~sequencing}
@@ -479,9 +491,10 @@ length of the \glspl{cDNA} are then shorter as the barcodes are also (and have
 to) be sequenced as well.
 
 \subsection[Clustering: Hybridisation and Bridge amplification]{Clustering:
-Hybridisation and Bridge amplification~\mycite{IlluminaYoutube}}%
+Hybridisation and Bridge amplification~\small{\mycite{IlluminaYoutube}}\quad}%
 \label{sub:HybridClustAmp}
 
+\vspace{-4mm}
 Once the libraries are ready, they are loaded onto a \emph{flow cell}\footnote{%
 \emph{Flow cells} are the support of Illumina sequencing. They enable the
 parallelisation of the sequencing of millions of \gls{DNA} fragments together
@@ -691,7 +704,7 @@ which increases the overall complexity and therefore hinder
 the mapping both on time and accuracy~\mycite{Trimwisely},
 or too few are left for pertinent analyses).
 
-\NB\ Generally, after the sequencer calls the reads, a first trimming removes
+Generally, after the sequencer calls the reads, a first trimming removes
 all the adaptors and barcodes needed by the sequencing protocols. Thus,
 in principle, they are not to be found in the \enquote{raw data}.
 However, to avert any latter contingency, a search against
@@ -862,7 +875,7 @@ although being slower than the latter~\mycite{hisat}.
 
 
 
-\NB\ As many concepts or terms in Science, \enquote{\emph{Read mapping}} can
+As many concepts or terms in Science, \enquote{\emph{Read mapping}} can
 have different (however very closely related) meanings.
 Hence, while for many people, \emph{Read mapping} will encompass any
 transcriptome reconstruction strategy (including \latin{de novo} assembly) since
@@ -966,7 +979,7 @@ with the following main steps (see also \Cref{fig:cuffEstimation}):
 Finally, to compute the gene expression levels, \cuffl\ aggregates \latin{per}
 gene all the isoforms expression abundances together.
 
-\NB\ \cuffl\ provides by default \FPKM\footnote{See \Cref{subsub:norm}.}
+\cuffl\ provides by default \FPKM\footnote{See \Cref{subsub:norm}.}
 \emph{normalised} data.
 
 \minisec{HTSeq-count}
@@ -1088,7 +1101,7 @@ sample $j$,\\
 $\ell_i$ is the length of \emph{feature} $i$.
 }
 
-\NB\ The scaling factor was introduced such as in most cases $1$\ \FPKM\ is
+The scaling factor was introduced such as in most cases $1$\ \FPKM\ is
 roughly equivalent to $1$\ \gls{RNA} in the cell~\mycite{Mortazavi2008}. This
 has been observed in other papers (see for example~\cite{Hebenstreit:2011}) and
 also explains why $1$\ \FPKM\ is a commonly used threshold.
@@ -1129,43 +1142,125 @@ other confounding factors.
 
 \section{Proteome~exploration~with~Mass~spectrometry}
 
-High-throughput protein identification and quantification (\ie\ characterisation)
-use \ms\ as the primary method of choice since it allies a good dynamic range
+Through the last decade,
+the proteomic field has shifted from technical research on instruments and methods
+to the extensive and routine use of \ms\ as an analytical tool~\mycite{AebersoldMann2016}.
+Many possible workflows for \ms-based proteomic studies exists
+as \ms\ is very versatile and supports many proteomic investigation approaches,
+such as protein characterisation, modification sites, structures,
+mechanism-oriented (interaction) studies~\mycite{AebersoldMann2016}.
+In this regard,
+high-throughput protein identification and quantification
+have recently thoroughly developed
+as they use \ms\ as their primary choice method
+since it allies a good dynamic range
 with high sensitivity and specificity~\mycite{Aebersold2003,Broshphd,Cox2011}.
-Indeed, on the last decade, the field has shifted from technical research on the
-instruments and methods to the extensive and routine use of \ms\ as an analytical
-tool for life sciences, in particular for proteins~\mycite{AebersoldMann2016}.
-As \ms\ is very versatile and supports many proteomic investigation
-approaches\footnote{E.g.\ Proteome sequences, quantity, modification sites,
-structures and context of the protein along with mechanism-oriented
-(interaction) studies~\mycite{AebersoldMann2016}.},
-there are many possible workflows for \ms-based proteomic studies.
-As the present thesis focuses only on \gls{DDA} discovery
-studies (See \Cref{sec:ProteoData}), I only review the widespread
-\emph{bottom-up} approach for identification and quantification
-studies\footnote{\emph{Bottom-up approach}: \glsentrydesc{Bottom-up}\\
-In fact, \gls{Top-down} approaches while appealing
-are still very challenging both as experimental
-and computational
-perspectives~\mycite{AebersoldMann2016}.}\sepfootnote\footnote{Bottom-up
-approaches are
-also used for \emph{targeted proteomics} (see~\cite{Shi2016}) and for
-\gls{DIA} studies to generate, for instance, comprehensive fragment-ion maps for
-specific proteoforms (see~\cite{Chapman2014})}, and more precisely, the
-typical \emph{\enquote{shotgun}} proteomics approach that
-relies on \gls{LC-MS/MS}~\mycite{Cox2011,Zhang2013}. In fact, all
-three proteomic datasets used in this thesis are the product of this specific
-protocol. The \gls{DDA} approach has many advantages over
-other approaches~\mycite{AebersoldMann2016}:
-they are unbiased and free from hypothesis and as
-such are great tools for global discovery study. Indeed, \gls{DDA} studies survey
-all the proteome at once, and prior knowledge is unrequired. The lately increased
-popularity of this method%\footnote{First introduced by \cite{Hunt1992}}
-~relies on the increased availability of high-quality genome and gene sequence
-databases and more recent technical advances in \ms\ (development of new
-protein/peptide ionisation and fragmentation methods)~\mycite{Aebersold2003,%
-Cox2011,Zhang2014}. In the same manner, as for the \Rnaseq,
-I will emphasise the techniques used in the aforementioned proteomic datasets.
+
+Depending on the study purpose,
+available time and money,
+the number of samples,
+the accessible instruments
+and the needed sensitivity and specificity,
+the choice will be based on one strategy rather than another.
+The \emph{bottom-up} approaches are the most favoured.
+There are also \emph{top-down} and, more recently, \emph{middle-down} ones.
+
+\emph{Top-down} approaches~\mycite{Catherman2014-uv} studies the intact proteins,
+(\ie\ as a whole without digesting them in smaller peptides).
+They are appealing, but still very challenging both
+experimentally and computationally~\mycite{AebersoldMann2016}.
+They are more suitable for highly purified samples
+as the \ms\ and fragmentation (\gls{MS/MS}) spectra are highly complex.
+On the other hand,
+digesting the proteins in smaller molecules allows them
+to better ionise and facilitates the spectra interpretation.
+\emph{Middle-down} approaches~\mycite{Wu2012-yz} produce
+big fragments (up to 20k\glstext{Da}).
+\emph{Bottom-up} approaches generally use an enzymatic digestion with trypsin
+to produce small peptides (about 10 \glspl{aa}).
+The ease and, more importantly, reproducibility of the trypsin digestion
+are the reason for the bottom-up approach popularity\footnote{%
+To reconstruct the proteins from the peptidic fragments (hence \emph{bottom-up}),
+the experimental spectra are compared to databases
+that collect theoretical spectra or experimental ones from former studies.%
+}.
+
+Bottom-up methods fall into two main types of strategies:
+\emph{targeted} and \emph{untargeted} as shown in \Cref{fig:msbottomupQuant}.
+Targeted approaches~\mycite{Domon2006-rw,Shi2016} allows
+the absolute or relative quantification of a small preselected set of proteins.
+This strategy is favoured for example to validate possible biomarker candidates.
+\glsentrydesc{SRM} (\gls{SRM})~\mycite{Picotti2012-ql}
+(also known as \glsentrydesc{MRM} (\gls{MRM})~\mycite{Hu2016-ri,Shi2016})
+and its variant \glsentrydesc{PRM} (\gls{PRM})~\mycite{Gallien2012-xx}
+are more sensitive and specific, and give more accurate quantification
+than untargeted methods:
+as the set of proteins and peptides to fragment is known,
+interpreting the spectra is much easier.
+However, \gls{SRM} is the most sensitive,
+while \gls{PRM} is the most specific and accurate~\mycite{Benhaim2017-va}.
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.56]{background/MSproteomicsQuant.pdf}\centering
+    \caption[Bottum-up quantification approaches]{\label{fig:msbottomupQuant}%
+    \textbf{Bottum-up quantification approaches}.
+    }
+\end{figure}
+
+Untargeted strategies provide only relative quantification,
+but are the most suitable for global approaches or for discovery projects.
+\emph{Tag} methods are favoured
+when the study interest is about the differential expression of proteomes between
+different conditions.
+\emph{Label free} ones are the most suitable for obtaining an overview of
+the proteome landscape of disparate samples.
+They are also the fastest and simplest approach to set up,
+and thus, are favoured in studies where the number of samples is important.
+
+Tag strategies label the proteins (before or after extraction)
+with stable isotopes (see \Cref{tab:isotope}).
+For each condition, a specific isotope is used.
+Thus, the proteins and peptides
+have exactly identical physicochemical properties,
+have the same behaviour through the protocols, and
+can only be differentiated through their mass.
+The labelling can be either
+enzymatic (\eg\ \isotope[18]{O}-labelling~\mycite{Ye2009-st}),
+chemical (\eg\ \glsentrydesc{ICAT} (\gls{ICAT})~\mycite{Gygi1999-pe},
+\glsentrydesc{iTRAQ} (\gls{iTRAQ})~\mycite{Ross2004-bn},
+\glsentrydesc{TMT} (\gls{TMT})~\mycite{Thompson2003-we},
+dimethyl labelling~\mycite{Hsu2003-aj},
+or \glsentrydesc{2D-DIGE} (\gls{2D-DIGE})~\mycite{Unlu1997-vn}),
+or metabolic (\eg\ \glsentrydesc{SILAC} (\gls{SILAC})~\mycite{Chen2015-zp}).
+Some tag approaches have multiplexing protocols.
+
+\emph{Label free} strategies~\mycite{Hsu2003-aj,Neilson2011-gi,Sandin2014-ow}
+analyse the proteins after their digestion with the trypsin.
+Since there is any marking in these methods, multiplexing is impossible.
+Two different methods can quantify the relative abundance of the proteins.
+\glsentrydesc{XIC} (\gls{XIC})~\mycite{Higgs2013-jm}
+which quantifies each peptide by extracting its ion currents,
+its molecular mass and retention time (MS1) (or the ones of its fragments (MS2)),
+and then by integrating the area under the curve (\gls{AUC}) of the peptide
+monoisotopic molecular mass (p),
+and the following isotopic molecular mass peaks (p+1) and (p+2).
+\gls{XIC} assumption is that more concentrated is the peptide and
+greater the \gls{AUC} is.
+Spectral counting (also called MS2 quantification)
+quantifies proteins based on the assumption that
+more abundant is a protein, more this protein is selected to be fragmented,
+thus the total number of \gls{MS/MS} spectra that can be mapped back to
+the protein can be used to estimate it.
+\clearpage\
+
+Note that since there are many possible \ms\ approaches,
+in the following section I focus on the one
+that initially generated the proteomic datasets
+I am reusing for this thesis (see \Cref{sec:ProteoData}).
+Thus, I describe one widespread \emph{bottom-up} approach,
+\ie\ the label free \gls{LC-MS/MS} protocol
+(also known as \emph{shotgun proteomics})~\mycite{Cox2011,Zhang2013}.
+The following segments may be suitable for other methods as well.
 
 \subsection{Sample preparation}\label{subsec:ProtSampPrep}
 Protocols to prepare samples for proteome analyses are quite simpler than the
@@ -1426,7 +1521,7 @@ based on their total mass $(m)$ to charge $(z)$ ratio, \ie\ $m/z$.
 A detector collects all these ions and translates their signal (intensity versus
 $m/z$) to an electric one which is the output serving as raw data for the
 later analyses. In the simpler case, the molecules are singly charged ($z=1$),
-and their molecular mass is only recorded. However, it is quite common for the
+and only their molecular mass is recorded. However, it is quite common for the
 molecules to carry more than one electric charge and that if the energy used for
 the ionisation is substantial, they may also forego fragmentation and internal
 reactions that will result to the production of many spectra. The collection
@@ -1576,96 +1671,182 @@ Thus for each \emph{precursor} ion, a collection of fragmentation mass spectra
 can be gathered. The peptide sequences are then more likely to be accurate, and
 the risk of false positive is significantly decreased.
 
-While in many cases, the experimenter may want to limit fragmentation, they may
-also use devoted techniques to increase it. There are schematically different
-classes of fragmentation techniques: a collisional, an
-electron-based a photon-based. In the collisional category, \gls{CID},
-mentioned previously, is very widespread. The chosen ion is introduced in the
-collision cell, and when it collides with a particle of the inert gas, its kinetic
-energy is transformed into internal energy. The fragmentation happens when this
-internal energy is enough to activate the dissociation of the ion. Another
-related and slightly more effective method for higher charge state ions is the
-\acrfull{HCD}. This latest method has gained popularity with the development of
-quantitative proteomics (\eg\ \gls{iTRAQ}) as it provides in parallel peptide
-identification and quantitation. In the electron-based category, there is the
-\acrfull{ETD} technique. In \gls{ETD}, an anion donates an electron to a cationic
-peptide. The backbone of this peptide will then fragment~\mycite{Syka2004}.
-For the other categories, see the review from \citet{Zhang2014} and the included
-literature.
+While the experimenter may want to limit fragmentation,
+they may also often use devoted techniques to increase it.
+There are schematically three different classes of fragmentation techniques:
+collisional, electron-based or photon-based.
+The collisional category, \gls{CID} (see \Cref{sec:appMassAnalysers}),
+is very widespread.
+The chosen ion is introduced in the collision cell,
+and its collusion with an inert gas particle produces a kinetic energy,
+which transforms into internal energy.
+The fragmentation happens when this internal energy is sufficient to activate
+the dissociation of the ion.
+Another related and slightly more effective method
+for higher charge state ions is the \acrfull{HCD}.
+This latest method (developed by ThermoFisher for \orbi\ analysers),
+has gained popularity with the development of quantitative proteomics
+(\eg\ \gls{iTRAQ})
+as it provides in parallel peptide identification and quantitation.
+In the electron-based category,
+the most common is probably the \acrfull{ETD} technique:
+an anion donates an electron to a cationic peptide,
+and this transfer initiates
+the fragmentation of the peptide backbone~\mycite{Syka2004}.
+For the other categories,
+see the review from \citet{Zhang2014} and the included literature.
+
+\subsubsection{Acquisition modes}
+There are two possible acquisition modes: \gls{DDA} and \gls{DIA}.
+
+The most common \gls{DDA} approach has many advantages~\mycite{AebersoldMann2016}.
+It is unbiased and free from hypothesis,
+and as such is a great tools for global discovery study.
+It surveys the proteome all at once,
+and prior knowledge is unrequired.
+Its popularity increased concomitantly to the increased availability of
+high-quality genome and gene sequence databases
+and more recent technical advances in \ms\
+(development of new protein/peptide ionisation
+and fragmentation methods)~\mycite{Aebersold2003,Cox2011,Zhang2014}.
+The main \gls{DDA} limitation~\mycite{Guillaumot2017-ba} is its inability
+to select all the existing peptidic ions for fragmentation by \gls{MS/MS}.
+The stochastic selection is biased by
+each peptide ionisation efficiency
+and the possible peptides coelution
+while the \gls{LC} before being introduced in the \ms.
+In practice, the instrument first scans shortly the current eluting peptides (MS1)
+before a few (the ``top N'') precursors are selected
+one after the other for fragmentation (MS2).
+One MS1 spectrum with N MS2 spectra constitue one duty cycle,
+which usually lasts about 1s.
+Peptides elute over 30 to 40s,
+and the softwares driving the instrument can predict when the peptides peaks happen
+and thus will increase the chance of high quality MS2 spectra
+by selecting the peptides at their maximum abundance.
+A dynamic exclusion window avoids the same peptides to be repeatedly selected and
+new targets to be fragmented.
+MS1 spectra allows to select potential peptides to fragment and their intensity.
+MS2 spectra are used to later identify the peptides.
+
+\gls{DIA} approaches are more complex
+as no precursor is selected and
+all the coeluted peptides are fragmented at the same time.
+The sustained interest in \gls{DIA} methods is because
+they provide a more complete overview of the proteomes.
+They can generate comprehensive fragment-ion maps for
+specific proteoforms~\mycite{Chapman2014}.
+Often \gls{DIA} is performed after a short \gls{DDA} survey
+that establishes a small reference spectrum library
+to help with the analyse of the MS2 spectra.
+In the past decade, \gls{DIA} studies number has expanded,
+particularly with methods such as SWATH-\ms~\mycite{Gillet2012-ce}
+(for proteome quantification).
+\gls{DIA} methods are likely to gain even more popularity
+as many efforts are put into their developments~\mycite{Hu2016-ri}.
 
 \subsection{Bioinformatic strategies for proteomics studies}
 
-Mass spectrometers raw data output for proteomics is directly uninterpretable
-by a human and need to be processed before being meaningful.
+\ms-based proteomics is quite challenging,
+and the major bottleneck of proteomics pipelines remains
+the data analysis~\mycite{Chen2016,perseus2016}.
+Since mass spectrometers raw data output
+for proteomics is directly uninterpretable by a human,
+it need to be processed before being meaningful.
+Because the sheer amount of produced data is in the terabyte (\gls{TB}) range,
+it prohibits any manual handling and requires automation~\mycite{Codrea2016},
+most notably for the data matching (\ms\ spectra to databases content) and
+protein identification steps~\mycite{Nilsson2010}.
+As for \Rnaseq, for each proteomics analysis step,
+there are many tools.
+Many integrate a few (if not all) of the following described steps,
+\eg\ \softFoCi{MaxQuant}{http://www.maxquant.org}{maxquant2016}
+or \softFoCi{OpenMS}{http://www.openms.de/}{Pfeuffer2017-dh}.
+From the raw data acquisition to downstream analyses
+(or any of the intermediate steps),
+these tools can be combined in many different pipelines~\mycite{Vitek2009}.
 
-\ms-based proteomics is quite challenging, and the major bottleneck of
-proteomics pipelines remains the data analysis~\mycite{Chen2016,perseus2016} and
-most notably, the data matching (\ms\ spectra to database content) and
-protein naming~\mycite{Nilsson2010}. Indeed, the sheer amount of produced data
-is in the terabyte (\gls{TB}) range which prohibits any manual handling and requires
-automation~\mycite{Codrea2016}.
-
-There are various tools for each proteomics analysis step (as there was for
-\Rnaseq) and they may be combined in many different pipelines (\eg\
-\href{http://www.maxquant.org}{\soft{MaxQuant}}\footnote{\soft{MaxQuant}:
-\href{http://www.maxquant.org}{http://www.maxquant.org}}~\mycite{maxquant2016}
-for the \emph{processing} raw data part and \href{htpp://www.perseus-framework.org}%
-{\soft{Perseus}}\footnote{\soft{Perseus}:
-\href{htpp://www.perseus-framework.org}{http://www.perseus-framework.org}}~\mycite{perseus2016}
-for the downstream data analysis part). Moreover, these
-pipelines will also vary depending on the experimental design and data types
-(\ie\ expression, modification state or interactions map) and the practical
-creation of the data (method of separation, mass analyser kind, \ldots). In
-addition, the files from mass spectrometers are usually encoded in proprietary
-formats, and thus there may be a limited choice of available tools or software
-for a specific combination of analysis and data.  A few open file formats (and
-their appropriate converters) exist (\eg\ \mzml\ format~\mycite{mzML}
+The pipelines vary depending on experimental design, data type
+(\ie\ expression, modification state or interactions map)
+and the practical creation of the data (method of separation,
+mass analyser kind, acquisition mode, \ldots).
+Many of these factors are interconnected in \ms\
+and while their individual effects have been extensively studied,
+designing a sound pipeline may be overlooked easily~\mycite{LCMSflaws,Maes2016-xo}.
+However,
+this risk is reduced as
+many tools imply working upstream or downstream with specific tools,
+\eg\ the output of \soft{MaxQuant} (raw data to protein quantification) is
+ready to use by \softFoCi{Perseus}{http://www.perseus-framework.org}{perseus2016}
+(downstream analyses such pattern recognition,
+time-series analysis, cross-omics comparisons and multiple hypothesis testing).
+Besides, as files from mass spectrometers are usually encoded
+in proprietary (commercial) formats,
+there may be a limited choice of available tools or software
+for a specific combination of analysis and data.
+A few open file formats (and their appropriate converters) exist
+(\eg\ \mzml\ format~\mycite{mzML}
 and \href{http://proteowizard.sourceforge.net/}{\soft{ProteoWizard}}\footnote{%
 \soft{ProteoWizard}: \href{http://proteowizard.sourceforge.net/}%
 {http://proteowizard.sourceforge.net/}}~\mycite{proteowizard2012}),
 however, they may lack recording a few critical points of the raw data,
-and so they may also be unfitted for analyses.
-
-There are many different pipelines. See \citet{Vitek2009}.
-
-%Bottom-up approaches tend to dominate the \ms{}-based proteomics~\mycite{Lee2015-di}.
-
-\subsubsection{Peptide identification}\label{subsub:peptideID}
-
-An essential early step of proteomic data processing is to identify a peptide
-sequence for each mass that has been detected. This requires to first retrieve
-the molecular mass and fragmentation profile from the raw data and then match
-the observed spectra to a \emph{known} (or \emph{theoretical}) peptide database.
-Typically, the first \ms\ spectra (MS$^1$) allow the estimation of the relative
-quantities of peptides, while the fragmentation spectra (MS$^2$) provide their
-identification~\mycite{Codrea2016}. Many computational tools exist for
-\gls{MS/MS} search engines, see \citet{Griss2016,Shteynberg2013,Eng2011}
-for reviews.
-
-\minisec{Detecting mass peaks}
-While this may be done manually for a chemical study, the number of
-spectra in proteomics require the automation of this \emph{peak picking} task.
-It may look trivial, particularly as the resolution of the instruments significantly
-improved the last decade. However, depending on the noise, the peaks may be
-smooth (with a large signal-to-noise ratio \gls{SNR}) and easy to pick or noisy
-(barely distinct from the background) and more tricky to identify.
-
-There is a relation between the peaks width and the mass-to-charge ($m/z$) of
-the peptide, the resolution of the mass analyser, the acquisition parameters.
-Algorithms may use this relation to scan the mass spectra for local maxima of
-expected widths and detect the peaks. \mycite{Bauer2011}.\\
-As the main elements of peptides have isotopes with known natural frequency
-(see \Cref{app:isotopes}), the peptide masses present a cluster of peaks instead
-of a single one for their molecular mass. Algorithms may also use the information
-provided by these clusters (including the relative intensity of each peak) to
-resolve the atomic composition of the peptides (for example see~\cite{Nitpick}).
-
-This mass peak detection is part of the \emph{signal processing} step, which also
-includes filtering (or \enquote{denoising}), baseline correction (eliminates
-systematic trends) and signal normalisation (\enquote{centroiding})~\mycite{Codrea2016,Nahnsen2013}.
+and so, they may also be unfitted for particular analyses.
+As bottom-up approaches are the most common,
+their associated tools also tend to dominate the \ms{}-based proteomic bioinformatics~\mycite{Lee2015-di}.
+In the following pages,
+from the many possible approaches and concepts,
+I review the ones on which the pipeline presented in \Cref{ch:datasets}
+(and that has processed all the proteomic data presented in this thesis)
+has been built.
 
 
-\minisec{Spectra  }
+\subsubsection{Signal processing and mass peaks detection}
+
+The signal processing step comprises
+the filtering (or \emph{denoising}),
+the baseline correction (which eliminates systematic trends),
+the signal normalisation (or \emph{centroiding}),
+and the mass peaks detection~\mycite{Codrea2016,Nahnsen2013}.
+
+While mass peak picking may be done manually for smaller molecules,
+the number of spectra in proteomic experiments
+(easily over 100,000 spectra for one sample)
+require the automation of this task.
+Even though instruments resolution has significantly improved the last decade,
+peaks can be smooth (\ie\ with a large signal-to-noise ratio (\gls{SNR}))
+and easy to pick, or they can still be noisy
+(\ie\ barely distinct from the background) and trickier to identify.
+Peak width is related to the peptidic ion mass-to-charge ($m/z$),
+the mass analyser resolution and acquisition parameters.
+Algorithms may use this relation to detect peaks by
+scanning the mass spectra for local maxima of expected widths. \mycite{Bauer2011}.
+They can also rely on
+the associated isotopic peak clusters of the molecular mass peak
+(see \Cref{app:isotopes}).
+These molecular peaks clusters (and their relative intensity) also provide
+information that can resolve the atomic composition of the peptides~\mycite{Nitpick}.
+
+\subsubsection{Peptide identification and validation}\label{subsub:peptideID}
+
+An essential step of proteomic data processing is to identify and then validate
+a peptide sequence for each molecular mass that has been detected.
+Typically in \gls{LC-MS/MS},
+the first \ms\ spectra (MS$^1$) allow the estimation of the relative
+quantification of each peptide,
+while the fragmentation spectra (MS$^2$) provide its identification~\mycite{Codrea2016}.
+For sequenced organisms, peptide identification approaches favour \gls{PMF}
+over \emph{de novo} peptide sequencing,
+as the latter is very cumbersome and time-consuming.
+\gls{PMF}~\mycite{Henzel2003-er,Blueggel2004-qc} requires
+to match the molecular mass and fragmentation profile
+of the raw data to known (or theoretical) spectra from peptide databases.
+Many search engines exist for \gls{MS/MS},
+see \citet{Griss2016,Shteynberg2013,Eng2011} for reviews.
+Furthermore\label{seg:moreAlgoisbetter},
+combining the results of several search algorithms improve
+studies final outcomes\mycite{Sadygov2004-nl,Eng2011,Shteynberg2013,Griss2016}.
+
+\minisec{Spectra matching (or spectral library search)}
 For the matching step of the fragmentation spectra to a peptide database,
 there are three main possibilities.
 \begin{itemize}
@@ -1680,68 +1861,13 @@ there are three main possibilities.
         the theoretical mass of every possible peptide sequence.
 \end{itemize}
 
-\TK{add the ref stating that using several search algorithms improve the final
-result}\label{seg:moreAlgoisbetter}
-
-
-\begin{comment}
-From: Sun et al. BMC Genomics 2012, 13(Suppl 6):S2
-http://www.biomedcentral.com/1471-2164/13/S6/S2
-
-The output of the MS1-based peptide detection algorithm
-is a list of detected peptides annotated by monoisotopic
-mass, retention time, abundance, and so on. To
-obtain peptide sequence information, i.e.\ peptide identification,
-which can be used to infer the parent protein
-from which the peptide was digested, database searching
-is required. To do so, the acquired MS/MS (MS2) spectra
-are searched against a protein database containing
-theoretical MS2 spectra generated from in-silico digested
-peptide sequences by popular software such as
-SEQUEST [26] and Mascot [27].
-Several machine learning methods have been proposed
-to predict the probability (i.e., identifiability) of a peptide
-being identified through MS2 database searching [14,28].
-These methods try to extract the common trends residing
-in peptide identifiability that can be explained by
-Figure 2 The MS calibration curve. MS ion signal as a function of
-analyte concentration in solution. The slope of the linear portion of
-the curve is the instrument response factor (i.e.\ instrument
-sensitivity). The curve departs from linear at high analyte
-concentration. A wider linear dynamic range is desired for
-quantitative analysis.
-Sun et al. BMC Genomics 2012, 13(Suppl 6):S2
-http://www.biomedcentral.com/1471-2164/13/S6/S2
-Page 4 of 15
-peptide sequence-specific properties. Their successful
-application may suggest that the peptide sequence largely
-affects the chance of a peptide getting selected for MS2
-analysis, whether the peptide can be sufficiently fragmented,
-and the quality of its fragmentation spectra. In our
-simulation, the identifiability pi of the true peptide species
-i is predicted by the APEX software [14], trained on
-the human serum proteome [29], and whether peptide
-species i in sample j is identified or not through database
-searching is determined by the outcome of a Bernoulli
-trial with success rate pi.
-
-\end{comment}
-
 \minisec{Scoring function}
 
-\minisec{Search Algorithm}
 
 \minisec{False Discovery Rate (FDR) of spectral identification}
 
-\subsubsection[Protein quantification]{\ldots To protein quantification}
+\subsubsection{Protein quantification}
 
-\minisec{Protein inference}
-
-\minisec{Signal Processing}
-
-\minisec{Transformation, normalisation and summarisation}
-
-\minisec{Learning}
 
 \subsubsection{Intensity-Based Absolute Quantification (IBAQ)}
 This is a label-free quantification method based on peak intensity.
@@ -1780,6 +1906,7 @@ so extracting common functional information from subsets of genes/proteins eases
 the interpretation of the data.
 Many tools and algorithms have been developed
 to overcome the daunting task of individually checking the genes/proteins.
+See \citet{Shi_Jing2015-yh} for some examples.
 While, the field has been reviewed a few times
 (see \citet{Khatri2005-su,Huang2009-zk,Khatri2012-ki}),
 it is still unfortunately lacking a gold standard
@@ -1789,14 +1916,16 @@ Depending on the experimental design and study,
 the list of biomolecules can be associated to a rank or another form of a score.
 As \glspl{DEA} are the most widespread type of analyses for expression data,
 many tools and algorithms work solely with the corresponding outputs.
-Hence, those are unfitted for other types of studies (such as this thesis).
+Hence, those are unfitted for other types of studies
+(such as the ones in this thesis).
 While devised for \gls{DEA}, many tools are more flexible;
 they accept any sort of rank or score.
 
 \subsection{GO analysis (GOA)}
 The \gls{go} is a collaborative and curated classification
 that describes the gene products
-following three hierarchically structured and controlled vocabularies (ontologies):
+following three hierarchically structured and controlled vocabularies
+(also known as ontologies):
 either based on the biological processes (\enquote{BP}) to which they contribute,
 their position (when active) in the cell (cellular component (\enquote{CC})) or
 their biochemical activity, \ie\ molecular function (\enquote{MF}).~\mycite{Ashburner2000-by}
@@ -1808,11 +1937,11 @@ For each \gls{go} term,
 this method computes the enrichment of the selected set based on
 the real fraction of the set for the considered \gls{go} term and its likelihood
 (computed on the background list).
-For example, if for \gls{go} term \textsc{A} is associated to 0.1\%
+For example, if for a \gls{go} term $\mathcal{A}$ is associated to 0.1\%
 of all the background (list) genes,
 but then over 70\% of the genes from the selected list are associated
-with \gls{go} term \textsc{A},
-one can safely accept that this selected genes list is enriched for this term.
+with \gls{go} term $\mathcal{A}$,
+one can safely accept that the selected genes list is enriched for this term.
 The various tools rely on different statistical tests to determine
 if the enrichments are significant.
 It is ordinary to investigate only a few \gls{go} terms of interest.
@@ -1834,20 +1963,34 @@ Then, the analysis run through (for example) all the \gls{go} terms.
 If the gene is associated to the \gls{go} term,
 the enrichment score is increased,
 it is decreased otherwise.
-A few variations of the original algorithm are nowadays available.
+A few variations of the original algorithm are nowadays available,
+see \citet{Tamayo2012-qw,Irizarry2009-sc}
+and their included references for some examples.
 
 
 \section{Reproducibility~and~Experimental~design}\label{sec:expDesign}
 %\TK{Do not forget to explain why the use of different numbers of samples in
 %meta-analysis creates problem!!!}
 
+Science develops on reproducible facts,
+as they help with drawing relevant and accurate conclusions.
+To increase reproducibility,
+it is essential that observations and measurements
+are (as much as possible) unbiased
+towards any parameter outside of the study focus.
+To this aim, one of the most important issues that need to be tightly monitored
+is the presence of batch effects.
 
+%%%% a completer ici aussi
+%Other biases
 
 \subsection{Batch effects}\label{sub:BatchEffect}
-Batch effects are artefactual and due to all the variables that the investigator can not control
+
+Batch effects are artefactual and due to all the variables
+that the investigator can not control
 (either by lack of technology, design or knowledge), for example,
 environmental conditions, reagent or sample lots,
-genetic population background.
+genetic population background or experimenters.
 They are often the source of complication for many studies
 (including high-throughput genomic ones)~\mycite{batchEffect}.
 
@@ -1861,8 +2004,10 @@ Thus, questions on the biological validity arise.
 
 The first step to address them is through well-designed experiments~\mycite{batchEffect},
 which include technical and biological replicates.
+These replicates are usually created and processed randomly
+as to avoid creating any artefactual link between them.
 
-A replicate is a set of measurements done in the same condition.
+A~replicate~is~a~set~of~measurements~done~in~the~same~condition.
 
 \subsection{Technical replicates}
 Technical replicates are initially from the same sample,
@@ -1878,36 +2023,7 @@ through the same protocol.
 They allow assessing the biological variability
 (which is greater than the technical variability, since it also encompasses it).
 
-\subsection{Data processing pipelines}
-
-Evolving fields (high-throughput transcriptomics and proteomics),
-many tools and algorithms are developed to handle different issues that
-are found along the way.
-They allow their users to fine tune them through many parameters.
-Thus, it is unsurprising that
-the agreement between the results
-from different tools are unsatisfactory~\mycite{reviewRNAseqBestpractice}.
-
-
-
-
-\begin{comment}
-\begin{itemize}
-            \item{Different samples}
-            \item{Technology: wet lab but also software: Rupgrade, \ldots}
-            \item{missing meta-data}
-        \end{itemize}
-    \subsection{Main concerns}
-        \subsubsection{Detection}
-        \subsubsection{Quantification}
-    \subsection{Consistency through biological layers}
-\end{comment}
-
-
-
-
-
-\section{Discussion}
+\section{Discussion and conclusion}
 
 The transcriptome, like the proteome, has a dynamic dimension,
 and as such its study has emerged as a reasonable trade-off strategy
@@ -1938,6 +2054,14 @@ the analysis and requires often as much skills than flair. It is possible that
 future protocols will overcome this issue.
 \end{comment}
 
+A propos des pipelines.
+Evolving fields (high-throughput transcriptomics and proteomics),
+many tools and algorithms are developed to handle different issues that
+are found along the way.
+They allow their users to fine tune them through many parameters.
+Thus, it is unsurprising that
+the agreement between the results
+from different tools are unsatisfactory~\mycite{reviewRNAseqBestpractice}.
 
 Intrinsic variability of proteins make them difficult to study,
 \eg\ there are less available tools when compared to \gls{RNA} or \gls{DNA}.
