@@ -272,7 +272,7 @@ to study the transcriptome through sequencing on an Illumina platform. In fact,
 while not by conscious design, all the transcriptomes analysed in this thesis are
 the product of Illumina sequencing (see
 \Crefrange{subsec:castlepresentation}{subsec:gtexPresentation}).
-It is not surprising as Illumina was by far
+It is unsurprising as Illumina is by far
 the most popular platform for the last decade \mycite{popularIllumina} and
 have been used to generate most of the data in \gls{ENA} and \gls{ArrayExpress}.
 Indeed, Illumina proposes a very
@@ -398,13 +398,13 @@ the protocol they have used is closer to the following one.
 
 \minisec{Targeted amplification}
 Targeted amplifications rely on primers that would be designed to target (or
-avoid as for~\citet{castleData}) specific sequence motifs of the genome. Most
-studies based on this kind of approach are not referred as \Rnaseq\ studies, but
-a name that is based on the studied \gls{RNA} type (\eg\ \gls{miRNA-Seq}) or
-that emphasises the variation of the method (\eg\ Capture-Seq
-\mycite{captureSeq}). Often, in comparison with a polyA-selected or ribodepleted
-dataset, additional steps are required to prepare the libraries.
-
+avoid as for~\citet{castleData}) specific sequence motifs of the genome.
+Most studies based on this kind of approach are referred with
+a name based on the studied \gls{RNA} type (\eg\ \gls{miRNA-Seq}) or
+emphasising the variation of the method (\eg\ Capture-Seq
+\mycite{captureSeq}).
+Often,  additional steps are required to prepare the libraries
+in comparison with a polyA-selected or ribodepleted dataset.
 
 \subsubsection{RNA fragmentation}
 
@@ -1204,6 +1204,9 @@ while \gls{PRM} is the most specific and accurate~\mycite{Benhaim2017-va}.
     \includegraphics[scale=0.56]{background/MSproteomicsQuant.pdf}\centering
     \caption[Bottum-up quantification approaches]{\label{fig:msbottomupQuant}%
     \textbf{Bottum-up quantification approaches}.
+    The work presented in this thesis relies on proteomic data
+    that has been acquired through a \gls{DDA} bottom-up label free
+    \gls{MS/MS} approach (dashed frame).
     }
 \end{figure}
 
@@ -1217,7 +1220,7 @@ the proteome landscape of disparate samples.
 They are also the fastest and simplest approach to set up,
 and thus, are favoured in studies where the number of samples is important.
 
-Tag strategies label the proteins (before or after extraction)
+Tag strategies~\mycite{Zhou2014-vp} label the proteins (before or after extraction)
 with stable isotopes (see \Cref{tab:isotope}).
 For each condition, a specific isotope is used.
 Thus, the proteins and peptides
@@ -1251,9 +1254,10 @@ quantifies proteins based on the assumption that
 more abundant is a protein, more this protein is selected to be fragmented,
 thus the total number of \gls{MS/MS} spectra that can be mapped back to
 the protein can be used to estimate it.
-\clearpage\
+Unfortunately, this technique is lacking accuracy for the low detected proteins
+compared to the others.
 
-Note that since there are many possible \ms\ approaches,
+Note that since there are many possible \ms\ approaches~\mycite{Bantscheff2012-ms},
 in the following section I focus on the one
 that initially generated the proteomic datasets
 I am reusing for this thesis (see \Cref{sec:ProteoData}).
@@ -1411,9 +1415,10 @@ foreshadows filtering and fractioning steps. More recently, a hybrid method
 combining both methods has been developed and
 named \acrfull{FASP}~\mycite{Manza2005,Wisniewski2009}.
 
-Although there are other enzymes for restrictive digestion, trypsin is the gold
-standard protease~\mycite{Zhang2014}.
-Circularity also explains its popularity:
+Although there are other enzymes for restrictive digestion,
+trypsin is the gold standard protease~\mycite{Zhang2014}.
+It cuts very specifically after arginine (R) or lysine (K) \glspl{aa}.
+Circularity also explains trypsin's popularity:
 as more studies are using it, more data are available for comparison;
 hence more studies use it.
 
@@ -1791,14 +1796,18 @@ and \href{http://proteowizard.sourceforge.net/}{\soft{ProteoWizard}}\footnote{%
 {http://proteowizard.sourceforge.net/}}~\mycite{proteowizard2012}),
 however, they may lack recording a few critical points of the raw data,
 and so, they may also be unfitted for particular analyses.
+
 As bottom-up approaches are the most common,
-their associated tools also tend to dominate the \ms{}-based proteomic bioinformatics~\mycite{Lee2015-di}.
+their associated tools also tend to dominate
+the \ms{}-based proteomic bioinformatics~\mycite{Lee2015-di}.
 In the following pages,
-from the many possible approaches and concepts,
+from all the many possible approaches and models,
 I review the ones on which the pipeline presented in \Cref{ch:datasets}
 (and that has processed all the proteomic data presented in this thesis)
 has been built.
-
+Hence, even though the following segments may be true for
+\gls{PMF} and \gls{PFF}~\mycite{Henzel2003-er,Blueggel2004-qc},
+I focus on \gls{MS/MS} data search.
 
 \subsubsection{Signal processing and mass peaks detection}
 
@@ -1826,6 +1835,10 @@ the associated isotopic peak clusters of the molecular mass peak
 These molecular peaks clusters (and their relative intensity) also provide
 information that can resolve the atomic composition of the peptides~\mycite{Nitpick}.
 
+Optionally, a final molecular mass correction step can be applied to remove
+modifications due to the ionisation process.
+
+
 \subsubsection{Peptide identification and validation}\label{subsub:peptideID}
 
 An essential step of proteomic data processing is to identify and then validate
@@ -1834,37 +1847,174 @@ Typically in \gls{LC-MS/MS},
 the first \ms\ spectra (MS$^1$) allow the estimation of the relative
 quantification of each peptide,
 while the fragmentation spectra (MS$^2$) provide its identification~\mycite{Codrea2016}.
-For sequenced organisms, peptide identification approaches favour \gls{PMF}
-over \emph{de novo} peptide sequencing,
-as the latter is very cumbersome and time-consuming.
-\gls{PMF}~\mycite{Henzel2003-er,Blueggel2004-qc} requires
-to match the molecular mass and fragmentation profile
-of the raw data to known (or theoretical) spectra from peptide databases.
-Many search engines exist for \gls{MS/MS},
-see \citet{Griss2016,Shteynberg2013,Eng2011} for reviews.
-Furthermore\label{seg:moreAlgoisbetter},
-combining the results of several search algorithms improve
-studies final outcomes\mycite{Sadygov2004-nl,Eng2011,Shteynberg2013,Griss2016}.
+The greater the number of fragments to identify a peptide,
+the more robust the identification is.
 
-\minisec{Spectra matching (or spectral library search)}
-For the matching step of the fragmentation spectra to a peptide database,
-there are three main possibilities.
+\minisec{Matching spectra to peptide sequences}
+There are three main possibilities for protein/peptide spectra matching.
+Note that there are also hybrid approaches based on \latin{de novo} sequencing and
+database matching.
 \begin{itemize}
-    \item Match the experimental spectra to theoretical ones that are created
-        \latin{in silico} based on the protein sequence database of the studied
-        organism. These databases may be created from the \emph{\latin{in silico}
-        translation} of the genome. This requires database-dependent search engines.
-    \item Match the experimental spectra to other previous experimental spectra
-        saved into a repository. This approach relies on spectral matching engines.
+    \item Matching the experimental spectra to theoretical ones created by
+        \latin{in silico} digestion (following the enzyme specifics in the experiment)
+        and fragmentation of proteins found in protein sequence databases such as
+        UniProtKB/Swiss-Prot from \softFoCi{UniProt}{https://www.uniprot.org/}{UniProt2017},
+        which is a manually annotated and reviewed,
+        UniProtKB/TrEMBL (automatically annotated, unreviewed), or
+        from genomic sequence databases (\eg\ \softFo{NCBI}{https://www.ncbi.nlm.nih.gov/protein})
+        after (\emph{\latin{in silico} translation} of the sequences.)
+        This type of matching requires database-dependent search engines,
+        \eg\ \softFoCi{Mascot}{http://www.matrixscience.com/}{Perkins1999-yc}
+        or \soft{Andromeda} from \soft{MaxQuant}.
+    \item Matching the experimental spectra to other previous experimental spectra
+        saved into a repository.
+        This approach relies on spectral matching engines,
+        \eg\ \softCi{HMMatch}{Wu2007-fu}.
     \item A \latin{de novo} \emph{sequencing} approach which consists of
-        comparing the observed mass data to
-        the theoretical mass of every possible peptide sequence.
+        comparing the observed mass data to the theoretical mass
+        of every possible peptide sequence.
+        For an example, see \softFoCi{PepNovo}{http://proteomics.ucsd.edu/Software/PepNovo/}{Frank2009-nb}.
 \end{itemize}
 
-\minisec{Scoring function}
+The first two methods are favoured over \latin{de novo} peptide sequencing,
+as the latter is very cumbersome and time-consuming.
 
+Many search engines exist for matching \gls{MS/MS} spectra,
+see \citet{Griss2016,Shteynberg2013,Eng2011} for reviews.
+Furthermore\label{seg:moreAlgoisbetter},
+combining the results of several search algorithms when possible improve
+studies final outcomes~\mycite{Sadygov2004-nl,Eng2011,Shteynberg2013,Griss2016}.
 
-\minisec{False Discovery Rate (FDR) of spectral identification}
+Many algorithms (\eg\ \soft{SEQUEST} and \soft{Mascot}) rely on
+the same information and parameters choices to match
+(and score) the spectra to peptide sequences.
+\begin{itemize}[topsep=0pt,nosep]
+    \item Fragmentation mode
+    \item Digestion enzyme and the number of possible omitted clivages
+    \item Mass tolerance for $m/z$ ratio of peptidic and fragmented ions.
+    \item Possible charges for the peptidic and fragmented ions.
+    \item Knowledge database (more a database is complete, accurate and adequate,
+        better and more robust is the peptide and protein identification).
+\end{itemize}
+
+\minisec{Scoring functions}
+
+Concurrently to matching the \gls{MS/MS} spectra to peptide sequences,
+the algorithms compute a corresponding score for each peptide-spectrum match (\psm).
+This score summarises the quality of the assignment
+and allows the selection of the best candidate-peptide for each spectrum.
+Only the matches  with the best \psm\ scores (if not \emph{the} best one),
+are reported and used in the next steps of the quantification process.
+
+\citet{Sadygov2004-nl} classifies the scoring functions in four classes:
+descriptive (\eg\ \softFoCi{SEQUEST}{http://fields.scripps.edu/yates/wp/}{Eng1994-eq})
+interpretative, stochastic and probability-based modelling (\eg\ \soft{Mascot}).
+While many of these functions return statistical scores
+(\eg\ \soft{Mascot} and \soft{SEQUEST}),
+many other return non-statistical ones.
+For these latter ones,
+tools such as \softFoCi{Percolator}{http://percolator.ms/}{Kall2007-qn,Spivak2009-zd}
+or \softFoCi{PeptideProphet}{http://peptideprophet.sourceforge.net/}{Keller2002-dq,Ma2012-lu}
+allow transforming their scores into probabilities,
+and ease the application of threshold to remove unreliable matches~\mycite{Cottrell2011-gh}.
+Regardless of whether the score is either statistical (including probability-based) or not,
+searching database to match spectra to peptide sequence is a statistical process.
+Most \gls{MS/MS} spectra only partially cover a peptide sequence,
+which leads to many ambiguities.
+As high-throughput \ms-based proteomics developed,
+researchers dropped manual interpretation and validation
+and move towards empirical score thresholds~\mycite{Broshphd}.
+Thresholds are compromise between sensitivity and accuracy (or error rate),
+\ie\ true positive (or correct) identifications proportion
+\latin{versus} false positive (or incorrect) identifications proportion.
+A high threshold for the scores reduces the error rate, but costs sensitively.
+A low threshold accepts more \psms, but also more incorrect matches.
+
+In addition to the choice of threshold requiring an expert,
+another complication is the unknown real error rate.
+This situation led in the past in result discrepancies:
+results based on the same data varied
+as much as 50\% between different laboratories~\mycite{States2006-qb}.
+It prompted journals to require validation
+with standard statistical (comparable) measures,
+and later the establishments of guidelines by the
+community~\mycite{Bradshaw2006-dg,Binz2008-yz,Rodriguez2009-cc,Kinsinger2012-km}
+
+\minisec{Peptide validation}
+
+Nowadays, among the many methods that validate the peptide assignation and
+estimate its error rate,
+the gold standard is the \gls{TDA}~\mycite{Perkins1999-yc,Elias2007-wi,Savitski2015-fx}.
+
+Many of the search engines compute a \pval\ for each of the \psms,
+but it is insufficient to determine if multiple \psms\ are true matches.
+A low p-value \psm\ has a low probability of being incorrect.
+Because of the large number of \psms\ per experiment,
+statistically a portion of these \emph{are} incorrect.
+Thus, other statistical measures
+adjusting for multi-testing (see \Cref{multitesting})
+are required.
+Corrections (such as Bonferroni~\mycite{Shaffer1995-lp}) can be applied
+though they are stringent and discard many correct \psms.
+\glsentrydesc{FDR}~(\gls{FDR}) $[$\citet*{Benjamini1995-nf}$]$ is (in \ms\ proteomics)
+a statistical measure of the proportion of incorrect \psms\
+among all accepted \psms~\mycite{Nesvizhskii2010-mz,Aggarwal2015-hi},
+see \Cref{eq:fdr-prot}.
+Different approaches exist to estimate it.
+The most favoured is \gls{TDA}
+as it is non-parametric, easy to apply, and
+it also has the advantage of working with non-statistical scores search engines.
+
+Instead of figuring which are the correct and incorrect \psms,
+the \glsentrydesc{TDA} (\gls{TDA}) aims to estimate
+the overall \gls{FDR} associated to a specific collection of \psms.
+In turn, this enables assessing the correctness likelihood of each of the \psms\
+in the collection~\mycite{Elias2007-wi}.
+Furthermore, this approach can guide
+the selection of sensitive \psm\ attributes
+(\eg, elution time, charge, peptide length, score)
+for filtering criteria to discern correct identifications~\mycite{Elias2010-kp}.
+
+The key elements of this method are the creation of \emph{decoy} sequences
+that are incorrect but similar to the \emph{target} (\ie\ true) ones,
+and that any \psm\ found for a decoy sequence is by definition spurious.
+The known proportion of decoy versus target sequences in the search space allows
+the computation of the \gls{FDR}~\mycite{Elias2007-wi,Elias2010-kp}.
+
+\begin{equation}\label{eq:fdr-prot}
+    \tag{\gls{FDR} (peptide or protein level)}
+    \begin{split}
+        {\text{FDR}} & =\frac{\text{Number of accepted \glspl{PSM}}_{\text{decoy}}}%
+    {\text{Number of all accepted \glspl{PSM}}}\\
+          & =\frac{\text{Number of accepted \glspl{PSM}}_{\text{decoy}}}%
+    {\text{Number of accepted \glspl{PSM}}_{\text{decoy}}+\text{Number of accepted \glspl{PSM}}_{\text{target}}}
+\end{split}
+\raisetag{4\normalbaselineskip}
+\end{equation}
+
+where: \\{\small
+$\text{\emph{Number of accepted \glspl{PSM}}}_{\text{decoy}}$ is the number of \glspl{PSM}
+from decoy sequences that are above a specified threshold $\mathcal{t}$,\\
+$\text{\emph{Number of all accepted \glspl{PSM}}}$ is the total number of accepted \glspl{PSM}
+above the specified threshold $\mathcal{t}$,
+including the accepted decoy \glspl{PSM}.\\
+$\text{\emph{Number of accepted \glspl{PSM}}}_{\text{target}}$ is the number of accepted \glspl{PSM}
+above the specified threshold $\mathcal{t}$.
+}
+
+The search is performed with the same parameters for the target peptide sequence database
+and the decoy one.
+To be the most effective,
+the decoy sequences have to be as similar as possible to the target ones
+(in terms of \gls{aa} composition, length, mass, charges, search assigned scores).
+There are different ways to design the decoy sequences
+(\eg\ reversed, shuffled,\ldots).
+While the search can be done independently on the target and the decoy database,
+usually they are both concatenated and the search is realised at once.
+
+\glsentrydesc{PEP} (\gls{PEP}) (also known as \emph{local \gls{FDR}}) is the probability of a \psm\
+being incorrect.
+
 
 \subsubsection{Protein quantification}
 
@@ -1969,8 +2119,6 @@ and their included references for some examples.
 
 
 \section{Reproducibility~and~Experimental~design}\label{sec:expDesign}
-%\TK{Do not forget to explain why the use of different numbers of samples in
-%meta-analysis creates problem!!!}
 
 Science develops on reproducible facts,
 as they help with drawing relevant and accurate conclusions.
@@ -1979,10 +2127,28 @@ it is essential that observations and measurements
 are (as much as possible) unbiased
 towards any parameter outside of the study focus.
 To this aim, one of the most important issues that need to be tightly monitored
-is the presence of batch effects.
+is the presence of \emph{batch effects}.
+Including \emph{replicates} in the study is the most effective way to control
+for the unwanted batch effects.
 
-%%%% a completer ici aussi
-%Other biases
+Meta-analyses are studies that combine (or aggregate) the results of multiple analyses.
+One of their main weaknesses is
+that meta-analyses lack
+to control bias sources and correct for bad designs~\mycite{Slavin1986-py}.
+Because results from smaller studies are more prone to \enquote{play of chance},
+they are usually weighted less than bigger studies
+when they are directly combined across many studies~\mycite{Egger1997-ny},
+particularly when combining statistical results.
+However, it is not always true and bigger studies may be subjected
+to greater uncontrolled variations.
+\citet{Egger1997-ny} recommend to test the heterogeneity across the studies
+to be combined.
+Examining the studies outcomes similarity degree allows figuring
+if the variation between the studies are only due to sampling or
+to a distribution of different effects.
+To compare studies together,
+individual results are standardly expressed
+(\eg\ means, medians, confidence interval).
 
 \subsection{Batch effects}\label{sub:BatchEffect}
 
@@ -2008,6 +2174,9 @@ These replicates are usually created and processed randomly
 as to avoid creating any artefactual link between them.
 
 A~replicate~is~a~set~of~measurements~done~in~the~same~condition.
+
+Correction can be applied and may help to resolve batch effects in some cases
+(see for examples \citet{Oytam2016-rb,Gagnon-Bartsch2012-dj,Peixoto2015-wg}).
 
 \subsection{Technical replicates}
 Technical replicates are initially from the same sample,
