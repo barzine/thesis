@@ -90,18 +90,18 @@ transcription factor binding~\mycite{Bulyk2002-ii,Bulyk2007-jc} studies.
 }
 {\footnotesize
 Legende:\\
-\quad{\color[rgb]{0.447059,0.678431,0.274510}\textbullet Read identifier}\\
-\quad{\color[rgb]{0.500000,0.500000,0.500000}\textbullet Optional information (here flow cell lane:tile number:x:y:z)}\\
-\quad{\color[rgb]{1.000000,0.000000,0.000000}\textbullet First member of pair (here) or single-end}\\
-\quad\textbullet Nucleotide sequence of the read\\
-\quad{\color[rgb]{0.698039,0.145098,0.450980}\textbullet Separator (+ or any string of character)}\\
-\quad{\color[rgb]{0.000000,0.000000,0.555711}\textbullet Phred score (here Phred 33)}
+\quad{\color[rgb]{0.447059,0.678431,0.274510}\textbullet\ Read identifier}\\
+\quad{\color[rgb]{0.500000,0.500000,0.500000}\textbullet\ Optional information (here flow cell lane:tile number:x:y:z)}\\
+\quad{\color[rgb]{1.000000,0.000000,0.000000}\textbullet\ First member of pair (here) or single-end}\\
+\quad\textbullet\ Nucleotide sequence of the read\\
+\quad{\color[rgb]{0.698039,0.145098,0.450980}\textbullet\ Separator (+ or any string of character)}\\
+\quad{\color[rgb]{0.000000,0.000000,0.555711}\textbullet\ Phred score (here Phred 33)}
 }
 \end{minipage}
 \caption{FASTQ format}\label{fig:fastqFormat}
 \end{figure}
 
-\FloatBarrier
+\FloatBarrier\
 
 \section{Phred score}\label{sec:PhredScore}
 
@@ -164,7 +164,7 @@ L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
 
 \begin{table}[]
 \centering
-\caption{\gls{FPKM} are unsuitable for differential expression analysis}
+\caption{\gls{FPKM} are unsuitable for differential expression analysis}%
 \label{tab:noFPKM4DEA}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -179,7 +179,7 @@ L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
 \end{tabular}
 \end{table}
 
-\FloatBarrier
+\FloatBarrier\
 
 
 \section{Mass analysers}\label{sec:appMassAnalysers}
@@ -270,7 +270,7 @@ and number of neutrons (N)) that may be found in \glspl{DNA}, \glspl{RNA} and pr
 {\textbf{Most common constitutive elements and their stable isotopes\\ found in DNAs,
 RNAs and proteins.} Asterisks (*) mark abundances that are not available.%
 Adapted from~\mycite{Audi1993-qn,Audi1995-uk,Rosman1998-xu}
-}
+}%
 \label{tab:isotope}
 \begin{tabular}{@{}clccr@{}}
 \toprule
@@ -367,8 +367,12 @@ the stronger the evidence that $\mathcal{H}_0$ has to be rejected.
 $\mathcal{H}_0$ is rejected if the adequate probability is less than or equal to
 an arbitrary pre-defined (\ie\ prior to the analysis) threshold value $\alpha$.
 
+Under $\mathcal{H}_0$,
+the assumption is that the p-values are uniformly distributed.
+
 \subsection{q-value}\label{q-value}\label{multitesting}
-A q-value is an adjusted p-value.
+A q-value is an adjusted p-value
+(which the calculation may or may not be based on the p-value).
 In the context of multi-testing,
 \ie\ when multiple simultaneous statistical tests occur,
 the likelihood of rejecting $\mathcal{H}_0$ due to a random sampling increases.
@@ -376,6 +380,5 @@ To avoid accepting the alternative hypothesis by mistake,
 the whole p-values collection is tested and adjusted for \glsentrydesc{FDR}.
 A q-value of 5\% means that 5\% of all the significant results
 are actually false positives.
-
 
 
