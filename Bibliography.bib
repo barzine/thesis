@@ -14880,3 +14880,193 @@
   pmc      = "PMC2922680"
 }
 
+
+
+@ARTICLE{Wang2009-ww,
+  title    = "Decoy methods for assessing false positives and false discovery
+              rates in shotgun proteomics",
+  author   = "Wang, Guanghui and Wu, Wells W and Zhang, Zheng and Masilamani,
+              Shyama and Shen, Rong-Fong",
+  abstract = "The potential of getting a significant number of false positives
+              (FPs) in peptide-spectrum matches (PSMs) obtained by proteomic
+              database search has been well-recognized. Among the attempts to
+              assess FPs, the concomitant use of target and decoy databases is
+              widely practiced. By adjusting filtering criteria, FPs and false
+              discovery rate (FDR) can be controlled at a desired level.
+              Although the target-decoy approach is gaining in popularity,
+              subtle differences in decoy construction (e.g., reversing vs
+              stochastic methods), rate calculation (e.g., total vs unique
+              PSMs), or searching (separate vs composite) do exist among
+              various implementations. In the present study, we evaluated the
+              effects of these differences on FP and FDR estimations using a
+              rat kidney protein sample and the SEQUEST search engine as an
+              example. On the effects of decoy construction, we found that,
+              when a single scoring filter (XCorr) was used, stochastic methods
+              generated a higher estimation of FPs and FDR than sequence
+              reversing methods, likely due to an increase in unique peptides.
+              This higher estimation could largely be attenuated by creating
+              decoy databases similar in effective size but not by a simple
+              normalization with a unique-peptide coefficient. When multiple
+              filters were applied, the differences seen between reversing and
+              stochastic methods significantly diminished, suggesting multiple
+              filterings reduce the dependency on how a decoy is constructed.
+              For a fixed set of filtering criteria, FDR and FPs estimated by
+              using unique PSMs were almost twice those using total PSMs. The
+              higher estimation seemed to be dependent on data acquisition
+              setup. As to the differences between performing separate or
+              composite searches, in general, FDR estimated from the separate
+              search was about three times that from the composite search. The
+              degree of difference gradually decreased as the filtering
+              criteria became more stringent. Paradoxically, the estimated true
+              positives in separate search were higher when multiple filters
+              were used. By analyzing a standard protein mixture, we
+              demonstrated that the higher estimation of FDR and FPs in the
+              separate search likely reflected an overestimation, which could
+              be corrected with a simple merging procedure. Our study
+              illustrates the relative merits of different implementations of
+              the target-decoy strategy, which should be worth contemplating
+              when large-scale proteomic biomarker discovery is to be
+              attempted.",
+  journal  = "Analytical chemistry",
+  volume   =  81,
+  number   =  1,
+  pages    = "146--159",
+  month    =  jan,
+  year     =  2009,
+  language = "en",
+  issn     = "0003-2700, 1520-6882",
+  pmid     = "19061407",
+  doi      = "10.1021/ac801664q",
+  pmc      = "PMC2653784"
+}
+
+@ARTICLE{Wright2016-as,
+  title    = "{DecoyPyrat}: Fast Non-redundant Hybrid Decoy Sequence Generation
+              for Large Scale Proteomics",
+  author   = "Wright, James C and Choudhary, Jyoti S",
+  abstract = "Accurate statistical evaluation of sequence database peptide
+              identifications from tandem mass spectra is essential in mass
+              spectrometry based proteomics experiments. These statistics are
+              dependent on accurately modelling random identifications. The
+              target-decoy approach has risen to become the de facto approach
+              to calculating FDR in proteomic datasets. The main principle of
+              this approach is to search a set of decoy protein sequences that
+              emulate the size and composition of the target protein sequences
+              searched whilst not matching real proteins in the sample. To do
+              this, it is commonplace to reverse or shuffle the proteins and
+              peptides in the target database. However, these approaches have
+              their drawbacks and limitations. A key confounding issue is the
+              peptide redundancy between target and decoy databases leading to
+              inaccurate FDR estimation. This inaccuracy is further amplified
+              at the protein level and when searching large sequence databases
+              such as those used for proteogenomics. Here, we present a
+              unifying hybrid method to quickly and efficiently generate decoy
+              sequences with minimal overlap between target and decoy peptides.
+              We show that applying a reversed decoy approach can produce up to
+              5\% peptide redundancy and many more additional peptides will
+              have the exact same precursor mass as a target peptide. Our
+              hybrid method addresses both these issues by first switching
+              proteolytic cleavage sites with preceding amino acid, reversing
+              the database and then shuffling any redundant sequences. This
+              flexible hybrid method reduces the peptide overlap between target
+              and decoy peptides to about 1\% of peptides, making a more robust
+              decoy model suitable for large search spaces. We also demonstrate
+              the anti-conservative effect of redundant peptides on the
+              calculation of q-values in mouse brain tissue data.",
+  journal  = "Journal of proteomics \& bioinformatics",
+  volume   =  9,
+  number   =  6,
+  pages    = "176--180",
+  month    =  jun,
+  year     =  2016,
+  keywords = "Database searching; FDR; Python; Sequence database; Shotgun
+              proteomics; Target-decoy",
+  language = "en",
+  issn     = "0974-276X",
+  pmid     = "27418748",
+  doi      = "10.4172/jpb.1000404",
+  pmc      = "PMC4941923"
+}
+
+
+@ARTICLE{Blanco2009-u6,
+  title    = "Comparison of novel decoy database designs for optimizing protein
+              identification searches using {ABRF} {sPRG2006} standard {MS/MS}
+              data sets",
+  author   = "Blanco, Luca and Mead, Jennifer A and Bessant, Conrad",
+  abstract = "Decoy database searches are used to filter out false positive
+              protein identifications derived from search engines, but there is
+              no consensus about which decoy is ``the best''. We evaluate nine
+              different decoy designs using public data sets from samples of
+              known composition. Statistically significant performance
+              differences were found, but no single decoy stood out among the
+              best performers. Ultimately, we recommend peptide level reverse
+              decoys searched independently from the target.",
+  journal  = "Journal of proteome research",
+  volume   =  8,
+  number   =  4,
+  pages    = "1782--1791",
+  month    =  apr,
+  year     =  2009,
+  language = "en",
+  issn     = "1535-3893",
+  pmid     = "19714810",
+  doi      = "10.1021/pr800792z"
+}
+
+
+@BOOK{Gagniuc2017-nj,
+  title     = "Markov Chains: From Theory to Implementation and Experimentation",
+  author    = "Gagniuc, Paul A",
+  abstract  = "A fascinating and instructive guide to Markov chains for
+               experienced users and newcomers alikeThis unique guide to Markov
+               chains approaches the subject along the four convergent lines of
+               mathematics, implementation, simulation, and experimentation. It
+               introduces readers to the art of stochastic modeling, shows how
+               to design computer implementations, and provides extensive
+               worked examples with case studies.Markov Chains: From Theory to
+               Implementation and Experimentation begins with a general
+               introduction to the history of probability theory in which the
+               author uses quantifiable examples to illustrate how probability
+               theory arrived at the concept of discrete-time and the Markov
+               model from experiments involving independent variables. An
+               introduction to simple stochastic matrices and transition
+               probabilities is followed by a simulation of a two-state Markov
+               chain. The notion of steady state is explored in connection with
+               the long-run distribution behavior of the Markov chain.
+               Predictions based on Markov chains with more than two states are
+               examined, followed by a discussion of the notion of absorbing
+               Markov chains. Also covered in detail are topics relating to the
+               average time spent in a state, various chain configurations, and
+               n-state Markov chain simulations used for verifying experiments
+               involving various diagram configurations.• Fascinating
+               historical notes shed light on the key ideas that led to the
+               development of the Markov model and its variants• Various
+               configurations of Markov Chains and their limitations are
+               explored at length• Numerous examples—from basic to complex—are
+               presented in a comparative manner using a variety of color
+               graphics• All algorithms presented can be analyzed in either
+               Visual Basic, Java Script, or PHP• Designed to be useful to
+               professional statisticians as well as readers without extensive
+               knowledge of probability theoryCovering both the theory
+               underlying the Markov model and an array of Markov chain
+               implementations, within a common conceptual framework, Markov
+               Chains: From Theory to Implementation and Experimentation is a
+               stimulating introduction to and a valuable reference for those
+               wishing to deepen their understanding of this extremely valuable
+               statistical tool.Paul A. Gagniuc, PhD, is Associate Professor at
+               Polytechnic University of Bucharest, Romania. He obtained his MS
+               and his PhD in genetics at the University of Bucharest. Dr.
+               Gagniuc's work has been published in numerous high profile
+               scientific journals, ranging from the Public Library of Science
+               to BioMed Central and Nature journals. He is the recipient of
+               several awards for exceptional scientific results and a highly
+               active figure in the review process for different scientific
+               areas.",
+  publisher = "John Wiley \& Sons",
+  month     =  jul,
+  year      =  2017,
+  language  = "en",
+  isbn      = "9781119387558"
+}
+

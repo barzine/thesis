@@ -1956,7 +1956,8 @@ adjusting for multi-testing (see \Cref{multitesting})
 are required.
 Corrections (such as Bonferroni~\mycite{Shaffer1995-lp}) can be applied
 though they are stringent and discard many correct \psms.
-\glsentrydesc{FDR}~(\gls{FDR}) $[$\citet*{Benjamini1995-nf}$]$ is (in \ms\ proteomics)
+\glsentrydesc{FDR}~(\gls{FDR}) $[$\citet*{Benjamini1995-nf}$]$ is
+(in \ms\ proteomics)
 a statistical measure of the proportion of incorrect \psms\
 among all accepted \psms~\mycite{Nesvizhskii2010-mz,Aggarwal2015-hi},
 see \Cref{eq:fdr-prot}.
@@ -1969,17 +1970,20 @@ Instead of figuring which are the correct and incorrect \psms,
 the \glsentrydesc{TDA} (\gls{TDA}) aims to estimate
 the overall \gls{FDR} associated to a specific collection of \psms.
 In turn, this enables assessing the correctness likelihood of each of the \psms\
-in the collection~\mycite{Elias2007-wi}.
-Furthermore, this approach can guide
+in the collection~\mycite{Elias2007-wi}
+(see following segments on \emph{q-values} and \gls{PEP}).
+Besides, this approach can guide
 the selection of sensitive \psm\ attributes
 (\eg, elution time, charge, peptide length, score)
 for filtering criteria to discern correct identifications~\mycite{Elias2010-kp}.
-
-The key elements of this method are the creation of \emph{decoy} sequences
-that are incorrect but similar to the \emph{target} (\ie\ true) ones,
-and that any \psm\ found for a decoy sequence is by definition spurious.
+The key elements of this method are
+the creation of a \emph{decoy} database with sequences
+that are incorrect but similar (while non-overlapping)
+to the \emph{target} (\ie\ true) ones,
+and that consequently any \psm\ found for a decoy sequence is by definition spurious.
 The known proportion of decoy versus target sequences in the search space allows
 the computation of the \gls{FDR}~\mycite{Elias2007-wi,Elias2010-kp}.
+\vspace{-9mm}
 
 \begin{equation}\label{eq:fdr-prot}
     \tag{\gls{FDR} (peptide or protein level)}
@@ -1991,30 +1995,64 @@ the computation of the \gls{FDR}~\mycite{Elias2007-wi,Elias2010-kp}.
 \end{split}
 \raisetag{4\normalbaselineskip}
 \end{equation}
-
-where: \\{\small
-$\text{\emph{Number of accepted \glspl{PSM}}}_{\text{decoy}}$ is the number of \glspl{PSM}
-from decoy sequences that are above a specified threshold $\mathcal{t}$,\\
-$\text{\emph{Number of all accepted \glspl{PSM}}}$ is the total number of accepted \glspl{PSM}
+\begin{comment}
+\vspace{-6mm}
+where:
+{\small
+\begin{itemize}[topsep=0pt,nosep]
+    \item $\text{\emph{Number of accepted \glspl{PSM}}}_{\text{decoy}}$
+is the number of \glspl{PSM} from decoy sequences
+that are above a specified threshold $\mathcal{t}$,
+    \item $\text{\emph{Number of all accepted \glspl{PSM}}}$
+is the total number of accepted \glspl{PSM}
 above the specified threshold $\mathcal{t}$,
-including the accepted decoy \glspl{PSM}.\\
-$\text{\emph{Number of accepted \glspl{PSM}}}_{\text{target}}$ is the number of accepted \glspl{PSM}
-above the specified threshold $\mathcal{t}$.
+including the accepted decoy \glspl{PSM}.
+    \item $\text{\emph{Number of accepted \glspl{PSM}}}_{\text{target}}$
+is the number of accepted \glspl{PSM} above the specified threshold $\mathcal{t}$.
+\end{itemize}
 }
+\end{comment}
 
-The search is performed with the same parameters for the target peptide sequence database
-and the decoy one.
 To be the most effective,
+decoy and target peptide sequence databases are searched with the same parameters.
+Furthermore, to ensure that
+a wrong hit in the target database and a hit in the decoy one are as likely,
 the decoy sequences have to be as similar as possible to the target ones
-(in terms of \gls{aa} composition, length, mass, charges, search assigned scores).
-There are different ways to design the decoy sequences
-(\eg\ reversed, shuffled,\ldots).
-While the search can be done independently on the target and the decoy database,
-usually they are both concatenated and the search is realised at once.
+(in terms of \gls{aa} frequencies and composition,
+length, mass, charges, assigned scores).
+There are different ways to design the decoy sequences,
+such as reversing peptide or protein sequences
+(either complete or pseudo-reversion where the last \gls{aa} is kept in place),
+or by using stochastic methods on the target database
+(\eg\ randomisation of the sequences or
+creation of new ones based on \glspl{aa} frequencies, their length distribution,
+and their number in the original database --- Markov chain models~\mycite{Gagniuc2017-nj}
+are often used to mimic to the closest the target sequences).
+Many studies explore and compare the different decoy creation
+methods~\mycite{Elias2007-wi,Wang2009-ww,Elias2010-kp,Wright2016-as}.
+As for the target database,
+the decoy sequences are digested \latin{in silico} before the search.
+While the search can be done independently
+on the target and the decoy databases~\mycite{Blanco2009-u6},
+\citet*{Elias2007-wi} report
+that searching once their resulting concatenation gives better results.
+
+
+As most of the search engines return multiple scores: Percolator uses them all
+to find the best threshold and by machine learning will distinguish the correct
+and incorrect \psms\ for the target database.\mycite{Kall2007-qn}
+
+Two other measures for peptide validation used by algorithms to infer the
+identity of the proteins are q-values and \glsentrydesc{PEP}.
+
+A possible definition of \psm's \emph{q-value} is
+the minimal \gls{FDR} threshold for which the \psm\ is accepted as correct.
+As
 
 \glsentrydesc{PEP} (\gls{PEP}) (also known as \emph{local \gls{FDR}}) is the probability of a \psm\
 being incorrect.
 
+\subsubsection{Protein inference}
 
 \subsubsection{Protein quantification}
 
