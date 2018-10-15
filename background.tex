@@ -1473,6 +1473,7 @@ instead.
 
 \minisec{Liquid chromatography (LC)}
 
+\vspace{-0.5mm}
 Chromatography is a technique of choice for the separation of mixtures into their
 components or --- at least --- in simpler mixtures. \gls{LC}, as any
 chromatography, involves a \emph{mobile} and a \emph{stationary} phase.
@@ -1481,6 +1482,7 @@ separated. A column plays the stationary phase part.
 High pressure may be applied (\eg\ \glsxtrfull{HPLC} or \glsxtrfull{UPLC})
 to fasten the process.
 
+\vspace{-0.5mm}
 The separation relies on the difference of affinity of the mixture components
 towards the mobile and stationary phases. Many combinations may be used. However,
 any inadequate choice may precipitate the mixture on the (\emph{extremely})
@@ -1497,11 +1499,14 @@ occurs on the polarity of the molecules and the most hydrophobic a molecule,
 the longest it will remain in the column as it will present fewer interactions
 with the eluent.
 
+\vspace{-0.5mm}
 The ease of coupling this powerful method to the (also powerful) \ms\ explains
 why \gls{LC-MS} is so widespread nowadays. Their combined use also allows high
 repeatability and optimised running time.
+\vspace{-1mm}
 
 \subsection{Characterisation through Fragmentation profiles}
+\vspace{-3mm}
 
 The first reported use of the principle underlying \ms\ happened in 1913 when
 Sir Joseph John Thomson channelled a stream of neon ions through an electromagnetic
@@ -1515,8 +1520,8 @@ for a large spectrum of molecules of interest, the detection,
 the characterisation and even, for the smaller ones, the resolution of their
 structures.
 \end{comment}
-In this context, the use of \ms\ in proteomics is quite recent as it
-is developing from the 1980s onwards~\mycite{BiomolBio}.
+In this context, the use of \ms\ is quite recent in proteomics
+as it is developing from the 1980s onwards~\mycite{BiomolBio}.
 
 \subsubsection{General principle}
 
@@ -1553,8 +1558,8 @@ minimum of fragmentation (if none at all). The molecules are fixed onto a matrix
 (a gel) and then a pulsed \gls{laser} irradiates the sample which provokes the
 ablation and then the desorption from the matrix and ionisation of the molecules.
 This method had increased popularity as separation gels (\eg\ \gls{SDS-PAGE})
-may be used directly for both steps. \mycite{BiomolBio}.\\However, many
-manufactured mass spectrometers are incompatible
+may be used directly for both steps. \mycite{BiomolBio}.
+However, it requiers compatible mass spectrometers
 with this ionisation technique~\mycite{Zhang2014,Walther2010}.
 
 \gls{ESI} is currently the most popular technique of ionisation, mainly
@@ -1706,7 +1711,7 @@ There are two possible acquisition modes: \gls{DDA} and \gls{DIA}.
 
 The most common \gls{DDA} approach has many advantages~\mycite{AebersoldMann2016}.
 It is unbiased and free from hypothesis,
-and as such is a great tools for global discovery study.
+and hence a great tools for global discovery study.
 It surveys the proteome all at once,
 and prior knowledge is unrequired.
 Its popularity increased concomitantly to the increased availability of
@@ -2034,31 +2039,74 @@ As for the target database,
 the decoy sequences are digested \latin{in silico} before the search.
 While the search can be done independently
 on the target and the decoy databases~\mycite{Blanco2009-u6},
-\citet*{Elias2007-wi} report
-that searching once their resulting concatenation gives better results.
+\citet*{Elias2007-wi} report that
+searching their resulting concatenation gives better results.
 
+A Most of the search engines return multiple scores.
+So, defining a proper threshold for each of them can be challenging or cumbersome.
+A possible solution is \soft{Percolator},
+which trains a \glsentrydesc{SVM} (\gls{SVM})~\mycite{Boser1992-yn}
+to distinguish the correct and incorrect \psms{}~\mycite{Kall2007-qn}.
+This machine learning based algorithm has several advantages.
+It can exploits many scores and other specific data features
+to automatically determine the best threshold
+without overfitting to a particular collection of \psms.
+Thus, comparing results between studies and laboratories are facilated.
+Moreover, many studies have reported that the use of \soft{Percolator}
+improves the results both as accuracy and
+sensitivity~\mycite{Granholm2014-cw,Xu2013-si,Tu2015-iy,The2016-dq,Wright2012-od}
+Besides, many pipelines integrate it to provide
+the significance measures needed for publication.
+\soft{Percolator} can either be used directly on
+the collection of target and decoy \psms,
+or as a post-processing step to the \gls{TDA}.
 
-As most of the search engines return multiple scores: Percolator uses them all
-to find the best threshold and by machine learning will distinguish the correct
-and incorrect \psms\ for the target database.\mycite{Kall2007-qn}
-
-Two other measures for peptide validation used by algorithms to infer the
-identity of the proteins are q-values and \glsentrydesc{PEP}.
+Two other significance measures for \psm\ validation used by algorithms
+infering proteins identity are q-values and \gls{PEP}.
 
 A possible definition of \psm's \emph{q-value} is
 the minimal \gls{FDR} threshold for which the \psm\ is accepted as correct.
-As
+As the q-values are derived from the \gls{FDR},
+which is specific to a \psm\ collection,
+they are also (solely) specific to this collection.
+For example,
+\soft{Percolator} estimates the q-value
+by using the score distribution from the \gls{TDA}.
+On the other hand,
+\glsentrydesc{PEP} (\gls{PEP})
+(also known as \emph{local \gls{FDR}}~\mycite{Efron2001-ai})
+is the probability of a \psm\ being incorrect;
+a \psm's \gls{PEP} is invariant regardless of the \psms\ collection.
+A classical approach to estimating \glspl{PEP} uses
+training sets of target and decoy \psms\ to learn the paramaters
+of a probability model (indispensable to compute the \glspl{PEP}).
+Thus, for each given score (of any collection), a specific \gls{PEP} is associated.
+\citet{Choi2008-ec} showed that for a given collection,
+the sum of the \glspl{PEP} is equal to the expected number of incorrect \psms,
+which allows calculating the (global) \gls{FDR}.
 
-\glsentrydesc{PEP} (\gls{PEP}) (also known as \emph{local \gls{FDR}}) is the probability of a \psm\
-being incorrect.
+Methods based on \gls{PEP} instead of q-values are more conservative,
+as \glspl{PEP} are always greater than q-values~\mycite{Kall2008-tf},
+see also \Cref{fig:MSstatval}.
+While \glspl{PEP} are more indicated for single verification such as
+the presence validation of an explicit peptide in a particular sample,
+for high-throughput proteomics that survey the overall proteome landscape,
+q-values are usually favoured
+as the whole collection of \psms\ is considered~\mycite{Kall2008-tf}.
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.6]{background/MSstatsVal.pdf}\centering
+    \caption[Methods for assigning statistical significance]{\label{fig:MSstatval}%
+    \textbf{Methods for assigning statistical significance to a collection of \psms}.
+    Adapted from \mycite{Kall2008-tf}}
+\end{figure}
+
 
 \subsubsection{Protein inference}
 
-\subsubsection{Protein quantification}
+\subsubsection{Protein quantification (label free)}
 
-
-\subsubsection{Intensity-Based Absolute Quantification (IBAQ)}
-This is a label-free quantification method based on peak intensity.
+\glsentrydesc{IBAQ} (\gls{IBAQ}) is a label-free method based on peak intensity.
 \citet{Arike2012} report that this quantification method is better than the ones
 based on spectral counting (\eg\ \softCi{APEX}{apex-tool}  or
 \softCi{emPAI}{emPAI-tool}) as the estimated quantification correlates better to
@@ -2066,17 +2114,14 @@ the absolute abundance.
 \citet{TOP3isbetter} refine this statement as \gls{IBAQ} is unfit for direct
 use as a proportional assessment for the complete set of the proteins
 due to biases quantification errors.
-Indeed, \gls{IBAQ} dramatically underestimates the low-abundant proteins.
+Indeed, \gls{IBAQ} dramatically underestimates the low abundant proteins.
 To improve the general estimation,
 they argue to use a variation of the \gls{IBAQ},
 \emph{Top3} approach~\mycite{Silva-Top3}
 which represents the abundance of each protein by the average intensity of
-its three best-ionised peptides.
+its three best ionised (unique) peptides.
 They also warn about the lesser accuracy of the Top3 method
 for the shorter proteins and a saturating effect for the larger proteins.
-
-
-
 
 \section{Possible~downstream~analyses~for~expression~data}\label{sec:enrichmentAnalysis}
 
