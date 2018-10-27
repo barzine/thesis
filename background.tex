@@ -1767,6 +1767,18 @@ Because the sheer amount of produced data is in the terabyte (\gls{TB}) range,
 it prohibits any manual handling and requires automation~\mycite{Codrea2016},
 most notably for the data matching (\ms\ spectra to databases content) and
 protein identification steps~\mycite{Nilsson2010}.
+Besides, shotgun proteomics produce highly redundant data:
+peptide subsets that ionise better than the rest
+are repeatedly and preferentially selected for fragmentation
+and thus will produce more \gls{MS/MS} spectra~\mycite{Eriksson2007-si,Koziol2013-si}.
+On the other hand,
+peptide subsets are also undetectable with the current available technology
+(they may hardly ionise or their signal is weak and recovered
+by other more abundant or more ionisable peptides).
+Thus, shotgun experiments are plagued by missing data~\mycite{Stead2008-in,Lazar2016-oe},
+and the protein identification processus leads to three computational challenges:
+peptide identification, protein inference and result validation~\mycite{Huang2012-nr}.
+
 As for \Rnaseq, for each proteomics analysis step,
 there are many tools.
 Many integrate a few (if not all) of the following described steps,
@@ -1775,7 +1787,6 @@ or \softFoCi{OpenMS}{http://www.openms.de/}{Pfeuffer2017-dh}.
 From the raw data acquisition to downstream analyses
 (or any of the intermediate steps),
 these tools can be combined in many different pipelines~\mycite{Vitek2009}.
-
 The pipelines vary depending on experimental design, data type
 (\ie\ expression, modification state or interactions map)
 and the practical creation of the data (method of separation,
@@ -1943,7 +1954,7 @@ as much as 50\% between different laboratories~\mycite{States2006-qb}.
 It prompted journals to require validation
 with standard statistical (comparable) measures,
 and later the establishments of guidelines by the
-community~\mycite{Bradshaw2006-dg,Binz2008-yz,Rodriguez2009-cc,Kinsinger2012-km}
+community~\mycite{Bradshaw2006-dg,Binz2008-yz,Rodriguez2009-cc,Kinsinger2012-km}.
 
 \minisec{Peptide validation}
 
@@ -1951,7 +1962,7 @@ Nowadays, among the many methods that validate the peptide assignation and
 estimate its error rate,
 the gold standard is the \gls{TDA}~\mycite{Perkins1999-yc,Elias2007-wi,Savitski2015-fx}.
 
-Many of the search engines compute a \pval\ for each of the \psms,
+Many search engines compute a \pval\ for each of the \psms,
 but it is insufficient to determine if multiple \psms\ are true matches.
 A low p-value \psm\ has a low probability of being incorrect.
 Because of the large number of \psms\ per experiment,
@@ -1970,6 +1981,8 @@ Different approaches exist to estimate it.
 The most favoured is \gls{TDA}
 as it is non-parametric, easy to apply, and
 it also has the advantage of working with non-statistical scores search engines.
+Alternative approaches, \ie/ the probabilistic model ones,
+may be more informative at times, but require many (accurate) assumptions.
 
 Instead of figuring which are the correct and incorrect \psms,
 the \glsentrydesc{TDA} (\gls{TDA}) aims to estimate
@@ -2018,7 +2031,8 @@ is the number of accepted \glspl{PSM} above the specified threshold $\mathcal{t}
 }
 \end{comment}
 
-To be the most effective,
+\vspace{-4mm}
+For best effectiveness,
 decoy and target peptide sequence databases are searched with the same parameters.
 Furthermore, to ensure that
 a wrong hit in the target database and a hit in the decoy one are as likely,
@@ -2042,7 +2056,7 @@ on the target and the decoy databases~\mycite{Blanco2009-u6},
 \citet*{Elias2007-wi} report that
 searching their resulting concatenation gives better results.
 
-A Most of the search engines return multiple scores.
+Most of the search engines return multiple scores.
 So, defining a proper threshold for each of them can be challenging or cumbersome.
 A possible solution is \soft{Percolator},
 which trains a \glsentrydesc{SVM} (\gls{SVM})~\mycite{Boser1992-yn}
@@ -2053,18 +2067,22 @@ to automatically determine the best threshold
 without overfitting to a particular collection of \psms.
 Thus, comparing results between studies and laboratories are facilated.
 Moreover, many studies have reported that the use of \soft{Percolator}
-improves the results both as accuracy and
-sensitivity~\mycite{Granholm2014-cw,Xu2013-si,Tu2015-iy,The2016-dq,Wright2012-od}
+improves the results both as accuracy and sensitivity and
+increases the overall number of identified peptides~\mycite{Granholm2014-cw,%
+Xu2013-si,Tu2015-iy,The2016-dq,Wright2012-od}.
 Besides, many pipelines integrate it to provide
 the significance measures needed for publication.
 \soft{Percolator} can either be used directly on
 the collection of target and decoy \psms,
-or as a post-processing step to the \gls{TDA}.
+or as a post-processing step.
 
-Two other significance measures for \psm\ validation used by algorithms
-infering proteins identity are q-values and \gls{PEP}.
+\vspace{-0.7mm}
+Algorithms infering proteins identity also use
+two other significance measures for \psm\ validation:
+q-values and \gls{PEP}.
 
-A possible definition of \psm's \emph{q-value} is
+\vspace{-0.7mm}
+A possible definition of \psm's \emph{q-value}\label{qvalP} is
 the minimal \gls{FDR} threshold for which the \psm\ is accepted as correct.
 As the q-values are derived from the \gls{FDR},
 which is specific to a \psm\ collection,
@@ -2073,7 +2091,7 @@ For example,
 \soft{Percolator} estimates the q-value
 by using the score distribution from the \gls{TDA}.
 On the other hand,
-\glsentrydesc{PEP} (\gls{PEP})
+\glsentrydesc{PEP} (\gls{PEP})\label{PEP}
 (also known as \emph{local \gls{FDR}}~\mycite{Efron2001-ai})
 is the probability of a \psm\ being incorrect;
 a \psm's \gls{PEP} is invariant regardless of the \psms\ collection.
@@ -2085,28 +2103,120 @@ Thus, for each given score (of any collection), a specific \gls{PEP} is associat
 the sum of the \glspl{PEP} is equal to the expected number of incorrect \psms,
 which allows calculating the (global) \gls{FDR}.
 
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.6]{background/MSstatsVal.pdf}\centering
+    \vspace{-3mm}
+    \caption[Methods for assigning statistical significance]{\label{fig:MSstatval}%
+    \textbf{Methods for assigning statistical significance to a collection of \psms}
+   --- Adapted from \mycite{Kall2008-tf}.}
+\end{figure}
+
 Methods based on \gls{PEP} instead of q-values are more conservative,
 as \glspl{PEP} are always greater than q-values~\mycite{Kall2008-tf},
-see also \Cref{fig:MSstatval}.
+see \Cref{fig:MSstatval}.
 While \glspl{PEP} are more indicated for single verification such as
 the presence validation of an explicit peptide in a particular sample,
 for high-throughput proteomics that survey the overall proteome landscape,
 q-values are usually favoured
 as the whole collection of \psms\ is considered~\mycite{Kall2008-tf}.
 
-\begin{figure}[!htpb]
-    \includegraphics[scale=0.6]{background/MSstatsVal.pdf}\centering
-    \caption[Methods for assigning statistical significance]{\label{fig:MSstatval}%
-    \textbf{Methods for assigning statistical significance to a collection of \psms}.
-    Adapted from \mycite{Kall2008-tf}}
+\subsubsection{Protein inference}
+
+While identified as the key problem more than fifteen years ago,
+protein inference (\ie\ identification) remains
+the main challenging issue~\mycite{Nesvizhskii2005-wd,He2016-yi}.
+Note that often in the literature,
+%as researchers' main interest is
+%to identify expressed proteins across samples and conditions,
+\emph{protein inference} also encompasses
+the peptide identification (as an intermediate step)
+and the results validation (both at peptide and protein levels);
+particularly as the peptide identification quality influences the protein one.
+
+Protein inference consists
+in assembling peptides into sets of reliable proteins.
+Most assembly algorithms model
+the relationship between identified peptides and proteins sequences
+as a bipartite graph (\Cref{fig:bipartite})~\mycite{Huang2012-nr}.
+This task is very challenging due to
+the existence of \enquote{degenerate peptides} and \enquote{one-hit wonders}.
+Degenerate peptides are ambiguous peptides
+that are shared by multiple protein sequence definitions.
+When these proteins are homologous with similar biochemical functions,
+some workflows create protein clusters to analyse them together.
+Typically, these ambiguous peptides are discarded and
+the inference relies solely on \enquote{unique peptides},
+\ie\ peptides that are attributable to one protein sequence only.
+\enquote{One-hit wonders} are proteins
+that are identified by a single peptide only.
+They require cautious handling regardless their peptide uniqueness status,
+since if the peptide identification is a false positive (\ie\ an artefact),
+then the protein is also a false positive.
+Shorter proteins are usually harder to identify (and quantify),
+because many are one-hit wonders
+when their constituent peptides are at least detectable.
+Proteins identified by two or more (unique) peptides represent the best case:
+their identification is more reliable and less computationally challenging.
+
+Despite the lack of overlap between the set of confidently identified proteins~\mycite{Searle2008-dx},
+combining several search engine algorithms has proven to yield better results
+than a single search.
+At worst, it improves the confidence of the identification
+as more peptides per protein are characterised~\mycite{Huang2012-nr,Audain2017-jj}.
+
+
+\begin{figure}[!htb]
+    \includegraphics[scale=0.50]{background/modelPeptideAssembly1.pdf}\centering
+    \caption[Protein inference: the bipartite graph]{\label{fig:bipartite}%
+    \textbf{Protein inference: the bipartite graph.} To infer proteins,
+    algorithms attribute each validated peptide to possible proteins of origins.
+    \textit{Peptides 1 and 2} are both included in the definition of
+    \textit{proteins 1 and 2};
+    it is impossible to determine if both proteins are present in the sample or
+    not (while the existence of \textit{protein 1} is also backed by \textit{peptide 3},
+    \textit{protein 2} is only inferred from degenerate peptides).
+    On the other hand, \textit{protein 3} is only identified by \textit{peptide 5}.
+    If the latter is an artefact, then \textit{protein 3} is also an artefact.
+    To achieve the inference,
+    peptide assembly algorithms can rely on
+    the bipartite graph as sole input (blue solid box)
+    or they can include other data types as well,
+    \eg\ the score associated to each \gls{PSM} (dashed blue circle) or
+    the raw spectra itself (teal solid box).
+    }
 \end{figure}
 
+\citet{Huang2012-nr} review the general assumptions
+and problems of inferring correct proteins through peptide assembly.
 
-\subsubsection{Protein inference}
+
+
+
+
+
+\citet{Huang2012-nr} also organise in several categorisation frameworks
+many different algorithms tackling this key step.
+\Cref{fig:ProtInfClass} presents the classification based on
+the underlying algorithmic technique.
+The original article presents different models of algorithm and many example tools.
+
+As this thesis reuses available published data,
+our choice for peptide assembly method is rather conservative:
+the parsimonious model,
+so to avoid inputting additional data that could be missing or
+on which we lack enough context or perspective.
+
+\begin{figure}[!htb]
+    \includegraphics[scale=0.64]{background/ProtInfClass.pdf}\centering
+    \caption[Peptide assembly models classification]{\label{fig:ProtInfClass}%
+    \textbf{Peptide assembly models classification proposed by \citet{Huang2012-nr}.}
+    }
+\end{figure}
 
 \subsubsection{Protein quantification (label free)}
 
-\glsentrydesc{IBAQ} (\gls{IBAQ}) is a label-free method based on peak intensity.
+There are a few different methods to quantify (and normalise) label-free proteomics.
+\glsentrydesc{IBAQ} (\gls{IBAQ}) method is based on peak intensity.
 \citet{Arike2012} report that this quantification method is better than the ones
 based on spectral counting (\eg\ \softCi{APEX}{apex-tool}  or
 \softCi{emPAI}{emPAI-tool}) as the estimated quantification correlates better to
@@ -2116,12 +2226,25 @@ use as a proportional assessment for the complete set of the proteins
 due to biases quantification errors.
 Indeed, \gls{IBAQ} dramatically underestimates the low abundant proteins.
 To improve the general estimation,
-they argue to use a variation of the \gls{IBAQ},
-\emph{Top3} approach~\mycite{Silva-Top3}
-which represents the abundance of each protein by the average intensity of
+they argue to use a variation on \gls{IBAQ}:
+\emph{Top3} approach~\mycite{Silva-Top3},
+which represents the abundance of each protein by the average or sum intensity of
 its three best ionised (unique) peptides.
-They also warn about the lesser accuracy of the Top3 method
-for the shorter proteins and a saturating effect for the larger proteins.
+Top3 allows a better quantification of the proteome landscape in general,
+even if it is less accurate for the shortest proteins and
+saturates for the largest ones.
+
+Common normalisations
+(\eg\ \gls{NSAF}~\mycite{Zybailov2006-nk}, see \Cref{eq:NSAF})
+include the length of the protein sequences
+(as longer proteins are more likely to produce greater number of peptides and
+to be sampled) and the number of spectra that have been acquired within a sample
+for each protein.
+Similar approaches to \Rnaseq\ are used to allow protein comparison
+across different samples.
+
+Alike to protein inference,
+label free quantification methods will most likely develop in the future.
 
 \section{Possible~downstream~analyses~for~expression~data}\label{sec:enrichmentAnalysis}
 

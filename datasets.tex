@@ -805,38 +805,53 @@ with the mzML spectra and FASTA search database to \Pride{PXD002967}.
 Custom Perl scripts parsed, merged and filtered the results of each search engine
 so that every \gls{PSM} had the same identification in at least two of the three
 search engines.
-In each case, the least confident \gls{PEP} (\ie\ the highest) was retained.
+In each case, the least confident \gls{PEP} (\ie\ the highest, see \Cref{PEP}) was retained.
 
-The \glspl{PSM} were then filtered to only keep matches to the three following
+The \glspl{PSM} were then filtered to keep matches only to the three following
 criteria:
 \qval\ less than or equal to $0.01$ (\ie\ 1\% \gls{FDR});
 % $\leq 0.01$
 a \gls{PEP} inferior or equal to 0.05 and
-a peptide length superior or equal to 7 amino acids.
+a peptide length superior or equal to seven amino acids.
 \glspl{PSM} matching contaminant or decoy sequences were also removed.
 
 The resulting list of peptides was then used to infer the proteins with
 a simple approach.
-Protein clusters are created based on the common matching non-null set of peptides,
+Protein clusters were created based on the common matching non-null set of peptides,
 \ie\ each protein cluster has at least one unique peptide.
 Then, the \gls{GENCODE} \gls{CDS} and \gls{Uniprot} accession were mapped back to
 \gls{Ensembl} identifiers.
-The genes that were matching at least 3 unique peptides were kept for the
-remaining of the analysis while the others were discarded. Protein clusters
-matching several gene identifiers or failing the \emph{unique peptide} rule were
-discarded. (The list of the discarded clusters is different for each of the
-proteome datasets.)
+Proteins with a gene (or gene clusters) definition
+matching at least three unique peptides
+were kept for the remaining of the analysis
+while the others were discarded.
 
-The quantification (and normalisation) of the retained proteins were computed
-with the Top3~(\gls{IBAQ}) approach for each experiment.
-When there were more than one experiments per tissue, the final quantification
-values are the average across all the experiments of each tissue.
+The quantification of the retained proteins was computed for each experiment
+with an approach close to the Top3 method~\mycite{Silva-Top3}.
+The precursor intensities of the three most intense \emph{unique} peptides
+per gene identifier (or for gene cluster) were summed,
+before being divided by the total summed quantification of all proteins
+in each sample to provide the \enquote{\emph{within sample abundance}}.
+Then, these abundance values were normalised by the ten genes displaying
+the  lowest  coefficient  of  variation  across  all  tissues.
+When there was more than one experiment per tissue,
+the final quantification values are
+the median value across all the replicates of each tissue.
+
+Protein clusters matching several \gls{Ensembl} gene identifiers or
+failing the \emph{unique peptide} rule are discarded
+from the presented further analyses.
+The list of the discarded clusters is different for each of the
+proteome datasets.
+
 
 Compared to the original \pandey\ study, fewer proteins were quantified, but
 the results are congruent to other previous studies on the range of detection
-and quantification of \gls{LC-MS/MS}. The quantifications were released along
-our paper~\mycite{Wright-2016} and the reanalysis of the \pandey\ data was
-also released through \egxa\ under the accession: E\textminus{}PROT\textminus{}1.
+and quantification of \gls{LC-MS/MS}.
+The quantifications were released along with our paper~\mycite{Wright-2016}
+and the reanalysis of the \pandey\ data was also released
+through \egxa\ under the accession: E\textminus{}PROT\textminus{}1
+and described in \citet{NAR2015}.
 
 \section{Discussion and Conclusion}
 

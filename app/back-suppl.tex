@@ -381,4 +381,27 @@ the whole p-values collection is tested and adjusted for \glsentrydesc{FDR}.
 A q-value of 5\% means that 5\% of all the significant results
 are actually false positives.
 
+\section{One example of normalisation factor for proteomic data}
 
+\begin{minipage}{\textwidth}
+
+\begin{equation}\label{eq:NSAF}
+       \tag{\gls{NSAF}}
+       \text{NSAF} = \frac{\frac{\text{SpC}_p}{\text{Length}_p}}{%
+       \sum_{i=1}^N \frac{\text{SpC}_i}{\text{Length}_i}
+       }
+\end{equation}
+
+where:
+{\small
+\begin{itemize}
+        \item $\text{SpC}$ is the number of acquired spectra for a protein (Spectral count)
+        \item $\text{Length}$ is the length of a protein (can be its molecular weight)
+        \item $p$ is the index of the currently considered protein
+%        \item $\sum_{i=1}^N \frac{\text{SpC}_i}{\text{Length}_i}$ is the sum of all
+%            $\frac{\text{SpC}}{\text{Length}}$ of all the proteins of the sample.
+        \item N is the total number of identified proteins in the sample
+\end{itemize}
+}
+
+\end{minipage}
