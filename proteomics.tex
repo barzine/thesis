@@ -9,6 +9,12 @@ as they have been reprocessed for the purpose of this thesis,
 %with more stringent parameters than the original studies have used,
 it is pertinent to reassess them before any integration with the transcriptomic data.
 
+
+
+
+
+
+
 \section{An~overall~fragmented~world~to~explore}
 
 As I have described in \Cref{ch:background},
@@ -72,10 +78,48 @@ in different datasets}
 \subsection{Technical variability seems to prevail over biological signal:
 correlations between samples from a same tissue are globally lesser than
 correlation between samples from a same study.}
+Confirmation de la literature qui expose que la reproductibilité est compliqué
 
+
+\subsection{New quantification method}
+
+Quantification seems more rigorous than \citet{PandeyData},
+but number of proteins really diminished.
+
+Recall.
+For this thesis, as it reuses available published data,
+our choice for peptide assembly method is rather simple
+to avoid inputting additional data that could be missing or
+on which we lack enough context or perspective.
+It is a variation of the optimistic model~\mycite{Huang2012-nr,Mirzaei2016-zs}.
+As presented in \Cref{subsec:msDataProcess},
+after selecting the peptides identified by at least two search engines
+and filtered on their \gls{PSM} scores,
+all the common non-null sets of peptides
+(each of these sets includes its own unique peptide)
+are used to assemble proteins or protein cluster
+(when it is impossible to sort them out based on the list of validated peptides).
+Each of these proteins or protein clusters has at least one unique peptide.
+Clusters and proteins are then mapped back to \gls{Ensembl} gene identifiers.
+Genes in clusters and
+genes that have a protein that cover less than three unique peptides
+are discarded for most of this thesis analyses.
+
+
+Considered a new approach more relaxed:
+while the identification is done on at least two unique peptide,
+the degenerate peptides distributed across the possible proteins
+similar to what cufflinks does EM algorithm.
+
+\begin{figure}[!]
+    \includegraphics[scale=0.7]{proteomics/tempo.png}\centering
+    \caption[New quantification method]{\label{fig:newQuantProtMeth}\textbf{<++>}<++>}
+\end{figure}
 
 \section{Discussion}
 
+Discuter en quoi notre méthode de ce qui a pu être écrit:
+\mycite{Nesvizhskii2003-ls} peptides are apportioned among all corresponding proteins.
 
 %%%% Maybe?
 %%%Quantification with the first method
