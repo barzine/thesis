@@ -1,0 +1,8 @@
+#https://www.ebi.ac.uk/gxa/search?geneQuery=%5B%7B%22value%22%3A%22OR13C4%22%7D%5D&species=&conditionQuery=%5B%5D&bs=%7B%22homo%20sapiens%22%3A%5B%22ORGANISM_PART%22%5D%2C%22ovis%20aries%22%3A%5B%22ORGANISM_PART%22%5D%7D&ds=%7B%22kingdom%22%3A%5B%22animals%22%5D%7D#differential
+#request performed on Mon 3 Dec 2018 OR13C4
+Gene	Species	Experiment accession	Comparison	log_2 fold change	Adjusted p-value	t-statistic
+ENSG00000148136	homo sapiens	E-MTAB-1776	'EGR2-E356K' vs 'wild type genotype'	-4.2	0.0212658534823099	
+ENSG00000148136	homo sapiens	E-MTAB-3420	'diabetes mellitus' vs 'normal'	1.7	0.00104821351867175	
+ENSG00000148136	homo sapiens	E-GEOD-49439	'differentiated; hAKPC-P' vs 're-differentiated; hIPod'	1.5	0.00211479023390866	
+ENSG00000148136	homo sapiens	E-GEOD-49439	'differentiated; hAKPC-P' vs 'undifferentiated; hIPod'	1.1	0.00516282929080922	
+ENSG00000148136	homo sapiens	E-GEOD-49439	'differentiated; hAKPC-P' vs 'undifferentiated; hAKPC-P'	1.1	0.00600398514886408	

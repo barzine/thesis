@@ -1,0 +1,6 @@
+# Downloaded from: https://www.ebi.ac.uk/gxa/search?geneQuery=%5B%7B%22value%22%3A%22OR13C4%22%7D%5D&species=&conditionQuery=%5B%5D&bs=%7B%22homo%20sapiens%22%3A%5B%22ORGANISM_PART%22%5D%2C%22ovis%20aries%22%3A%5B%22ORGANISM_PART%22%5D%7D&ds=%7B%22kingdom%22%3A%5B%22animals%22%5D%7D#baseline
+# Timestamp: 2018-12-03T15:13:08.946Z
+# Query results for: [{"value":"OR13C4"}], in conditions [], in species Homo sapiens
+# Ordering: By experiment type
+	basal ganglion	brain fragment	cerebellum	cerebral cortex	choroid plexus	diencephalon	forebrain	forebrain and midbrain	hindbrain	medulla oblongata	midbrain	spinal cord	telencephalon	temporal lobe
+HDBR developing brain - 10 post conception weeks	0	0	0	0	3	0	0	0	0	0	0	0	0	0

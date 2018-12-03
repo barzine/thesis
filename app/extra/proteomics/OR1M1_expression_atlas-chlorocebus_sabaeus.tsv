@@ -1,0 +1,16 @@
+# Downloaded from: https://www.ebi.ac.uk/gxa/search?geneQuery=%5B%7B%22value%22%3A%22OR1M1%22%7D%5D&species=&conditionQuery=%5B%5D&bs=%7B%22homo%20sapiens%22%3A%5B%22ORGANISM_PART%22%5D%2C%22chlorocebus%20sabaeus%22%3A%5B%22ORGANISM_PART%22%5D%2C%22ovis%20aries%22%3A%5B%22ORGANISM_PART%22%5D%7D&ds=%7B%22kingdom%22%3A%5B%22animals%22%5D%7D#baseline
+# Timestamp: 2018-12-03T15:16:24.874Z
+# Query results for: [{"value":"OR1M1"}], in conditions [], in species Chlorocebus sabaeus
+# Ordering: By experiment type
+	adrenal gland	blood	caudate nucleus	fibroblast	hippocampal formation	pituitary gland
+6 UCLA - male, 7 to 9 day	0	3	0	0	0	0
+6 UCLA - male, 3 year	NA	1	0	0	0	0
+6 UCLA - male, 2.5 year	NA	0.8	0	0	0	0
+6 UCLA - male, 2 year	0	0.7	0	0	0	0
+6 UCLA - male, 1.75 year	0	1	0	0	0	0
+6 UCLA - male, 1.5 year	0	2	0	0	0	0
+6 UCLA - female, 7.5 to 9 year	0	0.9	0	0	0	0
+6 UCLA - female, 7 to 9 day	0	1	0	0	0	0
+6 UCLA - female, 3 year	NA	0.5	0	0	0	0
+6 UCLA - female, 2 year	0	0.6	0	0	0	0
+6 UCLA - female, 1.75 year	0	2	0	0	0	0

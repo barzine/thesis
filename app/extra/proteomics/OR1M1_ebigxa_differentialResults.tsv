@@ -1,0 +1,14 @@
+#https://www.ebi.ac.uk/gxa/search?geneQuery=%5B%7B%22value%22%3A%22OR1M1%22%7D%5D&species=&conditionQuery=%5B%5D&bs=%7B%22homo%20sapiens%22%3A%5B%22ORGANISM_PART%22%5D%2C%22chlorocebus%20sabaeus%22%3A%5B%22ORGANISM_PART%22%5D%2C%22ovis%20aries%22%3A%5B%22ORGANISM_PART%22%5D%7D&ds=%7B%22kingdom%22%3A%5B%22animals%22%5D%7D#differential
+#Request done Mon 3 Dec 2018
+Gene	Species	Experiment accession	Comparison	log_2 fold change	Adjusted p-value	t-statistic
+ENSG00000170929	homo sapiens	E-GEOD-68086	'colorectal carcinoma' vs 'normal'	-5.2	5.09540828560127e-17	
+ENSG00000170929	homo sapiens	E-GEOD-68086	'breast carcinoma' vs 'normal'	-4.3	2.63027653932716e-13	
+ENSG00000170929	homo sapiens	E-GEOD-68086	'pancreatic adenocarcinoma' vs 'normal'	-3.9	1.37247220673129e-10	
+ENSG00000170929	homo sapiens	E-GEOD-68086	'hepatobiliary carcinoma' vs 'normal'	-3.8	0.00000399479919331132	
+ENSG00000170929	homo sapiens	E-GEOD-52194	'non-triple-negative breast cancer; breast carcinoma' vs 'normal'	3.7	0.00943719761211227	
+ENSG00000170929	homo sapiens	E-GEOD-68086	'non-small cell lung carcinoma' vs 'normal'	-3.2	7.4764727908904e-10	
+ENSG00000170929	homo sapiens	E-GEOD-68086	'glioblastoma' vs 'normal'	-1.6	0.00333634733976656	
+ENSG00000170929	homo sapiens	E-GEOD-49439	'differentiated; hAKPC-P' vs 'undifferentiated; hIPod'	1.5	0.000180009684624856	
+ENSG00000170929	homo sapiens	E-GEOD-49439	'differentiated; hAKPC-P' vs 're-differentiated; hIPod'	1.5	0.000211684161951273	
+ENSG00000170929	homo sapiens	E-GEOD-49439	'differentiated; hAKPC-P' vs 'undifferentiated; hAKPC-P'	1.2	0.000685412344218681	
+ENSG00000170929	homo sapiens	E-MTAB-3420	'diabetes mellitus' vs 'normal'	1.2	0.00128805537505967	
