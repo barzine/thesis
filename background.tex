@@ -33,7 +33,7 @@ Do not forget the (tissues) specifications and the structural functions. =\textg
 \end{comment}
 
 \vspace{-1mm}
-\section{Universality and diversity of Life}
+\section{Universality and diversity of Life}\label{sec:bio}
 \vspace{-1mm}
 
 Every known form of life depends on a common set of molecule types,
@@ -885,7 +885,7 @@ for others the locution will only refer to
 `Read alignment' strategies specifically~\mycite{readMappingDef}.
 Tools as \soft{TopHat2} contributes to this locution vagueness.
 
-\subsubsection{Quantification of \emph{features}}
+\subsubsection{Quantification of \emph{features}}\label{subsubsec:rnaseqQuant}
 
 When working with \Rnaseq\ data, the typical next step after mapping the reads or
 fragments to the reference is to quantify the expression of the
@@ -912,7 +912,7 @@ original sites, thus decreasing the overall number of multimapped fragments.
 
 Two popular tools were used in this thesis,
 \cuffl\footnote{\cuffl\ ---
-\href{http://cole-trapnell-lab.github.io/cufflinks/manual/}%
+\href{http://cole-trapnell-lab.github.io/ufflinks/manual/}%
 {http://cole-trapnell-lab.github.io/cufflinks/manual/}} (2.2.1)~\mycite{cufflinks} and
 \htseq\footnote{\htseq\ ---
 \href{http://www-huber.embl.de/HTSeq/doc/index.html\#}%
@@ -920,7 +920,7 @@ Two popular tools were used in this thesis,
 which are both compatible with \toph\ but rely on different concepts.
 I briefly present them below in their chronological release.
 
-\minisec{Cufflinks}
+\minisec{Cufflinks}\label{minisec:Cufflinks}
 \cuffl\ is part of a collection of tools called
 \soft{Tuxedo suite}\footnote{\soft{Tuxedo suite} user group:
 \href{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}%
@@ -1143,7 +1143,7 @@ A few of them may correct \emph{batch effect} (see \Cref{sec:expDesign}) or
 other confounding factors.
 \soft{RUVSeq}\footref{footnote:1}~\mycite{ruvseq} is one example.
 
-\section{Proteome~exploration~with~Mass~spectrometry}
+\section{Proteome~exploration~with~Mass~spectrometry}\label{sec:exploreProtMS}
 
 Through the last decade,
 the proteomics field has shifted from technical research on instruments and methods
@@ -2128,7 +2128,7 @@ On the other hand, q-values are favoured
 where the whole collection of \psms\ is considered,
 \eg\ for an overview of the proteome landscape.~\mycite{Kall2008-tf}
 
-\subsubsection{Protein inference}
+\subsubsection{Protein inference}\label{subsec:proteinInference}
 
 While identified as the key problem more than fifteen years ago,
 protein inference (\ie\ identification) remains
@@ -2368,7 +2368,7 @@ but recommend to keep the classical \gls{TDA} for $\mathcal{H}_0''$
 as there is a lack of a better method to date
 (and picked \gls{TDA} actually underestimates it in that case).
 
-\subsubsection{Protein quantification (label-free)}
+\subsubsection{Protein quantification (label-free)}\label{subsubsec:protQuantLB}
 
 Label-free quantification methods will most likely develop in the future.
 \citet{Nikolov2012-hq} review many of the currently available ones and report that
