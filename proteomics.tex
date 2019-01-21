@@ -1,6 +1,5 @@
 \chapter{Human MS-based Protein expression landscape}\label{ch:proteomics}
 
-
 After exploring the high-throughput human transcriptomic studies
 in \Cref{ch:Transcriptomics}
 and before integrating them with proteomic data in \Cref{ch:Integration},
@@ -11,6 +10,14 @@ However, we have reprocessed them starting from the raw data
 for this thesis.
 In this context, reassessing the quantified processed proteomic data
 before any integration is pertinent.
+
+The work presented in this chapter was done in collaboration with \james\
+who has implemented the new protein quantification method
+(presented in \Cref{sec:NewQuantProt}).
+I have performed all the analyses under
+the supervision of \alvis\ and \jyoti.
+A manuscript describing this work and the one presented in \Cref{ch:Integration}
+is being prepared.
 
 \section{An~overall~fragmented~and~disparate~universe~to~explore}
 
@@ -43,7 +50,7 @@ when all their fourteen common tissues are considered.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.71]{proteomics/VennDiagProtCond.pdf}\centering
-    \vspace{-5mm}
+%    \vspace{-5mm}
     \caption[Distribution of unique shared tissues between
     the 3 MS-based proteomic studies]{\label{fig:VennDiagProt3}\textbf{Distribution
     of unique and shared tissues between the three MS-based proteomic studies.}
@@ -52,7 +59,7 @@ when all their fourteen common tissues are considered.
     the additional ten tissues are: \adrenal, \hcolon, \gallbladder,
     \oesophagus, \kidney, \liver, \placenta, \prostate, \rectum\ and \testis.}
 \end{figure}
-
+\vspace{1cm}
 \begin{figure}[!htpb]
     \includegraphics[scale=0.75]{proteomics/VennDiagProtFor4T.pdf}\centering
     \caption[Proteins overlap between the common tissues of
@@ -62,7 +69,7 @@ when all their fourteen common tissues are considered.
     across the three \ms\ studies for their four shared tissues:
     \heart, \lung, \ovary\ and \pancreas.}
 \end{figure}
-
+\clearpage
 \subsection{High-throughput MS proteomic data has high detection variability}
 
 \Cref{fig:barplot3Dvennprot}
@@ -132,7 +139,7 @@ many sample preparation and simplification methods
 
 
 
-\vspace{-0.5cm}
+%\vspace{-0.5cm}
 
 \subsection{About half of the identified proteins are found in the same tissue
 in different datasets}\label{subsec:halfProtConfirmed}
@@ -236,12 +243,13 @@ of \pandey\ and \kuster\ datasets,
 but the results are as inconclusive
 (see \Cref{fig:prot2DheatmapT14,fig:prot2DheatmapPearson}).
 
-\section{New quantification method}
+\section{New quantification method}\label{sec:NewQuantProt}
 
 In this thesis context where I aim to integrate
 the \mRNA\ expression levels to the protein ones
 (presented in \Cref{ch:Integration}),
-I have developed a new method to infer and quantify the proteins.
+I have developed a new method to infer and quantify the proteins
+with the help of \james.
 
 Our original processing workflow (detailed in \Cref{subsec:msDataProcess})
 intends to provide a reliable protein quantification.
@@ -462,17 +470,8 @@ No trace of \glspl{OR} was found in any of our reprocessed data.
 
 Nonetheless, the technical variability is overall stronger
 than any biological interstudy signal even for similar tissues.
-Besides, across the different tissues and datasets,
-about half of the proteins are consistently observed in the same tissues at least
-twice.
-I provide as digital supporting data the list of the \gls{TS} and
-ubiquitous (also known as \emph{housekeeping}) proteins.
-Previously, \citet{Liu2014-xr} had compiled a list of 627 \gls{TS} and
-1,093 housekeeping proteins
-from the expression data released originally by \citet{PandeyData}.
-The processing has a significant impact on protein identification.
-In our version of \pandey\ data,
-I have found 534 housekeeping (ubiquitous) proteins and 1,491 specific proteins.
+Besides, across the different tissues,
+about half of the proteins are consistently observed in the same tissues at least in two datasets.
 
 Even when limited to the protein identification only,
 the general lack of repeatability and reproducibility
@@ -484,6 +483,7 @@ the intra-assay variation between two technical replicates for complex mixtures
 can be at least 50\%;
 different runs of the same sample or experiment are often produced to raise
 the interstudy results repeatability and confidence.
+
 While there is a definite need for new \ms\ protocols and quantification methods
 for baseline expression\footnote{Normalisation methods for differential expression
 analysis are usually unsuited for baseline expression studies.
@@ -493,11 +493,19 @@ and ease the integration of proteomics data from different studies,
 I have devised a new quantification method inspired by the \Rnaseq\ ones and
 which was implemented by \james.
 This new approach (\gls{PPKM}) quantifies
-about twice as many proteins than the first one (Top3~\mycite{Silva-Top3}).
+about twice as many proteins than the first one (Top3~\mycite{Silva-Top3}) we used.
 \citet{Nesvizhskii2003-ls} propose a method that seems alike,
 but their method apportions the degenerate peptides
 among all corresponding proteins to estimate their presence likelihood in an experiment.
 They focus on the identification while the quantification remains overlooked.
-I have found 2,057 ubiquitous and 2,640 \gls{TS} proteins
-for the \PPKM\ quantification of the \pandey\ data.
+
+Previously, \citet{Liu2014-xr} had compiled a list of 627 \gls{TS} and
+1,093 housekeeping proteins
+from the expression data released originally by \citet{PandeyData}.
+The data processing has a significant impact on protein identification;
+in our first version of \pandey\ data,
+I have found 534 housekeeping (ubiquitous) proteins and 1,491 \gls{TS} proteins,
+and for the \PPKM\ quantification: 2,057 ubiquitous and 2,640 \gls{TS} proteins.
+I provide as digital supporting data the list of the \gls{TS} and
+ubiquitous proteins.
 
