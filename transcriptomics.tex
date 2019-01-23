@@ -66,17 +66,19 @@ In fact, \emph{batch effects} restrain the use of direct approaches
 for the comparison of independent microarray data,
 and the resulting insights are usually limited \mycite{Walsh2015-nf,%
 Chrominski2015-ke,Rung2013-ul,Lazar2013-lj}.
+\vspace{-1mm}
 
 \section{Working sets}
-
+\vspace{-2mm}
 Through this chapter, I use two working sets
-based on subsets of the transcriptomic studies introduced in \Cref{ch:datasets}:
+based on subsets of the transcriptomic studies introduced in \Cref{ch:datasets}
+(the following results are based on the \htseq\ quantification):
 \begin{itemize}[topsep=0pt,nosep]
     \item \setOne: 4 tissues --- 12,268 genes across the 5 \Rnaseq\ studies, and
     \item \setTwo: 23 tissues --- 17,551 genes across 2 of these studies.
 \end{itemize}
 
-The following \cref{subsec:transtissueOverlap,subsec:transGeneOverlap}
+The following \Cref{subsec:transtissueOverlap,subsec:transGeneOverlap}
 illustrate the construction of these sets.
 
 While many approaches exist,
@@ -89,7 +91,7 @@ From this base, I created more robust working sets for the meta-analyses.
 
 \subsection{Tissue overlaps across available normal human RNA-Seq studies \quad}%
 \label{subsec:transtissueOverlap}
-\vspace*{-5mm}
+\vspace{-7mm}
 \Cref{fig:VennStudiesT} presents the tissue overlap between the five datasets.
 All datasets share at least four tissues:
 \heart, \kidney, \liver\ and \testis.
@@ -476,7 +478,7 @@ present high overlap ratios between the studies.
 All the other \pcg\ ranks are indistinguishable from any random ordering.
 \setTwo\ improved overlap ratio trend may solely be
 the result of the smaller number of considered datasets
-(see \cref{fig:highExpress4T}).
+(see \Cref{fig:highExpress4T}).
 
 Together, these results indicate
 that the highest expressed genes are unable to explain
@@ -1208,7 +1210,7 @@ the interstudy tissue expression profile strong correlations.
 The most variable and most specific genes have a real contribution even though
 their importance may be relative compared to the whole set of expressed genes.
 As the definition of \gls{TS} genes is very variable from one study to another
-(see \cref{sub:TisSpeGene}),
+(see \Cref{sub:TisSpeGene}),
 I have relied on three different methods to study them,
 including extracting \gls{TS} gene definitions
 from an existent resource
