@@ -253,7 +253,7 @@ and without the \gtex\ data.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.65]{integration/PandeyUhlen_mRNAprotQ1Venn.pdf}\centering
-    \vspace{-5mm}
+    \vspace{-3.5mm}
     \caption[Distribution of the unique and shared proteins/mRNAs for Pandey et al.\
     and Uhlén et al.\ across fifteen tissues.]{%
     \label{fig:PU_vennQ1}\textbf{Distribution of the unique and shared proteins/mRNAs
@@ -280,8 +280,9 @@ takes advantage of the \emph{degenerate} peptides
 to allow the quantification of proteins
 even if they only have two unique peptides.
 
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.68]{integration/PandeyGtexUhlen_mRNAprotQ3Venn.pdf}\centering
+\begin{figure}[!ht]
+    \includegraphics[scale=0.62]{integration/PandeyGtexUhlen_mRNAprotQ3Venn.pdf}\centering
+    \vspace{-4mm}
     \caption[Distribution of the unique and shared proteins/mRNAs
     across the three datasets and twelve tissues
     (with the new protein quantification method)]{\label{fig:PGU_venQ3}%
@@ -291,8 +292,9 @@ even if they only have two unique peptides.
     }
 \end{figure}
 
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.68]{integration/PandeyUhlen_mRNAprotQ3Venn.pdf}\centering
+\begin{figure}[!ht]
+    \includegraphics[scale=0.62]{integration/PandeyUhlen_mRNAprotQ3Venn.pdf}\centering
+    \vspace{-4mm}
     \caption[Distribution of the unique and shared proteins/mRNAs for the
     Pandey et al.\ (processed with the new quantification method) and Uhlén et al.\ data
     across the fifteen tissues.
@@ -317,17 +319,16 @@ which only include the matching \emph{defined} proteins and \mRNAs\ triplets
 The lists of proteins lacking a matching \mRNAs\ in \ens{76} is provided
 in \Cref{tab:protNoTrans}.
 
-Since the results are similar regardless of the quantification used
+Since the results are similar regardless of the quantification methods I select
 for the proteomic or transcriptomic data,
-the reported figures in this chapter are using
+the reported figures hereafter are using
 the second more extensive set of proteins.
 For some analyses,
-figures based on the first protein quantification method
-are also provided as supplementary data.
-Note that there may be differences for individual genes.
+I also provide figures based on the first protein quantification method
+as supplementary data.
+Note that there may be differences between quantification methods for individual genes.
 
-Finally, as in \Cref{ch:Transcriptomics},
-all the proteins and \mRNAs\ from the mitochondrial genome are removed
+Finally, all the proteins and \mRNAs\ from the mitochondrial genome are removed
 from further analyses
 (see \Cref{subsec:mito}).
 
@@ -344,8 +345,8 @@ In contrast,
 the \emph{gene-centric} approach compares for each gene
 the expression levels of its \mRNA\ to its protein ones across all the tissues.
 
-\begin{figure}[!htpb]
-    \includegraphics[scale=0.75]{integration/VisualExplaination-Lin.png}\centering
+\begin{figure}[!ht]
+    \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.png}\centering
     \caption[Summary of the expression comparison approaches between
     the transcriptome and proteome]{\label{fig:visualexp}\textbf{Approaches
     summary of the expression comparison between the transcriptome and proteome.}
@@ -452,8 +453,7 @@ quantification method and compare it to the \dataset{Uhlén \etal} dataset
 for their 15 common tissues.
 
 \subsection{Expression profile of proteomics and transcriptomics look very
-similar in shape on a logarithmic scale}
-\label{subsec:IntegrationExpProfileSim}
+similar in shape on a logarithmic scale}\label{subsec:IntegrationExpProfileSim}
 
 As discussed in the previous chapters, visualising the data is very important
 prior to any computation. It allows to detect if we are violating
@@ -508,7 +508,7 @@ more likely translated into proteins.
 \TK{NEED TRANSITION to comparison tissue levels for the two layers!}
 
 \subsection{Independently human sourced transcriptomics and proteomics
-have good and significant correlation for same-tissue pairs.}
+have good and significant correlation for same-tissue pairs.}%
 \label{subsec:IntegrationGoodCorrProtTrans}
 
 I used the whole set of common expressed \mRNAs\ and
@@ -580,7 +580,7 @@ proteins (also on a $Log_{2}$-scale). Whilst, every pair of \mRNA\ and
 corresponding proteins has been used to calculate the overall Pearson correlation
 coefficient, the pairs with a null element have been excluded from the plotting
 to optimise the visualisation. As we can see, there is a higher dispersion for
-small expression values of \mRNAs\ (lesser than $0$ $Log_{2}$(FPKM), \ie\
+small expression values of \mRNAs\ (lesser than $0$ $Log_{2}(\text{FPKM})$, \ie\
 $1$ FPKM). This dispersion could be due to technical limitations or translational
 noise (see \cref{subsubsec:exprTrans}). For the highly expressed \mRNAs\ side,
 we can observe a possible saturation effect on the proteomic side. These two
@@ -681,7 +681,7 @@ at proteomic level.
 
 
 \subsection{Distribution of expression breadth of the proteome is bimodal. As is
-the expression breadth of the mRNAs --- if we apply a threshold}
+the expression breadth of the mRNAs --- if we apply a threshold}%
 \label{subsec:IntegrationProteinBimodalExpre}
 \TK{this probably need to go to the previous chapters!}
 
@@ -961,7 +961,7 @@ is probably universal). (We can't say anything about the non-findings!!!)
 This approach is even more important in case that you study the tissue specific
 (or condition) specific pair, they globally the more correlated. (Are they actually???)
 
-So big need of an external/outliers sample(s) or external source.
+So big need of an external/outliers samples (or more) or external source.
 
 
 \begin{comment}
