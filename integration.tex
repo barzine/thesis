@@ -6,6 +6,16 @@ and proteomic level (with \emph{bottom-up} \ms\ studies in \Cref{ch:proteomics})
 my next step is to examine how these gene expression profiles
 compare between these two different biological layers.
 
+One major aim of this study is to asses
+how the correlations between the transcriptome and proteome
+described in the literature (and mostly measured in cells)
+hold at tissue level.
+Moreover, good correlations may potentially lead to
+the development of new strategies.
+These may use the expression levels of \mRNA\ as proxies
+to estimate protein expression,
+which is generally difficult to measure directly (see \Cref{sec:exploreProtMS}).
+
 I have performed the integration and all the analyses presented in this chapter
 under the supervision of \alvis\ and \jyoti.
 A manuscript describing this work
@@ -141,8 +151,8 @@ in both cases,
 interpreting the relationship
 between a highly variable \mRNAs\ and its protein from another dataset
 remains hard to interpret.
-Besides, the comparison of the two transcriptomic data creates a reference,
-\ie\ an ideal scenario.
+Besides, the comparison of the two transcriptomic data may give a reference,
+\ie\ an ideal case scenario, for the proteomic/transcriptomic one.
 
 On the other hand,
 the technical variability prevails over
@@ -168,10 +178,10 @@ the \pandey\ data has a higher quality than the two other datasets.
 %Put together these facts suggest that
 %the \pandey\ data has a higher quality than the two other datasets.
 \vspace{-0.5mm}
-Finally, the literature reports that
+As the literature reports that
 the proteome is more conserved than the transcriptome
-(across individuals and species)~\mycite{Laurent2010-rg,Liu2016-re}.
-Hence, this data collection ought to provide a crude estimate
+(across individuals and species)~\mycite{Laurent2010-rg,Liu2016-re},
+this data collection ought to provide a crude estimate
 on the extent of observations that hold from cell to tissue level.
 
 This chapter integration and analyses are based on the common set of tissues
@@ -310,42 +320,59 @@ With the new quantification method for the \pandey\ \etal\ data,
 about 62\% of the \mRNAs\ quantified in the \uhlen\ \etal\ and \gtex\ data
 are matched to a protein.
 
-After comparing the respective lists of \emph{undefined} (see \Cref{sec:ExpressedOrNot})
-proteins and \mRNAs\ (between \dataset{Pandey \etal} and \dataset{Uhlén \etal} data and
-between \dataset{Pandey \etal} and \dataset{Gtex}),
-I have excluded these unmatched proteins and \mRNAs\ from the following analyses
-which only include the matching \emph{defined} proteins and \mRNAs\ triplets
-(or pairs depending on the inclusion of the \gtex\ data).
+After comparing the respective lists of quantified proteins and \mRNAs,
+I have excluded the unmatched proteins and \mRNAs\ from the following analyses
+which only include the matching \emph{defined}\footnote{See \Cref{sec:ExpressedOrNot}.}
+proteins and \mRNAs\ triplets (or pairs
+depending on the inclusion or not of the \gtex\ data).
 The lists of proteins lacking a matching \mRNAs\ in \ens{76} is provided
 in \Cref{tab:protNoTrans}.
+
+Whether or not it reflects the biological reality,
+current technology detects more individual \mRNAs\ than proteins
+as confirmed by \Cref{fig:UniqExprPC1,fig:distribProtUniq3D}.
+Thus, it may be primarily surprising that
+a few proteins lack a match in the transcriptome data.
+There are several possible explanations.
+
+Artefacts or technical issues are the most likely.
+The annotation of the matching \RNA\ is missing
+or is defined with another biotype than \emph{protein-coding}.
+Peptides and \mRNA\ reads may be assigned to different gene IDs.
+The \mRNAs\ are present in the sample,
+but the library preparation has missed their capture
+(see \Cref{subsec:libPrep}).
+The presence of proteins in the sample is a false positive
+or the result of a contamination.
+
+However, an underlying biological phenomenon is also a possibility.
+The \mRNAs\ have a very low turnover while the proteins are very stable;
+The proteins are expressed elsewhere before being imported in the studied tissue
+(\eg\ hormones or cytokines).
+
+Lastly, as the transcriptomic and proteomic samples are independently sourced,
+the protein may be specific to an individual or a population.
+This last hypothesis is the most unlikely as there are several biological replicates
+on the transcriptomic side.
+Of course, a mixture of the previous causes is highly probable.
 
 Since the results are similar regardless of the quantification methods I select
 for the proteomic or transcriptomic data,
 the reported figures hereafter are using
 the second more extensive set of proteins.
+
 For some analyses,
 I also provide figures based on the first protein quantification method
 as supplementary data.
 Note that there may be differences between quantification methods for individual genes.
 
-Finally, all the proteins and \mRNAs\ from the mitochondrial genome are removed
-from further analyses
+Finally, I remove from further analyses
+all the proteins and \mRNAs\ from the mitochondrial genome
 (see \Cref{subsec:mito}).
 
-\subsection{Tissue-centric and gene-centric analyses}
+\subsection{Tissue-centric and gene-centric approaches}
 
-\Cref{fig:visualexp} summarises the two analytical approaches I use
-to compare transcriptomic and proteomic data.
-In fact,
-\citet{Liu2016-re} emphasise how important it is to clearly define
-the approach when reporting results to avoid many confusions.
-The \emph{tissue-centric} approach compares for each tissue
-the global expression of its transcriptomic landscape to its proteomic one.
-In contrast,
-the \emph{gene-centric} approach compares for each gene
-the expression levels of its \mRNA\ to its protein ones across all the tissues.
-
-\begin{figure}[!ht]
+\begin{figure}[!htb]
     \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.png}\centering
     \caption[Summary of the expression comparison approaches between
     the transcriptome and proteome]{\label{fig:visualexp}\textbf{Approaches
@@ -358,190 +385,90 @@ the expression levels of its \mRNA\ to its protein ones across all the tissues.
     }
 \end{figure}
 
+\Cref{fig:visualexp} summarises the two analytical approaches I use
+to compare transcriptomic and proteomic data.
+In fact,
+\citet{Liu2016-re} emphasise how important it is to clearly define
+the approach when reporting results to avoid many confusions.
+The \emph{tissue-centric} approach compares for each tissue
+the global expression of its transcriptomic landscape to its proteomic one.
+In contrast,
+the \emph{gene-centric} approach compares for each gene
+the expression levels of its \mRNA\ to its protein ones across all the tissues.
 
-\section{Results}\label{sec:IntegrationResults}
-
-
-We attempt to found out if the lesser correlations reported at cell levels would
-hold at tissue level.
-Our findings are actually supporting the first assumption; there is a good correlation
-between the transcriptomic and proteomic data, even though all the samples used in
-the study are all completely independent. Moreover, there is a high consistency
-between tissue-specific proteins and tissues-specific genes.
-
-In fact, here, even though I have only access to independent data,
-the average Pearson correlation per tissue is above $0.5$
-$[$min: $0.45$ (\Oesophagus); max: $0.666$ (\Liver)$]$.
-
-%%%%%%
-
-
-
-Present that we develop a new method of quantification:
-increase the number of proteins that are identified and quantified per tissues.
-For each analyses: one result with the conservative quantification
-and another one with the new quantification.
-
-%\subsection{New quantification method for the proteomic data}\label{subsec:IntegrationNewMethQuant}
+Note that while I use both tissue-centric and gene-centric approaches
+in \Cref{ch:Transcriptomics,ch:proteomics},
+explicit indications are unnecessary for their analyses.
+\mRNAs\ profiles are similar enough and the proteomic studies are so disparate
+that even if a confusion happens,
+global understanding remains unaffected.
 
 
-In the context of this work (\ie\ when focusing on the 15 common tissues between
-the \dataset{Uhlén \etal} and the \dataset{Pandey \etal} datasets),
-he has quantified about 6,400 proteins with
-the standard method. With the new approach, he has quantified a more substantial set of
-proteins: about 12,300 proteins. This new number is quite close to the initially
-reported number of protein by Kim \etal\ study.
-Indeed the original paper is describing proteins encoded by 17,294 genes.
+\section{Fair correlations between independently sourced proteomics~%
+and~transcriptomics~of~human~tissues~}\label{subsec:IntegrationGoodCorrProtTrans}
 
-Moreover, all tissues and cell lines are evenly impacted
-(\ie\ none of them is dramatically affected compared to the others).
+As first tissue-centric analysis,
+I have calculated the correlation between
+the proteome and the transcriptome expressions for each tissue,
+\ie\ for each tissue,
+I assess the relationship between its protein expression values
+to its corresponding \mRNAs.
 
-As shown in~\cref{fig:VennGeneTransProt15}, there are 14,617 pairs of
-proteins/genes.
-We expect a greater number of transcripts than proteins \TK{add references}.
-Thus, it may be primarily surprising that
-few proteins lack a match in the transcriptome data
-(see supplementary Table~\cref{tab:protNoTrans}).
-There are several possible explanations.
-\begin{itemize}[topsep=0pt,nosep]
-\item It may be a technical issue or an artefact on the transcriptomic side.
-    \begin{itemize}[topsep=0pt,nosep]
-        \item \mRNAs\ are present but the capture missed them at the library preparation
-        step (see \cref{subsec:libPrep}) for a reason or another.
-        \item Mapping algorithms have misassigned reads of
-        \mRNAs\ with a high sequence-similarity to others.
-        \item The annotation lacks \mRNAs\ definitions.
-    \end{itemize}
-\item It might also be that the protein doesn't belong to the sample: the identification
-is a false positive or incorrect; the sample\footnote{Or the instrument used for
-the capture} might also have been contaminated at some point with some foreign
-proteins.
-\item It can also be due to an underlying biological phenomenon:
-the turnover of the \mRNA\ is very low, while the protein is very stable;
-the proteins have been expressed somewhere else and then has been imported in the
-current tissue (\eg\ hormones or cytokines). Finally, as the proteome
-and transcriptome used for this study have been collected independently, if the
-gene is individual- or population-specific, we will then detected in one of the
-study and not in the other one. However, as we have biological replicates on the
-transcriptomic side, this last hypothesis seems the most unlikely.
-Of course, a mixture of the previous causes is also highly probable.
-\end{itemize}
+Since the expression profile of the proteomic \treps\ and the transcriptomic ones
+are similar in shape at logarithmic scale
+and roughly correspond to a Gauss distribution
+(see \Cref{fig:distribTrans,fig:pandeyDistribQ1Q2}),
+I use both the Spearman and Pearson correlation methods
+(see \Cref{sec:CorrMore}) to compare them.
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.15]{integration/VennGeneTransProt15}\centering
-    \caption[Unique and shared protein/gene pairs between Proteomics
-    (Pandey \etal\ (PPKM)) and
-    Transcriptomics (Uhlén \etal\ (\gls{FPKM}))]
-    {\label{fig:VennGeneTransProt15}\textbf{Unique and shared protein/gene
-    pairs between Proteomics (Pandey \etal\ (PPKM)) and Transcriptomics (Uhlén
-    \etal\  (\gls{FPKM})).} There are 14,613 pairs common between the
-    transcriptomic (only the protein coding genes are considered)
-    and the proteomic dataset.}
+    \includegraphics[scale=0.8]{integration/DFtestlog2.pdf}\centering
+    \vspace{-3.5mm}
+    \caption[Distribution of Pearson and Spearman correlation coefficients
+    for same-tissue proteomic and transcriptomic pairs
+    versus random tissue pairs]{\label{fig:TestSig}\textbf{Distribution of
+    Pearson and Spearman correlation coefficients
+    for same-tissue proteomic and transcriptomic pairs versus random tissue
+    pairs.} Depending on the protein quantification method,
+    there are two types of distribution ranges for the Pearson correlations.
+    Top3 quantification method provides lower correlation ($\text{mean} \~{} 0.17$).
+    The \PPKM\ method (\Cref{sec:NewQuantProt}) produces higher correlations
+    ($\text{mean} \~{} 0.52$).
+    All the Spearman correlation ranges between same-tissue proteomic and
+    transcriptomic \treps\ are quite similar,
+    regardless of the method quantifying the proteins.
+    The Spearman correlation median is above $0.55$.
+    With the Top3 quantification (\ie\ pink countered boxes --- Top3 x HTSeq),
+    two outliers are noticeable and they are common to the three comparisons,
+    Pandey x Uhlén (12 tissues and 15 tissues) and Pandey x GTEx (12 tissues):
+    the lowest Spearman correlation is \Oesophagus\ ($\rho=0.39$)
+    and the highest \liver\ ($\rho=0.62$).
+    Both for the Pearson and Spearman correlations,
+    even when the correlations are very low,
+    same-tissue pairs have always higher correlations than
+    different (random) tissues pairs
+    (all p-values <0.03 (Welch t-test) --- see \Cref{tab:pvalueCorrSP}).
+    Thus, even the lowest same-tissue correlations are significative.
+    The green boxplots, comparing the two transcriptomic datasets,
+    are only represented for reference purposes.}
 \end{figure}
 
-I have performed the analyses presented in this chapter on both sets of
-quantification. As the high-level results and conclusions are remaining the same,
-the figures and discussions hereafter are based on
-the new quantification method. For comparison purposes,
-I have produced (following the same analyses and with their associated
-implementations) some figures and tables from the data quantified by the first
-method. Those can be found in the appendices; their references
-are given in blue (and in brackets) in the caption of the main figures.
+Spearman correlations between these independent transcriptomic and proteomic \treps\
+are equivalent to same-study-sampled transcriptomics and proteomics
+described in the literature for cells.
+As shown in \Cref{fig:TestSig},
+the median Spearman correlations are above $0.5$
+for matched proteomic and transcriptomic \treps\
+(also referred as \emph{same tissue pairs}),
+regardless of the protein quantification method
+(Top3~\mycite{Silva-Top3} or \PPKM{}~\Cref{eq:PPKM} ---~\vref{eq:PPKM}).
+Besides, for the \PPKM\ quantification (\Cref{sec:NewQuantProt})
+the average Pearson correlation per tissue is also above $0.5$
+$[$min:~$0.45$~(\Oesophagus)\;; max:~$0.67$~(\Liver)$]$
+and close to the literature.
 
-In the following sections, we consider the proteomic data with this new
-quantification method and compare it to the \dataset{Uhlén \etal} dataset
-for their 15 common tissues.
-
-\subsection{Expression profile of proteomics and transcriptomics look very
-similar in shape on a logarithmic scale}\label{subsec:IntegrationExpProfileSim}
-
-As discussed in the previous chapters, visualising the data is very important
-prior to any computation. It allows to detect if we are violating
-any assumption or if there is any issue with the data. In fact, we have seen
-in~\cref{ch:Transcriptomics} that there is an issue with the pancreatic
-samples for the \dataset{Uhlén \etal}, as the range of genes expression is quite
-different from the other samples/tissues.
-
-Considering the scale of expression between the proteomic assay and the
-transcriptomic ones, they are not directly comparable. Hence,
-all the data (regardless of the method of quantification) have been transformed
-with $X_{i}=\log_{2} (x_{i}+1)$ (or $X_{i}=\log_{2} (x_{i})$)
-before any other computation or visualisation.
-
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.45]{integration/densityExpProtTrans15}\centering
-    \caption[Density of expression of proteins and \mRNAs\ per
-    tissues.]
-    {\label{fig:densityExpProtTrans15}\textbf{Density of expression of
-    proteins and \mRNAs\ per tissues.} \\\textbf{A}| Proteins.
-    \textbf{B},\textbf{C},\textbf{D} present the same data but with
-    different thresholds:
-    \textbf{B}| No threshold. \textbf{C}| 1 \gls{FPKM}.
-    \textbf{D}| 5 \glspl{FPKM}.\\The threshold used for the proteins is the
-    threshold of
-    detection (\ie\ greater than zero). The different density of distributions are
-    globally gaussian. When the threshold is increased for the transcriptome, the
-    shape get closer to the ideal one, as the bulge created by lowly expressed
-    genes is removed. We can also observe that the problem with the pancreatic
-    tissue get more highlighted with higher thresholds.}
-\end{figure}
-
-\Cref{fig:densityExpProtTrans15} presents the density of expression
-of proteins and \mRNAs\ per tissue. In~\cref{fig:densityExpProtTrans15}|A,
-we notice that the densities of expression of the proteins have a similar gaussian
-shape for each of the tissues. We can also observe than the expression values
-of the proteins gather towards the very low values.
-In~\cref{fig:densityExpProtTrans15}|B to~\cref{fig:densityExpProtTrans15}|D,
-we can observe the density of expression values for
-the \mRNAs\ across all the tissues for
-different threshold cut-off: $0$, $1$ and $5$ \glspl{FPKM}.
-We remark that when we increase the threshold, the shape
-of the density becomes closer to a lorentzian.~\Cref{fig:densityExpProtTrans15}|B
-displays the density of expression for \emph{any} detected \mRNA\@. We can
-then observe a bulge composed by the very lowly expressed \mRNAs\, for which it
-is hard to decipher which are the one that are translated into proteins and which
-should be considered as translational noise. When I use $1$ \gls{FPKM} as a threshold,
-we observe density curves that are closer to the ideal one and these \mRNAs\ are
-more likely translated into proteins.
-
-\TK{NEED TRANSITION to comparison tissue levels for the two layers!}
-
-\subsection{Independently human sourced transcriptomics and proteomics
-have good and significant correlation for same-tissue pairs.}%
-\label{subsec:IntegrationGoodCorrProtTrans}
-
-I used the whole set of common expressed \mRNAs\ and
-expressed proteins\footnote{Without any other constraint: \eg\ the \mRNA\ and
-its corresponding protein do not have to be detected in the same tissue.}.
-Then, I calculated the correlation between the proteome and the trancriptome for
-each tissue, \ie\ for each tissue, I compared each protein expression value to
-its corresponding gene one.
-
-As I exposed in~\Cref{ch:Transcriptomics}, there are some
-\mRNAs\ that are lowly or even anti-correlated between the different
-transcriptomic datasets.
-As I can not pinpoint whether this is due to \emph{biological} or \emph{technical}
-reasons, we choose to exclude the anticorrelated \mRNAs\ between \dataset{Uhlén
-\etal} and \dataset{Gtex} (across the 23 common tissues) as these two datasets have
-very similar protocols and have been sequenced on similar sequencers (Illumina
-HiSeq 2000/2500).
-
-As illustrated in the supplementary~\cref{fig:ScatterPlotLiver}
-and~\cref{fig:ScatterPlotOesophagus}, while the exclusions of these genes might
-slightly improve some of the results, it can also have a feeble opposite effect
-in some other cases.
-Indeed, some pairs of \mRNA/protein might have a very tight relationship in some
-tissues and looser in others. Whilst this could be due to technical reasons, it
-could also be due to biological ones. Unfortunately, with our current knowledge
-of the datasets, it is not possible to reject pairs \emph{a priori}.
-
-In this context, the range of Pearson correlation coefficients between the
-proteomic and the transcriptomic data is from $0.66$ for the \tissue{Liver}
-to $0.46$ for the \tissue{Oesophagus}.\footnote{\textbf{NB}: If I exclude the
-pairs where the \mRNA\ is expressed below $1$ \gls{FPKM}, the Pearson correlation
-coefficients for each tissue are substantially identical.}
-
+%When visualised: each paired couples: scatplot
+%Hierarchical clustering
 \begin{figure}[!htbp]
     \includegraphics[scale=0.85]{integration/Kidney_scattplot.pdf}\centering
     \caption[Scatter plot of the expression value of the proteins (Pandey)
@@ -596,30 +523,8 @@ the $Transcriptome_{Adrenal}$, (which is a \emph{same tissue pair} comparison),
 I compare for example the $Proteome_{Adrenal}$ with the $Transcriptome_{Placenta}$.
 (see~\cref{fig:TestSig})
 
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.55]{integration/TestWhole_withoutLow.png}\centering
-    \caption[Distribution of Pearson correlation coefficients for same tissue
-    pairs versus random tissue pairs]{\label{fig:TestSig}\textbf{Distribution of
-    Pearson correlation coefficients for same tissue pairs versus random tissue
-    pairs.} The left boxplot displays the distribution of Pearson correlation
-    coefficients for same tissues pairs (\eg\
-Proteome\textsubscript{\tissue{Liver} }$\sim$Transcriptome\textsubscript{\tissue{Liver} }
-or
-Proteome\textsubscript{\tissue{Heart} }$\sim$Transcriptome\textsubscript{\tissue{Heart} }).
-    \\The right boxplot shows the correlation of all the possible random
-    pair of tissues (\eg\
-Proteome\textsubscript{\tissue{Lung} }$\sim$Transcriptome\textsubscript{\tissue{Liver} }
-or
-Proteome\textsubscript{\tissue{Heart} }$\sim$Transcriptome\textsubscript{\tissue{Kidney} }).
-    A Welch t-test has been performed to test the significance of the
-    difference of the means of the two groups ($0.55$ for the same tissue and
-    $0.46$ for the random pairs). The difference is significant under the null
-    hypothesis $H_{0}$ (The mean of the same pair-tissue coefficient correlations
-    is higher than the random tissue pairs for a confidence interval of $95\%$:
-    p-value: $5.8e-07$).}
-\end{figure}
 
-\TK{citation for Welch t-test}
+\TK{citation for Welch t-test}\mycite{Welch1947-rv,Welch1951-sj} (and maybe \mycite{Ruxton2006-yy}).
 
 \TK{transition: we know that the overall expression profiles are closely associated.
 Next point is to check if a higher specificity of the proteome of a tissue is due
@@ -678,6 +583,33 @@ at proteomic level.
      consistently a higher
      specificity at proteomic and transcriptomic level, it is not true for all.}
 \end{figure}
+
+
+\section{Gene centric studies}
+
+As I exposed in~\Cref{ch:Transcriptomics}, there are some
+\mRNAs\ that are lowly or even anti-correlated between the different
+transcriptomic datasets.
+As I can not pinpoint whether this is due to \emph{biological} or \emph{technical}
+reasons, we choose to exclude the anticorrelated \mRNAs\ between \dataset{Uhlén
+\etal} and \dataset{Gtex} (across the 23 common tissues) as these two datasets have
+very similar protocols and have been sequenced on similar sequencers (Illumina
+HiSeq 2000/2500).
+
+As illustrated in the supplementary~\cref{fig:ScatterPlotLiver}
+and~\cref{fig:ScatterPlotOesophagus}, while the exclusions of these genes might
+slightly improve some of the results, it can also have a feeble opposite effect
+in some other cases.
+Indeed, some pairs of \mRNA/protein might have a very tight relationship in some
+tissues and looser in others. Whilst this could be due to technical reasons, it
+could also be due to biological ones. Unfortunately, with our current knowledge
+of the datasets, it is not possible to reject pairs \emph{a priori}.
+
+In this context, the range of Pearson correlation coefficients between the
+proteomic and the transcriptomic data is from $0.66$ for the \tissue{Liver}
+to $0.46$ for the \tissue{Oesophagus}.\footnote{\textbf{NB}: If I exclude the
+pairs where the \mRNA\ is expressed below $1$ \gls{FPKM}, the Pearson correlation
+coefficients for each tissue are substantially identical.}
 
 
 \subsection{Distribution of expression breadth of the proteome is bimodal. As is
@@ -1009,7 +941,6 @@ So big need of an external/outliers samples (or more) or external source.
 
 %As the \mRNAs\ are expressed in more tissues in general, I tried to take account for this in the following analysis I run.
 
-
 Possible explanation of the anticorrelations may be due
 at the number of transcript or their definition or some other
 attributes that can be found in
@@ -1032,3 +963,6 @@ underestimate a large dynamic range of proteins~\mycite{TOP3isbetter}.
 \citet{Edfors2016-kv} have found that cell lines derived from a tissue don't present
 the same (absolute) amount of proteins than tissue samples and warned to be cautious
 if cell lines are used as model for normal tissue.
+
+
+
