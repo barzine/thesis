@@ -356,24 +356,25 @@ This last hypothesis is the most unlikely as there are several biological replic
 on the transcriptomic side.
 Of course, a mixture of the previous causes is highly probable.
 
-Since the results are similar regardless of the quantification methods I select
-for the proteomic or transcriptomic data,
-the reported figures hereafter are using
-the second more extensive set of proteins.
+%Since the results are similar regardless of the quantification methods I select
+%for the proteomic or transcriptomic data,
+%the reported figures hereafter are using
+%the second more extensive set of proteins.
 
-For some analyses,
-I also provide figures based on the first protein quantification method
-as supplementary data.
-Note that there may be differences between quantification methods for individual genes.
+%For some analyses,
+%I also provide figures based on the first protein quantification method
+%as supplementary data.
+%Note that there may be differences between quantification methods for individual genes.
 
 Finally, I remove from further analyses
 all the proteins and \mRNAs\ from the mitochondrial genome
 (see \Cref{subsec:mito}).
 
 \subsection{Tissue-centric and gene-centric approaches}
-
+\vspace{-2mm}
 \begin{figure}[!htb]
     \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.png}\centering
+    \vspace{-3mm}
     \caption[Summary of the expression comparison approaches between
     the transcriptome and proteome]{\label{fig:visualexp}\textbf{Approaches
     summary of the expression comparison between the transcriptome and proteome.}
@@ -419,7 +420,7 @@ are similar in shape at logarithmic scale
 and roughly correspond to a Gauss distribution
 (see \Cref{fig:distribTrans,fig:pandeyDistribQ1Q2}),
 I use both the Spearman and Pearson correlation methods
-(see \Cref{sec:CorrMore}) to compare them.
+(see \Cref{sec:CorrMore}) to compare them once scaled ($\log_2{x+1}$).
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.8]{integration/DFtestlog2.pdf}\centering
@@ -429,15 +430,15 @@ I use both the Spearman and Pearson correlation methods
     versus random tissue pairs]{\label{fig:TestSig}\textbf{Distribution of
     Pearson and Spearman correlation coefficients
     for same-tissue proteomic and transcriptomic pairs versus random tissue
-    pairs.} Depending on the protein quantification method,
+    pairs ($\log_2$-scale data).} Depending on the protein quantification method,
     there are two types of distribution ranges for the Pearson correlations.
-    Top3 quantification method provides lower correlation ($\text{mean} \~{} 0.17$).
+    Top3 quantification method provides lower correlation ($\text{mean} \~{} 0.11$).
     The \PPKM\ method (\Cref{sec:NewQuantProt}) produces higher correlations
-    ($\text{mean} \~{} 0.52$).
+    ($\text{mean} \~{} 0.5$).
     All the Spearman correlation ranges between same-tissue proteomic and
     transcriptomic \treps\ are quite similar,
     regardless of the method quantifying the proteins.
-    The Spearman correlation median is above $0.55$.
+    The Spearman correlation median is above $0.52$.
     With the Top3 quantification (\ie\ pink countered boxes --- Top3 x HTSeq),
     two outliers are noticeable and they are common to the three comparisons,
     Pandey x Uhlén (12 tissues and 15 tissues) and Pandey x GTEx (12 tissues):
@@ -447,91 +448,224 @@ I use both the Spearman and Pearson correlation methods
     even when the correlations are very low,
     same-tissue pairs have always higher correlations than
     different (random) tissues pairs
-    (all p-values <0.03 (Welch t-test) --- see \Cref{tab:pvalueCorrSP}).
+    (all p-values <0.05 (Welch t-test) --- see \Cref{tab:pvalueCorrSP}).
     Thus, even the lowest same-tissue correlations are significative.
     The green boxplots, comparing the two transcriptomic datasets,
     are only represented for reference purposes.}
 \end{figure}
 
-Spearman correlations between these independent transcriptomic and proteomic \treps\
-are equivalent to same-study-sampled transcriptomics and proteomics
-described in the literature for cells.
+The Spearman correlation
+between these independent transcriptomic and proteomic \treps\
+is equivalent to the literature description for
+same-study-sampled transcriptomics and proteomics (for cells).
+This is also true for the unscaled data (see \Cref{tab:pvalueCorrSP,fig:TestSigUnlog}).
 As shown in \Cref{fig:TestSig},
-the median Spearman correlations are above $0.5$
+the median Spearman correlation coefficients are above $0.5$
 for matched proteomic and transcriptomic \treps\
 (also referred as \emph{same tissue pairs}),
 regardless of the protein quantification method
-(Top3~\mycite{Silva-Top3} or \PPKM{}~\Cref{eq:PPKM} ---~\vref{eq:PPKM}).
-Besides, for the \PPKM\ quantification (\Cref{sec:NewQuantProt})
-the average Pearson correlation per tissue is also above $0.5$
-$[$min:~$0.45$~(\Oesophagus)\;; max:~$0.67$~(\Liver)$]$
-and close to the literature.
+(Top3~\mycite{Silva-Top3} or \PPKM{} ---~\vref{eq:PPKM}).
+For the \PPKM\ quantification %(\Cref{sec:NewQuantProt})
+the Pearson correlation is closer
+to the literature than for the Top3 quantification,
+and also averages above $0.5$ $[$min:~$0.38$~(\Oesophagus)\;; max:~$0.61$~(\Liver)$]$.
+Note that the Pearson correlation for the untransformed data is included in
+$[$min:~$0.45$~(\Oesophagus)\;; max:~$0.67$~(\Liver)$]$.
 
-%When visualised: each paired couples: scatplot
-%Hierarchical clustering
+While the previous distributions of correlation
+may imply rather modest relationships between
+the independent proteomics and transcriptomics,
+same-tissue pairs scatterplots (\eg\ \Cref{fig:ScatKid})
+show tighter links than first suggested.
+Besides, these scatterplots present a similar rough profile
+despite the wide correlation ranges (see \Cref{fig:ScatterPlotAll}).
+
+As tissue samples from proteomic studies can present high correlation
+without being related (\Cref{ch:proteomics,fig:scat2DAdrenalPancreasKuster}),
+I have tested with a Welch t-test~\mycite{Welch1947-rv,Welch1951-sj}
+the significance of the correlation of the same-tissue pairs
+by comparison to random tissue pairs;
+regardless of the protein quantification or computational methods,
+all the same-tissue pairs correlations are significant
+(p-value<0.05 --- see \Cref{tab:pvalueCorrSP}).
+
+\Cref{fig:ScatKid} illustrates the comparison
+between transcriptomic and proteomic gene expression
+for the \tissue{Kidney} between \uhlen\ \etal\ and
+\pandey\ \etal\ quantified with the new \PPKM\ method.
+Note that the \kidney{}'s correlation coefficient stands
+in the middle of the correlation ranges,
+regardless of the studies, protein quantification or correlation methods
+involved in the comparison.
+To optimise the visualisation,
+I removed the pairs with an unmeasured \mRNA\ or proteins,
+though I kept them for the correlation calculation.
+
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.85]{integration/Kidney_scattplot.pdf}\centering
-    \caption[Scatter plot of the expression value of the proteins (Pandey)
-    and the \mRNAs\ (Uhlén \etal) for Kidney]
-    {\label{fig:ScatKid}\textbf{Scatter plot of the expression value of the
-    proteins (Pandey) and the \mRNAs\ (Uhlén \etal) for Kidney.}
-    This scatter plot displays the
-    log-transformed ($Log_{2}$) expression value of
-    each \mRNA\ on the x-axis and the log-transformed ($Log_{2}$)
-    expression value of the proteins on the
-    y-axis. Each point represents a corresponding pair of \mRNA\ and protein.
-    We can notice that most of the \mRNA/protein pairs are very close to
-    the diagonal, which indicates a high correlation between the level
-    of \mRNAs\ and proteins. We also see that the lower levels of expression of
-    \mRNAs\ are more prone to the dispersion ($<0$ on $Log_{2}$-scale, so $<1$
-    \gls{FPKM} on the original scale, which is a common threshold used for the
-    coding \mRNAs). Besides, the proteins present most-likely a
-    saturation effect of their expression values. The highest expressed protein
-    is \protein{\gls{HBB}}
-    (\ie\ Hemoglobin Subunit Beta) which is also found in the 5 highest
-    expressed proteins in all the other tissues. It is quite likely that for
-    most of the tissues, this is due to how they have been sampled.
-    \\The distributions of the proteins and the \mRNAs, plotted on the outer part
-    the figure, have similar shaped.\\
-    \textbf{N.B.:} Whilst every pair of \mRNA\ and protein has been used to
-    calculate the correlation, the pairs with a null element have been not plotted
-    to optimise the visualisation.}
+    \includegraphics[scale=0.75]{integration/Kidney_scattplot_Q3.pdf}\centering
+    \caption[Scatterplot of protein (Pandey et al./ --- PPKM quantification)
+    and \mRNA\ (Uhlén \etal) expression for Kidney]
+    {\label{fig:ScatKid}\textbf{Scatterplot of
+    protein (Pandey et al./ --- PPKM quantification) and \mRNAs\ (Uhlén \etal)
+    expression for Kidney.}
+    Each point of this scatterplot represents a gene;
+    it has the $\log_2$-transformed expression value
+    of the corresponding \uhlen\ \etal\ \mRNA\ (\FPKM) on the x-axis and
+    the $\log_2$-transformed expression value of
+    the \pandey\ \etal\ protein (\PPKM) on the y-axis.
+    Most of the \mRNA/protein pairs are distributed in an area
+    that can be fitted by a linear function with a positive slope,
+    which indicates a high correlation between \mRNAs\ and proteins expression
+    levels.
+    However, genes with lower expressed \mRNAs\ are more to dispersion,
+    in particular \mRNAs\ that are expressed below $1$ \FPKM\ (\ie\ below $0$ on
+    the x-axis).
+    On the other side, genes with the highest expressed \mRNAs\ may present
+    a saturation effect (\Cref{subsec:simpleProt})
+    in the quantification of the protein expression.
+    The highest expressed protein is \protein{\gls{HBB}}
+    (\ie\ Hemoglobin Subunit Beta), which is also found in
+    the five highest expressed proteins in all the other tissues.
+    Likely, its presence is due to remaining erythrocytes in the samples.
+    On the outer parts of the scatterplot,
+    there are the respective distribution densities of the proteins and the \mRNAs.
+    Whilst the correlation calculation includes every pair of \mRNA\ and protein
+    the plot excludes any pair with a null element to optimise the visualisation.}
 \end{figure}
 
-\Cref{fig:ScatKid} illustrates the comparison of the proteomic data to the
-transcriptomic data for the \tissue{Kidney} which stands within the middle of the
-correlation range as its coefficient is equal to $0.56$.
-The x-axis represents the level of the \mRNAs\
-expression on a $Log_{2}$-scale and the y-axis represents the levels for the
-proteins (also on a $Log_{2}$-scale). Whilst, every pair of \mRNA\ and
-corresponding proteins has been used to calculate the overall Pearson correlation
-coefficient, the pairs with a null element have been excluded from the plotting
-to optimise the visualisation. As we can see, there is a higher dispersion for
-small expression values of \mRNAs\ (lesser than $0$ $Log_{2}(\text{FPKM})$, \ie\
-$1$ FPKM). This dispersion could be due to technical limitations or translational
-noise (see \cref{subsubsec:exprTrans}). For the highly expressed \mRNAs\ side,
-we can observe a possible saturation effect on the proteomic side. These two
-phenomenon explain why the correlation coefficient value is so low when the
-bulk of the protein/\mRNA\ pairs present a positive strong and quite linear
-association.
+A linear function with a positive slope can fit the bulk of the \Kidney\
+genes (\ie\ points).
+It translates the high correlation between the expression
+of the \mRNAs\ from \uhlen\ \etal\ (x-axis)
+and the proteins from \pandey\ \etal\ quantified with the \PPKM\ approach (y-axis).
+However, there is a high dispersion for the lowest measured \mRNAs\ ($<1$ \FPKM)
+and many of the highest ones.
+Besides the mismatching sampling sources,
+other possible explanations for the dispersion are
+technical limitations (such as protein saturation effect, see \Cref{subsec:simpleProt}),
+translational noise (see \Cref{subsubsec:exprTrans})
+or a consequent half-life difference between the \mRNA\ and its protein.
 
-When I perform the previous comparison for the remaining 14 tissues, the results are
-quite similar (see~\cref{fig:ScatterPlotAll}). To test the significance of these
-coefficients, I have also calculated the Pearson correlation coefficients of
-random pairs of tissues, \ie\ instead of comparing the $Proteome_{Adrenal}$ with
-the $Transcriptome_{Adrenal}$, (which is a \emph{same tissue pair} comparison),
-I compare for example the $Proteome_{Adrenal}$ with the $Transcriptome_{Placenta}$.
-(see~\cref{fig:TestSig})
+Although the number of genes concerned by the dispersion is rather limited,
+they are enough to impair the Pearson and Spearman correlation coefficients.
+Removing the lowly expressed \mRNAs\ ($<1$ \FPKM) only marginally changes
+the correlation coefficients,
+\eg\ for \kidney,
+when considering the \PPKM\ quantification for the proteins,
+the Pearson correlation
+%between the proteins ($\log_2(\text{PPKM}+1)$)
+%and the \mRNAs\ ($\log_2(\text{FPKM}+1)$)
+increases from $0.56$ to $0.58$,
+while the Spearman correlation is relatively unchanged
+($0.51$ instead of $0.52$).
+The changes are relatively similar
+when considering the more conservative Top3 protein quantification.
+The Pearson correlation $r=0.18$ increases to $0.21$.
+The Spearman correlation remains unchanged ($\rho=0.52$).
+
+A systematic exclusion of the dispersal-prone genes
+(either the proteins with lowly expressed \mRNAs\
+or the highly expressed \mRNAs\ with a more limited protein expression)
+is impossible
+as they are inconsistent from one tissue to another.
+A case-by-case treatment will be necessarily.
+
+\vspace{-1.5mm}
+As the results are sensibly similar
+regardless of the protein quantification method or
+the transcriptome source (either \uhlen\ \etal\ or \gtex\ study),
+hereafter, I mostly present the results for the common set of fifteen tissues
+between \uhlen\ \etal\ and \pandey\ \etal\
+and their matching pairs of \mRNAs/proteins (quantified with the \PPKM\ method)
+as this combination presents the most extensive set of tissues and genes to study.
+Note that the other combinations are provided
+in the appendices (\Cref{ch:SupplIntegration})
+or in electronic format.
+There may be differences for individual genes through the different combinations
+but the general trends are identical.
+
+\vspace{-5mm}
+\section{Mixed biological signal between the proteome and transcriptome
+across the tissues}
+
+\begin{figure}[!htb]
+    \includegraphics[scale=0.8]{integration/orderedHeatmapQ3Pearson.pdf}\centering
+    \vspace{-3mm}
+    \caption[Heatmap based on the Pearson correlation between protein and mRNAs
+    expression (alphabetically ordered tissue)]{\label{fig:orderedHeatmapPearson}%
+    \textbf{Heatmap based on the Pearson correlation between protein and mRNAs
+    expression (alphabetically ordered tissue)}}
+\end{figure}
+
+Many proteomic \treps\ correlate the highest with
+their corresponding transcriptomic \trep\
+(\eg\ \liver, \testis, \ovary, \pancreas)
+but other preferentially correlate with other tissues first
+(\eg\ \bladder, \Oesophagus, \gallbladder).
+Besides, depending on the chosen correlation methods,
+a few tissues (\eg\ \heart) can have
+their proteome and transcriptome correlate preferentially or not.\\
+\vspace{-\baselineskip}
+
+In order to identify possible factors
+that influence the association strength
+between the proteome and transcriptome,
+I explore several avenues in the following sections.
+
+%I mainly focus on two approaches.
+I first use a qualitative approach
+where I study the effect of tissue composition (in proteins and \mRNAs)
+on the correlations.
+Then, in a more quantitative approach,
+I examine more closely how the \mRNA\ expression profiles relate
+to their respective proteins.
 
 
-\TK{citation for Welch t-test}\mycite{Welch1947-rv,Welch1951-sj} (and maybe \mycite{Ruxton2006-yy}).
+\section{Influence of the expression breadth}
 
-\TK{transition: we know that the overall expression profiles are closely associated.
-Next point is to check if a higher specificity of the proteome of a tissue is due
-to a greater specificity at transcriptome level.}
+\begin{figure}[!htb]
+    \captionsetup{margin=0.6cm,justification=centering}
+    \begin{subfigure}[h]{0.53\textwidth}
+        \centering \includegraphics[width=\textwidth]{integration/breadthProtQ3--15.pdf}
+        \caption{Protein~expression~breadth (\PPKM~quantification)}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.53\textwidth}
+        \centering \includegraphics[width=\textwidth]{integration/breadthmRNAQ3--15.pdf}
+        \caption{mRNA~expression~breadth\\(> 0 \FPKM)}
+    \end{subfigure}
+    \vspace{2.5mm}
 
-\subsection{Uniqueness of a protein can not be deduced by the uniqueness of a
-\mRNA}
+    \begin{subfigure}[b]{0.53\textwidth}
+        \centering \includegraphics[width=\textwidth]{integration/breadthmRNAQ3--1501.pdf}
+        \caption{mRNA~expression~breadth\\(≥1 \FPKM)}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.53\textwidth}
+        \centering \includegraphics[width=\textwidth]{integration/breadthmRNAQ3--1505.pdf}
+        \caption{mRNA~expression~breadth\\(≥5 \FPKM)}
+    \end{subfigure}
+    \caption[Expression breadth of the proteins and mRNAs]{\label{fig:expressionBreadth}%
+    \textbf{Expression breadth of the proteins and mRNAs}}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.75]{integration/uniqueFeatureQ3T15.pdf}\centering
+    \caption[blabla]{\label{fig:UniqueFeatureQ3T15}\textbf{<++>}<++>}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.75]{integration/coloredSharedbreadthProtQ3--15.pdf}\centering
+    \caption[Protein expression breadth coloured according
+    to its corresponding mRNA one]{\label{fig:SharedBreadthProtQ3}%
+    \textbf{Protein expression breadth coloured according to
+    its corresponding mRNA one.}  }
+\end{figure}
+
+
+
+
+
+%\section{Uniqueness of a protein can not be deduced by the uniqueness of a mRNA}
+
 If we consider \cref{fig:KusterPandeyFQM},
 (particularly \cref{fig:KusterPandeyFQM}|C), we can see that for every tissue,
 there are proteins only detected in that specific tissue. This is also the case
