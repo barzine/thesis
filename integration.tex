@@ -140,7 +140,8 @@ I only consider the datasets with the highest similarity
 that incidentally comprise the greatest number of tissues
 and are the two most recent studies,
 \ie\ \dataset{Uhlén \etal}~\mycite{Uhlen2015}
-and \dataset{Gtex}~\mycite{GTExTranscript} data.
+and \dataset{Gtex}~\mycite{GTExTranscript} data.\\
+\vspace{-\baselineskip}
 
 Since I am reusing published data,
 the initial experimental designs are suboptimal for my study.
@@ -356,22 +357,13 @@ This last hypothesis is the most unlikely as there are several biological replic
 on the transcriptomic side.
 Of course, a mixture of the previous causes is highly probable.
 
-%Since the results are similar regardless of the quantification methods I select
-%for the proteomic or transcriptomic data,
-%the reported figures hereafter are using
-%the second more extensive set of proteins.
-
-%For some analyses,
-%I also provide figures based on the first protein quantification method
-%as supplementary data.
-%Note that there may be differences between quantification methods for individual genes.
-
 Finally, I remove from further analyses
 all the proteins and \mRNAs\ from the mitochondrial genome
 (see \Cref{subsec:mito}).
 
+\vspace{-3mm}
 \subsection{Tissue-centric and gene-centric approaches}
-\vspace{-2mm}
+\vspace{-3mm}
 \begin{figure}[!htb]
     \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.png}\centering
     \vspace{-3mm}
@@ -422,9 +414,10 @@ and roughly correspond to a Gauss distribution
 I use both the Spearman and Pearson correlation methods
 (see \Cref{sec:CorrMore}) to compare them once scaled ($\log_2{x+1}$).
 
+\vspace{-3mm}
 \begin{figure}[!htbp]
     \includegraphics[scale=0.8]{integration/DFtestlog2.pdf}\centering
-    \vspace{-3.5mm}
+    \vspace{-4mm}
     \caption[Distribution of Pearson and Spearman correlation coefficients
     for same-tissue proteomic and transcriptomic pairs
     versus random tissue pairs]{\label{fig:TestSig}\textbf{Distribution of
@@ -471,6 +464,8 @@ to the literature than for the Top3 quantification,
 and also averages above $0.5$ $[$min:~$0.38$~(\Oesophagus)\;; max:~$0.61$~(\Liver)$]$.
 Note that the Pearson correlation for the untransformed data is included in
 $[$min:~$0.45$~(\Oesophagus)\;; max:~$0.67$~(\Liver)$]$.
+Besides, removing the pairs where the \mRNAs\ is expressed below $1$ \FPKM\ gives
+substantially identical results.
 
 While the previous distributions of correlation
 may imply rather modest relationships between
@@ -553,8 +548,6 @@ the correlation coefficients,
 \eg\ for \kidney,
 when considering the \PPKM\ quantification for the proteins,
 the Pearson correlation
-%between the proteins ($\log_2(\text{PPKM}+1)$)
-%and the \mRNAs\ ($\log_2(\text{FPKM}+1)$)
 increases from $0.56$ to $0.58$,
 while the Spearman correlation is relatively unchanged
 ($0.51$ instead of $0.52$).
@@ -570,14 +563,13 @@ is impossible
 as they are inconsistent from one tissue to another.
 A case-by-case treatment will be necessarily.
 
-\vspace{-1.5mm}
-As the results are sensibly similar
-regardless of the protein quantification method or
+Regardless of the protein quantification method or
 the transcriptome source (either \uhlen\ \etal\ or \gtex\ study),
-hereafter, I mostly present the results for the common set of fifteen tissues
-between \uhlen\ \etal\ and \pandey\ \etal\
-and their matching pairs of \mRNAs/proteins (quantified with the \PPKM\ method)
-as this combination presents the most extensive set of tissues and genes to study.
+the results are sensibly similar.
+Thus, I mostly present thereafter the results of the most extensive set
+(both in terms of tissues and genes),
+\ie\ the fifteen-tissue set between \uhlen\ \etal\ and \pandey\ \etal\
+(quantified with the \PPKM\ method).
 Note that the other combinations are provided
 in the appendices (\Cref{ch:SupplIntegration})
 or in electronic format.
@@ -587,8 +579,9 @@ but the general trends are identical.
 \vspace{-5mm}
 \section{Mixed biological signal between the proteome and transcriptome
 across the tissues}
+\vspace{-4mm}
 
-\begin{figure}[!htb]
+\begin{figure}[!hbt]
     \includegraphics[scale=0.8]{integration/orderedHeatmapQ3Pearson.pdf}\centering
     \vspace{-3mm}
     \caption[Heatmap based on the Pearson correlation between protein and mRNAs
@@ -612,111 +605,237 @@ that influence the association strength
 between the proteome and transcriptome,
 I explore several avenues in the following sections.
 
-%I mainly focus on two approaches.
 I first use a qualitative approach
 where I study the effect of tissue composition (in proteins and \mRNAs)
 on the correlations.
 Then, in a more quantitative approach,
 I examine more closely how the \mRNA\ expression profiles relate
-to their respective proteins.
+to their respective protein ones.
 
+\section{Influence of the expression breadth on the tissue mRNAs/protein correlation}
 
-\section{Influence of the expression breadth}
+Scatterplots of protein expression from different tissue pairs present
+global similar profiles and correlation ranges to same tissue pairs
+(see \Cref{ch:proteomics} and \Cref{fig:scat2DAdrenalPandeyPancreasKuster}).
+In this context,
+genes (expressed both as a protein and \mRNA)
+uniquely found in one tissue can have a significant impact on the correlation.
+Thus, their proportion per tissue may explain
+the mitigated correlation results.%\\
+%\vspace{-\baselineskip}
+
+The expression breadth, presented in \Cref{fig:expressionBreadth},
+allows visualising the number of tissues
+where each gene (\mRNA\ or protein) is expressed.
+\Cref{fig:protBreadth} shows that
+the distribution of the protein expression breadth is bimodal.
+Either due to technical limitations or biological reasons,
+proteins detected in a sole tissue form
+the most numerous class and represent 20 \% of the overall number.
+Proteins expressed in all tissues are the second most numerous class (about $~$ 16 \%);
+the third class (12 \%) comprises the proteins expressed in two tissues.
+
+On the other hand,
+almost all \mRNAs\ are expressed in every tissue (\Cref{fig:mRNAbreadth0}).
+One hypothesis is that tissues express a protein only
+if its corresponding \mRNA\ exceeds a sufficient threshold.
+Thus, I have also studied the effect on the expression breadth
+of two added thresholds above which the \mRNAs\ have to be expressed.
+
+The two new expression breadth profiles are more alike
+to the proteomic one.
+As shown in \Cref{fig:mRNAbreadth1},
+the number of transcripts only found in one tissue increases
+at the widespread $1$ \FPKM\ threshold,
+which roughly equates to one \gls{RNA} in the cell~\mycite{Mortazavi2008,Hebenstreit:2011}.
+
+The expression breadth profile of the \mRNAs\ expressed at or above $5$ \FPKM\
+present a similar bimodal distribution (\Cref{fig:mRNAbreadth5}) to the protein one.
+While arbitrary, $5$ \FPKM\ is a threshold commonly found
+in the literature~\mycite{Uhlen2015,oneDominant,Chen2018-ln}.
 
 \begin{figure}[!htb]
-    \captionsetup{margin=0.6cm,justification=centering}
     \begin{subfigure}[h]{0.53\textwidth}
+    \captionsetup{margin=0.6cm,justification=centering}
         \centering \includegraphics[width=\textwidth]{integration/breadthProtQ3--15.pdf}
-        \caption{Protein~expression~breadth (\PPKM~quantification)}
+        \caption{Protein~expression~breadth (\PPKM~quantification)}\label{fig:protBreadth}
     \end{subfigure}
     \begin{subfigure}[h]{0.53\textwidth}
+    \captionsetup{margin=0.6cm,justification=centering}
         \centering \includegraphics[width=\textwidth]{integration/breadthmRNAQ3--15.pdf}
-        \caption{mRNA~expression~breadth\\(> 0 \FPKM)}
+        \caption{mRNA~expression~breadth\\(> 0 \FPKM)}\label{fig:mRNAbreadth0}
     \end{subfigure}
     \vspace{2.5mm}
 
     \begin{subfigure}[b]{0.53\textwidth}
+    \captionsetup{margin=0.6cm,justification=centering}
         \centering \includegraphics[width=\textwidth]{integration/breadthmRNAQ3--1501.pdf}
-        \caption{mRNA~expression~breadth\\(≥1 \FPKM)}
+        \caption{mRNA~expression~breadth\\(≥1 \FPKM)}\label{fig:mRNAbreadth1}
     \end{subfigure}
     \begin{subfigure}[b]{0.53\textwidth}
+    \captionsetup{margin=0.6cm,justification=centering}
         \centering \includegraphics[width=\textwidth]{integration/breadthmRNAQ3--1505.pdf}
-        \caption{mRNA~expression~breadth\\(≥5 \FPKM)}
+        \caption{mRNA~expression~breadth\\(≥5 \FPKM)}\label{fig:mRNAbreadth5}
     \end{subfigure}
+    \vspace{-5mm}
     \caption[Expression breadth of the proteins and mRNAs]{\label{fig:expressionBreadth}%
-    \textbf{Expression breadth of the proteins and mRNAs}}
+    \textbf{Expression breadth of the proteins and mRNAs.}
+    Proteins have a bimodal breadth of expression.
+    Many proteins are detected in one tissue only or in all tissues.
+    Almost every \mRNA\ is detected in every tissue.
+    Their breadth becomes bimodal when their expression threshold
+    is increased to $5$ \FPKM{}.
+    Note that the genes with null expression breadth are removed from the plots
+    to ease the general visualisation.
+    }
 \end{figure}
 
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.75]{integration/uniqueFeatureQ3T15.pdf}\centering
-    \caption[blabla]{\label{fig:UniqueFeatureQ3T15}\textbf{<++>}<++>}
+\Cref{fig:UniqueFeatureQ3T15} shows the proteins and \mRNAs\
+for which the expression breadth equates to $1$ in \Cref{fig:expressionBreadth}.
+Instead of displaying the finite counts,
+it displays the ratio per tissue,
+\ie\ the number of unique feature (proteins or \mRNAs)
+for each tissue divided by the total amount of them across all tissues.
+The tissues are ordered in increasing order of their ratio in unique features.
+
+\begin{figure}[!htb]
+    \includegraphics[scale=0.78]{integration/uniqueFeatureQ3T15.pdf}\centering
+    \vspace{-3mm}
+    \caption[Ratio per tissue of unique proteins and mRNAs]{\label{fig:UniqueFeatureQ3T15}
+    \textbf{Ratio per tissue of unique proteins and mRNAs.}
+    }
 \end{figure}
+
+Every tissue presents proteins that are only detected in that specific tissue.
+In contrast, unique \mRNAs\ are detected in a more limited number of tissues.
+Besides, the unique proteins are more evenly distributed
+between the fifteen tissues than the unique \mRNAs.
+
+Except for \Testis\ and \Liver,
+which are consistently expressing the highest number of unique features,
+the other tissues lack to present any common pattern
+between the available proteomic and transcriptomic data.
+
+\Liver\ is the most correlated tissue (\Cref{fig:orderedHeatmapPearson})
+and comprises the second highest number of unique features.
+\Testis\ is the third best correlated tissue
+despite having the highest ratio of unique proteins and \mRNAs\
+(regardless of the threshold $0$ to $1$ \FPKM).
+The other tissues lack to show any relationship
+between their composition in unique features
+and the correlation of their transcriptome and proteome.
+
+Put together these results suggest that
+the tissues correlation levels are unrelated
+to their amount of unique proteins and \mRNAs{}.
+The lack of relation between the proteomic and transcriptomic observations
+is confirmed by a more refined analysis of the expression breadth.
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.75]{integration/coloredSharedbreadthProtQ3--15.pdf}\centering
-    \caption[Protein expression breadth coloured according
-    to its corresponding mRNA one]{\label{fig:SharedBreadthProtQ3}%
-    \textbf{Protein expression breadth coloured according to
-    its corresponding mRNA one.}  }
+    \vspace{-4mm}
+    \caption[Comparison of the proteins expression breadth to their
+    corresponding mRNA ones]{\label{fig:SharedBreadthProtQ3}%
+    \textbf{Comparison of the proteins expression breadth
+    to their corresponding mRNA ones.}
+    This figure, where the protein expression breadth is coloured
+    according to its comparison with the \mRNA\ one,
+    is based on \Cref{fig:protBreadth,fig:mRNAbreadth5}.
+    About one fifth of the proteins that are detected in one tissue
+    have their corresponding \mRNA\ (expressed at or above $5$ \FPKM{})
+    presenting an \emph{identical} expression breadth.
+    The number of proteins classified as \emph{Identical} decreases significantly
+    for the other possible breadths
+    except when all the tissues (\ie\ fifteen) are considered
+    (then accounting for one third of the proteins).
+    Proteins with a breath of expression close to their \mRNAs{}' (± $2$)
+    are identified as \emph{Similar}.
+    If the protein and the \mRNA\ are both detected within four to nine tissues,
+    they are described as \emph{Mixed}.
+    If the \mRNA\ has been detected at or above $5$ \FPKM\
+    but with another breadth than \emph{Identical} or \emph{Similar},
+    it is then referred as \emph{Different}.
+    Finally, while many proteins are detected in one tissue (or even more)
+    their corresponding \mRNAs\ is not at $5$ \FPKM\
+    (\emph{Expression < $5$ \FPKM} category).
+    }
+\end{figure}
+
+\Cref{fig:SharedBreadthProtQ3} shows that the expression breadth
+of \mRNAs\ (expressed ≥ $5$ \FPKM\ or even smaller threshold) concurs
+in very few cases to their corresponding protein one.
+Thus, the \mRNAs\ expression breadth is
+an ineffective predictor for the detection of a protein,
+including extreme cases where the protein is unique to one tissue
+or expressed in all fifteen of them.
+
+Expression breadth analyses of the transcriptome rely on expression levels.
+On the other hand, \Cref{ch:Transcriptomics} underlines that
+high expression levels of \mRNAs\ are unrelated to interstudy tissue correlation
+while tissue-specific (\gls{TS}) \mRNAs\ present a rather strong connection with it.
+For this reason, one of the following analysis (\Cref{sec:TSprotMrna}) examines
+the relationship between \gls{TS} \mRNAs\ and proteins.
+
+However, I report beforehand another analysis.
+After determining that it is impossible to classify the tissues consistently
+based on their unique features as shown in \Cref{fig:expressionBreadth},
+I explore whether the tissues conserve the same hierarchical clustering
+when considering the proteins or \mRNAs\ that are expressed in two tissues strictly.
+
+\begin{figure}[!htb]
+    \begin{subfigure}[b]{0.53\textwidth}
+    \captionsetup{margin=0.6cm,justification=centering}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15Pandey.pdf}
+        \caption{Pandey et al.\ tissues\\(PPKM quantification)}\label{fig:treePandeyQ3T15}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.53\textwidth}
+    \captionsetup{margin=0.6cm,justification=centering}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15UhlenCut5.pdf}
+        \caption{Uhlén et al.\ tissues\\(≥5 \FPKM)}\label{fig:treeUhlenQ3T15cuth5}
+    \end{subfigure}
+    \vspace{-5mm}
+    \caption[Tissues hierachical clustering for Pandey and Uhlén]{\label{fig:separateTree}%
+    \textbf{Hierarchical clustering for the fifteen tissues of
+    Pandey et al.\ and Uhlén et al.\ studies.}
+    }
 \end{figure}
 
 
-
-
-
-%\section{Uniqueness of a protein can not be deduced by the uniqueness of a mRNA}
-
-If we consider \cref{fig:KusterPandeyFQM},
-(particularly \cref{fig:KusterPandeyFQM}|C), we can see that for every tissue,
-there are proteins only detected in that specific tissue. This is also the case
-for the transcriptome, some \mRNAs\ have been detected in only one tissue.
-\Cref{fig:barPlotunique0nb} shows the amount of \mRNAs\ and proteins that have
-been \emph{detected} in each tissue. The number of \mRNAs\ is actually quite
-high. However, the limit of detection for \mRNAs\ does not imply that these \mRNAs\
-are translated into proteins or that they are specific to the tissue. Indeed,
-as I have presented previously (see~\Cref{ch:Transcriptomics}),
-most of the \mRNAs\ are detected everywhere.
-
-Hence, as a second approach, I only used the \mRNAs\ expressed
-above $1$ \gls{FPKM} (see \cref{fig:barPlotunique1nb}). Independently of
-thresholds, \tissue{Testis} presents --- consistently --- the highest number
-of unique proteins and \mRNAs. We can also observe that the number of \mRNAs\
-detected is roughly equivalent to the number of \mRNAs\ quantified only once at
-least at (or greater than) $1$ \gls{FPKM} although these \emph{unique} genes are
-not exactly the same.
-
-As there is an obvious bias towards the low expressed \mRNAs\
-(which are usually part of the least correlated pairs of \mRNA/proteins), I also
-used a threshold of 5 \glspl{FPKM}. This last threshold, albeit purely arbitrary,
-has already been used in the literature and presents some similarity regarding the
-breadth of expression of \mRNAs\ with the proteins' one
-(see \cref{subsec:IntegrationProteinBimodalExpre}).
-
-\TK{insert reference here --- check cancer studies}
-
-At this threshold, the number of \emph{unique} \mRNAs\ is lesser than previously,
-but still greater than the number of \emph{unique} proteins (see
-\cref{fig:barPlotunique5nb}).
-
-Once again, there is a lack of any obvious relation between
-the proteomic and transcriptomic observations.
-In \cref{fig:barPlotunique5ratio}, I used the ratio of the number of \emph{unique}
-\mRNAs\ per tissue divided by the total amount across all the tissues.
-Hence, we can easily see that while \tissue{Testis} presents more than half of
-the \emph{unique} \mRNAs\, it represents less than a quarter of the diversity
-at proteomic level.
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.30]{integration/barPlotunique5ratio}\centering
-     \caption[Distribution of \mRNAs\ and proteins detected (at specific
-     thresholds) only in one unique
-     tissue]{\label{fig:barPlotunique5ratio}\textbf{Number of
-     \mRNAs\ (top) and proteins (bottom)
-     that have been detected and quantified (\geq\ 5 \glspl{FPKM} for \mRNA\;
-     \textgreater\ 0 for proteins).} While some tissue can have
-     consistently a higher
-     specificity at proteomic and transcriptomic level, it is not true for all.}
+\begin{figure}[!htb]
+    \begin{subfigure}[b]{0.53\textwidth}
+        \captionsetup{margin=0.6cm,justification=centering}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15.pdf}
+        \caption{Consensus}\label{fig:consensus2D15TQ3}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.53\textwidth}
+        \captionsetup{margin=0.6cm,justification=centering}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T123DFconsensus05.pdf}
+        \caption{<++>}\label{fig:consensusTree05}
+    \end{subfigure}
+    \vspace{-5mm}
+    \caption[Tissues hierachical clustering for Pandey and Uhlén]{\label{fig:consensusTrees}%
+    \textbf{Consensus of the hierachical clustering of the tissues across the different studies.}
+    }
 \end{figure}
+
+
+\section{Tissue-specific mRNAs and proteins}\label{sec:TSprotMrna}
+
+%%% Parler que unicité est différent de la specificité et que pour les mrnas,
+%%% specificité est déterminé d'une autre manière.
+As many proteins are only expressed in a unique tissue,
+we can consider them as tissue-specific.
+
+It appears that a direct comparison of the proteins that have been identified
+with the identified \mRNAs\ (even with various thresholds) is not so meaningful.
+
+Instead of focusing of the uniqueness of a gene (or in a broader way, the breadth
+of expression),the main issue here is to
+determine what and when a gene is \emph{specific}. In fact, I can not use
+the same definition of detection like for the proteins. I then chose to focus
+on the \emph{Tissue-Specific} genes.
+
+
 
 
 \section{Gene centric studies}
@@ -730,115 +849,7 @@ reasons, we choose to exclude the anticorrelated \mRNAs\ between \dataset{Uhlén
 very similar protocols and have been sequenced on similar sequencers (Illumina
 HiSeq 2000/2500).
 
-As illustrated in the supplementary~\cref{fig:ScatterPlotLiver}
-and~\cref{fig:ScatterPlotOesophagus}, while the exclusions of these genes might
-slightly improve some of the results, it can also have a feeble opposite effect
-in some other cases.
-Indeed, some pairs of \mRNA/protein might have a very tight relationship in some
-tissues and looser in others. Whilst this could be due to technical reasons, it
-could also be due to biological ones. Unfortunately, with our current knowledge
-of the datasets, it is not possible to reject pairs \emph{a priori}.
 
-In this context, the range of Pearson correlation coefficients between the
-proteomic and the transcriptomic data is from $0.66$ for the \tissue{Liver}
-to $0.46$ for the \tissue{Oesophagus}.\footnote{\textbf{NB}: If I exclude the
-pairs where the \mRNA\ is expressed below $1$ \gls{FPKM}, the Pearson correlation
-coefficients for each tissue are substantially identical.}
-
-
-\subsection{Distribution of expression breadth of the proteome is bimodal. As is
-the expression breadth of the mRNAs --- if we apply a threshold}%
-\label{subsec:IntegrationProteinBimodalExpre}
-\TK{this probably need to go to the previous chapters!}
-
-In our study, most proteins are detected in a very limited number of tissues (one
-or two) or in all the tissues as it can be observed in~\cref{fig:breadthProt}.
-Overall, we found that most proteins are found in one tissue. We refer to them as
-\emph{tissue-specific}.
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.65]{integration/breadthProt.png}\centering
-    \caption[Distribution of expression breadth for the proteome]
-    {\label{fig:breadthProt}\textbf{Distribution of expression breadth for the
-    proteome.} The breadth of expression is bimodal: most of the proteins are
-    only found in one tissue. The second largest group is consisting of
-    the ubiquitous proteins. The third largest group is the group of the proteins
-    that are expressed in two tissues.}
-\end{figure}
-
-
-For the transcriptome, if we focus only on the detected genes, we don’t observe
-the same trend as showed in~\cref{fig:breadthTrans}|A.
-However, when we apply a threshold, either $1$ \gls{FPKM}
-(\cref{fig:breadthTrans}|C) or
-5 \glspl{FPKM} (\cref{fig:breadthTrans}|D), to which the \mRNA\ expressions
-have to be greater or at least equal, then the expression breadth distribution
-of the \mRNAs\ is also bimodal.
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.85]{integration/breadthTrans}\centering
-    \caption[Distribution of expression breadth for the transcriptome]
-    {\label{fig:breadthTrans}\textbf{Distribution of expression breadth for the
-    transcriptome.} The distribution is given for several threshold.
-    \textbf{A}| Every time a \mRNA\ is detected ($> 0$ \gls{FPKM}).
-    \textbf{B}| Every time a \mRNA\ is detected at or above $1$ \gls{FPKM} and
-    \textbf{C}| $5$ \glspl{FPKM}.}
-\end{figure}
-
-\subsection{Few protein expression breadth can be predict by transcript
-expression breadth}
-
-\begin{figure}[!htbp]
-\includegraphics[scale=0.30]{integration/PandeyUhlenAnnoBreadth}\centering
-    \caption[Proteome expression breadth compared to the transcriptomic one]{\label{fig:breadthColPandeyUhlen}\textbf{Proteome expression breadth
-    compared to the transcriptomic one.}The breadth of expression of each protein
-    is compared to the breadth of its corresponding \mRNA\. Several possible cases
-    are showed. Some proteins haven't been found in the transcriptomic samples,
-    they are \emph{unshared.}
-    The breadth can be \emph{identical}:the protein and the \mRNA\ are
-    expressed in the same number of tissues. The first and last three columns
-    have been grouped together. If a protein and its \mRNA\ are in the same group,
-    they are tagged as \emph{similar}. If the protein and the \mRNA\ are both
-    expressed between 4 to 9 tissues, they are described as \emph{mixed}. If the
-    pair is not belonging to any of the previous categories, it is then described
-    as \emph{different}.}
-\end{figure}
-
-\TK{While the unique protein/\mRNA\ are not concluant; the next analysis was to
-determine if the closeness of two tissues are conserved between proteomic and
-transcriptomic tissues.}
-
-\subsection{Tissue clusters differ between Proteomic and Transcriptomic}
-\begin{figure}[!htbp]
-\includegraphics[scale=0.8]{integration/heatmapPairs}\centering
-    \caption[Clusters of tissues based on number of proteins or \mRNAs\ shared
-    between a pair of tissues]{\label{fig:heatmapPairs}\textbf{Clusters of
-    tissues based on number of proteins or \mRNAs\ shared between a pair of
-    tissues.} For each pair of tissues, I have collected the number of proteins
-    (or \mRNAs) expressed only in that pair. That number is displayed in the
-    cell. The heatmap is a symmetric heatmap. Higher is the number of features
-    (proteins or \mRNAs) shared between two tissues and closer they are
-    considered. We can observe that the tissue presenting the most shared features
-    with the other tissues is \tissue{Testis}.}
-\end{figure}
-
-\TK{Comparison of the two trees}
-
-\begin{figure}[!htbp]
-\includegraphics[scale=0.7]{integration/consensusTree}\centering
-    \caption[Consensus tree between the cluster trees of the proteome and the
-    transcriptome]{\label{fig:consensusTree}\textbf{Consensus tree between the
-    cluster trees of the proteome and the transcriptome.}}
-\end{figure}
-
-It appears that a direct comparison of the proteins that have been identified
-with the identified \mRNAs\ (even with various thresholds) is not so meaningful.
-
-Instead of focusing of the uniqueness of a gene (or in a broader way, the breadth
-of expression),the main issue here is to
-determine what and when a gene is \emph{specific}. In fact, I can not use
-the same definition of detection like for the proteins. I then chose to focus
-on the \emph{Tissue-Specific} genes.
 
 \subsection{Tissue specific \textit{m}RNAs have significant overlap with tissue
 specific proteins}
@@ -954,11 +965,6 @@ that would legitimate this. Ref:~\cref{fig:CorImprovable}}
     categories.}}
 \end{figure}
 
-%\begin{figure}
-%    \includegraphics{integration/}\centering
-%    \caption[]{\label{} \textbf{}
-%    }
-%\end{figure}
 
 %if tissue more specific (greater diversity) the proteome, true for transcript as well?
 %   barplot (no cutoff) but then 1FPKM<=> 1 protein (barplot 1FPKM ? yes/no?)
@@ -973,31 +979,6 @@ that would legitimate this. Ref:~\cref{fig:CorImprovable}}
 
 
 \clearpage\
-
-
-\subsection{Annotation + Methodology impact}
-\TK{comparison with the Scientific report paper}
-And additionally the following idea.
-
-At first, the quantification used for the proteomic data was following
-state-of-the-art protocols for which we applied very stringent parameters:
-to identify and quantify a given protein, three different unique peptides
-(with an \gls{FDR} $< 0.01 \%$) have to be mapped solely to that protein.
-A major issue of this approach is that many proteins have similar sequences;
-hence, some peptides can only be attributed to clusters of proteins.
-A naive approach would
-be to aggregate the similar transcriptomic expressions together to enable
-the comparison\footnote{Which then would also require further steps of
-normalisation on the transcriptomic part.}. However, we found that the cluster
-of peptides/proteins is inconsistent from one study to another. Indeed, we do
-not always observe the same set of peptides and, moreover, the proteins clusters
-they support are quite different. That is why I have not investigate this option
-further as for each study I would need a new aggregate annotation as a reference.
-It would then be quite difficult to assess the discrepancy due to the
-variations of aggregation. For this first method of quantification, I choose to
-exclude the cluster of peptides/proteins from the study\footnote{Since I also work
-with a subset of the tissues, out of context, the number of quantified proteins
-could seem a bit low compared to the original study.}.
 
 \section{Discussion}
 
