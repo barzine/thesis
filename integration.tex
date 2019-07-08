@@ -883,6 +883,7 @@ I use the hypergeometric test (see \Cref{sec:hypergeometricTest}).
 \begin{figure}[!htb]
   %  \vspace{-5mm}
     \includegraphics[scale=1]{integration/overlapRatioPUQ15Q3.pdf}\centering
+    \vspace{-2mm}
 \caption[Heatmap of Jaccard indexes across 15 tissues]{%
 \label{fig:JaccardIndexes}\label{fig:RatioJac}\textbf{Heatmap of Jaccard indexes
 across the common fifteen tissues between Uhlén et al.\ and Pandey et al.\ data.}
@@ -890,6 +891,7 @@ For each tissue, the \gls{TS} proteins are the proteins
 (quantified with \PPKM\ method) that are expressed only in that tissue.
 The \gls{TS} \mRNAs\ are the \mRNAs\ with the highest specific coefficients
 in that tissue.}
+\vspace{-4mm}
 \end{figure}
 
 The Jaccard indexes for all pairs of the fifteen shared tissues
@@ -914,19 +916,22 @@ Except for \bladder\ (which has the smallest Jaccard index),
 these overlaps are statistically significant
 for all the commonly considered thresholds.
 
+\vspace{-2mm}
 Many of the highest correlated tissues have also the highest Jaccard indexes.
 However, many inconstances persist.
-Thus, even though there are significant similarities,
+Thus, even though there are significant correspondances,
 \gls{TS} proteins and \mRNAs\ are insufficient to explain
 the correlation level between the proteome and transcriptome of each tissue.
+\vspace{-\baselineskip}
 
 \begin{figure}[!htb]
-%\vspace{-2cm}
+%\vspace{-2mm}
     \includegraphics[scale=0.98]{integration/overlapRatioPvalPUQ15Q3.pdf}\centering
     \vspace{1mm}
     \caption[p-values associated to the Jaccard indexes]{\label{fig:JaccardPvalues}\label{fig:pJacquard}%
     \textbf{p-value associated to the Jaccard indexes} of \Cref{fig:JaccardIndexes}.
     These p-values have been computed with the hypergeometric test.}
+    \vspace{-3mm}
 \end{figure}
 
 The former direct approaches
@@ -938,8 +943,127 @@ from a slew of subtil similarities
 based on identical differential expression
 within many clusters for the proteins and \mRNAs{}.
 
-Further more in-depth analyses may help resolving the relationship
-between the proteome and transcriptome.
+As a direct and consistent hierarchical clustering
+based on unique features is unreachable,
+I have extended the analysis to examine whether or not an indirect method
+may be more appropriate.
+For this new approach,
+I build hierarchical cluster trees that try to translate
+the expression \enquote{closeness} of the tissues
+(viz.\ their differentiation distance).
+I then compare the proteins' and transcripts' trees.\\
+\vspace{-\baselineskip}
+
+\subsection{Proteins and mRNAs tissue trees present partial concordant results\\}
+\vspace{-12mm}
+
+As presented in \Cref{subsec:clusteringPres},
+a hierarchical clustering analysis requires a linkage method
+and a distance measurement between each element that is included in the analysis.
+For the linkage method, I use the Ward's method~\mycite{Ward1963}
+as in the previous analyses.
+
+The distance must reflect the difference in composition of gene populations
+that the tissues express.
+To this end,
+I only consider the proteins and \mRNAs\
+that are expressed in two tissues strictly.
+For each pair of tissues,
+I count how many proteins or \mRNAs\ they share.
+Then, I use the inverse of this number as a distance measure
+since the greater the number of shared features,
+the closer the tissues are.
+
+\Cref{fig:separateTree} shows the hierarchical clustering for
+\pandey\ \etal\ (\PPKM\ quantification)
+and \uhlen\ \etal\ (≥ $5$ \FPKM)  studies,
+while the number of shared features for \pandey\ \etal\ and \uhlen\ \etal\ data
+are respectively showed in \Cref{fig:heatmapPandeyTissuePairs,fig:heatmapUhlenTissuePairs05}.
+
+Both \pandey\ \etal\ and \uhlen\ \etal\ data present
+the same three pairs of tissues more closely related:
+\Testis\ and \Ovary, \Rectum\ and \hColon\ and \Liver\ and \Kidney.
+\Cref{fig:consensus2D15TQ3} shows their consensus tree,
+which is simpler to read.\\
+\vspace{-\baselineskip}
+
+Comparing more than two hierarchical trees manually is cumbersome,
+thus methods exist to create consensus trees~\mycite{Felsenstein2004-dv}.
+One of the possible implementations is included in
+the \textbf{\textsf{R}} package \softCi{ape \normalfont{(v5.2)}}{Paradis2019-ue}.
+The methods can be strict or create a consensus based on the majority.
+Since there are a maximum of three trees (one for each dataset)
+to compare at a time,
+all the consensus trees within this thesis are strict.
+
+\Cref{fig:consensusTree05} relies on the set of twelve shared tissues between
+\pandey\ \etal\ data (quantified by the \PPKM\ method)
+and the two transcriptomic datasets (≥ $5$ \FPKM): \uhlen\ \etal\ and \gtex\ data.
+Compared to \Cref{fig:consensus2D15TQ3},
+only two tissue-sets are consistently found
+as more closely related: \Testis\ and \Ovary, and \Liver\ and \Kidney.
+Note that the results are identical
+when I include the \pandey\ \etal\ data quantified by the Top3 method.
+
+
+\begin{figure}[!htpb]
+    \begin{subfigure}[b]{0.53\textwidth}
+        \captionsetup{margin=0.6cm,justification=centering}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15Pandey.pdf}
+        \caption{Pandey et al.\ tissues\\(PPKM quantification)}\label{fig:treePandeyQ3T15}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.53\textwidth}
+        \captionsetup{margin=0.6cm,justification=centering}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15UhlenCut5.pdf}
+        \caption{Uhlén et al.\ tissues\\(≥5 FPKM)}\label{fig:treeUhlenQ3T15cuth5}
+    \end{subfigure}
+    \vspace{-5mm}
+    \caption[Tissues hierachical clustering for Pandey and Uhlén]{\label{fig:separateTree}%
+    \textbf{Hierarchical clustering for the fifteen tissues of
+    Pandey et al.\ and Uhlén et al.\ studies.}
+    }
+\end{figure}
+
+\begin{figure}[!htpb]
+    \begin{subfigure}[b]{0.53\textwidth}
+        \captionsetup{margin=0.6cm}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15.pdf}
+        \caption{Consensus tree of the fifteen common tissues between Pandey et al.\
+        and Uhlén et al. (≥ $5$ FPKM) data}\label{fig:consensus2D15TQ3}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.53\textwidth}
+        \captionsetup{margin=0.6cm}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T123DFconsensus05.pdf}
+        \caption{Consensus tree of the twelve common tissues
+        between Pandey et al.\ data and
+        Uhlén et al.\ and GTEx data (≥ $5$ FPKM)}\label{fig:consensusTree05}
+    \end{subfigure}
+    \vspace{-5mm}
+    \caption[Tissues hierachical clustering for Pandey and Uhlén]{\label{fig:consensusTrees}%
+    \textbf{Consensus of the hierarchical clustering of the tissues across the different studies.}
+    }
+\end{figure}
+
+When the consideration threshold of the \mRNAs\ is lowered to $1$ \FPKM,
+\Liver\ and \Kidney\ are consistently observed as closely related
+for every analysis based on the \PPKM\ method and
+for the comparison of
+the \pandey\ \etal\ quantified by Top3 with \uhlen\ \etal\ data.
+Other tissue pairs are emerging as more related for a few comparisons:
+\Rectum\ and \hColon\ for \pandey\ \etal\ and \uhlen\ \etal\ data,
+with the addition of \Pancreas\ and \Gall\
+when \pandey\ \etal\ is quantified by the \PPKM\ method.
+
+At $0$ \FPKM, regardless of the quantification methods or included datasets,
+no tissue structure is highlighted by the clustering.
+
+Although, these results are too mitigated and
+they lack to explain the correlation levels,
+even indirect analyses based on the proteins and \mRNAs\ breadth expression
+have some degree of similarity in their results.
+
+Further more in-depth (direct or indirect)  analyses
+may help resolving the relationship between the proteome and transcriptome.
 For example, equivalent correlation levels between specific gene groups
 (gene co-expression correlation) may be highlighted
 for each tissue at both biological layers.
@@ -947,7 +1071,6 @@ Although, this kind of analyses requiring a case-by-case approach
 would greatly benefit from
 well-established and proven \mRNA\ and protein expression baselines
 for each tissue.
-
 
 
 \section{Wide~correlation~range~for~protein/mRNA~pairs}
@@ -964,7 +1087,7 @@ or whether it is only subjected to the nature of their environment.\\
 %or whether only the nature of the environment matters
 \vspace{-\baselineskip}
 
-\begin{figure}[!htpb]
+\begin{figure}[!htb]
     \includegraphics[scale=0.9]{integration/PearsonLog2correlationRankedGenes3-15-seed-1254.pdf}\centering
     \vspace{-2mm}
     \caption[Pearson correlation coefficients of \mRNA/protein pairs expression
@@ -984,12 +1107,12 @@ or whether it is only subjected to the nature of their environment.\\
     This simulation iteration (and all the others) confirms
     that the observed correlation coefficients are
     significantly higher than expected.
-    The green line serves as one possible \emph{ideal} case:
-    it results from the Pearson correlation computation
-    of the same set of \mRNAs\ from \uhlen\ \etal\
-    with their counterpart within the \gtex\ data
+    The green line serves as a possible \emph{ideal} case:
+    it represents the Pearson correlation of \mRNAs\ pairs
+    between \uhlen\ \etal\ and \gtex\ data
     (across their shared twenty-three tissues).
     }
+    \vspace{-1em}
 \end{figure}
 
 Note that \Cref{app:geneCentric} regroups more complementary results
@@ -1167,181 +1290,169 @@ several genes groups
 to find possible biological factors that may differentiate them.
 
 \subsection{Distinct functional enrichment profiles
-for best and least correlated pairs
-along with pairs comprising a TS protein}
+for pairs with a TS protein,
+and for the best and least correlated ones}
 
-I have selected to perform two enrichment analyses,
-namely a \glsdesc{gsea} (\gls{gsea}) and a \glsdesc{goa} (\gls{goa})
-(respectively described in
-\Cref{sec:gseaPresentation} and \Cref{sec:goaGeneralities}).
+%\subsection{Distinct functional enrichment profiles
+%for best and least correlated pairs,
+%along with pairs comprising a TS protein}
 
-The \gls{gsea} helps assessing whether
-a biological function is associated to
-the best and the least correlated genes.
-After removing the pairs including a \gls{TS} protein,
-I consider the three hundred most and least correlated protein/\mRNA\ pairs
-as the two first groups to study.
-I add all the pairs (2,613) with a \gls{TS} protein as the third group of the analysis.
+As a downstream analysis,
+I perform an enrichment analyse,
+namely a \glsdesc{goa} (\gls{goa} --- see \Cref{sec:goaGeneralities}).
 
-\begin{landscape}
-    \begin{figure}
-        \includegraphics[scale=1]{integration/gsea.pdf}\centering
-        \caption[bla]{\label{fig:gseai}\textbf{bla}}
-    \end{figure}
-\end{landscape}
+This analysis uses gene ontologies that provide defined terms
+covering the gene product (\ie\ \mRNA\ and protein) properties.
+These terms are structured into categories.
+It helps assessing whether a set of genes is associated to
+a biological process (BP), a molecular function (MF) or a cellular component (CC).
+The three ontologies are included
+in the \gls{BiocR} package \softCi{org.Hs.eg.db}{orghsegdb}
+for analysis in \textbf{\textsf{R}}.
 
-\begin{comment}
-\begin{figure}[!htbp]
-\includegraphics[scale=0.7]{integration/OtherGroups}\centering
-    \caption[Examples of particular GO
-    categories]{\label{fig:GO_sub_groups}\textbf{Examples of particular GO
-    categories.}}
-\end{figure}
-\end{comment}
+The enrichment computation requires
+the comparison between the \gls{go} terms set associated
+with each studied list of genes to a reference.
+I consider three genes lists:
+the three hundred best and
+the three hundred worst (or least) correlated protein/\mRNA\ pairs
+and all the pairs (2,613) with a \gls{TS} protein.
+As reference, I use the 12, 921 matching protein/\mRNA\ pairs
+between \pandey\ \etal\ (\gls{PPKM} quantification) and \uhlen\ \etal\ data.
 
-%if tissue more specific (greater diversity) the proteome, true for transcript as well?
-%   barplot (no cutoff) but then 1FPKM<=> 1 protein (barplot 1FPKM ? yes/no?)
-%        ---> breadth of expression distribution
-%          ---> barplot 5 FPKM ==> Doesn't work BUT other way to compute the
-%          specificity of mRNAs--> rank then compute Indice de Jacquard!
-%===> *SO* specificity can be kept between Protein and Transcript
-%_but then_ quid of Expression values, do they correlate?
-%        * Eh, but then show that most high correlated are the specific but not only:
-%        there are also others ---> GO annotation.
+The \gls{BiocR} package \softCi{clusterProfiler \normalfont{(v3.12)}}{clusterProfiler}
+provides a function \textsf{enrichGO},
+which implements the \gls{goa} as the over-representation test
+described by~\citet{Boyle2004-dh}
+and handles all the required statistical testing
+and (Benjamini and Hochberg~\mycite{Benjamini1995-nf}) correction.
+
+%\begin{landscape}
+    \begin{sidewaysfigure}
+        \includegraphics[scale=0.95]{integration/gsea.pdf}\centering
+        \vspace{-3mm}
+        \caption[Enriched GO categories for the pairs with a TS proteins and for the
+        three hundred best and worst correlated ones]{\label{fig:goares}%
+        \textbf{Enriched GO categories for the pairs with a TS protein
+        and for the three hundred best and worst correlated ones.}
+        The shared y-axis of the two parts includes the enriched GO categories
+        (for any of the three groups).
+        The left part of the figure shows
+        a heatmap where all the included protein/\mRNA\ pairs (\ie\ 3,213)
+        are sorted by their Pearson correlation on the x-axis and
+        that each association of a pair with a \gls{go} category is marked.
+        The right part shows the results from the comparison
+        of the BP \gls{goa} analysis with \soft{clusterProfiler},
+        where the three groups are on the x-axis with their number of genes
+        annotated in the considered ontology.
+        For each dot, the size represents the ratio of pairs within each group
+        contributing to each category enrichment
+        and the colour indicates their significance.
+        }
+    \end{sidewaysfigure}
+%\end{landscape}
 
 
-
-\clearpage\
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Relative approach
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%(in contrast of the absolute one based on correlation values)
-As a direct and consistent hierarchical clustering
-based on unique features is unreachable,
-I have extended this analysis to examine whether or not an indirect method
-may be more appropriate.
-For this new approach,
-I build hierarchical cluster trees that try to translate
-the expression \enquote{closeness} of the tissues
-(or their differentiation distance).
-I then compare the proteins' and transcripts' trees.\\
+Although the lists of best correlated pairs and
+the ones with a \gls{TS} protein present distinctive enrichment profiles
+through the three ontologies,
+the worst correlated pairs list presents
+an enrichment only for biological process (BP) terms.\\
 \vspace{-\baselineskip}
 
-\subsection{Proteins and mRNAs tissue trees present partial concordant results\\}
-\vspace{-12mm}
+\Cref{fig:goares} present the results for
+the comparison of the enrichment of the three considered gene lists
+for the BP ontology.
 
-As presented in \Cref{subsec:clusteringPres},
-a hierarchical clustering analysis requires a linkage method
-and a distance measurement between each element that is included in the analysis.
-For the linkage method, I use the Ward's method~\mycite{Ward1963}
-as in the previous analyses.
+The left side of the figure is a heatmap
+that marks the pairs' associations to the \gls{go} categories on the y-axis.
+It includes all protein/\mRNA\ pairs of the three studied gene lists.
+They are sorted on the x-axis in decreasing order of their Pearson correlation.
 
-The distance must reflect the difference in composition of gene populations
-that the tissues express.
-To this end,
-I only consider the proteins and \mRNAs\
-that are expressed in two tissues strictly.
-For each pair of tissues,
-I count how many proteins or \mRNAs\ they share.
-Then, I use the inverse of this number as a distance measure
-since the greater the number of shared features,
-the closer the tissues are.
+These \gls{go} categories, shared between both sides of the figure,
+combine the five most enriched categories
+for each of the three lists (\gls{TS} proteins, best and worst correlated pairs).
+The categories enrichment is provided by another \soft{clusterProfiler} function,
+\textsf{compareCluster} (which internally invokes \textsf{enrichGO}),
+which has also produced the right side plot.\\
+\vspace{-\baselineskip}
+%The numbers under each list label (x-axis) are the number of genes
+%in that list for which \gls{go} terms exist in the considered ontology (here BP).
+%The size of the dots gives the enrichment
+%as it is the ratio of pairs associated with terms of the \gls{go} categories
+%within each studied list.
 
-\Cref{fig:separateTree} shows the hierarchical clustering for
-\pandey\ \etal\ (\PPKM\ quantification)
-and \uhlen\ \etal\ (≥ $5$ \FPKM)  studies,
-while the number of shared features for \pandey\ \etal\ and \uhlen\ \etal\ data
-are respectively showed in \Cref{fig:heatmapPandeyTissuePairs,fig:heatmapUhlenTissuePairs05}.
+Strikingly, the \gls{go} categories associated to each gene list create
+coherent groups of similar biological processes.
+The pairs with \gls{TS} proteins are enriched in terms for specific signalling,
+either for its detection (\enquote{\textit{detection of chemical stimulus}},
+\enquote{\textit{sensory perception of chemical stimulus}},
+\enquote{\textit{sensory perception}}),
+as answer to a signal (\enquote{\textit{G protein-coupled receptor signalling pathway}})
+or as a regulation (\enquote{\textit{regulation of signalling receptor activity}}).
 
-Both \pandey\ \etal\ and \uhlen\ \etal\ data present
-the same three pairs of tissues more closely related:
-\Testis\ and \Ovary, \Rectum\ and \hColon\ and \Liver\ and \Kidney.
-\Cref{fig:consensus2D15TQ3} shows their consensus tree,
-which is simpler to read.\\
+Concurrently, the best correlated pairs are associated to catabolic processes
+and the worst correlated ones are related to
+ribosomes and \glspl{ncRNA} regulation,
+thus by extension to the translation.
+
+Note that while a few genes are enriched for \gls{go} categories primarily
+associated to the pairs with \gls{TS} protein and one of the two others lists
+(as visible on the heatmap),
+no cross-enrichment exists
+(ensured by the \enquote{\textsf{includeAll=TRUE}} option).\\
 \vspace{-\baselineskip}
 
-Comparing more than two hierarchical trees manually is cumbersome,
-thus methods exist to create consensus trees~\mycite{Felsenstein2004-dv}.
-One of the possible implementations is included in
-the \textbf{\textsf{R}} package \softCi{ape \normalfont{(v5.2)}}{Paradis2019-ue}.
-The methods can be strict or create a consensus based on the majority.
-Since there are a maximum of three trees (one for each dataset)
-to compare at a time,
-all the consensus trees within this thesis are strict.
+All the individual enrichment \gls{go} analyses
+along with the comparison of the enrichment for the CC and MF ontologies
+are provided as supplementary material.
 
-\Cref{fig:consensusTree05} relies on the set of twelve shared tissues between
-\pandey\ \etal\ data (quantified by the \PPKM\ method)
-and the two transcriptomic datasets (≥ $5$ \FPKM): \uhlen\ \etal\ and \gtex\ data.
-Compared to \Cref{fig:consensus2D15TQ3},
-only two tissue-sets are consistently found
-as more closely related: \Testis\ and \Ovary, and \Liver\ and \Kidney.
-Note that the results are identical
-when I include the \pandey\ \etal\ data quantified by the Top3 method.
+The \gls{go} terms enrichment analysis with the CC ontology shows
+that the best correlated genes are the most enriched
+for the following categories:
+the \enquote{\textit{postsynaptic membrane}},
+\enquote{\textit{apical plasma membrane}},
+\enquote{\textit{apical part of cell}},
+\enquote{\textit{cluster of actin-based cell projections}},
+\enquote{\textit{brush border}}
+and the \enquote{\textit{cornfield envelope}}.
+On the other hand, the pairs presenting a \gls{TS} protein show a slight enrichment
+for \enquote{\textit{ion channel complex}},
+\enquote{\textit{transmembrane transporter complex}},
+\enquote{\textit{transporter complex}},
+and \enquote{\textit{cation channel complex}}.
+While the enrichment of the best correlated genes relays on more genes,
+the categories of this list are more specifically located in subset of cells,
+whereas the categories associated to the \gls{TS} proteins
+are more ubiquitous and can concern every cell type.
 
-
-\begin{figure}[!htpb]
-    \begin{subfigure}[b]{0.53\textwidth}
-        \captionsetup{margin=0.6cm,justification=centering}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15Pandey.pdf}
-        \caption{Pandey et al.\ tissues\\(PPKM quantification)}\label{fig:treePandeyQ3T15}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.53\textwidth}
-        \captionsetup{margin=0.6cm,justification=centering}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15UhlenCut5.pdf}
-        \caption{Uhlén et al.\ tissues\\(≥5 FPKM)}\label{fig:treeUhlenQ3T15cuth5}
-    \end{subfigure}
-    \vspace{-5mm}
-    \caption[Tissues hierachical clustering for Pandey and Uhlén]{\label{fig:separateTree}%
-    \textbf{Hierarchical clustering for the fifteen tissues of
-    Pandey et al.\ and Uhlén et al.\ studies.}
-    }
-\end{figure}
-
-\begin{figure}[!htpb]
-    \begin{subfigure}[b]{0.53\textwidth}
-        \captionsetup{margin=0.6cm}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15.pdf}
-        \caption{Consensus tree of the fifteen common tissues between Pandey et al.\
-        and Uhlén et al. (≥ $5$ FPKM) data}\label{fig:consensus2D15TQ3}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.53\textwidth}
-        \captionsetup{margin=0.6cm}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T123DFconsensus05.pdf}
-        \caption{Consensus tree of the twelve common tissues
-        between Pandey et al.\ data and
-        Uhlén et al.\ and GTEx data (≥ $5$ FPKM)}\label{fig:consensusTree05}
-    \end{subfigure}
-    \vspace{-5mm}
-    \caption[Tissues hierachical clustering for Pandey and Uhlén]{\label{fig:consensusTrees}%
-    \textbf{Consensus of the hierarchical clustering of the tissues across the different studies.}
-    }
-\end{figure}
-
-When the consideration threshold of the \mRNAs\ is lowered to $1$ \FPKM,
-\Liver\ and \Kidney\ are consistently observed as closely related
-for every analysis based on the \PPKM\ method and
-for the comparison of
-the \pandey\ \etal\ quantified by Top3 with \uhlen\ \etal\ data.
-Other tissue pairs are emerging as more related for a few comparisons:
-\Rectum\ and \hColon\ for \pandey\ \etal\ and \uhlen\ \etal\ data,
-with the addition of \Pancreas\ and \Gall\
-when \pandey\ \etal\ is quantified by the \PPKM\ method.
-
-At $0$ \FPKM, regardless of the quantification methods or included datasets,
-no tissue structure is highlighted by the clustering.
-
-Once again,
-(even indirect) analyses based on the
-breadth expression of the proteins and \mRNAs\
-have some degree of similarity in their results.
-Although, these results are too mitigated and
-they lack to explain the correlation levels.\\
-\vspace{-\baselineskip}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+The enrichment analysis with the MF ontology
+for the best correlated pairs 
+\enquote{\textit{anion transmembrane transporter activity}},
+\enquote{\textit{oxidoreductase activity, acting on CH-OH group of donors}},
+\enquote{\textit{oxidoreductase activity, acting on the CH-OH group of donors
+NAD or NADP as acceptor}},
+\enquote{\textit{cofactor binding}},
+and \enquote{\textit{coenzyme binding}}.
+The pairs with a \gls{TS} protein are associated with the following fifth categories:
+\enquote{\textit{transmembrane singling receptor activity}},
+\enquote{\textit{signalling receptor activity}},
+\enquote{\textit{molecular transducer activity}},
+\enquote{\textit{channel activity}},
+and \enquote{\textit{passive transmembrane transporter activity}}.
 
 
 \section{Discussion}
+
+%in this chapter, I have \ldots
+
+
+
+
+
+%ajouter ici que les genes les plus coréllés sont
+%les gènes métaboliques et cataboliques
+
 
 Although, the range of Pearson correlation coefficients could seem average or
 low, it is actually greater than the average numbers reported in the literature,
@@ -1418,8 +1529,7 @@ So big need of an external/outliers samples (or more) or external source.
 %The reality is more mixed for the other tissues.
 
 
-%As the \mRNAs\ are expressed in more tissues in general, I tried to take account for this in the following analysis I run.
-
+%As \mRNAs\ are expressed in more tissues in general, I tried accountting for this in the following analysis I run.
 Possible explanation of the anticorrelations may be due
 at the number of transcript or their definition or some other
 attributes that can be found in
@@ -1442,4 +1552,10 @@ underestimate a large dynamic range of proteins~\mycite{TOP3isbetter}.
 \citet{Edfors2016-kv} have found that cell lines derived from a tissue don't present
 the same (absolute) amount of proteins than tissue samples and warned to be cautious
 if cell lines are used as model for normal tissue.
+
+
+
+\citet{Farahbod2019-fq} show that gene coexpression presents
+between 3 to 32\% of tissue-specific signature.
+(Revoir l'article pour être sur)
 
