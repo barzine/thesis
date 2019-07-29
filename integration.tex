@@ -59,10 +59,10 @@ two-thirds of the human protein abundance variation.\\
 
 On the other hand,
 there is a lack of high correlations
-between the transcriptome and proteome
-(for any organism) observation in the literature.
+between the observed transcriptome and proteome
+in the literature (for any organism).
 Previous investigations found low or no correlation
-between the observed expression profiles of the \mRNAs\ and
+between the measured expression profiles of the \mRNAs\ and
 proteins~\mycite{Anderson1997-le,Chen2002-ob,Tian2004-hh,Pascal2008-gh,%
 Gry2009-zv,Lundberg2010-gk}.
 This observation lack is unrestricted to human \mycite{Ghazalpour2011-nb} or
@@ -78,18 +78,10 @@ and highlight that \mRNAs\ levels explain only about 40\% of protein variations
 they have observed.
 
 Other studies tried to explore the \mRNAs\ and proteins relationship in answer
-to stimuli.
-\citet{Marguerat2012-sn} report for yeast that
-steady-state cells present an equivalent level of correlation ($r^2=0.36,
-\ie~r=0.6$) to the previous studies,
-while proliferating cells present higher correlations ($r^2=0.55, \ie~r=0.74$).
-\citet{Jovanovic2015-wv} identify \mRNA\ fold changes
-as the most prominent contributor to the relative changes in protein expression
-for 89\% of the mouse immune genes of their study,
-before concluding that relative changes in \mRNAs\ levels can explain
-\emph{relative} changes in protein levels,
-while post-transcriptional regulations (including degradation rates)
-better explain the \emph{absolute} amount of proteins.
+to stimuli~\mycite{Marguerat2012-sn}
+or with increased focus to post-transcriptional regulations
+(including degradation rates)~\mycite{Jovanovic2015-wv}.\\
+\vspace{-\baselineskip}
 
 While many other regulations processes may occur,
 post-transcriptional modifications and technical noise
@@ -158,10 +150,10 @@ Besides, the comparison of the two transcriptomic data may give a reference,
 \ie\ an ideal case scenario, for the proteomic/transcriptomic one.
 
 On the other hand,
+as shown in \Cref{subsec:protTechVarHigh},
 the technical variability prevails over
 the biological signal of same-tissue samples
-for the available high-throughput proteomics,
-as shown in \Cref{subsec:protTechVarHigh}.
+for the available high-throughput proteomics.
 To avoid an overly restricted protein set for the following analyses,
 I only include one proteomic study: \pandey\ et al.~\mycite{PandeyData}.
 All its samples have been run through the same \ms\ platform and
@@ -298,10 +290,10 @@ I have devised a new quantification method that \james\ has implemented.%\\
 %\vspace{-\baselineskip}
 
 This new method emulates an \Rnaseq\ quantification approach
-as I describe in \Cref{sec:NewQuantProt}.
-It takes advantage of the \emph{degenerate} peptides
-and allows the quantification of proteins even matched by two unique peptides only.\\
-\vspace{-\baselineskip}
+as described in \Cref{sec:NewQuantProt}.
+It takes advantage of the \emph{degenerate} peptides (see \Cref{subsec:proteinInference})
+and allows the quantification of proteins even matched by two unique peptides only.%\\
+%\vspace{-\baselineskip}
 
 \begin{figure}[!ht]
     \includegraphics[scale=0.62]{integration/PandeyGtexUhlen_mRNAprotQ3Venn.pdf}\centering
@@ -397,6 +389,7 @@ the \emph{gene-centric} approach compares for each gene
 the expression levels of its \mRNA\ to its protein ones across all the tissues.
 
 \sectionmark{Fair correlations between independent proteomics and transcriptomics}
+\begin{comment}
 Although not explicitly indicated,
 I use both tissue-centric and gene-centric approaches
 in \Cref{ch:Transcriptomics,ch:proteomics}.
@@ -404,7 +397,9 @@ The \mRNAs\ studies are equivalent enough and
 the proteomic studies so disparate that
 global understanding remains unaffected without any precision.
 
-On the other hand, many confusions can arise
+On the other hand,
+\end{comment}
+Many confusions can arise
 when integrating proteomics and transcriptomics.
 Hence, it is essential
 to define the approach for this latter case clearly \mycite{Liu2016-re}.
@@ -413,7 +408,7 @@ to define the approach for this latter case clearly \mycite{Liu2016-re}.
 and~transcriptomics~of~human~tissues~}\label{subsec:IntegrationGoodCorrProtTrans}
 \sectionmark{Fair correlations between independent proteomics and transcriptomics}
 
-As the first tissue-centric analysis,
+For my first tissue-centric analysis,
 I assess for each tissue the relationship between
 the expression of its proteome and transcriptome
 through the correlation of the protein expression values
@@ -502,7 +497,7 @@ a Welch t-test~\mycite{Welch1947-rv,Welch1951-sj} allows
 assessing the significance of the correlation for the same-tissue pairs
 by comparison to random tissue pairs.
 All the same-tissue pairs correlations are significant
-indifferently of the protein quantification or computational methods
+irrespectively of the protein quantification or computational methods
 (p-value $<0.05$ --- see \Cref{tab:pvalueCorrSP}).%\\
 %\vspace{-\baselineskip}
 
@@ -597,10 +592,9 @@ or in electronic format.
 There may be differences for individual genes through the different combinations
 but the general trends are identical.
 
-\vspace{-5mm}
+\vspace{2cm}
 \subsection{Mixed biological signal between the proteome and transcriptome
 across the tissues}
-\vspace{-4mm}
 
 \begin{figure}[!hbt]
     \includegraphics[scale=0.8]{integration/orderedHeatmapQ3Pearson.pdf}\centering
@@ -678,7 +672,8 @@ which roughly equates to one \gls{RNA} in the cell~\mycite{Mortazavi2008,Hebenst
 The expression breadth profile of the \mRNAs\ expressed at or above $5$ \FPKM\
 present a similar bimodal distribution (\Cref{fig:mRNAbreadth5}) to the protein one.
 While arbitrary, $5$ \FPKM\ is a threshold commonly found
-in the literature~\mycite{Uhlen2015,oneDominant,Chen2018-ln}.
+in the literature~\mycite{Uhlen2015,oneDominant,Chen2018-ln}.\\
+\vspace{-\baselineskip}
 
 \begin{figure}[!htb]
     \begin{subfigure}[h]{0.53\textwidth}
@@ -719,21 +714,25 @@ in the literature~\mycite{Uhlen2015,oneDominant,Chen2018-ln}.
 \Cref{fig:UniqueFeatureQ3T15} shows the proteins and \mRNAs\
 for which the expression breadth equates to $1$ in \Cref{fig:expressionBreadth}.
 Instead of displaying the finite counts,
-it displays the ratio per tissue,
+it displays the ratio across tissues,
 \ie\ the number of unique feature (proteins or \mRNAs)
 for each tissue divided by the total amount of them across all tissues.
 The tissues are ordered in increasing order of their ratio in unique features.
 
 \begin{figure}[!htb]
-    \includegraphics[scale=0.78]{integration/uniqueFeatureQ3T15.pdf}\centering
+    \includegraphics[scale=0.78]{integration/uniqueFeatureQ3T15a.pdf}\centering
     \vspace{-3mm}
-    \caption[Ratio per tissue of unique proteins and mRNAs]{\label{fig:UniqueFeatureQ3T15}
-    \textbf{Ratio per tissue of unique proteins and mRNAs.}
+    \caption[Ratio across tissues of unique proteins and mRNAs]{\label{fig:UniqueFeatureQ3T15}
+    \textbf{Ratio across tissues of unique proteins and mRNAs.}
     }
 \end{figure}
 
-Every tissue presents proteins that are only detected in that specific tissue.
-In contrast, unique \mRNAs\ are detected in a more limited number of tissues.
+Although their number (hence their proportion) varies from one tissue to another
+all fifteen tissues have proteins
+that are specifically detected in each tissue solely
+as shown on the top plot on \Cref{fig:UniqueFeatureQ3T15},
+In contrast, unique \mRNAs\ are detected in a more limited number of tissues
+(see the three bottom plots of \Cref{fig:UniqueFeatureQ3T15}).
 Besides, the unique proteins are more evenly distributed
 between the fifteen tissues than the unique \mRNAs.
 
@@ -912,7 +911,7 @@ or the chosen method to select the \mRNAs\
 (either expression fold change or Hampel's method),
 there is always some overlap between
 the \gls{TS} proteins and the \gls{TS} \mRNAs\ candidates.
-Except for \bladder\ (which has the smallest Jaccard index),
+Except for (\tissue{Urinary}) \bladder\ (which has the smallest Jaccard index),
 these overlaps are statistically significant
 for all the commonly considered thresholds.
 
@@ -941,7 +940,11 @@ between the proteome and transcriptome.
 These are most likely resulting
 from a slew of subtil similarities
 based on identical differential expression
-within many clusters for the proteins and \mRNAs{}.
+within many clusters of the proteins and \mRNAs{}.%;
+%while studying individually paired \mRNA/protein couples
+%may not give any indications,
+%smaller groups can present distinctive signals.
+%cf. Pointillism mouvement.
 
 As a direct and consistent hierarchical clustering
 based on unique features is unreachable,
@@ -950,7 +953,7 @@ may be more appropriate.
 For this new approach,
 I build hierarchical cluster trees that try to translate
 the expression \enquote{closeness} of the tissues
-(viz.\ their differentiation distance).
+(namely their differentiation distance).
 I then compare the proteins' and transcripts' trees.\\
 \vspace{-\baselineskip}
 
@@ -1140,12 +1143,12 @@ a coefficient greater than or equal to $0.8$.
 
 The Pearson correlation ranges rather widely:
 from $1$ (for 27 pairs)
-to below $-0.5$ (for 105 pairs, with $r=-0.83$ for the least correlated one).
+to below $-0.5$ (for 105 pairs, with $r=-0.83$ for the worst correlated one).
 
 A closer look at both extremes (\Cref{fig:caseGene} --- p.~\pageref{fig:caseGene})
 reveals several possible relationship profiles
 between the expression of the \mRNAs\ and proteins.
-The least correlated genes can present
+The worst correlated genes can present
 overall anticorrelated or rather unrelated expression levels
 of \mRNAs\ and proteins.
 On the other end,
@@ -1191,8 +1194,7 @@ by computing the proportion of \gls{TS} proteins
 for each rank of correlation presented on \Cref{fig:GeneProtCor}.
 
 \begin{figure}[!htb]
-    \includegraphics[scale=0.85]{%
-integration/TSratioBasedOnPearsoncorrelationRankedGenes3-15-seed-1279.pdf}\centering
+    \includegraphics[scale=0.85]{integration/TSratioBasedOnPearsoncorrelationRankedGenes3-15-seed-1279.pdf}\centering
     \vspace{-3mm}
     \caption[Course of the TS proteins ratio and the Pearson correlation
     of protein/mRNA pairs]{\label{fig:Spe_Cor}%
@@ -1215,18 +1217,18 @@ integration/TSratioBasedOnPearsoncorrelationRankedGenes3-15-seed-1279.pdf}\cente
 \vspace{-1mm}
 \Cref{fig:Spe_Cor} illustrates the relation between the \gls{TS} protein ratio
 and the Pearson correlation of the protein/\mRNA\ pairs.
+Overall, one fourth of all the pairs have a \gls{TS} protein.
+
 The most correlated protein/\mRNA\ pairs display
 a clear-cut enrichment in \gls{TS} proteins.
 On the other hand, the corresponding \mRNA/\mRNA\ pairs present a weak one,
-and the most correlated randomised protein/\mRNA/ pairs
+and the most correlated randomised protein/\mRNA\ pairs
 lack to show any enrichment.
 Most of the pairs comprising a \gls{TS} protein have
 a Pearson correlation above 0.5,
 although they show a wide range of Pearson correlation,
 from $r=1$ to $r= -0.77$ for \gene{ZNF770}.\\
 \vspace{-\baselineskip}
-
-In addition, one fourth of all the pairs have a \gls{TS} protein.
 
 As mentioned previously,
 either artefacts or biologie may explain the observed low correlated pairs.
@@ -1291,10 +1293,10 @@ to find possible biological factors that may differentiate them.
 
 \subsection{Distinct functional enrichment profiles
 for pairs with a TS protein,
-and for the best and least correlated ones}
+and for the best and worst correlated ones}
 
 %\subsection{Distinct functional enrichment profiles
-%for best and least correlated pairs,
+%for best and worst correlated pairs,
 %along with pairs comprising a TS protein}
 
 As a downstream analysis,
@@ -1315,7 +1317,7 @@ the comparison between the \gls{go} terms set associated
 with each studied list of genes to a reference.
 I consider three genes lists:
 the three hundred best and
-the three hundred worst (or least) correlated protein/\mRNA\ pairs
+the three hundred worst correlated protein/\mRNA\ pairs
 and all the pairs (2,613) with a \gls{TS} protein.
 As reference, I use the 12, 921 matching protein/\mRNA\ pairs
 between \pandey\ \etal\ (\gls{PPKM} quantification) and \uhlen\ \etal\ data.
@@ -1427,7 +1429,7 @@ whereas the categories associated to the \gls{TS} proteins
 are more ubiquitous and can concern every cell type.
 
 The enrichment analysis with the MF ontology
-for the best correlated pairs 
+for the best correlated pairs:
 \enquote{\textit{anion transmembrane transporter activity}},
 \enquote{\textit{oxidoreductase activity, acting on CH-OH group of donors}},
 \enquote{\textit{oxidoreductase activity, acting on the CH-OH group of donors
@@ -1444,14 +1446,50 @@ and \enquote{\textit{passive transmembrane transporter activity}}.
 
 \section{Discussion}
 
-%in this chapter, I have \ldots
+In this chapter,
+building on the insights gained in previous chapters
+(particularly \Cref{ch:Transcriptomics,ch:proteomics}),
+I have restricted the integration study to
+the three following independent sources:
+\uhlen\ et al.~\mycite{Uhlen2015}
+and \gtex~\mycite{GTExTranscript} data for the transcriptomics
+and \pandey\ laboratory data~\mycite{PandeyData} for the proteomics.
+The three datasets share twelve tissues together,
+while the working sets based on \uhlen\ and \pandey\ include three more tissues.
+According to the considered working set and protein quantification methods,
+the various analyses encompass 6,357 to 12,921 \mRNA/protein pairs
+(respectively
+three datasets --- state-of-the-art protein quantification (see \Cref{ch:datasets})
+and two datasets --- new quantification method presented in \Cref{ch:proteomics}).
+I have used both tissue- and gene-centric approaches
+for their comparison and integration.\mybr\
 
-
+%\mybr\
 
 
 
 %ajouter ici que les genes les plus coréllés sont
 %les gènes métaboliques et cataboliques
+
+
+
+
+%% on a un monde dynamic mais la plupart des données sont statiques
+
+\citet{Marguerat2012-sn} report for yeast that
+steady-state cells present an equivalent level of correlation ($r^2=0.36,
+\ie~r=0.6$) to the previous studies,
+while proliferating cells present higher correlations ($r^2=0.55, \ie~r=0.74$).
+\citet{Jovanovic2015-wv} identify \mRNA\ fold changes
+as the most prominent contributor to the relative changes in protein expression
+for 89\% of the mouse immune genes of their study,
+before concluding that relative changes in \mRNAs\ levels can explain
+\emph{relative} changes in protein levels,
+while post-transcriptional regulations (including degradation rates)
+better explain the \emph{absolute} amount of proteins.
+
+
+%%
 
 
 Although, the range of Pearson correlation coefficients could seem average or

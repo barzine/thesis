@@ -2416,11 +2416,11 @@ across different samples.
 
 \section{Possible~downstream~analyses~for~expression~data}\label{sec:enrichmentAnalysis}
 
-A standard final stage analysis performed on expression data are the \glspl{ORA}
-as they can reveal or clue on biological insights and mechanisms.
-\glspl{ORA} study if a set of gene (or protein or metabolite) categories
-are over-represented for a subset of the data
-when compared to the expectation for a random categorical assignment.
+\Glspl{ORA} are a standard final stage analysis on expression data.
+They can reveal or clue on biological insights and mechanisms.
+\Glspl{ORA} highlight sets of genes (or proteins or metabolites) categories
+that are overrepresented in a selected subset of the data
+compared to the expectation of a random category.
 Many expression studies aim to produce \textquote{a list of \enquote{interesting}
 biomolecules}~\mycite{Tipney2010-mz},
 \glspl{ORA} help to determine the most pertinent ones
@@ -2428,7 +2428,7 @@ by providing biological context and increasing statistical power.
 Besides, such lists are often substantial
 so extracting common functional information from subsets of genes/proteins eases
 the interpretation of the data.
-Many tools and algorithms have been developed
+Various tools and algorithms have been developed
 to overcome the daunting task of individually checking the genes/proteins.
 See \citet{Shi_Jing2015-yh} for some examples.
 While, the field has been reviewed a few times
@@ -2442,8 +2442,16 @@ As \glspl{DEA} are the most widespread type of analyses for expression data,
 many tools and algorithms work solely with the corresponding outputs.
 Hence, those are unfitted for other types of studies
 (such as the ones in this thesis).
-While devised for \gls{DEA}, many tools are more flexible;
-they accept any rank or score.
+Available \gls{gsea}~\mycite{Subramanian2005-kd} tools are commonly inadequate
+for any other purpose than \gls{DEA} studies.
+See \citet{Tamayo2012-qw,Irizarry2009-sc}
+and the included references for some examples of \gls{gsea} tools.
+
+On the other hand, while still devised for \gls{DEA},
+other tools handle any rank or score and thus are more flexible;
+they can analyse data outside of their original scope.
+Many \gls{go} analysis tools fall into this latter category.\\
+\vspace{-\baselineskip}
 
 \subsection{GO analysis (GOA)}\label{sec:goaGeneralities}
 The \gls{go} is a collaborative and curated classification
@@ -2475,23 +2483,6 @@ one can apply a cut-off before running this type of analyses.
 However, in those cases,
 \gls{gsea} will be generally favoured to a \gls{goa}.
 
-\subsection{Gene set enrichment analysis (GSEA)}\label{sec:gseaPresentation}
-
-\gls{gsea}~\mycite{Subramanian2005-kd} have been initially devised for \gls{DEA}
-studies, and the most ubiquitous one also relies on \gls{go}.
-It takes as input a ranked list and the analysis is run on that list only
-and without any cut-off.
-Based on the methods, the ranked list is weighted on different statistics (\eg\
-fold-change of expression or $\log($p-value$)$).
-Then, the analysis runs through (for example) all the \gls{go} terms.
-If the gene is associated with the \gls{go} term,
-the enrichment score is increased,
-it is decreased otherwise.
-A few variations of the original algorithm are nowadays available,
-see \citet{Tamayo2012-qw,Irizarry2009-sc}
-and their included references for some examples.
-
-
 \section{Reproducibility~and~Experimental~design}\label{sec:expDesign}
 
 Science develops on reproducible facts,
@@ -2503,7 +2494,8 @@ towards any parameter outside of the study focus.
 To this aim, one of the critical issues that need to be tightly monitored
 is the presence of \emph{batch effects}.
 Including \emph{replicates} in the study is the most effective way to control
-for the unwanted batch effects.
+for the unwanted batch effects.\\
+\vspace{-\baselineskip}
 
 Another issue is due to high-throughput transcriptomics and proteomics
 are still evolving fields.
