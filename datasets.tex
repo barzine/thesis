@@ -349,7 +349,7 @@ appraised by the scientific community, their processing
 (identification and quantification) methods were heavily
 criticised (see~\citet{Ezkurdia2014-qx,Deutsch2015}).
 Thus, for this thesis I have relied only on
-quantifications provided by \james\ who reprocessed the raw spectra.
+quantifications provided by \james\ who reprocessed the raw spectra.\mybr\
 
 \subsection{Kuster dataset}
 
@@ -401,7 +401,7 @@ Third-parties also distribute
 quantification for these studies either retrieved from the original studies,
 such as \hFoCi{BioGPS}{http://biogps.org/}{BioGPS1} or
 \hFoCi{Harmonizome}{https://amp.pharm.mssm.edu/Harmonizome}{Harmonizome},
-or after reprocessing the raw data as the \egxa~\mycite{EBIgxa} does.
+or after reprocessing the raw data as the \egxa~\mycite{EBIgxa} does.\mybr\
 
 To primarily reduce for avoidable technical variability,
 and despite readily available quantifications for most of the
@@ -416,7 +416,7 @@ methods and has nowadays quantification for most of the aforementioned
 datasets (it is still lacking the \castle\ \etal\ one.),
 these were still the products of different protocols when I started my work.
 Indeed, the datasets were processed with different versions of
-reference (Human genome build and annotation) and tools.
+reference (Human genome build and annotation) and tools.\mybr\
 
 Intuitively, we expect that different processing protocols produce
 different results.
@@ -453,7 +453,7 @@ from the raw spectra up to the normalisation of the protein expression values.
 As presented in \Cref{sub:RNAseqworflow}, there are many steps from the raw data
 files to the quantification matrices on which this thesis' analyses are based.
 \Cref{fig:pipelineTrans} presents a general overview of the \Rnaseq\ processing
-protocol I used.
+protocol I used.\mybr\
 
 \begin{figure}
     \includegraphics[scale=0.75]{datasets/pipelineTrans1.pdf}\centering
@@ -592,10 +592,10 @@ to perform the
 assessment and the trimming. The usual uninformative and ambiguous reads
 (see \Crefu{subsub:trim})
 have been discarded as were any with an overall quality score below
-a threshold of 10.
+a threshold of 10.\mybr\
 
-As reported in the \Crefu{subsub:sequencing}, as the base calling progresses,
-the quality of the call decreases.
+The quality of the call decreases while the base calling progresses ---
+see \Crefu{subsub:sequencing}.
 On another note, some tools (mappers in particular) need
 all the reads to be trimmed to the same length. \irap\ optimises the compromise
 between the purity and the length of the reads to avoid more errors or

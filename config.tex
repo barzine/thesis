@@ -148,10 +148,11 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 \RequirePackage{ragged2e}
 \RequirePackage{soul}
 %\usepackage{arsclassica}
-\RequirePackage[xindy, toc, nopostdot,nolist]{glossaries} %%after hyperref loaded
+\RequirePackage[xindy, toc, nopostdot,nolist,nogroupskip]{glossaries} %%after hyperref loaded
 \RequirePackage[automake,nomain,acronym]{glossaries-extra}
 \setglossarystyle{longheader}
 %\setabbreviationstyle[acronym]{long-short}
+\setlength{\glsdescwidth}{0.9\textwidth}
 \makeglossaries%
 %\loadglsentries{glossary.tex}
 
