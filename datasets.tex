@@ -296,8 +296,8 @@ For privacy reasons, the raw data is available only through controlled access vi
 in my study).
 Unfortunately, this translates to a slow access time to the raw data.
 
-\section[Proteome Mass Spectrometry bottom-down studies]%
-{Proteome Mass Spectrometry bottom-down studies \quad}\label{sec:ProteoData}
+\section[Proteome Mass Spectrometry bottom-up studies]%
+{Proteome Mass Spectrometry bottom-up studies \quad}\label{sec:ProteoData}
 
 As mentioned earlier,
 the proteomic data have been selected and handled by \jyoti\ and \james.
@@ -401,7 +401,8 @@ Third-parties also distribute
 quantification for these studies either retrieved from the original studies,
 such as \hFoCi{BioGPS}{http://biogps.org/}{BioGPS1} or
 \hFoCi{Harmonizome}{https://amp.pharm.mssm.edu/Harmonizome}{Harmonizome},
-or after reprocessing the raw data as the \egxa~\mycite{EBIgxa} does.\mybr\
+or after reprocessing the raw data as
+the \WebFoCi{\egxa}{https://www.ebi.ac.uk/gxa/home}{EBIgxa} does.\mybr\
 
 To primarily reduce for avoidable technical variability,
 and despite readily available quantifications for most of the
@@ -621,23 +622,24 @@ Indeed, \toph\ can handle reads from many organisms
 by fine-tuning the parameters (\eg\ number of mismatches or indels to tolerate),
 but the default parameters are adjusted for normal human.
 
-\minisec{Quantification and Normalisation}
+\minisec{Quantification and Normalisation}\label{minisec:quantNorm}
 While \Rnaseq\ can be used to identify (and discover) \gls{RNA}
 isoforms, I have focused my thesis on the gene level expression. Indeed, current
 annotations and knowledge are still lacking in the reasons and
 external conditions that impact the expression of a specific isoform over the
 others. In addition, criticisms have been raised on the accuracy of distinction
-between them~\mycite{tamaraRNA,ernestRNA}. Normalising gene expression
-presents more challenges than specific transcript expression,
-for instance the definition of the gene length may be different
-from one lab to another.
+between them~\mycite{tamaraRNA,ernestRNA,Dapas2017-ui}.
 
-In the framework of this thesis,
+However, normalising gene expression
+presents more challenges than specific transcript expression.
+For instance, the definition of the gene length may be different
+from one lab to another.
+In this thesis' framework,
 when I have to use a gene length for a computation,
 I use the identical gene length definition as found in
 \irap\ and \egxa.
 Thus, as shown on \Cref{fig:Genelength-collapsedExons} the gene
-length is defined as the sum of the lengths of all its \emph{collapsed} exons.
+length is defined as the sum of the lengths of all its \emph{collapsed} exons.\mybr\
 
 \begin{figure}
     \includegraphics[scale=0.8]{datasets/collapsedExonsLinLib.pdf}\centering
