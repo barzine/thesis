@@ -1,4 +1,12 @@
 \chapter{Integration of Transcriptomic with Proteomic data}\label{ch:Integration}
+\setlength{\epigraphwidth}{0.8\textwidth}
+\setlength{\epigraphrule}{0pt}
+\epigraphhead[5]{%
+\epigraph{\emph{Scientists like ripping problems apart, collecting as much data as possible\\
+and then assembling the parts back together to make a decision.}}{Shirley M. Tilghman}
+}
+
+
 After assessing the similarity of the human gene expression profiles
 across various tissues
 at transcriptomic level (with \Rnaseq\ studies in \Cref{ch:Transcriptomics})
@@ -406,15 +414,9 @@ to define the approach for this latter case clearly \mycite{Liu2016-re}.
 
 \afterpage{\clearpage\sectionmark{Fair correlations between independent proteomics and transcriptomics}}
 
-\section[Fair correlations between independently sourced proteomics~%
-and~transcriptomics~of~human~tissues~]{Fair correlations between independently~%
-sourced proteomics~and~transcriptomics~of~human~tissues~%
-   \sectionmark{Fair correlations between independent proteomics and transcriptomics}}%
-\label{subsec:IntegrationGoodCorrProtTrans}
-
-%\section{Fair correlations between independently sourced proteomics~%
-%and~transcriptomics~of~human~tissues~}\label{subsec:IntegrationGoodCorrProtTrans}
-%\sectionmark{Fair correlations between independent proteomics and transcriptomics}
+\section{Fair correlations between independently sourced proteomics~%
+and~transcriptomics~of~human~tissues~}\label{subsec:IntegrationGoodCorrProtTrans}
+\sectionmark{Fair correlations between independent proteomics and transcriptomics}
 
 For my first tissue-centric analysis,
 I assess for each tissue the relationship between
@@ -1324,7 +1326,7 @@ It helps to assess whether a set of genes is associated with
 a biological process (BP), a molecular function (MF) or a cellular component (CC).
 The three ontologies are included
 in the \gls{BiocR} package \softCi{org.Hs.eg.db}{orghsegdb}
-for analysis in \textbf{\textsf{R}}.
+for analysis in \WebFoCi{\textsf{R}}{https://cran.r-project.org/}{coreR}.
 
 The enrichment computation requires
 the comparison between the \gls{go} terms set associated

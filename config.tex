@@ -95,7 +95,7 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 %%%%%%%%%
 
 \RequirePackage[english=british]{csquotes}
-%\RequirePackage{epigraph}
+\RequirePackage{epigraph}
 %\renewcommand{\epigraphflush}{center}
 \RequirePackage{booktabs,dcolumn}
 \RequirePackage{microtype}
@@ -269,8 +269,10 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 \pagestyle{scrheadings}
 
 \hypersetup{%
-    pdftitle={M. Barzine - PhD thesis, University of Cambridge (2018)},
+    pdftitle={M. Barzine - PhD thesis, University of Cambridge (2019)},
     pdfauthor={Mitra Barzine},
+    pdfkeywords={transcriptomics, proteomics, data integration, human tissue,%
+    correlation, clustering, gene expression, high-throughput gene expression},
     linkcolor=darkgray,
     citecolor=teal
 }
@@ -510,5 +512,34 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 
 \lehead{\mbox{\llap{\small\kern2em\color{halfgray}}\ifnum\value{page}=3\replaceText\else\ifnum\value{page}=2\replaceText\else\headmark\fi\fi\hfil}}
 \rohead{\mbox{\hfil{\ifnum\value{page}=3\replaceText\else\ifnum\value{page}=2\replaceText\else\headmark\fi\fi}\rlap{\small\kern2em\color{halfgray}}}}
+
+
+\makeatletter
+\renewcommand{\epigraphhead}[2][95]{%
+  \def\@epitemp{\begin{minipage}{\epigraphwidth}#2\end{minipage}}
+  \def\ps@epigraph{\let\@mkboth\@gobbletwo
+    \@epipos
+    \if@epirhs
+      \def\@oddhead{\hfil\begin{picture}(0,0)
+                         \put(0,-#1){\makebox(0,0)[r]{\@epitemp}}
+                         \end{picture}}
+    \else
+      \if@epicenter
+        \def\@oddhead{\hfil\begin{picture}(0,0)
+                           \put(0,-#1){\makebox(0,0)[b]{\@epitemp}}
+                           \end{picture}\hfil}
+      \else
+        \def\@oddhead{\begin{picture}(0,0)
+                           \put(0,-#1){\makebox(0,0)[l]{\@epitemp}}
+                           \end{picture}\hfil}
+      \fi
+    \fi
+    \let\@evenhead\@oddhead
+    \let\@rofoot\@evenfoot
+    \let\@evenfoot\@oddfoot
+    }
+  \thispagestyle{epigraph}
+}
+\makeatother
 
 

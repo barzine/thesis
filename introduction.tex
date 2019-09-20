@@ -1,212 +1,110 @@
 \chapter*{Introduction}\label{ch:intro}
 \addcontentsline{toc}{chapter}{INTRODUCTION}
 
-\begin{itemize}
-    %\item Central dogma.
-    %\item Human genome completion
-    \item Incentive now to resolve the Expression Atlas transcriptomics and proteomics (but transcriptomics so much easier)
-\end{itemize}
+%\setlength{\epigraphwidth}{0.53\textwidth}
+\setlength{\epigraphwidth}{0.62\textwidth}
+%\epigraphhead[155]{%
+\setlength{\epigraphrule}{0pt}
+\epigraphhead[5]{%
+    \epigraph{\emph{I am not accustomed to saying anything with certainty after
+    only one or two observations.}}{Andreas Vesalius \mycite{omalley_1964}}
+}
 
-\begin{comment}
-\Cref{fig:dogma} is the reconstruction by \citet{Crick:1958} of
-what was conceived circa 1958 and is now known as
-the core of the central dogma of molecular biology.
-It presents the relationship between these three types of macromolecules:
-one gene will be transcribed from \DNA\ to one \mRNA,
-which will be in turn translated in one protein.
-This theory still holds true
-even though the truth is not as linear as first thought.
-It also explains why the assumptions of strong correlations between the \mRNA\
-and the protein levels of a gene have lasted (are still lasting) so long.
+%\vspace{2cm}
 
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.45]{introduction/dogma}\centering
-    \caption[Central dogma of molecular biology proposed by F. Crick circa 1958]%
-    {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
-    F. Crick circa 1958.} The solid lines present the proven modes of
-    information transfers, the dashed ones are the ones that were postulated but
-    have yet to be established.
-    Nowadays, we know that the arrow from \gls{RNA} to \gls{DNA}
-    should be a solid one, even though this happens on particular occasions.}
-\end{figure}
-\end{comment}
+Nowadays, we have comprehensive knowledge
+about the structure and functioning of the human body at the macroscopic level.
+At the microscopic level, however,
+the identification and mapping of the molecules, their function and whereabouts
+still need to be refined --- or even, yet to be done.\mybr\
 
-Over the past few years, a large number of gene expression atlases based on
-\Rnaseq\ have been released for many different organisms\footnote{E.g.,
-mouse~\mycite{Wu2009-lw,Ringwald2012}, pig~\mycite{Freeman2012},
+Beyond the invaluable addition to our knowledge,
+other more practical reasons are also sustaining the effort
+for human expression atlases.
+Establishing subsets of genes with specific behaviour in particular conditions
+can facilitate diagnosis or translate to effective drug targets.
+Besides, a robust atlas for undiseased baseline expression will be
+extremely useful for all the studies where controls are hard to sample,
+which is generally the case in cancer research.
+
+The completed and annotated human genome and
+recent technological advances for high-throughput expression studies
+have opened the way towards this future new milestone.
+The recent explosion of high-throughput transcriptomic atlases in the literature
+provides sufficient evidence of this.
+Examples include mouse~\mycite{Wu2009-lw,Ringwald2012}, pig~\mycite{Freeman2012},
 sheep~\mycite{Clark2017-mw}, plants as maize~\mycite{Stelpflug2016-sm},
-vigna~\mycite{Yao2016-se},pigeonpea~\mycite{Pazhamala2017-ig},
-parasite, \eg\ \species{Schistosoma mansoni}.}.
+vigna~\mycite{Yao2016-se}, pigeon pea~\mycite{Pazhamala2017-ig},
+parasite, \eg\ \species{Schistosoma mansoni}.
 Many focus on Human, as a whole,
 \eg\ see~\mycite{Krupp2012,Jimenez-Lozano2012,Uhlen2015,GTEx2013}
-or on on specific aspects,
+or on specific aspects,
 \eg\ the organogenesis in the embryos~\mycite{Gerrard2016-zu}.
 
-On the other hand, there is also a considerable sustained effort
-to compile these studies in new ressources for the community;
-either by relying on the initial expression levels released with the original
-studies --- as for example
-\hFoCi{TISSUES}{https://tissues.jensenlab.org/Search}{Santos2015-rj} or
+There are high incentives to develop the atlases with
+transcriptome shotgun sequencing (\ie\ \Rnaseq).
+The technology involved in similar older projects\footnote{%
+E.g.\ Gene Expression Atlas for Human Embryogenesis~\mycite{Yi2010-az},
+Atlas of human primary cells~\mycite{Mabbott2013-xf},
+Gene atlas of mouse and human protein-encoding transcriptomes
+(now hosted by \soft{BioGPS}) \mycite{Su2004-kc},
+Allen Brain Atlas~\mycite{Hawrylycz2012-mx}.}
+has demonstrated to generate highly variable data~\mycite{Rung2013-ul}
+that is challenging to integrate
+(even when produced by the same laboratory
+on the same platform)~\mycite{Walsh2015-nf}.
+When I started my doctorate,
+little was known about the interstudy robustness of \Rnaseq.
+However, it had already shown reduced background noise and
+a more extensive dynamic range of detection~\mycite{rnaseq-2009}.
+Besides, \Rnaseq\ has the added advantage to discover new transcripts
+as it does not rely on previous knowledge~\mycite{rnaseq-2009}.
+
+Considering the growing number of studies referring these atlases\footnote{%
+More than 2,800 papers for five Human primary studies on 15 September 2019.
+}
+or the numerous efforts to compile them in new resources for the community ---
+\eg\
+\hFoCi{TISSUES}{https://tissues.jensenlab.org/Search}{Santos2015-rj},
 \hFoCi{Harmonizome}{https://amp.pharm.mssm.edu/Harmonizome/}{Harmonizome}
---- or
-by reprocessing the raw data as
-\hFoCi{Expression Atlas}{https://www.ebi.ac.uk/gxa/home}{EBIgxa}.
+and, after reprocessing the raw data,
+\hFoCi{Expression Atlas}{https://www.ebi.ac.uk/gxa/home}{EBIgxa}
+---
+assessing the consistency of the results from one study to another
+has become paramount.
+The recently reported reproducibility crisis in science \mycite{Begley2012-hm,%
+Fatovich2017-lo,Lindner2018-qy,Lyu2018-ze}
+has only further underlined this need.
 
-While similar microarrays-based projects exist\footnote{E.g.\ Gene Expression
-Atlas for Human Embryogenesis~\mycite{Yi2010-az}, Atlas of human primary
-cells~\mycite{Mabbott2013-xf}, Gene atlas of mouse and human protein-encoding
-transcriptomes (now hosted by \soft{BioGPS}) \mycite{Su2004-kc},
-Allen Brain Atlas~\mycite{Hawrylycz2012-mx}.},
-there is a burst in the use \Rnaseq\ as the main technology to establish
-these references\footnote{Indeed, microarrays straightforwardly exhibit
-a large drawback compared to \Rnaseq:
-they allow to measure a finite number of already identified genes
-while \Rnaseq\ has the capacity of discovering new ones.}.
+Given the previous context,
+the first aim of my doctorate was
+to appraise the consistency of findings highlighted
+in individual large scale transcriptomics of (undiseased) human tissues.
+Then, with the publication of the first drafts of the
+human proteome~\mycite{PandeyData,KusterData},
+my aims have expanded to the integration of human tissue expression data
+across different datasets and biological layers.
 
+\section*{Outlook of this thesis}
 
+In \Cref{ch:datasets},
+I first present the five transcriptomic (\Rnaseq)
+and the three proteomic (\glsxtrshort{MS}) datasets
+I have preselected for my analysis.
+Then I describe the bioinformatic pipelines
+that have automated the processing of this massive amount of data.
 
-The incentive is that compared to microarrays, there should be a lot less
-batch effects and that these studies, in addition to explore the transcriptome
-for new (undiscovered until now) transcripts, the relationships (coexpression,
-coregulation between them) due to the fact that there are not these biases (as
-microarrays) these studies can be used as reference for later studies.
+After considering several biases sources and strategies to limit them
+in \Cref{ch:expression},
+I compare and integrate the independent transcriptomic datasets
+in \Cref{ch:Transcriptomics}.
+Following an assessment of the findings consistency in proteomics
+in \Cref{ch:proteomics},
+I then employ different approaches for integrating
+transcriptomics and proteomics in \Cref{ch:Integration}.
+Finally, I close this thesis with a few remarks in \Cref{ch:conclusion}.
 
-
-Problem: while they don't present some of the batch effects of the microarrays,
-there was no real studies \emph{at that time} on how good is the \Rnaseq.
-
-While \emph{batch effects} were well-known for microarrays,
-at the time I started this project
-the subject was little known.
-Since then several other studies have been published on the matter.
-Whenever relevant, I present and discuss those results them relation to my owns.
-The first piece towards this goal was done by the~\mycite{seqcmaqc}.
-
-
-
-\begin{comment}
-Normal tissues sampled from various people are phenotypically very similar,
-despite individual hereditary and environmental variations.
-At molecular level,
-technical noise, batch effects and physical limitations
-are also generating variations.
-\end{comment}
-
-Despite individual hereditary and environmental variations,
-normal tissue samples are phenotypically very similar.
-At the molecular level, in addition to the technical noise,
-more variations are also expected.
-
-Microarray studies have illustrated that integrating data
-from different assays (even from the same platform and laboratory)
-is challenging~\mycite{Walsh2015-nf},
-which also explain the abundance of methods and tools~\mycite{Tseng2012-if}.
-While meta-analyses or cross-normalisation of microarrays are still
-used~\mycite{Afroz2016-xk} and they may be very pertinent and
-useful,
-microarray technology is subject to saturation effects and is semi-quantitative
-while suffering from great batch effects~\mycite{Rung2013-ul}.
-
-\Rnaseq\ nurtures the hope of enabling true quantitative measurements.
-
-
-In \Paper{seqcmaqc}~\mycite{seqcmaqc} many facts that
-we had observed within the lab have been reported.
-Indeed, this paper highlights several consistent points
-across sites and platforms,
-such as:
-\begin{itemize}[topsep=0pt,nolistsep,noitemsep]
-        \setlength{\itemsep}{1pt}
-        \setlength{\parskip}{0pt}
-        \setlength{\parsep}{0pt}
-    \item Detection of the same unannotated isoforms (provided a significant expression)
-    \item Absolute quantification seems unachievable yet,
-        but relative quantification is robust and even agrees well with \gls{qPCR}
-        and microarrays.
-    \item Comprehensive gene model crucial for accurate expression profiling.
-    \item They advise to profile multiple libraries or samples per conditions.
-    \item Gene-specific biases are observed for every platforms
-        (including \gls{qPCR}).
-    \item To achieve absolute quantification, it would need to estimate and
-        remove background noise (improves accuracy but at the expense of precision)
-    \item Pipelines have an impact on the final results.
-\end{itemize}
-
-Their results are sound as they have used the same samples across the different
-sites and platforms which are very different biologically (Universal
-Human Reference RNA) and Human Brain Reference RNA
-(see~\mycite{MAQC_Consortium2006-hs}) (from the \gls{MAQC} consortium).
-
-\section*{Aims of the thesis}
-
-One main focus of my work for this thesis was to appraise the
-consistency of findings that have been enlightened in normal Human tissues by
-individual large scale transcriptomics and, more recently, large-scale
-proteomics studies.
-
-While the amount of data to process and integrate can be challenging,
-paradoxically the data available to draw statistically significant conclusions
-is often still too sparse. However, we do have enough to provide at least a
-qualitative assessment of the consistency and evaluate the feasibility of a
-quantitative assessment in general, if not, realise a quantitative integration
-for a few key tissues.
-
-\subsection*{Achievements}
-\begin{itemize}
-    \item First time so many datasets have been reprocessed together with the
-        same annotation and hence comparison are better (y'a le truc de chez Burges,
-        mais ils se sont concentré sur une petite partie des genes)
-    \item surtout comparison of Gtex and Uhlen (aussi approfondi)
-    \item reprocessing of all the proteome untargeted in human
-    \item comparison entre protein expression and 2 datasets (meilleur que le
-        science report dans le sens où il y a pas de polémique)
-    \item siteweb//application de visualisaiton de la comparison
-    \item liste croisé de tissues specifique et house keeping à travers datasets
-       transcriptomic et protoemic
-  \item attempt de normalisation basée sur les housekeepings
-\end{itemize}
-
-
-\begin{comment}
-The core of central dogma of molecular biology --- \ie\ one \DNA\ (coding) gene
-will be transcribed as one \mRNA\ transcript and will be in turn translated in
-one protein --- still holds true even though we now know the truth is not as
-linear as we thought first. Many regulation processes are implied before
-and after the transcription and translation steps.
-\Cref{fig:dogma} is the reconstruction by~\citet{Crick:1958} of
-what was conceived circa 1958: the solid lines present the proven modes of
-information transfers, the dashed ones are the ones that were postulated but
-have yet to be established. To update this figure to our current knowledge, the line
-starting from the RNA to the DNA should be a solid one.
-
-
-\begin{figure}%[!htbp]
-    \includegraphics[scale=0.6]{integration/dogma}\centering
-    \caption[Central dogma of molecular biology proposed by F. Crick circa 1958]
-    {\label{fig:dogma}\textbf{Central dogma of molecular biology proposed by
-    F. Crick circa 1958.} The solid lines are proved direct transfer, the dashed
-    ones the still have to be established. Nowadays, we know that the arrow from RNA
-    to DNA should be a solid one, even though this happens on particular occasions.}
-\end{figure}
-
-
-However, as we still have to prove that proteins can be produced directly
-from \DNA\footnote{which seems pretty unlikely to me},
-it is assumed that translation creates each protein,
-hence studying
-transcriptomics and proteomics together for the same conditions should give us
-insights on these regulatory processes.
-Whereas it was implicitly assumed for a long time that for similar conditions
-there should be a proportional relationship between transcriptomics and
-proteomics, many studies\
-\TK{add references, see TAC report 3}
-done in cells have failed to show a high correlation between the two biological
-layers.
-From then, while there are still studies done jointly on transcriptomics and proteomics,
-the focus has considerably shift either on the presence or absence of
-a protein/transcript in a specific condition or if both transcript and protein
-are differentially expressed between two conditions in the same way.
-Nowadays, there are not many efforts to directly link their actual expression.
-\end{comment}
-
+However, before anything else,
+I review the scientific background of my doctorate works
+in the following \Cref{ch:background}.
 
