@@ -4,7 +4,7 @@
     \setlength{\epigraphrule}{0pt}%0.1
     \epigraphhead[5]{%
     \epigraph{\emph{Has been done. Can be done. Must be done\ldots}}%
-    {\mycite{McCaffrey}}
+    {Fandarel \mycite{McCaffrey}}
 }
 
 
@@ -63,7 +63,7 @@ Besides,
 the most variable genes and Tissue-Specific (\gls{TS}) genes are contributing
 more to the high correlations than the highest expressed ones.
 However, the inclusion of external resources requires caution,
-particularly when the resources are outdated, such as \gls{TIGER}~\mycite{tiger}.
+especially when the resources are outdated, such as \gls{TIGER}~\mycite{tiger}.
 
 The integration has revealed that
 direct comparisons of the raw data may be impossible yet,
@@ -134,15 +134,16 @@ material}\footnote{\Href{https://github.com/barzine/BaselineAtlas/tree/thesis}}.
 
 Throughout this thesis' analyses,
 I had to overcome many practical challenges.
-While most of the encountered challenges ordinarily pertain to Big data projects,
+While most of the difficulties encountered ordinarily pertain to Big data projects,
 one unexpected challenge was
 the current global complexity state of the proteomic world.
-Proteins are intrinsically difficult to study
-because of their physicochemical properties,
+Physicochemical properties of the proteins make them
+intrinsically complex to study,
 as shown in \Cref{sec:exploreProtMS}.
-However, I was surprised by the overall disparity
+However, the overall disparity
 when it comes to proteomic studies,
-including in terms of learning about general practices and concepts.
+including in terms of learning about general practices and concepts,
+was surprising for me.
 
 Big data is often characterised through, what was first defined by
 \href{https://www.ibm.com}{IBM}\footnote{\Href{https://www.ibm.com}},
@@ -184,8 +185,8 @@ where the authors have only reported the tissue instead.
 
 Another source of variety that I have limited in the above work
 is the diverse annotation versions.
-Even though we mapped both the proteomics and transcriptomics
-to the same genome and its annotation versions,
+Even though we mapped both proteomics and transcriptomics
+to the same genome and annotation versions,
 there are discrepancies in how transcriptomics and proteomics
 are defined and mapped to the genome.
 A possible improvement of the present work will be to use
@@ -194,8 +195,8 @@ instead of using the gene identifier (\gls{Ensembl} ID).\mybr\
 
 In addition, with all possible tunable parameters for the raw data processing,
 the generated data to integrate can vary quickly.
-While I lack to provide an extensive view of
-the impact of the combinations of the different parameters,
+While I lack providing an extensive view of
+the impact of the different settings combinations,
 my study has shown that the overall trend of the results remains the same.
 Moreover, as the number of datasets I include in my analyses has grown,
 the results got stabler and stabler.
@@ -207,10 +208,10 @@ Morrison2014-hy,Glenn_Begley2015-fz,Goodman2016-ri,Fatovich2017-lo,
 Coiera2018-vf,Lindner2018-qy}.
 However, caution is still needed when considering individual genes.\mybr\
 
-Finally, the velocity with which new data was available
-compared to the time required
-to prepare and then include it in my on-going analyses was
-unappealing and impracticable.
+Finally, the velocity of new data availability
+and its required preparation time
+before possible inclusion in my on-going analyses
+made the prospect unappealing and impracticable.
 Unfortunately, although new \gtex\ samples or other tissues studies
 (\eg\ Oncobox Atlas of Normal Tissue Expression (ANTE)~\mycite{Suntsova2019-it})
 kept being released,
@@ -220,7 +221,7 @@ and settled for \hg{38.p1} and \ens{76}.
 
 In order to minimise errors,
 assure consistency and ease future reiterations of these analyses
-for possible extension or just for repeatability sake,
+(either for possible extension or just for repeatability sake),
 I provide script files that can reproduce the whole study and its results.
 I have also automated and structured the analyses trough modular functions
 as much as possible.
@@ -240,22 +241,86 @@ on distributed computing facilities compared to one personal computer.
 Fortunately, the older the updated package, the less it induces changes.
 Besides, for new projects, one can nowadays employ dedicated packages
 (\eg\ \softCi{Packrat}{Rpackrat})
-that can create isolated working environments and
-prevent these repeating chains of \enquote{\emph{update, break, debug/recode}},
+to work in isolated environments and
+prevent these chains of \enquote{\emph{update, break, debug/recode}},
 which are especially frustrating in exploratory phases.
 See \Cref{sec:Rpackages} for the complete list of \textsf{R} packages
 involved in this work.
 
-Note that \nuno, who provided me with the quantification of the \gtex\ data,
-and \james, who provided me with the quantification for the proteomics,
-have also both developed their processing pipelines with open source software.
+Note that as \nuno, who provided me with the quantification of the \gtex\ data,
+and \james, who provided me with the proteomics ones,
+have also both developed their processing pipelines with open source software,
+the entirety of the thesis (subject to access to \gtex\ data)
+can be redone easily by anyone.
 
-I am currently in the process of compiling the most pertinent analyses
+I am currently compiling the most pertinent analyses
 into a set of interactive applications
-that can replicate all the results and figures presented
+that can replicate all the results and figures presented in this thesis
 without requiring prerequisite programming skills.
 \Cref{fig:demoApp} shows the part covering \Cref{ch:expression}.
 
+\begin{figure}[!ht]
+    \frame{\includegraphics[scale=0.36]{conclusion/demoApp.png}}\centering
+    \vspace{-2mm}
+    \caption[Application preview]{\label{fig:demoApp}\textbf{Preview of the
+    application} developed with \textsf{R}
+    and served through a shiny server~\mycite{shinyR}.}
+\end{figure}
+
+Many improvements are conceivable:\begin{itemize}
+        \item The inclusion of new samples and dataset of transcriptomics
+            (preferably with biological replicates),
+            \eg\ extend to the last version of \gtex\ and
+            the ANTE dataset~\mycite{Suntsova2019-it}.
+        \item Add the matching proteomics of \citet{Wang2019-ut}
+            to the transcriptomic \uhlen\ data~\mycite{Uhlen2015}
+            and then compare the results to the unmatched samples.
+        \item Work on new models of annotation or
+            build a consensus between the current transcriptomic and proteomic
+            annotations.
+            At the moment, it is rather difficult to determine for some genes
+            (\eg\ \gene{STAU2})
+            if the anticorrelation or the lack of correlation observed
+            between the expression of its \mRNA\ and protein is due to biology,
+            batch effect or the divergence between the transcriptomic and
+            proteomic annotations.
+        \item Changing the quantification (parameters or methods)
+            may also give better results.
+\end{itemize}
+
+On this latter point 
 
 
+
+
+%Achievements
+% Showed that mitochondrial \mRNAs\ and proteins should be excluded from the bulk
+% (even though separate analysis can be considered)
+%
+% Transcriptomics present similar profiles: tissue across datasets,
+% and \mRNAs\ profiles through the tissues across datasets.
+% This finding has prompted the EBI heatmap visualisation
+%
+% New proteomics quantification methods inspired on transcriptomic ones
+% can increase the number of quantified proteins
+% while seemingly unkooky
+%
+% First time so many different data have been mapped to the same genome version
+% and annotation with identical pipelines.
+% Quite in-depth comparison between Uhlen and \gtex.
+% Reprocessing of all the untarget non-diseased human proteome
+%
+% Consolidated gene lists for consistent transcriptomic expression
+%                                           (modified Uhlen categories)
+%                 and for matched (but independently sourced) \mRNA/protein pairs
+%                     for TS, highly correlated and very anticorrelated
+%
+% Organs show constant catabolic profile (set of genes) that have
+% mRNAs/proteins expression consistent through aggregation of individual and 
+% across different datasets.
+% Particularly, housekeeping and TS genes
+%
+% Testis most diverse and unique expression
+% Liver most robust expression
+%
 
