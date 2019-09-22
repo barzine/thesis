@@ -114,6 +114,16 @@
   Isbn      = {9780199609499}
 }
 
+
+@book{analyticalChem,
+    title={Chimie analytique; Trad. et révision scientifique de la 7e éd. américaine par C. Buess-Herman, J. Dauchot-Weymeers et F. Dumont},
+    author={Skoog Douglas Arvid},
+    Publisher= {DeBoeck Université},
+    Place ={Bruxelles},
+    Year={1997}
+}
+
+
 @article{schwanhausserglobal:2011,
     Title   = {Global quantification of mammalian gene expression control.},
     Author  = {Schwanh{\"a}usser, Bj{\"o}rn and Busse, Dorothea and Li, Na and
@@ -17905,3 +17915,326 @@ Dependencies},
     note = {R package version 1.3.2},
     url = {https://CRAN.R-project.org/package=shiny},
 }
+
+
+@ARTICLE{Wagner2012-du,
+  title    = "Measurement of {mRNA} abundance using {RNA-seq} data: {RPKM}
+              measure is inconsistent among samples",
+  author   = "Wagner, Günter P and Kin, Koryu and Lynch, Vincent J",
+  abstract = "Measures of RNA abundance are important for many areas of biology
+              and often obtained from high-throughput RNA sequencing methods
+              such as Illumina sequence data. These measures need to be
+              normalized to remove technical biases inherent in the sequencing
+              approach, most notably the length of the RNA species and the
+              sequencing depth of a sample. These biases are corrected in the
+              widely used reads per kilobase per million reads (RPKM) measure.
+              Here, we argue that the intended meaning of RPKM is a measure of
+              relative molar RNA concentration (rmc) and show that for each set
+              of transcripts the average rmc is a constant, namely the inverse
+              of the number of transcripts mapped. Further, we show that RPKM
+              does not respect this invariance property and thus cannot be an
+              accurate measure of rmc. We propose a slight modification of RPKM
+              that eliminates this inconsistency and call it TPM for
+              transcripts per million. TPM respects the average invariance and
+              eliminates statistical biases inherent in the RPKM measure.",
+  journal  = "Theory in biosciences = Theorie in den Biowissenschaften",
+  volume   =  131,
+  number   =  4,
+  pages    = "281--285",
+  month    =  dec,
+  year     =  2012,
+  language = "en",
+  issn     = "1431-7613, 1611-7530",
+  pmid     = "22872506",
+  doi      = "10.1007/s12064-012-0162-3"
+}
+
+
+@ARTICLE{Jiang2011-ux,
+  title    = "Synthetic spike-in standards for {RNA-seq} experiments",
+  author   = "Jiang, Lichun and Schlesinger, Felix and Davis, Carrie A and
+              Zhang, Yu and Li, Renhua and Salit, Marc and Gingeras, Thomas R
+              and Oliver, Brian",
+  abstract = "High-throughput sequencing of cDNA (RNA-seq) is a widely deployed
+              transcriptome profiling and annotation technique, but questions
+              about the performance of different protocols and platforms
+              remain. We used a newly developed pool of 96 synthetic RNAs with
+              various lengths, and GC content covering a 2(20) concentration
+              range as spike-in controls to measure sensitivity, accuracy, and
+              biases in RNA-seq experiments as well as to derive standard
+              curves for quantifying the abundance of transcripts. We observed
+              linearity between read density and RNA input over the entire
+              detection range and excellent agreement between replicates, but
+              we observed significantly larger imprecision than expected under
+              pure Poisson sampling errors. We use the control RNAs to directly
+              measure reproducible protocol-dependent biases due to GC content
+              and transcript length as well as stereotypic heterogeneity in
+              coverage across transcripts correlated with position relative to
+              RNA termini and priming sequence bias. These effects lead to
+              biased quantification for short transcripts and individual exons,
+              which is a serious problem for measurements of isoform
+              abundances, but that can partially be corrected using appropriate
+              models of bias. By using the control RNAs, we derive limits for
+              the discovery and detection of rare transcripts in RNA-seq
+              experiments. By using data collected as part of the model
+              organism and human Encyclopedia of DNA Elements projects (ENCODE
+              and modENCODE), we demonstrate that external RNA controls are a
+              useful resource for evaluating sensitivity and accuracy of
+              RNA-seq experiments for transcriptome discovery and
+              quantification. These quality metrics facilitate comparable
+              analysis across different samples, protocols, and platforms.",
+  journal  = "Genome research",
+  volume   =  21,
+  number   =  9,
+  pages    = "1543--1551",
+  month    =  sep,
+  year     =  2011,
+  language = "en",
+  issn     = "1088-9051, 1549-5469",
+  pmid     = "21816910",
+  doi      = "10.1101/gr.121095.111",
+  pmc      = "PMC3166838"
+}
+
+
+
+@ARTICLE{Rudnick2014-ar,
+  title    = "Improved normalization of systematic biases affecting ion current
+              measurements in label-free proteomics data",
+  author   = "Rudnick, Paul A and Wang, Xia and Yan, Xinjian and Sedransk, Nell
+              and Stein, Stephen E",
+  abstract = "Normalization is an important step in the analysis of
+              quantitative proteomics data. If this step is ignored, systematic
+              biases can lead to incorrect assumptions about regulation. Most
+              statistical procedures for normalizing proteomics data have been
+              borrowed from genomics where their development has focused on the
+              removal of so-called 'batch effects.' In general, a typical
+              normalization step in proteomics works under the assumption that
+              most peptides/proteins do not change; scaling is then used to
+              give a median log-ratio of 0. The focus of this work was to
+              identify other factors, derived from knowledge of the variables
+              in proteomics, which might be used to improve normalization. Here
+              we have examined the multi-laboratory data sets from Phase I of
+              the NCI's CPTAC program. Surprisingly, the most important bias
+              variables affecting peptide intensities within labs were
+              retention time and charge state. The magnitude of these
+              observations was exaggerated in samples of unequal concentrations
+              or ``spike-in'' levels, presumably because the average precursor
+              charge for peptides with higher charge state potentials is lower
+              at higher relative sample concentrations. These effects are
+              consistent with reduced protonation during electrospray and
+              demonstrate that the physical properties of the peptides
+              themselves can serve as good reporters of systematic biases.
+              Between labs, retention time, precursor m/z, and peptide length
+              were most commonly the top-ranked bias variables, over the
+              standardly used average intensity (A). A larger set of variables
+              was then used to develop a stepwise normalization procedure. This
+              statistical model was found to perform as well or better on the
+              CPTAC mock biomarker data than other commonly used methods.
+              Furthermore, the method described here does not require a priori
+              knowledge of the systematic biases in a given data set. These
+              improvements can be attributed to the inclusion of variables
+              other than average intensity during normalization.",
+  journal  = "Molecular \& cellular proteomics: MCP",
+  volume   =  13,
+  number   =  5,
+  pages    = "1341--1351",
+  month    =  may,
+  year     =  2014,
+  language = "en",
+  issn     = "1535-9476, 1535-9484",
+  pmid     = "24563535",
+  doi      = "10.1074/mcp.M113.030593",
+  pmc      = "PMC4014289"
+}
+
+
+
+@ARTICLE{Wisniewski2014-kh,
+  title    = "A ``proteomic ruler'' for protein copy number and concentration
+              estimation without spike-in standards",
+  author   = "Wiśniewski, Jacek R and Hein, Marco Y and Cox, Jürgen and Mann,
+              Matthias",
+  abstract = "Absolute protein quantification using mass spectrometry
+              (MS)-based proteomics delivers protein concentrations or copy
+              numbers per cell. Existing methodologies typically require a
+              combination of isotope-labeled spike-in references, cell
+              counting, and protein concentration measurements. Here we present
+              a novel method that delivers similar quantitative results
+              directly from deep eukaryotic proteome datasets without any
+              additional experimental steps. We show that the MS signal of
+              histones can be used as a ``proteomic ruler'' because it is
+              proportional to the amount of DNA in the sample, which in turn
+              depends on the number of cells. As a result, our proteomic ruler
+              approach adds an absolute scale to the MS readout and allows
+              estimation of the copy numbers of individual proteins per cell.
+              We compare our protein quantifications with values derived via
+              the use of stable isotope labeling by amino acids in cell culture
+              and protein epitope signature tags in a method that combines
+              spike-in protein fragment standards with precise isotope label
+              quantification. The proteomic ruler approach yields quantitative
+              readouts that are in remarkably good agreement with results from
+              the precision method. We attribute this surprising result to the
+              fact that the proteomic ruler approach omits error-prone steps
+              such as cell counting or protein concentration measurements. The
+              proteomic ruler approach is readily applicable to any deep
+              eukaryotic proteome dataset-even in retrospective analysis-and we
+              demonstrate its usefulness with a series of mouse organ
+              proteomes.",
+  journal  = "Molecular \& cellular proteomics: MCP",
+  volume   =  13,
+  number   =  12,
+  pages    = "3497--3506",
+  month    =  dec,
+  year     =  2014,
+  language = "en",
+  issn     = "1535-9476, 1535-9484",
+  pmid     = "25225357",
+  doi      = "10.1074/mcp.M113.037309",
+  pmc      = "PMC4256500"
+}
+
+
+@ARTICLE{Wisniewski2016-uj,
+  title    = "In-depth quantitative analysis and comparison of the human
+              hepatocyte and hepatoma cell line {HepG2} proteomes",
+  author   = "Wiśniewski, Jacek R and Vildhede, Anna and Norén, Agneta and
+              Artursson, Per",
+  abstract = "Hepatocytes play a pivotal role in human homeostasis. They are
+              essential in regulation of glucose and lipid levels in blood and
+              play a central role in metabolism of amino acids, lipids, drugs
+              and xenobiotic-compounds. In addition, hepatocytes produce a
+              major portion of proteins circulating in the blood. Hepatocytes
+              were isolated from liver tissue obtained from surgical
+              resections. Proteins were extracted and processed using filter
+              aided sample preparation protocol and were analyzed by LC-MS/MS
+              using high accuracy mass spectrometry. Proteins were quantified
+              by the 'Total Protein Approach' and 'Proteomic Ruler'. We report
+              a comprehensive proteomic analysis of purified human hepatocytes
+              and the human hepatoma cell line HepG2. The complete dataset
+              comprises 9400 proteins and provides a comprehensive and
+              quantitative depiction of the proteomes of hepatocytes and HepG2
+              cells at the protein titer and copy number dimensions. We
+              describe basic cell organization and in detail energy metabolism
+              pathways and metabolite transport. We provide quantitative
+              insights into protein synthesis and drug and xenobiotics
+              catabolism. Our data delineate differences between the native
+              human hepatocytes and HepG2 cells by providing for the first time
+              quantitative data at protein concentrations and copy numbers.",
+  journal  = "Journal of proteomics",
+  volume   =  136,
+  pages    = "234--247",
+  month    =  mar,
+  year     =  2016,
+  keywords = "ADME proteins; FASP; Human hepatocyte; Human hepatocyte proteome;
+              Metabolism; Quantitative proteomics; Transporter; `Proteomic
+              Ruler'; `Total Protein Approach'",
+  language = "en",
+  issn     = "1874-3919, 1876-7737",
+  pmid     = "26825538",
+  doi      = "10.1016/j.jprot.2016.01.016"
+}
+
+
+@ARTICLE{Marx2019-cf,
+  title    = "A dream of single-cell proteomics",
+  author   = "Marx, Vivien",
+  journal  = "Nature methods",
+  volume   =  16,
+  number   =  9,
+  pages    = "809--812",
+  month    =  sep,
+  year     =  2019,
+  language = "en",
+  issn     = "1548-7091, 1548-7105",
+  pmid     = "31406385",
+  doi      = "10.1038/s41592-019-0540-6"
+}
+
+
+
+@ARTICLE{Chen2019-um,
+  title    = "{Single-Cell} {RNA-Seq} Technologies and Related Computational
+              Data Analysis",
+  author   = "Chen, Geng and Ning, Baitang and Shi, Tieliu",
+  abstract = "Single-cell RNA sequencing (scRNA-seq) technologies allow the
+              dissection of gene expression at single-cell resolution, which
+              greatly revolutionizes transcriptomic studies. A number of
+              scRNA-seq protocols have been developed, and these methods
+              possess their unique features with distinct advantages and
+              disadvantages. Due to technical limitations and biological
+              factors, scRNA-seq data are noisier and more complex than bulk
+              RNA-seq data. The high variability of scRNA-seq data raises
+              computational challenges in data analysis. Although an increasing
+              number of bioinformatics methods are proposed for analyzing and
+              interpreting scRNA-seq data, novel algorithms are required to
+              ensure the accuracy and reproducibility of results. In this
+              review, we provide an overview of currently available single-cell
+              isolation protocols and scRNA-seq technologies, and discuss the
+              methods for diverse scRNA-seq data analyses including quality
+              control, read mapping, gene expression quantification, batch
+              effect correction, normalization, imputation, dimensionality
+              reduction, feature selection, cell clustering, trajectory
+              inference, differential expression calling, alternative splicing,
+              allelic expression, and gene regulatory network reconstruction.
+              Further, we outline the prospective development and applications
+              of scRNA-seq technologies.",
+  journal  = "Frontiers in genetics",
+  volume   =  10,
+  pages    = "317",
+  month    =  apr,
+  year     =  2019,
+  keywords = "allelic expression; alternative splicing; cell clustering; cell
+              trajectory; single-cell RNA-seq",
+  language = "en",
+  issn     = "1664-8021",
+  pmid     = "31024627",
+  doi      = "10.3389/fgene.2019.00317",
+  pmc      = "PMC6460256"
+}
+
+
+@ARTICLE{Zhao2018-rw,
+  title    = "Evaluation of two main {RNA-seq} approaches for gene
+              quantification in clinical {RNA} sequencing: polyA+ selection
+              versus {rRNA} depletion",
+  author   = "Zhao, Shanrong and Zhang, Ying and Gamini, Ramya and Zhang,
+              Baohong and von Schack, David",
+  abstract = "To allow efficient transcript/gene detection, highly abundant
+              ribosomal RNAs (rRNA) are generally removed from total RNA either
+              by positive polyA+ selection or by rRNA depletion (negative
+              selection) before sequencing. Comparisons between the two methods
+              have been carried out by various groups, but the assessments have
+              relied largely on non-clinical samples. In this study, we
+              evaluated these two RNA sequencing approaches using human blood
+              and colon tissue samples. Our analyses showed that rRNA depletion
+              captured more unique transcriptome features, whereas polyA+
+              selection outperformed rRNA depletion with higher exonic coverage
+              and better accuracy of gene quantification. For blood- and
+              colon-derived RNAs, we found that 220\% and 50\% more reads,
+              respectively, would have to be sequenced to achieve the same
+              level of exonic coverage in the rRNA depletion method compared
+              with the polyA+ selection method. Therefore, in most cases we
+              strongly recommend polyA+ selection over rRNA depletion for gene
+              quantification in clinical RNA sequencing. Our evaluation
+              revealed that a small number of lncRNAs and small RNAs made up a
+              large fraction of the reads in the rRNA depletion RNA sequencing
+              data. Thus, we recommend that these RNAs are specifically
+              depleted to improve the sequencing depth of the remaining RNAs.",
+  journal  = "Scientific reports",
+  volume   =  8,
+  number   =  1,
+  pages    = "4781",
+  month    =  mar,
+  year     =  2018,
+  language = "en",
+  issn     = "2045-2322",
+  pmid     = "29556074",
+  doi      = "10.1038/s41598-018-23226-4",
+  pmc      = "PMC5859127"
+}
+
+
+
+
+
