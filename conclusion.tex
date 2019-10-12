@@ -7,14 +7,12 @@
     {Fandarel \mycite{McCaffrey}}
 }
 
-
-With the recent profusion of expression atlases,
-notably for human,
+With the recent profusion of expression atlases
+and the steadily growing number of independent studies
+integrating these atlases' data as-is\footnote{%
+More than 2,800 citations on 15 September 2019 for five human studies},
 it has become increasingly imperative to examine
-the soundness of their extensive use in other (unrelated) studies.
-Especially given the number of articles integrating
-these atlases' data as-is is steadily and rapidly growing
-(more than 2,800 citations on the 15 September 2019 for five studies).
+the soundness of their extensive use in unrelated research.
 
 At the time I started my doctorate,
 no assessment on the robustness of expression or
@@ -24,74 +22,82 @@ my primary aim was to integrate and compare independent transcriptomic data
 as they were the only available human tissue data.
 However, the release of two substantial proteomic datasets in the meantime
 broadened my study's scope
-to the integration of transcriptomic with proteomic data too.
+to the additional integration of transcriptomic with proteomic data.
 
 In \Cref{ch:background},
-I review all the biology, chemistry and bioinformatic aspects and challenges
+I reviewed the biological, chemical and bioinformatic aspects and challenges
 involved in expression studies based on the high-throughput technologies
 of \Rnaseq\ (for \mRNAs) and \ms{} (for proteins).
 
 Then in \Cref{ch:datasets},
-I present the five transcriptomic studies and three proteomics studies
-that I have considered for further analyses.
-I also detail the pipelines with which I have processed them.
-Since the amount of each dataset files is extremely important,
+I presented the five transcriptomic and three proteomics studies
+that I have considered for this thesis.
+I also described the pipelines with which I have processed them.
+Since for each dataset the number and size of files are extremely important,
 automation is paramount to ensure consistency and minimise errors.\mybr\
 
-\Cref{ch:expression} details various data quality controls
+I detailed in \Cref{ch:expression} various data quality controls
 and statistical approaches.
-I also discuss possible biases and
+I also discussed possible biases and
 how the contextual scope of the tissues and genes considered for analyses
 can influence results.
 To minimise errors due to context issues,
-I limit most of my further investigations to
+I limited most of my further investigations to
 a common subset of tissues and expressed genes.
-%I also aggregate in each dataset
-%the expression of all samples of the same tissue in
-%one \trep\ (tissue reference expression profile).
-%Finally,
-Current normalisation methods are inadequate to quantify mitochondria genes.
-Hence, I also remove them from most of the analyses.\mybr\
+Normalisation methods are still inadequate
+to treat mitochondria genes accurately.
+Therefore, I chose to remove them from most analyses,
+which led to better results.
 
 In \Cref{ch:Transcriptomics},
-I integrate the five independent transcriptomic datasets.
-There is an evident prevalence of the biological signal over technical noise.
+I integrated the five independent transcriptomic datasets and
+showed that the biological signal is predominant to the technical noise.
 All datasets have a higher interstudy correlation for the same tissues
 than any intrastudy correlation for different tissues.
-More recent the studies are, stronger this trend is.
-Besides,
-the most variable genes and Tissue-Specific (\gls{TS}) genes are contributing
-more to the high correlations than the highest expressed ones.
-However, the inclusion of external resources requires caution,
-especially when the resources are outdated, such as \gls{TIGER}~\mycite{tiger}.\\
+The more recent the studies are, the stronger this trend is.
+I then tested various criteria as possible driving forces
+of the high interstudy correlation.
+I found that most variable genes and Tissue-Specific (\gls{TS}) genes
+are individually contributing more to the high correlations
+than the highest expressed ones.
+Besides, I also noted that
+the inclusion of external resources requires caution,
+especially when the resources are outdated, such as \gls{TIGER}~\mycite{tiger}.
+Many \gls{TS} genes highlighted by \Rnaseq\ are missing in this database.
+Besides, many listed genes are either wrongly attributed to another tissue
+or lack to display any specificity.
 The integration has revealed that
-direct comparisons of the raw data may be impossible yet,
+direct comparisons of independent data may be impossible yet,
 but genes present identical overall profiles across the studies.
-This similarity prompted the creation of the heatmap visualising expression data
+By repeatedly showing this similarity, my analyses prompted
+the creation of the heatmap visualising expression data
 (and its associated widget) for baseline expression data in
 \hFoCi{Expression Atlas}{https://www.ebi.ac.uk/gxa/home}{EBIgxa}.
 Finally, I provide a core set of genes that are expressed consistently
-(ubiquitously or \gls{TS}) across all the studies.
+(ubiquitously or \gls{TS}) across all studies.\mybr\
 
 The comparison of three available proteomic datasets
 in \Cref{ch:proteomics} highlights
 the fragmentation and the disparity of the high-throughput \ms{}-based proteomics.
 \ms\ detection variability induces considerable technological noise,
 which explains
-why intrastudy correlations between different tissues are
+the intrastudy correlations I observed between different tissues are
 higher than the interstudy correlation for the same tissues.
-I provide curated sets of ubiquitously and \gls{TS} proteins.
-Finally, I present a new quantification method (implemented by \james) that
+I provide curated sets of the \gls{TS} and ubiquitous detected proteins.
+Finally, I present a new quantification method that
 I have devised by drawing on \Rnaseq\ methods.
-This \PPKM\ method allows us to quantify more proteins
-by also accounting for \emph{degenerated} peptides.
-These latter are distributed according to the distribution of \emph{unique} peptides
-between the possible parent proteins.
+By also accounting for \emph{degenerated} peptides,
+this \PPKM\ method allows us to quantify more proteins.\mybr\
+%\mybr\
+%These latter are distributed according to the distribution of \emph{unique} peptides
+%between the possible parent proteins.
 
-\Cref{ch:Integration} integrates independent proteomic and transcriptomic data.
-I have found similar correlation levels
+\Cref{ch:Integration} reported
+the integration of the independent proteomic and transcriptomic data.
+For these independent studies,
+I have found correlation levels
 (Spearman correlation $0.39 ≤ \rho\ ≤ 0.62$)
-than the ones typically observed in
+similar to the ones typically observed in
 the literature for same-sourced proteome and transcriptome.
 The \PPKM\ quantification improves the Pearson correlation
 and gives similar ranges to Spearman ($0.38 ≤ r ≤ 0.61$).
@@ -106,26 +112,25 @@ and it is impossible to predict protein expression from \mRNA{}.
 However, there are shared coherent gene signatures
 between the proteome and transcriptome
 that are even detectable through indirect analyses for a few.
-Besides, once again,
+Furthermore, once again,
 \mRNAs{}' and proteins' tissue specificity is contributing
 more to the tissue correlation than their expression levels.
 In addition to the significant overlaps of \gls{TS} proteins
 with the most \gls{TS} \mRNAs,
-pairs including a \gls{TS} protein have,
-in most cases,
-a correlation among the highest observed for genes across tissues.
-Finally, \gls{go} analyses show that pairs with a \gls{TS} protein
-are enriched for specific signalling
-(including its detection, response pathway and regulation).
-The highest correlated genes (except the ones with a \gls{TS} protein) are
+most pairs comprising a \gls{TS} protein have
+a high correlation between their RNA and protein expression across tissues.
+Finally, \gls{go} analyses show that \enquote{pairs with a \gls{TS} protein}
+are enriched for specific signalling,
+including its detection, response pathway and regulation.
+The \enquote{highest correlated pairs} are
 enriched for catabolic processes.
-Lastly, the most anticorrelated pairs show enrichment
+Lastly, the \enquote{most anticorrelated pairs} show enrichment
 for ribosome complexes and \glspl{ncRNA} regulation.
 I provide the complete set of \mRNA/protein pairs with their correlation
 across the common set of tissues.
-I also supply the list of overlapping \gls{TS} proteins and \mRNAs{}.
+I also supply the list of overlapping \gls{TS} proteins and \mRNAs{}.\mybr\
 
-I also provide all the necessary code to replicate all the above results (and more)
+I provide the necessary code to replicate all of the above results (and more)
 as \href{https://github.com/barzine/BaselineAtlas/tree/thesis.}{supplementary
 material}\footnote{\Href{https://github.com/barzine/BaselineAtlas/tree/thesis}}.
 
@@ -133,15 +138,23 @@ material}\footnote{\Href{https://github.com/barzine/BaselineAtlas/tree/thesis}}.
 Throughout this thesis' analyses,
 I had to overcome many practical challenges.
 While most of the difficulties encountered ordinarily pertain to Big data projects,
-one unexpected challenge was
+one unexpected issue was
 the current global complexity state of the proteomic world.
 Physicochemical properties of the proteins make them
 intrinsically complex to study,
 as shown in \Cref{sec:exploreProtMS}.
-However, the overall disparity
-when it comes to proteomic studies,
-including in terms of learning about general practices and concepts,
-was surprising for me.
+The characterisation of proteins (or assimilated complexes) represents
+a technical obstacle for many different fields
+(\eg\ molecular biology, medicine, drug design, green chemistry),
+which may explain the transposition of the technical complexity
+to the conceptual level.
+Understand high-throughput proteomics requires many prerequisites,
+and because of the many possible approaches,
+the available teaching materials are mostly
+practical or experimental oriented~\mycite{Zhang2013,Zhang2014,LCMSconsider} or
+on particular steps, \eg\ protein inference~\mycite{He2016-yi}.
+The scattered information hampers the ability of newcomers
+to achieve a global vision of high-throughput proteomics easily.\mybr\
 
 Big data is often characterised through, what was first defined by
 \href{https://www.ibm.com}{IBM}\footnote{\Href{https://www.ibm.com}},
@@ -154,23 +167,20 @@ is overwhelming and requires properly dimensioned infrastructure
 like in the \gls{EBI}.
 It is in practice impossible to reproduce the complete work underlying
 this thesis in a personal computer within a reasonable time.
-Although (commercial) solutions are in use more and more every day
-for academic projects,
+Although (commercial) solutions are increasingly in use for academic projects,
 dedicated storage and high computing facilities ease the analyses considerably
 and allow more in-depth testing.
-Even if best practices are more and more defined for transcriptomics,
+Even if best practices are continuously refined for transcriptomics,
 there are still many factors that can be improved and tuned.
 So, besides the raw data,
 storage capacity is also required for the intermediate and final ones.
-While in the \gls{EBI} the storage space was large enough,
-I overlooked the organisation of the different studies' files,
-and I had to change it several times.
+Also, organising such a large amount of data was challenging at times.
 
 The variety of the input data is kept to a minimum for the expression value
 as it was retrieved from public or academic repositories
 that follow community guidelines\footnote{%
 \href{https://www.ebi.ac.uk/ena}{ENA} for the sequencing data and
-\href{http://www.proteomexchange.org/}{ProteomeXchange} for \ms/\ms/ proteomics.
+\href{http://www.proteomexchange.org}{ProteomeXchange} for \ms/\ms/ proteomics.
 }.
 Issues still ensue from the matchmaking
 between the samples or tissues across the studies.
@@ -186,77 +196,71 @@ would have been a better choice.
 
 Another source of variety that I have limited in the above work
 is the diverse annotation versions.
-Even though we mapped both proteomics and transcriptomics
-to the same genome and annotation versions,
-there are discrepancies in how transcriptomics and proteomics
-are defined and mapped to the genome.
+Even when mapped to the same genome and annotation versions,
+discrepancies persist between how transcriptomics and proteomics
+are defined and assigned to the genes.
 A possible improvement of the present work will be to use
 the chromosome coordinates to which \mRNAs\ and proteins map
-instead of using the gene identifier (\gls{Ensembl} ID).\mybr\
+instead of using their gene identifiers (\gls{Ensembl} ID).\mybr\
 
-In addition, with all possible tunable parameters for the raw data processing,
+Additionally, with all possible tunable parameters for the raw data processing,
 the generated data to integrate can vary quickly.
-While I lack providing an extensive view of
-the impact of the different settings combinations,
-my study has shown that the overall trend of the results remains the same.
-Moreover, as the number of datasets I include in my analyses has grown,
-the results got stabler and stabler.
+Even with a limited number of combinations,
+my study shows that the results' trend remains the same
+regardless of the chosen settings.
+Moreover, as the number of datasets I included in my analyses grows,
+the results became increasingly stabler.
 Many of them have also been confirmed by the literature,
-adding credibility to the findings trends
-and which is reassuring when
-considering the recent discussions on reproducibility crisis~\mycite{%
+adding credibility and confidence to the findings,
+especially considering the recent discussions on reproducibility crisis~\mycite{%
 Morrison2014-hy,Glenn_Begley2015-fz,Goodman2016-ri,Fatovich2017-lo,
 Coiera2018-vf,Lindner2018-qy}.
-However, caution is still needed when considering individual genes.\mybr\
+However, results for individual genes can vary from one set of settings to another one,
+and need to be considered with more caution.
 
 Finally, the velocity of new data availability
 and its required preparation time
 before possible inclusion in my on-going analyses
-made the prospect unappealing and impracticable.
+made the prospect impracticable.
 Unfortunately, although new \gtex\ samples or other tissues studies
 (\eg\ Oncobox Atlas of Normal Tissue Expression (ANTE)~\mycite{Suntsova2019-it})
 kept being released,
-I have stopped comprising them in my study.
+I had to stop including them in my study.
 Likewise, I ceased updating the genome and annotation
 and settled for \hg{38.p1} and \ens{76}.
 
 To minimise errors,
-assure consistency and ease future reiterations of these analyses
-(either for possible extension or just for repeatability sake),
+assure consistency and ease future reiterations or extension of these analyses,
 I provide script files that can reproduce the whole study and its results.
-I have also automated and structured the analyses trough modular functions
+I have also automated and structured the analyses through modular functions
 as much as possible.
 It is important to avoid undocumented manual changes,
-so even name changes and sample pairings are done through scripts.
+so even name changes and sample pairings are done through scripts.\mybr\
 
-I chose to develop the analyses with open source software
-around the programming language \WebFoCi{\textsf{R}}{https://cran.r-project.org/}{coreR}.
-This language provides statistical and visualisation functions
-and is easily expanded through packages developed by the community.
-A few disadvantages also exist with such a framework:
-often, while installing or updating a package to gain new features,
-other packages will potentially break and require updates.
-In many occasions, I had ultimately have to rewrite part of my code.
-Furthermore, installing new dependencies for these packages can be challenging
-on distributed computing facilities compared to one personal computer.
-Fortunately, the older the updated package, the less it induces changes.
-Besides, for new projects, one can nowadays employ dedicated packages
-(\eg\ \softCi{Packrat}{Rpackrat})
-to work in isolated environments and
-prevent these chains of \enquote{\emph{update, break, debug}},
-which are especially frustrating in exploratory phases.
+I chose to develop the analyses with open-source software
+around the programming language \WebFoCi{\textsf{R}}{https://cran.r-project.org}{coreR}.
 See \Cref{sec:Rpackages} for the complete list of \textsf{R} packages
 involved in this work.
+This language provides statistical and visualisation functions
+and is easily expanded through packages developed by the community.
+Packages can be highly interdependent and may evolve rapidly.
+To draw from an extra package (or fix an identified bug),
+a comprehensive and time-consuming update of the working environment
+will often ensue.
+In turns, I had also to update my analyses' code in many occasions.
+Furthermore, new software installations or updates are more complicated
+for distributed computing facilities than on a personal computer.
+Today, new solutions are developed to facilitate these tasks
+(\eg\ \softCi{Packrat}{Rpackrat} that create isolated environment).
 
 Note that \nuno, who provided me with the quantification of the \gtex\ data,
 and \james, who provided me with the proteomics ones,
 have also both developed their processing pipelines with open source software.
 Hence, the entirety of the thesis (subject to access to \gtex\ data)
-can be redone easily by anyone.
-
+can be repeated easily.\mybr\
 
 If that were the case, many improvements are conceivable:
-\vspace{-2mm}
+\vspace{-3mm}
 \begin{itemize}[topsep=0pt,nosep]
         \item The inclusion of new samples and dataset of transcriptomics
             (preferably with biological replicates),
@@ -268,30 +272,36 @@ If that were the case, many improvements are conceivable:
         \item Work on new models of annotation or
             build a consensus between the current transcriptomic and proteomic
             annotations.
-            At the moment, it is rather difficult to determine for some genes
+            Today, it is difficult to determine for some genes
             (\eg\ \gene{STAU2})
-            if the anticorrelation or the lack of correlation observed
-            between the expression of its \mRNA\ and protein is due to biology,
-            batch effect or the divergence between the transcriptomic and
+            if the observed anticorrelation or lack of correlation
+            between the \mRNA\ and protein expression levels is due to the biology,
+            batch effects or divergences between transcriptomic and
             proteomic annotations.
         \item Changing the quantification (parameters or methods)
             may also give better results.
 \end{itemize}
+%The potential for improvement due to quantification is appealing.\mybr\
 
-On this latter point, the potential for improvement is appealing.
-The current (normalised) quantification are ill-suited
-for comparison of unrelated samples and multiple studies.
-Most normalisation methods are designed for differential expression studies.
-The two widespread remaining normalisations,
-\ie\ \gls{FPKM}~\mycite{Mortazavi2008,cufflinks}
-and TPM (Transcript per Million)~\mycite{Wagner2012-du},
-also account for the global library size.
+Most normalised quantification methods are designed
+for differential expression studies,
+particularly in transcriptomics.
+As a result, they are ill-suited
+for comparing independent samples across multiple studies.
+However, two other normalisation methods
+do not imply any preconception on the study design.
+\gls{FPKM}~\mycite{Mortazavi2008,cufflinks},
+which I use in this thesis,
+and TPM (Transcript per Million)~\mycite{Wagner2012-du}.
+Both normalisation methods account for the global library size of each sample.
 While the motivation is sound\footnote{For \FPKM, see \Cref{subsub:norm}.
 \FPKM\ is easily converted to TPM by scaling with a constant
 to correct the sum of all values in a library to 1 million.
 },
-the normalisation is thus contextual
-to how many \glspl{RNA} are detected.
+the quantification is thus contextual
+to %which
+how many
+and how much \glspl{RNA} are detected.
 Previous efforts to solve this problem have focused
 on differential expression studies.
 Synthetic spike-in molecules~\mycite{Jiang2011-ux}
@@ -299,26 +309,27 @@ ensure more reliable quality controls.
 However, they fail to permit the absolute quantification
 of the other molecules in the sample.
 Incidentally, \citet{Rudnick2014-ar} find that spike-in proteins and peptides
-are lacking effectiveness for proteomic studies.
+lack effectiveness for proteomic studies.
 For proteomics, \citet{Wisniewski2014-kh} propose
 to use the histone to create a \enquote{\emph{proteomic ruler}}.
 They can assess through this proteomic ruler the amount of \gls{DNA}
 in the sample, and thus, giving an estimate on the cell number,
 which provides some context to interpret the quantification of the proteins.
-Histone genes are unfortunately ill-suited
+Histone genes are, however, ill-suited
 for bulk \Rnaseq\ studies~\mycite{Zhao2018-rw}.
 
 I firmly believe that using internal standards chosen
 within the naturally expressed population of the studied macromolecules
 is more appropriate than any external additive.
 
-While still normalising for gene length
-(and even for other possible biases),
-normalising the expression of each gene (\gls{RNA} or protein)
-to a reference one instead of the library size
-will allow accounting for difference between sequencing (or coverage) depth
-between samples
-without being subject to the presence and quantification of any other gene.
+Gene length (and possibly other biases)
+has to be accounted for an appropriate normalisation of expression.
+However, I expect that normalising the expression of each gene (RNA or protein)
+as a rational expression to a reference gene will be more robust
+than normalising for the library size as a means to correct
+for the sequencing (or coverage) depth between samples size.
+A ratio will free the expression of any influence
+from the presence or quantification of any other gene.
 Then, the next question is:
 \enquote{Which gene (or set of genes) will possibly enable the best normalisation?}
 
@@ -329,7 +340,7 @@ both at transcriptomic and proteomic levels.
 Moreover, many genes present high correlation coefficients
 between the expression of their \mRNA\ and protein.
 These genes are the best potential candidates as reference.
-With \nuno, we have already performed preliminary analyses
+With \nuno, we have performed preliminary analyses
 in this direction across other studies
 to reduce the list of these candidates.
 
@@ -337,47 +348,53 @@ However,
 considering the best practices in analytical chemistry~\mycite{analyticalChem},
 a set of standards that can cover the complete dynamic ranges of abundances
 and adjust for the saturation effects,
-may resolve better the abundances, and thus, be better suited than a single reference.
+may resolve the abundances better,
+and thus, be better suited than a single reference.
 On the other hand, studies focusing on a single tissue
 may better benefit from a reference built on \gls{TS} genes.
 
-With the recent rapid development of
-single-cell transcriptomics (sc\Rnaseq)~\mycite{Chen2019-um},
-and the probable upcoming of single cells proteomics~\mycite{Marx2019-cf},
-refining which genes are the most suitable as a universal reference,
-or in specific studied condition, may become easier.\mybr\
+The recent development of single-cell transcriptomics
+(scRNA-Seq)~\mycite{Chen2019-um},
+and the probable feasibility of single cells proteomics~\mycite{Marx2019-cf},
+may ease refining which genes are the most suitable as universal references,
+or for specific conditions.
 
-Although integrating proteomics and transcriptomics remains laborious
-and the results can be mitigated,
-even simple comparisons can help to improve our general knowledge
-and current biological models,
-such as in our paper~\citetitle{Wright-2016}~\mycite{Wright-2016},
-where the existence of putative proteins has been confirmed through proteins
-and \gls{RNA} reads that have in a few cases covered
-previously unannotated part of the genome.\mybr\
+%\vspace{-1mm}
+Integrating proteomics and transcriptomics remains laborious,
+and results can be mitigated.
+Nonetheless,
+even simple comparisons % of independent data
+can help to improve our general knowledge
+and current biological models.
+For instance, in one of our papers % \citetitle{Wright-2016}
+\mycite{Wright-2016},
+we have confirmed the existence of putative proteins
+by observing coverage of the genome both by transcriptomics and proteomics.
 
+%\vspace{-1mm}
 To help further possible projects,
-I am currently compiling the most pertinent analyses
+I am currently compiling the different analyses
 into a set of interactive applications
 that can replicate all the results and figures presented in this thesis
 without requiring any programming skill as a prerequisite.
-\Cref{fig:demoApp} shows the part covering \Cref{ch:expression}.
+\Cref{fig:demoApp} covers \Cref{ch:expression}.
 
+%\vspace{-1.5mm}
 \begin{figure}[!ht]
-    \frame{\includegraphics[scale=0.36]{conclusion/demoApp.png}}\centering
+    \frame{\includegraphics[scale=0.31]{conclusion/demoApp.png}}\centering
     \vspace{-2mm}
     \caption[Application preview]{\label{fig:demoApp}\textbf{Preview of the
     application} developed with \textsf{R}
     and served through a shiny~\mycite{shinyR} server.}
 \end{figure}
-
+%\vspace{-3mm}
 Once completed, one will be able to analyse and compare their own data
 to the different datasets I have presented in this thesis.
 Furthermore, as I share all my code (including for the application)
 under a creative commons license,
 \WebFo{Attribution 4.0 International  (CC BY 4.0) \includegraphics[width=1em]{cc.pdf}%
-\includegraphics[width=1em]{by.pdf}}{https://creativecommons.org/licenses/by/4.0/},
-anyone can easily use, adapt or build upon this work as they wish.
+\includegraphics[width=1em]{by.pdf}}{https://creativecommons.org/licenses/by/4.0}.
+Anyone can thus use, adapt or build upon this work as they wish.
 
 
 %Achievements
@@ -403,11 +420,12 @@ anyone can easily use, adapt or build upon this work as they wish.
 %                     for TS, highly correlated and very anticorrelated
 %
 % Organs show constant catabolic profile (set of genes) that have
-% mRNAs/proteins expression consistent through aggregation of individual and 
+% mRNAs/proteins expression consistent through aggregation of individual and
 % across different datasets.
 % Particularly, housekeeping and TS genes
 %
 % Testis most diverse and unique expression
 % Liver most robust expression
 %
+
 

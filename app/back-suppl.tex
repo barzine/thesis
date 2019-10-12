@@ -6,7 +6,7 @@
 As shown in \Cref{fig:aaformulas},
 the amino acids have different chemical properties.
 Their primary and side chains are respectively shown in black and green.
-The amino acids share all the same primary chain.
+The amino acids all share the same primary chain.
 
 \begin{figure}[htpb]
     \includegraphics[scale=0.75]{background/aaformulas.jpg}\centering
@@ -49,7 +49,7 @@ Microarrays require prior knowledge
 (\eg\ annotated genome or \glspl{EST} libraries)
 of the organism of interest
 as they exploit it to design \emph{probes} (short nucleotide oligomers)
-that are arrayed on a solid support (\eg\ glass, silicon thin film cell)%
+that are arrayed on a solid support (\eg\ a glass or silicon thin film cell)%
 ~\mycite{Lowe2017-kj,Schena1995-tg,Bumgarner2013-ey}.
 For transcriptome profiling,
 the expressed \glspl{RNA} are first reverse transcribed into \glspl{cDNA}
@@ -61,7 +61,7 @@ by measuring the intensity of the fluorescence
 after the excess of unhybridised \glspl{cDNA} is washed away~\mycite{Lowe2017-kj}.
 This technology is extremely powerful and popular
 as it allows global and parallel analyses of cellular activity.
-Microarray technology has also many variations~\mycite{Hoheisel2006-lw}
+Microarray technology also has many variations~\mycite{Hoheisel2006-lw}
 in addition to its original \gls{cDNA} version
 for transcriptional profiling~\mycite{Schena1995-tg}, \eg\
 for genotyping~\mycite{Wang1998-rs,Gunderson2006-pp},
@@ -89,7 +89,7 @@ transcription factor binding~\mycite{Bulyk2002-ii,Bulyk2007-jc} studies.
 {\color[rgb]{0.000000,0.000000,0.555711}\verb!HHHHHHHHHHDDDDD#@@AAGGGGG###########################################################################!}
 }
 {\footnotesize
-Legende:\\
+Legend:\\
 \quad{\color[rgb]{0.447059,0.678431,0.274510}\textbullet\ Read identifier}\\
 \quad{\color[rgb]{0.500000,0.500000,0.500000}\textbullet\ Optional information (here flow cell lane:tile number:x:y:z)}\\
 \quad{\color[rgb]{1.000000,0.000000,0.000000}\textbullet\ First member of pair (here) or single-end}\\
@@ -156,7 +156,7 @@ L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
     mode.} Each mode resolves a number of overlap situations differently. The
     mode used in this thesis is the \texttt{intersection non-empty} mode. This
     specific mode resolves more situations than the two others. Hence, the loss
-    of ambiguous reads is lesser in this mode. [Adaptated from HTseq
+    of ambiguous reads is reduced in this mode. [Adaptated from HTseq
     documentation: \footnotesize{\href{http://www-huber.embl.de/HTSeq/doc/count.html}%
     {http://www-huber.embl.de/HTSeq/doc/count.html}}]}
 \end{figure}
@@ -187,7 +187,7 @@ L - Illumina 1.8+ Phred+33, raw reads scores between  0 and 41
 See~\citet{Haag2016} for more details on other types of analysers.
 
 \minisec{Quadrupole analyser}
-It is one of the most popular analysers. In fact, they are cheap compared to the
+It is one of the most popular analysers as they are cheap compared to the
 others. They are also compact, durable and reliable. The quadrupole analyser can
 filter the ions based on their difference of $m/z$. They are adequately
 named quadrupole as they comprise four cylindrical or hyperbolic rods in
@@ -268,7 +268,7 @@ and number of neutrons (N)) that may be found in \glspl{DNA}, \glspl{RNA} and pr
 \centering
 \caption[Most common elements and their stable isotopes]%
 {\textbf{Most common constitutive elements and their stable isotopes\\ found in DNAs,
-RNAs and proteins.} Asterisks (*) mark abundances that are not available.%
+RNAs and proteins.} Asterisks (*) mark abundances that are not available.
 Adapted from~\mycite{Audi1993-qn,Audi1995-uk,Rosman1998-xu}
 }%
 \label{tab:isotope}
@@ -335,8 +335,8 @@ set either to 0.1, 0.05, 0.01, 0.005 or 0.001,
 \ie\ 10\%, 5\%, 1\%, 0.5\% or 0.1\% risk to reject $\mathcal{H}_0$ by mistake.
 
 Depending on whether the observed data is tested, case (1): in both direction,
-\ie\ the data is either \emph{greater or equal} to the critical value or
-\emph{lesser or equal} to the opposite of the critical value,
+\ie\ the data is either \emph{greater or equal} to the critical value ($x$) or
+\emph{lesser or equal} to the additive inverse of the critical value ($-x$),
 or, case (2) in one direction only,
 \ie, (for example) the data is (only) \emph{greater or equal} to the critical value
 (or the data is (only) \emph{lesser or equal} to the critical value),
@@ -358,8 +358,8 @@ the more extreme value can mean:
             \item[Left tail event]  $\text{Pr}(X \leq x \mid \mathcal{H}_0)$
             \item[Right tail event] $\text{Pr}(X \geq x \mid \mathcal{H}_0)$
             \end{eqlist}
-        \item[Two-tail event] $2\text{min}{\text{Pr}(X \leq x \mid \mathcal{H}_0),%
-            \text{Pr}(X \geq x \mid \mathcal{H}_0)}$
+        \item[Two-tail event] $2\text{min}(\text{Pr}(X \leq x \mid \mathcal{H}_0),%
+            \text{Pr}(X \geq x \mid \mathcal{H}_0))$
 \end{eqlist}
 The smaller is a p-value,
 the higher the significance, \ie\

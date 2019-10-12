@@ -10,38 +10,47 @@
     only one or two observations.}}{Andreas Vesalius \mycite{omalley_1964}}
 }
 
-%\vspace{2cm}
+\vspace{-4mm}
 
-Nowadays, we have comprehensive knowledge
-about the structure and functioning of the human body at the macroscopic level.
+Today, we have comprehensive knowledge %(extensive knowledge)
+about the structure and functioning of the human body
+at the macroscopic level\footnote{%
+Even though human anatomy can still be refined,
+and new findings can happen~\mycite{Kumar2019-oo}.}.
 At the microscopic level, however,
-the identification and mapping of the molecules, their function and whereabouts
-still need to be refined --- or even, yet to be done.\mybr\
+the identification and mapping of macromolecules
+(\ie\ \glspl{RNA} and proteins),
+their function and whereabouts still need to be refined.
 
 Beyond the invaluable addition to our knowledge,
 other more practical reasons are also sustaining the effort
 for human expression atlases.
-Establishing subsets of genes with specific behaviour in particular conditions
-can facilitate diagnosis or translate to effective drug targets.
-Besides, a robust atlas for undiseased baseline expression will be
-extremely useful for all the studies where controls are hard to sample,
-which is generally the case in cancer research.
+Genes with specific behaviour in particular conditions
+are a convenient starting point
+for designing new diagnostic tests
+and discovering new effective drug targets.
+Besides, a robust atlas for non-diseased tissue baseline expression
+will allow a better understanding of undisturbed physiology.
+It can also serve as a reference in studies where controls are unavailable
+or hard to sample,
+which is the general case in cancer research.
 
 The completed and annotated human genome and
-recent technological advances for high-throughput expression studies
+technological advances in high-throughput expression studies
 have opened the way towards this future new milestone.
-The recent explosion of high-throughput transcriptomic atlases in the literature
-provides sufficient evidence of this.
-Examples include mouse~\mycite{Wu2009-lw,Ringwald2012}, pig~\mycite{Freeman2012},
+Evidence of the community shared interest is
+the recent explosion of high-throughput transcriptomic atlases in the literature.
+Examples include expression atlases of
+mouse~\mycite{Wu2009-lw,Ringwald2012}, pig~\mycite{Freeman2012},
 sheep~\mycite{Clark2017-mw}, plants as maize~\mycite{Stelpflug2016-sm},
 vigna~\mycite{Yao2016-se}, pigeon pea~\mycite{Pazhamala2017-ig},
 parasite, \eg\ \species{Schistosoma mansoni}.
-Many focus on Human, as a whole,
+Many focus on mapping the human gene expression either as a whole,
 \eg\ see~\mycite{Krupp2012,Jimenez-Lozano2012,Uhlen2015,GTEx2013}
-or on specific aspects,
-\eg\ the organogenesis in the embryos~\mycite{Gerrard2016-zu}.
+or for specific aspects,
+\eg\ the organogenesis in human embryos~\mycite{Gerrard2016-zu}.
 
-There are high incentives to develop the atlases with
+There are high incentives to develop these atlases with
 transcriptome shotgun sequencing (\ie\ \Rnaseq).
 The technology involved in similar older projects\footnote{%
 E.g.\ Gene Expression Atlas for Human Embryogenesis~\mycite{Yi2010-az},
@@ -55,18 +64,20 @@ that is challenging to integrate
 on the same platform)~\mycite{Walsh2015-nf}.
 When I started my doctorate,
 little was known about the interstudy robustness of \Rnaseq.
-However, it had already shown reduced background noise and
-a more extensive dynamic range of detection~\mycite{rnaseq-2009}.
-Besides, \Rnaseq\ has the added advantage to discover new transcripts
-as it does not rely on previous knowledge~\mycite{rnaseq-2009}.
+However, it had already shown less background noise and
+a more extensive dynamic range of detection
+than the array-based technology (microarray) used
+in previous expression studies~\mycite{rnaseq-2009}.
+\Rnaseq\ also has the added advantage to discover new transcripts
+as it does not rely on previous knowledge~\mycite{rnaseq-2009}.\mybr\
 
-Considering the growing number of studies referring these atlases\footnote{%
+Considering the growing number of studies referring to these atlases\footnote{%
 More than 2,800 papers for five Human primary studies on 15 September 2019.
 }
 or the numerous efforts to compile them in new resources for the community ---
 \eg\
 \hFoCi{TISSUES}{https://tissues.jensenlab.org/Search}{Santos2015-rj},
-\hFoCi{Harmonizome}{https://amp.pharm.mssm.edu/Harmonizome/}{Harmonizome}
+\hFoCi{Harmonizome}{https://amp.pharm.mssm.edu/Harmonizome}{Harmonizome}
 and, after reprocessing the raw data,
 \hFoCi{Expression Atlas}{https://www.ebi.ac.uk/gxa/home}{EBIgxa}
 ---
@@ -78,33 +89,35 @@ has only further underlined this need.
 
 Given the previous context,
 the first aim of my doctorate was
-to appraise the consistency of findings highlighted
-in individual large scale transcriptomics of (undiseased) human tissues.
+to examine the consistency of the (non-diseased) human tissues
+landscape of expression in independent large-scale transcriptomics.
 Then, with the publication of the first drafts of the
 human proteome~\mycite{PandeyData,KusterData},
 my aims have expanded to the integration of human tissue expression data
 across different datasets and biological layers.
 
+\vspace{-2mm}
 \section*{Outlook of this thesis}
+\vspace{-3mm}
 
-In \Cref{ch:datasets},
-I first present the five transcriptomic (\Rnaseq)
+First, I review the biological, chemical, experimental and computational
+background of my doctorate works in \Cref{ch:background}.
+
+Then, in \Cref{ch:datasets},
+I present the five transcriptomic (\Rnaseq)
 and the three proteomic (\glsxtrshort{MS}) datasets
-I have preselected for my analysis.
+that I have preselected for my analysis.
 Then I describe the bioinformatic pipelines
-that have automated the processing of this massive amount of data.
+that have automated the processing of these large scale datasets.
 
-After considering several biases sources and strategies to limit them
-in \Cref{ch:expression},
+After considering several possible sources of biases
+and strategies to limit them in \Cref{ch:expression},
 I compare and integrate the independent transcriptomic datasets
 in \Cref{ch:Transcriptomics}.
-Following an assessment of the findings consistency in proteomics
+Following an assessment of the findings' consistency in proteomics
 in \Cref{ch:proteomics},
 I then employ different approaches for integrating
 transcriptomics and proteomics in \Cref{ch:Integration}.
-Finally, I close this thesis with a few remarks in \Cref{ch:conclusion}.
 
-However, before anything else,
-I review the scientific background of my doctorate works
-in the following \Cref{ch:background}.
+Finally, I close this thesis with a few remarks in \Cref{ch:conclusion}.
 
