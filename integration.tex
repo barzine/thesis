@@ -250,7 +250,7 @@ to three additional tissues (\ie\ \Gall, \Placenta\ and \Rectum)
 by including the \uhlen\ \etal\ data on the transcriptomic side only.
 
 \subsection{Matching pairs of mRNAs and proteins}
-
+\vspace{-4mm}
 To avoid unnecessary biases (described in \Cref{sec:bias_sources}),
 I only consider the \mRNAs\
 (\ie\ \glspl{RNA} with a \emph{protein-coding} biotype --- \ens{76})
@@ -275,12 +275,21 @@ by taking the median values of each gene
 across the biological replicates
 (see \Cref{subsec:averagedTissue}).
 
-\Cref{fig:PGU_vennQ1} presents the overlap of genes
-whose expression was detected
-both as a protein in the \pandey\ Lab data quantified 
-through the pipeline described in \Cref{subsec:msDataProcess}
-and as an \mRNAs\ in \uhlen\ \etal\ and \gtex\ data quantified by \htseq\
-(see \Cref{subsubsec:RnaseqDataProc}) across their twelve shared tissues.
+As exposed in \Cref{ch:datasets,ch:proteomics},
+all the proteomic quantifications have been provided by \james.
+
+The first quantification follows state-of-the-art practices
+with stringent parameters (described in \Cref{subsec:msDataProcess})
+since accurate protein identification is paramount
+for reliable proteome exploration.
+The protein levels are given in \glspl{PSM}.
+\Cref{fig:PGU_vennQ1} presents
+the genes overlap across twelve shared tissues
+between the \pandey\ Lab's proteins quantified through this first method
+and \uhlen\ \etal{}'s and \gtex{}'s \mRNAs\ quantified
+with \htseq\ (see \Cref{subsubsec:RnaseqDataProc}).
+\Cref{fig:PU_vennQ1} is the same analysis across the fifteen shares tissues
+between \pandey\ Lab and \uhlen\ \etal\ data.\mybr\
 
 \begin{figure}[!htb]
     \includegraphics[scale=0.65]{integration/PandeyGtexUhlen_mRNAprotQ1Vennm.pdf}\centering
@@ -295,10 +304,6 @@ and as an \mRNAs\ in \uhlen\ \etal\ and \gtex\ data quantified by \htseq\
     in the \uhlen\ \etal\ or \gtex\ data.}
 \end{figure}
 
-\Cref{fig:PU_vennQ1} is a replication of \Cref{fig:PGU_vennQ1}
-based on the removal of the \gtex\ data
-and the addition of the three supplementary tissues solely shared
-by \pandey\ Lab and \uhlen\ \etal\ data.
 
 \begin{figure}[!htb]
     \includegraphics[scale=0.65]{integration/PandeyUhlen_mRNAprotQ1Vennm.pdf}\centering
@@ -312,88 +317,102 @@ by \pandey\ Lab and \uhlen\ \etal\ data.
     transcriptomic data is included (see \Cref{fig:PGU_vennQ1}).}
 \end{figure}
 
-Both figures show that
+This first proteomic quantification is following robust guidelines,
+and both figures show that
 almost all the genes with an observed protein
 also have an observed \mRNA{}.
 However, only about 32\% of the quantified \mRNAs\
 in the \uhlen\ \etal\ and \gtex\ data
 have a corresponding protein detected in the \pandey\ Lab data.\mybr\
 
-The protein quantification (provided by \james) follows
-a state-of-the-art protocol and very stringent parameters
-since accurate protein quantification is paramount for reliable proteome exploration.
+Once I learned more about the bioinformatic challenges of bottom-up proteomics
+(described in \Cref{sec:bioinfProt}),
+I chose to be more flexible with the identification and quantification methods
+to increase the number of proteins included in my analyses.
+As I aim the integration of independent proteomics with transcriptomics,
+I mostly focus on robust expression between the two biological layers
+since discrepancies in this study context are hard to interpret.
+While artefacts may persist,
+further analyses with targeted proteomics (see \Cref{sec:exploreProtMS})
+can help prune or validate the results.
 
-However, I aim to integrate proteomic data with transcriptomics.
-Hence, more flexible protein identification and quantification methods are possible.
-Therefore, for this chapter analyses and integration,
-I have devised a new quantification method that \james\ has implemented.%\\
-%\vspace{-\baselineskip}
-
-This new method emulates an \Rnaseq\ quantification approach,
-as described in \Cref{sec:NewQuantProt}.
-It takes advantage of the \emph{degenerate} peptides (see \Cref{subsec:proteinInference})
-and allows the quantification of proteins even matched by two unique peptides only.%\\
-%\vspace{-\baselineskip}
+I have drawn on \Rnaseq\ transcriptomic approaches to devise
+a new quantification method, which is described in \Cref{sec:NewQuantProt}
+and implemented by \james.
+The method takes advantage of the \emph{degenerate} peptides\footnote{%
+See \Cref{subsec:proteinInference}.}
+that are distributed across possible protein parents
+in proportion to their \emph{unique} peptides.
+The method produces normalised values of the protein expression levels
+(whose unit is the \gls{PPKM}, \ie\ \glspl{PSM} Per Kilobase of gene per Million).
 
 \begin{figure}[!ht]
     \includegraphics[scale=0.62]{integration/PandeyGtexUhlen_mRNAprotQ3Vennm.pdf}\centering
     \vspace{-4mm}
     \caption[Distribution of the unique and shared proteins/mRNAs
     across the three datasets and twelve tissues
-    (with the new protein quantification method)]{\label{fig:PGU_venQ3}%
+    (new protein quantification method)]{\label{fig:PGU_venQ3}%
     \textbf{Distribution of the unique and shared proteins/mRNAs
-    across the Pandey Lab (processed with the new quantification method),
-    Uhlén et al.\ and GTEx data across their twelve shared tissues}.
-    }
+    across twelve shared tissues} between  Pandey Lab
+    (\textbf{new quantification method}),
+    Uhlén et al.\ and GTEx data.}
 \end{figure}
 
 \begin{figure}[!ht]
     \includegraphics[scale=0.62]{integration/PandeyUhlen_mRNAprotQ3Vennm.pdf}\centering
     \vspace{-4mm}
-    \caption[Distribution of the unique and shared proteins/mRNAs for the
-    Pandey Lab (processed with the new quantification method) and Uhlén et al.\ data
-    across the fifteen tissues.
-    ]{\label{fig:PU_vennQ3}\textbf{Distribution of the
-    unique and shared proteins/mRNAs} for
-    the Pandey Lab (processed with the new quantification method)
-    and Uhlén et al.\ data across the fifteen tissues.}
+    \caption[Distribution of the unique and shared proteins/mRNAs
+    ahlcross fifteen tissues between Pandey Lab (new quantification method)
+    and Uhlén et al.\ data]{\label{fig:PU_vennQ3}\textbf{Distribution of the
+    unique and shared proteins/mRNAs across fifteen tissues} between
+    the Pandey Lab (\textbf{new quantification method})
+    and Uhlén et al.\ data.}
 \end{figure}
 
-\Cref{fig:PGU_venQ3,fig:PU_vennQ3} are
-the counterparts of \Cref{fig:PGU_vennQ1,fig:PU_vennQ1}.
-With the new quantification method for the \pandey\ Lab data,
-although the number of unmatched proteins remains marginal,
-about 62\% of \uhlen\ \etal{}'s and \gtex{}'s quantified \mRNAs\
-are matched to a protein.
+As shown in \Cref{fig:PGU_venQ3,fig:PU_vennQ3},
+while the number of quantified proteins
+with our new method
+covers about 62\% of \uhlen\ \etal{}'s and \gtex{}'s quantified \mRNAs,
+the number of proteins for which no \mRNA\ was detected
+in the transcriptomic data remains marginal.
 
-
-Whether or not it reflects the biological reality,
-current technology detects more individual \mRNAs\ than proteins
+Whether it reflects the biological reality or
+solely dues to \Rnaseq\ technology being more sensitive than
+bottom-up \ms\ alone,
+current techniques detect more individual \mRNAs\ than proteins
 as confirmed by \Cref{fig:UniqExprPC1,fig:distribProtUniq3D}.
-Thus, it may be primarily surprising that
+Thus, it may be surprising that
 a few proteins lack a match in the transcriptome data.
 Several possible explanations exist.
 
 Artefacts or technical issues are the most likely.
-For example, the annotation of the matching \RNA\ is missing
-or is defined with another biotype than \emph{protein-coding}.
+For example, the annotation might miss
+the matching \glspl{RNA} definitions
+or defines them with another biotype than \emph{protein-coding}\footnote{%
+E.g.\ \gene{XXyac-YRM2039.2} annotated as \textit{unprocessed pseudogene}
+and now known as \gene{WASH1} since \ens{77}~(October 2014) or
+\gene{TRAJ61} which is annotated as \textit{TR J gene}%
+}.
 Or, peptides and \mRNA\ reads may be assigned to different gene IDs.
 Alternatively, the \mRNAs\ are present in the sample,
 but the library preparation has missed their capture
 (see \Cref{subsec:libPrep}).
 Or even, the presence of proteins in the sample is a false positive
-or the result of contamination.
+or the result of contamination.\mybr\
 
-However, an underlying biological phenomenon also stands as a possibility.
-For example, the \mRNAs\ have a very low turnover while the proteins are very stable.
-Alternatively, the proteins are expressed elsewhere before being imported in the studied tissue
-(\eg\ hormones or cytokines).
+However, biological processes might also explain the mismatches.
+One example is the case of \mRNAs\ with short half-lives
+while their proteins are very stable.
+Another possible explanation is that
+the original location of the proteins is different
+from the tissue in which they were detected
+(like hormones or cytokines).
 
 Lastly, as the transcriptomic and proteomic samples are independently sourced,
 a protein may be specific to an individual or a population.
 This last hypothesis is the most unlikely
 as there are several biological replicates on the transcriptomic side.
-A mixture of the previous causes is highly probable.
+A mixture of the previous causes is also plausible.
 
 I exclude the unmatched proteins and \mRNAs\ from further analyses.
 \Cref{tab:protNoTrans} provides the unmatched protein lists
@@ -404,13 +423,17 @@ Unless otherwise stated, to avoid the issues exposed in \Cref{subsec:mito},
 I also remove all the proteins and \mRNAs\ of the mitochondrial genome
 from the subsequent analyses.
 
-\vspace{-3mm}
+Note that \Cref{fig:setsOverview} presents
+an overview of the various datasets combinations presented
+in \Cref{fig:PGU_vennQ1,fig:PU_vennQ1,%fig:VennTissuePandeyGtexUhlen,
+fig:PGU_venQ3,fig:PU_vennQ3}.
 
 \subsection{Tissue-centric and gene-centric approaches}
-\vspace{-3mm}
-\begin{figure}[!htb]
+%\vspace{-3mm}
+
+\begin{figure}[!ht]
     \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.png}\centering
-    \vspace{-3mm}
+    %\vspace{-3mm}
     \caption[Summary of the expression comparison approaches between
     the transcriptome and proteome]{\label{fig:visualexp}\textbf{Approaches
     summary of the expression comparison between the transcriptome and proteome.}
@@ -430,28 +453,18 @@ In contrast,
 the \emph{gene-centric} approach compares for each gene
 its expression levels in \mRNA\ and protein across all the tissues.
 
-\begin{comment}
-Although not explicitly indicated,
-I use both tissue-centric and gene-centric approaches
-in \Cref{ch:Transcriptomics,ch:proteomics}.
-The \mRNAs\ studies are equivalent enough and
-the proteomic studies so disparate that
-global understanding remains unaffected without any precision.
-
-On the other hand,
-\end{comment}
-Many confusions can arise
+Confusion can arise
 when integrating proteomics and transcriptomics.
 Hence, it is essential
-to define the approach for this latter case clearly \mycite{Liu2016-re}.
+to clearly define the taken approach~\mycite{Liu2016-re}.\mybr\
 
-\afterpage{\clearpage\sectionmark{Fair correlations between independent proteomics and transcriptomics}}
+%\afterpage{\clearpage\sectionmark{Fair correlations between independent proteomics and transcriptomics}}
 
 \section{Fair correlations between independently sourced proteomics~%
 and~transcriptomics~of~human~tissues~}\label{subsec:IntegrationGoodCorrProtTrans}
 \sectionmark{Fair correlations between independent proteomics and transcriptomics}
 
-For my first tissue-centric analysis,
+For the first tissue-centric analysis,
 I assess for each tissue the relationship between
 the expression of its proteome and transcriptome
 through the correlation of the protein expression values
@@ -459,10 +472,9 @@ with their corresponding \mRNA\ ones.\\
 \vspace{-\baselineskip}
 
 As illustrated by \Cref{fig:distribTrans,fig:pandeyDistribQ1Q2},
-the proteomic and transcriptomic \treps\ expression profiles are similar
-in shape at a logarithmic scale
+the proteomic and transcriptomic \treps\ expression profiles are similar in shape
 and roughly correspond to a Gauss distribution.
-Thus, after scaling ($\log_2{x+1}$),
+Thus, after scaling with $\log_2(x+1)$,
 I compare them with both Spearman and Pearson correlation methods
 (see \Cref{sec:CorrMore}).\\
 \vspace{-\baselineskip}
