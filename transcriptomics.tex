@@ -368,7 +368,7 @@ whether a particular subset of the genes may drive the correlation coefficients,
 \ie\ are the highest, the most variable or another group of genes
 the underlying reasons of the strong correlations.
 
-\subsection{Highest expressed genes}
+\subsection{Highest expressed genes}\label{subsec:mrnaHighExp}
 
 The notion of highest expressed genes may seem trivial,
 but it depends on the normalisation method.
@@ -1467,6 +1467,16 @@ for a given set of tissues
 as I have noticed while the pre-analyses
 and which is partially shown here in \Cref{fig:TigerGenes,fig:hampelExp}.\\
 \vspace{-\baselineskip}
+
+\begin{sidewaysfigure}
+    \includegraphics[scale=0.45]{transcriptomics/egxaSample.png}\centering
+    \caption[Example of EBI gene expression atlas gene centric heatmap]%
+    {\label{fig:egxaSample}\textbf{Example of EBI gene expression atlas gene centric heatmap}.
+    This heatmap shows the relative expression of the Albumine (ENSG00000163631)
+    across the tissues and studies.
+    Note that the expression is calculated within each study library before
+    being aggregated by identical condition or tissue.}
+\end{sidewaysfigure}
 
 Put together the results suggest that
 gene expression profiles are comparable from one study to another even though

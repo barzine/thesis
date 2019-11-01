@@ -199,20 +199,16 @@ Pandey et al. & Uhlén et al. & 15 & PPKM x HTSeq & False & Pearson & 0.55 & 0.4
 
 \section{Hypergeometric test}\label{sec:hypergeometricTest}
 
-The hypergeometric test measures the statistical significance of
-randomly sampling $k$ successes out of $n$ draws (without replacement)
-from a population of $N$ that contains $K$ successes.
-It uses the hypergeometric distribution
+
+The hypergeometric test uses the hypergeometric distribution
 and equates to the one-sided Fisher's exact test.
+It allows measuring the statistical significance of
+randomly sampling $k$ successes out of $n$ draws, without replacement,
+from a population of $N$ that contains $K$ successes.
 
 Depending on whether the test is about an over or under-representation,
-the p-value is the probability of drawing respectively a minimum or a maximum
-of $k$ successes.
-
-In \Cref{sec:TSprotMrna},
-I consider as success when a \gls{TS} \mRNA\ is among the $n$ \gls{TS} proteins
-and I test if the number of successes is greater than
-the expected number for a random sampling.
+the p-value is the probability of drawing respectively
+a minimum or a maximum of $k$ successes.
 
 See also \citet{Johnson2005-mf} for more examples using this test.
 
@@ -235,6 +231,12 @@ See also \citet{Johnson2005-mf} for more examples using this test.
 
 \section{mRNA/protein correlations}\label{app:geneCentric}
 
+\begin{sidewaysfigure}
+    \includegraphics[scale=0.5]{integration/Human_873038197_73745474}\centering
+    \caption[STAU2 definition]{\label{fig:stau2def}\textbf{\gene{STAU2} definition}
+    The chromosome annotations for the \mRNA\ and the protein of \gene{STAU2}
+    are different.}
+\end{sidewaysfigure}
 
 \begin{comment}
 \section{GO analyses}
