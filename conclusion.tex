@@ -18,8 +18,9 @@ the soundness of their extensive use.\mybr\
 At the time I started my doctorate,
 no assessment on the robustness of expression or
 comparison between independent \Rnaseq\ datasets was published yet.
-My primary aim was to integrate and compare independent transcriptomic data
-of undiseased human tissues to provide an overview.
+My primary aim was to provide an overview
+by integrating and comparing independent transcriptomic data
+of undiseased human tissues.
 However, the release of two substantial proteomic datasets in the meantime
 broadened my study's scope
 to include the integration of transcriptomic with proteomic data as well.\mybr\
@@ -60,7 +61,7 @@ I integrated the five independent transcriptomic datasets and
 showed that the biological signal dominates the technical noise.
 All datasets have a higher interstudy correlation for the same tissues
 than any intrastudy correlation for different tissues.
-This trend is stronger in the more recent studies.
+This trend is stronger for more recent studies.
 I tested various criteria as possible driving forces
 of the high interstudy tissue correlations.
 I found that the most variable genes and tissue-specific (\gls{TS}) genes
@@ -77,7 +78,7 @@ Overall, the integration has revealed that
 genes present identical general profiles across the studies,
 even though direct comparisons of independent data may be still impossible.
 By repeatedly showing that
-genes have a similar expression profiles for a tissue across studies,
+genes show a similar expression profile for a tissue across studies,
 my analyses prompted the creation of the heatmap visualising expression data
 and its associated widget for baseline expression data in
 \hFoCi{EBI Expression Atlas}{https://www.ebi.ac.uk/gxa/home}{EBIgxa}.
@@ -105,7 +106,7 @@ for same-sourced proteome and transcriptome source.
 While proteomic standard state-of-art processing leads
 to very low Pearson correlation: $0.04 ≤ r ≤ 0.28$,
 our \PPKM\ quantification broadly improves this range ($0.38 ≤ r ≤ 0.61$).
-Two tissues,\Testis\ and \Liver,
+Two tissues, \Testis\ and \Liver,
 have exhibited distinct characteristics across the various analyses
 that are supported by the literature.
 \Testis\ has the most diverse and specific expression
@@ -159,7 +160,7 @@ the physicochemical properties of the proteins make them
 intrinsically complex to study,
 which can partly explain the complexity of the theoretical approaches.
 Understanding high-throughput proteomics requires many prerequisites.
-However, there is a lack of a clearly identified entry level document
+However, there is a lack of a clearly identified entry-level document
 reviewing the field from the bench to normalised protein levels.
 The available teaching materials are mostly
 practical or experimental oriented~\mycite{Zhang2013,Zhang2014,LCMSconsider} or
@@ -178,7 +179,7 @@ Each of them can entail issues at different project levels.
 The volume of files (see \Cref{tab:Lib5DF})
 to handle and process just for the transcriptomics
 is overwhelming and requires properly dimensioned infrastructure
-like in the \gls{EBI} that can provide high-throughput computing.
+like in the \gls{EBI}, which can provide high-throughput computing.
 It is in practice impossible to reproduce the complete work underlying
 this thesis in a personal computer within a reasonable time.
 Although (commercial) solutions are increasingly in use for academic projects,
@@ -267,7 +268,7 @@ Packages can be highly interdependent and may evolve rapidly.
 To draw from an extra package (or fix an identified bug),
 a comprehensive and time-consuming update of the working environment
 will often ensue.
-In turn, I had also to update my analyses' code in many occasions.
+In turn, I had also to update my analyses' code on many occasions.
 Furthermore, new software installations or updates are more complicated
 for distributed computing facilities than on a personal computer.
 Today, new solutions are developed to facilitate these tasks
@@ -275,7 +276,7 @@ Today, new solutions are developed to facilitate these tasks
 
 Note that \nuno, who provided me with the quantification of the \gtex\ data,
 and \james, who provided me with the proteomics ones,
-have also both developed their processing pipelines with open source software.
+have also both developed their processing pipelines with open-source software.
 Hence, the entirety of the thesis (subject to access to \gtex\ data)
 can be repeated easily.\mybr\
 
@@ -304,6 +305,7 @@ Many improvements are conceivable:
 %The potential for improvement due to quantification is appealing.\mybr\
 
 \subsection*{New quantification proposal for baseline studies}
+\vspace{-3mm}
 Most normalised quantification methods are designed
 for differential expression studies,
 particularly in transcriptomics~\mycite{Dillies2013}.
@@ -330,12 +332,10 @@ Previous efforts to solve this problem have focused
 on differential expression studies.
 Synthetic spike-in molecules~\mycite{Jiang2011-ux}
 ensure more reliable quality controls.
-When adequately designed, spike-in \glspl{RNA}
-allows quantifying the accuracy of the measurement,
-but, while theoretically plausible,
+However, while theoretically plausible,
 accurate absolute quantification for the whole dynamic expression range
 has yet to be reached~\mycite{Jiang2011-ux,seqcmaqc,Hardwick2017-ib}.
-However, spike-ins fail to permit the absolute quantification
+Furthermore, spike-ins fail to permit the absolute quantification
 of the other molecules in the sample.
 Incidentally, \citet{Rudnick2014-ar} find that spike-in proteins and peptides
 lack effectiveness for proteomic studies.
@@ -350,6 +350,11 @@ for bulk \Rnaseq\ studies~\mycite{Zhao2018-rw}.\mybr\
 I firmly believe that using internal standards chosen
 within the naturally expressed population of the studied macromolecules
 is more appropriate than any external additive.
+I expect that giving each gene (RNA or protein) expression
+as a ratio of the expression of a reference gene will be more robust.
+It will free the expression
+from the influence of the presence of quantification of any other gene
+while it will still account for the difference of sequencing depth between samples.
 Then, the next question is:
 \enquote{Which gene (or set of genes) will possibly enable the best normalisation?}
 
@@ -372,15 +377,6 @@ may resolve the abundances better,
 and thus, be better suited than a single reference.
 On the other hand, studies focusing on a single tissue
 may better benefit from a reference built on \gls{TS} genes.
-
-%Gene length (and possibly other biases)
-%has to be accounted for an appropriate normalisation of expression.
-%However, I expect that normalising the expression of each gene (RNA or protein)
-%as a rational expression to a reference gene will be more robust
-%than normalising for the library size as a means to correct
-%for the sequencing (or coverage) depth between samples size.
-%A ratio will free the expression of any influence
-%from the presence or quantification of any other gene.
 
 The recent development of single-cell transcriptomics
 (scRNA-Seq)~\mycite{Chen2019-um},
@@ -416,7 +412,7 @@ without requiring any programming skill as a prerequisite.
     \vspace{-2mm}
     \caption[Application preview]{\label{fig:demoApp}\textbf{Preview of the
     application} developed with \textsf{R}
-    and served through a shiny~\mycite{shinyR} server.}
+    and served through a shiny server~\mycite{shinyR}.}
 \end{figure}
 %\vspace{-3mm}
 Once completed, one will be able to analyse and compare their own data
