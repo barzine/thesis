@@ -1,4 +1,4 @@
-\RequirePackage{minted}
+%\RequirePackage{minted}
 \RequirePackage{tocbasic}
 \RequirePackage{polyglossia}
 \setdefaultlanguage[variant=uk]{english}
@@ -13,6 +13,7 @@
 doi=false,url=false,dashed=false,eprint=false,giveninits=true,hyperref=true,%
 maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init,
 labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
+\AtBeginBibliography{\small}
 \renewbibmacro{in:}{} %from: https://tex.stackexchange.com/a/10686/102519
 %from https://tex.stackexchange.com/a/27107/102519
 % so name in citations are also link
@@ -77,7 +78,7 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-
+\usepackage{anyfontsize}
 
 %\usepackage[explicit]{titlesec}
 \RequirePackage[dottedtoc,eulerchapternumbers]{classicthesis}
@@ -206,6 +207,7 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
     BoldItalicFont={* Italic},
     Scale=MatchLowercase
 ]{Gill Sans}
+
 \setmonofont[Scale=MatchLowercase]{WenQuanYi Zen Hei Mono}
 \setmathfont[
     Extension=.otf,

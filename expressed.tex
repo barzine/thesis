@@ -15,7 +15,7 @@ a consensus set of methods and parameters on each individual study
 before applying them across all the datasets in the further chapters.
 This strategy has also allowed me
 to estimate the overall data quality per dataset
-and to structure them appropriately for the upcoming analyses.
+and to structure them appropriately for the upcoming analyses.\mybr\
 
 I mentioned in \Cref{ch:datasets} quality checks
 that happened before the processing of the data.
@@ -24,7 +24,7 @@ or noise?
 Are all the nucleotides called?
 Is it a true identification or a false positive?~\ldots}.
 In the present chapter, I describe post-processing quality (or sanity) checks
-that examine higher (and fuzzier) aspects, \eg:
+that examine higher (and fuzzier) aspects, \eg:\mybr\
 %\KOMAoptions{parskip=never}
 \begin{itemize}[topsep=0pt,nosep]
     \item Possible outliers in the data
@@ -33,14 +33,14 @@ that examine higher (and fuzzier) aspects, \eg:
 \end{itemize}
 %\KOMAoptions{parskip=half*}
 Even if every of these aspects may not be addressed or corrected,
-the final results and interpretations of this study are then more solid.
+the final results and interpretations of this study are then more solid.\mybr\
 
 \section{Visualisation of expression data}
 
 Data visualisation is a simple, but very effective method
 towards adequate analyses and thus more pertinent results.
 It allows uncovering the detection of underlying structures
-and possible unwanted artefacts.
+and possible unwanted artefacts.\mybr\
 
 \subsection{Distribution plots}\label{subsec:distribPlot}
 \vspace{-0.2in}
@@ -63,7 +63,7 @@ I have removed the null values to avoid misinterpretations;
 for examples the expression distribution (per tissue) plots
 \Cref{fig:distribPlot,fig:distribTrans,fig:distribProt}.
 When I remove the null values I clearly state it in the plot legend
-as the norm is the pseudocount addition.
+as the norm is the pseudocount addition.\mybr\
 
 \begin{figure}[!htbp]
     \centering
@@ -94,7 +94,7 @@ is absent in the pancreas of the other transcriptomic studies
 (\Cref{fig:distribPlot}b and \Cref{fig:distribTrans}d).
 Moreover, as highlighted by the next chapter analyses,
 \uhlen's and  \gtex's pancreas are strongly
-correlated ($r = 0.83$;$\rho = 0.96$).
+correlated ($r = 0.83$;$\rho = 0.96$).\mybr\
 
 \begin{figure}[!htbp]
     \centering
@@ -109,7 +109,7 @@ the expression of the proteins is more heterogeneous
 (in particular \cutler\ data, see \Cref{fig:distribProt}a).
 This is concordant to the more disparate and variable techniques involved in
 the proteomic sample preparation (see \Cref{subsec:ProtSampPrep}:
-\nameref{subsec:ProtSampPrep}).
+\nameref{subsec:ProtSampPrep}).\mybr\
 
 \subsection{Scatter plots}
 \vspace{-0.1in}
@@ -120,7 +120,7 @@ He demonstrated that checking the datasets graphically with scatter plots
 allows one to quickly detect outliers and roughly estimate
 the relationship between two variables.
 Even a non-linear but strong relationship is promptly highlighted
-(\eg\ top right corner of~\Cref{fig:Anscombe}).
+(\eg\ top right corner of~\Cref{fig:Anscombe}).\mybr\
 
 \begin{figure}[!htbp]
     \hspace*{-2cm}
@@ -147,7 +147,7 @@ Biological replicates, within a same dataset,
 may present very close profiles
 even if the spread for the lowly genes
 is even greater
-as showed in \Cref{fig:scatBiolRep}.
+as showed in \Cref{fig:scatBiolRep}.\mybr\
 
 
 \section{Main statistical approaches}
@@ -157,7 +157,7 @@ on log-scale are similar,
 I have also computed Pearson correlation coefficients
 (in addition to Spearman ones)
 to assess the similarity of the replicates
-within (intra) and between (inter) studies.
+within (intra) and between (inter) studies.\mybr\
 
 \subsection{Correlation}
 %Cum hoc ergo propter hoc
@@ -168,7 +168,7 @@ either expression levels of a given gene across samples/tissues
 or expression levels of all genes
 \emph{between} two samples or tissues} (\eg\
 $X$ and $Y$) and always ranges within $[-1,1]$ (see also
-\cref{sec:CorrMore}: \nameref{sec:CorrMore}).
+\cref{sec:CorrMore}: \nameref{sec:CorrMore}).\mybr\
 
 The correlation coefficient is computed by the pairwise comparison of observations
 between two variables. Most implementation methods
@@ -176,7 +176,7 @@ will manage an unbalanced number of observations by excluding the incomplete pai
 To ease the interpretation I filtered the data \latin{a priori};
 I only kept expression values \emph{effectively observed}
 in all the datasets
-(as I explain in~\cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot}).
+(as I explain in~\cref{sec:ExpressedOrNot}: \nameref{sec:ExpressedOrNot}).\mybr\
 
 From the several methods available to compute the correlation coefficient,
 I chose both the Spearman and the Pearson correlations.
@@ -187,7 +187,7 @@ and report only linear relationships.
 However, Pearson correlations are easier to interpret
 and can be used with one of the variable to predict the other one.
 (See also \Cref{subsec:SpearmanCor}: \nameref{subsec:SpearmanCor} and
-\Cref{subsec:PearsonCor}: \nameref{subsec:PearsonCor}).
+\Cref{subsec:PearsonCor}: \nameref{subsec:PearsonCor}).\mybr\
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.9]{expressed/repCorr}\centering
@@ -209,7 +209,7 @@ the biological replicates.
 The \gtex\ study presents the same average correlation coefficients
 but a more extreme range.
 This may be explained by a strong batch effect as the samples were collected
-and sequenced at different times by different laboratories.
+and sequenced at different times by different laboratories.\mybr\
 
 \subsection{Clustering analysis}\label{subsec:clusteringPres}
 
@@ -226,8 +226,7 @@ when working with various datasets
 that are non-uniformly processed\footnote{Eventual bias
 corrections in \Rnaseq\ vary according to planed downstream analyses and
 proteomic data is hard to handle and two processing pipelines may rather give
-quite different results (see~\Cref{sec:NewQuantProt}).}.\\
-\vspace{-\baselineskip}
+quite different results (see~\Cref{sec:NewQuantProt}).}.\mybr\
 
 To assess the consistency of the quantification across the different datasets,
 in particular for \Rnaseq,
@@ -244,8 +243,7 @@ Broadly speaking,
 this method groups samples by similarity in an extensive hierarchy,
 which allows uncovering possible hidden structures within the data;
 thus establishing if samples are more alike biologically or by study origin
-for instance.\\
-\vspace{-\baselineskip}
+for instance.\mybr\
 
 In general, we expect biology to be a better predictor when we only consider
 data from either transcriptome or proteome. Even more so if the
@@ -260,27 +258,27 @@ estimate that 75\% of the mass of a cell is due to ubiquitous proteins and
 to 12,000 proteins are ubiquitously detected, which represent about 60 to 75\%
 of the proteins that they identified per tissue. Thus, if the variation of
 expression are too subtle from one tissue to another, a strong sample collection
-or data processing bias may hide any relevant biological signal.
+or data processing bias may hide any relevant biological signal.\mybr\
 
 In practice, each sample starts in its own cluster and then
 iteratively, each cluster is merged with its nearest one.
 The method has two parameters: the distance and the linkage method.
 Debate is still going on how to pick these parameters among the many possible
-choices (for more details see~\mycite{Jaskowiak2014,Guinand2002-ad}).
+choices (for more details see~\mycite{Jaskowiak2014,Guinand2002-ad}).\mybr\
 
 The distance measures the dissimilarity between two samples and one common
 approach is to calculate the subtraction result of
 the correlation coefficient from $1$ (hence, a greater similarity between the two
 samples means a smaller distance).
 In analogy to previous analyses, I have also used both Spearman
-and Pearson correlation methods.
+and Pearson correlation methods.\mybr\
 
 The linkage parameter specifies which part of each cluster is used as reference
 for computing the distance between the clusters. There are many methods and after
 trying several, I have arbitrary selected the one that divides most accurately
 the samples by their tissue source across the different datasets.
 In fact, I noticed that Ward's method~\mycite{Ward1963}
-was the best for this task and was outperforming the complete-linkage method.
+was the best for this task and was outperforming the complete-linkage method.\mybr\
 
 Indeed, this latter method was used in~\mycite{Uhlen2014}
 (first release of the \uhlen\ dataset) where
@@ -291,7 +289,7 @@ methods.
 Notice that all the tissue clusters are better defined when Ward's
 method is used:
 this method allows conserving all the samples for the analysis
-as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{subsec:mito}).
+as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{subsec:mito}).\mybr\
 \begin{figure}[!htpb]
     \centering
        \begin{subfigure}[hp]{0.70\textwidth}
@@ -317,7 +315,7 @@ as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{su
 Many non-trivial methods correct for the skewness present in
 \Rnaseq\ and \ms-based proteome global expression distributions
 and for other possible bias sources.
-For some examples, see \citet{batchEffect,Leek2014-bl,Yi2018-rv,Li2014-cv,Stegle2012-td}.
+For some examples, see \citet{batchEffect,Leek2014-bl,Yi2018-rv,Li2014-cv,Stegle2012-td}.\mybr\
 
 However, it may be complex to assess the biological relevance of those corrections.
 Moreover, many require more metadata that is often available in the public
@@ -327,7 +325,7 @@ consistent traits across the datasets that may be consolidated into a reference.
 Thus, biases that are common to all the different included studies are in practice
 negligible.
 On the other hand, I have adjusted for a few easily avertible biases
-that I describe hereinafter.
+that I describe hereinafter.\mybr\
 
 \subsection{Mitochondria issue}\label{subsec:mito}
 
@@ -342,7 +340,7 @@ and \Rnaseq\ protocols are badly suited for polyploid organisms~\mycite{Pearce20
 Thus, I have decided to remove them from the analysis as they skew anything relying
 on correlation.
 In fact, there are always mitochondrial genes among the highest expressed genes
-and they usually dominate manifolds the expression of the other genes.
+and they usually dominate manifolds the expression of the other genes.\mybr\
 
 Removing the (37) mitochondrial genes from the bulk of expressed genes
 (more than 10,000 \pcgs) produces more defined clusters as showed on
@@ -353,7 +351,7 @@ where the simple exclusion of the mitochondrial genes allows all tissues
 to cluster by biological origin rather than the mixtures observed
 when they are kept).
 \Cref{fig:MitoVar} illustrates furthermore the distinctiveness
-of the mitochondrial genes expression levels.
+of the mitochondrial genes expression levels.\mybr\
 
 \begin{figure}[!htbp]
     \centering
@@ -378,14 +376,14 @@ of the mitochondrial genes expression levels.
 \subsection{Protein-coding genes only}\label{subsec:protcodingOnly}
 \vspace{-0.15in}
 I have focused my analyses on the \mRNAs\ (\ie\ \glspl{RNA} that have a
-biotype described as \emph{\pc} in \ens{76}).
+biotype described as \emph{\pc} in \ens{76}).\mybr\
 
 In addition to the obvious reason to match with the proteomic data,
 most of the transcriptomic data is the product of poly-A selected protocols
 (see \Cref{msec:polyA}: \nameref{msec:polyA}).
 Thus, aside from the \mRNAs, all the other \glspl{RNA} are off-target
 and, for many of them,
-their expression levels estimations may be highly imprecise.
+their expression levels estimations may be highly imprecise.\mybr\
 
 \vspace{-0.1in}
 \subsection{Expressed or not expressed}\label{sec:ExpressedOrNot}
@@ -410,14 +408,14 @@ their expression levels estimations may be highly imprecise.
 While it can seem a trivial concept and might be overlooked, whether a specific
 molecule is truly expressed --- or not --- in a given condition, can actually have
 an extensive impact on the results of the analyses, particularly when integrating
-proteome and transcriptome together.
+proteome and transcriptome together.\mybr\
 
 For example, the Pearson correlation coefficient is very
 sensitive to outliers and null values. If for both samples, a vast number of
 null values are recorded, this will lead to a greater similarity.
 Hence, it is important that the data used for the analysis is meaningful in
 its entirety, \ie\ a null value is a truly an observation and translates to
-a lack of expression, rather than a lack of observation.
+a lack of expression, rather than a lack of observation.\mybr\
 
 \begin{itemize}
         \item\textbf{The undefined}:\label{subsec:ExpressedOrNot-undefined} %\KOMAoptions{parskip=false}
@@ -472,14 +470,14 @@ a lack of expression, rather than a lack of observation.
 Although I have compared the list of
 undefined, expressed and unexpressed molecules,
 the bulk of the analyses has been done on the common expressed genes across
-the datasets.
+the datasets.\mybr\
 
 In other words, an \mRNA\ --- or protein --- was excluded
 if it is not expressed in at least
 one sample in \emph{each and every} dataset used for the analyses,
 I then exclude it.
 This led me to define different working sets for the following chapters analyses
-to limit the number of omitted \mRNAs/proteins.
+to limit the number of omitted \mRNAs/proteins.\mybr\
 
 \subsection{Aggregating tissue expression}\label{subsec:averagedTissue}
 \vspace{-0.15in}
@@ -491,11 +489,11 @@ I computed a \emph{\enquote{virtual} reference} for each tissue
 within the datasets that present more than one biological sample per tissue,
 \ie\ \vt, \uhlen\ and \gtex\ datasets.
 Note that, \castle, \cutler, \kuster\ and \pandey\ datasets present by design only
-one measure of expression per gene per tissue.
+one measure of expression per gene per tissue.\mybr\
 
 To compute the \enquote{virtual} references for \vt, \uhlen\ and \gtex\ datasets,
 I have taken the median value of each gene across all the
-biological replicates for each of their tissues.
+biological replicates for each of their tissues.\mybr\
 
 
 
@@ -557,7 +555,7 @@ there is only one measure per gene for each tissue.
 These measures\label{def:trep} are either
 the primary sample expressions for \castle\ and \ibm\ studies or
 these \emph{\enquote{virtual}} constructed \emph{references}
-for \brawand, \uhlen\ and \gtex.
+for \brawand, \uhlen\ and \gtex.\mybr\
 
 
 
@@ -569,68 +567,17 @@ While it may be perceived as nitpicking,
 these details have critical impact on the results of the analyses
 I perform and more gravely on their interpretations\footnote{%
 For more, see~\paper{\citetitle{Kratz2014}}~\mycite{Kratz2014}
-and the included references.}.
+and the included references.}.\mybr\
 
 Aside the datasets selection criteria,
 this phase is by far the most subjective one of the whole thesis.
 Hence, to avoid excessive \emph{data cleaning}
 and possible cognitive biases,
 I have formulated the aforementioned filtering rules
-that are important but simple.
+that are important but simple.\mybr\
 
 Overall, I am quite stringent and I have preferred to keep more data
 without any strong rationale to discard them.
 Therefore, there are sharper filters and samples exclusion options that
-may easily improve the results I present in this thesis.
+may easily improve the results I present in this thesis.\mybr\
 
-
-\begin{comment}
-\section{Methods}
-
-All the analysis have been run in R version 3.4.2 (2017-09-28)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: OS X El Capitan 10.11.6
-and \TK{EBI cluster}.
-
-R version 3.4.2 (2017-09-28)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: OS X El Capitan 10.11.6
-
-Matrix products: default
-BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
-
-locale:
-[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
-
-attached base packages:
- [1] stats4    parallel  grid      stats     graphics  grDevices utils     datasets  methods   base
-
-other attached packages:
- [1] topGO_2.28.0          SparseM_1.77          GO.db_3.4.1           org.Hs.eg.db_3.4.1    AnnotationDbi_1.38.2
- [6] IRanges_2.10.5        S4Vectors_0.14.7      Biobase_2.36.2        clusterProfiler_3.4.4 DOSE_3.2.0
-[11] Rgraphviz_2.20.0      graph_1.54.0          BiocGenerics_0.22.1   VennDiagram_1.6.17    futile.logger_1.4.3
-[16] gridExtra_2.3         mgcv_1.8-22           nlme_3.1-131          scales_0.5.0          WGCNA_1.61
-[21] fastcluster_1.1.24    dynamicTreeCut_1.63-1 gplots_3.0.1          reshape2_1.4.2        extrafont_0.17
-[26] ggplot2_2.2.1
-
-loaded via a namespace (and not attached):
- [1] bitops_1.0-6          matrixStats_0.52.2    robust_0.4-18         fit.models_0.5-14     bit64_0.9-7
- [6] doParallel_1.0.11     RColorBrewer_1.1-2    tools_3.4.2           backports_1.1.1       DT_0.2
-[11] rpart_4.1-11          KernSmooth_2.23-15    Hmisc_4.0-3           DBI_0.7               lazyeval_0.2.0
-[16] colorspace_1.3-2      nnet_7.3-12           bit_1.1-12            compiler_3.4.2        preprocessCore_1.38.1
-[21] extrafontdb_1.0       htmlTable_1.9         labeling_0.3          caTools_1.17.1        checkmate_1.8.4
-[26] DEoptimR_1.0-8        mvtnorm_1.0-6         robustbase_0.92-7     stringr_1.2.0         digest_0.6.12
-[31] foreign_0.8-69        rrcov_1.4-3           base64enc_0.1-3       pkgconfig_2.0.1       htmltools_0.3.6
-[36] htmlwidgets_0.9       rlang_0.1.2           RSQLite_2.0           impute_1.50.1         jsonlite_1.5
-[41] BiocParallel_1.10.1   gtools_3.5.0          GOSemSim_2.2.0        acepack_1.4.1         magrittr_1.5
-[46] Formula_1.2-2         Matrix_1.2-11         Rcpp_0.12.13          munsell_0.4.3         stringi_1.1.5
-[51] yaml_2.1.14           MASS_7.3-47           qvalue_2.8.0          plyr_1.8.4            blob_1.1.0
-[56] DO.db_2.9             gdata_2.18.0          lattice_0.20-35       splines_3.4.2         knitr_1.17
-[61] igraph_1.1.2          fgsea_1.2.1           codetools_0.2-15      fastmatch_1.1-0       futile.options_1.0.0
-[66] glue_1.1.1            latticeExtra_0.6-28   lambda.r_1.2          data.table_1.10.4-1   foreach_1.4.3
-[71] Rttf2pt1_1.3.4        purrr_0.2.3           tidyr_0.7.1           gtable_0.2.0          survival_2.41-3
-[76] pcaPP_1.9-72          tibble_1.3.4          rvcheck_0.0.9         iterators_1.0.8       memoise_1.1.0
-[81] cluster_2.0.6
-
-\end{comment}

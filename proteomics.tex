@@ -18,7 +18,7 @@ the three proteomic datasets introduced in \Cref{ch:datasets}.
 However, we have reprocessed them starting from the raw data
 for this thesis.
 In this context, reassessing the quantified processed proteomic data
-before any integration is pertinent.
+before any integration is pertinent.\mybr\
 
 The work presented in this chapter was done in collaboration with \james\
 who has implemented the new protein quantification method
@@ -26,7 +26,7 @@ who has implemented the new protein quantification method
 I have received general feedback from \alvis, \mar,
 \sarah\ and Faranak Ghahreman.
 A manuscript describing part of this chapter's work
-and the one presented in \Cref{ch:Integration} is being prepared.
+and the one presented in \Cref{ch:Integration} is being prepared.\mybr\
 
 \section{An~overall~fragmented~and~disparate~universe~to~explore}
 
@@ -45,7 +45,7 @@ To this date,
 \cutler Lab, \kuster\ Lab and \pandey\ Lab datasets are the only ones
 that explore concurrently several nondiseased human tissues.
 See \Cref{sec:ProteoData} for more details and
-the processing pipeline designed and implemented by \james\ to handle them.
+the processing pipeline designed and implemented by \james\ to handle them.\mybr\
 
 As presented in \Cref{fig:VennDiagProt3},
 they share four tissues: \heart, \lung, \ovary\ and \pancreas.
@@ -55,7 +55,7 @@ The \cutler\ Lab dataset is the most limiting factor;
 \pandey\ Lab and \kuster\ Lab datasets share over twice as many proteins
 that they share with \cutler\ (3,338 instead of 1,384).
 The number of shared proteins between \pandey\ Lab and \kuster\ Lab data rise to 4,172
-when all their fourteen common tissues are considered.
+when all their fourteen common tissues are considered.\mybr\
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.71]{proteomics/VennDiagProtCond.pdf}\centering
@@ -86,7 +86,7 @@ when all their fourteen common tissues are considered.
 illustrates the number of proteins identified in each of these four tissues.
 The colours indicate in which dataset (or group of datasets)
 the proteins have been identified.
-See \Cref{fig:protbkdownT} for each set precise numbers.
+See \Cref{fig:protbkdownT} for each set precise numbers.\mybr\
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.65]{proteomics/barplotVenn3Dprot.pdf}\centering
@@ -102,13 +102,13 @@ See \Cref{fig:protbkdownT} for each set precise numbers.
 
 The tissue with the highest number of identified proteins,
 regardless of which dataset,
-is the \ovary.
+is the \ovary.\mybr\
 
 The highest number of proteins identified in all three datasets at once (600)
 is in the \heart.
 The other tissues have
 the \emph{Kuster and Pandey} set as
-their largest protein group formed by more than one dataset.
+their largest protein group formed by more than one dataset.\mybr\
 
 The largest set of identified proteins in \pancreas\
 and the second one in \ovary\ are proteins only found in \pandey\ Lab dataset
@@ -123,7 +123,7 @@ More surprising is that the \cutler\ dataset comprises a respectable amount of
 proteins in \lung\ that are missing in the other two.
 A few of these proteins (82) are missing altogether,
 but a subset of them (410) is still found
-in (at least) another tissue of the other datasets.
+in (at least) another tissue of the other datasets.\mybr\
 
 \begin{figure}[!htpb]
     \includegraphics[scale=0.8]{proteomics/ProteinUniqueDistribPerdatasets.pdf}\centering
@@ -145,7 +145,7 @@ an artefact (\ie\ false positive) or a miss (false negative) in the other datase
 is a challenging question;
 the diversified nature of proteins involves
 many sample preparation and simplification methods
-(see \Cref{subsec:ProtSampPrep,subsec:simpleProt}).
+(see \Cref{subsec:ProtSampPrep,subsec:simpleProt}).\mybr\
 
 
 
@@ -167,7 +167,7 @@ I have also investigated tissue-specific (\gls{TS}) proteins
 that are also identified in more than one dataset.
 While the three datasets lacked to identify any \gls{TS} protein at once,
 \pandey\ Lab and \kuster\ Lab datasets share a few (44 across eight tissues)
---- see \Cref{tab:comTSprot} for the complete list.
+--- see \Cref{tab:comTSprot} for the complete list.\mybr\
 \begin{comment}
 twelve for \kidney, nine for \placenta, seven for \pancreas,
 five for \adrenal\ and \liver, four for \testis,
@@ -183,10 +183,10 @@ none of the three ubiquitous proteins
 is detected in \heart\ by the
 \hFo{Human Protein Atlas}{https://www.proteinatlas.org/}~\mycite{Uhlen2015}
 while they are found in epithelial cells.
-One hypothesis is that contamination occurred when sampling from the donor.
+One hypothesis is that contamination occurred when sampling from the donor.\mybr\
 
 Lists for ubiquitous and \gls{TS} proteins of each dataset separately
-and across the three (when consistent) are given as digital supporting data.
+and across the three (when consistent) are given as digital supporting data.\mybr\
 
 \vspace{-3mm}
 
@@ -198,7 +198,7 @@ same-tissue interstudy correlations.}\label{subsec:protTechVarHigh}
 After defining the (1,384) protein set that is consistently detected
 in the four common tissues of the three datasets,
 I have assessed how consistent is
-their expression quantification across tissues and studies.
+their expression quantification across tissues and studies.\mybr\
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.9]{proteomics/heatmap3DproteinSpearman.pdf}\centering
@@ -234,24 +234,24 @@ However,
 \pancreas\ and \lung\ are the most correlated,
 and their pair is in turn most correlated to \ovary.
 \kuster\ Lab \treps\ display the greatest amount of study bias
-(probably due to stronger batch effects --- see \Cref{sub:BatchEffect}).
+(probably due to stronger batch effects --- see \Cref{sub:BatchEffect}).\mybr\
 
 Removing the proteins translated from the mitochondrial genes slightly
 improves the results
 but excluding the three ubiquitous (likely contaminants) proteins, presented
 in \Cref{subsec:halfProtConfirmed},
-is impactless.
+is impactless.\mybr\
 
 Because of the limited number of proteins included in this analysis,
 it is unwise to draw definite conclusions
 except that there is an extensive need for new quantification normalisation methods
 that can help with protein expression meta-analyses
-and as for now one has to be very cautious when comparing proteome samples.
+and as for now one has to be very cautious when comparing proteome samples.\mybr\
 
 I attempted to expand this analysis by comparing the fourteen common tissues
 of \pandey\ Lab and \kuster\ Lab datasets,
 but the results are as inconclusive
-(see \Cref{fig:prot2DheatmapT14,fig:prot2DheatmapPearson}).
+(see \Cref{fig:prot2DheatmapT14,fig:prot2DheatmapPearson}).\mybr\
 
 \section{New quantification method}\label{sec:NewQuantProt}
 
@@ -259,7 +259,7 @@ In this thesis context where I aim to integrate
 the \mRNA\ expression levels to the protein ones
 (presented in \Cref{ch:Integration}),
 I have developed a new method to infer and quantify the proteins
-with the help of \james.
+with the help of \james.\mybr\
 
 Our original processing workflow (detailed in \Cref{subsec:msDataProcess})
 intends to provide a reliable protein quantification.
@@ -269,7 +269,7 @@ by highlighting the disputable presence of \glspl{OR} in many tissues.
 On the other hand, our workflow lacks to detect or quantify any possible \gls{OR}
 in the \pandey\ Lab data.
 The left part of \Cref{fig:newQuantProtMeth} summarises
-our first method of quantification.
+our first method of quantification.\mybr\
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.7]{proteomics/quantificationQ1Q2.pdf}\centering
@@ -281,7 +281,7 @@ our first method of quantification.
     which follows a robust inference method
     involving at least three unique peptides,
     relies on the intensity of the three most intense unique peptides.
-    The new quantification method that I have devised
+    The new quantification method that I have invented
     allows more relaxed inference parameters
     as it also uses the non-unique peptides for the quantification.
     See \Cref{eq:PPKM},
@@ -314,7 +314,7 @@ Our first method infers proteins from sets that comprise at least three unique p
 The quantification relies on a Top3 approach~\mycite{Silva-Top3}.
 It uses the three \emph{unique} most expressed peptides of a protein
 to estimate its overall expression
-(see \Cref{eq:Top3} (\vref{eq:Top3}) and \Cref{subsubsec:protQuantLB}).
+(see \Cref{eq:Top3} (\vref{eq:Top3}) and \Cref{subsubsec:protQuantLB}).\mybr\
 
 \begin{minipage}{\textwidth}
 \begin{equation}
@@ -347,7 +347,7 @@ it allows relaxing the inference parameters to two unique peptides
 The new quantification follows a similar approach to the \RPKM\ normalisation ---
 see \Cref{eq:rpkm-fx}.
 Protein expression levels are expressed in \glspl{PPKM},
-which stands for \glspl{PSM} Per Kilobase of gene per Million.
+which stands for \glspl{PSM} Per Kilobase of gene per Million.\mybr\
 
 As shown in \Cref{eq:PPKM},
 this method counts the number of \psms\
@@ -359,10 +359,10 @@ the result is finally multiplied by a factor ($10^6$) to facilitate reading.
 Using the longest \emph{transcript} length
 instead of the longest protein isomer allows avoiding issues due to
 annotation differences between gene and protein levels
-in the analyses of the following \Cref{ch:Integration}.
+in the analyses of the following \Cref{ch:Integration}.\mybr\
 
 \james\ has implemented this new method and provided me
-\PPKM\ quantifications for the \pandey\ Lab data.
+\PPKM\ quantifications for the \pandey\ Lab data.\mybr\
 
 \begin{minipage}{\textwidth}
 \begin{equation}\label{eq:PPKM}
@@ -392,7 +392,7 @@ the first quantification filtering
 and a less strict one for the new method.
 As my aim is to compare and integrate proteomic and transcriptomic data together,
 an increased number of false positives among the identified proteins
-(see \Cref{subsub:peptideID}) is not a real issue.
+(see \Cref{subsub:peptideID}) is not a real issue.\mybr\
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.7]{proteomics/distribPandeyQ1Q2.pdf}\centering
@@ -416,7 +416,7 @@ I have carried out a few comparisons
 between the first and the new quantification methods.
 As shown in \Cref{fig:pandeyDistribQ1Q2},
 the densities of distribution of protein expression levels per tissues
-have similar shapes between the two methods.
+have similar shapes between the two methods.\mybr\
 
 \Cref{fig:pandeyQ1Q2comp} presents the number of quantified proteins per tissue.
 The new method allows quantifying for some tissues
@@ -424,7 +424,7 @@ up to more than twice the number quantified by the first method.
 This proportion is consistent with the total number of proteins identified
 across the fifteen adult tissues
 by the first method (6,436)
-and the new one (12,290).
+and the new one (12,290).\mybr\
 
 \begin{figure}[!ht]
     \includegraphics[scale=0.82]{proteomics/compDistribQ1Q2pandey.pdf}\centering
@@ -465,7 +465,7 @@ In addition, \protein{OR1M1} seems to be expressed in the \textit{Blood} of
 the green monkey (\species{Chlorocebus sabaeus} --- \ArrayExpress{E-MTAB-4404}).
 Both proteins are also found to be up or down regulated at transcript level
 in different tumoral samples (\emph{Differential expression} tab of \egxa).
-See also the digital supporting data.
+See also the digital supporting data.\mybr\
 
 
 %\FloatBarrier
@@ -481,13 +481,13 @@ Our processing pipeline (see \Cref{subsec:msDataProcess})
 appears more reliable than some of the original authors'.
 The original \pandey\ Lab data was disputably quantifying \glspl{OR} in many tissues
 \mycite{Ezkurdia2014-qx}.
-No trace of \glspl{OR} was found in any of our reprocessed data.\\
-\vspace{-\baselineskip}
+No trace of \glspl{OR} was found in any of our reprocessed data.\mybr\
 
 Nonetheless, the technical variability is overall stronger
 than any biological interstudy signal even for similar tissues.
 Besides, across the different tissues,
-about half of the proteins are consistently observed in the same tissues at least in two datasets.
+about half of the proteins are consistently observed
+in the same tissues at least in two datasets.\mybr\
 
 Even when limited to the protein identification only,
 the general lack of repeatability and reproducibility
@@ -498,8 +498,7 @@ for technical and biological replicates in \ms\ proteomics
 the intra-assay variation between two technical replicates for complex mixtures
 can be at least 50\%;
 different runs of the same sample or experiment are often produced to raise
-the interstudy results repeatability and confidence.\\
-\vspace{-\baselineskip}
+the interstudy results repeatability and confidence.\mybr\
 
 While there is a definite need for new \ms\ protocols and quantification methods
 for baseline expression\footnote{Normalisation methods for differential expression
@@ -507,14 +506,14 @@ analysis are usually unsuited for baseline expression studies.
 See \citet{Valikangas2018-yj} for possible differential expression quantification
 methods.} to correct the extreme variability
 and ease the integration of proteomics data from different studies,
-I have devised a new quantification method inspired by the \Rnaseq\ ones and
+I have invented a new quantification method inspired by the \Rnaseq\ ones and
 which was implemented by \james.
 This new approach (\gls{PPKM}) quantifies
 about twice as many proteins than the first one (Top3~\mycite{Silva-Top3}) we used.
 \citet{Nesvizhskii2003-ls} propose a method that seems alike,
 but their method apportions the degenerate peptides
 among all corresponding proteins to estimate their presence likelihood in an experiment.
-They focus on the identification while the quantification remains overlooked.
+They focus on the identification while the quantification remains overlooked.\mybr\
 
 Previously, \citet{Liu2014-xr} had compiled a list of 627 \gls{TS} and
 1,093 housekeeping proteins
@@ -524,5 +523,5 @@ in our first version of \pandey\ Lab data,
 I have found 534 housekeeping (ubiquitous) proteins and 1,491 \gls{TS} proteins,
 and for the \PPKM\ quantification: 2,057 ubiquitous and 2,640 \gls{TS} proteins.
 I provide as digital supporting data the list of the \gls{TS} and
-ubiquitous proteins.
+ubiquitous proteins.\mybr\
 

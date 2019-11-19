@@ -2,6 +2,29 @@
 \getrefnumber{ch:Integration}}\label{ch:SupplIntegration}
 %\chaptermark{Supplementary material for \getrefnumber{ch:Integration}}
 
+
+\section{Hypergeometric test}\label{sec:hypergeometricTest}
+
+The hypergeometric test uses the hypergeometric distribution
+and equates to the one-sided Fisher's exact test.
+It allows measuring the statistical significance of
+randomly sampling $k$ successes out of $n$ draws, without replacement,
+from a population of $N$ that contains $K$ successes.
+
+Depending on whether the test is about an over or under-representation,
+the p-value is the probability of drawing respectively
+a minimum or a maximum of $k$ successes.
+
+See also \citet{Johnson2005-mf} for more examples using this test.\mybr\
+
+\begin{figure}[!htb]
+    \includegraphics[scale=0.65]{integration/Kidney_scattplot_Q1.pdf}\centering
+    \caption[Scatterplot of protein (Pandey \etal\ --- Top3 quantification)
+    and \mRNA\ (Uhlén \etal) expression for Kidney]{\label{fig:ScatKidQ1}%
+    \textbf{Scatterplot of protein (Pandey \etal\ --- Top3 quantification)
+    and \mRNA\ (Uhlén \etal) expression for Kidney.}}
+\end{figure}
+
 \pagestyle{plain}
 \small
 
@@ -175,42 +198,30 @@ Pandey \etal\ & Uhlén \etal\ & 15 & PPKM x HTSeq & False & Pearson & 0.55 & 0.4
 \pagestyle{scrheadings}
 
 
-\begin{figure}[!htpb]
-    \includegraphics[scale=0.75]{integration/Kidney_scattplot_Q1.pdf}\centering
-    \caption[Scatterplot of protein (Pandey \etal\ --- Top3 quantification)
-    and \mRNA\ (Uhlén \etal) expression for Kidney]{\label{fig:ScatKidQ1}%
-    \textbf{Scatterplot of protein (Pandey \etal\ --- Top3 quantification)
-    and \mRNA\ (Uhlén \etal) expression for Kidney.}}
-\end{figure}
-
-
-
 
 \begin{figure}[!htb]
     \includegraphics[scale=0.7]{integration/TissuePairsQ3T15HeatmapPandey.pdf}\centering
-    \caption[Heatmap]{\label{fig:heatmapPandeyTissuePairs}\textbf{<++>}<++>}
+    \vspace{-8mm}
+    \caption[Number of shared genes between tissue couples of Pandey (PPKM quantification)]{%
+    \label{fig:heatmapPandeyTissuePairs}\textbf{Number of shared genes
+    between tissue couples of Pandey Lab data (PPKM quantification).} The hierarchical
+    tree of the tissues is based on their relative closeness
+    (tissues that share a higher number of commun genes are closer).
+    The groups are linked with the Ward method.}
 \end{figure}
 
 \begin{figure}[!htb]
     \includegraphics[scale=0.7]{integration/TissuePairsQ3T15HeatmapUhlen05.pdf}\centering
-    \caption[Heatmap]{\label{fig:heatmapUhlenTissuePairs05}\textbf{<++>}<++>}
+    \vspace{-8mm}
+    \caption[Number of shared genes between tissue couples of Pandey (12,921 genes)]{%
+    \label{fig:heatmapUhlenTissuePairs05}\textbf{Number of shared genes
+    between tissue couples of Uhlén et al.\ data (12,921 commun genes set
+    across the fifteen shared tissues with Pandey Lab data quantified
+    with PPKM method)} The
+    hierarchical tree share the same parameters than \Cref{fig:heatmapPandeyTissuePairs}.}
 \end{figure}
 
 
-\section{Hypergeometric test}\label{sec:hypergeometricTest}
-
-
-The hypergeometric test uses the hypergeometric distribution
-and equates to the one-sided Fisher's exact test.
-It allows measuring the statistical significance of
-randomly sampling $k$ successes out of $n$ draws, without replacement,
-from a population of $N$ that contains $K$ successes.
-
-Depending on whether the test is about an over or under-representation,
-the p-value is the probability of drawing respectively
-a minimum or a maximum of $k$ successes.
-
-See also \citet{Johnson2005-mf} for more examples using this test.
 
 %\begin{figure}[!htbp]
 %    \includegraphics[scale=0.9]{integration/overlapRatioPvalPUQ15Q3.pdf}\centering
@@ -219,7 +230,6 @@ See also \citet{Johnson2005-mf} for more examples using this test.
 %\end{figure}
 
 
-\clearpage
 
 
 
@@ -227,9 +237,6 @@ See also \citet{Johnson2005-mf} for more examples using this test.
 
 
 \pagestyle{scrheadings}
-
-
-\section{mRNA/protein correlations}\label{app:geneCentric}
 
 \begin{sidewaysfigure}
     \includegraphics[scale=0.5]{integration/Human_873038197_73745474}\centering
@@ -273,7 +280,6 @@ The pairs with a \gls{TS} protein are associated with the following fifth catego
 \enquote{\textit{molecular transducer activity}},
 \enquote{\textit{channel activity}},
 \enquote{\textit{passive transmembrane transporter activity}}.
-
 \end{comment}
 
 

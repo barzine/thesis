@@ -39,17 +39,21 @@ formula --- see \cref{eq:PearsonPopCor}).
 
 The (sample) Pearson correlation coefficient can be defined
 as the following equation
-(indeed, many rearrangements are possible) :
+(indeed, many rearrangements are possible):
 \begin{equation}\label{eq:PearsonCor}
     \tag{(Sample) Pearson correlation coefficient}
     \begin{split}
-        r_{x,y} & = \frac{\sum ^n _{i=1}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum ^n _{i=1}(x_i - \bar{x})^2}
-        \sqrt{\sum ^n _{i=1}(y_i - \bar{y})^2}} \\
+        r_{x,y} & = \frac{\sum ^n _{i=1}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum ^n _{i=1}{(x_i - \bar{x})}^2}
+        \sqrt{\sum ^n _{i=1}{(y_i - \bar{y})}^2}} \\
                 & = corr(x,y)
     \end{split}
 \end{equation}
 where:
-\quad\begin{eqlist}
+\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
     \item[\textbullet\ $x,y$] are observed values of two random variables $X$ and $Y$
     \item[\textbullet\ $n$] is the sample size of $x$ and $y$
     \item[\textbullet\ $i$] is the index of the current observed value $x$ or $y$
@@ -62,14 +66,18 @@ where:
     \bar{x}=\frac{1}{n}\sum_{i=1}^n x_i
 \end{equation}
 where:
-\quad\begin{eqlist}
+\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
     \item[\textbullet\ $x$] is the possible observed values of $X$
     \item[\textbullet\ $n$] is the sample size of $x$
     \item[\textbullet\ $i$] is the index of the current observed value of $x$
 \end{eqlist}
 
 
-\subsection{Different advantages of Pearson and Spearman correlations}\label{subsec:PearsonVsSpearman}
+\subsection{Different~advantages~of~Pearson~and~Spearman~correlations}\label{subsec:PearsonVsSpearman}
 
 Pearson correlations are easier to understand, interpret and then to use as predictor
 while Spearman correlations are more robust and thus better fitted for interstudy
@@ -87,7 +95,7 @@ Pearson correlation measure the linear relationship between two variables
 (interval scale) (true value).
 \end{comment}
 
-\cite{De_Siqueira_Santos2014-dp} review Spearman and Pearson correlations
+\citet{De_Siqueira_Santos2014-dp} review Spearman and Pearson correlations
 along with six other statistical methods.
 They also summarise many use cases of each of these methods
 in the general context of gene expression study.
@@ -114,7 +122,24 @@ in the general context of gene expression study.
 \end{table}
 
 
+
+\FloatBarrier\
 \section{Data visualisation}
+
+%\subsection{Anscombe quartet}
+
+\begin{figure}[!ht]
+    \includegraphics[scale=0.40]{expressed/AnscombePanel.pdf}\centering
+    \caption[Anscombe quartet --- why data should always be visualy checked]
+    {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
+    visually checked.}\smallbreak{} All the datasets, while presenting
+    different distributions, have equal or very similar descriptive statistic
+    indicators;
+    the means and variances for both $x$ and $y$ variables and
+    the Pearson correlation between $x$ and $y$, and
+    their linear regressions are very similar.}
+\end{figure}
+
 %\subsection{Unlogged expression profiles}
 \begin{figure}[!ht]
     \centering
@@ -161,21 +186,8 @@ in the general context of gene expression study.
     genes only) and proteome datasets}\label{fig:distribPlot_noLog2}
 \end{figure}
 
-%\subsection{Anscombe quartet}
 
-\begin{figure}[!ht]
-    \includegraphics[scale=0.40]{expressed/AnscombePanel.pdf}\centering
-    \caption[Anscombe quartet --- why data should always be visualy checked]
-    {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
-    visually checked.}\smallbreak{} All the datasets, while presenting
-    different distributions, have equal or very similar descriptive statistic
-    indicators;
-    the means and variances for both $x$ and $y$ variables and
-    the Pearson correlation between $x$ and $y$, and
-    their linear regressions are very similar.}
-\end{figure}
-
-
+\FloatBarrier\
 \section{Other additional material}
 
 
@@ -189,7 +201,11 @@ is defined as:
      \end{split}
 \end{equation}
 where:
-\quad\begin{eqlist}
+\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
     \item[\textbullet\ $X,Y$] are two random variables
     \item[\textbullet\ $cov(X,Y)$] is the covariance of $X$ and $Y$
         (see \Cref{eq:covariance})
@@ -208,7 +224,11 @@ two variables are linearly associated.
         cov(X,Y) =  \frac{\sum{(x_{i}-\bar{x})(y_{i}-\bar{y})}}{N-1}
 \end{equation}
 where:
-\quad\begin{eqlist}
+\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
        \item[\textbullet\ $X,Y$] are random variables
        \item[\textbullet\ $x,y$] are respectively one observation of $X$ and $Y$
        \item[\textbullet\ $\bar{x},\bar{y}$] are the means
@@ -221,12 +241,16 @@ possible values of a random variable around its expected value ($E$) (theoretica
 \begin{equation}\label{eq:sd}
     \tag{Standard deviation}
     \begin{split}
-        sd(X) & = \sqrt{E[X^2]-(E[X])^2} \\
+        sd(X) & = \sqrt{E[X^2]-{(E[X])}^2} \\
               & = \sqrt{Var(X)}
     \end{split}
 \end{equation}
 where:
-\quad\begin{eqlist}
+\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
     \item[\textbullet\ $X$] is a random variable
     \item[\textbullet\ ${E[X],E[X^2]}$] are respectively the expected values
         (or theoretical averages) of $X$ and $X^2$ (see \cref{eq:expectation})
@@ -235,13 +259,17 @@ where:
 \begin{equation}\label{eq:expectation}
     \tag{Expectation}
     \begin{split}
-        E[X] & = x_1p_1 + x_2p_2+ \cdot +x_kp_k \\
-             & = \mathsf{weighted average}(X) \\
+        E[X] & = x_1p_1 + x_2p_2+ \cdot +x_{k}p_{k} \\
+        & = \text{weighted average}(X) \\
              & = \mu_X
     \end{split}
 \end{equation}
 where:%\\
-\quad\begin{eqlist}
+\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
     \item[\textbullet\ $E$] is the expectation
     \item[\textbullet\ $X$] is a random variable
     \item[\textbullet\ $x_1$, $x_2$, \ldots, $x_k$] are possible value of $X$
@@ -253,11 +281,15 @@ where:%\\
 \begin{equation}\label{eq:variance}
     \tag{Variance}
     \begin{split}
-        Var(X) & =  \frac{\sum{(x_{i}-\bar{x})^{2}}}{N-1} \\ & = sd^{2}(X)
+        Var(X) & =  \frac{\sum{{(x_{i}-\bar{x})}^{2}}}{N-1} \\ & = sd^{2}(X)
     \end{split}
 \end{equation}
 where:
-\quad\begin{eqlist}
+\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
     \item[\textbullet\ $X$] is a random variable
     \item[\textbullet\ $x$] is one observation of $X$
     \item[\textbullet\ $\bar{x}$] is the mean of all observed values of $X$
