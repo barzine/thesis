@@ -17,12 +17,12 @@ I use within my thesis
 and explain how they have been reprocessed.
 Besides the results I report in the subsequent chapters,
 the present chapter also provides the basis for work
-I have co-authored\footfullcite{Wright-2016}.
+I have co-authored\footfullcite{Wright-2016}.\mybr\
 
 Unless otherwise stated, all the computational processing of the \Rnaseq\ part
 described here have been performed by myself under the supervision of
 \alvis. I also received general feedback from \mar,
-\johan\ and \nuno. The proteome data has been processed by \james.
+\johan\ and \nuno. The proteome data has been processed by \james.\mybr\
 
 
 \section{Introduction}
@@ -40,14 +40,14 @@ Finally, the \emph{raw} data is openly available and reusable\footnote{%
 In this context, \emph{reusable} means that the data can be processed
 as accurately by third-party researchers than the original authors,
 and this without the need to access additional information
-that have been not openly released}.
+that have been not openly released}.\mybr\
 
 
 In the next section, I first describe the \Rnaseq\ and the \ms\ data I use
 in my thesis; then I detail how these data have been processed to be
 employed in the next chapters for various analyses that explore the transcriptome,
 the proteome and finally, the comparison and integration of these two
-biological layers.
+biological layers.\mybr\
 
 
 \section{Transcriptome RNA-Seq studies}\label{sec:rnaseq-data}
@@ -62,11 +62,11 @@ Despite my best efforts,
 I was unable to resolve this issue
 by contacting the respective authors.
 \citet{Burge} (\ArrayExpress{E-GEOD-41637}) is one example of study
-that I unfortunately had to dismiss.
+that I unfortunately had to dismiss.\mybr\
 
 I describe hereinafter the five transcriptomic datasets I used
 in the chronological order of their first public release.
-\Cref{tab:Trans5DF} summarises the main characteristics of these datasets.
+\Cref{tab:Trans5DF} summarises the main characteristics of these datasets.\mybr\
 
 \begin{sidewaystable}
            \centering
@@ -128,19 +128,19 @@ in the chronological order of their first public release.
 \paper{\citetitle{castleData}}.
 The authors were interested in exploring the whole RNA repertoire
 with sequencing-based technology and they primarily focused their study
-on the non-coding part.
+on the non-coding part.\mybr\
 
 Purchased \gls{RNA} extracts were used to create multiple-donors pooled
 samples for 11 tissues from which total \gls{RNA} libraries were prepared
 following a total transcriptomic protocol
 where nonribosomal \gls{RNA} transcripts are
-amplified specifically by \gls{PCR}~\mycite{Armour:2009}.
+amplified specifically by \gls{PCR}~\mycite{Armour:2009}.\mybr\
 
 For each library (tissue), an average of 50 million sequence reads were sequenced
 using an Illumina Genome Analyser-II sequencer (single-end).
 The original reads were trimmed to 28 \gls{nt}
 before being released through EMBL archives (\ENA{ERP000257}
-and \ArrayExpress{E-MTAB-305}).
+and \ArrayExpress{E-MTAB-305}).\mybr\
 
 Despite several limitations, such as the lack of replicates, the old technology and
 the short reads,
@@ -153,7 +153,7 @@ that may be integrated together.
 Secondly, as \Rnaseq\ studies are prepared mainly with polyA-selected protocols
 today, I was interested in gauging how the library preparation
 protocols --- and the presence of \glspl{ncRNA} --- can affect the
-quantifications and then any final observation.
+quantifications and then any final observation.\mybr\
 
 
 \subsection{Brawand et al.\ dataset}\label{subsec:brawandpresentation}
@@ -161,7 +161,7 @@ quantifications and then any final observation.
 In the article entitled~\paper{\citetitle{VTpaper}},
 \citet{VTpaper} focused their interest on the
 evolution of the mammalian transcriptomes\footnote{While there were existing
-studies on the matter, the sequencing approach was then creating new perspectives.}.
+studies on the matter, the sequencing approach was then creating new perspectives.}.\mybr\
 
 They collected 6 organs from 10 different vertebrates:
 9 mammalians (including human) and a bird. There are no technical replicates,
@@ -169,7 +169,7 @@ but  two biological replicates per tissue:
 one male and one female for every tissue except the testis (two males).
 The 131 libraries (including 23 for \species{Homo sapiens}) were prepared with
 a polyA-selected protocol.
-Hence, they are largely enriched in \pcgs.
+Hence, they are largely enriched in \pcgs.\mybr\
 
 An average of 3.2 billion 76 \gls{bp}-long single-end reads were generated per sample
 using an Illumina Genome Analyser IIx (single-end) and they released them
@@ -177,7 +177,7 @@ through \gls{GEO} (accession number: GSE30352).
 I personally retrieved the human data from
 \ArrayExpress{E-GEOD-30352}\footnote{ArrayExpress routinely was importing
 datasets from \gls{GEO} on a weekly basis until very recently.
-While not automatically, \gls{GEO} data are still included in \egxa.}.
+While not automatically, \gls{GEO} data are still included in \egxa.}.\mybr\
 
 
 \subsection{Illumina Body Map 2.0 (IBM)}\label{subsec:ibmpresentation}
@@ -188,11 +188,11 @@ mostly to advertise its most recent technology improvement at that time:
 the paired-end sequencing. Actually, until then, all the sequencing was done
 from only one end of the \gls{DNA} or \gls{cDNA} fragments. From that
 date, most of the following transcriptome studies based on \Rnaseq\ use
-paired-end sequencing.
+paired-end sequencing.\mybr\
 
 The dataset covers 16 tissues (one donor per tissue) and
 the libraries were prepared following a polyA-selected
-and are enriched in protein coding genes.
+and are enriched in protein coding genes.\mybr\
 
 Although each sample has been sequenced twice and despite having in principle
 \emph{technical} replicates, these are ``non-regular'' technical replicates.
@@ -203,13 +203,13 @@ Here, however, each tissue has been sequenced once with a single-end protocol
 and once with a paired-end one to compare their ability to discriminate between
 \gls{mRNA} isoforms.
 Indeed, Illumina's main incentive to develop its paired-end
-technology was to improve the accurate identification of spliced \glspl{mRNA}.
+technology was to improve the accurate identification of spliced \glspl{mRNA}.\mybr\
 
 The sequencing was performed with an Illumina HiSeq 2000, and the reads were
 released through \ArrayExpress{E-MTAB-503} (\ENA{ERP000546}),
 from where I have retrieved both the single-end and paired-end mono-tissue samples
 (the original dataset includes raw data files for mixtures
-that have been created with the tissue samples).
+that have been created with the tissue samples).\mybr\
 
 Despite the lack of biological replicates,
 it was for an extended time
@@ -223,7 +223,7 @@ in the literature since its release.
 In fact, this dataset is the most viewed one in \gls{ArrayExpress}
 (with 68,020 views on 31 May 2018 ---
 the second most viewed dataset (46,247 views)
-being \ArrayExpress{E-MTAB-62}\mycite{Lukk2010-op}).
+being \ArrayExpress{E-MTAB-62}\mycite{Lukk2010-op}).\mybr\
 
 \subsection{Uhlén et al.\ dataset}\label{subsec:uhlenPresentation}
 \vspace*{-0.1in}
@@ -238,27 +238,27 @@ as part of their study:~\paper{\citetitle{Uhlen2014}}%
 ~\mycite{Uhlen2014}.
 Later, they extended the dataset with new samples and 5 new
 tissues. The latest version was published within~\paper{\citetitle{Uhlen2015}}%
-~\mycite{Uhlen2015} in \textit{Science}.
+~\mycite{Uhlen2015} in \textit{Science}.\mybr\
 
 For each of the 32 tissues, there are (at least two) biological replicates.
 With a few exceptions, the tissues have both male and female donors.
 Many of the tissues present also technical replicates.
 The total set comprises 200 samples,
 which have been picked by pathologists
-based on the screening of frozen biopsy samples.
+based on the screening of frozen biopsy samples.\mybr\
 
 The polyA-selected libraries were paired-end sequenced
 with an Illumina HiSeq 2000 or 2500.
 I first started to work with the early version of this dataset
 (\ArrayExpress{E-MTAB-1733} --- 171 samples for 27 tissues),
 and then I upgraded my work with the extended more recent version
-(\ArrayExpress{E-MTAB-2836}).
+(\ArrayExpress{E-MTAB-2836}).\mybr\
 
 At the preparation time of this thesis, this normal human dataset is the
 most comprehensive, freely and publicly available dataset:
 either regarding the number of tissues (see \Cref{tab:Trans5DF})
 or the number of samples (see \Cref{tab:Lib5DF}).
-Therefore, its growing number of references is unsurprising.
+Therefore, its growing number of references is unsurprising.\mybr\
 
 \subsection{GTEx dataset}\label{subsec:gtexPresentation}
 \vspace*{-0.1in}
@@ -272,7 +272,7 @@ various tissues from postmortem donors for genotype-tissue expression analyses
 (notably \gls{eQTL} studies, which study the function of \glspl{SNP}
 in the modulation of \gls{RNA} expression).
 The results of the
-analyses are released through the \hFo{\Gtex\ portal}{https://gtexportal.org}.
+analyses are released through the \hFo{\Gtex\ portal}{https://gtexportal.org}.\mybr\
 
 As the project is quite ambitious and the collection
 and sequencing of the samples spreads over a long period of time,
@@ -283,22 +283,22 @@ many time points are used to reference each a specific state (version)
 of the data. Each version of the data is called a \emph{freeze}.}.
 My analyses include samples up to the fourth release of the pilot phase (v4).
 This release covers 54 tissues/cell types (53 normal and 1 tumoral)
-collected on from individuals for a total of 3,276 samples.
+collected on from individuals for a total of 3,276 samples.\mybr\
 
 The \Rnaseq\ libraries were prepared following a polyA-selected protocols
 and have been paired-end sequenced on an Illumina HiSeq 2000/2500.
-There is an average of 80 million reads per sample.
+There is an average of 80 million reads per sample.\mybr\
 
 For privacy reasons, the raw data is available only through controlled access via
 \dbGaP{phs000424.v4.p1} (access number specific to the version of the data I used
 in my study).
-Unfortunately, this translates to a slow access time to the raw data.
+Unfortunately, this translates to a slow access time to the raw data.\mybr\
 
 \section[Proteome Mass Spectrometry bottom-up studies]%
 {Proteome Mass Spectrometry bottom-up studies \quad}\label{sec:ProteoData}
 
 As mentioned earlier,
-the proteomic data have been selected and handled by \jyoti\ and \james.
+the proteomic data have been selected and handled by \jyoti\ and \james.\mybr\
 
 Until recently, compared to the transcriptome, the proteome world
 was lacking in normal human tissues expression quantification
@@ -306,16 +306,16 @@ experiments. In fact, while there were human protein maps available
 (\eg\ the \hFo{Human Protein Atlas}{https://www.proteinatlas.org}), these
 are mostly reporting the spatial expression of proteins (as they are based
 on immunohistochemistry or other means of identification) than quantifying
-their (non-targeted) abundance in each tissue.
+their (non-targeted) abundance in each tissue.\mybr\
 
 In 2014, two independent groups of authors~\mycite{PandeyData,KusterData}
 published (in \textit{Nature},
 issue 7502) their own \textquote{\emph{draft of the human proteome}}
 based on the study of tissues with \ms. These two datasets complement a previous
-smaller one that was publicly released but was never the object of a publication.
+smaller one that was publicly released but was never the object of a publication.\mybr\
 
 Hereinafter, I present these three datasets that I use in my thesis.
-See \Crefp{fig:pipelineProt}{A} for a short summary.
+See \Crefp{fig:pipelineProt}{A} for a short summary.\mybr\
 
 \subsection{Pandey Lab dataset}
 
@@ -327,7 +327,7 @@ For their study, they processed 30 kinds of histological normal human
 tissues and cell line samples (17 adult tissues, 7 foetal tissues and 6
 haematopoietic cell types).
 Each sample was created from pooling samples of three
-individuals (generally two males and one female).
+individuals (generally two males and one female).\mybr\
 
 Their proteomic libraries were prepared with a label-free method to quantify
 as many proteins as possible.
@@ -340,7 +340,7 @@ Finally, state-of-art \gls{MS/MS} protocols
 was used to generate about 25 million of (\gls{HCD})
 high-resolution mass spectra which account for 2,212 \gls{LC-MS/MS} profiles.
 The raw spectra were retrieved from ProteomeXchange via the repository
-\Pride{PXD000561}.
+\Pride{PXD000561}.\mybr\
 
 While the authors' effort to generate technical high quality raw data was highly
 appraised by the scientific community, their processing
@@ -359,7 +359,7 @@ complete working set) with already publicly available data
 They reprocessed
 the whole collection of spectra to maximise proteome coverage
 and make it available through their own repository:
-\hFo{ProteomicsDB}{https://www.proteomicsdb.org/}.
+\hFo{ProteomicsDB}{https://www.proteomicsdb.org/}.\mybr\
 
 The subset of data considered in my thesis is also
 known as the [protein] Human BodyMap which is the part that the Kuster lab
@@ -369,24 +369,24 @@ digestion into peptides with trypsin, they processed the samples with
 \gls{LC-MS/MS} to create 1,087 profiles.  Overall, that represents about
 14 million of \gls{HCD}/\gls{CID} spectra from Thermo Scientific instruments
 (including an \orbi).
-This specific raw data subpart was downloaded from \Proteomicsdb{PRDB000042}.
+This specific raw data subpart was downloaded from \Proteomicsdb{PRDB000042}.\mybr\
 
 \subsection{Cutler dataset}\label{subsec:cutler}
 
 This dataset was generated prior to the \pandey\ and the \kuster\
 data as it was released in 2011 through
 \hFo{PeptideAtlas}{http://www.peptideatlas.org/}~\mycite{PeptideAtlas},
-IDs: [PAe001768 --- PAe001778].
+IDs: [PAe001768 --- PAe001778].\mybr\
 
 It was created by Paul Cutler at Roche Pharmaceuticals.
 It comprises 10 different tissues (and one sample per tissue) that after trypsin
 digestion, were analysed through Thermo Scientific \gls{LTQ}-\orbi.
 In total, there are 1,618 \gls{CID} profiles which accounts for 13 million raw
-\gls{CID} spectra from a \gls{LTQ}-\orbi\ instrument.
+\gls{CID} spectra from a \gls{LTQ}-\orbi\ instrument.\mybr\
 
 While this dataset was never published on its own, it has been used in different
 studies (\eg~\cite{KusterData}).
-The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.
+The raw files were accessed and downloaded from \Proteomicsdb{PRDB000012}.\mybr\
 
 
 \section{Consistent processing pipelines}
@@ -406,7 +406,7 @@ To primarily reduce for avoidable technical variability,
 and despite readily available quantifications for most of the
 datasets, I only used data reprocessed from raw files by myself or \nuno\
 (\gtex\ dataset) for the transcriptomic data and by \james\
-for the proteomic data as already mentioned.
+for the proteomic data as already mentioned.\mybr\
 
 In fact, each study has been originally processed with different protocols,
 \eg\ \gtex{}~\mycite{GTExTranscript} and \castle{}~\mycite{Krupp2012}.
@@ -434,7 +434,7 @@ normSigCancerHelp}. For all these reasons,
 I decided to  reprocess all transcriptomic datasets with the same exact protocol
 as the first step of my study.
 Recently, \citet{Danielsson2015-cn} compare results based on prepublished data and
-reprocessed ones and conclude that using a single processing pipeline ensures better results.
+reprocessed ones and conclude that using a single processing pipeline ensures better results.\mybr\
 
 Likewise, there are various tools and many parameters for each processing step
 needed to quantify the proteomic data
@@ -445,7 +445,7 @@ different sets of peptides~\mycite{Griss2016}.
 of many of these variables more specifically for label-free proteomics,
 such as the effect of \gls{FDR}, protein inference tools or normalisation methods.
 Therefore, the three datasets were reprocessed uniformly
-from the raw spectra up to the normalisation of the protein expression values.
+from the raw spectra up to the normalisation of the protein expression values.\mybr\
 
 \subsection{RNA-Seq raw data processing}
 
@@ -480,7 +480,7 @@ redistributed to all the other interested parties. \nuno\ had this
 tremendous task.}.
 In this thesis,
 I present results computed on the quantification of these
-five datasets which have been processed through the same identical pipeline.
+five datasets which have been processed through the same identical pipeline.\mybr\
 
 \begin{table}
 \centering
@@ -515,7 +515,7 @@ Uhlén         & 122   & 200   & 400   & 1,851  & 3.81    [2;11] \\
 I retrieved the human raw data of each dataset from \gls{ArrayExpress} and
 \gls{ENA} through their identifier (see \crefp{sec:rnaseq-data}). After we
 received our access approval, \nuno\ retrieved \Gtex\ data from
-\gls{dbGaP}.
+\gls{dbGaP}.\mybr\
 
 While most of the raw files can be used as they are, an additional step is
 needed for the \castle\ files. Indeed these files are using an older
@@ -524,7 +524,7 @@ for this thesis.
 As it is a simple matter of changing the quality score scale
 (see \cref{sec:PhredScore}),
 I converted these files to \gls{Phred}$+33$ \fastq\ files with a
-\emph{\gls{Perl}} script (see~\Cref{code:fastq}).
+\emph{\gls{Perl}} script (provided digitally as supplementary data).\mybr\
 
 \subsubsection{Genome and annotation reference}
 
@@ -543,7 +543,7 @@ As the \gtex\ data was processed with \hg{38.p1} and \ens{76}, that led me
 to reprocess all the other four \Rnaseq\ datasets for the sake of consistency and
 to avoid more biases~\mycite{h38vsh37}. Thus, unless indicated
 otherwise, the results presented in the current work are
-based on the \hg{38.p1} human genome reference and the \ens{76} gene set annotation.
+based on the \hg{38.p1} human genome reference and the \ens{76} gene set annotation.\mybr\
 
 
 \subsubsection{Data processing}\label{subsubsec:RnaseqDataProc}
@@ -554,7 +554,7 @@ sequentially and semi-manually with the help of custom made scripts. While the
 the task remained quite tedious.
 Additionally,
 the scripts I wrote would need a fair amount of work to achieve general
-reproducibility on other platforms.
+reproducibility on other platforms.\mybr\
 
 Fortunately, \nuno\ developed
 an \enquote{integrated RNA-seq analysis Pipeline}:
@@ -563,7 +563,7 @@ This tool allows the automation of the typical
 state-of-the-art and optimised workflow to study
 \Rnaseq. It takes full advantages of the capacities provided by computer clusters.
 Thus, I switched from my original set of scripts to \irap\
-to improve my workflow without changing any step or parameter.
+to improve my workflow without changing any step or parameter.\mybr\
 
 Besides the usual input files (raw \Rnaseq\ files and genome/annotation
 references), \irap\ needs a configuration file that precisely describes the
@@ -575,14 +575,14 @@ its own set of third-party version-defined tools and default parameters.
 Thus, apart from remarkably speeding up the data processing,
 \irap\ also ensures the protocol integrity
 across the five transcriptomic datasets I use
-in my thesis regardless of who runs the pipeline.
+in my thesis regardless of who runs the pipeline.\mybr\
 
 Each of the transcriptomic datasets is the product of the same version of
 the \irap\ pipeline (development version 0.6.3b) and set of parameters. As the
 default parameters of \irap\ are tuned for human Illumina paired-end data,
 I only have to define a few of them. Hence, the quality and contamination checks,
 and the filtering and trimming of the reads are done following the default options
-of \irap.
+of \irap.\mybr\
 
 \minisec{Quality assessment, trimming and filtering}
 \irap\ uses internally
@@ -599,7 +599,7 @@ On another note, some tools (mappers in particular) need
 all the reads to be trimmed to the same length. \irap\ optimises the compromise
 between the purity and the length of the reads to avoid more errors or
 biases due to smaller reads~\mycite{Trimwisely} by trimming at most 15\% of the
-original length while discarding more reads if necessary to maximise the length.
+original length while discarding more reads if necessary to maximise the length.\mybr\
 
 Reads that could be assigned to a likely contamination source, here
 \species{Escherichia coli} (as I work with \species{Homo sapiens}),
@@ -607,7 +607,7 @@ are also discarded. A non-splice aware mapper,
 \softFo{Bowtie}{http://bowtie-bio.sourceforge.net/}~(1.1.1)~\mycite{Bowtie}
 maps all the reads to the
 contaminant genome and all the reads mapping perfectly and unambiguously are
-discarded.
+discarded.\mybr\
 
 \minisec{Mapping}
 I mapped the reads to the genome (\hg{38.p1})
@@ -618,7 +618,7 @@ with \irap's (0.6.3b) proposed default splice-aware mapper
 with its set of default predefined arguments.
 Indeed, \toph\ can handle reads from many organisms
 by fine-tuning the parameters (\eg\ number of mismatches or indels to tolerate),
-but the default parameters are adjusted for normal human.
+but the default parameters are adjusted for normal human.\mybr\
 
 \minisec{Quantification and Normalisation}\label{minisec:quantNorm}
 While \Rnaseq\ can be used to identify (and discover) \gls{RNA}
@@ -626,7 +626,7 @@ isoforms, I have focused my thesis on the gene level expression. Indeed, current
 annotations and knowledge are still lacking in the reasons and
 external conditions that impact the expression of a specific isoform over the
 others. In addition, criticisms have been raised on the accuracy of distinction
-between them~\mycite{tamaraRNA,ernestRNA,Dapas2017-ui}.
+between them~\mycite{tamaraRNA,ernestRNA,Dapas2017-ui}.\mybr\
 
 However, normalising gene expression
 presents more challenges than specific transcript expression.
@@ -659,27 +659,27 @@ gene expression levels:
 (2.2.1)~\mycite{cufflinks}
 and \hFo{\htseq}{https://htseq.readthedocs.io/}
 (0.6.1p1)~\mycite{htseq} (with the \texttt{intersection non-empty} mode).
-These tools are also integrated in \irap.
+These tools are also integrated in \irap.\mybr\
 
 For \cuffl, I used the mode where the multi-mapped reads are probabilistically
 assigned depending on the coverage of each mapped locus. In addition,
 \cuffl\ provides normalised gene expression levels by aggregating their
 corresponding normalised isoform expression levels. \cuffl\ uses the
 \cref{eq:rpkm-fx} to normalise isoform expression levels. The length of the
-isoforms are extracted from the reference.
+isoforms are extracted from the reference.\mybr\
 
 On the other hand, \htseq\ provides only \emph{raw} counts for the feature of
 interest. \irap\ provides an internal \FPKM\ normalisation function that
 is an implementation of the \cref{eq:rpkm-fx}. As I requested \htseq\ to work at
 gene level, this formula requires gene lengths which are computed with the
-aforementioned method.
+aforementioned method.\mybr\
 
 All the configuration files I created for this thesis may be found at
-\addressToirapConfFiles.
+\addressToirapConfFiles.\mybr\
 
 As the paired-end set of the \ibm\ data was presenting an overall better
 quality than its single-end counterpart,
-I only include \ibm{}'s paired-end data for the remaining of the thesis.
+I only include \ibm{}'s paired-end data for the remaining of the thesis.\mybr\
 
 \subsection{MS data processing}\label{subsec:msDataProcess}
 
@@ -690,7 +690,7 @@ datasets in a consistent and optimal manner. I summarise this protocol
 in \Crefp{fig:pipelineProt}{}
 and in the following \cref{subsub:spectralProcessing,subsub:seqDBseeking,%
 subsub:spectralIDDBsearch,subsub:resultsFiltering}.
-See~\citet{Wright-2016,Weisser2016-pipeline} for more details.
+See~\citet{Wright-2016,Weisser2016-pipeline} for more details.\mybr\
 
   \begin{sidewaysfigure}
       \includegraphics[scale=0.75]{datasets/pipelineMS-2.pdf}\centering
@@ -727,7 +727,7 @@ and \soft{FileMerger} that merges the ones from the same fractionated experiment
 The target sequence database is a critical element of the \ms\ pipeline and thus,
 \james\ has carefully designed it.
 It combines six different parts, three based on
-known protein sequences and three other covering possible new protein candidates.
+known protein sequences and three other covering possible new protein candidates.\mybr\
 
 The known sources include the complete human \hg{38} (v.20) \gls{CDS} translated
 sequences from \gls{GENCODE}; the human reference proteome from
@@ -749,14 +749,14 @@ from \softFoCi{Pseudogene.org}{http://pseudogene.org/}{pseudogenesOrg}
 and three-frame translated \Rnaseq\ transcript sequences.
 These translated sequences include models
 built on \ibm\ by \gls{Ensembl} and by the Kellis lab in addition with
-models built on different \gls{ENCODE} cell lines by Caltech and CSHL\@.
+models built on different \gls{ENCODE} cell lines by Caltech and CSHL\@.\mybr\
 %Precautions were taken with the handling of the overlapping regions
 %and with the sequence three-frame translations.
 
 \softFo{Mimic}{https://github.com/percolator/mimic} generated the randomised
 decoy sequences (equal sizes of the target database sequences).
 The different databases were then merged together.
-It is represented on \Cref{fig:pipelineProt}{\footnotesize B}.
+It is represented on \Cref{fig:pipelineProt}{\footnotesize B}.\mybr\
 
 To account for the isobaric peptides, all isoleucine (I) residues were
 converted to leucine (L) before the search and then after the search all leucine
@@ -764,7 +764,7 @@ converted to leucine (L) before the search and then after the search all leucine
 from the Latin alphabet that do not map to any amino acid.}
 to avoid later misconceptions.
 In summary, the known coding portion of the tryptic peptides sequences represents
-787,587 peptides and the novel portion provides an additional 4,211,835 peptides.
+787,587 peptides and the novel portion provides an additional 4,211,835 peptides.\mybr\
 
 %\NB\ For each peptide sequence, there is a unique identifier,
 %an associated source database
@@ -786,7 +786,7 @@ optimised and rescored the results from \soft{Mascot} and
 the results from \soft{MS-GF~$+$}.
 Finally, \soft{SEQUEST}~\mycite{Eng1994-eq} and
 \soft{Percolator}~\mycite{Spivak2009-zd} performed a search in a
-\soft{Proteome Discoverer}~(v 1.4 --- Thermo Scientific) workflow.
+\soft{Proteome Discoverer}~(v 1.4 --- Thermo Scientific) workflow.\mybr\
 
 The different workflows used common stringent parameters for all the database
 searches:
@@ -795,17 +795,17 @@ fragment tolerance for \gls{HCD} spectra to $0.02$ \gls{Da} and
 to $0.5$ \gls{Da} for \gls{CID} spectra;
 the allowed missed cleavages were limited to $3$;
 several amino acid modifications were
-also used for the research (see~\citet{Wright-2016}).
+also used for the research (see~\citet{Wright-2016}).\mybr\
 
 The search results were converted into mzTab formatted files and uploaded along
-with the mzML spectra and FASTA search database to \Pride{PXD002967}.
+with the mzML spectra and FASTA search database to \Pride{PXD002967}.\mybr\
 
 \subsubsection{Results processing and filtering}\label{subsub:resultsFiltering}
 
 Custom Perl scripts parsed, merged and filtered the results of each search engine
 so that every \gls{PSM} had the same identification in at least two of the three
 search engines.
-In each case, the least confident \gls{PEP} (\ie\ the highest, see \Cref{PEP}) was retained.
+In each case, the least confident \gls{PEP} (\ie\ the highest, see \Cref{PEP}) was retained.\mybr\
 
 The \glspl{PSM} were then filtered to keep matches only to the three following
 criteria:
@@ -813,7 +813,7 @@ criteria:
 % $\leq 0.01$
 a \gls{PEP} inferior or equal to 0.05 and
 a peptide length superior or equal to seven amino acids.
-\glspl{PSM} matching contaminant or decoy sequences were also removed.
+\glspl{PSM} matching contaminant or decoy sequences were also removed.\mybr\
 
 The resulting list of peptides was then used to infer the proteins with
 a simple approach.
@@ -824,7 +824,7 @@ Then, the \gls{GENCODE} \gls{CDS} and \gls{Uniprot} accession were mapped back t
 Proteins with a gene (or gene clusters) definition
 matching at least three unique peptides
 were kept for the remaining of the analysis
-while the others were discarded.
+while the others were discarded.\mybr\
 
 The quantification of the retained proteins was computed for each experiment
 with an approach close to the Top3 method~\mycite{Silva-Top3}.
@@ -836,7 +836,7 @@ Then, these abundance values were normalised by the ten genes displaying
 the  lowest  coefficient  of  variation  across  all  tissues.
 When there was more than one experiment per tissue,
 the final quantification values are
-the median value across all the replicates of each tissue.
+the median value across all the replicates of each tissue.\mybr\
 
 Protein clusters matching several \gls{Ensembl} gene identifiers or
 failing the \emph{unique peptide} rule are discarded
@@ -853,7 +853,7 @@ The quantifications were released along with our paper~\mycite{Wright-2016}
 and the reanalysis of the \pandey\ data was also released
 through \egxa\ under the accession: E\textminus{}PROT\textminus{}1
 and described in %\citet{NAR2015,NatComm2016}.
-\citet{EBIgxa,Wright-2016}.
+\citet{EBIgxa,Wright-2016}.\mybr\
 
 \section{Discussion and Conclusion}
 
@@ -862,7 +862,7 @@ human tissues datasets on which I based my thesis.
 I described how both the transcriptomic and the proteomic datasets have been
 reprocessed from raw files with state-of-the-art unified pipelines
 which are also using the same genome build and annotation references in the
-final processed version.
+final processed version.\mybr\
 
 As mentioned before,
 I have produced a subset of the transcriptomic datasets
@@ -875,7 +875,7 @@ the overall outcomes are congruent hence
 supporting the robustness of the findings presented in this thesis.
 In addition, the products of these pipelines (either for the \Rnaseq\ or the \ms\
 data) are in agreement with the original studies findings ---
-except for~\citet{PandeyData}.
+except for~\citet{PandeyData}.\mybr\
 
 While we are in the era of \emph{data deluge} and \emph{big data},
 the number of tissue overlaps for independent normal human studies is surprisingly small
@@ -883,5 +883,5 @@ the number of tissue overlaps for independent normal human studies is surprising
 Most of these datasets have been (and will be) referenced through
 many papers for comparison (or as control) purposes;
 hence, it is essential to assess the soundness of these practices by assessing
-the consistency between these datasets.
+the consistency between these datasets.\mybr\
 

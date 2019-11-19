@@ -1,7 +1,7 @@
 \RequirePackage[l2tabu,orthodox]{nag}
 \documentclass[paper=a4
 %a4paper
-,fontsize=12pt
+,fontsize=11pt
 %,12pt
 ,headinclude
 ,footinclude
@@ -22,11 +22,8 @@
 %TC:endignore
 
 
-\title{Investigating Human Gene Expression in Normal Tissues%.\\
-%From Transcriptomics to Proteomics
-~with High-throughput Transcriptomic and Proteomic data.}
-%%other possibility:
-%\title{Expression in normal human tissues: learning from independent publicly available high-throughput transcriptomic and proteomic data}
+\title{Investigating\\Normal Human Gene Expression\\in Tissues\\
+with High-throughput Transcriptomic and Proteomic Data.}
 \subject{This dissertation is submitted for the degree of Doctor of Philosophy}
 \author{Mitra Parissa Barzine}
 \publishers{%
@@ -79,15 +76,17 @@
     %\hypersetup{linkcolor=thesis@toccolor}
     \cleardoublepage
     \pdfbookmark{\contentsname}{toc}
+    {\small
     \tableofcontents
     \phantomsection
     \printglossary[title={Terms and Abbreviations},toctitle=List of Terms and Abbreviations]\raggedbottom
     \phantomsection
     \listoffigures
-    \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ \clearpage \thispagestyle{empty}
+    \addcontentsline{toc}{chapter}{\listfigurename}\raggedbottom\ %\clearpage \thispagestyle{empty}
     \phantomsection
     \listoftables
     \addcontentsline{toc}{chapter}{\listtablename}\raggedbottom\ \clearpage \thispagestyle{empty}
+    }
     \cleardoublepage
 \endgroup
 %TC:endignore
@@ -122,7 +121,7 @@
 \begingroup
 
 \input{app/back-suppl}
-\input{ds/index}
+%\input{ds/index}
 \input{app/express-supl}
 \input{app/transc-supl}
 \input{app/prot-suppl}

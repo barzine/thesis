@@ -25,20 +25,20 @@ However, the release of two substantial proteomic datasets in the meantime
 broadened my study's scope
 to include the integration of transcriptomic with proteomic data as well.\mybr\
 
-\vspace{-2mm}
+%\vspace{-2mm}
 \section*{Summary}
-\vspace{-5mm}
+%\vspace{-5mm}
 In \Cref{ch:background},
 I reviewed the biological, chemical and bioinformatic aspects and challenges
 involved in expression studies based on the high-throughput technologies
-of \Rnaseq\ for \mRNAs\ and \ms\ for proteins.
+of \Rnaseq\ for \mRNAs\ and \ms\ for proteins.\mybr\
 
 Then in \Cref{ch:datasets},
 I presented the five transcriptomic and three proteomics studies
 that I have considered for this thesis.
 I also described the pipelines with which I have processed them.
 Since for each dataset the number and size of files are extremely large,
-automation is paramount to ensure consistency and minimise errors.
+automation is paramount to ensure consistency and minimise errors.\mybr\
 
 I detailed in \Cref{ch:expression} various data quality controls
 and statistical approaches.
@@ -54,7 +54,7 @@ Therefore, I chose to remove them from most analyses,
 which led to better results
 as it allowed me to integrate samples
 that the original authors had to discard
-because of their lack of congruency with the other samples of the same tissue.
+because of their lack of congruency with the other samples of the same tissue.\mybr\
 
 In \Cref{ch:Transcriptomics},
 I integrated the five independent transcriptomic datasets and
@@ -94,7 +94,7 @@ the intrastudy correlations I observed between different tissues are
 higher than the interstudy correlation for the same tissues.
 I provided curated sets of the \gls{TS} and ubiquitous detected proteins.
 Finally, I have invented the \PPKM\ quantification method,
-which quantifies more proteins by also accounting for degenerated peptides.
+which quantifies more proteins by also accounting for degenerated peptides.\mybr\
 
 \Cref{ch:Integration} reported
 the integration of the independent proteomic and transcriptomic data.
@@ -139,16 +139,14 @@ I provide the complete set of \mRNA/protein pairs with their correlation
 across the common set of tissues.
 I also supply the list of overlapping \gls{TS} proteins and \mRNAs{}.\mybr\
 
-\vspace{-3mm}
 \section*{Practical challenges}
-\vspace{-4mm}
 Throughout this thesis' analyses,
 I had to overcome many practical challenges.
 While most of the difficulties encountered ordinarily pertain to Big data projects,
 one unexpected issue was
-the current global complexity state of the proteomic world.
+the current global complexity state of the proteomic world.\mybr\
 
-\vspace{-3mm}
+%\vspace{-3mm}
 \subsection*{Proteomics: a hard field to grasp by newcomers}
 \vspace{-6mm}
 While constituting a technical obstacle,
@@ -169,13 +167,15 @@ The scattered information hampers the ability of newcomers
 to achieve a global vision of high-throughput proteomics.\mybr\
 
 \subsection*{Big data Challenges}
+\vspace{-6mm}
 Big data is often characterised through, what was first defined by
 \href{https://www.ibmbigdatahub.com/infographic/four-vs-big-data}{IBM}\footnote{%
 \Href{https://www.ibmbigdatahub.com/infographic/four-vs-big-data}},
 the \emph{4 V's}: volume, variety, veracity and velocity.
-Each of them can entail issues at different project levels.
+Each of them can entail issues at different project levels.\mybr\
 
 \subsubsection*{Volume}
+\vspace{-3mm}
 The volume of files (see \Cref{tab:Lib5DF})
 to handle and process just for the transcriptomics
 is overwhelming and requires properly dimensioned infrastructure
@@ -193,22 +193,24 @@ Organising such a large amount of data was time-consuming and
 challenging at times.\mybr\
 
 \subsubsection*{Variety}
-The variety of the input data is kept to a minimum for the expression value
-as it was retrieved from public or academic repositories
+\vspace{-3mm}
+The variety of the type of input data files is kept to a minimum
+as the data was retrieved from public or academic repositories
 that follow community guidelines\footnote{%
 \href{https://www.ebi.ac.uk/ena}{ENA} for the sequencing data and
 \href{http://www.proteomexchange.org}{ProteomeXchange} for \ms/\ms\ proteomics.
 }.
 Issues still ensued from the matching of samples or tissues across the studies.
 For many tissues, I chose to mix several \enquote{body parts}
-(from the same tissue) in \gtex\
+from the same tissue or organe
+(\eg\ \enquote{Left Ventricle} and \enquote{Atrial Appendage} for \Heart) in \gtex\
 to match them to the other studies' tissues.
 Perhaps, in some case, one \enquote{body part} is perfectly matched
 to the samples from another study
 where the authors have only reported the tissue instead.
 Hence, for these cases,
 keeping only one of the \enquote{body parts}
-would have been a better choice.
+would have been a better choice.\mybr\
 
 Another source of variety that I have limited in the above work
 is the diverse annotation versions.
@@ -220,6 +222,7 @@ the chromosome coordinates to which \mRNAs\ and proteins map
 instead of using their gene identifiers.\mybr\
 
 \subsubsection*{Veracity}
+\vspace{-3mm}
 Additionally, with all possible tunable parameters for the raw data processing,
 the data to be integrated can vary widely.
 Even with a limited number of combinations,
@@ -233,9 +236,10 @@ especially considering the recent discussions on reproducibility crisis~\mycite{
 Morrison2014-hy,Glenn_Begley2015-fz,Goodman2016-ri,Fatovich2017-lo,
 Coiera2018-vf,Lindner2018-qy}.
 However, results for individual genes can vary from one set of settings to another one,
-and need to be considered with more caution.
+and need to be considered with more caution.\mybr\
 
 \subsubsection*{Velocity}
+\vspace{-3mm}
 Finally, the velocity of new data availability
 and the required preparation time
 made the prospect of including all the latest studies in my analyses impractical.
@@ -247,6 +251,7 @@ Likewise, I ceased updating the genome and annotation
 and settled for \hg{38.p1} and \ens{76}.\mybr\
 
 \subsubsection*{My resolving approach}
+\vspace{-3mm}
 To minimise errors,
 assure consistency and ease future reiterations or extension of these analyses,
 I provide script files that can reproduce the whole study and its results.
@@ -256,7 +261,7 @@ I have avoided any manual change and
 have documented all the name change and sample pairings in the scripts.
 I provide the necessary code to replicate all of the above (and complementary) results
 as \href{https://github.com/barzine/BaselineAtlas/tree/thesis.}{supplementary
-material}\footnote{\Href{https://github.com/barzine/BaselineAtlas/tree/thesis}}.
+material}\footnote{\Href{https://github.com/barzine/BaselineAtlas/tree/thesis}}.\mybr\
 
 I chose to develop the analyses with open-source software
 around the programming language \WebFoCi{\textsf{R}}{https://cran.r-project.org}{coreR}.
@@ -272,7 +277,7 @@ In turn, I had also to update my analyses' code on many occasions.
 Furthermore, new software installations or updates are more complicated
 for distributed computing facilities than on a personal computer.
 Today, new solutions are developed to facilitate these tasks
-(\eg\ \softCi{Packrat}{Rpackrat} that create isolated environment).
+(\eg\ \softCi{Packrat}{Rpackrat} that create isolated environment).\mybr\
 
 Note that \nuno, who provided me with the quantification of the \gtex\ data,
 and \james, who provided me with the proteomics ones,
@@ -281,8 +286,8 @@ Hence, the entirety of the thesis (subject to access to \gtex\ data)
 can be repeated easily.\mybr\
 
 \section*{Future works}
-Many improvements are conceivable:
-\vspace{-3mm}
+Many improvements are conceivable:\mybr\
+%\vspace{-3mm}
 \begin{itemize}[topsep=0pt,nosep]
         \item The inclusion of new samples and dataset of transcriptomics
             (preferably with biological replicates),
@@ -305,7 +310,7 @@ Many improvements are conceivable:
 %The potential for improvement due to quantification is appealing.\mybr\
 
 \subsection*{New quantification proposal for baseline studies}
-\vspace{-3mm}
+\vspace{-6mm}
 Most normalised quantification methods are designed
 for differential expression studies,
 particularly in transcriptomics~\mycite{Dillies2013}.
@@ -314,7 +319,7 @@ that only a limited number of genes present a differential expression across con
 while most gene expressions remain unaffected by the context~\mycite{licomparing:2015}.
 As a result, most normalisations are ill-suited
 for comparing independent samples across multiple studies.
-Two normalisation methods do not imply any preconception on the study design.
+Two normalisation methods do not imply any preconception on the study design:
 \gls{FPKM}~\mycite{Mortazavi2008,cufflinks} (see \Cref{subsub:norm}),
 which I use in this thesis,
 and TPM (Transcript per Million)\footnote{%
@@ -342,7 +347,7 @@ lack effectiveness for proteomic studies.
 For proteomics, \citet{Wisniewski2014-kh} propose
 to use the histone to create a \enquote{\emph{proteomic ruler}}.
 They can assess through this proteomic ruler the amount of \gls{DNA}
-in the sample, and thus, giving an estimate on the cell number,
+in the sample, and thus, give an estimate on the cell number,
 which provides some context to interpret the quantification of the proteins.
 Histone genes are, however, ill-suited
 for bulk \Rnaseq\ studies~\mycite{Zhao2018-rw}.\mybr\
@@ -356,7 +361,7 @@ It will free the expression
 from the influence of the presence of quantification of any other gene
 while it will still account for the difference of sequencing depth between samples.
 Then, the next question is:
-\enquote{Which gene (or set of genes) will possibly enable the best normalisation?}
+\enquote{Which gene (or set of genes) will possibly enable the best normalisation?}\mybr\
 
 Through this thesis' various analyses,
 I have highlighted genes that have a robust and ubiquitous expression
@@ -367,26 +372,27 @@ between the expression of their \mRNA\ and protein.
 These genes are the best potential candidates as reference.
 With \nuno, we have performed preliminary analyses
 in this direction across other studies
-to reduce the list of these candidates.
+to reduce the list of these candidates.\mybr\
 
 However,
 considering the best practices in analytical chemistry~\mycite{analyticalChem},
-a set of standards that can cover the complete dynamic ranges of abundances
+a set of standards that can cover the complete dynamic expression ranges
+of the considered molecules
 and adjust for the saturation effects,
 may resolve the abundances better,
 and thus, be better suited than a single reference.
 On the other hand, studies focusing on a single tissue
-may better benefit from a reference built on \gls{TS} genes.
+may better benefit from a reference built on \gls{TS} genes.\mybr\
 
 The recent development of single-cell transcriptomics
 (scRNA-Seq)~\mycite{Chen2019-um},
 and the probable feasibility of single cells proteomics~\mycite{Marx2019-cf},
 may ease refining which genes are the most suitable as universal references,
-or for specific conditions.
+or for specific conditions.\mybr\
 
 
 \subsection*{Ongoing implementation of an application}
-
+\vspace{-6mm}
 Integrating proteomics and transcriptomics remains laborious,
 and results can be mixed.
 Nonetheless,
@@ -396,7 +402,7 @@ and current biological models.
 For instance, in one of our papers % \citetitle{Wright-2016}
 \mycite{Wright-2016},
 we have confirmed the existence of putative proteins
-by observing coverage of the genome both by transcriptomics and proteomics.
+by observing coverage of the genome both by transcriptomics and proteomics.\mybr\
 
 %\vspace{-1mm}
 To help further possible projects,
@@ -404,7 +410,7 @@ I am currently compiling the different analyses
 into a set of interactive applications
 that can replicate all the results and figures presented in this thesis
 without requiring any programming skill as a prerequisite.
-\Cref{fig:demoApp} covers \Cref{ch:expression}.
+\Cref{fig:demoApp} covers \Cref{ch:expression}.\mybr\
 
 %\vspace{-1.5mm}
 \begin{figure}[!ht]
@@ -421,7 +427,7 @@ Furthermore, as I share all my code (including for the application)
 under a creative commons license,
 \WebFo{Attribution 4.0 International  (CC BY 4.0) \includegraphics[width=1em]{cc.pdf}%
 \includegraphics[width=1em]{by.pdf}}{https://creativecommons.org/licenses/by/4.0}.
-Anyone can thus use, adapt or build upon this work as they wish.
+Anyone can thus use, adapt or build upon this work as they wish.\mybr\
 
 
 %Achievements

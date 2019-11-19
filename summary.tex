@@ -1,57 +1,91 @@
 \clearpage
-\chapter*{Summary}
+\chapter*{Summary}\label{ch:summary}
 \addcontentsline{toc}{chapter}{Summary}
-\label{ch:summary}
-
+\vspace{-1cm}
 \begin{singlespace}
+    %\textbf{Investigating Normal Human Gene Expression in Tissues
+    %with High-throughput Transcriptomic and Proteomic Data.}
+    {\small With the improvement of high-throughput technologies
+    during the last decade,
+    several studies exploring the normal gene expression in human tissues
+    have been published.
+    Many studies examine the transcriptome with RNA sequencing (RNA-Seq),
+    and others probe the proteome with unlabelled bottom-up Mass Spectrometry.
+    As the sampling of undiseased tissues is difficult,
+    the community often refers to expression atlases,
+    which are collating these studies,
+    to support or validate new findings.
+    Despite many overlapping tissues between the studies,
+    few atlases attempt to integrate all the data together in any way.\mybr\
 
-%    \textbf{Investigating the normal gene expression in Human:
-%    from transcriptomic to proteomic.}
+    In this thesis, I investigate the consistency of gene expression
+    across tissues and studies.
+    Initially, my study's aim was
+    the integration and comparison of transcriptomic data
+    (generated with RNA-Seq) only.
+    Then, with the release of two large Mass Spectrometry (MS) proteomics study,
+    the scope of my integration has broadened
+    to the comparison of the transcriptomic and proteomic data.\mybr\
 
-    \textbf{Expression in normal human tissues: learning from
-    independent publicly available high-throughput transcriptomic and proteomic
-    data}
-    {\small Over the past five years, many high-throughput expression studies
-    focusing on normal human tissues have been published. Several explore
-    the gene expression with \gls{RNA} sequencing (\gls{RNA-Seq}) and others
-    the proteomic expression with Mass Spectrometry. These recent assays are
-    often used as individual resources to help the community to answer a
-    recurrent question: are specific observations limited to a particular
-    condition (or disease) or also commonly done in normal conditions.
-    Indeed, the normal samples within studies are usually very few, when they
-    exist at all. Hence, we have observed the multiplication of expression
-    atlases that try to provide a reference for normal conditions based on
-    these recent studies. Although all of these assays
-    present many overlapping tissues, very few atlases try to integrate,
-    in any way, their results together (either focusing only on the
-    transcriptomic or proteomic side or both sides together).
+    After describing the transcriptomic and proteomic data
+    and their state-of-art processing (\Cref{ch:datasets}),
+    I review several identified sources of biases
+    and my approaches to limit their effects (\Cref{ch:expression}).\mybr\
 
-    In the first results chapter, I investigate the consistency of
-    transcriptomic expression, in particular the expression of \mRNAs,
-    between different published assays. I show that independent samples are
-    more likely to cluster based on their biological origins than based on
-    their original studies and that many genes present a consistent expression
-    profile across tissues for many different and independent studies. Some
-    of these genes could be described as housekeeping genes. I show that we
-    can reuse published data to assess roughly the biological quality of a
-    sample. I also present several attempts to integrate together the gene
-    expression values of a common set of tissues across different studies.
+    The integration of the various transcriptomic datasets (\Cref{ch:Transcriptomics})
+    shows that
+    the biological signal dominates the technical noise for RNA-Seq data.
+    Tissue samples display higher levels of correlation
+    for identical tissues in other studies than
+    for other tissues in the same datasets.
+    In other words, interstudy correlations for identical tissues
+    are higher than intrastudy correlation between different tissues.
+    The genes with the most variable expression across tissues
+    or the most tissue-specific expression individually have
+    the most meaningful influence on the correlation.\mybr\
 
-    After a brief exposition of the proteomic data currently available, I
-    study the integration of transcriptomic with proteomic data. Despite
-    recent studies combining proteomics and transcriptomics failing to show
-    good correlations between proteins and \mRNAs, I show that when comparing
-    the same tissues we observe good correlations despite the samples having
-    different biological and technical backgrounds. Moreover, I find that
-    there is a high similarity between tissue-specific \mRNAs\ and tissues
-    specific proteins and that other categories of \mRNAs\ also present very
-    high correlation of expression e.g.\ the metabolic genes.
+    After a brief exposition of the proteomic data comparisons,
+    I introduce a new proteomic quantification method,
+    \PPKM\ method (\Cref{ch:proteomics}).
+    %on which I base the integration of the proteomics and transcriptomics.
+    The \PPKM\ method allows me to quantify about twice as many proteins
+    compared to usual methods.\mybr\
 
-    Overall, my thesis describes a global picture of the current consolidated
-    knowledge we can extract from public data. It also provides new insights
-    in the housekeeping and tissue-specific genes and proteins. Although we
-    ought to be careful as I compared the results from different sources,
-    this joint study of transcriptomic and proteomic also highlights genes
-    whose translations are less regulated.
+    Correct correlation levels
+    between the expression of protein and mRNA
+    in studies combining high-throughput transcriptomics and proteomics
+    are sparse in the literature.
+    However, I show that, for most tissues,
+    we can observe good Pearson correlation levels,
+    even when the samples have different biological and technical backgrounds
+    as they have been independently sourced.
+    Many genes share similar patterns of expression
+    between the two biological layers,
+    \eg\ genes that have a protein detected in a single tissue
+    are more likely having an mRNA showing specificity for the same tissue.
+    Additionally, three groups of genes present functional enrichments
+    of biological processes.
+    Genes having highly correlated protein and mRNA expressions across tissues
+    are enriched in catabolic processes.
+    Genes having highly anticorrelated expressions are enriched
+    for ribosomes and ncRNAs regulation.
+    Genes with a protein detected in a single tissue are enriched
+    in signalling processes.\mybr\
+
+    Overall, this thesis describes a global picture
+    of the current consolidated knowledge
+    we can extract from the joint study
+    of transcriptomic and proteomic public data.
+    Beyond confirming or improving observations reported in the literature,
+    this work provides new insights
+    into the ubiquitous, tissue-specific and robustly expressed genes.
+    To the best of my knowledge,
+    this work has also established the most extensive list of genes
+    with robust transcriptomic and proteomic expression across tissues and studies.
+    Furthermore, it shows that joint study approaches can help the development
+    of new methods, like the new proteomic \PPKM\ quantification method.
+    Finally, the highlighting of distinct functional enrichment profiles
+    for groups of genes across tissues and studies
+    lays a framework for further research.\mybr\
     }
 \end{singlespace}
