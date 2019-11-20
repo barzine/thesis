@@ -260,6 +260,26 @@ of the proteins that they identified per tissue. Thus, if the variation of
 expression are too subtle from one tissue to another, a strong sample collection
 or data processing bias may hide any relevant biological signal.\mybr\
 
+\begin{figure}[!htpb]
+    \centering
+       \begin{subfigure}[hp]{0.70\textwidth}
+       \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerAnnotated2_noLog_NoMito_htseqSpearman.png}
+    \caption{Clustering based on Ward's method}\label{fig:FabergerRedone}
+   \end{subfigure}
+
+     \begin{subfigure}[hp]{0.70\textwidth}
+      \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerOriginal.png}
+      \caption{Clustering directly extracted from the original study
+      {\footnotesize \mycite{Uhlen2014}}}\label{fig:fabergerOriginal}
+       \end{subfigure}
+    \caption[Comparison of two clustering methods on a subset of the \uhlen\ study]{%
+    \textbf{Comparison of two clustering methods on a subset of the Uhlén study}.
+    (\subref{fig:FabergerRedone}) includes all the samples and
+    we observe that only a few of them are mixed with other samples from other tissues.
+    This mixture is only observed between \tissue{Small intestine} and \tissue{Duodenum}.
+ }\label{fig:versusFaberger}
+\end{figure}
+
 In practice, each sample starts in its own cluster and then
 iteratively, each cluster is merged with its nearest one.
 The method has two parameters: the distance and the linkage method.
@@ -290,25 +310,6 @@ Notice that all the tissue clusters are better defined when Ward's
 method is used:
 this method allows conserving all the samples for the analysis
 as long as other bias sources are corrected (see \Cref{subsec:mito}: \nameref{subsec:mito}).\mybr\
-\begin{figure}[!htpb]
-    \centering
-       \begin{subfigure}[hp]{0.70\textwidth}
-       \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerAnnotated2_noLog_NoMito_htseqSpearman.png}
-    \caption{Clustering based on Ward's method}\label{fig:FabergerRedone}
-   \end{subfigure}
-
-     \begin{subfigure}[hp]{0.70\textwidth}
-      \centering \includegraphics[width=0.9\textwidth]{expressed/FabergerOriginal.png}
-      \caption{Clustering directly extracted from the original study
-      {\footnotesize \mycite{Uhlen2014}}}\label{fig:fabergerOriginal}
-       \end{subfigure}
-    \caption[Comparison of two clustering methods on a subset of the \uhlen\ study]{%
-    \textbf{Comparison of two clustering methods on a subset of the Uhlén study}.
-    (\subref{fig:FabergerRedone}) includes all the samples and
-    we observe that only a few of them are mixed with other samples from other tissues.
-    This mixture is only observed between \tissue{Small intestine} and \tissue{Duodenum}.
- }\label{fig:versusFaberger}
-\end{figure}
 
 \section{Reducing sources of bias}\label{sec:bias_sources}
 
@@ -328,6 +329,26 @@ On the other hand, I have adjusted for a few easily avertible biases
 that I describe hereinafter.\mybr\
 
 \subsection{Mitochondria issue}\label{subsec:mito}
+
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[hp]{0.85\textwidth}
+        \centering
+        \includegraphics[width=0.85\textwidth]{expressed/Uhlen_noLog_mito_htseq.jpeg}
+        \caption{With the 37 mitochondrial genes included}\label{fig:withMito}
+    \end{subfigure}
+
+    \begin{subfigure}[hp]{0.85\textwidth}
+        \centering
+        \includegraphics[width=0.85\textwidth]{%
+            expressed/Uhlen_noLog_NoMito_htseqPearson.jpeg}
+        \caption{Without the mitochondrial genes}\label{fig:NoMito}
+    \end{subfigure}
+    \caption[Clustering of the biological samples of \uhlen\
+    dataset based on the Pearson correlation]{\label{fig:MitoNomito}\textbf{Clustering
+    of the biological samples of Uhlén study based on the Pearson correlation}
+    --- all expressed genes are included.}
+\end{figure}
 
 Gene expression levels of mitochondria can report very useful information,
 \eg\ the stress level of a cell in a single cell experiment~\mycite{Ilicic2016}.
@@ -353,25 +374,6 @@ when they are kept).
 \Cref{fig:MitoVar} illustrates furthermore the distinctiveness
 of the mitochondrial genes expression levels.\mybr\
 
-\begin{figure}[!htbp]
-    \centering
-    \begin{subfigure}[hp]{0.85\textwidth}
-        \centering
-        \includegraphics[width=0.85\textwidth]{expressed/Uhlen_noLog_mito_htseq.jpeg}
-        \caption{With the 37 mitochondrial genes included}\label{fig:withMito}
-    \end{subfigure}
-
-    \begin{subfigure}[hp]{0.85\textwidth}
-        \centering
-        \includegraphics[width=0.85\textwidth]{%
-            expressed/Uhlen_noLog_NoMito_htseqPearson.jpeg}
-        \caption{Without the mitochondrial genes}\label{fig:NoMito}
-    \end{subfigure}
-    \caption[Clustering of the biological samples of \uhlen\
-    dataset based on the Pearson correlation]{\label{fig:MitoNomito}\textbf{Clustering
-    of the biological samples of Uhlén study based on the Pearson correlation}
-    --- all expressed genes are included.}
-\end{figure}
 
 \subsection{Protein-coding genes only}\label{subsec:protcodingOnly}
 \vspace{-0.15in}
