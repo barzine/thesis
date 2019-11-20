@@ -6,7 +6,7 @@
 and then assembling the parts back together to make a decision.}}{Shirley M. Tilghman}
 }
 
-
+\vspace{2cm}
 After assessing the similarity of the human gene expression profiles
 across various tissues
 at transcriptomic level (with \Rnaseq\ studies in \Cref{ch:Transcriptomics})
@@ -38,6 +38,7 @@ that I include in my work,
 I describe and discuss together my results and theirs
 whenever relevant.\mybr\
 
+\clearpage
 \derivativeWork{}
 \begin{itemize}[topsep=0pt,nosep]
     \item (poster) CSHL  Biology of Genomes 2015 --- A feasibility study:
@@ -57,7 +58,7 @@ whenever relevant.\mybr\
 
 \clearpage\
 
-\vspace{-1cm}
+%\vspace{-1cm}
 
 An on-going debate in the literature is
 whether good correlations of expression levels prevail
@@ -124,7 +125,7 @@ based on tissue studies.\mybr\
 
 %\vspace{-2mm}
 \section{Data~and~principal~analytical~approaches}\label{sec:IntegrationData}
-\vspace{-4mm}
+%\vspace{-4mm}
 Since the human proteome drafts~\mycite{PandeyData,KusterData} in 2014,
 we have an unparalleled availability of large-scale tissue studies
 both at the transcriptomic and proteomic layers to explore and integrate together
@@ -248,7 +249,7 @@ to three additional tissues (\ie\ \Gall, \Placenta\ and \Rectum)
 by including the \uhlen\ \etal\ data on the transcriptomic side only.\mybr\
 
 \subsection{Matching pairs of mRNAs and proteins}
-\vspace{-4mm}
+%\vspace{-4mm}
 To avoid unnecessary biases (described in \Cref{sec:bias_sources}),
 I only consider the \mRNAs\
 (\ie\ \glspl{RNA} with a \emph{protein-coding} biotype --- \ens{76})
@@ -356,7 +357,7 @@ The method produces normalised values of the protein expression levels
     Uhlén \etal\ and GTEx data.}
 \end{figure}
 
-\vspace{-4mm}
+%\vspace{-4mm}
 \begin{figure}[!ht]
     \includegraphics[scale=0.6]{integration/PandeyUhlen_mRNAprotQ3Vennm.pdf}\centering
     \vspace{-4mm}
@@ -412,9 +413,9 @@ a protein may be specific to an individual or a population.
 This last hypothesis is the most unlikely
 as there are several biological replicates on the transcriptomic side.
 A mixture of the previous causes is also plausible.\mybr\
-\vspace{-4mm}
-\begin{figure}[!hb]
-     \includegraphics[scale=0.67]{integration/overviewDatasets.pdf}\centering
+%\vspace{-4mm}
+\begin{figure}[!htbp]
+     \includegraphics[scale=0.8]{integration/overviewDatasets.pdf}\centering
      \vspace{-3mm}
      \caption[Overview of different datasets combination]{%
      \label{fig:setsOverview}\textbf{Overview of different studied datasets
@@ -437,7 +438,7 @@ fig:PGU_venQ3,fig:PU_vennQ3}.\mybr\
 \subsection{Tissue-centric and gene-centric approaches}
 %\vspace{-3mm}
 
-\begin{figure}[!ht]
+\begin{figure}[!htb]
     \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.png}\centering
     %\vspace{-3mm}
     \caption[Summary of the expression comparison approaches between
@@ -458,13 +459,12 @@ the global expression of its transcriptomic landscape to its proteomic one.
 In contrast,
 the \emph{gene-centric} approach compares for each gene
 its expression levels in \mRNA\ and protein across all the tissues.
-\afterpage{\clearpage\sectionmark{Fair correlations between independent proteomics and transcriptomics}}
+%\afterpage{\clearpage\sectionmark{Fair correlations between independent proteomics and transcriptomics}}
 
 Confusion can arise
 when integrating proteomics and transcriptomics.
 Hence, it is essential
 to define the taken approach clearly~\mycite{Liu2016-re}.\mybr\
-\vspace{-2mm}
 
 \section{Fair correlations between independently sourced proteomics~%
 and~transcriptomics~of~human~tissues~}\label{subsec:IntegrationGoodCorrProtTrans}
@@ -667,10 +667,10 @@ and more readily modelled upon for predictive purposes
 
 \subsection{Mixed biological signal between the proteome and transcriptome
 across the tissues}
-\vspace{-8mm}
+%\vspace{-8mm}
 \begin{figure}[!hb]
-    \includegraphics[scale=0.8]{integration/orderedHeatmapQ3Pearson.pdf}\centering
-    \vspace{-3.5mm}
+    \includegraphics[scale=0.85]{integration/orderedHeatmapQ3Pearson.pdf}\centering
+    \vspace{-2mm}
     \caption[Heatmap based on the Pearson correlation between protein and mRNAs
     expression (alphabetically ordered tissue)]{\label{fig:orderedHeatmapPearson}%
     \textbf{Heatmap based on the Pearson correlation between protein and mRNAs
@@ -683,7 +683,7 @@ their corresponding transcriptomic \trep\
 (\eg\ \liver, \testis, \ovary, \pancreas)
 but other preferentially correlate with other tissues first
 (\eg\ \tissue{Urinarybladder}, \Oesophagus, \gallbladder).
-Note that while the different correlation methods lead to similar result trends,
+While the different correlation methods lead to similar result trends,
 individual differences persist.
 In a few cases, \eg\ \heart,
 these slight differences may change the correlation rank order of
@@ -834,7 +834,7 @@ to their amount of unique proteins and \mRNAs{}.
 The lack of relation between the proteomic and transcriptomic observations
 is confirmed by a more refined analysis of the expression breadth.\mybr\
 
-\begin{figure}[!htpb]
+\begin{figure}[!htb]
     \includegraphics[scale=0.75]{integration/coloredSharedbreadthProtQ3--15.pdf}\centering
     \vspace{-4mm}
     \caption[Comparison of proteins expression breadth to
@@ -948,6 +948,7 @@ and ease the result interpretation in contrast to the raw overlap numbers.\mybr\
 \end{equation}
 \end{minipage}
 
+\vspace{4mm}
 To measure the Jaccard indices significance,
 I use the hypergeometric test~\mycite{Field2012-au}
 (see \Cref{sec:hypergeometricTest}).
@@ -956,7 +957,7 @@ I consider as success when a \gls{TS} \mRNA\ is among the $n$ \gls{TS} proteins
 and test if the number of observed successes is greater than
 the expected number for random sampling.\mybr\
 
-\vspace{-2mm}
+\vspace{3mm}
 The Jaccard indices for all pairs of the fifteen shared tissues
 between the \pandey\ Lab (\PPKM\ quantification) and \uhlen\ \etal\
 are summarised in \Cref{fig:JaccardIndexes},
@@ -965,7 +966,7 @@ their respective p-values (hypergeometric test).\mybr\
 
 \begin{figure}[!ht]
     \includegraphics[scale=1]{integration/overlapRatioPUQ15Q3.pdf}\centering
-    \vspace{-3mm}
+    %\vspace{-3mm}
     \caption[Heatmap of Jaccard indices across 15 tissues]{%
 \label{fig:JaccardIndexes}\label{fig:RatioJac}\textbf{Heatmap of Jaccard indices
 across the common fifteen tissues between Uhlén \textit{et al.} and Pandey Lab data.}
@@ -977,7 +978,7 @@ in that tissue.}
 
 \begin{figure}[!ht]
     \includegraphics[scale=1]{integration/overlapRatioPvalPUQ15Q3.pdf}\centering
-    \vspace{-3mm}
+    %\vspace{-3mm}
     \caption[p-values associated with the Jaccard indices]{%
 \label{fig:JaccardPvalues}\label{fig:pJacquard}%
     \textbf{p-values associated with the Jaccard indices} of \Cref{fig:JaccardIndexes}.
@@ -985,6 +986,7 @@ in that tissue.}
     \vspace{-3mm}
 \end{figure}
 
+\vspace{4mm}
 I have rerun these analyses with different sets of parameters
 and I have consistently observed statistically significant overlaps
 except in rare cases,
@@ -995,6 +997,7 @@ with the fold change method.
 Overall, the Jaccard indices remain within the same ranges
 for different sets of parameters.\mybr\
 
+\vspace{4mm}
 Even though the tissues with the highest correlations
 between their proteome and transcriptome
 are presenting significant correspondences
@@ -1003,7 +1006,7 @@ many inconstancies persist.
 Hence, \gls{TS} proteins and \gls{TS} \mRNAs\ are insufficient to explain
 the tissue correlation levels.\mybr\
 
-\vspace{-1.5mm}
+\vspace{4mm}
 The former direct approaches
 (based on the gene expression breadth across tissues and their tissue-specificity)
 fail to show a prominent (if any) contribution to the correlation levels
@@ -1013,7 +1016,7 @@ from multiple subtle similarities
 based on identical differential expression
 within many clusters of the proteins and \mRNAs{}.\mybr\
 
-\vspace{-1.5mm}
+\vspace{4mm}
 Since direct approaches built on uniquely detected genes
 fail to explain the complete range of observed tissue correlation consistently,
 I next examine whether or not an indirect method may be more appropriate.
@@ -1022,9 +1025,12 @@ I build hierarchical cluster trees that try to translate
 the tissues' expression \enquote{closeness} or differentiation distances.
 Then, I compare the proteins' and transcripts' trees.\mybr\
 
-\subsection{Proteins and mRNAs tissue trees present partial concordant results\\}
-\vspace{-12mm}
+\FloatBarrier\
 
+\vspace{-1.55cm}
+\subsection{Proteins and mRNAs tissue trees present partial concordant results\\}
+
+\vspace{-5mm}
 As presented in \Cref{subsec:clusteringPres},
 a hierarchical clustering analysis requires
 a distance measurement between each element that is included in the analysis
@@ -1055,8 +1061,8 @@ while the number of shared genes between tissues
 for each dataset is respectively shown
 in \Cref{fig:heatmapPandeyTissuePairs,fig:heatmapUhlenTissuePairs05}.\mybr\
 
-\vspace{-4mm}
-\begin{figure}[!htpb]
+%\vspace{-4mm}
+\begin{figure}[!htp]
     \begin{subfigure}[b]{0.53\textwidth}
         \captionsetup{margin=0.6cm,justification=centering}
         \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15Pandey.pdf}
@@ -1067,7 +1073,7 @@ in \Cref{fig:heatmapPandeyTissuePairs,fig:heatmapUhlenTissuePairs05}.\mybr\
         \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15UhlenCut5.pdf}
         \caption{Uhlén \etal\ tissues\\(≥5 FPKM)}\label{fig:treeUhlenQ3T15cuth5}
     \end{subfigure}
-    \vspace{-6mm}
+    \vspace{-3mm}
     \caption[Tissues hierachical clustering for Pandey Lab and Uhlén \etal\ data]{\label{fig:separateTree}%
     \textbf{Hierarchical clustering for the fifteen tissues of
     Pandey Lab and Uhlén \textit{et al.} studies.}
@@ -1092,24 +1098,24 @@ I use one of the possible implementations of these methods
 from the \textbf{\textsf{R}} package
 \softCi{ape \normalfont{(v5.2)}}{Paradis2019-ue}.\mybr\
 
-\vspace{-3mm}
-\begin{figure}[!htb]
-    \begin{subfigure}[b]{0.53\textwidth}
+%\vspace{-3mm}
+\begin{figure}[!htp]
+    \begin{subfigure}[t]{0.53\textwidth}
         \captionsetup{margin=0.6cm}
         \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15.pdf}
-        \vspace{2mm}
+        %\vspace{2mm}
         \caption{Consensus tree of the fifteen shared tissues between Pandey Lab
         and Uhlén \etal\ (≥ $5$ FPKM) data}\label{fig:consensus2D15TQ3}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.53\textwidth}
+    \end{subfigure}~%
+    \begin{subfigure}[t]{0.53\textwidth}
         \captionsetup{margin=0.6cm}
         \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T123DFconsensus05.pdf}
-        \vspace{-2mm}
+        %\vspace{-2mm}
         \caption{Consensus tree of the twelve shared tissues
         between Pandey Lab data and
         Uhlén \etal\ and GTEx data (≥ $5$ FPKM)}\label{fig:consensusTree05}
     \end{subfigure}
-    \vspace{-6mm}
+    \vspace{-3mm}
     \caption[Tissues hierachical clustering for Pandey Lab and Uhlén \etal\ data]{\label{fig:consensusTrees}%
     \textbf{Consensus of the hierarchical clustering of the tissues across the different studies.}
     }
