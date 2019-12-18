@@ -121,6 +121,21 @@ GTEx & 47 & 20,272 & 18,386 & 20,242 & 16,100 & 20,263 & 18,013 \\ \bottomrule
 \end{table}
 
 
+\minisec{Two-sample test}\label{mini:ttest}
+Welch's test~\mycite{Welch1947-rv},
+also known as the unequal variances \ttest,
+is an adaptation of the Student \ttest{}~\mycite{student_1908}
+and it is better fitted for groups that have different variance and sample sizes.
+Except in the case of (true) paired data (sampled on the same source),
+it gives better or at least equal results than the traditional
+Student \ttest~\mycite{Fagerland2012-vl,Derrick2016-mc,Delacre2017-ya}.
+
+Student's two-sample location test (\ie\ \ttest) is a test
+where the null hypothesis is defines as the means of the two populations
+which have been sampled are equal.
+Student's \ttest\ relies on the assumption that the variance of the population is
+also equal.
+
 \begin{figure}[!htb]
     \includegraphics[scale=0.85]{transcriptomics/heatmap4TWithMitoNoRep_1.pdf}\centering
     \caption[Comparison of profiles across the 5 studies for their
@@ -193,7 +208,83 @@ a Welch two-sample t-test.}
 \FloatBarrier\
 %\clearpage
 
-\section{Overlap of the top high expressed genes between the five datasets}\label{sec:overlapHighExp}
+\section{Highest expressed genes}\label{subsec:mrnaHighExp-app}
+
+Note: the cut-off used in \Cref{fig:CorHighExp4T} and \Cref{fig:CorHighExp23T}
+is a range (step 10) of possible values (integers) of gene expression.\mybr\
+
+Here below, the few exceptions grouped by tissue for \setOne:\mybr\
+\begin{eqlist}[\eqliststarinit\def\makelabel#1{\bfseries#1}\labelsep1em]
+    \item[Heart] \uhlen{}-\gtex\ pair
+    \item[Kidney] \uhlen{}-\gtex, \castle{}-\uhlen\ and \castle{}-\gtex\ pairs,
+    \item[Liver]  \vt{}-\ibm, \ibm{}-\uhlen\ and \ibm{}-\uhlen\ pairs;
+    \item[Testis] \ibm{}-\uhlen, \vt{}-\gtex, \vt{}-\uhlen\ and \uhlen{}-\gtex\ pairs
+\end{eqlist}
+
+\begin{figure}[!htpb]
+       \includegraphics[scale=0.9]{transcriptomics/T23EvolHighExp23P_noLog.pdf}\centering
+       \vspace{-3mm}
+       \caption[Pearson correlation coefficient trend based on the expression
+       levels of the genes considered for each of the 23 common tissues]{%
+   \label{fig:CorHighExp23T}\textbf{Pearson correlation coefficient trend based
+   on the expression levels of the genes considered
+   for each of the twenty-three common tissues between \uhlen\ and \gtex.}
+   In almost every case the complete set of common expressed \pcgs\ of each tissue gives
+   the highest correlations.}
+\end{figure}
+
+
+\begin{sidewaysfigure}[!htpb]
+       \centering
+       \begin{subfigure}[b]{0.48\textwidth}\centering
+           \includegraphics[width=\textwidth]{transcriptomics/HeartEvolHighExp4P-1}
+           \caption{Heart}\label{fig:CorHighExpHeart4T}
+       \end{subfigure}%
+~%
+       \begin{subfigure}[b]{0.48\textwidth}\centering
+           \includegraphics[width=\textwidth]{transcriptomics/KidneyEvolHighExp4P-1}
+           \caption{Kidney}\label{fig:CorHighExpKidney4T}
+       \end{subfigure}
+
+       \begin{subfigure}[b]{0.48\textwidth}\centering
+           \includegraphics[width=\textwidth]{transcriptomics/LiverEvolHighExp4P-1}
+           \caption{Liver}\label{fig:CorHighExpLiver4T}
+       \end{subfigure}%
+~%
+       \begin{subfigure}[b]{0.48\textwidth}\centering
+           \includegraphics[width=\textwidth]{transcriptomics/TestisEvolHighExp4P-1}
+           \caption{Testis}\label{fig:CorHighExpTestis4T}
+       \end{subfigure}
+       \begin{subfigure}[b]{\textwidth}\centering
+           \includegraphics[width=\textwidth]{transcriptomics/LegendEvolHighExp4P}
+       \end{subfigure}
+       \caption[Pearson correlation coefficient trends based on the expression
+       levels of the genes considered for \setOne]{%
+   \label{fig:CorHighExp4T}\textbf{Pearson correlation coefficient trends
+       based on the expression levels of the genes considered for each of the tissues
+       of \setOne.}}
+\end{sidewaysfigure}
+
+\clearpage
+\setTwo{}'s results should be interpreted more carefully as
+there are only two studies involved and
+there are no actual means to distinguish
+between an artefact or a true biological reason
+that may drive the higher correlations.\mybr\
+
+Both for \Cref{fig:CorHighExp4T,fig:CorHighExp23T},
+it seems that a couple of \treps\ are perfectly anticorrelated
+for subsets of highest expressed genes,
+These are most likely mathematical artefacts.
+The correlation calculations are involve very few genes
+and as such the correlations are more sensitive to any change
+(see \Cref{sec:whyAnticor}).\mybr\
+
+
+\FloatBarrier\
+\vspace{-5mm}
+\subsection{Overlap~of~the~top~high~expressed~genes~between~the~five~datasets}\label{sec:overlapHighExp}
+\vspace{-4mm}
 
 \begin{figure}[!htb]
 \includegraphics[scale=1]{transcriptomics/highExpress4TP.pdf}\centering
@@ -213,7 +304,7 @@ Among these (cumulative) proportions,
 a few present very high value for
 a minimal subset of genes (below $10$ \FPKM\ across all the tissues)
 which then drop dramatically to finally increase slowly
-to reach the expected ratio of $1$ \FPKM{}.
+to reach the expected ratio of $1$ \FPKM{}.\mybr\
 \begin{comment}
 as the \pcgs\ set across the studies is identical.
 \end{comment}
@@ -249,17 +340,13 @@ on \Cref{fig:highExpress4T,fig:highExpress23T}
 plainly show that there are common (biological) structures
 that are nonfortuitous across studies.
 \FloatBarrier\
-\section{Variable genes}
 
-\begin{sidewaysfigure}[htb]
-    \includegraphics[scale=1]{transcriptomics/MitoVarianceFinale.png}\centering
-    \caption[Mean expression of genes compared to their coefficient of variation]%
-    {\label{fig:MitoVar}\textbf{Mean expression of genes compared to their
-    coefficient of variation.}}
-\end{sidewaysfigure}
-
+\vspace{-4mm}
+\section{Most Variable genes}\label{appsec:mostVariable}
+\vspace{-5mm}
 \begin{figure}[!htb]
-    \includegraphics[scale=0.7]{transcriptomics/Overlap_25p_mostCoeffVariablesgenes.pdf}\centering
+    \includegraphics[scale=0.6]{transcriptomics/Overlap_25p_mostCoeffVariablesgenes.pdf}\centering
+    \vspace{-5mm}
     \caption[Overlap of the most variables genes across the 5 studies for the set
     of four common tissues]{\label{fig:vennMostVar4T}\textbf{Overlap of the most
     variable genes across the five studies for the set of the four common tissues.}
@@ -269,20 +356,12 @@ that are nonfortuitous across studies.
     }
 \end{figure}
 
-\minisec{Two-sample test}\label{mini:ttest}
-Welch's test~\mycite{Welch1947-rv},
-also known as the unequal variances \ttest,
-is an adaptation of the Student \ttest{}~\mycite{student_1908}
-and it is better fitted for groups that have different variance and sample sizes.
-Except in the case of (true) paired data (sampled on the same source),
-it gives better or at least equal results than the traditional
-Student \ttest~\mycite{Fagerland2012-vl,Derrick2016-mc,Delacre2017-ya}.
-
-Student's two-sample location test (\ie\ \ttest) is a test
-where the null hypothesis is defines as the means of the two populations
-which have been sampled are equal.
-Student's \ttest\ relies on the assumption that the variance of the population is
-also equal.
+\begin{sidewaysfigure}[!htb]
+    \includegraphics[scale=1]{transcriptomics/MitoVarianceFinale.png}\centering
+    \caption[Mean expression of genes compared to their coefficient of variation]%
+    {\label{fig:MitoVar}\textbf{Mean expression of genes compared to their
+    coefficient of variation.}}
+\end{sidewaysfigure}
 
 
 
@@ -334,6 +413,89 @@ also equal.
     of expression across the four tissues.}
 \end{figure}
 
+\subsection{Validation of the association of the most variable genes with the highest correlations}\label{subsec:checkMostVar}
+\vspace{-6mm}
+After ordering the genes by decreasing order of their \cv\
+within each of the datasets comprised in \setOne,
+I have calculated the size of overlap for each rank (\ie\ from 1 to 12,268)
+between the five datasets.
+To help with the interpretation,
+I finally divide the previous number by the rank.\mybr\
+
+\Cref{fig:cvEvol5DF} and \Cref{fig:cvEvol2DF}
+present the result for \setOne\ and \setTwo.
+Many of the most variable genes are commonly present in the top tier of the
+five studies, though they have different individual rank.
+There is a strong growth for about the first 1,250 genes that then
+settles a plateau which increases toward the final ratio ($1$).
+Using the first quarter of the most variable genes as a cut-off appears
+to be an acceptable threshold
+as it comprises the initial growth and part of the plateau.\mybr\
+
+\begin{figure}[!htb]
+    \includegraphics[scale=0.9]{transcriptomics/CVevolCumul5DF_line-abc.pdf}\centering
+    \vspace{-0.15in}
+    \caption[Intersection size of \setOne\ genes (ranked by cv)]%
+    {\label{fig:cvEvol5DF}\textbf{Intersection size course
+    of \setOne\ genes (based on their coefficient of variation rank
+    in each of the five studies).}
+    There are three main parts.
+    There is an initial strong growth (a)
+    %followed by a short plateau (b)
+    %before a slight decrease (c)
+    which then settles a plateau (b).
+    Eventually, the ratio increases slowly again
+    until reaching the expected ratio of $1$ once all the genes from \setOne\
+    are included (c).
+    The first quarter of the genes covers (a) and a part of (b).
+    Apart from (a),
+    the overlap of shared genes between the five datasets when ranked on their
+    coefficient of variation is above 70\%.
+    The sigmoid curve (dashed line) is based on randomised data
+    where permutations break the original order of the genes. (Within each dataset,
+    all the gene expression levels are permuted within each tissue,
+    \ie\ the overall pattern of expression of each tissue is conserved.
+    This operation is performed 10,000 times.
+    The dashed line is a summary of all these permutations).
+    There is a distinct dissimilarity between the real and the randomised data.}
+\end{figure}
+
+\begin{figure}[!ht]
+    \captionsetup{singlelinecheck=off}
+    \includegraphics[scale=0.9]{transcriptomics/CVevolCumul2DF_line-abc.pdf}\centering
+    \caption[Intersection size of \setTwo\ genes (ranked by cv)]%
+    {\label{fig:cvEvol2DF}\textbf{Intersection size course
+    of \setTwo\ genes (based on their coefficient of variation rank
+    in each of the two studies).}
+    Globally, there are two parts: one initial strong growth (a) and
+    a second part (b) where the curve shifts shallowly towards
+    the expected final ratio of 1.
+    While the number of genes involved in \setTwo\ is higher than in \setOne,
+    the ratio of common genes that are the twentieth most variable in each study
+    is above 75\%.
+    There are three main reasons that may explain this improved result compared
+    to \Cref{fig:cvEvol5DF}.%
+    {\small%
+    \begin{itemize}[topsep=0pt,nosep,leftmargin=95pt,listparindent=5pt]
+        \item \setTwo\ involves a smaller degree (\ie\ number of studies)
+            than \setOne\ (respectively 2 and 5).
+            Hence, bigger intersection sizes are easier to occur.
+        \item As previously mentioned, \gtex\ and \uhlen\ studies provide probably
+            more accurate \treps\ than the other studies (see~\vref{seg:betterTreps}).
+        \item The greater number of tissues induces a wider range of \cvs,
+            which allows picking up genes with more subtle variations.
+    \end{itemize}}
+    }
+\end{figure}
+
+\begin{comment}
+    If the previous analysis was to include
+    only the first 1,250 most variable genes
+    the results of \Cref{fig:heatmapMost25pVariable} may be even greater.
+    However, the dissimilarities highlighted by \Cref{fig:ReverseheatmapMost25pVariable}
+    would also be greater.\mybr\
+\end{comment}
+
 \begin{comment}
 \begin{figure}[htb]
     \includegraphics[scale=1]{transcriptomics/mostSpe23TP.pdf}\centering
@@ -381,16 +543,46 @@ and \gtex.}}
     across \setOne.} Most of these \mRNAs\ are expressed only at 1 \FPKM\ or above.}
 \end{figure}
 
-
-\begin{sidewaysfigure}[!htb]
-    \includegraphics[scale=0.55]{transcriptomics/ebiGxaEx.png}\centering
-    \caption[Most specific genes highlighted in EBI gene expression atlas]{\label{fig:gxaEx}%
-    \textbf{Most specific genes highlighted in EBI gene expressio atlas.}}
-\end{sidewaysfigure}
-
 \FloatBarrier\
 
-\section{Hampel method}\label{sec:hampel}
+\subsection{Complement~to~the~highest~genes~anticorrelations}\label{sec:whyAnticor}
+
+As very few genes are involved,
+the slightest changes in their respective order of magnitude
+may imply reversed trends.
+
+\begin{table}[!h]
+\centering
+\caption{Example of gene subsets for a two studies (A and B) for a tissue}
+\label{tab:anticorExample}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+ & $Gene_a$ & $Gene_b$ & $Gene_c$ & $Gene_d$ & $Gene_e$ \\
+\midrule
+Study A, \trep\ $T_1$ ($T^{Study A}_1$) & 1000 & 2000 & 3000 & 4000 & 5000 \\
+Study B, \trep\ $T_1$ ($T^{Study B}_1$) & 500 & 2800 & 6000 & 5000 & 4000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For example,
+if we consider $T^{Study A}_1$ and $T^{Study B}_1$
+for a set of genes ${a, \ldots, e}$ (see \Cref{tab:anticorExample})
+and a cut-off at 3,000 \FPKMs,
+then the correlation will only involve $Gene_c$, $Gene_d$ and $Gene_e$.
+Thus,\\
+while $corr_{T^{Study A}_1,T^{Study B}_1}(c,d,e)= -1 $,\\
+$corr_{T^{Study A}_1,T^{Study B}_1}(a,b,c,d,e)= 0.6836$
+
+\begin{figure}[!htb]
+    \includegraphics[scale=1]{transcriptomics/AnticorrExample.pdf}\centering
+    \caption{Example on how correlation may change to cut-offs}\label{fig:anticorrExample}
+\end{figure}
+\FloatBarrier\
+
+\section{Tissue specific (TS) genes}
+
+\subsection{Hampel method}\label{sec:hampel}
 
 The Hampel method allows detecting outliers and
 it relies on the median and the \gls{MAD} (median absolute deviation)
@@ -421,12 +613,12 @@ return(newg)\;
 \caption{Hampel method}\label{algo:hampel}
 \end{algorithm}
 
-\subsection{Median}
+\subsubsection{Median}
 Median can be found by listing all values from smallest to greatest.\\
 If the number of values is odd, the median is the middle value.\\
 If the number of values is even, the median is the mean of the two middle values.
 
-\subsection{Median absolute deviation (M.A.D.)}
+\subsubsection{Median absolute deviation (M.A.D.)}
 For a give variable X, M.A.D.\ is defined as follow:
 
 \begin{equation}\label{eq:mad}
@@ -434,8 +626,13 @@ For a give variable X, M.A.D.\ is defined as follow:
 MAD = median(|X_{i}-median(X)|)
 \end{equation}
 
+\begin{sidewaysfigure}[!htb]
+    \includegraphics[scale=0.55]{transcriptomics/ebiGxaEx.png}\centering
+    \caption[Most specific genes highlighted in EBI gene expression atlas]{\label{fig:gxaEx}%
+    \textbf{Most specific genes highlighted in EBI gene expressio atlas.}}
+\end{sidewaysfigure}
 
-\section{List of the tissues available in TiGER}\label{sec:supplTiger}
+\subsection{List of the tissues available in TiGER}\label{sec:supplTiger}
 
 Thirty tissues (or equivalent) are available through this database:
 \tissue{Bladder}, \tissue{Blood}, \tissue{Bone}, \tissue{Bone marrow},
@@ -482,56 +679,7 @@ Uterus & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 2 & 39 \\
 \end{comment}
 
 
-%\clearpage
-\section{List of publications based on RNA-Seq and covering at least partially its robustness}\label{sec:TranssCoop}
-\begin{flushleft}
-\begin{itemize}
-    \item\fullcite{seqcmaqc}
-%    \item~\fullcite{Rau2014-va}
-    \item\fullcite{Santos2015-rj}
-    \item\fullcite{Sudmant2015-zt}
-    \item\fullcite{Danielsson2015-cn}
-    \item\fullcite{Uhlen:2016}
-    \item\fullcite{ruvseqComQN}
-    \item\fullcite{Wang2017-hc}
-\end{itemize}
-\end{flushleft}
-
-\section{Complement~to~the~highest~genes~anticorrelations}\label{sec:whyAnticor}
-
-As very few genes are involved,
-the slightest changes in their respective order of magnitude
-may imply reversed trends.
-
-\begin{table}[!h]
-\centering
-\caption{Example of gene subsets for a two studies (A and B) for a tissue}
-\label{tab:anticorExample}
-\begin{tabular}{@{}llllll@{}}
-\toprule
- & $Gene_a$ & $Gene_b$ & $Gene_c$ & $Gene_d$ & $Gene_e$ \\
-\midrule
-Study A, \trep\ $T_1$ ($T^{Study A}_1$) & 1000 & 2000 & 3000 & 4000 & 5000 \\
-Study B, \trep\ $T_1$ ($T^{Study B}_1$) & 500 & 2800 & 6000 & 5000 & 4000 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-For example,
-if we consider $T^{Study A}_1$ and $T^{Study B}_1$
-for a set of genes ${a, \ldots, e}$ (see \Cref{tab:anticorExample})
-and a cut-off at 3,000 \FPKMs,
-then the correlation will only involve $Gene_c$, $Gene_d$ and $Gene_e$.
-Thus,\\
-while $corr_{T^{Study A}_1,T^{Study B}_1}(c,d,e)= -1 $,\\
-$corr_{T^{Study A}_1,T^{Study B}_1}(a,b,c,d,e)= 0.6836$
-
-\begin{figure}[!htb]
-    \includegraphics[scale=1]{transcriptomics/AnticorrExample.pdf}\centering
-    \caption{Example on how correlation may change to cut-offs}\label{fig:anticorrExample}
-\end{figure}
-\FloatBarrier\
-\section{Uhlén categories}\label{sec:suppUhlen}
+\subsection{Uhlén categories}\label{sec:suppUhlen}
 
 \begin{sidewaystable}[]
 \centering
@@ -604,6 +752,8 @@ tissues\\ Working datasets}}} & Uhlen & 17,345  & 27,575  &
 \bottomrule
 \end{tabular}
 \end{sidewaystable}
+%\clearpage
+
 
 %\section{EBI gene expression atlas}
 
@@ -618,4 +768,16 @@ tissues\\ Working datasets}}} & Uhlen & 17,345  & 27,575  &
 %\end{sidewaysfigure}
 
 
-
+\section{List of publications based on RNA-Seq and covering at least partially its robustness}\label{sec:TranssCoop}
+\begin{flushleft}
+\begin{itemize}
+    \item\fullcite{seqcmaqc}
+%    \item~\fullcite{Rau2014-va}
+    \item\fullcite{Santos2015-rj}
+    \item\fullcite{Sudmant2015-zt}
+    \item\fullcite{Danielsson2015-cn}
+    \item\fullcite{Uhlen:2016}
+    \item\fullcite{ruvseqComQN}
+    \item\fullcite{Wang2017-hc}
+\end{itemize}
+\end{flushleft}
