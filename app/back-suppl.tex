@@ -381,27 +381,160 @@ the whole p-values collection is tested and adjusted for \glsentrydesc{FDR}.
 A q-value of 5\% means that 5\% of all the significant results
 are actually false positives.
 
-\section{One example of normalisation factor for proteomic data}
+\section{Target Decoy search database}\label{app:tda}
+For best effectiveness,
+decoy and target peptide sequence databases are searched with the same parameters.
+Furthermore, to ensure that
+a wrong hit in the target database and a hit in the decoy one are as likely,
+the decoy sequences have to be as similar as possible to the target ones
+(concerning \gls{aa} frequencies and composition,
+length, mass, charges, assigned scores).
+There are different ways to design the decoy sequences.
+For example, by reversing the peptide or protein sequences,
+either with complete or pseudo-reversion (where the last \gls{aa} is kept in place).
+Alternatively, by using stochastic methods on the target database
+such as the randomisation of the sequences or
+through the creation of new ones based on \glspl{aa} frequencies,
+their length distribution,
+and their number in the original database;
+Markov chain models~\mycite{Gagniuc2017-nj} are often used
+to mimic the closest target sequences.
+Many studies explore and compare the different decoy creation
+methods~\mycite{Elias2007-wi,Wang2009-ww,Elias2010-kp,Wright2016-as}.
+As for the target database,
+the decoy sequences are digested \latin{in silico} before the search.
+While the search can be done independently
+on the target and the decoy databases~\mycite{Blanco2009-u6},
+\citet*{Elias2007-wi} report that
+searching their resulting concatenation gives better results.\mybr\
 
-\begin{minipage}{\textwidth}
+Besides, the \gls{TDA} approach can guide
+the selection of sensitive \psm\ attributes
+(\eg, elution time, charge, peptide length, score)
+as filtering criteria to discern correct identifications~\mycite{Elias2010-kp}.
 
-\begin{equation}\label{eq:NSAF}
-       \tag{\gls{NSAF}}
-       \text{NSAF} = \frac{\frac{\text{SpC}_p}{\text{Length}_p}}{%
-       \sum_{i=1}^N \frac{\text{SpC}_i}{\text{Length}_i}
-       }
-\end{equation}
+\section{PSM validation with q-value and PEP}\label{app:qvalPEP}
 
-where:
-{\small
-\begin{itemize}
-        \item $\text{SpC}$ is the number of acquired spectra for a protein (Spectral count)
-        \item $\text{Length}$ is the length of a protein (can be its molecular weight)
-        \item $p$ is the index of the currently considered protein
-%        \item $\sum_{i=1}^N \frac{\text{SpC}_i}{\text{Length}_i}$ is the sum of all
-%            $\frac{\text{SpC}}{\text{Length}}$ of all the proteins of the sample.
-        \item N is the total number of identified proteins in the sample
-\end{itemize}
-}
+A possible definition of \psm's \emph{q-value}\label{qvalP} is
+the minimal \gls{FDR} threshold for which the \psm\ is accepted as correct.
+As the q-values are derived from the \gls{FDR},
+which is specific to a \psm\ collection,
+they are also (solely) specific to this collection.
+For example,
+\soft{Percolator} estimates the q-value
+by using the score distribution from the \gls{TDA}.
+On the other hand,
+\glsentrydesc{PEP} (\gls{PEP})\label{PEP}
+(also known as \emph{local \gls{FDR}}~\mycite{Efron2001-ai})
+is the probability of a \psm\ being incorrect;
+a \psm's \gls{PEP} is invariant regardless of the \psms\ collection.
+A classical approach to estimating \glspl{PEP} uses
+training sets of target and decoy \psms\ to learn the parameters
+of a probability model (indispensable to compute the \glspl{PEP}).
+Thus, for each given score (of any collection), a specific \gls{PEP} is associated.
+\citet{Choi2008-ec} showed that for a given collection,
+the sum of the \glspl{PEP} is equal to the expected number of incorrect \psms,
+which allows calculating the (global) \gls{FDR}.\mybr\
 
-\end{minipage}
+\section{Protein inference: computational challenging step}\label{app:inferenceChallenge}
+
+To explain the computational challenges of the peptide assembly,
+\citet{Huang2012-nr} propose to start with two assumptions:
+(1) all ($m$) peptides are true positive,
+and (2) peptides have an equal probability of detectability.
+A first assumption corollary is
+the presence of many homologous proteins in the sample.\mybr\
+
+Besides, one can derive from the first assumption
+that there are a minimal and a maximal value
+for the number $n$ of proteins that can be identified
+from the set of $m$ peptides.
+Returning the exhaustive list of proteins (\ie\ $n_\text{Max}$)
+that comprise all $m$ peptides (\eg\ \citet{Tabb2002-wm}) is one possible solution,
+but it is much more difficult to calculate the minimal list
+(\ie\ $n_\text{min}$) that does the same.
+As all the peptides $m$ are supposed to be true,
+they have to be included in any of the final minimal list proteins.
+Therefore inferring this protein list can be formulated
+as a \emph{set covering problem}~\mycite{Cormen2009-rk,Hochbaum1997-db}.
+The set covering problem is known to be \gls{NP}-complete~\mycite{Van_Leeuwen1990-sn},
+and for which it is in practice impossible to calculate an optimal solution.
+Usually, algorithms approximate this solution through a parsimonious approach.\mybr\
+
+Many inference algorithms seek
+a compromise between the minimal and exhaustive lists of possible proteins.
+While the minimal list probably excludes many true positives
+(but can still include false positives),
+the exhaustive list is indisputably comprising a large number of false positives
+as the parameters are set to maximise the number of peptide/proteins matches;
+statistically, a subset of these matches are random.
+In the sequence database,
+there are many proteins with the same peptidic sequence,
+\eg\ a protein $A$, expressed in one set of cells, and
+another, $B$, expressed only in another non-overlapping set of cells.
+While a sample is only expressing $A$,
+an exhaustive solution will also report
+$B$ as one of the proteins expressed in the sample.
+Statistically,
+the greater the size of the reference database
+and the expression complexity of the sample,
+the greater is the number of false positives in the results
+because of the degenerate peptides.\mybr\
+
+On the other hand,
+if a peptide is associated to one unique protein in a database
+when this peptide is identified with high confidence in a sample,
+it is extremely probable that the protein is truly present.
+However, these one-hit wonders are also trickier because
+the protein presence is reduced to
+the probability of the peptide to be a true positive instead of an artefact.
+Even a greater number of \gls{MS/MS} spectra supporting a peptide existence
+is only the reflection of a remarkably low probability of the protein being absent
+in the sample.\mybr\
+
+In this hypothetical setting
+where all peptides are true positives and equally likely to be detected,
+the inference is already challenging;
+it becomes even more complex with real data.
+The minimal list can be shorter than the theoretical one as
+the identified peptides can be false positives.
+On the other hand,
+proteomic platforms and pipelines tend to
+repeatedly and consistently detect and quantify particular sets of peptides
+(\emph{proteotypic} peptides)~\mycite{Mallick2007-za,Bergeron2007-my,Fusaro2009-uc}.
+Thus, many peptides are difficult to capture with \ms.
+This has two implications.\mybr\
+
+First, many algorithms associate additional information
+to the bipartite peptide/protein graph (shown in \Cref{fig:bipartite})
+to improve the identification coverage.
+The algorithms can exploit different data sources, \eg\ raw and corrected \gls{PSM} scores,
+single stage \gls{MS} or raw \gls{MS/MS} spectra,
+peptide expression profiles, \mRNA\ expression data,
+protein-protein interaction network or gene model.
+\citet{Huang2012-nr} propose that additional information can further
+extend the exhaustive list of possible proteins.\mybr\
+
+Secondly, the proteotypic peptides have led to
+the development of \emph{peptide detectability}~\mycite{Tang2006-qh,Alves2007-ui},
+which can help to deal with degenerate peptides
+by attributing probabilities to each peptide/protein assignment.
+Peptide detectability is considered as a intrinsic peptide property.
+It is only determined by the peptide primary sequence and
+its location within the protein.\mybr\
+
+Many different algorithms tackle this peptide assembly key step.
+\citet{Huang2012-nr} organise them in two categorisation frameworks:
+one based on the needed search engine for the list of \psms,
+the second one (presented in \Cref{fig:ProtInfClass})
+based on the underlying algorithmic technique.
+
+\begin{figure}[!htb]
+    \includegraphics[scale=0.58]{background/ProtInfClass.pdf}\centering
+    \caption[Peptide assembly models classification]{\label{fig:ProtInfClass}%
+    \textbf{\citet{Huang2012-nr} peptide assembly models classification.}
+    }
+\end{figure}
+
+
+

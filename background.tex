@@ -32,10 +32,6 @@ nitrogenous bases, lipids or their precursors).~\mycite{Callen2005-ik}\mybr\
 
 All the \gls{DNA} (protein-coding and non-coding) of a living organism
 constitutes its genetic material (or genome).
-%In most cells,
-%strands of \gls{DNA} are tightly packaged around proteins called histones
-%and are organised into superstructures known as chromosomes;
-%the human genome is split into 23 pairs of chromosomes.
 The coding sections of the \gls{DNA} are the genes.
 They contain the instructions for making (via \glspl{mRNA}) the proteins,
 which are the main effectors supporting life functions.
@@ -224,12 +220,6 @@ varies in expression (both in concentration and composition)
 depending on the tissue or cell type,
 genome studies are easier than transcriptomic or proteomic ones,
 but the latter ones are more biologically insightful.\mybr\
-\begin{comment}
-There are different types of proteins: ubiquitous ones
-(generally qualified as \emph{housekeeping}),
-cell/tissue/condition specific ones and
-everything in-between.
-\end{comment}
 
 \section[Transcriptome exploration with RNA sequencing]%
 {Transcriptome~exploration~with~RNA~sequencing}\label{sec:transExplo}
@@ -910,8 +900,6 @@ I briefly present them below in their chronological release.\mybr\
 \href{https://groups.google.com/forum/\#!forum/tuxedo-tools-users}%
 {https://groups.google.com/forum/\#!forum/tuxedo-tools-users}} which also includes
 \toph\ and \soft{Bowtie}.
-%In fact, the first releases of \soft{TopHat} and
-%\soft{Cufflinks} share many common authors, and
 \cuffl\ can assemble
 \latin{de novo} novel transcripts and isoforms following the same principles
 than \toph. Likewise, using good references is faster and more useful.
@@ -948,7 +936,7 @@ with the following main steps (see also \Cref{fig:cuffEstimation}):\mybr\
 \item \emph{Iteration till convergence with the observed distribution of fragments}:
     \begin{enumerate}
         \item Isoforms abundance are recomputed based on the updated
-            fragment-to-isoform assignment
+            fragment-to-isoform assignment \vspace{-2mm}
         \item Fragment-to-isoform assignment re-updated based on the isoforms
             abundance.
     \end{enumerate}
@@ -1070,14 +1058,14 @@ to also account for paired-end data\footnote{As mentioned before,
 despite the inaccuracy, \emph{read} and \emph{fragment} are often used
 interchangeably; this is also the case for \emph{\RPKM} and \emph{\FPKM}.}.\mybr\
 
-The canonical formula for \FPKM\ (or \RPKM) is:\mybr\
-
+The canonical formula for \FPKM\ (or \RPKM) is:
+\vspace{-1mm}
 \begin{equation}
     \tag{Canonical F/RPKM formula}\label{eq:rpkm-fx}
 \hat{\mu}_{ij}=\frac{f_i}{F_j\cdot10^{-6} \cdot \ell_i\cdot10^{-3}}
               =\frac{f_i}{F_j\cdot\ell_i}\cdot10^{9} \text{\,}
+\vspace{-3mm}
 \end{equation}
-
 where: \\{\small
 $\hat{\mu}_{ij}$ is the normalised expression for the \emph{feature} (\eg\ gene or
 transcript) $i$ in sample $j$,\\
@@ -1201,7 +1189,7 @@ However, \gls{SRM} is the most sensitive,
 while \gls{PRM} is the most specific and accurate~\mycite{Benhaim2017-va}.\mybr\
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.56]{background/MSproteomicsQuant.pdf}\centering
+    \includegraphics[scale=0.54]{background/MSproteomicsQuant.pdf}\centering
     \caption[Bottom-up quantification approaches]{\label{fig:msbottomupQuant}%
     \textbf{Bottom-up quantification approaches}.
     The work presented in this thesis relies on proteomic data
@@ -1210,7 +1198,8 @@ while \gls{PRM} is the most specific and accurate~\mycite{Benhaim2017-va}.\mybr\
     }
 \end{figure}
 
-\gls{DDA} untargeted strategies are the most suitable
+Among \gls{DDA} methods,
+untargeted strategies are the most suitable
 for global approaches or discovery projects.
 Unless samples comprise a subset of proteins (or spike-ins)
 with known concentrations,
@@ -1275,7 +1264,7 @@ The following segments may be suitable for other methods as well.\mybr\
 
 \subsection{Sample preparation}\label{subsec:ProtSampPrep}
 \gls{DDA} label free protocols to prepare samples for discovery proteomic analyses
-are generally much simpler than the ones for \Rnaseq.
+are generally much simpler to implement than the ones for \Rnaseq.
 However, as proteins are also more complex and heterogeneous
 than \DNA\ and \RNA~\mycite{Bruce2013}, there is a broader choice of them
 in order to adapt to any requirement~\mycite{Feist2015}.\mybr\
@@ -1376,15 +1365,7 @@ precipitation or (more expensive) by affinity.
 The second approach aims to the equalisation of the proteome.
 It may be based either on combinatorial ligand libraries involving
 bead-supported ligands (on a similar model to \Rnaseq\ protocols)
-or on specific protease mixtures\footnote{The former method uses bead-conjugated
-hexapeptide ligands to capture (approximatively) equimolar amounts of proteins.
-The very abundant proteins will bind till saturation to the beads, and their
-remaining part in solution is washed off. This cheaper method has drawbacks.
-For example, it presupposes that every protein has a corresponding ligand to bind.
-\\\citet{MichaelMentenDepletion}, for example, describes the latter method. The
-key to this protocol is to digest the most abundant proteins in peptides while
-keeping the bulk of the other proteins intact.
-Then, the peptides are removed by filtering their molecular size.}.\mybr\
+or on specific protease mixtures.\mybr\
 
 In general, the equalisation of the proteome improves the characterisation
 of the scarcer proteins~\mycite{Zhang2014} while they may introduce skewness
@@ -1392,7 +1373,7 @@ to the analyses (due to the relative protein proportions).\mybr\
 
 \subsubsection{Proteolytic digestion}
 It may seem contradictory to digest the proteins into peptide mixtures as a means
-of \emph{simplification}. Nevertheless, while the main drawback is the inability
+of reducing the complexity. Nevertheless, while the main drawback is the inability
 to distinguish between proteoforms~\mycite{Bruce2013}, it improves the proteins
 characterisation on several points.\mybr\
 \begin{itemize}
@@ -1533,18 +1514,9 @@ Sir Joseph John Thomson channelled a stream of neon ions through an electromagne
 field and captured its deflection on a photographic plate~\mycite{Thomson1913}.
 Arthur Dempster and Francis W. Aston created the first mass spectrometers in 1918
 and 1919 respectively~\mycite{Aston1919}.
-%Arthur Dempster built a first mass spectrometer in 1918. Francis  William
-%Aston (Thomson's student) created his complete one in 1919~\mycite{Aston1919}.
-\begin{comment}
-\ms\ became rapidly a pillar
-of the so-called \emph{modern analytical techniques} in Chemistry as it allows
-for a large spectrum of molecules of interest, the detection,
-the characterisation and even, for the smaller ones, the resolution of their
-structures.
-\end{comment}
 In this context, the use of \ms\ is quite recent in biology for proteomics
 as it has been developing from the 1980s onwards
-enabled by soft ionisation methods~\mycite{BiomolBio}.\mybr\
+particularly with the development of soft ionisation methods~\mycite{BiomolBio}.\mybr\
 
 \subsubsection{General principle}
 
@@ -1558,19 +1530,14 @@ and only their molecular mass is recorded. However, it is quite common for the
 molecules to carry more than one electric charge and that if the energy used for
 the ionisation is substantial, they may also forego fragmentation and internal
 reactions that will result to the production of many spectra.
-
-\minisec{PMF approach}
 The collection of spectra obtained from a single peptide ultimately increases the accuracy of
 the mass measurement and the identification of the peptide~\mycite{BiomolBio}.
-Indeed, these peptide-mass profiles are a very effective way to identify
-proteins in very short lapses of time as long a reference database is available
-for the studied organism~\mycite{Pappin1993}. The recent completion of the human
-genome sequence and many other organisms has accelerated the general use of this
-analytical method~\mycite{Luge2016}. Besides, recent developments have
+Recent developments have
 shown that the use of two mass spectrometers in tandem (\gls{MS/MS}) reduces
 the number of missed proteins significantly while keeping reasonable running
 times and it is more potent than excessive fractioning as is the improvement
 of \gls{HPLC}~\mycite{Cox2011}.\mybr\
+
 
 \subsubsection{Ionisation}
 
@@ -1618,83 +1585,7 @@ In \Cref{sec:appMassAnalysers},
 I review the analysers involved in
 the production of the raw proteomic data used in this thesis.
 Indeed, all the datasets have been
-produced by a combination of \acrfull{LTQ} and \orbi.% I also review very
-%shortly the quadrupole analyser. (See~\citet{Haag2016} for more details on other
-%types of analysers.)
-\mybr\
-\begin{comment}
-\minisec{Quadrupole analyser}
-
-It is one of the most popular analysers. In fact, they are cheap compared to the
-others. They are also compact, durable and reliable. The quadrupole analyser can
-filter the ions based on their difference of $m/z$. They are adequately
-named quadrupole as they comprise four cylindrical or hyperbolic rods in
-parallel to each other. Opposite rods are connected together electrically and
-\gls{RF} potential is applied. A \gls{DC} potential is superimposed on the
-\gls{RF} one. These combinations of \gls{RF} and \gls{DC} potentials constrain the
-ions to oscillate between the rods as they pass through them. Hence, by tuning
-the \gls{RF} and \gls{DC}, it is easy to select for which range of $m/z$ ions
-will have a stable trajectory and thus the only one detected. Indeed, the
-ions with unstable trajectory will collide with the rods and be \enquote{filtered}
-out. If used in \enquote{\gls{RF}-only} mode (\gls{DC} reduced to a minimum),
-the quadrupole may have other applications. For example, it can guide specific
-$m/z$ ions to other areas (while the bulk of ions will remain trapped).
-It may also be used as collision cells for \gls{CID}: by introducing an inert
-gas and tuning with the \gls{RF}-energy, the amount of fragmentation undergone
-by the targeted ions can be precisely controlled. \mycite{Haag2016}\\
-The quadrupole analyser is also qualified as the \emph{mass filter}.\mybr\
-
-\minisec{\Acrfull{LTQ}}
-\gls{LTQ} is a particular kind of \acrfull{LIT} which is in principle a sort of
-a quadrupole mass analyser~\mycite{Zhang2014}. A \gls{LTQ} uses a set of
-quadrupole rods and a two-dimensional \gls{RF} field confines the ions radially.
-Besides, a static electrical potential is applied to end electrodes which
-forbid the ions to escape axially. However, the quadrupole is commonly segmented
-into three parts which ensure a perfect homogeneity of the electric field of the
-trap area and thus avoiding ion loss when the trapping is done.
-While they may be used as an ion trap, they
-may be also used as a simple mass filter. \gls{RF} voltage is tuned to produce
-multi-frequency resonance ejection waveforms are applied as to
-eliminate all the undesirable ions in the trap before the fragmentation and mass
-analysis of the remaining ones. Frequently, these \glspl{LTQ} are used as a
-front-end to other mass analysers as they have high injection efficiencies and
-high ion storage capacities. They may be equipped then with two biased radial
-ejection slits and then be used with two detectors hence the signal-to-noise
-ratio may be doubled.\mybr\
-
-Compared with other traps, linear ion traps provide an enhanced dynamic range
-with a reduced low mass cut-off as the ion cloud is
-spatially distributed on a linear axis and not a 3D centre which improves the
-sensitivity. And then, for example, the ions may then be accumulated before
-being released into another mass analyser~\mycite{Madalinski2008}.\mybr\
-
-\minisec{\orbi}
-It is a very recent analyser and it relies on \gls{FT}. Recently,
-there is increasing use of \glspl{FTMS} for proteomic studies. Indeed, these
-\glspl{FTMS} are more precise than previous analysers and allow the detection of
-a greater range of ions in very short lapses of time~\mycite{Scigelova2011}.
-In this kind of analyser, ions are trapped and both orbit around and oscillate
-in an electrostatic field between an inner and outer part of a central electrode
-shaped as a spindle.
-The ions can only move following the spindle long axis~\mycite{Makarov2000}.
-While moving around the spindle the ions create a current.
-The outer part of the spindle records images of this current.
-Fourier transformation of these images allows obtaining very highly accurate
-and sensitive mass spectra for a greater dynamic range than most of the
-other analysers.~\mycite{Hu2005}\mybr\
-
-\minisec{\gls{LTQ}-\orbi}
-It is a hybrid (tandem) mass spectrometer that uses \gls{ESI} for the ionisation
-step and has an \gls{LTQ} as a first analyser (MS$^1$)
-and an \orbi\ as a second one (MS$^2$).
-This \gls{MS/MS} enables multiple levels of
-fragmentation for the elucidation of a wide range of peptides and can be coupled
-with an \gls{ESI} which is a continuous source of ionisation. This instrument
-allows analysing proteomic samples optimally both in terms of starting material,
-time~\mycite{Scigelova2011} and provides \enquote{ultrahigh} mass resolution,
-high mass accuracy
-and enhanced dynamic range with respect to mass accuracy~\mycite{Madalinski2008}.\mybr\
-\end{comment}
+produced by a combination of \acrfull{LTQ} and \orbi.\mybr\
 
 \subsubsection{Fragmentation techniques~\mycite{Zhang2014}}
 
@@ -1820,19 +1711,19 @@ From the raw data acquisition to downstream analyses
 (or any of the intermediate steps),
 pipelines integrate many different combinations of tools~\mycite{Vitek2009}.\mybr\
 
-The pipelines vary depending on experimental design, data type
+Pipelines vary depending on experimental design, data type
 (\ie\ expression, modification state or interactions map)
-and the practical creation of the data (\eg\ method of separation,
+and the data creation practicalities (\eg\ method of separation,
 mass analyser kind, acquisition mode).
-Many of these factors are interconnected in \ms\
-and while their individual effects have been extensively studied,
+Many factors are interconnected in \ms\
+and while individual effects have been extensively studied,
 designing a sound pipeline may be overlooked easily~\mycite{LCMSflaws,Maes2016-xo}.
 However,
 this risk is reduced as
 many tools imply working upstream or downstream with specific tools,
 \eg\ the output of \soft{MaxQuant} (raw data to protein quantification) is
 ready for use by \softFoCi{Perseus}{http://www.perseus-framework.org}{perseus2016}
-(downstream analyses such pattern recognition,
+(for analyses such as pattern recognition,
 time-series analysis, cross-omics comparisons and multiple hypothesis testing).
 Besides, as files from mass spectrometers are usually encoded
 in proprietary (commercial) formats,
@@ -1860,12 +1751,11 @@ The signal processing step comprises
 the (noise) filtering (or \emph{denoising}),
 the baseline correction (which eliminates systematic trends),
 the signal normalisation (or \emph{centroiding}),
-and the mass peaks detection~\mycite{Codrea2016,Nahnsen2013}.
+and the peak picking (\ie\ mass peaks detection)~\mycite{Codrea2016,Nahnsen2013}.
 These steps are highly automatised and
 happen almost simultaneously to the signal acquisition.\mybr\
 
-Peak picking (\ie\ mass peak detection) requires automation
-for proteomic experiments,
+Peak picking requires automation for proteomic experiments,
 notably as the number of spectra for one sample is in the order of 100,000.
 Even though instrument resolution has significantly improved over the last decade,
 peaks can be smooth (\ie\ with a large signal-to-noise ratio (\gls{SNR}))
@@ -1893,8 +1783,8 @@ Typically in \gls{LC-MS/MS},
 spectra from one of the mass spectrometer allow the identification,
 while the spectra from the second one allow
 the identification of the peptides~\mycite{Codrea2016}.
-The robustness of identification increases
-with the number of spectra that are associated to each peptide (or protein).\mybr\
+Identification robustness increases
+with the number of spectra associated to each peptide (or protein).\mybr\
 
 \minisec{Matching spectra to peptide sequences}
 There are three main possibilities for protein/peptide spectra matching.\mybr\
@@ -1953,7 +1843,7 @@ for each peptide-spectrum match (\psm).
 This score summarises the quality of the assignment
 and allows the selection of the best candidate-peptide for each spectrum.
 Only the matches with the best \psm\ scores (if not the very best one only)
-are reported and used in the next steps of the quantification process.\mybr\
+are reported and used in the next steps of the quantification.\mybr\
 
 \citet{Sadygov2004-nl} classify the scoring functions in four classes:
 descriptive (\eg\ \softFoCi{SEQUEST}{http://fields.scripps.edu/yates/wp/}{Eng1994-eq})
@@ -1978,16 +1868,6 @@ Thresholds are a compromise between sensitivity and accuracy (or error rate),
 \latin{versus} false positive (or incorrect) identifications proportion.
 A high threshold for the scores reduces the error rate, but costs sensitively.
 A low threshold accepts more \psms, but also more incorrect matches.\mybr\
-
-In addition to the choice of threshold requiring an expert,
-another complication is the unknown real error rate.
-This situation led in the past in result discrepancies:
-results based on the same data varied
-as much as 50\% between different laboratories~\mycite{States2006-qb}.
-It prompted journals to require validation
-with standard statistical (comparable) measures,
-and later the establishments of guidelines by the
-community~\mycite{Bradshaw2006-dg,Binz2008-yz,Rodriguez2009-cc,Kinsinger2012-km}.\mybr\
 
 \minisec{Peptide validation}
 
@@ -2020,18 +1900,15 @@ the overall \gls{FDR} associated with a specific collection of \psms.
 In turn, this enables assessing the likelihood of each of the \psms\
 in the collection~\mycite{Elias2007-wi}
 (see following segments on \emph{q-values} and \gls{PEP}).
-Besides, this approach can guide
-the selection of sensitive \psm\ attributes
-(\eg, elution time, charge, peptide length, score)
-for filtering criteria to discern correct identifications~\mycite{Elias2010-kp}.
 The critical elements of this method are
 the creation of a \emph{decoy} database with sequences
 that are incorrect but similar (while non-overlapping)
 to the \emph{target} (\ie\ true) ones.
 Consequently, any \psm\ found for a decoy sequence is by definition spurious.
 The known proportion of decoy versus target sequences in the search space allows
-the computation of the \gls{FDR}~\mycite{Elias2007-wi,Elias2010-kp}.\mybr\
-\vspace{-9mm}
+the computation of the \gls{FDR}~\mycite{Elias2007-wi,Elias2010-kp}
+as shown in \Cref{eq:fdr-prot}.
+In \Cref{app:tda}, I briefly discuss the decoy database.\mybr\
 
 \begin{equation}\label{eq:fdr-prot}
     \tag{\gls{FDR}}
@@ -2043,50 +1920,6 @@ the computation of the \gls{FDR}~\mycite{Elias2007-wi,Elias2010-kp}.\mybr\
 \end{split}
 \raisetag{4\normalbaselineskip}
 \end{equation}
-\begin{comment}
-\vspace{-6mm}
-where:
-{\small
-\begin{itemize}[topsep=0pt,nosep]
-    \item $\text{\emph{Number of accepted \glspl{PSM}}}_{\text{decoy}}$
-is the number of \glspl{PSM} from decoy sequences
-that are above a specified threshold $\mathcal{t}$,
-    \item $\text{\emph{Number of all accepted \glspl{PSM}}}$
-is the total number of accepted \glspl{PSM}
-above the specified threshold $\mathcal{t}$,
-including the accepted decoy \glspl{PSM}.
-    \item $\text{\emph{Number of accepted \glspl{PSM}}}_{\text{target}}$
-is the number of accepted \glspl{PSM} above the specified threshold $\mathcal{t}$.
-\end{itemize}
-}
-\end{comment}
-
-\vspace{-4mm}
-For best effectiveness,
-decoy and target peptide sequence databases are searched with the same parameters.
-Furthermore, to ensure that
-a wrong hit in the target database and a hit in the decoy one are as likely,
-the decoy sequences have to be as similar as possible to the target ones
-(concerning \gls{aa} frequencies and composition,
-length, mass, charges, assigned scores).
-There are different ways to design the decoy sequences.
-For example, by reversing the peptide or protein sequences,
-either with complete or pseudo-reversion (where the last \gls{aa} is kept in place).
-Alternatively, by using stochastic methods on the target database
-such as the randomisation of the sequences or
-through the creation of new ones based on \glspl{aa} frequencies,
-their length distribution,
-and their number in the original database;
-Markov chain models~\mycite{Gagniuc2017-nj} are often used
-to mimic the closest target sequences.
-Many studies explore and compare the different decoy creation
-methods~\mycite{Elias2007-wi,Wang2009-ww,Elias2010-kp,Wright2016-as}.
-As for the target database,
-the decoy sequences are digested \latin{in silico} before the search.
-While the search can be done independently
-on the target and the decoy databases~\mycite{Blanco2009-u6},
-\citet*{Elias2007-wi} report that
-searching their resulting concatenation gives better results.\mybr\
 
 Most of the search engines return multiple scores.
 Hence, defining a proper threshold for each of them can be challenging or cumbersome.
@@ -2102,38 +1935,14 @@ Moreover, many studies have reported that the use of \soft{Percolator}
 improves the results in terms of both accuracy and sensitivity and
 increases the overall number of identified peptides~\mycite{Granholm2014-cw,%
 Xu2013-si,Tu2015-iy,The2016-dq,Wright2012-od}.
-%Besides, many pipelines integrate it to provide
-%the significance measures needed for publication.
 \soft{Percolator} can either be used directly on
 the collection of target and decoy \psms\
 or as a post-processing step.\mybr\
 
-\vspace{-0.7mm}
 Protein inferring algorithms use
 two other significance measures for \psm\ validation:
-q-values and \gls{PEP}.\mybr\
-
-\vspace{-0.7mm}
-A possible definition of \psm's \emph{q-value}\label{qvalP} is
-the minimal \gls{FDR} threshold for which the \psm\ is accepted as correct.
-As the q-values are derived from the \gls{FDR},
-which is specific to a \psm\ collection,
-they are also (solely) specific to this collection.
-For example,
-\soft{Percolator} estimates the q-value
-by using the score distribution from the \gls{TDA}.
-On the other hand,
-\glsentrydesc{PEP} (\gls{PEP})\label{PEP}
-(also known as \emph{local \gls{FDR}}~\mycite{Efron2001-ai})
-is the probability of a \psm\ being incorrect;
-a \psm's \gls{PEP} is invariant regardless of the \psms\ collection.
-A classical approach to estimating \glspl{PEP} uses
-training sets of target and decoy \psms\ to learn the parameters
-of a probability model (indispensable to compute the \glspl{PEP}).
-Thus, for each given score (of any collection), a specific \gls{PEP} is associated.
-\citet{Choi2008-ec} showed that for a given collection,
-the sum of the \glspl{PEP} is equal to the expected number of incorrect \psms,
-which allows calculating the (global) \gls{FDR}.\mybr\
+q-values and \gls{PEP},
+which are described in \Cref{app:qvalPEP}.\mybr\
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.58]{background/MSstatsVal.pdf}\centering
@@ -2159,8 +1968,6 @@ While identified as the key problem more than fifteen years ago,
 protein inference (\ie\ identification) remains
 the main challenging issue in shotgun proteomics~\mycite{Nesvizhskii2005-wd,He2016-yi}.
 Note that often in the literature,
-%as researchers' main interest is
-%to identify expressed proteins across samples and conditions,
 \emph{protein inference} also encompasses
 the peptide identification as an intermediate step
 and the results validation
@@ -2201,95 +2008,19 @@ then the protein is also a false positive.
 Shorter proteins are generally harder to identify (and quantify)
 for this reason.\mybr\
 
-To explain the computational challenges of the peptide assembly,
-\citet{Huang2012-nr} propose to start with two assumptions:
-(1) all ($m$) peptides are true positive,
-and (2) peptides have an equal probability of detectability.
-A first assumption corollary is
-the presence of many homologous proteins in the sample.\mybr\
-
-Besides, one can derive from the first assumption
-that there are a minimal and a maximal value
-for the number $n$ of proteins that can be identified
-from the set of $m$ peptides.
-Returning the exhaustive list of proteins (\ie\ $n_\text{Max}$)
-that comprise all $m$ peptides (\eg\ \citet{Tabb2002-wm}) is one possible solution,
-but it is much more difficult to calculate the minimal list
-(\ie\ $n_\text{min}$) that does the same.
-As all the peptides $m$ are supposed to be true,
-they have to be included in any of the final minimal list proteins.
-Therefore inferring this protein list can be formulated
-as a \emph{set covering problem}~\mycite{Cormen2009-rk,Hochbaum1997-db}.
-The set covering problem is known to be \gls{NP}-complete~\mycite{Van_Leeuwen1990-sn},
+As shown in \Cref{app:inferenceChallenge},
+the peptide assembly can be formulated as
+a \emph{set covering problem}~\mycite{Cormen2009-rk,Hochbaum1997-db}.
+This problem is known to be \gls{NP}-complete~\mycite{Van_Leeuwen1990-sn},
 and for which it is in practice impossible to calculate an optimal solution.
+Inference algorithms seek
+a compromise between the minimal and exhaustive lists of possible proteins.
 Usually, algorithms approximate this solution through a parsimonious approach.\mybr\
 
-Many inference algorithms seek
-a compromise between the minimal and exhaustive lists of possible proteins.
-While the minimal list probably excludes many true positives
-(but can still include false positives),
-the exhaustive list is indisputably comprising a large number of false positives
-as the parameters are set to maximise the number of peptide/proteins matches;
-statistically, a subset of these matches are random.
-In the sequence database,
-there are many proteins with the same peptidic sequence,
-\eg\ a protein $A$, expressed in one set of cells, and
-another, $B$, expressed only in another non-overlapping set of cells.
-While a sample is only expressing $A$,
-an exhaustive solution will also report
-$B$ as one of the proteins expressed in the sample.
-Statistically,
-the greater the size of the reference database
-and the expression complexity of the sample,
-the greater is the number of false positives in the results
-because of the degenerate peptides.\mybr\
-
-On the other hand,
-if a peptide is associated to one unique protein in a database
-when this peptide is identified with high confidence in a sample,
-it is extremely probable that the protein is truly present.
-However, these one-hit wonders are also trickier because
-the protein presence is reduced to
-the probability of the peptide to be a true positive instead of an artefact.
-Even a greater number of \gls{MS/MS} spectra supporting a peptide existence
-is only the reflection of a remarkably low probability of the protein being absent
-in the sample.\mybr\
-%\eg of a reason: all proteins may not be properly sequenced or annotated
-
-In this hypothetical setting
-where all peptides are true positives and equally likely to be detected,
-the inference is already challenging;
-it becomes even more complex with real data.
-The minimal list can be shorter than the theoretical one as
-the identified peptides can be false positives.
-On the other hand,
-proteomic platforms and pipelines tend to
-repeatedly and consistently detect and quantify particular sets of peptides
-(\emph{proteotypic} peptides)~\mycite{Mallick2007-za,Bergeron2007-my,Fusaro2009-uc}.
-Thus, many peptides are difficult to capture with \ms.
-This has two implications.\mybr\
-
-First, many algorithms associate additional information
-to the bipartite peptide/protein graph (shown in \Cref{fig:bipartite})
-to improve the identification coverage.
-The algorithms can exploit different data sources, \eg\ raw and corrected \gls{PSM} scores,
-single stage \gls{MS} or raw \gls{MS/MS} spectra,
-peptide expression profiles, \mRNA\ expression data,
-protein-protein interaction network or gene model.
-\citet{Huang2012-nr} propose that additional information can further
-extend the exhaustive list of possible proteins.\mybr\
-
-Secondly, the proteotypic peptides have led to
-the development of \emph{peptide detectability}~\mycite{Tang2006-qh,Alves2007-ui},
-which can help to deal with degenerate peptides
-by attributing probabilities to each peptide/protein assignment.
-Peptide detectability is considered as a intrinsic peptide property.
-It is only determined by the peptide primary sequence and
-its location within the protein.\mybr\
-%Depending on its chemical groups and their relative sequence,
-%the peptide will ionise and fragment more or less;
-%peptides situated within protein folds may be more protected,
-%so less likely cut out of the protein and then detected.
+Regardless of the approach, all algorithms involve a bipartite graph
+(see \Cref{fig:bipartite}),
+even if they may also include other supplementary information
+to build their models (see \Cref{fig:ProtInfClass}).
 
 \begin{figure}[!htb]
     \includegraphics[scale=0.50]{background/modelPeptideAssembly1.pdf}\centering
@@ -2340,21 +2071,8 @@ If one of the two latter peptides is an artefact,
 However, if \textit{peptide 5} is a false positive,
 so is \textit{protein 3}.\mybr\
 
-Many different algorithms tackle this peptide assembly key step.
-\citet{Huang2012-nr} organise them in two categorisation frameworks:
-one based on the needed search engine for the list of \psms,
-the second one (presented in \Cref{fig:ProtInfClass})
-based on the underlying algorithmic technique.
-Many different approaches and algorithms with their related tools
-have been reviewed in the literature~\mycite{Huang2012-nr,Serang2012-jl}.\mybr\
-
-\begin{figure}[!htb]
-    \includegraphics[scale=0.58]{background/ProtInfClass.pdf}\centering
-    \caption[Peptide assembly models classification]{\label{fig:ProtInfClass}%
-    \textbf{\citet{Huang2012-nr} peptide assembly models classification.}
-    }
-\end{figure}
-
+Many different approaches, algorithms and their related search engines
+for protein inference have been reviewed in the literature~\mycite{Huang2012-nr,Serang2012-jl}.
 Despite the partial or lack of overlap between
 sets of confidently identified peptides,
 combining several search engines to infer the proteins
@@ -2385,11 +2103,8 @@ the absolute abundance.
 as \gls{IBAQ} has biases and quantification errors
 that make is unfit for direct
 use for a proportional assessment of the complete protein set;
-%Where quantifying low abundant proteins is a challenge
-%for all the current label-free quantification,
 \gls{IBAQ} dramatically underestimates them.
 Instead, to improve the general quantification estimation,
-%\citet{TOP3isbetter}
 they advocate a \emph{Top3} approach~\mycite{Silva-Top3},
 which represents the abundance of each protein by the average or sum intensity of
 its three best ionised (unique) peptides.
@@ -2397,12 +2112,12 @@ its three best ionised (unique) peptides.
 even if it is less accurate for the shortest proteins and
 saturates for the largest ones.\mybr\
 
-Common normalisations
-(\eg\ \gls{NSAF}~\mycite{Zybailov2006-nk}, see \Cref{eq:NSAF}, p.~\pageref{eq:NSAF})
+Many normalisations
 include the length of the protein sequences
 (as longer proteins are more likely to produce greater number of peptides and
-to be sampled) and the number of spectra that have been acquired within a sample
-for each protein.
+to be sampled) and the sum of ion intensity or
+the spectra number (for spectral count methods)
+that acquired for each protein within a sample~\mycite{Blein-Nicolas2016-ty}.
 Similar approaches to \Rnaseq\ can be used to allow protein comparison
 across different samples.\mybr\
 
