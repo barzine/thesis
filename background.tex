@@ -474,11 +474,12 @@ Hybridisation and Bridge amplification~\small{\mycite{IlluminaYoutube}}\quad}%
 
 \vspace{-4mm}
 Once the libraries are ready, they are loaded onto a \emph{flow cell}\footnote{%
-\emph{Flow cells} are the support of Illumina sequencing. They enable the
-parallelisation of the sequencing of millions of \gls{DNA} fragments together
-which are kept spatially separated in clusters. This was allowed with the advent
-and optimisation of supported Chemistry. Each flow cell is a glass slide with
-lanes. Each lane is coated with two short nucleotide sequences. One of these
+\emph{Flow cells} are the support of Illumina sequencing. They parallelise
+through supported Chemistry
+the sequencing of millions of \gls{DNA} fragments together
+which are kept spatially separated in clusters.
+Each flow cell is a glass slide with lanes.
+Each lane is coated with two short nucleotide sequences. One of these
 oligonucleotides is complementary to a region contained in the ligated adapters.}.\mybr\
 
 The clustering step comprises two phases: hybridisation and bridge amplification
@@ -508,24 +509,25 @@ priming.\mybr\
 \subsection{Sequencing-by-synthesis}%
 \label{subsub:sequencing}
 
-Illumina sequencers propose two sequencing approaches: single-end and paired-end.
-The difference is that in \emph{single-end sequencing}\footnote{Chronologically
+Illumina sequencers propose two approaches: single-end and paired-end.
+In \emph{single-end sequencing}\footnote{Chronologically
 the oldest method}, the sequencing begins at one (and only one) of the fragment
-ends and progresses towards the second. Whereas in \emph{paired-end sequencing},
-once the first end has been sequenced (as in the single-end approach), after a
-single new bridge replication, the other end of the original fragment is
-sequenced as well.
-Hence, with a small change in the original single-end adapters~\mycite{pairedEndAdapters},
-in paired-end protocols, the sequencing occurs at \emph{both}
-ends of each original fragment.\mybr\
+ends and progresses towards the second.
+In \emph{paired-end sequencing},
+once the first end has been sequenced,
+a bridge replication occurs,
+then the other end of the original fragment is also sequenced.
+Thus, in paired-end sequencing,
+the sequencing occurs at \emph{both} ends of each original fragment.\mybr\
 
-Though more expensive and more challenging to programmatically handle,
-the paired-end approach produces more information and hence facilitates
-the detection of genomic rearrangements (as indels or inversions) and
+Though more expensive and more programmatically challenging,
+the paired-end approach facilitate the detection of genomic rearrangements%
+\footnote{As indels or inversions} and
 repetitive sequence elements.
-It also allows an easier distinction between isoforms of the same gene and provides
-greater support to detect the novel transcripts (new isoform or new gene) and fusion
-genes\footnote{A \gls{fusionG} is a gene that is the product of the fusion of
+It helps to distinguish between a gene isoforms
+and provides greater support to identify novel transcripts (new isoform or gene)
+and fusion genes\footnote{A \gls{fusionG} is a gene
+that is the product of the fusion of
 parts of two (or more) different genes.}.\mybr\
 
 In both cases, the sequencing process is the same. It is an Illumina proprietary
@@ -818,31 +820,38 @@ ones, several tools complement the previous strategies.\mybr\
 \minisec{Hybrid approach between \latin{de novo} and alignment}
 There are tools like \toph\footnote{\toph\ ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}
-{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12)~\mycite{tophat2}
-(which has been used to reconstruct all the
-transcriptomes involved in this thesis --- see \Cref{ch:datasets}),
-that uses a hybrid approach between a reference alignment and a \latin{de novo}
-assembly. As a first (but optional) step, \toph\ tries to contiguously
+{https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12)~\mycite{tophat2},
+which has reconstructed all the transcriptomes involved
+in this thesis (see \Cref{ch:datasets}),
+that use a hybrid approach
+between a reference alignment and a \latin{de novo} assembly.
+As a first (but optional) step, \toph\ tries to contiguously
 align the reads with \soft{Bowtie}\footnote{\soft{Bowtie} ---
 \href{http://bowtie-bio.sourceforge.net/index.shtml}%
 {http://bowtie-bio.sourceforge.net/index.shtml}}~\mycite{Bowtie}
 to the reference transcriptome when this one is provided. Then
 (or alternatively as a first step), the unmapped reads are aligned to the
-reference genome. The intention in these alignment steps is to identify and
-localise the exons, which may eventually span over splicing junctions and be
-connected through spliced alignment. Then, \toph\ builds a database of
-possible exon-exon splice junctions from the set of mapped reads and then split
-the remaining unmapped (or aligned with a low score) reads to smaller segments
-in order to find
-possible new split events via a seed-and-extend approach. Potential new events
-are considered when these smaller segments, first, match exactly the reference
-for their good-quality score regions and, secondly, they have overlaps
-(for a user-defined length) with a splice junction. These segment sections are
-called seeds. Any read with a seed is then checked for a longer or even complete
-alignment to the exons on both sides of the junction.\mybr\
+reference genome.
+These alignment steps identify and localise the exons,
+which may eventually span over splicing junctions
+and be connected through spliced alignment.
+Then, \toph\ builds a database of possible exon-exon splice junctions
+from the set of mapped reads
+and then split the remaining unmapped
+(or aligned with a low score) reads to smaller segments
+in order to find possible new split events via a seed-and-extend approach.
+Potential new events are considered when these smaller segments, first,
+match exactly the reference for their good-quality score regions
+and, secondly,
+they have overlaps (for a user-defined length) with a splice junction.
+These segment sections are called seeds.
+Any read with a seed is then checked
+for a longer or even complete alignment to the exons
+on both sides of the junction.\mybr\
 
-In the case of paired-end data, each read of the pair is first processed
-separately.
+\minisec{Reads and fragments}
+In the case of paired-end data,
+each read of the pair is first processed separately.
 Then, in the final evaluation phase and
 with the help of additional information sources,
 they are used as a pair to infer among the many possibilities which
@@ -861,8 +870,6 @@ along with \soft{STAR}\footnote{\soft{STAR} ---
 is the most popular splice-aware mapper for genomes with a near-complete annotation
 (\eg\ for \species{Homo sapiens})~\mycite{tamaraRNA}
 despite being slower than the latter~\mycite{hisat}.\mybr\
-
-
 
 As many concepts or terms in Science, \enquote{\emph{read mapping}} can
 have different (however very closely related) meanings.

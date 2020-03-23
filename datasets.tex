@@ -1,4 +1,4 @@
-\chapter{Available high-throughput normal human datasets}\label{ch:datasets}
+\chapter{Available high-throughput human datasets}\label{ch:datasets}
 
 \setlength{\epigraphwidth}{0.57\textwidth}%0.57
 \setlength{\epigraphrule}{0pt}%0.1
@@ -8,12 +8,12 @@
 
 
 In the past few years, many laboratories have studied the expression
-of genes within normal humans at the transcriptome and at
+of human genes at the transcriptome and at
 the proteome levels by taking advantage of high-throughput techniques
 (\eg\ \citet{Krupp2012,VTpaper,ramskoldan:2009,Uhlen2014,%
 Uhlen2015,UhlenGastro,GTExTranscript,PeptideAtlas,PandeyData,KusterData}).
 In this chapter, I review the openly available (for research) data
-I use within my thesis
+I use within my thesis to explore the gene expression in (undiseased) tissues
 and explain how they have been reprocessed.
 Besides the results I report in the subsequent chapters,
 the present chapter also provides the basis for work
@@ -27,7 +27,7 @@ described here have been performed by myself under the supervision of
 
 \section{Introduction}
 
-Every dataset with which I have worked fits three main criteria.
+All the datasets were selected to fit three main criteria.
 Firstly, they comprise normal (\ie\ reported as disease-free) human samples
 from at least three different tissue types.
 Secondly, gene expression
@@ -51,18 +51,6 @@ biological layers.\mybr\
 
 
 \section{Transcriptome RNA-Seq studies}\label{sec:rnaseq-data}
-
-During the data selection process,
-I had to disregard a few studies as the raw data was not fitting
-the reusability criterion \mycite{Burge,Pan2008-di}.
-Many times I came across studies with ambiguous encoding
-format for the raw data such
-as the \ArrayExpress{E-GEOD-41637} dataset~\mycite{Burge}.
-Despite my best efforts,
-I was unable to resolve this issue
-by contacting the respective authors.
-\citet{Burge} (\ArrayExpress{E-GEOD-41637}) is one example of study
-that I unfortunately had to dismiss.\mybr\
 
 I describe hereinafter the five transcriptomic datasets I used
 in the chronological order of their first public release.
@@ -123,7 +111,7 @@ in the chronological order of their first public release.
 \end{sidewaystable}
 
 \subsection{Castle et al.\ dataset}\label{subsec:castlepresentation}
-\vspace*{-0.1in}
+\vspace*{-0.2in}
 \citet{castleData} released this dataset along with their study:
 \paper{\citetitle{castleData}}.
 The authors were interested in exploring the whole RNA repertoire
@@ -175,7 +163,7 @@ An average of 3.2 billion 76 \gls{bp}-long single-end reads were generated per s
 using an Illumina Genome Analyser IIx (single-end) and they released them
 through \gls{GEO} (accession number: GSE30352).
 I personally retrieved the human data from
-\ArrayExpress{E-GEOD-30352}\footnote{ArrayExpress routinely was importing
+\ArrayExpress{E-GEOD-30352}\footnote{ArrayExpress was routinely importing
 datasets from \gls{GEO} on a weekly basis until very recently.
 While not automatically, \gls{GEO} data are still included in \egxa.}.\mybr\
 
@@ -184,8 +172,8 @@ While not automatically, \gls{GEO} data are still included in \egxa.}.\mybr\
 \vspace*{-0.2in}
 This dataset, created in 2010, has been released in
 2011\footnote{See~\citetitle{ibmEnsembl} -~\cite{ibmEnsembl}} by Illumina
-mostly to advertise its most recent technology improvement at that time:
-the paired-end sequencing. Actually, until then, all the sequencing was done
+and it used its most recent technology at that time:
+the paired-end sequencing. Until then, all the sequencing was done
 from only one end of the \gls{DNA} or \gls{cDNA} fragments. From that
 date, most of the following transcriptome studies based on \Rnaseq\ use
 paired-end sequencing.\mybr\
@@ -294,6 +282,19 @@ For privacy reasons, the raw data is available only through controlled access vi
 in my study).
 Unfortunately, this translates to a slow access time to the raw data.\mybr\
 
+\vspace{5mm}
+During the data selection process,
+I had to disregard a few studies as the raw data was not fitting
+the reusability criterion \mycite{Burge,Pan2008-di}.
+Many times I came across studies with ambiguous encoding
+format for the raw data such
+as the \ArrayExpress{E-GEOD-41637} dataset~\mycite{Burge}.
+Despite my best efforts,
+I was unable to resolve this issue
+by contacting the respective authors.
+\citet{Burge} (\ArrayExpress{E-GEOD-41637}) is one example of study
+that I unfortunately had to dismiss.\mybr\
+
 \section[Proteome Mass Spectrometry bottom-up studies]%
 {Proteome Mass Spectrometry bottom-up studies \quad}\label{sec:ProteoData}
 
@@ -344,8 +345,8 @@ The raw spectra were retrieved from ProteomeXchange via the repository
 
 While the authors' effort to generate technical high quality raw data was highly
 appraised by the scientific community, their processing
-(identification and quantification) methods were heavily
-criticised (see~\citet{Ezkurdia2014-qx,Deutsch2015}).
+(identification and quantification) methods were criticised
+(see~\citet{Ezkurdia2014-qx,Deutsch2015}).
 Thus, for this thesis I have relied only on
 quantifications provided by \james\ who reprocessed the raw spectra.\mybr\
 
