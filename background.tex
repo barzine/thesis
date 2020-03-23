@@ -524,18 +524,19 @@ Though more expensive and more programmatically challenging,
 the paired-end approach facilitate the detection of genomic rearrangements%
 \footnote{As indels or inversions} and
 repetitive sequence elements.
-It helps to distinguish between a gene isoforms
+It also helps to distinguish between a gene isoforms
 and provides greater support to identify novel transcripts (new isoform or gene)
 and fusion genes\footnote{A \gls{fusionG} is a gene
 that is the product of the fusion of
 parts of two (or more) different genes.}.\mybr\
 
-In both cases, the sequencing process is the same. It is an Illumina proprietary
-process, and it is called \emph{Sequencing-by-Synthesis}~\mycite{seqBySynth}.
+In both cases, Illumina's sequencing process,
+called \emph{Sequencing-by-Synthesis}~\mycite{seqBySynth},
+is the same.
 It uses the \gls{DNA} replication mechanism with modified \dNTPs.
-It relies on the step-by-step incorporation of
-reversible fluorescent tagged \dNTPs\ which are protected at
-their 3'end to block any further elongation.
+Reversible fluorescent tagged \dNTPs,
+which are protected at their 3'end to block any further elongation,
+allow a step-by-step incorporation.
 The product of this synthesis is called a \emph{read}, and
 it supports the \emph{base calling}\footnote{Base calling:
 identification of the nucleosides in a sequence
@@ -543,28 +544,26 @@ by assigning chromatogram peaks
 or another kind of signal variations
 to (nucleo){}bases.}.\mybr\
 
-
 The sequencing co-occurs on every identical fragment
 of every cluster of the flow cell.
 It begins with the hybridisation of a complementary 5' primer onto the 3' binding
 site of the tethered \gls{DNA} template. This primer is then extended by
-replication to create a new read. Next, the sequencing cycle (described below)
-repeats itself several times.\mybr\
+replication through several sequencing cycles to create a new read.\mybr\
 
-The \emph{sequencing cycle} starts with the addition of one complementary
+A \emph{sequencing cycle} starts with the addition of one complementary
 fluorescent \dNTP\ to the new growing read, and
 the replication process stops since the \dNTPs\ are blocked at their 3' end.
-Afterwards, all the unlinked
-\dNTPs\ are washed away. Then, the clusters are excited by a light source,
-and as each
-\dNTPs\ has a fluorescent tag with its own characteristic wavelength, the
-signal that they emit back will allow \emph{calling} (\ie\ identifying) what is the
-new nucleotide that each cluster has incorporated. The signal intensity and
-its wavelength are recorded (both of them are needed for the base calling
-process for the base call itself and its associated accuracy). Finally,
-the fluorescent tags and the 3' caps are cleaved
+A wash discards all the unlinked \dNTPs\ away.
+Then, the clusters are excited by a light source,
+and as each \dNTPs\ has a tag
+that fluoresces at its own characteristic wavelength,
+the emitted signal allows \emph{calling} (\ie\ identifying)
+the new nucleotide incorporated by each cluster.
+The signal intensity and wavelength are recorded
+for later base calling and accuracy estimation.
+Finally, the fluorescent tags and the 3' caps are cleaved
 and washed away so a new cycle can happen.
-The number of cycles determines the final length of the reads.\mybr\
+The number of cycles determines the final read length.\mybr\
 
 Unfortunately, as the sequencing proceeds, the error rate of the sequencers
 increases. This is due to the incomplete removal of the fluorescent signal which
@@ -821,33 +820,8 @@ ones, several tools complement the previous strategies.\mybr\
 There are tools like \toph\footnote{\toph\ ---
 \href{https://ccb.jhu.edu/software/tophat/index.shtml}
 {https://ccb.jhu.edu/software/tophat/index.shtml}} (2.0.12)~\mycite{tophat2},
-which has reconstructed all the transcriptomes involved
-in this thesis (see \Cref{ch:datasets}),
 that use a hybrid approach
-between a reference alignment and a \latin{de novo} assembly.
-As a first (but optional) step, \toph\ tries to contiguously
-align the reads with \soft{Bowtie}\footnote{\soft{Bowtie} ---
-\href{http://bowtie-bio.sourceforge.net/index.shtml}%
-{http://bowtie-bio.sourceforge.net/index.shtml}}~\mycite{Bowtie}
-to the reference transcriptome when this one is provided. Then
-(or alternatively as a first step), the unmapped reads are aligned to the
-reference genome.
-These alignment steps identify and localise the exons,
-which may eventually span over splicing junctions
-and be connected through spliced alignment.
-Then, \toph\ builds a database of possible exon-exon splice junctions
-from the set of mapped reads
-and then split the remaining unmapped
-(or aligned with a low score) reads to smaller segments
-in order to find possible new split events via a seed-and-extend approach.
-Potential new events are considered when these smaller segments, first,
-match exactly the reference for their good-quality score regions
-and, secondly,
-they have overlaps (for a user-defined length) with a splice junction.
-These segment sections are called seeds.
-Any read with a seed is then checked
-for a longer or even complete alignment to the exons
-on both sides of the junction.\mybr\
+between a reference alignment and a \latin{de novo} assembly.\mybr\
 
 \minisec{Reads and fragments}
 In the case of paired-end data,
