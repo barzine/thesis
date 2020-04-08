@@ -116,7 +116,9 @@ between the two most recent studies,
 \uhlen~\mycite{Uhlen2015} and \gtex~\mycite{GTExTranscript}.
 This 23-tissue set is the base of the second combined dataset (\setTwo) and
 includes
-\Adipose, \Adrenal, \Bladder, \Cortex, \hcolon, \Esophagus,
+\Adipose, \Adrenal, \tissue{Bladder}\footnote{May also be referred to
+as \Urinarybladder},
+\Cortex, \hcolon, \Esophagus,
 \Fallopian, \heart, \kidney, \liver, \lung, \Ovary, \Pancreas, \Prostate,
 \salivary, \skeletal, \skin, \intestine, \spleen, \stomach, \testis,
 \thyroid\ and \uterus.\mybr\
@@ -131,7 +133,7 @@ common tissues: \heart, \kidney, \liver\ and \testis.
 The most prominent overlap of tissues (23) is between \uhlen\ and \gtex.
 }
 \end{figure}
-\vspace*{-5mm}
+%\vspace*{-2.5mm}
 
 \subsection{Common measured genes for each of the main shared-tissue sets\quad}%
 \label{subsec:transGeneOverlap}
@@ -424,7 +426,7 @@ of genes expression patterns across tissues and studies.\mybr\
 \section{Global~stability~of~gene~expression~profiles~across~studies}
 
 After validating that \Rnaseq\ allows distinguishing the shared biological origin
-of most \treps\ across different studies,
+of most tissues (\treps) across different studies,
 the question then arises as how consistent is
 the expression of each gene for a given tissue between studies.\mybr\
 
@@ -436,91 +438,6 @@ I focus on the tissue-specific (TS) genes,
 and on a larger number of categories developed upon
 classifications from \uhlen{}'s laboratory.\mybr\
 
-\subsection{Similar gene expression variability}
-
-There are several available estimators to describe the gene expression variability,
-\eg\ the standard deviation~(sd) the variance~($sd^2$) or the coefficient of
-variation~($\frac{sd}{mean}$).
-I only report here the results based on the coefficients of variation.
-The \gls{cv} allows assessing
-the dispersion of the gene expression values
-across the tissues within each dataset.
-As it adjusts for the mean,
-it is a more straightforward estimator to interpret than
-the variance itself,
-in particular for interstudy comparisons.\mybr\
-
-As depicted in \Cref{fig:HistCV4T} (and \Cref{fig:HistCV23T} for \setTwo),
-the distribution of gene expression \cvs\ presents a similar pattern
-across the five studies of \setOne.\mybr\
-
-\begin{figure}[!htpb]
-    \captionsetup{singlelinecheck=off}
-    \includegraphics[scale=0.73]{transcriptomics/distributionCV_4commonTissues.pdf}%
-    \centering
-    \vspace{-4mm}
-    \caption[Coefficients of variation across the 5 studies for the set of common
-expressed genes and tissues]{\label{fig:HistCV4T}\textbf{Distribution of the
-\cvs\ (cv) across \setOne\ (common set of expressed \pcgs\
-across the four common tissues):
-\{\Heart, \Kidney, \Liver, \Testis\}
-across the five studies.}\\
-The coefficients of variation (\gls{cv}) of the \pcgs\ (12,268) of the four tissues
-present the same bimodal distribution profile across the five studies.
-\\These profiles present two peaks: at $0.5$ and $2$.\\
-Genes with a \gls{cv} lesser than or equal to $0.5$ have
-a similar expression profile to a left-truncated version of
-the complete gene set ones (due to the $1$ \FPKM\ cut-off)
-as in \Cref{fig:distribPlot}.
-On the other hand, the \pcgs\ with a coefficient of variation
-equal to or greater than $1.5$ have two kinds of distinct profiles:
-{\small
-\begin{itemize}[topsep=0pt,nosep,leftmargin=95pt,listparindent=5pt]
-    \item The gene expression is low across the four tissues, and
-        it is above the cut-off of $1$ \FPKM\ only once
-        (see \Cref{fig:mostVarBreadth}); or
-    \item The gene expression is specifically high for one single tissue
-        relative to the three others (See \Cref{fig:highestCVhist}).
-\end{itemize}
-}}
-\end{figure}
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.73]{transcriptomics/distributionCV_23commonTissues.pdf}\centering
-    \vspace{-4mm}
-    \caption[Coefficients of variation across \setTwo\ 2 studies and their set
-    of common genes across the 23 tissues]{\label{fig:HistCV23T}\textbf{Distribution
-    of the \cvs\ across \setTwo.}
-    The bimodal distribution is more unbalanced than in \Cref{fig:HistCV4T}.
-    Indeed, as more tissues are included for the calculation of the \cvs,
-    the second peak is found around $5$.
-    This peak has a smaller amplitude than the peaks at $2$ in \Cref{fig:HistCV23T}.
-    There are still many genes that have a \cv\ around $2$.
-    However, the overall distribution of the higher \cvs\ is smoother than
-    for \setOne.
-    Hence, most genes present a similar profile of expression through the various
-    tissues.}
-\end{figure}
-
-The five datasets present two peaks.
-One at approximatively 0.5 which characterises genes
-that are quite invariant in their expression
-across the four tissues within each study.
-Another subset of genes forms a peak for \cvs\ equal to 2.
-This last group of genes are the most variable ones in each dataset.
-There is an overlap of the most variable genes between the five datasets
-(as shown in \Cref{fig:cvEvol5DF}).\mybr\
-
-While \Cref{fig:noMitoNoRep23T} has already established that
-expression profiles for each tissue are very similar across the studies,
-\Cref{fig:HistCV23T} highlights that most genes seem to share the same
-intertissue expression profile variability as the distribution of the coefficients
-of variation across \uhlen\ \etal\ and \gtex\ studies are very alike.\mybr\
-
-More in-depth analyses confirmed that
-overall the genes present an equivalent \cv\
-from one study to another
-for the same tissue set. See \Cref{fig:cvEvol5DF,fig:cvEvol2DF}.\mybr\
 
 \subsection{Tissue specific genes}\label{sub:TisSpeGene}
 %\sectionmark{Tissue specific genes}
@@ -680,8 +597,45 @@ depicting the expression landscape of each covered condition
 instead of focusing on the gene expression through these conditions.}
 (see \Cref{fig:gxaEx}).
 There are also a few variations
-on how to compute this ratio (see~\citet{Zhu2016-xo,Uhlen2015}).\mybr\
+on how to compute this ratio; see~\citet{Zhu2016-xo,Uhlen2015}.\mybr\
 
+In this thesis,
+I compute the FC ratio by dividing the expression
+of each gene in a given tissue
+by the maximum expression of this gene across all the other tissues of that study
+in the combined dataset.\mybr\
+
+\begin{equation}
+    \tag{Fold change (FC) ratio}
+    \FCm_{g,t}=\frac{x_{(g,t,d)}}{x_{\text{max}(g,\mathcal{T},d)}}
+\end{equation}
+where:\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+            \setlength{\topsep}{0em}%
+            \setlength{\partopsep}{0em}%
+            \setlength{\parskip}{0em}%
+            \setlength{\parsep}{0em}]
+        \item[\textbullet\ $\mathcal{T}$] is a set of tissues $t$
+        \item[\textbullet\ $x$] is the expression value of the gene $g$
+            in the tissue $t$ in a study $d$
+        \item[\textbullet\ $x_{\text{max}(g,\mathcal{T},d)}$] $≥ x_{(g,t,d)}$
+            $\forall t \in \mathcal{T}$,
+            and $\forall g$,
+            $\exists t_m$ $x_{(g,t_m,d)}= x_{\text{max}(g,\mathcal{T},d)}$
+\end{eqlist}
+
+Studies usually pick arbitrary cut-offs to characterise the specific genes.
+\citet{Uhlen2015} uses two-fold and five-fold cut-offs
+to determine \emph{enriched} and \emph{enhanced} tissue genes.
+\citet{Zhu2016-xo} set their cut-off at $2$ to characterise \gls{TS} protein-coding
+and noncoding transcripts.
+However,
+I avoid arbitrary cut-offs, and
+I use the FC ratio to rank the \pcgs\ of my combined datasets according
+to their specificity within each tissue:
+higher FC ratios indicate genes with higher specificity.
+I then assess the consistency of the tissue specificity of the genes through the
+various studies.
+For that, I have followed the \emph{T-approach} overviewed in \Cref{fig:overlapConcept}.\mybr\
 
 \begin{figure}[!thb]
     \includegraphics[scale=0.8]{transcriptomics/mostSpe4TP1.pdf}\centering
@@ -699,35 +653,6 @@ on how to compute this ratio (see~\citet{Zhu2016-xo,Uhlen2015}).\mybr\
     }
 \end{figure}
 
-In this thesis,
-I compute the FC ratio by dividing the expression
-of each gene in a given tissue
-by the maximum expression of this gene across all the other tissues of that study
-in the combined dataset.
-Studies usually pick arbitrary cut-offs to characterise the specific genes.
-\citet{Uhlen2015} uses two-fold and five-fold cut-offs
-to determine \emph{enriched} and \emph{enhanced} tissue genes.
-\citet{Zhu2016-xo} set their cut-off at $2$ to characterise \gls{TS} protein-coding
-and noncoding transcripts.
-However,
-I avoid arbitrary cut-offs, and
-I use the FC ratio to rank the \pcgs\ of my combined datasets according
-to their specificity within each tissue:
-higher FC ratios indicate genes with higher specificity.
-I then assess the consistency of the tissue specificity of the genes through the
-various studies.
-For that, I have followed the \emph{T-approach} overviewed in \Cref{fig:overlapConcept}.\mybr\
-
-\begin{figure}[!htbp]
-    \includegraphics[scale=0.7]{transcriptomics/mostSpe23TP1.pdf}\centering
-    \vspace{-0.2in}
-    \caption[Intersection size curve of \setTwo\ genes based on their FC ratio
-    rank in each tissue across the two studies]{\label{fig:mostSpe23T}\textbf{Intersection
-    size curve of \setTwo\ genes based on their specificity (FC ratio rank)
-    in each of the twenty-three tissues across the two studies.}
-    }
-\end{figure}
-
 \Cref{fig:mostSpe4T} presents the shifts in the intersection size curves of the
 four tissues of \setOne.
 The most specific genes in each tissue of \setOne\ are shared between the
@@ -738,6 +663,16 @@ The intersection of the most specific genes is even greater for \testis\ as
 it concerns more than a tenth of \setOne\ genes.
 \Cref{fig:mostSpe23T} shows that this observation holds true for \setTwo\
 when the number of tissues and genes is increased.\mybr\
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.7]{transcriptomics/mostSpe23TP1.pdf}\centering
+    \vspace{-0.2in}
+    \caption[Intersection size curve of \setTwo\ genes based on their FC ratio
+    rank in each tissue across the two studies]{\label{fig:mostSpe23T}\textbf{Intersection
+    size curve of \setTwo\ genes based on their specificity (FC ratio rank)
+    in each of the twenty-three tissues across the two studies.}
+    }
+\end{figure}
 
 \subsubsection{Hampel's test: detection of \emph{atypical} expression}\label{subsub:Hampel}
 
@@ -924,7 +859,94 @@ Common\\23-tissues\\combined datasets}}} & Uhlén & 2,662  & 1,970  &
 \end{tabular}
 \end{sidewaystable}
 
+\subsection{Similar expression variability of the genes across studies\quad}
+\vspace{-5mm}
+To further appraise the robustness of gene expression,
+I have studied more globally their variability across studies.
 
+There are several available estimators to describe the gene expression variability,
+\eg\ the standard deviation~(sd) the variance~($sd^2$) or the coefficient of
+variation~($\frac{sd}{mean}$).
+I only report here the results based on the coefficients of variation.
+The \gls{cv} allows assessing
+the dispersion of the gene expression values
+across the tissues within each dataset.
+As it adjusts for the mean,
+it is a more straightforward estimator to interpret than
+the variance itself,
+in particular for interstudy comparisons.\mybr\
+
+As depicted in \Cref{fig:HistCV4T} (and \Cref{fig:HistCV23T} for \setTwo),
+the distribution of gene expression \cvs\ presents a similar pattern
+across the five studies of \setOne.\mybr\
+
+The five datasets present two peaks.
+One at approximatively 0.5 which characterises genes
+that are quite invariant in their expression
+across the four tissues within each study.
+Another subset of genes forms a peak for \cvs\ equal to 2.
+This last group of genes are the most variable ones in each dataset.
+There is an overlap of the most variable genes between the five datasets
+(as shown in \Cref{fig:cvEvol5DF}).\mybr\
+
+While \Cref{fig:noMitoNoRep23T} has already established that
+expression profiles for each tissue are very similar across the studies,
+\Cref{fig:HistCV23T} highlights that most genes seem to share the same
+intertissue expression profile variability as the distribution of the coefficients
+of variation across \uhlen\ \etal\ and \gtex\ studies are very alike.\mybr\
+
+\begin{figure}[!htpb]
+    \captionsetup{singlelinecheck=off}
+    \includegraphics[scale=0.73]{transcriptomics/distributionCV_4commonTissues.pdf}%
+    \centering
+    \vspace{-4mm}
+    \caption[Coefficients of variation across the 5 studies for the set of common
+expressed genes and tissues]{\label{fig:HistCV4T}\textbf{Distribution of the
+\cvs\ (cv) across \setOne\ (common set of expressed \pcgs\
+across the four common tissues):
+\{\Heart, \Kidney, \Liver, \Testis\}
+across the five studies.}\\
+The coefficients of variation (\gls{cv}) of the \pcgs\ (12,268) of the four tissues
+present the same bimodal distribution profile across the five studies.
+\\These profiles present two peaks: at $0.5$ and $2$.\\
+Genes with a \gls{cv} lesser than or equal to $0.5$ have
+a similar expression profile to a left-truncated version of
+the complete gene set ones (due to the $1$ \FPKM\ cut-off)
+as in \Cref{fig:distribPlot}.
+On the other hand, the \pcgs\ with a coefficient of variation
+equal to or greater than $1.5$ have two kinds of distinct profiles:
+{\small
+\begin{itemize}[topsep=0pt,nosep,leftmargin=95pt,listparindent=5pt]
+    \item The gene expression is low across the four tissues, and
+        it is above the cut-off of $1$ \FPKM\ only once
+        (see \Cref{fig:mostVarBreadth}); or
+    \item The gene expression is specifically high for one single tissue
+        relative to the three others (See \Cref{fig:highestCVhist}).
+\end{itemize}
+}}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \includegraphics[scale=0.73]{transcriptomics/distributionCV_23commonTissues.pdf}\centering
+    \vspace{-4mm}
+    \caption[Coefficients of variation across \setTwo\ 2 studies and their set
+    of common genes across the 23 tissues]{\label{fig:HistCV23T}\textbf{Distribution
+    of the \cvs\ across \setTwo.}
+    The bimodal distribution is more unbalanced than in \Cref{fig:HistCV4T}.
+    Indeed, as more tissues are included for the calculation of the \cvs,
+    the second peak is found around $5$.
+    This peak has a smaller amplitude than the peaks at $2$ in \Cref{fig:HistCV23T}.
+    There are still many genes that have a \cv\ around $2$.
+    However, the overall distribution of the higher \cvs\ is smoother than
+    for \setOne.
+    Hence, most genes present a similar profile of expression through the various
+    tissues.}
+\end{figure}
+
+More in-depth analyses confirmed that
+overall the genes present an equivalent \cv\
+from one study to another
+for the same tissue set. See \Cref{fig:cvEvol5DF,fig:cvEvol2DF}.\mybr\
 
 \subsection{Curated sets}\label{subsec:Trans_curatedSets}
 
@@ -940,13 +962,12 @@ are provided digitally as supplementary data.
 They can be found at \url{http://www.barzine.net/~mitra/thesis}.
 \\The code required to produce these results can be found at \github.\mybr\
 
-
 \section{Discussion}\label{sec:Trans_discussion}
 %\vspace{-6mm}
 In this chapter,
 I have directly compared and integrated
 the human tissue transcriptome from five \Rnaseq\ studies.
-The meta-analyses are based on the most extensive set
+The meta-analyses are based on the largest number
 of undiseased human tissue studies to date.
 I have constructed two combined datasets of \pcgs.
 The first one (\setOne) comprises four tissues

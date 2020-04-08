@@ -443,10 +443,16 @@ a lack of expression, rather than a lack of observation.\mybr\
                 if it has been identified and quantified.
                 In other words, a protein is expressed
                 if the expression value is greater than zero in a sample.
+                As described in \Cref{subsec:proteinInference},
+                a protein identification and expression are inferred
+                on a set of selected peptides.
+                Thus, if the peptide selection changes,
+                the identified proteins and their level of expression as well.
                 \item\textsf{Expressed transcript}:\label{subsubsec:exprTrans} %
-                It is a bit more complex on the transcriptomic side as
+                On the transcriptomic side,
+                while the identification is direct,
                 we have to account for technical noise,
-                but also \enquote{transcriptional noise}~\mycite{rnaseq-2009,lowNoiseLimit}.
+                but also for \enquote{transcriptional noise}~\mycite{rnaseq-2009,lowNoiseLimit}.
                 Indeed, \citet{seqcmaqc} reports that
                 excluding low-expression measurements reduce the \gls{FDR}
                 of \glspl{RNA} considerably.\\

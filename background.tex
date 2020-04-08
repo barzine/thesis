@@ -531,7 +531,7 @@ that is the product of the fusion of
 parts of two (or more) different genes.}.\mybr\
 
 In both cases, Illumina's sequencing process,
-called \emph{Sequencing-by-Synthesis}~\mycite{seqBySynth},
+\emph{sequencing-by-synthesis}~\mycite{seqBySynth},
 is the same.
 It uses the \gls{DNA} replication mechanism with modified \dNTPs.
 Reversible fluorescent tagged \dNTPs,
@@ -551,18 +551,16 @@ site of the tethered \gls{DNA} template. This primer is then extended by
 replication through several sequencing cycles to create a new read.\mybr\
 
 A \emph{sequencing cycle} starts with the addition of one complementary
-fluorescent \dNTP\ to the new growing read, and
-the replication process stops since the \dNTPs\ are blocked at their 3' end.
+fluorescent \dNTP\ to the new growing read,
+which stops the replication process as the \dNTPs\ 3' end is blocked.
 A wash discards all the unlinked \dNTPs\ away.
 Then, the clusters are excited by a light source,
-and as each \dNTPs\ has a tag
-that fluoresces at its own characteristic wavelength,
-the emitted signal allows \emph{calling} (\ie\ identifying)
-the new nucleotide incorporated by each cluster.
-The signal intensity and wavelength are recorded
-for later base calling and accuracy estimation.
+and the signal intensity and (characteristic) wavelength
+of each \dNTPs\ are recorded
+since they allow the identification of the new nucleotide incorporated
+by each cluster and measure the accuracy of the base calling.
 Finally, the fluorescent tags and the 3' caps are cleaved
-and washed away so a new cycle can happen.
+and washed away before a new cycle begins.
 The number of cycles determines the final read length.\mybr\
 
 Unfortunately, as the sequencing proceeds, the error rate of the sequencers
