@@ -607,7 +607,7 @@ in the combined dataset.\mybr\
 
 \begin{equation}
     \tag{Fold change (FC) ratio}
-    \FCm_{g,t}=\frac{x_{(g,t,d)}}{x_{\text{max}(g,\mathcal{T},d)}}
+    \FCm_{g,t,d}=\frac{x_{g,t,d}}{\max\limits_{t' \in \mathcal{T}} x_{g,t',d}}
 \end{equation}
 where:\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
             \setlength{\topsep}{0em}%
@@ -617,10 +617,6 @@ where:\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
         \item[\textbullet\ $\mathcal{T}$] is a set of tissues $t$
         \item[\textbullet\ $x$] is the expression value of the gene $g$
             in the tissue $t$ in a study $d$
-        \item[\textbullet\ $x_{\text{max}(g,\mathcal{T},d)}$] $≥ x_{(g,t,d)}$
-            $\forall t \in \mathcal{T}$,
-            and $\forall g$,
-            $\exists t_m$ $x_{(g,t_m,d)}= x_{\text{max}(g,\mathcal{T},d)}$
 \end{eqlist}
 
 Studies usually pick arbitrary cut-offs to characterise the specific genes.
