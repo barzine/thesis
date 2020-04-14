@@ -115,7 +115,7 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 \RequirePackage{amsmath}
 \RequirePackage{xpatch}
 \RequirePackage{xltxtra}
-\RequirePackage{xcolor}
+\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{calc}
 \RequirePackage{libertine}
 \RequirePackage{unicode-math}
@@ -175,6 +175,9 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 \Crefname{appsubsubsec}{Appendix}{Appendices}
 \RequirePackage{isotope}
 \RequirePackage[mark]{gitinfo2}
+\RequirePackage{tikz}
+\newcommand{\tikzcircle}[2][red,fill=red]{\tikz[baseline=-0.5ex]\draw[#1,radius=#2] (0,0) circle ;}% from https://tex.stackexchange.com/a/89827/102519
+
 %\RequirePackage[inline]{showlabels}
 %\renewcommand{\showlabelsetlabel}[1]
 %{\begin{turn}{10}\color{red}\showlabelfont #1\end{turn}}
@@ -393,6 +396,15 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 %        filecolor=thesis@linkcolor,
 %        urlcolor=thesis@linkcolor
 %    }
+
+
+\definecolor{darkO}{rgb}{118, 45, 35}
+\definecolor{darkof}{rgb}{195, 160, 153}
+
+\definecolor{mytan}{rgb}{178, 54, 253}
+\definecolor{mytanf}{rgb}{215, 145, 254}
+
+
 
 
 %%%%%%%
