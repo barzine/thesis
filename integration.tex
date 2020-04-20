@@ -94,7 +94,7 @@ present rather moderate correlations ($r^2≤0.41,\ie~r<0.64$)
 and highlight that \mRNA\ levels explain only about 40\% of protein variations
 they have observed.\mybr\
 
-Other studies tried to explore the \mRNAs\ and proteins relationship in answer
+Other studies have explored the \mRNAs\ and proteins relationship in answer
 to stimuli~\mycite{Marguerat2012-sn}
 or with an increased focus to post-transcriptional regulations
 (including degradation rates)~\mycite{Jovanovic2015-wv}.
@@ -218,9 +218,8 @@ and the two transcriptomic datasets.\mybr\
 \subsection{Overlapping set of tissues for the three datasets}
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.61]{integration/PandeyGtexUhlen_tissuesVennm.pdf}
+    \includegraphics[scale=0.69]{integration/PandeyGtexUhlen_tissuesVennm.pdf}
     \centering
-    \vspace{-5mm}
     \caption[Number of shared and unique tissues between the proteomic
     dataset from Pandey Lab and the transcriptomic datasets (Uhlén \etal\ and
     Gtex)]{\label{fig:VennTissuePandeyGtexUhlen}\textbf{Number of shared and unique
@@ -249,7 +248,6 @@ to three additional tissues (\ie\ \Gall, \Placenta\ and \Rectum)
 by including the \uhlen\ \etal\ data on the transcriptomic side only.\mybr\
 
 \subsection{Matching pairs of mRNAs and proteins}
-%\vspace{-4mm}
 To avoid unnecessary biases (described in \Cref{sec:bias_sources}),
 I only consider the \mRNAs\
 (\ie\ \glspl{RNA} with a \emph{protein-coding} biotype --- \ens{76})
@@ -289,10 +287,10 @@ and \uhlen\ \etal{}'s and \gtex{}'s \mRNAs\ quantified
 with \htseq\ (see \Cref{subsubsec:RnaseqDataProc}).
 \Cref{fig:PU_vennQ1} is the same analysis across the fifteen shares tissues
 between \pandey\ Lab and \uhlen\ \etal\ data.\mybr\
+\vspace{5mm}
 
 \begin{figure}[!htb]
-    \includegraphics[scale=0.6]{integration/PandeyGtexUhlen_mRNAprotQ1Vennm.pdf}\centering
-    \vspace{-5mm}
+    \includegraphics[scale=0.65]{integration/PandeyGtexUhlen_mRNAprotQ1Vennm.pdf}\centering
     \caption[Distribution of the unique and shared proteins/mRNAs for the three datasets
     across twelve tissues]{%
     \label{fig:PGU_vennQ1}\textbf{Distribution of the unique and shared proteins
@@ -305,8 +303,7 @@ between \pandey\ Lab and \uhlen\ \etal\ data.\mybr\
 
 
 \begin{figure}[!htb]
-    \includegraphics[scale=0.6]{integration/PandeyUhlen_mRNAprotQ1Vennm.pdf}\centering
-    \vspace{-3.5mm}
+    \includegraphics[scale=0.65]{integration/PandeyUhlen_mRNAprotQ1Vennm.pdf}\centering
     \caption[Distribution of the unique and shared proteins/mRNAs for Pandey Lab
     and Uhlén \textit{et al.} across fifteen tissues.]{%
     \label{fig:PU_vennQ1}\textbf{Distribution of the unique and shared proteins/mRNAs
@@ -345,9 +342,15 @@ in proportion to their \emph{unique} peptides.
 The method produces normalised values of the protein expression levels
 (whose unit is the \gls{PPKM}, \ie\ \glspl{PSM} Per Kilobase of gene per Million).\mybr\
 
-\begin{figure}[!ht]
-    \includegraphics[scale=0.6]{integration/PandeyGtexUhlen_mRNAprotQ3Vennm.pdf}\centering
-    \vspace{-4mm}
+As shown in \Cref{fig:PGU_venQ3,fig:PU_vennQ3},
+while the number of quantified proteins
+with our new method
+covers about 62\% of \uhlen\ \etal{}'s and \gtex{}'s quantified \mRNAs,
+the number of proteins for which no \mRNA\ was detected
+in the transcriptomic data remains marginal.\mybr\
+
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.65]{integration/PandeyGtexUhlen_mRNAprotQ3Vennm.pdf}\centering
     \caption[Distribution of the unique and shared proteins/mRNAs
     across the three datasets and twelve tissues
     (new protein quantification method)]{\label{fig:PGU_venQ3}%
@@ -357,24 +360,15 @@ The method produces normalised values of the protein expression levels
     Uhlén \etal\ and GTEx data.}
 \end{figure}
 
-%\vspace{-4mm}
-\begin{figure}[!ht]
-    \includegraphics[scale=0.6]{integration/PandeyUhlen_mRNAprotQ3Vennm.pdf}\centering
-    \vspace{-4mm}
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.65]{integration/PandeyUhlen_mRNAprotQ3Vennm.pdf}\centering
     \caption[Distribution of the unique and shared proteins/mRNAs
     ahlcross fifteen tissues between Pandey Lab (new quantification method)
     and Uhlén \textit{et al.} data]{\label{fig:PU_vennQ3}\textbf{Distribution of the
-    unique and shared proteins/mRNAs across fifteen tissues} between
-    the Pandey Lab (\textbf{new quantification method})
-    and Uhlén \etal\ data.}
+    unique and shared proteins/mRNAs across fifteen tissues between
+    the Pandey Lab (new quantification method)
+    and Uhlén \etal\ data.}}
 \end{figure}
-
-As shown in \Cref{fig:PGU_venQ3,fig:PU_vennQ3},
-while the number of quantified proteins
-with our new method
-covers about 62\% of \uhlen\ \etal{}'s and \gtex{}'s quantified \mRNAs,
-the number of proteins for which no \mRNA\ was detected
-in the transcriptomic data remains marginal.\mybr\
 
 Whether it reflects the biological reality or
 is solely due to \Rnaseq\ technology being more sensitive than
@@ -413,9 +407,9 @@ a protein may be specific to an individual or a population.
 This last hypothesis is the most unlikely
 as there are several biological replicates on the transcriptomic side.
 A mixture of the previous causes is also plausible.\mybr\
-%\vspace{-4mm}
+
 \begin{figure}[!htbp]
-     \includegraphics[scale=0.8]{integration/overviewDatasets.pdf}\centering
+     \includegraphics[scale=0.85]{integration/overviewDatasets1.pdf}\centering
      \vspace{-3mm}
      \caption[Overview of different datasets combination]{%
      \label{fig:setsOverview}\textbf{Overview of different studied datasets
@@ -436,10 +430,9 @@ in \Cref{fig:PGU_vennQ1,fig:PU_vennQ1,%fig:VennTissuePandeyGtexUhlen,
 fig:PGU_venQ3,fig:PU_vennQ3}.\mybr\
 
 \subsection{Tissue-centric and gene-centric approaches}
-%\vspace{-3mm}
 
-\begin{figure}[!htb]
-    \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.png}\centering
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.85]{integration/VisualExplaination-Lin.pdf}\centering
     %\vspace{-3mm}
     \caption[Summary of the expression comparison approaches between
     the transcriptome and proteome]{\label{fig:visualexp}\textbf{Approaches
@@ -459,7 +452,7 @@ the global expression of its transcriptomic landscape to its proteomic one.
 In contrast,
 the \emph{gene-centric} approach compares for each gene
 its expression levels in \mRNA\ and protein across all the tissues.
-%\afterpage{\clearpage\sectionmark{Fair correlations between independent proteomics and transcriptomics}}
+\afterpage{\clearpage\sectionmark{Fair correlations between independent proteomics and transcriptomics}}
 
 Confusion can arise
 when integrating proteomics and transcriptomics.
@@ -556,16 +549,17 @@ for the untransformed data).\mybr\
     that can be fitted by a linear function with a positive slope,
     which indicates a high correlation between \mRNAs\ and proteins expression
     levels.
-    However, genes with lower expressed \mRNAs\ are more prone to dispersion,
-    in particular, \mRNAs\ that are expressed below $1$ \FPKM\ (\ie\ below $0$ on
-    the x-axis).
+    However, genes with lower expressed \mRNAs\ have
+    a less associated expression between their protein and \mRNA,
+    in particular, \mRNAs\ that are expressed
+    below $1$ \FPKM\ (\ie\ below $0$ on the x-axis).
     On the other side, genes with the highest expressed \mRNAs\ may present
     a saturation effect (\Cref{subsec:simpleProt})
     in the quantification of the protein expression.
     The highest expressed protein is \protein{\gls{HBB}}
     (\ie\ Hemoglobin Subunit Beta), which is also found in
     the five highest expressed proteins in all the other tissues.
-    Likely, its presence is due to remaining erythrocytes in the samples.
+    Possibly, its presence is due to remaining erythrocytes in the samples.
     On the outer parts of the scatterplot,
     there are the respective distribution densities of the proteins and the \mRNAs.
     Whilst the correlation calculation includes every pair of \mRNA\ and protein,
@@ -611,22 +605,22 @@ protein quantification or correlation methods involved in the comparison.\mybr\
 
 
 A linear function with a positive slope (not drawn) can fit the bulk of the points.
-Indeed, the expression of most \mRNAs\ and proteins in a tissue are highly associated.
-However, there is a high dispersion for the lowest ($<1$ \FPKM)
-and many of the highest measured \mRNAs{}.\mybr\
+Indeed, the expression of most \mRNAs\ and proteins in a tissue
+are highly associated
+with the exception of the lowest ($<1$ \FPKM) and
+a number of the highest measured \mRNAs{}.\mybr\
 
 Besides the mismatching sampling sources,
-other possible explanations for the dispersion are
+other possible explanations for the observed divergences are
 technical limitations (such as protein saturation effect, see \Cref{subsec:simpleProt}),
 translational noise (see \Cref{subsubsec:exprTrans})
 or a consequent half-life difference between the \mRNA\ and its protein.\mybr\
 
-Although the number of genes affected by the dispersion is rather limited,
-they are enough to impair the Pearson and Spearman correlation coefficients.\mybr\
+Although the number of genes
+presenting lowly associated levels of \mRNA/protein expression is rather limited,
+it is enough to impair the Pearson and Spearman correlation coefficients.\mybr\
 
-Systematic exclusion of the dispersal-prone genes
-(either the proteins with lowly expressed \mRNAs\
-or the highly expressed \mRNAs\ with a more limited protein expression)
+Systematic exclusion of lowly associated pairs of \mRNAs\ and proteins
 is impractical and arguable
 as they are inconsistent from one tissue to another.\label{memo:dispersedGenes}
 Case-by-case treatment will be necessary.\mybr\
@@ -639,18 +633,17 @@ the Pearson correlation
 increases from $0.56$ to $0.58$,
 while the Spearman correlation is relatively unchanged
 ($0.51$ instead of $0.52$).
-The changes are relatively similar
+There are similar changes observed
 when considering the more conservative Top3 protein quantification.
 The Pearson correlation $r=0.18$ increases to $0.21$.
 The Spearman correlation remains unchanged ($\rho=0.52$).\mybr\
 
-Regardless of the protein quantification method or
-the transcriptomic study, %(either \uhlen\ \etal\ or \gtex\ study),
-the results are essentially similar.
-Thus, I mostly present thereafter the results of the most extensive set
-(both in terms of tissues and genes),
+Both transcriptomic studies (\uhlen\ \etal\ or \gtex)
+providing equivalent results,
+I describe for most of the following analyses the data combination
+that provides the greatest number of tissues and genes to study,
 \ie\ the fifteen-tissue set between \uhlen\ \etal\ and \pandey\ Lab data
-(quantified with the \PPKM\ method).\mybr\
+quantified with the \PPKM\ method.\mybr\
 
 \vspace{-1mm}
 The other combinations
@@ -661,30 +654,37 @@ but the general trends are identical.\mybr\
 
 I focus on Pearson correlation over Spearman correlation
 in the following parts
-since the results for the \PPKM\ quantification are globally similar for both.
-Additionally, Pearson correlations are easier to interpret
-and more readily modelled upon for predictive purposes
-(see \Cref{subsec:PearsonVsSpearman}).\mybr\
-\vspace{-1.5mm}
+since the results for the \PPKM\ quantification are globally similar for both.\mybr\
 
 \subsection{Mixed biological signal between the proteome and transcriptome
 across the tissues}
 %\vspace{-8mm}
 \begin{figure}[!hb]
-    \includegraphics[scale=0.85]{integration/orderedHeatmapQ3Pearson.pdf}\centering
+    \includegraphics[scale=0.85]{integration/orderedHeatmapQ3Pearson1.pdf}\centering
     \vspace{-2mm}
     \caption[Heatmap based on the Pearson correlation between protein and mRNAs
     expression (alphabetically ordered tissue)]{\label{fig:orderedHeatmapPearson}%
     \textbf{Heatmap based on the Pearson correlation between protein and mRNAs
-    expression (alphabetically ordered tissue)}}
+    expression (alphabetically ordered tissue).}
+    Correlations for same tissue pairs (diagonal) are highlighted in
+    yellow when the highest observed correlation are between the matching proteomics
+    and transcriptomics pairs; in dark pink, when the proteomics correlates
+    the best with the matching transcriptomics.
+    When other higher correlations are observed for a tissue proteomics or transcriptomics
+    they are in given grey.}
 \end{figure}
 
 As shown in \Cref{fig:orderedHeatmapPearson},
-many proteomic \treps\ show the strongest correlation for
-their corresponding transcriptomic \trep\
-(\eg\ \liver, \testis, \ovary, \pancreas)
-but other preferentially correlate with other tissues first
-(\eg\ \tissue{Urinarybladder}, \Oesophagus, \gallbladder).
+for nine tissues (in yellow) transcriptomic and proteomic expressions correlate
+better in matching tissues.
+For four other tissues (\hColon, \Lung, \Oesophagus\ and \Urinarybladder\
+--- in dark pink),
+only the proteomics correlate the best with the matching transcriptomics,
+while the transcriptomics correlates better with another tissue proteomics.
+The remaining two tissues have their proteomics correlating
+as much (\eg\ \Gall) to other tissues or more to transcriptomics
+from other tissues (\Rectum).\mybr\
+
 While the different correlation methods lead to similar result trends,
 individual differences persist.
 In a few cases, \eg\ \heart,
@@ -715,14 +715,20 @@ the correlation range of protein expression for different tissue pairs
 is similar to the one for the same tissue pairs
 (see \Cref{fig:scat2DAdrenalPandeyPancreasKuster}).
 In this context,
-genes (expressed both as a protein and \mRNA)
-uniquely found in a single tissue can have a significant impact on the correlation.
-Thus, their proportion per tissue may explain
-the mixed correlation results.\mybr\
+genes expressed in a small number of tissues
+(both as a protein and \mRNA)
+can have a significant impact on the correlation
+and may explain the mitigated results.
+In the following sections,
+I can refer to a (\gls{TS}) gene as \emph{unique gene}
+when it is only expressed in a single tissue.\mybr\
 
-The expression breadth, presented in \Cref{fig:expressionBreadth},
-allows visualising the number of tissues
-where each gene (\mRNA\ or protein) is expressed.
+The expression breadth of a gene is
+the number of tissues and cell lines within which the gene is expressed.
+\Cref{fig:expressionBreadth} allows visualising
+the distribution of the expression breadth of the \mRNAs\ (\uhlen\ \etal)
+and the proteins (\pandey\ Lab data) across their fifteen common tissues.
+
 \Cref{fig:protBreadth} shows that
 the distribution of the protein expression breadth is bimodal.
 Either due to technical limitations or biological reasons,
@@ -790,6 +796,7 @@ in the literature~\mycite{Uhlen2015,oneDominant,Chen2018-ln}.\mybr\
 \end{figure}
 
 \Cref{fig:UniqueFeatureQ3T15} displays the fraction of unique genes
+(\ie\ only expressed in a single tissue)
 detected as a protein or an \mRNA\ at a considered threshold for each tissue as
 the analysis is seeking a possible link between
 the number of uniquely detected genes
@@ -826,13 +833,13 @@ and comprises the second-highest number of unique genes.
 \Testis\ is the third-best correlated tissue
 despite having the highest fractions of unique proteins and \mRNAs\
 regardless of any threshold.
-The other tissues lack any apparent relationship
-between their transcriptome and proteome correlation strength
-and their composition in unique genes.\mybr\
+The other tissues fail to show any relationship
+between the unique \mRNAs\ and proteins they expressed
+and the strength of the correlations.\mybr\
 
 Put together, these results suggest that
-the tissues correlation levels are unrelated
-to their amount of unique proteins and \mRNAs{}.
+the number of proteins and \mRNAs{} uniquely expressed in these tissues
+play a minor role at best in the \mRNA/protein correlation computed for each tissue.
 The lack of relation between the proteomic and transcriptomic observations
 is confirmed by a more refined analysis of the expression breadth.\mybr\
 
@@ -865,10 +872,12 @@ is confirmed by a more refined analysis of the expression breadth.\mybr\
 \Cref{fig:SharedBreadthProtQ3} shows that the expression breadth
 of \mRNAs\ (expressed ≥ $5$ \FPKM\ or even smaller threshold) concurs
 in very few cases to their corresponding protein breadth.
-Thus, the \mRNAs\ expression breadth is
-an ineffective predictor for the detection of a protein,
-including extreme cases where the protein is unique to one tissue
-or expressed in all fifteen of them.\mybr\
+Thus, the \mRNA\ expression breadth is insufficient
+to predict the expression breadth of the corresponding protein.
+Even for the two extreme cases
+where the protein is unique to a tissue or ubiquitous (found in all fifteen tissues),
+there are differences between the expression breadths of the \mRNA\ and the protein
+of the same gene.\mybr\
 
 All the expression breadth analyses of the transcriptome rely on expression levels.
 However, \Cref{ch:Transcriptomics} underlines that
@@ -897,7 +906,7 @@ with its $n$ \mRNAs\ with the highest tissue-specific ranks.
 \Cref{fig:ExJacquard} illustrates the \heart\ example.\mybr\
 
 \begin{figure}[!htb]
-    \includegraphics[scale=0.59]{integration/TissueSpeDeter.pdf}\centering
+    \includegraphics[scale=0.59]{integration/TissueSpeDeter1b.pdf}\centering
     \vspace{-3mm}
     \caption[Determination process of the specific mRNAs]{%
     \label{fig:RankSpe}\textbf{Overview of the comparison of the TS proteins
@@ -933,8 +942,7 @@ across all the tissues at the same time
 and ease the result interpretation in contrast to the raw overlap numbers.\mybr\
 
 \begin{minipage}{\textwidth}
-    The Jaccard index for the generic case shown in \Cref{fig:RankSpe}
-    is computed as follow:
+    The Jaccard index is computed as follow:
 \begin{equation}
     \tag{Jaccard similarity coefficient}\label{eq:Jaccard}
     \begin{split}
@@ -943,14 +951,21 @@ and ease the result interpretation in contrast to the raw overlap numbers.\mybr\
                        & = \frac{\left | x_{1}\cap  x_{2}\right |}%
                                 {\left | x_{1} \right | + \left | x_{2} \right |%
                                 - \left | x_{1}\cap  x_{2}\right |}\\
-                                & = \frac{y}{2n-y} \text{\small{~(specifically
-                                for~\Cref{fig:RankSpe})}}\\
     \end{split}
     \raisetag{6cm}
 \end{equation}
+
+When applied specifically to \Cref{fig:RankSpe}, we get:
+$J(\tikzcircle[Tan,fill={rgb,255:red,195; green,160;blue,153}]{4pt},%
+\tikzcircle[DarkOrchid,fill={rgb,255:red,215; green,145; blue,254}]{4pt}) = \frac{k}{2n-k}$,\\
+with $n$ the number of proteins (\tikzcircle[Tan,fill={rgb,255:red,195; green,160;blue,153}]{4pt})
+that are only found in a given tissue and
+$k$ is the number of common genes between \tikzcircle[Tan,fill={rgb,255:red,195; green,160;blue,153}]{4pt}
+and \tikzcircle[DarkOrchid,fill={rgb,255:red,215; green,145; blue,254}]{4pt}.
+%$n$ most specific \mRNAs\ of the tissue.
 \end{minipage}
 
-\vspace{4mm}
+\vspace{3mm}
 To measure the Jaccard indices significance,
 I use the hypergeometric test~\mycite{Field2012-au}
 (see \Cref{sec:hypergeometricTest}).
@@ -988,39 +1003,45 @@ in that tissue.}
     \vspace{-3mm}
 \end{figure}
 
-\vspace{4mm}
+%\vspace{4mm}
 I have rerun these analyses with different sets of parameters
 and I have consistently observed statistically significant overlaps
 except in rare cases,
-which include the comparison of \gls{TS} genes for \tissue{Urinary} \bladder\
+which include the comparison of \gls{TS} genes for \Bladder\
 between \pandey\ Lab (\PPKM\ quantification) and \uhlen\ \etal\ (\htseq)
 based on the fifteen-tissue set and where the \gls{TS} \mRNAs\ are selected
 with the fold change method.
 Overall, the Jaccard indices remain within the same ranges
 for different sets of parameters.\mybr\
 
-\vspace{4mm}
-Even though the tissues with the highest correlations
-between their proteome and transcriptome
-are presenting significant correspondences
-to the tissues with the highest Jaccard indices,
-many inconstancies persist.
-Hence, \gls{TS} proteins and \gls{TS} \mRNAs\ are insufficient to explain
+If ranked by their Jaccard indices,
+several tissues fall within a range similar to their correlation coefficient,
+while other not --- as shown by \Cref{fig:compCorJind}.
+For instance, \Liver, \Testis\ and \Pancreas\ have high ranks
+and \Bladder\ and \Gallbladder\ low ones
+for both their correlation and their Jaccard indices.
+On the other hand,
+\Kidney\ ranks first for the Jaccard index,
+but only reaches the seventh rank for Pearson correlation.
+While the \Rectum\ has the smallest Jaccard index
+and thus ranks last (\ie\ fifteenth),
+it gets ranking number nine for Pearson correlation.
+These results suggest that
+\gls{TS} proteins and \gls{TS} \mRNAs\ are unrelated to
 the tissue correlation levels.\mybr\
 
-\vspace{4mm}
-The former direct approaches
+%\vspace{4mm}
+Overall, the above direct approaches
 (based on the gene expression breadth across tissues and their tissue-specificity)
-fail to show a prominent (if any) contribution to the correlation levels
-between the proteome and transcriptome.
+fail to show a prominent (if any) contribution or association
+to the correlation levels between the proteome and transcriptome.
 These are most likely resulting
 from multiple subtle similarities
 based on identical differential expression
 within many clusters of the proteins and \mRNAs{}.\mybr\
 
-\vspace{4mm}
-Since direct approaches built on uniquely detected genes
-fail to explain the complete range of observed tissue correlation consistently,
+%\vspace{4mm}
+Given the unsuccess of direct approaches built on uniquely detected genes,
 I next examine whether or not an indirect method may be more appropriate.
 For this new analysis,
 I build hierarchical cluster trees that try to translate
@@ -1029,27 +1050,34 @@ Then, I compare the proteins' and transcripts' trees.\mybr\
 
 \FloatBarrier\
 
-\vspace{-1.55cm}
-\subsection{Proteins and mRNAs tissue trees present partial concordant results\\}
-
+\vspace{-8mm}
+\subsection{Proteins and mRNAs tissue trees present partial concordant results\quad}
 \vspace{-5mm}
+
 As presented in \Cref{subsec:clusteringPres},
 a hierarchical clustering analysis requires
-a distance measurement between each element that is included in the analysis
-and a linkage method.\mybr\
+a linkage method and
+a distance between each element that is included in the analysis.\mybr\
 
-The distance must reflect the difference in composition of gene populations
-that the tissues express.
-To this end,
-I only consider the genes that are detected in two tissues strictly.
-For each pair of tissues within a dataset,
-I count how many proteins or \mRNAs\ they share.
-Then, I use the inverse of this number as a distance measure
-since the larger the number of shared features,
-the closer the tissues are.
-Finally, I built a tree per dataset
-by linking the tissues with Ward's method~\mycite{Ward1963}
-as in the previous analyses.\mybr\
+I have built the tree of each dataset by linking the tissues
+with Ward's method~\mycite{Ward1963} like in the previous analyses.\mybr\
+
+I have performed an initial analysis that
+used the tissue correlations for the distance,
+but it did not highlight any similarity
+between the proteomics and transcriptomics trees of hierarchical clusters.\mybr\
+
+The distance used in the following analysis reflects
+the difference in composition of gene populations expressed by the tissues.
+It is based on the Jaccard index (see \Cref{eq:Jaccard}) of the tissues
+where I only consider genes (proteins or \mRNAs)
+that are detected in two tissues strictly.\mybr\
+
+Making the hypothesis that
+the closeness of two tissues increases with the number of genes they share,
+I compute the distance between two tissues, $t_1$ and $t_2$
+using the following formula:
+$\text{distance}(t_1,t_2)= 1 - J(t_{1},t_{2})$.
 
 Note that for this analysis,
 I present the results for \pandey\ Lab (\PPKM\ quantification) and \uhlen\ \etal\
@@ -1067,12 +1095,12 @@ in \Cref{fig:heatmapPandeyTissuePairs,fig:heatmapUhlenTissuePairs05}.\mybr\
 \begin{figure}[!htp]
     \begin{subfigure}[b]{0.53\textwidth}
         \captionsetup{margin=0.6cm,justification=centering}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15Pandey.pdf}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15PandeyJind.pdf}
         \caption{Pandey Lab tissues\\(PPKM quantification)}\label{fig:treePandeyQ3T15}
     \end{subfigure}%
     \begin{subfigure}[b]{0.53\textwidth}
         \captionsetup{margin=0.6cm,justification=centering}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15UhlenCut5.pdf}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15UhlenCut5Jind.pdf}
         \caption{Uhlén \etal\ tissues\\(≥5 FPKM)}\label{fig:treeUhlenQ3T15cuth5}
     \end{subfigure}
     \vspace{-3mm}
@@ -1084,8 +1112,9 @@ in \Cref{fig:heatmapPandeyTissuePairs,fig:heatmapUhlenTissuePairs05}.\mybr\
 
 Both \pandey\ Lab and \uhlen\ \etal\ trees,
 respectively \Cref{fig:treePandeyQ3T15,fig:treeUhlenQ3T15cuth5}
-display the same three pairs of tissues the most closely related:
-\Testis\ and \Ovary, \Rectum\ and \hColon\ and \Liver\ and \Kidney.\mybr\
+display the same four pairs of tissues the most closely related:
+\Rectum\ and \hColon, \Placenta\ and \Lung, \Liver\ and \Kidney,
+and \Testis\ and \Ovary.\mybr\
 
 Comparing more than two hierarchical trees for possible finding congruence
 is cumbersome manually;
@@ -1104,14 +1133,14 @@ from the \textbf{\textsf{R}} package
 \begin{figure}[!htp]
     \begin{subfigure}[t]{0.53\textwidth}
         \captionsetup{margin=0.6cm}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15.pdf}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T15Jind.pdf}
         %\vspace{2mm}
         \caption{Consensus tree of the fifteen shared tissues between Pandey Lab
         and Uhlén \etal\ (≥ $5$ FPKM) data}\label{fig:consensus2D15TQ3}
     \end{subfigure}~%
     \begin{subfigure}[t]{0.53\textwidth}
         \captionsetup{margin=0.6cm}
-        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T123DFconsensus05.pdf}
+        \centering \includegraphics[width=\textwidth]{integration/TissuePairsQ3T123DFconsensus05Jind.pdf}
         %\vspace{-2mm}
         \caption{Consensus tree of the twelve shared tissues
         between Pandey Lab data and
@@ -1135,38 +1164,33 @@ I extend the analysis with the \gtex\ data.\mybr\
 and the two transcriptomic datasets (≥ $5$ \FPKM): \uhlen\ \etal\ and \gtex\ data.
 Compared to \Cref{fig:consensus2D15TQ3},
 only two tissue-sets are consistently observed
-as most closely related: \Testis\ and \Ovary, and \Liver\ and \Kidney.\mybr\
+as most closely related: \Liver\ and \Kidney, and \Testis\ and \Ovary.\mybr\
 
 Note that the results seem unaffected by the protein quantification method
 as \PPKM\ and Top3 methods give identical results.
 However, the threshold,
 above which the \mRNAs\ are considered,
 influences on the analysis' outcomes.
-The $0$ \FPKM\ threshold is insufficient
+As very few \mRNAs\ are found uniquely in two tissues at $0$ \FPKM,
+this threshold is insufficient
 to identify any hierarchical organisation in the transcriptomic data.
 Increasing the threshold,
 for instance to $1$ \FPKM,
 allows exposing clusters of tissues, \eg\ \Liver\ and \Kidney{}.
-Other thresholds can also highlight other tissue clusters,
-including \Rectum\ and \hColon\ or \Pancreas\ and \Gall{}.\mybr\
 
-These observations are of interest in the light of the results
-presented in \Cref{subsec:mrnaHighExp}
-where the highest expressed genes show a poor contribution
-to the high level of interstudy correlation for same pair tissues.
-Nevertheless,
-genes appear to have their expression levels varying
-depending on their tissue context.
-The following section \Cref{sec:GenesCorRNAProt} analyses precisely
-whether genes have comparable expression profiles
-as a protein than as an \mRNA{}.\mybr\
+However, different thresholds can also highlight different tissue clusters,
+including \Rectum\ and \hColon\ at $5$ \FPKM\
+or \Pancreas\ and \Gall{} at $1$ \FPKM{}.
+The influence of the thresholds on the results suggests that
+genes have their expression levels varying
+depending on their tissue context.\mybr\
 
-In summary, although these results fail to explain the correlation levels,
+In summary,
 even indirect analyses based on the proteins and \mRNAs\ breadth expression
 have some degree of similarity in their results
 and seem partially capturing a biological signal.\mybr\
 
-Further more in-depth (direct or indirect)  analyses
+Further more in-depth (direct or indirect) analyses
 may clarify the relationship between the proteome and transcriptome.
 For example, equivalent correlation levels between specific gene groups
 (gene co-expression correlation) may be highlighted
@@ -1176,6 +1200,9 @@ will greatly benefit from
 well-established and proven \mRNA\ and protein expression baselines
 for each tissue.\mybr\
 
+The following section \Cref{sec:GenesCorRNAProt} analyses precisely
+whether genes have comparable expression profiles
+as a protein than as an \mRNA{}.\mybr\
 
 \section{Wide~correlation~range~for~protein/mRNA~pairs}\label{sec:GenesCorRNAProt}
 As previously reported, %(on p.~\pageref{memo:dispersedGenes}),
@@ -1185,7 +1212,7 @@ while being seemingly unrelated in another.
 The first gene-centric analysis explores for each gene
 the relationship between the expression levels of its \mRNAs\ and proteins
 across all available tissues.
-This analysis helps to determine
+This analysis helps one to determine
 whether any intrinsic trend structures the gene expression
 or if it is only subject to the environment.\mybr\
 
@@ -1235,32 +1262,52 @@ but only about 6\% (775) of the \mRNA/proteins pairs are above this limit
 (in dark blue).\mybr\
 
 \begin{figure}[!htbp]
-    \begin{subfigure}[h]{0.5\textwidth}
-        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering,skip=-2pt}
         \centering \includegraphics[width=\textwidth]{integration/antiCorrelated.pdf}
         \caption{Anticorrelated}\label{fig:caseAnticor}
     \end{subfigure}~%
-    \begin{subfigure}[h]{0.5\textwidth}
-        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering,skip=-2pt}
         \centering \includegraphics[width=\textwidth]{integration/negUnCorrelated.pdf}
         \caption{Uncorrelated}\label{fig:caseUncor}
     \end{subfigure}
-    \vspace{2mm}
+    \vspace{1mm}
 
-    \begin{subfigure}[h]{0.5\textwidth}
-        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering,skip=-2pt}
         \centering \includegraphics[width=\textwidth]{integration/wellCorrelated.pdf}
         \caption{Well correlated}\label{fig:caseFairlyCor}
     \end{subfigure}~%
-    \begin{subfigure}[h]{0.5\textwidth}
-        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \captionsetup{oneside,margin={0.8cm,0cm},justification=centering,skip=-2pt}
         \centering \includegraphics[width=\textwidth]{integration/HighlyCorrelated.pdf}
-        \caption{High correlation}\label{fig:caseHighlyCor}
+        \caption{Highly correlated}\label{fig:caseHighlyCor}
     \end{subfigure}
+    \vspace{-2mm}
     \caption[Different cases of correlation for protein/mRNA pairs]%
     {\label{fig:caseGene}\textbf{Different cases of correlation for
-    protein/mRNA pairs.} True perfect correlation can be observed for pairs
-    where both \mRNA\ and protein are tissue-specific (TS).}
+    protein/mRNA pairs.}
+    The scatterplots show the expression of the genes
+    as \mRNA\ in \uhlen\ \etal\ data on the x-axis and
+    as a protein in \pandey\ Lab data on the y-axis
+    across their common fifteen tissues.
+    \Cref{fig:caseAnticor} shows that \gene{SSR3} apparently
+    has a protein expression anticorrelated to its \mRNA{}'s one:
+    when the \mRNA\ expression is low (\eg\ \Pancreas, \Liver),
+    the protein expression is high
+    and when the \mRNA\ expression is high (\eg\ \Adrenal, \Prostate),
+    the protein expression is low.
+    \Cref{fig:caseUncor} features \gene{COL2A1} and for which protein expression
+    is observed for many tissues (\eg\ \Oesophagus, \Kidney, \Pancreas)
+    while no or very low \mRNA\ expression has been captured.
+    \Cref{fig:caseFairlyCor} shows that \gene{TPM2} is expressed in all tissues
+    and the expression of the protein is well correlated to the \mRNA{}'s one.
+    \Cref{fig:caseHighlyCor} shows that \gene{HGD} has
+    highly correlated protein and \mRNA\ expression when found in a tissue.
+    Note that true perfect correlation can be observed for pairs
+    where both \mRNA\ and protein are tissue-specific (TS).
+    }
 \end{figure}
 
 The Pearson correlation between the \mRNA/protein pairs ranges rather widely
@@ -1273,12 +1320,14 @@ A closer look at both extremes (\Cref{fig:caseGene})
 reveals several possible relationship profiles
 between the expression of the \mRNAs\ and proteins.
 The negatively correlated genes can present
-overall anticorrelated or rather unrelated expression levels
+overall anticorrelated (\Cref{fig:caseAnticor})
+or rather unrelated (\Cref{fig:caseUncor}) expression levels
 of \mRNAs\ and proteins.
 On the other end,
 the highest correlated genes present genes
 with a tissue-specific (\gls{TS}) protein or
-whose \mRNA\ and protein expression levels are tightly related.\mybr\
+whose \mRNA\ and protein expression levels are tightly related
+(\Cref{fig:caseHighlyCor,fig:caseFairlyCor}).\mybr\
 
 I only present herein (and in the following sections)
 the set of results based on the Pearson correlation of the gene expression levels
@@ -1292,83 +1341,17 @@ Complementary results
 for Spearman correlation and sets that include \gtex\ data can be found
 in digital format at \url{http://www.barzine.net/~mitra/thesis}.\mybr\
 
+\vspace{-3mm}
+
 \subsection{TS~protein~enrichment~for~the~most~correlated~pairs}
 \vspace{-5mm}
-In the next analysis,
-I investigate the incidence of the \gls{TS} proteins
-on the level of correlation between \mRNAs\ and their proteins.
-\Cref{fig:Spe_Cor} illustrates the percentage of \gls{TS} proteins
-for a given number of considered genes,
-which have been first ranked
-in decreasing order of Pearson correlation coefficients.\mybr\
-
-The percentage of \gls{TS} proteins is calculated as follow:\mybr\
-\begin{equation}
-    \tag{TS protein percentage}
-    \forall \mathcal{a} \in \mathcal{A}\text{,} \forall n \in [1,\mathcal{N}]
-    \text{\quad}
-    p_{\TSm} (n,\mathcal{a}) =%
-    \displaystyle\sum_{k=1}^{n}\delta_{\mathcal{g}_{a,k}}\cdot\frac{1}{n}\cdot100
-\end{equation}
-
-    where:
-     \quad\begin{eqlist}[\setlength{\itemsep}{0em}%
-         \setlength{\topsep}{0em}%
-         \setlength{\partopsep}{0em}%
-         \setlength{\parskip}{0em}%
-         \setlength{\parsep}{0em}]
-         \item[\textbullet\ $\mathcal{S}$] is the set of 10,000
-             randomised expression datasets based on \pandey\ Lab data.
-             These simulated datasets are created
-             by random permutation of the gene labels and
-             their associated vector of expression values across the tissues.
-         \item[\textbullet\ $\mathcal{D}$] is the set of expression datasets;
-             $\mathcal{D}=\mathcal{S}$ $\cup$
-             $\{$ protein expression for \pandey\ Lab data;
-             \mRNA\ expression for \uhlen\ \etal\ data;
-             \mRNA\ expression for \gtex\ data $\}$.
-         \item[\textbullet\ $\mathcal{G}$] is the set of genes $\mathcal{g}$
-             that are shared by all elements of $\mathcal{D}$.
-         \item[\textbullet\ $\mathcal{N}$] is the number of elements
-             in $\mathcal{G}$.
-         \item[\textbullet\ $\TSm$] is the set of genes $\mathcal{g}$
-             for which the protein is \gls{TS} (tissue-specific)
-             in \pandey\ Lab data.
-             $\TSm \subset \mathcal{G}$.
-         \item[\textbullet\ $\forall \mathcal{g} \in \mathcal{G}$,
-             $\delta_{\mathcal{g}}$]$=\begin{cases}
-                 1 & \text{if $\mathcal{g} \in \TSm$}\\
-                 0 & \text{if $\mathcal{g} \notin \TSm$}
- \end{cases}       $
-         \item[\textbullet\ $\mathcal{A}$] is a set of unordered 2-tuples
-              of elements from $\mathcal{D}$;
-              $\mathcal{A}=\{($protein expression for \pandey\ Lab data,
-              \mRNA\ expression for \uhlen\ \etal\ data$)$;
-              $($\mRNA\ expression for \uhlen\ \etal\ data,
-              \mRNA\ expression for \gtex\ data$)$;
-              $(\mathcal{s}$,
-              \mRNA\ expression for \uhlen\ \etal\ data$)\}$.
-              $\forall \mathcal{s} \in \mathcal{S}$.
-         \item[\textbullet\ $\mathcal{C}$] is a correlation function such that:
-             $\forall \mathcal{g} \in \mathcal{G}$,
-             $\forall \mathcal{a} = (\mathcal{d}_1,\mathcal{d}_2)
-             \in \mathcal{A}$
-             $\mathcal{C}(\mathcal{g},\mathcal{a}) \longmapsto$ correlation
-             coefficient of $\mathcal{g}$ for its expression across tissues
-             shared by $\mathcal{d}_1$ and $\mathcal{d}_2$.
-         \item[\textbullet\ ($\mathcal{g}_{\mathcal{a},k})$] is the sequence of
-                 genes $\mathcal{g}_{\mathcal{a},k}$ of $\mathcal{G}$ such that:
-                 $\forall k \in [1; \mathcal{N}-1]$
-                 $\mathcal{C}(\mathcal{g}_{\mathcal{a},k},\mathcal{a}) ≥
-                 \mathcal{C}(\mathcal{g}_{\mathcal{a},k+1},\mathcal{a})$
- \end{eqlist}
 
 \begin{figure}[!ht]
     \includegraphics[scale=0.88]{integration/TSratioBasedOnPearsoncorrelationRankedGenes3-15SimulrowMeans.pdf}\centering
     \vspace{-3mm}
-    \caption[Course of the TS proteins percentage as a function of
+    \caption[TS proteins percentage as a function of
     the considered number of genes (ranked by Pearson correlation)]{\label{fig:Spe_Cor}%
-    \textbf{Course of the TS proteins percent as a function of the considered
+    \textbf{TS proteins percent as a function of the considered
     number of genes (ranked by Pearson correlation).}
     Before being plotted,
     the genes are first ranked in decreasing order of Pearson correlation
@@ -1379,16 +1362,36 @@ The percentage of \gls{TS} proteins is calculated as follow:\mybr\
     The two parts of the figure have corresponding x-axes.
     The x-axis of the top plot presents the rank associated with
     the Pearson correlation coefficients of the genes on the y-axis.
-    The x-axis of the bottom plot represents the gene set that includes
-    all the genes up to the considered rank on the top plot.
+    The x-axis of the bottom plot represents
+    the upper limit rank up to which are considered
+    the genes (for the calculus).
+    The lower limit rank is 1.
     The y-axis of the bottom plot displays the percentage \gls{TS} protein
     for a set of (ordered) genes.
     }
 \end{figure}
 
+Here,
+I investigate the incidence of the \gls{TS} proteins
+on the level of correlation between \mRNAs\ and their proteins.
+
+I first compute for each gene the correlation between the expression levels
+of \uhlen\ \etal\ data and \pandey\ Lab data.
+Then, I organise the genes in a sequence\footnote{A sequence is an ordered set.}
+by ranking them by decreasing order of correlation.
+Thus, the first most correlated gene's rank is $1$.
+Finally, for each rank $k$ I calculate the number of genes with \gls{TS} proteins
+among the first $k$ ranks before converting it into percentage.\mybr\
+
+\Vref{eq:SpeCor} presents the formula with which I compute
+the percentage of \gls{TS} proteins.
+\Cref{fig:Spe_Cor} illustrates the percentage of \gls{TS} proteins
+for a given number of considered genes,
+which have been ranked in decreasing order of Pearson correlation coefficients.
 Similarly to \Cref{fig:GeneProtCor},
 randomised protein/\mRNA\ pairs (average for 10,000 permutations) in grey
-and \mRNA/\mRNA\ pairs in green are providing some context.\mybr\
+and \mRNA/\mRNA\ pairs (\uhlen\ \etal\ data and \gtex\ data) in green
+are providing some context.\mybr\
 
 The \gls{TS} protein percentage in pink is extremely high
 for the highest range of observed correlation between the expression of
@@ -1413,6 +1416,8 @@ an initial high \gls{TS} protein percentage that drops
 to the global amount of \gls{TS} proteins among the complete set of shared genes.
 Overall, \gls{TS} proteins represent about one-fifth of all the genes.\mybr\
 
+\subsection{Gene expression profiles clue about biological and technical differences\quad}
+\vspace{-6mm}
 As mentioned previously,
 either artefacts or biology may explain the observed low correlations.
 It is rather difficult to identify
@@ -1425,12 +1430,15 @@ saturation for the highly expressed proteins.
 See \Cref{sec:transExplo,sec:exploreProtMS} (from p.~\pageref{sec:transExplo})
 for more details.\mybr\
 
-\Cref{fig:CorImprovable} shows possible profiles of correlation for
-protein/\mRNA\ pairs.
-While explanations are usually disregarded or unrequired for genes
-with well-correlated protein and \mRNA\ expression
-(the grey area delimited by the green line),
-other, less correlated, genes may need more context.\mybr\
+\Cref{fig:CorImprovable} shows possible profiles of relationships
+between the protein and \mRNA\ pairs.
+Well-correlated pairs are in the grey area delimited by the green line.
+For these genes, the expression levels of the protein observed in a tissue is
+tightly related to the levels of the \mRNA{}.
+Although the data have been sampled from different sources,
+the stronger associations suggest a similar translation process across the tissues
+and may also imply less post-translational modifications
+that can hinder protein identification and quantification than for other genes.\mybr\
 
 \begin{figure}[!htb]
     \includegraphics[scale=0.57]{integration/TissueCorInterp}\centering
@@ -1494,7 +1502,7 @@ I remove them from the most correlated and anticorrelated gene lists.\mybr\
 \vspace{-4mm}
 \subsection{Distinct functional enrichment profiles
 for pairs with a TS protein,
-and~for~the~best~correlated~and~most~anticorrelated~ones}
+and for the best correlated and most anticorrelated ones}
 \vspace{-2mm}
 
 A \glsdesc{goa} (\gls{goa} --- see \Cref{sec:goaGeneralities})
@@ -1580,7 +1588,7 @@ which has also produced the right side plot.
 No cross-enrichment of \gls{go} category exists between the three groups
 (ensured by the \enquote{\textsf{includeAll=TRUE}} option).\mybr\
 
-Strikingly, the \gls{go} categories associated with each gene list create
+Notably, the \gls{go} categories associated with each gene list create
 coherent groups of similar biological processes.
 The genes with a \gls{TS} protein are enriched in terms for specific signalling,
 either for its detection (\enquote{\textit{detection of chemical stimulus}},

@@ -206,8 +206,14 @@ Pandey \etal\ & Uhlén \etal\ & 15 & PPKM x HTSeq & False & Pearson & 0.55 & 0.4
 
 \pagestyle{scrheadings}
 
+\begin{figure}[!htpb]
+    \includegraphics[scale=0.6]{integration/compCorJind.pdf}\centering
+    \caption[Rank comparison chart]{\label{fig:compCorJind}\textbf{Rank comparison
+    between the Pearson/Spearman correlation and the Jaccard indices
+    computed for matching proteomics and transcriptomics.}}
+\end{figure}
 
-
+\begin{comment}
 \begin{figure}[!htb]
     \includegraphics[scale=0.7]{integration/TissuePairsQ3T15HeatmapPandey.pdf}\centering
     \vspace{-8mm}
@@ -229,7 +235,7 @@ Pandey \etal\ & Uhlén \etal\ & 15 & PPKM x HTSeq & False & Pearson & 0.55 & 0.4
     with PPKM method)} The
     hierarchical tree share the same parameters than \Cref{fig:heatmapPandeyTissuePairs}.}
 \end{figure}
-
+\end{comment}
 
 
 %\begin{figure}[!htbp]
@@ -254,7 +260,76 @@ Pandey \etal\ & Uhlén \etal\ & 15 & PPKM x HTSeq & False & Pearson & 0.55 & 0.4
     are different.}
 \end{sidewaysfigure}
 
+
+
+
+
+\begin{minipage}{\textwidth}
+\section{TS protein percent}
+The percentage of \gls{TS} proteins is calculated as follow:\mybr\
+\begin{equation}
+    \tag{TS protein percentage}\label{eq:SpeCor}
+    \forall \mathcal{a} \in \mathcal{A}\text{,} \forall n \in [1,\mathcal{N}]
+    \text{\quad}
+    p_{\TSm} (n,\mathcal{a}) =%
+    \displaystyle\sum_{k=1}^{n}\delta_{\mathcal{g}_{a,k}}\cdot\frac{1}{n}\cdot100
+\end{equation}
+
+    where:
+    \quad\begin{eqlist}[\setlength{\itemsep}{0em}%
+        \setlength{\topsep}{0em}%
+        \setlength{\partopsep}{0em}%
+        \setlength{\parskip}{0em}%
+        \setlength{\parsep}{0em}]
+    \item[\textbullet\ $\mathcal{S}$] is the set of 10,000
+        randomised expression datasets based on \pandey\ Lab data.
+        These simulated datasets are created
+        by random permutation of the gene labels and
+        their associated vector of expression values across the tissues.
+    \item[\textbullet\ $\mathcal{D}$] is the set of expression datasets;
+        $\mathcal{D}=\mathcal{S}$ $\cup$
+        $\{$ protein expression for \pandey\ Lab data;
+        \mRNA\ expression for \uhlen\ \etal\ data;
+        \mRNA\ expression for \gtex\ data $\}$.
+    \item[\textbullet\ $\mathcal{G}$] is the set of genes $\mathcal{g}$
+        that are shared by all elements of $\mathcal{D}$.
+    \item[\textbullet\ $\mathcal{N}$] is the number of elements
+        in $\mathcal{G}$.
+    \item[\textbullet\ $\TSm$] is the set of genes $\mathcal{g}$
+        for which the protein is \gls{TS} (tissue-specific)
+        in \pandey\ Lab data.
+        $\TSm \subset \mathcal{G}$.
+    \item[\textbullet\ $\forall \mathcal{g} \in \mathcal{G}$,
+        $\delta_{\mathcal{g}}$]$=\begin{cases}
+            1 & \text{if $\mathcal{g} \in \TSm$}\\
+            0 & \text{if $\mathcal{g} \notin \TSm$}
+        \end{cases}       $
+         \item[\textbullet\ $\mathcal{A}$] is a set of unordered 2-tuples
+             of elements from $\mathcal{D}$;
+$\mathcal{A}=\{($protein expression for \pandey\ Lab data,
+\mRNA\ expression for \uhlen\ \etal\ data$)$;
+$($\mRNA\ expression for \uhlen\ \etal\ data,
+\mRNA\ expression for \gtex\ data$)$;
+$(\mathcal{s}$,
+\mRNA\ expression for \uhlen\ \etal\ data$)\}$.
+$\forall \mathcal{s} \in \mathcal{S}$.
+\item[\textbullet\ $\mathcal{C}$] is a correlation function such that:
+$\forall \mathcal{g} \in \mathcal{G}$,
+$\forall \mathcal{a} = (\mathcal{d}_1,\mathcal{d}_2)
+\in \mathcal{A}$
+$\mathcal{C}(\mathcal{g},\mathcal{a}) \longmapsto$ correlation
+coefficient of $\mathcal{g}$ for its expression across tissues
+shared by $\mathcal{d}_1$ and $\mathcal{d}_2$.
+\item[\textbullet\ ($\mathcal{g}_{\mathcal{a},k})$] is the sequence of
+genes $\mathcal{g}_{\mathcal{a},k}$ of $\mathcal{G}$ such that:
+$\forall k \in [1; \mathcal{N}-1]$
+$\mathcal{C}(\mathcal{g}_{\mathcal{a},k},\mathcal{a}) ≥
+\mathcal{C}(\mathcal{g}_{\mathcal{a},k+1},\mathcal{a})$
+\end{eqlist}
+\end{minipage}
+
 \begin{comment}
+
 \section{GO analyses}
 
 The enrichment analysis with the CC ontology shows that the best correlated genes
