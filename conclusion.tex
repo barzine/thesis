@@ -65,7 +65,7 @@ This trend is stronger for more recent studies.
 I tested various criteria as possible driving forces
 of the high interstudy tissue correlations.
 I found that the most variable genes and tissue-specific (\gls{TS}) genes
-are individually contributing more to the high correlations
+are more robustly identified across studies
 than the highest expressed ones.
 Besides, I also noted that
 the inclusion of external resources,
@@ -86,21 +86,22 @@ Finally, I provided a core set of genes that are expressed
 ubiquitously or as \gls{TS} consistently across all studies.\mybr\
 
 The comparison of three available proteomic datasets
-in \Cref{ch:proteomics} highlights
+in \Cref{ch:proteomics} illustrates
 the fragmentation and the disparity of the high-throughput \ms{}-based proteomics.
 \ms\ detection variability induces considerable technological noise,
 which explains
 the intrastudy correlations I observed between different tissues are
 higher than the interstudy correlation for the same tissues.
 I provided curated sets of the \gls{TS} and ubiquitous detected proteins.
-Finally, I have invented the \PPKM\ quantification method,
+Finally, with the help of \james,
+I have devised the \PPKM\ quantification method,
 which quantifies more proteins by also accounting for degenerated peptides.\mybr\
 
 \Cref{ch:Integration} reported
 the integration of the independent proteomic and transcriptomic data.
 Regardless of the quantification method,
-I found for these independent studies
-similar Spearman correlation levels
+I found similar Spearman correlation levels
+for the included independent studies
 to those typically observed in the literature
 for same-sourced proteome and transcriptome source.
 While proteomic standard state-of-art processing leads
@@ -119,8 +120,8 @@ from \mRNA\ levels alone.
 However, there are shared coherent gene signatures
 between the proteome and transcriptome.
 Furthermore, even indirect analyses can capture part of the biological signal.
-Proteins' and \mRNAs{}' tissue specificity are contributing
-more to the tissue correlation than their expression levels once again.
+The tissue specificity of proteins and \mRNAs{} are globally more relevant
+than their expression levels.
 In addition to the significant overlaps of \gls{TS} proteins
 with the most \gls{TS} \mRNAs,
 most genes with a \gls{TS} protein have
@@ -135,7 +136,7 @@ are enriched for catabolic processes.
 Thirdly, the genes with the highest anticorrelation
 between their \mRNA\ and protein expression
 have shown enrichment for ribosome complexes and \glspl{ncRNA} regulation.
-I provide the complete set of \mRNA/protein pairs with their correlation
+I provide (digitally) the complete set of \mRNA/protein pairs with their correlation
 across the common set of tissues.
 I also supply the list of overlapping \gls{TS} proteins and \mRNAs{}.\mybr\
 
@@ -210,7 +211,8 @@ to the samples from another study
 where the authors have only reported the tissue instead.
 Hence, for these cases,
 keeping only one of the \enquote{body parts}
-would have been a better choice.\mybr\
+would have been a better choice
+if additional data had been available.\mybr\
 
 Another source of variety that I have limited in the above work
 is the diverse annotation versions.
@@ -223,14 +225,14 @@ instead of using their gene identifiers.\mybr\
 
 \subsubsection*{Veracity}
 \vspace{-3mm}
-Additionally, with all possible tunable parameters for the raw data processing,
+With all possible tunable parameters for the raw data processing,
 the data to be integrated can vary widely.
-Even with a limited number of combinations,
+Although I have tried a limited number of combinations,
 my study shows that the results' trend remains the same
 regardless of the chosen settings.
 Moreover, as the number of datasets I included in my analyses grows,
 the results became increasingly more stable.
-Many of them have also been confirmed by the literature,
+Many of them are also confirmed by the literature,
 adding credibility and confidence to the findings,
 especially considering the recent discussions on reproducibility crisis~\mycite{%
 Morrison2014-hy,Glenn_Begley2015-fz,Goodman2016-ri,Fatovich2017-lo,
@@ -269,21 +271,23 @@ See \Cref{sec:Rpackages} for the complete list of \textsf{R} packages
 involved in this work.
 This language provides statistical and visualisation functions
 and is easily expanded through packages developed by the community.
-Packages can be highly interdependent and may evolve rapidly.
+While packages are allowing to easily built on previous work,
+they can be highly interdependent and may evolve rapidly.
 To draw from an extra package (or fix an identified bug),
 a comprehensive and time-consuming update of the working environment
 will often ensue.
-In turn, I had also to update my analyses' code on many occasions.
+In turn, I had also to update or rewrite my analyses' code on many occasions.
 Furthermore, new software installations or updates are more complicated
 for distributed computing facilities than on a personal computer.
 Today, new solutions are developed to facilitate these tasks
-(\eg\ \softCi{Packrat}{Rpackrat} that create isolated environment).\mybr\
+(\eg\ \softCi{Packrat}{Rpackrat} that create isolated environment)
+and, hopefully, this burden will be significantly lowered.\mybr\
 
 Note that \nuno, who provided me with the quantification of the \gtex\ data,
 and \james, who provided me with the proteomics ones,
 have also both developed their processing pipelines with open-source software.
-Hence, the entirety of the thesis (subject to access to \gtex\ data)
-can be repeated easily.\mybr\
+Hence, the entirety of the thesis can be repeated easily
+(conditionally upon access to \gtex\ data and high-throughput computing facilities).\mybr\
 
 \section*{Future works}
 Many improvements are conceivable:\mybr\
@@ -333,7 +337,7 @@ to %which
 how many
 and how much \glspl{RNA} are detected.\mybr\
 
-Previous efforts to solve this problem have focused
+Previous efforts to improve the quantification have focused
 on differential expression studies.
 Synthetic spike-in molecules~\mycite{Jiang2011-ux}
 ensure more reliable quality controls.
@@ -423,7 +427,7 @@ without requiring any programming skill as a prerequisite.
 
 Once completed, one will be able to analyse and compare their own data
 to the different datasets I have presented in this thesis.
-Furthermore, as I share all my code (including for the application)
+Furthermore, I share all my code (including for the application)
 under a creative commons license,
 \WebFo{Attribution 4.0 International  (CC BY 4.0) \includegraphics[width=1em]{cc.pdf}%
 \includegraphics[width=1em]{by.pdf}}{https://creativecommons.org/licenses/by/4.0}.
