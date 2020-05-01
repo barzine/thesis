@@ -711,23 +711,23 @@ to their respective protein ones.\mybr\
 
 In \Cref{ch:proteomics},
 I have shown that
-the correlation range of protein expression for different tissue pairs
-is similar to the one for the same tissue pairs
+the protein expression of both different tissues and same-tissue pairs
+are sharing a similar correlation range
 (see \Cref{fig:scat2DAdrenalPandeyPancreasKuster}).
 In this context,
 genes expressed in a small number of tissues
 (both as a protein and \mRNA)
 can have a significant impact on the correlation
-and may explain the mitigated results.
-In the following sections,
-I can refer to a (\gls{TS}) gene as \emph{unique gene}
-when it is only expressed in a single tissue.\mybr\
+and may explain the mitigated results.\mybr\
 
 The expression breadth of a gene is
 the number of tissues and cell lines within which the gene is expressed.
 \Cref{fig:expressionBreadth} allows visualising
 the distribution of the expression breadth of the \mRNAs\ (\uhlen\ \etal)
 and the proteins (\pandey\ Lab data) across their fifteen common tissues.
+In the following sections,
+I can refer to a (\gls{TS}) gene as a \emph{unique gene}
+when it is only expressed in a single tissue.\mybr\
 
 \Cref{fig:protBreadth} shows that
 the distribution of the protein expression breadth is bimodal.
@@ -1086,10 +1086,7 @@ but I also present and compare with the \gtex\ data and their twelve shared tiss
 
 \Cref{fig:separateTree} shows the hierarchical clustering of the fifteen tissues
 for \pandey\ Lab (\PPKM\ quantification)
-and \uhlen\ \etal\ (≥ $5$ \FPKM)  studies,
-while the number of shared genes between tissues
-for each dataset is respectively shown
-in \Cref{fig:heatmapPandeyTissuePairs,fig:heatmapUhlenTissuePairs05}.\mybr\
+and \uhlen\ \etal\ (≥ $5$ \FPKM)  studies.\mybr\
 
 %\vspace{-4mm}
 \begin{figure}[!htp]
@@ -1203,8 +1200,10 @@ for each tissue.\mybr\
 The following section \Cref{sec:GenesCorRNAProt} analyses precisely
 whether genes have comparable expression profiles
 as a protein than as an \mRNA{}.\mybr\
+\vspace{-2.5mm}
 
 \section{Wide~correlation~range~for~protein/mRNA~pairs}\label{sec:GenesCorRNAProt}
+\vspace{-3mm}
 As previously reported, %(on p.~\pageref{memo:dispersedGenes}),
 the expression levels of \mRNA/protein pairs can present
 a tight relationship in one tissue
@@ -1224,7 +1223,6 @@ The observed levels of correlation (in pink) are higher
 than the expected levels computed by random permutation
 (the grey line is showing the average of 10,000 permutations).\mybr\
 
-\vspace{-4mm}
 \begin{figure}[!htb]
     \includegraphics[scale=0.9]{integration/PearsonLog2correlationRankedGenes3-15meanPermut.pdf}\centering
     \vspace{-3mm}
@@ -1329,6 +1327,7 @@ with a tissue-specific (\gls{TS}) protein or
 whose \mRNA\ and protein expression levels are tightly related
 (\Cref{fig:caseHighlyCor,fig:caseFairlyCor}).\mybr\
 
+\vspace{-5mm}
 I only present herein (and in the following sections)
 the set of results based on the Pearson correlation of the gene expression levels
 between the \pandey\ Lab data quantified with the \PPKM\ method
@@ -1341,7 +1340,7 @@ Complementary results
 for Spearman correlation and sets that include \gtex\ data can be found
 in digital format at \url{http://www.barzine.net/~mitra/thesis}.\mybr\
 
-\vspace{-3mm}
+%\vspace{-3mm}
 
 \subsection{TS~protein~enrichment~for~the~most~correlated~pairs}
 \vspace{-5mm}
@@ -1363,6 +1362,10 @@ in digital format at \url{http://www.barzine.net/~mitra/thesis}.\mybr\
     The x-axis of the top plot presents the rank associated with
     the Pearson correlation coefficients of the genes on the y-axis.
     The x-axis of the bottom plot represents
+    %opt1
+    %the number of genes in the set that includes all the genes up to
+    %the considered rank on the top plot.
+    %opt2
     the upper limit rank up to which are considered
     the genes (for the calculus).
     The lower limit rank is 1.
@@ -1701,8 +1704,7 @@ After assessing the range of correlation between the two biological layers,
 I have tried to identify possible factors
 that may influence the association
 between the expression of the \mRNAs\ and proteins.
-I have used both tissue- and gene-centric approaches
-for their integration and comparison.\mybr\
+I have employed both tissue- and gene-centric approaches.\mybr\
 
 Building on insights gained in previous chapters
 (particularly \Cref{ch:Transcriptomics,ch:proteomics}),
@@ -1712,182 +1714,314 @@ the three following independent sources:
 and \gtex~\mycite{GTExTranscript} data for the transcriptomics
 and \pandey\ Lab data~\mycite{PandeyData} for the proteomics.
 The three datasets share twelve tissues,
-while the combined sets based on \uhlen\ \etal\ and \pandey\ Lab data
+while the combined sets based only on \uhlen\ \etal\ and \pandey\ Lab data
 present three additional tissues.\mybr\
 
-According to the considered studies set and protein quantification methods,
-the various analyses may include a number of \mRNA/protein pairs
-that may vary by a factor of about two.
-The analyses can encompass 6,357 pairs
-(for the three datasets and state-of-the-art protein quantification,
-see \Cref{ch:datasets})
-to 12,921 \mRNA/protein pairs (for \pandey\ Lab and \uhlen\ \etal\ data
-with proteins quantified with our new \PPKM\ quantification,
-see \Cref{ch:proteomics}).\mybr\
+The above analyses provide
+the comparison of \mRNA\ and protein expression across fifteen tissues
+for 12, 921 pairs as they include \uhlen\ \etal\ data and \pandey\ Lab data
+quantified with our \PPKM\ quantification (see \Cref{ch:proteomics}).
+This new quantification allows encompassing about twice as many proteins
+than with the standard state-of-art method (see \Cref{ch:datasets}),
+which identifies 6,428 proteins only.\mybr\
 
 The tissue-centric analyses show that
 even independently sourced proteomics and transcriptomics of similar tissues
-present fair correlation coefficients,
-\eg, for Spearman $\rho_{\text{\Oesophagus}}=0.39$
-$≤$ $\rho_i$ $≤$ $\rho_{\text{\liver}}=0.62$.
-This correlation range is consistent with the literature,
+present fair correlation coefficients.
+For instance, the range of Spearman correlation
+($\rho_{\text{\Oesophagus}}=0.39$
+$≤$ $\rho_i$ $≤$ $\rho_{\text{\liver}}=0.62$)
+is consistent with the literature,
 either published before or during this study (see examples further below).\mybr\
 
-The standard use of the Spearman correlation in the literature
-is motivated by the lack of data distribution normality
-or by the apparent weak linearity between the two variables to be compared.
-Either because of technical artefacts,
-differences in expression scale or another reason,
-comparing the variables' monotony by Spearman correlation
-is favoured over comparing their linearity by Pearson correlation.\mybr\
-
-The new \PPKM\ quantification method for proteins,
-introduced in \Cref{ch:proteomics},
-produces protein expression levels
-that present similar profiles to the transcriptomics (see \Cref{ch:expression}).
-Moreover, the \PPKM\ quantification enables
-reaching the same \emph{Pearson correlation} range
+Besides, the new \PPKM\ quantification method for proteins%,
+%introduced in \Cref{ch:proteomics},
+ provides similar Pearson correlation ranges
 ($r_{\text{\Oesophagus}}=0.38$ $≤$ $r_i$  $≤$ $r_{\text{\liver}}=0.61$)
-that is usually achieved by cell studies specifically designed
+to ones previously described for cell studies specifically designed
 for the joint integration of \emph{same-sourced} proteomics and transcriptomics
 (\eg, \citet{Marguerat2012-sn,schwanhausserglobal:2011,Schwanhausser2013-et,Li2014-ai}).\mybr\
 
-%As they are more easily reusable for predictive models and interpretable,
+Most remarkably,
+all the same-tissue pairs of transcriptomic and proteomic
+have a statistically significant correlation
+despite the tissue proteomic expression profiles closeness.\mybr\
+
 I have based my following considerations and discussion
-on the Pearson correlations.\mybr\
+on the Pearson correlation results
+even though Spearman correlation is often used in the literature
+when comparing independent sources of data.
+The use of the Spearman method is regularly motivated
+by the lack of data distribution normality.
+As shown in \Cref{fig:pandeyDistribQ1Q2},
+the \PPKM\ quantification produces protein expression levels
+that share the same logit-normal profile of distribution
+observed for the \mRNAs\ (see \Cref{ch:expression}),
+thus allowing an appropriate use of the Pearson method.\mybr\
 
-Either due to biological reasons or technical ones (\eg\ saturation effects%
-\footnote{For example, \citet{TOP3isbetter} report that
-\ms\ label-free absolute quantification proteomics underestimate
-a large dynamic range of proteins.})
-the proteome displays a more stable expression across
-tissues~\mycite{Laurent2010-rg,KusterData,PandeyData,GTExTranscript}.
-Among the one hundred highest expressed proteins,
-70\% are ubiquitous in the forty-seven tissues examined by \citet{KusterData}.
-\citet{PandeyData} have identified 2,350 genes encoding for proteins
-that they found across all the human cells and tissues they studied.
-They estimated that these \enquote{housekeeping proteins} are
-highly abundant as they are accounting for approximately 75\% of total protein mass
-(based on spectral counts).
-Despite the tissue proteomic expression profiles closeness,
-all the same-tissue pairs of transcriptomic and proteomic \treps\
-have a statistically significant correlation.\mybr\
-
-To better understand the mixed level of correlation across tissues,
-I have considered several properties as possible driving factors.
+Next, I have considered several possible properties
+that might be factors influencing the mixed correlation levels.
 I have compared the expression breadth of the \mRNAs\ and the proteins
 before comparing the most specific proteins and \mRNAs\ of each tissue
 to one another.\mybr\
 
-Even though \mRNAs\ and proteins expression breadth distributions can share
-the same overall shape,
-the expression breadth of an \mRNA\ and its protein's are only partially concordant.
+The \mRNAs\ and proteins expression breadths
+(\ie\ the number of tissues within which an \mRNA\ or protein is expressed)
+share the same overall shape for their distribution,
+but are only partially concordant.
 For example, at 5 \FPKM,
 only about 26\% of the proteins that are expressed in one tissue
-and about 40\% that are expressed in 15 tissues have
+and about 40\% that are expressed in fifteen tissues have
 an \mRNA\ with an identical breadth of expression.\mybr\
 
-While unable to correctly explain the different correlation levels of the tissues,
-this analysis highlights noteworthy facts
+The analysis of expression breadth highlights noteworthy facts
 --- including a few recently reported in the literature;
 \testis\ displays the most unique and diverse expression
 both at transcriptomic and proteomic levels
 (see also \citet{Wang2019-ut,Zhang2015-yn});
 \liver\ (the most correlated tissue) present the second-highest number
 of \mRNAs\ and proteins with a unique expression breadth.
-Besides, the expression breadth of an \mRNA\ is mostly unhelpful
-to predict the expression breadth of its corresponding proteins directly.
-In contrast, when the expression breadth of a protein is unique,
-the expression breadth of its related \mRNA\ is also more likely to be unique
-at the threshold of 1 or 5 \FPKM{}.\mybr\
+Besides, when the expression breadth of a protein is unique,
+the expression breadth of its related \mRNA\ is more likely to be unique
+at the threshold of 1 or 5 \FPKM{} as well.
+However, the expression breadth of \mRNAs\ gives no indication
+of the proteins' one.\mybr\
 
 Nonetheless, \mRNAs{}' and proteins' expression breadths convey
 part of the biological signal consistently.
-From the proteins and \mRNAs\ solely expressed in two tissues,
+From the Jaccard indices of the proteins and \mRNAs\
+solely expressed in two tissues,
 I have built hierarchical trees,
 and their consensus tree outlines
 the \ovary{}/\testis{} and the \kidney{}/\liver{} clusters
 at both proteomic and transcriptomic layers.\mybr\
 
-As shown in \Cref{ch:Transcriptomics},
-most tissue-specific (\gls{TS}) \mRNAs\ give better
-interstudy tissue correlation
-than the highest expressed \mRNAs{} do.
-The overlaps between the $n$ \gls{TS} proteins and
-the $n$ most \gls{TS} \mRNAs\ of each tissue are non-empty,
-and except for one tissue (\tissue{Urinary Bladder}),
+I have then compared the \gls{TS} proteins with the \gls{TS} \mRNAs{}.
+The overlaps between the $n$ \gls{TS} proteins (expressed in a single tissue only)
+and the $n$ most \gls{TS} \mRNAs\ of each tissue are non-empty,
+and except for one tissue (\urinarybladder),
 statistically significant with an $\alpha$ level of $0.01$.
-The tissues with the highest overlaps are
-also the ones with the highest correlation
-between their transcriptomics and proteomics.
-Unfortunately, this analysis fails to explain
-the whole correlation range.\mybr\
+While most tissues have similar ranking trends for their overlaps of \gls{TS} genes
+and correlation between their proteomics and transcriptomics,
+either high levels (\eg\ \liver, \testis\ or \pancreas),
+medium (\eg\ \prostate)
+or low ones (\urinarybladder, \lung\ or \gallbladder),
+other tissues have not.\mybr\
 
-In contrast to the tissue-centric ones,
-the gene-centric analyses show on the other hand that
+Regarding the gene-centric analyses,
+they show that
 about $6\%$ of the \mRNAs/proteins are highly correlated ($r≥0.8$),
 about $18\%$ of them are well correlated ($0.8 > r ≥ 0.5$),
 about $75\%$ of them are poorly correlated ($0.5 > r ≥ -0.5$), and
 less than $1\%$ of the pairs are anticorrelated ($-0.5 > r ≥ -0.83$).\mybr\
 
-A fourth of the \mRNA/protein pairs included in this study have a \gls{TS} protein.
-They considerably enrich the set of most correlated pairs.
-Although most of them have a Pearson correlation above $0.5$,
-their correlation ranges rather widely ($-0.77 ≤ r≤ 1$).\mybr\
+A fourth of the genes included in this study have a \gls{TS} protein.
+Most of them have a Pearson correlation above $0.5$, and
+they considerably enrich the set of most correlated pairs of \mRNAs\ and proteins.
+However, their correlation range remains rather wide ($-0.77 ≤ r≤ 1$).\mybr\
 
 Finally, using a \gls{go} enrichment analysis,
 I have investigated whether the three groups of \mRNA/protein pairs
 (the ones with a \gls{TS} protein, the best correlated pairs
 and the most anticorrelated ones) are related to
-any biological or technical reasons.\mybr\
+any biological or technical reason.\mybr\
 
 While the most correlated pairs and the ones including a \gls{TS} protein
 present an enrichment in biological process (BP),
 molecular function (MF) and cellular component (CC) terms,
 the anticorrelated pairs present an enrichment only in BP terms.
-Overall, the pairs with a \gls{TS} protein are most likely involved
+Overall, the most correlated \mRNA/protein pairs seem highly associated
+with catabolic processes;
+the pairs with a \gls{TS} protein are most likely involved
 with specific signalling (its detection, transduction or answer)
 and more concentrated in the transmembrane area.
-The most correlated \mRNA/protein pairs seem highly associated
-with catabolic processes
-and the most anticorrelated ones with regulation processes.\mybr\
+The most anticorrelated pairs are enriched in regulation processes.\mybr\
+
+Correlations are dependent on the quantification of identified molecules.
+In general,
+while many of the midrange and lesser correlation levels may result
+from biological reasons such as
+the relative \mRNA\ stability and protein degradation,
+other technical artefacts may also be at play:
+\begin{itemize}[topsep=0pt,nosep]
+        \item saturation effect of more abundant proteins
+            (see \Cref{subsec:simpleProt})
+        \item degenerate peptides (see \Cref{subsec:proteinInference}),
+        \item quantification inconsistencies between methods,
+            platforms and studies~\mycite{Dapas2017-ui,Aebersold2018-jn},
+        \item annotation,
+        \item or other oft-neglected sources, \eg{}: gene or isoform length.
+\end{itemize}
+
+One example where the annotation might be at fault is
+\gene{STAU2} (Pearson $r=-0.59$; Spearman $\rho=-0.65$),
+which appears to be known to have different annotations
+in the proteomic and transcriptomic communities.
+Thus, \gene{STAU2}'s anticorrelation observed
+between its \mRNA\ and protein expressions
+might predominantly result from artefacts
+rather than any biological cause.\mybr\
+
+Normalisation methods for \Rnaseq\ require the genes or transcripts length
+(see \Cref{subsub:norm}).
+To keep congruity with the gene length
+employed by \WebFoCi{\egxa}{https://www.ebi.ac.uk/gxa/home/}{EBIgxa},
+I use the sum of the lengths of all its collapsed exons,
+which is graciously provided by the metapipeline
+\softFoCi{\irap}{https://nunofonseca.github.io/irap/}{Fonseca2014-si}.
+
+Although, each gene has various \mRNA\ isoforms~\mycite{MarPhD}
+and proteoforms~\mycite{Aebersold2018-jn}
+I chose to perform all the analyses at gene-level expression
+(see p.~\pageref{minisec:quantNorm})
+due to the many existing criticisms about
+current algorithms' accuracy with isoforms~\mycite{tamaraRNA,ernestRNA,Dapas2017-ui}.\mybr\
+
+Yet, most genes present one dominant transcript~\mycite{oneDominant}.
+One possible method to improve the \mRNA/protein correlations
+is to identify the most dominant transcript isoform of each gene
+and use their length for the normalisation.
+This method ought to be rather easy to implement,
+either with the help of resources like
+\WebFoCi{APPRIS}{http://appris-tools.org/}{Rodriguez2018-fk}
+or through a direct data analysis.\mybr\
+
+More generally,
+besides improving current results,
+(even partial) better identification of the \mRNAs\ and proteins isoforms
+will most likely unveil still undetected divergences.\mybr\
 
 It is imperative to remember that the proteome and the transcriptome used
 for these analyses are independently sourced and aggregated over several individuals.
-Many genes displaying mixed correlation in my analyses will most probably
-present high correlation or anticorrelation in matched samples.
+Some genes displaying mixed correlation in my analyses may present
+high correlation or anticorrelation in matched samples.
 The most affected genes are the most sensitive ones
-to inter-individual variation and batch effects.\mybr\
-
+to inter-individual variation and batch effects.
 On the other hand,
-as gene expression fluctuates through time,
-current high-throughput technologies
-for proteomics and transcriptomics can only capture a picture for a given time.
-Even though bulk \Rnaseq\ and \ms\ give an average expression
-of all the cells in a tissue,
-the tissue expression can differ through time and condition.
-Possible examples include premenopausal \Ovary\ and \Uterus.
-%Additionally, interpreting the high correlation or anticorrelation
-%between the expression of ubiquitous \mRNAs\ and their ubiquitous proteins
-%require subtle differences than for studies designed primarily
-%for integration purposes.
-In this thesis,
-except for a limited number of spurious ones,
-the highly correlated (or anticorrelated) pairs have
-the most robust expression across individuals, through time,
-and are less subject to technical noise.\mybr\
+the highly correlated (or anticorrelated) pairs highlighted in this thesis
+are more likely having a robust expression across individuals and time,
+while being less subject to technical noise.\mybr\
 
-Correlations are dependent on the quantification of identified molecules.
-Hence, both the stabilities of the \mRNA\ and protein impact
-their quantification directly, and, therefore, the pair correlation too.
+Among the studies published during my thesis' works,
+three are most notably pertinent to the comparison and integration analyses
+I have outlined above.\mybr\
+
+A first published comparison~\mycite{SciRep2016} of the expression data of
+\gtex\ \mycite{GTExTranscript} and the \pandey\ Lab~\mycite{PandeyData}
+provides weaker results than the above-presented ones
+as the authors have based their complete study on data provided as-is
+by the primary studies.
+Overall, the range of Spearman correlation they present for the tissues
+does not exceed $\rho=0.5$.
+Additionally, this study also fails to show any functional enrichment
+in their selection of matched pairs of \mRNA\ and protein.
+Hence, although these primary data resources are useful
+for others to appraise the presence of a given gene in a particular tissue,
+more thorough uses need more considerations
+and probably preliminary treatments.\mybr\
+
+\citet{Franks2017-bp} integrate a subset of the \uhlen\ data included
+in this chapter analyses
+as they have extracted their transcriptomic data as-is from \citet{Uhlen2014}
+to integrate it with the data they have reprocessed
+from \citet{PandeyData} and \citet{KusterData}.
+The study's primary aim is
+to quantify the post-transcriptional regulation of the genes
+through their translational efficiency.
+To this end, they compute for each gene a \emph{\gls{PTR}}.
+\glspl{PTR} ease the assessment of the gene expression variability
+across their set of tissues.
+This study underlines the utmost caution required
+when one considers the transcriptome as a possible proxy for the proteome.
+It also reminds that data quality and reliability are primary caveats
+for possible analyses.
+\citet{Franks2017-bp} also show that genes from the same set of \gls{go} terms
+display similar \gls{rPTR} profile across tissues,
+\ie\ they have higher and lower \gls{rPTR} in the same tissue sets.
+This observation suggests a concerted functionally regulations.\mybr\
+
+Overall, the results presented in this thesis
+are confirmed and unsurprisingly improved by~\citet{Wang2019-ut}
+since they have matching samples (same sources)
+for the proteomics and transcriptomics.
+Moreover, there are many biological replicates per tissue.
+%The study is a follow-up to a series of studies,
+%all conducted on the same set of human tissues samples
+%by the Department of Pathology,
+%Uppsala University Hospital (Sweden),
+%as part of the sample collection governed by
+%the \WebFo{Uppsala Biobank}{https://www.uppsalabiobank.uu.se/en/}.
+In this follow-up study, the authors have generated proteomics data\footnote{%
+The proteomic data can be retrieved in \Pride{\href{https://www.ebi.ac.uk/pride/archive/projects/PXD010154/}{PXD010154}} ---
+\Href{https://www.ebi.ac.uk/pride/archive/projects/PXD010154}}
+from the original samples they had used
+to produce transcriptomic data\footnote{%
+\ArrayExpress{\href{https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-2836/}{E-MTAB-2836}}
+--- \Href{https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-2836/}.}
+--- described in their previous paper~\mycite{Uhlen2015}
+and which I am using in this thesis, including this chapter.
+
+While the (Spearman) correlation
+between the transcriptome and proteome of each tissue
+has a similar range globally,
+the expression of an \mRNA\ and its protein across the tissues have
+a positive correlation in
+about 90\% of all cases and half of them are statistically significant.
+The authors note that nearly a quadratic relationship exists
+between an \mRNA{}'s abundance and its protein in each tissue.
+
+They also report that there is a core set of ubiquitously expressed pairs of
+\mRNA/protein
+and that key differences between tissues are more characterised
+by the level of expression of the molecules rather than their presence or absence.
+However, when they compare the highest expressed proteins and \mRNAs,
+they observe a limited overlap that, in my opinion,
+further confirms that \gls{TS} genes are more pertinent for integration
+than the highest expressed genes.
+
+They also observed that while disease-associated genes are expressed more globally,
+G protein-coupled receptors are mostly restricted to specific tissues,
+and are often identified drug targets.
+I suspect this last point is mostly rather a confirmation of the success
+of current drug development strategies.
+%Either with or without the help of computer-aided drug design,
+%the methodologies
+%(often through trial and error),
+%minimize new drugs' side effects as much as possible
+%so that they can be marketed.
+Finally, the authors point out that part of the observed discrepancies
+in the proteomic and transcriptomic expression
+may be due to the difference in strategies of each community
+on how to handle the degenerate peptides or multireads.
+Our \PPKM\ quantification presented in \Cref{sec:NewQuantProt}
+is one solution to this issue,
+and it proves to improve the results,
+particularly for the Pearson correlation.\mybr\
+
+A companion study, by \citet{Eraslan2019-md}, reports that
+\mRNA\ expression variation across a set of tissues is
+a better predictor for protein levels than
+considering all \mRNAs\ expression levels in a tissue.
+The authors have thus computed a \gls{PTR} for over 11,500 genes.
+The study uses these \gls{PTR} to model and probe possible regulatory mechanisms.
+However, while \citet{Franks2017-bp}'s \glspl{PTR} may be partially miscalculated
+because of the independent sampling sources,
+for \citet{Eraslan2019-md}, there might be an overfitting problem.
+Further studies based on other datasets are required
+to ensure the reproducibility of these results.
+They warn that for many genes,
+\glspl{PTR} is only useful as a gauge of the protein abundance magnitude order.\mybr\
+
+Hence, both \mRNA\ and protein stabilities impact the quantification directly,
+and, therefore, their correlation too.
 \citet{Vogel2012-sq} review several papers
 --- including \citet{schwanhausserglobal:2011} ---
-that have observed higher expression stability for
+that observe higher expression stability for
 \glspl{RNA} and proteins related to mammalian metabolism
-while proteins involved in transcriptional regulation (and chromatin organisation)
-tend to degrade rapidly.
-The relative stability may be the sole reason behind the observed correlations here.
-Other biological or biochemical reasons may also be at play.\mybr\
+and a more rapid degradation tendency
+for proteins involved in transcriptional regulation (and chromatin organisation).
+While the relative stability may be the sole reason behind these observations,
+other biological and biochemical reasons may also be at play.\mybr\
 
 If we accept the premise that
 identical regulation steps apply across all tissues
@@ -1921,165 +2055,6 @@ It also may be worth exploring across tissues
 whether these catabolic genes share particular coexpression profiles
 with genes involved with the active or passive transport of the molecules
 to be degraded (\eg\ transmembrane channel proteins).\mybr\
-
-On the other hand,
-besides the poor protein stability,
-the anticorrelated pairs may also result from technical artefacts.
-In addition to the saturation effect (see \Cref{subsec:simpleProt})
-and the degenerate peptides (see \Cref{subsec:proteinInference}),
-other discrepancies can exist.
-Many quantification inconsistencies exist
-between methods, platforms and studies~\mycite{Dapas2017-ui,Aebersold2018-jn}.
-Additionally, the same method can yield different quantifications
-with slight variations in a few factors.
-A possible example of oft-neglected sources is the gene length.
-While normalisation methods for \Rnaseq\ require the genes or transcripts length
-(see \Cref{subsub:norm}),
-I chose to perform all the analyses at gene-level expression
-(see p.~\pageref{minisec:quantNorm}).
-In fact, there are for each gene various \mRNA\ isoforms~\mycite{MarPhD}
-and proteoforms~\mycite{Aebersold2018-jn}
-and currently many criticisms exist about
-the algorithms' accuracy at isoform level~\mycite{tamaraRNA,ernestRNA,Dapas2017-ui}.\mybr\
-
-To keep congruity with the gene length
-employed by \WebFoCi{\egxa}{https://www.ebi.ac.uk/gxa/home/}{EBIgxa},
-I use the sum of the lengths of all its collapsed exons.
-The metapipeline
-\softFoCi{\irap}{https://nunofonseca.github.io/irap/}{Fonseca2014-si} provides
-the gene lengths computed in this manner.
-Yet, most genes present one dominant transcript~\mycite{oneDominant}.
-One possible method to improve the \mRNA/protein correlations
-is to identify the most dominant transcript isoform of each gene
-and use their length for the normalisation.
-This method ought to be rather easy to implement,
-either with the help of resources like
-\WebFoCi{APPRIS}{http://appris-tools.org/}{Rodriguez2018-fk}
-or through a direct data analysis.\mybr\
-
-More generally,
-besides improving current results,
-(even partial) better identification of the \mRNAs\ and proteins isoforms
-will most likely also unveil still undetected divergences
-between \mRNA\ and protein expression.\mybr\
-
-Another source of discrepancy is the annotation.
-For example, \gene{STAU2} (Pearson $r=-0.59$; Spearman $\rho=-0.65$)
-appears to be known to have different annotations
-in the proteomic and transcriptomic communities.
-Thus, \gene{STAU2}'s anticorrelation observed
-between its \mRNA\ and protein expressions
-might predominantly result from artefacts
-rather than any biological cause.\mybr\
-
-
-Among the studies published during my thesis' works,
-three are most notably pertinent to the comparison and integration analyses
-I have outlined above.\mybr\
-
-A first published comparison~\mycite{SciRep2016} of the expression data of
-\gtex\ \mycite{GTExTranscript} and the \pandey\ Lab~\mycite{PandeyData}
-provides weaker results than the above-presented ones.
-Overall, the range of Spearman correlation they present for the tissues
-does not exceed $\rho=0.5$.
-Additionally, this study also fails to show any functional enrichment
-for the \mRNA/proteins that the authors have identified as concordantly expressed.
-The authors have based their complete study on data provided as-is
-by the \gtex\ project and the \pandey\ Lab.
-Hence, although the primary resources are useful
-for other authors to appraise the presence of a given gene in a particular tissue,
-more extensive uses need more considerations
-and probably some preliminary treatments.\mybr\
-
-\citet{Franks2017-bp} integrate a subset of the \uhlen\ data included
-in this chapter analyses
-as they have extracted their transcriptomic data as-is from \citet{Uhlen2014}
-to integrate it with the data they have reprocessed
-from \citet{PandeyData} and \citet{KusterData}.
-The study's primary aim is
-to quantify the post-transcriptional regulation of the genes
-through their translational efficiency.
-To this end, they compute for each gene a \emph{\gls{PTR}}.
-\glspl{PTR} ease the assessment of the gene expression variability
-across their set of tissues.
-This study underlines the utmost caution required
-when one considers the transcriptome as a possible proxy for the proteome.
-Besides, it also reminds that data quality and reliability are primary caveats
-for possible analyses.
-\citet{Franks2017-bp} also show that genes from the same set of \gls{go} terms
-display similar \gls{rPTR} profile across tissues,
-\ie\ they have higher and lower \gls{rPTR} in the same tissue sets.
-This observation suggests a concerted functionally regulations.\mybr\
-
-The last study by~\citet{Wang2019-ut} is a follow-up of a series of previous ones.
-All have been conducted on the same set of human tissues samples
-collected by the Department of Pathology,
-Uppsala University Hospital, Uppsala, Sweden,
-as part of the sample collection governed by
-the \WebFo{Uppsala Biobank}{https://www.uppsalabiobank.uu.se/en/}.
-This study involves matched transcriptomic and proteomic data sourced
-from the same samples.
-The transcriptomic data is one of the datasets used in this chapter's analyses:
-the \uhlen\ \etal\ data~\mycite{Uhlen2015},
-for which the raw data can be downloaded from \gls{ArrayExpress}\footnote{%
-\ArrayExpress{\href{https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-2836/}{E-MTAB-2836}}
----\\ \Href{https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-2836/}}.
-The proteomic data has been referenced for the first time by~\citet{Wang2019-ut}
-and can be retrieved in \gls{Pride}\footnote{%
-\Pride{\href{https://www.ebi.ac.uk/pride/archive/projects/PXD010154/}{PXD010154}} ---
-\Href{https://www.ebi.ac.uk/pride/archive/projects/PXD010154}}.
-Overall, the results above are confirmed and unsurprisingly improved by~\citet{Wang2019-ut}
-since the proteomics and transcriptomics are sampled from the same sources,
-and there are many biological replicates per tissue.
-While the (Spearman) correlation
-between the transcriptome and proteome of each tissue
-has a similar range globally,
-the expression of an \mRNA\ and its protein across the tissues have
-a positive correlation in
-about 90\% of all cases and half of them are statistically significant.
-The authors note that nearly a quadratic relationship exists
-between an \mRNA{}'s abundance and its protein in each tissue.
-They also report that there is a core set of ubiquitously expressed pairs of
-\mRNA/protein
-and that key differences between tissues are more characterised
-by the level of expression of the molecules rather than their presence or absence.
-However, when they compare the highest expressed proteins and \mRNAs,
-they observe a limited overlap that
-further confirms that \gls{TS} genes are more pertinent for integration
-than the highest expressed genes.
-They also observed that while disease-associated genes are expressed more globally,
-G protein-coupled receptors distribution is mostly restricted to specific tissues,
-which is the general case for drug targets as well.
-This last point is mostly rather a confirmation of the success
-of current drug development strategies.
-Either with or without the help of computer-aided drug design,
-the methodologies
-(often through trial and error),
-minimize new drugs' side effects as much as possible
-so that they can be marketed.
-Finally, the authors point out that part of the observed discrepancies
-in the proteomic and transcriptomic expression
-may be due to the difference in strategies of each community
-on how to handle the degenerate peptides or multireads.
-The \PPKM\ quantification presented in \Cref{sec:NewQuantProt}
-is one solution to this issue,
-and it proves to improve the results,
-particularly for the Pearson correlation.\mybr\
-
-A companion study, by \citet{Eraslan2019-md}, reports that
-\mRNA\ expression variation across a set of tissues is
-a better predictor for protein levels than
-considering all \mRNAs\ expression levels in a tissue.
-The authors have thus computed a \gls{PTR} for over 11,500 genes.
-The study uses these \gls{PTR} to model and probe possible regulatory mechanisms
-and highlights valuable observations.
-However, while \citet{Franks2017-bp}'s \glspl{PTR} may be partially miscalculated
-because of the independent sampling sources,
-for \citet{Eraslan2019-md}, there might be an overfitting problem.
-Further studies based on other datasets are required
-to ensure the reproducibility of these results.
-They warn that for many genes,
-\glspl{PTR} is only useful as a gauge of the protein abundance magnitude order.\mybr\
 
 \section{Conclusion}
 

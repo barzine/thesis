@@ -602,22 +602,26 @@ on how to compute this ratio; see~\citet{Zhu2016-xo,Uhlen2015}.\mybr\
 In this thesis,
 I compute the FC ratio by dividing the expression
 of each gene in a given tissue
-by the maximum expression of this gene across all the other tissues of that study
+by the average expression of this gene across all the other tissues of that study
 in the combined dataset.\mybr\
 
+\begin{minipage}{\textwidth}
 \begin{equation}
     \tag{Fold change (FC) ratio}
-    \FCm_{g,t,d}=\frac{x_{g,t,d}}{\max\limits_{t' \in \mathcal{T}} x_{g,t',d}}
+    %\FCm_{g,t,d}=\frac{x_{g,t,d}}{\max\limits_{t' \in \mathcal{T}} x_{g,t',d}}
+    \FCm_{g,t,d}=\frac{x_{g,t,d}}{\frac{1}{n}\sum\limits_{i=1}^n {x_{g,i,d}}}
 \end{equation}
 where:\quad\begin{eqlist}[\setlength{\itemsep}{0em}%
             \setlength{\topsep}{0em}%
             \setlength{\partopsep}{0em}%
             \setlength{\parskip}{0em}%
             \setlength{\parsep}{0em}]
-        \item[\textbullet\ $\mathcal{T}$] is a set of tissues $t$
+        %\item[\textbullet\ $\mathcal{T}$] is a set of tissues $t$
         \item[\textbullet\ $x$] is the expression value of the gene $g$
             in the tissue $t$ in a study $d$
+        \item[\textbullet\ $n$] is the number of tissues $t$
 \end{eqlist}
+\end{minipage}
 
 Studies usually pick arbitrary cut-offs to characterise the specific genes.
 \citet{Uhlen2015} uses two-fold and five-fold cut-offs
