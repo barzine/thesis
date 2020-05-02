@@ -1720,7 +1720,7 @@ present three additional tissues.\mybr\
 The above analyses provide
 the comparison of \mRNA\ and protein expression across fifteen tissues
 for 12, 921 pairs as they include \uhlen\ \etal\ data and \pandey\ Lab data
-quantified with our \PPKM\ quantification (see \Cref{ch:proteomics}).
+quantified with our \PPKM\ method (see \Cref{ch:proteomics}).
 This new quantification allows encompassing about twice as many proteins
 than with the standard state-of-art method (see \Cref{ch:datasets}),
 which identifies 6,428 proteins only.\mybr\
@@ -1734,9 +1734,9 @@ $≤$ $\rho_i$ $≤$ $\rho_{\text{\liver}}=0.62$)
 is consistent with the literature,
 either published before or during this study (see examples further below).\mybr\
 
-Besides, the new \PPKM\ quantification method for proteins%,
+Besides, the new \PPKM\ quantification method for proteins
 %introduced in \Cref{ch:proteomics},
- provides similar Pearson correlation ranges
+provides similar Pearson correlation ranges
 ($r_{\text{\Oesophagus}}=0.38$ $≤$ $r_i$  $≤$ $r_{\text{\liver}}=0.61$)
 to ones previously described for cell studies specifically designed
 for the joint integration of \emph{same-sourced} proteomics and transcriptomics
@@ -1779,7 +1779,7 @@ The analysis of expression breadth highlights noteworthy facts
 \testis\ displays the most unique and diverse expression
 both at transcriptomic and proteomic levels
 (see also \citet{Wang2019-ut,Zhang2015-yn});
-\liver\ (the most correlated tissue) present the second-highest number
+\liver\ (the most correlated tissue) presents the second-highest number
 of \mRNAs\ and proteins with a unique expression breadth.
 Besides, when the expression breadth of a protein is unique,
 the expression breadth of its related \mRNA\ is more likely to be unique
@@ -1840,16 +1840,15 @@ The most anticorrelated pairs are enriched in regulation processes.\mybr\
 On top of the true relationship between the expression of the \mRNAs\ and proteins,
 correlations are dependent on the quantification of identified molecules.
 In general,
-while many of the midrange and lesser correlation levels may result
-from biological reasons such as
-the relative \mRNA\ stability and protein degradation,
+while many biological reasons (\eg\ protein degradation)
+can lead to midrange or low correlation levels,
 other technical artefacts may also be at play:
 saturation effect of more abundant proteins (see \Cref{subsec:simpleProt});
 degenerate peptides (see \Cref{subsec:proteinInference});
 quantification inconsistencies between methods;
 platforms and studies~\mycite{Dapas2017-ui,Aebersold2018-jn};
 annotation,
-or other oft-neglected sources, \eg{}: gene or isoform length.
+or other oft-neglected sources, \eg\ gene or isoform length.\mybr\
 
 One example where the annotation might be at fault is
 \gene{STAU2} (Pearson $r=-0.59$; Spearman $\rho=-0.65$),
@@ -1888,7 +1887,7 @@ besides improving current results,
 (even partial) better identification of the \mRNAs\ and proteins isoforms
 will most likely unveil still undetected divergences.\mybr\
 
-In terms of the actual relationship between the expression of \mRNAs\ and proteins,
+In terms of the true relationship between the expression of \mRNAs\ and proteins,
 it is imperative to remember that the proteome and the transcriptome I use
 in the analyses are independently sourced and aggregated over several individuals.
 Therefore, some genes displaying mixed correlation in this thesis may present
@@ -1901,7 +1900,7 @@ are more likely having a robust expression across individuals and time,
 while being less subject to technical noise.\mybr\
 
 Among the studies published during my thesis' works,
-three are most notably pertinent to the comparison and integration analyses
+three are most notably pertinent to the integration and comparison analyses
 I have outlined above.\mybr\
 
 A first published comparison~\mycite{SciRep2016} of the expression data of
@@ -1922,7 +1921,7 @@ and probably preliminary treatments.\mybr\
 in this chapter analyses
 as they have extracted their transcriptomic data as-is from \citet{Uhlen2014}
 to integrate it with the data they have reprocessed
-from \citet{PandeyData} and \citet{KusterData}.
+from \pandey\ Lab data~\mycite{PandeyData} and \citet{KusterData}.
 The study's primary aim is
 to quantify the post-transcriptional regulation of the genes
 through their translational efficiency.
@@ -1943,7 +1942,7 @@ are confirmed and unsurprisingly improved by~\citet{Wang2019-ut}
 since they have matching samples (same sources)
 for the proteomics and transcriptomics.
 Moreover, there are many biological replicates per tissue.
-In this follow-up study, the authors have generated proteomics data\footnote{%
+In that follow-up study, the authors have generated proteomics data\footnote{%
 The proteomic data can be retrieved in
 \Pride{\href{https://www.ebi.ac.uk/pride/archive/projects/PXD010154/}{PXD010154}}
 ---\\ \Href{https://www.ebi.ac.uk/pride/archive/projects/PXD010154}}
@@ -1987,30 +1986,28 @@ The study uses these \gls{PTR} to model and probe possible regulatory mechanisms
 However, while \citet{Franks2017-bp}'s \glspl{PTR} may be partially miscalculated
 because of the independent sampling sources,
 for \citet{Eraslan2019-md}, there might be an overfitting problem.
-Further studies based on other datasets are required
+Further analyses based on other datasets are required
 to ensure the reproducibility of these results.
 They warn that for many genes,
 \glspl{PTR} is only useful as a gauge of the protein abundance magnitude order.\mybr\
 
-Considering the previous papers together,
-it appears that
-correlation levels observed in same-tissue pairs
-of independent proteomics and transcriptomics
-can reach comparable levels than for matched samples
-(\ie\ collected from the same source)
-as long as the raw data are processed with consistency.\mybr\
+Considering the previous papers together with my results,
+I have similar correlation levels for same-tissue pairs of
+independent proteomics and transcriptomics
+to the ones for matched samples (\ie\ collected from the same source)
+as I have processed the raw data with consistency.\mybr\
 
 Despite the many deployed efforts,
 \eg\ \citet{Franks2017-bp,Eraslan2019-md},
 it also seems that predicting protein levels directly from \mRNA\ levels
-is still unlikely at the moment
+is still unlikely at the moment.
 However, \gls{go} terms may be a useful help in appraising protein expression,
-which has been further confirmed in a recent collaboration~\mycite{deepLearning2020}.
+which has been further confirmed in a recent collaboration~\mycite{deepLearning2020}.\mybr\
 
 Additionally, past studies have demonstrated similar results to
 the highest correlated pairs of \mRNA/protein
 that are enriched with catabolic genes,
-and the most anticorrelated ones that are enriched for regulatory processes.
+and the most anticorrelated ones that are enriched for regulatory processes.\mybr\
 
 \citet{Vogel2010-ux} have observed the highest protein-per-mRNA ratios
 for mammalian metabolic genes.
@@ -2025,3 +2022,64 @@ and, regardless of each individual's particulars
 (\eg\ sex, alimentary diet, age, physical level),
 the expression of many catabolic genes only varies according to the tissue.\mybr\
 
+Accepting the premise that,
+regardless of the tissue,
+a similar sequence of regulatory steps apply to a gene
+(from its transcription to possible post-translational modifications),
+taken together the above facts suggest me that
+the catabolic genes may have
+a more straightforward modulation of their expression than the other genes.
+In organic chemistry,
+it is well-known that the more a molecule requires steps to be produced,
+lesser is its yield (\ie\ final amount).
+One possible way to test this hypothesis is to explore if
+the amount of substrate can regulated these genes' expression levels.
+An indirect approach can be
+the comparison across tissues of the co-expression profiles of these catabolic genes
+with others involved with the active or passive transport of the molecules
+to be degraded (\eg\ transmembrane channel proteins).\mybr\
+
+Another altogether research avenue can be the exploration of possible links
+between the tissue-specific (\gls{TS}) genes and the G protein-coupled receptors.\mybr\
+
+\section{Conclusion}
+
+Despite possible batch effects and technical noise,
+a part of the biological signal is strong enough
+to be consistently captured by the transcriptome and proteome
+through direct and indirect analyses.\mybr\
+
+At tissue level,
+the independent transcriptomics and proteomics included in these analyses
+give similar Spearman or Pearson correlation
+to samples produced from same biological sources.
+The signal appears stronger for more homogeneous tissues, \eg\ \liver,
+or which expression is more distinctive, \eg\ \testis{}.\mybr\
+
+In any cases, a significant number of tissue-specific (\gls{TS}) genes
+are consistently shared between proteome and transcriptome.
+Besides, even indirect analyses,
+such as hierarchical clustering trees
+created with genes that are only shared by two tissues,
+can highlight identical structures between the two biological layers.\mybr\
+
+On the other hand, the gene-centric analyses have shown that
+while only 24\% of the \mRNA/protein pairs are well correlated (r>$0.8$),
+most (about 73\%) have a positive correlation for their expression.
+While the highest correlated genes are enriched in \gls{TS} proteins,
+many of them are expressed ubiquitously.\mybr\
+
+The \gls{go} enrichment analysis on the pairs with a \gls{TS} proteins
+highlights that they are enriched for specific signalling,
+the most correlated genes are enriched in catabolic processes and
+the most anticorrelated ones in regulatory processes.\mybr\
+
+Providing proper care and consistent processing,
+it appears that
+one may use these independent resources as part of their study
+to achieve lower but still significant results.\mybr\
+
+Results can improve from better identification and quantification alone.
+A possible approach can be the standardisation of annotations between communities.
+Optimisation or new algorithmic strategies are other ones
+as illustrated by the \PPKM\ quantification applied for this thesis' works.\mybr\
