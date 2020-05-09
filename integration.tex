@@ -14,7 +14,7 @@ and proteomic level (with \emph{bottom-up} \ms\ studies in \Cref{ch:proteomics})
 my next step is to examine how these gene expression profiles
 compare between these two different biological layers.\mybr\
 
-One major aim of this study is to asses
+One major aim of this study is to assess
 how the correlations between the transcriptome and proteome
 described in the literature, mostly measured in cells,
 hold at the tissue level.
@@ -287,7 +287,7 @@ the genes overlap across twelve shared tissues
 between the \pandey\ Lab's proteins quantified through this first method
 and \uhlen\ \etal{}'s and \gtex{}'s \mRNAs\ quantified
 with \htseq\ (see \Cref{subsubsec:RnaseqDataProc}).
-\Cref{fig:PU_vennQ1} is the same analysis across the fifteen shares tissues
+\Cref{fig:PU_vennQ1} is the same analysis across the fifteen shared tissues
 between \pandey\ Lab and \uhlen\ \etal\ data.\mybr\
 \vspace{5mm}
 
@@ -580,7 +580,7 @@ The one-sided \Welchttest\footnote{See \Cref{mini:ttest}}
 allows rejecting the null hypothesis $H_0$
 (the means of the correlation coefficients for same-tissues pairs
 are identical or lower to random tissues pairs).
-Irrespectively of the protein quantification or computational methods,
+Irrespective of the protein quantification or computational methods,
 all the same-tissue pairs correlations are significant
 (p-value $<5.10^{-5}$, except for Pearson correlation with Top3 quantification
 where p-value $<0.05$ --- see \Cref{tab:pvalueCorrSP}).\mybr\
@@ -669,7 +669,7 @@ across the tissues}
     \textbf{Heatmap based on the Pearson correlation between protein and mRNAs
     expression (alphabetically ordered tissue).}
     Correlations for same tissue pairs (diagonal) are highlighted in
-    yellow when the highest observed correlation are between the matching proteomics
+    yellow when the highest observed correlations are between the matching proteomics
     and transcriptomics pairs; in dark pink, when the proteomics correlates
     the best with the matching transcriptomics.
     When other higher correlations are observed for a tissue proteomics or transcriptomics
@@ -682,7 +682,7 @@ better in matching tissues.
 For four other tissues (\hColon, \Lung, \Oesophagus\ and \Urinarybladder\
 --- in dark pink),
 only the proteomics correlate the best with the matching transcriptomics,
-while the transcriptomics correlates better with another tissue proteomics.
+while the transcriptomics correlates better with other proteomics tissues.
 The remaining two tissues have their proteomics correlating
 as much (\eg\ \Gall) to other tissues or more to transcriptomics
 from other tissues (\Rectum).\mybr\
@@ -690,8 +690,8 @@ from other tissues (\Rectum).\mybr\
 While the different correlation methods lead to similar result trends,
 individual differences persist.
 In a few cases, \eg\ \heart,
-these slight differences may change the correlation rank order of
-a proteomic \treps\ to the different transcriptomic \treps{}.\mybr\
+these slight differences may considerably change
+the relative correlation ranking order of the \treps{}.\mybr\
 
 In the following sections,
 I explore several avenues to identify possible factors
@@ -785,7 +785,7 @@ in the literature~\mycite{Uhlen2015,oneDominant,Chen2018-ln}.\mybr\
     \vspace{-6mm}
     \caption[Expression breadth of the proteins and mRNAs]{\label{fig:expressionBreadth}%
     \textbf{Expression breadth of the proteins and mRNAs.}
-    The proteins expression breadth has a bimodal distribution.
+    The expression breadth of the proteins has a bimodal distribution.
     Many proteins are detected either in a single tissue or in all of them.
     Almost every \mRNA\ is detected in every tissue.
     Their breadth becomes bimodal when their expression threshold
@@ -835,8 +835,10 @@ and comprises the second-highest number of unique genes.
 \Testis\ is the third-best correlated tissue
 despite having the highest fractions of unique proteins and \mRNAs\
 regardless of any threshold.
-The other tissues fail to show any relationship
-between the unique \mRNAs\ and proteins they expressed
+It may be tempting to hypothesise that the number of unique genes
+relate to correlation levels,
+but the other tissues fail to show any relationship
+between the number of unique \mRNAs\ and proteins they expressed
 and the strength of the correlations.\mybr\
 
 Put together, these results suggest that
@@ -851,7 +853,7 @@ is confirmed by a more refined analysis of the expression breadth.\mybr\
     \caption[Comparison of proteins expression breadth to
     corresponding mRNA breadth]{\label{fig:SharedBreadthProtQ3}%
     \textbf{Comparison of proteins expression breadth to their corresponding mRNA.}
-    The proteins expression breadth (\Cref{fig:protBreadth})
+    The proteins' expression breadth (\Cref{fig:protBreadth})
     is coloured according to
     their corresponding \mRNA\ expression breadth at $5$ \FPKM\
     (\Cref{fig:mRNAbreadth5}).
@@ -962,9 +964,11 @@ $J(\tikzcircle[Tan,fill={rgb,255:red,195; green,160;blue,153}]{4pt},%
 \tikzcircle[DarkOrchid,fill={rgb,255:red,215; green,145; blue,254}]{4pt}) = \frac{k}{2n-k}$,\\
 with $n$ the number of proteins (\tikzcircle[Tan,fill={rgb,255:red,195; green,160;blue,153}]{4pt})
 that are only found in a given tissue and
-$k$ is the number of common genes between \tikzcircle[Tan,fill={rgb,255:red,195; green,160;blue,153}]{4pt}
-and \tikzcircle[DarkOrchid,fill={rgb,255:red,215; green,145; blue,254}]{4pt}.
-%$n$ most specific \mRNAs\ of the tissue.
+$k$ is the number of common genes between
+these $n$ unique proteins
+%(\tikzcircle[Tan,fill={rgb,255:red,195; green,160;blue,153}]{4pt})
+and the $n$ most specific \mRNAs\ of the tissue
+(\tikzcircle[DarkOrchid,fill={rgb,255:red,215; green,145; blue,254}]{4pt}).
 \end{minipage}
 
 \vspace{3mm}
@@ -1018,7 +1022,7 @@ for different sets of parameters.\mybr\
 
 If ranked by their Jaccard indices,
 several tissues fall within a range similar to their correlation coefficient,
-while other not --- as shown by \Cref{fig:compCorJind}.
+while others not --- as shown by \Cref{fig:compCorJind}.
 For instance, \Liver, \Testis\ and \Pancreas\ have high ranks
 and \Bladder\ and \Gallbladder\ low ones
 for both their correlation and their Jaccard indices.
@@ -1169,7 +1173,7 @@ Note that the results seem unaffected by the protein quantification method
 as \PPKM\ and Top3 methods give identical results.
 However, the threshold,
 above which the \mRNAs\ are considered,
-influences on the analysis' outcomes.
+influences the analysis' outcomes.
 As very few \mRNAs\ are found uniquely in two tissues at $0$ \FPKM,
 this threshold is insufficient
 to identify any hierarchical organisation in the transcriptomic data.
@@ -1187,14 +1191,14 @@ depending on their tissue context.\mybr\
 In summary,
 even indirect analyses based on the proteins and \mRNAs\ breadth expression
 have some degree of similarity in their results
-and seem partially capturing a biological signal.\mybr\
+and seem to partially capture a biological signal.\mybr\
 
 Further more in-depth (direct or indirect) analyses
 may clarify the relationship between the proteome and transcriptome.
 For example, equivalent correlation levels between specific gene groups
 (gene co-expression correlation) may be highlighted
 for each tissue at both biological layers.
-However, this kind of analyses requiring a case-by-case approach
+However, this kind of analysis requiring a case-by-case approach
 will greatly benefit from
 well-established and proven \mRNA\ and protein expression baselines
 for each tissue.\mybr\
@@ -1234,7 +1238,7 @@ than the expected levels computed by random permutation
     between studies across the shared tissues in descending order.}
     For each \mRNA\ and its corresponding protein,
     I have computed their Pearson correlation (in pink)
-    across the fifteen common tissue
+    across the fifteen common tissues
     between \pandey\ Lab (\PPKM) and \uhlen\ \etal\ data
     and then ordered them in decreasing order.
     The x-axis shows the rank of each pair
@@ -1329,7 +1333,6 @@ with a tissue-specific (\gls{TS}) protein or
 whose \mRNA\ and protein expression levels are tightly related
 (\Cref{fig:caseHighlyCor,fig:caseFairlyCor}).\mybr\
 
-\vspace{-4mm}
 I only present herein (and in the following sections)
 the set of results based on the Pearson correlation of the gene expression levels
 between the \pandey\ Lab data quantified with the \PPKM\ method
@@ -1385,7 +1388,7 @@ of \uhlen\ \etal\ data and \pandey\ Lab data.
 Then, I organise the genes in a sequence\footnote{A sequence is an ordered set.}
 by ranking them by decreasing order of correlation.
 Thus, the first most correlated gene's rank is $1$.
-Finally, for each rank $k$ I calculate the number of genes with \gls{TS} proteins
+Finally, for each rank $k$, I calculate the number of genes with \gls{TS} proteins
 among the first $k$ ranks before converting it into percentage.\mybr\
 
 \Vref{eq:SpeCor} presents the formula with which I compute
@@ -1480,7 +1483,7 @@ Anticorrelated genes are another category that will likely require
 further analysis for a better overall understanding.
 The observed anticorrelation between the proteins and \mRNAs\ expression
 can be caused by various elements, which may include
-tissue-dependent isomer (either for the \mRNA\ or protein) expression,
+tissue-dependent isomers (either for the \mRNA\ or protein) expression,
 self-regulation or a variable secretion rate of the protein.\mybr\
 
 At the time of writing,
@@ -1640,7 +1643,7 @@ show a slight enrichment for
 \enquote{\textit{transmembrane transporter complex}},
 \enquote{\textit{transporter complex}},
 and \enquote{\textit{cation channel complex}}.
-Whereas the categories associated to the \gls{TS} proteins
+Whereas the categories associated with the \gls{TS} proteins
 are more ubiquitous and can concern every cell type,
 the enriched categories for the best correlated genes
 are referring more specifically to subsets of cells.
@@ -1663,7 +1666,7 @@ and \enquote{\textit{coenzyme binding}}).\mybr\
 The pairs with a \gls{TS} protein are also associated
 transporter and signalling activities
 (with the following five categories:
-\enquote{\textit{transmembrane singling receptor activity}},
+\enquote{\textit{transmembrane signalling receptor activity}},
 \enquote{\textit{signalling receptor activity}},
 \enquote{\textit{molecular transducer activity}},
 \enquote{\textit{channel activity}},
@@ -1716,7 +1719,7 @@ the three following independent sources:
 and \gtex~\mycite{GTExTranscript} data for the transcriptomics
 and \pandey\ Lab data~\mycite{PandeyData} for the proteomics.
 The three datasets share twelve tissues,
-while the combined sets based only on \uhlen\ \etal\ and \pandey\ Lab data
+while the combined datasets based only on \uhlen\ \etal\ and \pandey\ Lab data
 present three additional tissues.\mybr\
 
 The above analyses provide
@@ -1937,7 +1940,7 @@ for possible analyses.
 \citet{Franks2017-bp} also show that genes from the same set of \gls{go} terms
 display similar \gls{rPTR} profile across tissues,
 \ie\ they have higher and lower \gls{rPTR} in the same tissue sets.
-This observation suggests a concerted functionally regulations.\mybr\
+This observation suggests concerted functional regulations.\mybr\
 
 Overall, the results presented in this thesis
 are confirmed and unsurprisingly improved by~\citet{Wang2019-ut}
@@ -2036,13 +2039,13 @@ In organic chemistry,
 it is well-known that the more a molecule requires steps to be produced,
 lesser is its yield (\ie\ final amount).
 One possible way to test this hypothesis is to explore if
-the amount of substrate can regulated these genes' expression levels.
+the amount of substrate can regulate these genes' expression levels.
 An indirect approach can be
 the comparison across tissues of the co-expression profiles of these catabolic genes
 with others involved with the active or passive transport of the molecules
 to be degraded (\eg\ transmembrane channel proteins).\mybr\
 
-Another altogether research avenue can be the exploration of possible links
+Another research avenue can be the exploration of possible links
 between the tissue-specific (\gls{TS}) genes and the G protein-coupled receptors.\mybr\
 
 \section{Conclusion}
@@ -2055,7 +2058,7 @@ through direct and indirect analyses.\mybr\
 At tissue level,
 the independent transcriptomics and proteomics included in these analyses
 give similar Spearman or Pearson correlation
-to samples produced from same biological sources.
+to samples produced from the same biological sources.
 The signal appears stronger for more homogeneous tissues, \eg\ \liver,
 or which expression is more distinctive, \eg\ \testis{}.\mybr\
 
@@ -2072,7 +2075,7 @@ most (about 73\%) have a positive correlation for their expression.
 While the highest correlated genes are enriched in \gls{TS} proteins,
 many of them are expressed ubiquitously.\mybr\
 
-The \gls{go} enrichment analysis on the pairs with a \gls{TS} proteins
+The \gls{go} enrichment analysis on the pairs with a \gls{TS} protein
 highlights that they are enriched for specific signalling,
 the most correlated genes are enriched in catabolic processes and
 the most anticorrelated ones in regulatory processes.\mybr\

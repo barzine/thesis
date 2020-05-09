@@ -43,7 +43,7 @@ or that the oldest (unpublished) available multi-tissue \cutler\ dataset is from
 (see \Cref{subsec:cutler}).
 To this date,
 \cutler\ Lab, \kuster\ Lab and \pandey\ Lab datasets are the only ones
-that explore concurrently several nondiseased human tissues.
+that explore concurrently several non-diseased human tissues.
 See \Cref{sec:ProteoData} for more details and
 the processing pipeline designed and implemented by \james\ to handle them.\mybr\
 
@@ -87,7 +87,7 @@ when all their fourteen common tissues are considered.\mybr\
 illustrates the number of proteins identified in each of these four tissues.
 The colours indicate in which dataset (or group of datasets)
 the proteins have been identified.
-See \Cref{fig:protbkdownT} for each set precise numbers.\mybr\
+See \Cref{fig:protbkdownT} for the precise numbers of each set.\mybr\
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.65]{proteomics/barplotVenn3Dprot.pdf}\centering
@@ -112,7 +112,7 @@ the \emph{Kuster and Pandey} set as
 their largest protein group formed by more than one dataset.\mybr\
 
 The largest set of identified proteins in \pancreas\
-and the second one in \ovary\ are proteins only found in \pandey\ Lab dataset
+and the second one in \ovary\ are proteins only found in the \pandey\ Lab dataset
 (\emph{Pandey only}).
 As shown in \Cref{fig:distribProtUniq3D},
 our state-of-the-art pipeline (see \Cref{subsec:msDataProcess}) has identified
@@ -222,9 +222,10 @@ their expression quantification across tissues and studies.\mybr\
 \end{figure}
 
 Following a similar approach to \Crefp{fig:noMitoNoRep4T}{},
-I cluster the twelve proteomic \treps\footnote{See~\Vref{def:trep} for \treps\ definition.}.
+I cluster the twelve proteomic \treps\footnote{\Glsxtrlong{TREP}.
+See~\Vref{def:trep} for more details on \treps{}.}.
 I have used Ward's method to link the \treps\ based on their similarity that
-I have computed by substracting from 1 the pairwise Spearman correlation
+I have computed by subtracting from 1 the pairwise Spearman correlation
 of the expression levels of the 1,384 common proteins.
 As shown in \Cref{fig:prot3Dheatmap},
 the technical variability overcomes the biological signal
@@ -245,7 +246,7 @@ in \Cref{subsec:halfProtConfirmed},
 is impactless.\mybr\
 
 Neither applying quantile normalisation or widespread scaling methods
-on top of this quantification allowed to correct for the technical variability.
+on top of this quantification allowed correcting for the technical variability.
 
 Because of the limited number of proteins included in this analysis,
 it is unwise to draw definite conclusions
@@ -393,7 +394,7 @@ the experiment $j$.
 \end{minipage}
 
 \james\ has implemented this new method and provided me
-\PPKM\ quantifications for the \pandey\ Lab and \kuster\ lab data.\mybr\
+\PPKM\ quantifications for the \pandey\ Lab and \kuster\ Lab data.\mybr\
 
 Although smaller,
 another limiting factor is the filtering threshold of the selected \psms\
@@ -449,11 +450,11 @@ and the new one (12,290).\mybr\
     Indeed, the turquoise/red $Q1$ bars are the adult tissues of the \pandey\ Lab data
     quantified with the first quantification method
     (described in \Cref{fig:distribProtUniq3D}).
-    The purple/green bars $Q2$ bars are their equivalent
-    for the new quantification method.
+    The purple/green $Q2$ bars are their equivalent
+    to the new quantification method.
     The new method allows a considerable increase of
     the identified and quantified proteins number,
-    sometimes more than twice as many than the first quantification.
+    sometimes more than twice as many as the first quantification.
     On the other hand,
     the rank orders of the total and tissue-specific protein numbers per tissue
     are quite similar between the two methods.
@@ -515,7 +516,8 @@ ubiquitous proteins.\mybr\
 In this chapter, I have reviewed human proteome data
 from three projects presented in \Cref{ch:datasets},
 that have been reprocessed by \james\ with two pipelines
-for the two largest studies \pandey\ Lab data~\mycite{PandeyData},\citet{KusterData}.
+for the two largest studies \pandey\ Lab data~\mycite{PandeyData}
+and \kuster\ Lab data~\mycite{KusterData}.
 Currently, state-of-art bottom-up label-free \ms\ proteomics captures
 human tissues expression as a fragmented and disparate universe.
 Our first processing pipeline,
@@ -525,7 +527,7 @@ The original \pandey\ Lab data was disputably quantifying \glspl{OR} in many tis
 \mycite{Ezkurdia2014-qx}.
 No trace of \glspl{OR} was found in any of our reprocessed data.
 I have also described our new quantification method (\gls{PPKM}),
-which allows to estimate the expression of nearly twice as many proteins
+which allows us to estimate the expression of nearly twice as many proteins
 than the first one we used.\mybr\
 
 For both quantification methods,

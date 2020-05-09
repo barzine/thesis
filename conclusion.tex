@@ -10,7 +10,7 @@
 With the recent profusion of expression atlases
 and the steadily growing number of independent studies
 integrating data from these atlases as-is\footnote{%
-More than 3,000 citations on 4 November 2019 for five human studies~\mycite{%
+More than 3,000 citations on 4 November 2019 for five human studies~\cite{%
 castleData,VTpaper,Uhlen2014,Uhlen2015,GTExTranscript}.},
 it has become increasingly imperative to examine
 the soundness of their extensive use.\mybr\
@@ -19,8 +19,8 @@ At the time I started my doctorate,
 no assessment on the robustness of expression or
 comparison between independent \Rnaseq\ datasets was published yet.
 My primary aim was to provide an overview
-by integrating and comparing independent transcriptomic data
-of undiseased human tissues.
+of the integration and comparison of independent transcriptomic data
+of human undiseased tissues.
 However, the release of two substantial proteomic datasets in the meantime
 broadened my study's scope
 to include the integration of transcriptomic with proteomic data as well.\mybr\
@@ -175,13 +175,13 @@ Each of them can entail issues at different project levels.\mybr\
 \subsubsection*{Volume}
 \vspace{-3mm}
 The volume of files (see \Cref{tab:Lib5DF})
-to handle and process just for the transcriptomics
-is overwhelming and requires properly dimensioned infrastructure
+to handle and process just for the transcriptomics is overwhelming.
+It requires appropriately dimensioned infrastructure
 like in the \gls{EBI}, which can provide high-throughput computing.
 It is in practice impossible to reproduce the complete work underlying
 this thesis in a personal computer within a reasonable time.
 Although (commercial) solutions are increasingly in use for academic projects,
-dedicated storage and high computing facilities ease the analyses considerably
+dedicated storage, and high computing facilities ease the analyses considerably
 and allow more in-depth testing.
 Even if best practices are continuously refined for transcriptomics,
 there are still many factors that can be improved and tuned.
@@ -200,7 +200,7 @@ that follow community guidelines\footnote{%
 }.
 Issues still ensued from the matching of samples or tissues across the studies.
 For many tissues, I chose to mix several \enquote{body parts}
-from the same tissue or organe
+from the same tissue or organ
 (\eg\ \enquote{Left Ventricle} and \enquote{Atrial Appendage} for \Heart) in \gtex\
 to match them to the other studies' tissues.
 Perhaps, in some case, one \enquote{body part} is perfectly matched
@@ -385,7 +385,6 @@ and thus, be better suited than a single reference.
 On the other hand, studies focusing on a single tissue
 may better benefit from a reference built on \gls{TS} genes.\mybr\
 
-\vspace{-2mm}
 The recent development of single-cell transcriptomics
 (scRNA-Seq)~\mycite{Chen2019-um},
 and the probable feasibility of single cells proteomics~\mycite{Marx2019-cf},
@@ -406,7 +405,6 @@ For instance, in one of our papers % \citetitle{Wright-2016}
 we have confirmed the existence of putative proteins
 by observing coverage of the genome both by transcriptomics and proteomics.\mybr\
 
-\vspace{-2mm}
 To help further possible projects,
 I am currently compiling the different analyses
 into a set of interactive applications
@@ -429,37 +427,4 @@ under a creative commons license,
 \WebFo{Attribution 4.0 International  (CC BY 4.0) \includegraphics[width=1em]{cc.pdf}%
 \includegraphics[width=1em]{by.pdf}}{https://creativecommons.org/licenses/by/4.0}.
 Anyone can thus use, adapt or build upon this work as they wish.\mybr\
-
-
-%Achievements
-% Showed that mitochondrial \mRNAs\ and proteins should be excluded from the bulk
-% (even though separate analysis can be considered)
-%
-% Transcriptomics present similar profiles: tissue across datasets,
-% and \mRNAs\ profiles through the tissues across datasets.
-% This finding has prompted the EBI heatmap visualisation
-%
-% New proteomics quantification methods inspired on transcriptomic ones
-% can increase the number of quantified proteins
-% while seemingly unkooky
-%
-% First time so many different data have been mapped to the same genome version
-% and annotation with identical pipelines.
-% Quite in-depth comparison between Uhlen and \gtex.
-% Reprocessing of all the untarget non-diseased human proteome
-%
-% Consolidated gene lists for consistent transcriptomic expression
-%                                           (modified Uhlen categories)
-%                 and for matched (but independently sourced) \mRNA/protein pairs
-%                     for TS, highly correlated and very anticorrelated
-%
-% Organs show constant catabolic profile (set of genes) that have
-% mRNAs/proteins expression consistent through aggregation of individual and
-% across different datasets.
-% Particularly, housekeeping and TS genes
-%
-% Testis most diverse and unique expression
-% Liver most robust expression
-%
-
 
