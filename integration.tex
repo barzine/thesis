@@ -2002,15 +2002,29 @@ independent proteomics and transcriptomics
 to the ones for matched samples (\ie\ collected from the same source)
 as I have processed the raw data with consistency.\mybr\
 
-Despite the many deployed efforts,
-\eg\ \citet{Franks2017-bp,Eraslan2019-md},
-it also seems that predicting protein levels directly from \mRNA\ levels
-is still unlikely at the moment.
-However, \gls{go} terms may be a useful help in appraising protein expression,
-which has been further confirmed in a recent collaboration~$\lbrack$Barzine,
-Freivalds, Wright et al. ---\cite{deepLearning2020}$\rbrack$.\mybr\
+Despite many deployed efforts,
+\citet{Franks2017-bp,Eraslan2019-md} suggest that
+predicting protein levels directly from \mRNA\ levels
+is still unlikely at the moment.\mybr\
 
-Additionally, past studies have demonstrated similar results to
+However, \gls{go} information can be useful to appraise protein expression
+as confirmed in the collaborative work
+with the Institute of Mathematics and Computer Science (University of Latvia).
+With the help of \karlis,
+we have shown that deep learning algorithms that include GO information
+can reasonably predict the order of expression magnitude of missing proteins
+in a given label-free \ms\ proteomic study from \gls{RNA} expression data.
+The paper $\lbrack$Barzine,
+Freivalds, Wright et al. ---~\cite{deepLearning2020}$\rbrack$
+that describes the method is currently under review.
+While our approach is not an imputation method,
+it can be used in complement or instead of one.\mybr\
+
+Beyond any predictive interest,
+\gls{go} annotation clues on biological insights and mechanisms
+or possible research avenues.\mybr\
+
+Previous studies have demonstrated similar results to
 the highest correlated pairs of \mRNA/protein
 that are enriched with catabolic genes,
 and the most anticorrelated ones that are enriched for regulatory processes.\mybr\
