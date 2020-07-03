@@ -326,7 +326,7 @@ See also \Crefu{sec:rnaseq-data} and \Crefu{tab:repCorr}.\mybr\
     and the colours on the side bar following the y-axis
     are associated to the tissues
     (green for \kidney, red for \heart, blue for \testis\
-    and light orange \liver).}
+    and orange \liver).}
 \end{figure}
 
 \begin{figure}[!htpb]
@@ -420,9 +420,10 @@ As the exclusion of the \emph{undefined}\footnote{I.e.\
 genes from the analyses handles
 one possible source of spurious Pearson correlation (due to null values),
 I have then checked, and, discarded,
-another possible source that is the skewed distributions.
-Highest expressed genes, which may be technical artefacts,
-fail to show any significant correlation (see \Cref{subsec:mrnaHighExp-app}).\mybr\
+another possible source that is the skewed distributions;
+highest expressed genes may be technical artefacts,
+but they fail to show any significant correlation
+(see \Cref{subsec:mrnaHighExp-app}).\mybr\
 
 The high correlations are the results of the overall similarity
 of genes expression patterns across tissues and studies.\mybr\
@@ -447,7 +448,7 @@ classifications from \uhlen{}'s laboratory.\mybr\
 %\sectionmark{Tissue specific genes}
 
 Tissue-specific (TS) genes are arguably the genes
-that ought to present a robust profile across studies.
+that ought to present a robust expression profile across studies.
 
 \minisec{Tissue specificity definition}
 The definition of tissue specificity varies from one study to another.
@@ -641,7 +642,7 @@ various studies.
 For that, I have followed the \emph{T-approach} overviewed in \Cref{fig:overlapConcept}.\mybr\
 
 \begin{figure}[!thb]
-    \includegraphics[scale=0.8]{transcriptomics/mostSpe4TP1.pdf}\centering
+    \includegraphics[scale=0.8]{transcriptomics/mostSpe4TP1.png}\centering
     \vspace{-0.2in}
     \caption[Intersection size curve of \setOne\ genes based on their FC ratio
     rank in each tissue across the five studies]{\label{fig:mostSpe4T}\textbf{Intersection
@@ -668,7 +669,7 @@ it concerns more than a tenth of \setOne\ genes.
 when the number of tissues and genes is increased.\mybr\
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.7]{transcriptomics/mostSpe23TP1.pdf}\centering
+    \includegraphics[scale=0.7]{transcriptomics/mostSpe23TP1.png}\centering
     \vspace{-0.2in}
     \caption[Intersection size curve of \setTwo\ genes based on their FC ratio
     rank in each tissue across the two studies]{\label{fig:mostSpe23T}\textbf{Intersection

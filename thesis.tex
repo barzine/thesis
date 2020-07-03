@@ -64,9 +64,9 @@ with High-throughput Transcriptomic and Proteomic Data.}
 \maketitle
 
 \pagestyle{scrheadings}
-%\frontmatter\
 %TC:ignore
 \input{disclaimer.tex}
+\addtocontents{toc}{\vspace{-30pt}}
 \input{summary.tex}
 \input{acknowledgements.tex}
 
@@ -90,7 +90,6 @@ with High-throughput Transcriptomic and Proteomic Data.}
     \cleardoublepage
 \endgroup
 %TC:endignore
-%\input{listofdatasets.tex}
 \cleardoublepage
 %\mainmatter\
 \pagenumbering{arabic}
@@ -103,30 +102,25 @@ with High-throughput Transcriptomic and Proteomic Data.}
 \input{expressed.tex}
 \input{transcriptomics.tex}
 \input{proteomics.tex}
-%\input{additional.tex}
 \input{integration.tex}
-%\input{normalisation.tex}
 \input{conclusion.tex}
 %TC:ignore
 %\backmatter\
 \appendix\
-%\input{appendix.tex}
 \crefalias{section}{appsec}
 \crefalias{subsection}{appsubsec}
 \crefalias{subsubsection}{appsubsubsec}
-\part*{\Huge\bfseries\addfontfeature{LetterSpace=10}APPENDIX}
+\part*{APPENDIX}
 \addcontentsline{toc}{part}{APPENDIX}
 \renewcommand\thechapter{\Alph{chapter}}
-%\label{ch:appendix}
+\changelocaltocdepth{1}
 \begingroup
 
 \input{app/back-suppl}
-%\input{ds/index}
 \input{app/express-supl}
 \input{app/transc-supl}
 \input{app/prot-suppl}
 \input{app/IntegSuppl}
-%\input{app/IntScatt.tex}
 \input{app/concl-suppl.tex}
 \chapter{List of publications}
 

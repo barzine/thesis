@@ -1,4 +1,4 @@
-%\RequirePackage{minted}
+%\RequirePackage{minted} %remove as no more code in the thesis
 \RequirePackage{tocbasic}
 \RequirePackage{polyglossia}
 \setdefaultlanguage[variant=uk]{english}
@@ -11,8 +11,10 @@
 \RequirePackage{refcount}
 \RequirePackage[natbib=true,backend=biber,style=authoryear,isbn=false,%url=false,%
 doi=false,url=false,dashed=false,eprint=false,giveninits=true,hyperref=true,%
-maxcitenames=1,maxbibnames=99,useprefix,backref,uniquename=init,
-labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
+maxcitenames=1,maxbibnames=99,useprefix,uniquename=init,
+labeldate=year,alldates=year,urldate=short%
+%,backref%
+]{biblatex} %add backref for draft
 \AtBeginBibliography{\small}
 \renewbibmacro{in:}{} %from: https://tex.stackexchange.com/a/10686/102519
 %from https://tex.stackexchange.com/a/27107/102519
@@ -154,11 +156,12 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 \RequirePackage[automake,nomain,acronym]{glossaries-extra}
 \setglossarystyle{longheader}
 %\setabbreviationstyle[acronym]{long-short}
-\setlength{\glsdescwidth}{0.9\textwidth}
+\setlength{\glsdescwidth}{0.98\textwidth}
+\renewcommand*{\glossarypreamble}{\vspace*{-10pt}}
 \makeglossaries%
 %\loadglsentries{glossary.tex}
 
-\RequirePackage{scrhack} %to avoid some possible reported clashs
+\RequirePackage{scrhack} %to avoid some possible reported clashes
 \RequirePackage{bookmark}
 \RequirePackage{geometry}%% for page layout
 \RequirePackage[nameinlink, noabbrev]{cleveref}
@@ -249,6 +252,7 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 \setkomafont{subject}{\normalfont\normalcolor}
 \isodash{\ensuremath{\cdot}}% Replacement for `‧` = U+‧2027 HYPHENATION POINT
 \setkomafont{minisec}{\libertineSB\small}
+\setkomafont{part}{\rmfamily\Huge\bfseries\addfontfeature{LetterSpace=10}}
 
 
 \definecolor{cambridgeblue}{RGB}{163, 193, 173}
@@ -464,8 +468,14 @@ labeldate=year,alldates=year,urldate=short]{biblatex} %add backref for draft
 
 %%% TOC customisation
 \setcounter{secnumdepth}{5}
-\setcounter{tocdepth}{7}
+\setcounter{tocdepth}{3}
 
+%from https://tex.stackexchange.com/q/370384/102519
+%and  https://tex.stackexchange.com/a/395858/102519
+\newcommand{\changelocaltocdepth}[1]{%
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{#1}}%
+  \setcounter{tocdepth}{#1}%
+}
 
 %\titleformat*{\section}{\LARGE\bfseries}
 %\titleformat*{\subsection}{\Large\bfseries}

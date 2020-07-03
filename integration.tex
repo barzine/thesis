@@ -41,13 +41,13 @@ whenever relevant.\mybr\
 \clearpage
 \derivativeWork{}
 \begin{itemize}[topsep=0pt,nosep]
-    \item (poster) CSHL  Biology of Genomes 2015 --- A feasibility study:
-        Integration of independent human \Rnaseq\ and proteomic datasets
     \item (submitted paper) Mitra P. Barzine, K\={a}rlis Freivalds, James Wemright et al. (2020).
         Using Deep Learning to Extrapolate Protein Expression Measurements.
     \item (submitted paper) Andrew F. Jarnuczak; Hanna Najgebauer; Mitra Barzine;
         Deepti J. Kundu; Fatemeh Ghavidel; Yasset Perez-Riverol; Irene Papatheodorou; Alvis Brazma;
         Juan Antonio Vizcaíno An integrated landscape of protein expression in human cancer
+    \item (poster) CSHL  Biology of Genomes 2015 --- A feasibility study:
+        Integration of independent human \Rnaseq\ and proteomic datasets
     \item (talk) \gtex\ meeting 2017 --- A. Brazma Correlating transcriptome
         and proteome in human tissues
     \item (poster) HUPO 2018 --- Jarnuczak \etal\ An integrated atlas of
@@ -365,7 +365,7 @@ in the transcriptomic data remains marginal.\mybr\
 \begin{figure}[!htpb]
     \includegraphics[scale=0.65]{integration/PandeyUhlen_mRNAprotQ3Vennm.pdf}\centering
     \caption[Distribution of the unique and shared proteins/mRNAs
-    ahlcross fifteen tissues between Pandey Lab (new quantification method)
+    across fifteen tissues between Pandey Lab (new quantification method)
     and Uhlén \textit{et al.} data]{\label{fig:PU_vennQ3}\textbf{Distribution of the
     unique and shared proteins/mRNAs across fifteen tissues between
     the Pandey Lab (new quantification method)
@@ -504,7 +504,7 @@ above $0.5$ $[$min:~$0.38$~(\Oesophagus)\;; max:~$0.61$~(\Liver)$]$
 for the untransformed data).\mybr\
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.8]{integration/DFtestlog2.pdf}\centering
+    \includegraphics[scale=0.8]{integration/DFtestlog2.png}\centering
     \vspace{-4mm}
     \caption[Distribution of Pearson and Spearman correlation coefficients
     for same-tissue proteomic and transcriptomic pairs
@@ -536,7 +536,7 @@ for the untransformed data).\mybr\
 \end{figure}
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.75]{integration/Kidney_scattplot_Q3_T15.pdf}\centering
+    \includegraphics[scale=0.75]{integration/Kidney_scattplot_Q3_T15.png}\centering
     \caption[Scatterplot of protein (Pandey Lab data --- PPKM quantification)
     and mRNA (Uhlén \etal) expression for Kidney]
     {\label{fig:ScatKid}\textbf{Scatterplot of
@@ -641,7 +641,7 @@ The Pearson correlation $r=0.18$ increases to $0.21$.
 The Spearman correlation remains unchanged ($\rho=0.52$).\mybr\
 
 Both transcriptomic studies (\uhlen\ \etal\ or \gtex)
-providing equivalent results,
+providing alike results,
 I describe for most of the following analyses the data combination
 that provides the greatest number of tissues and genes to study,
 \ie\ the fifteen-tissue set between \uhlen\ \etal\ and \pandey\ Lab data
@@ -691,7 +691,7 @@ While the different correlation methods lead to similar result trends,
 individual differences persist.
 In a few cases, \eg\ \heart,
 these slight differences may considerably change
-the relative correlation ranking order of the \treps{}.\mybr\
+the relative correlation ranking order of the \treps{} (see \Cref{fig:compCorJind}).\mybr\
 
 In the following sections,
 I explore several avenues to identify possible factors
@@ -728,7 +728,7 @@ the number of tissues and cell lines within which the gene is expressed.
 the distribution of the expression breadth of the \mRNAs\ (\uhlen\ \etal)
 and the proteins (\pandey\ Lab data) across their fifteen common tissues.
 In the following sections,
-I can refer to a (\gls{TS}) gene as a \emph{unique gene}
+I may refer to a (\gls{TS}) gene as a \emph{unique gene}
 when it is only expressed in a single tissue.\mybr\
 
 \Cref{fig:protBreadth} shows that
@@ -976,7 +976,7 @@ To measure the Jaccard indices significance,
 I use the hypergeometric test~\mycite{Field2012-au}
 (see \Cref{sec:hypergeometricTest}).
 In the current analysis,
-I consider as success when a \gls{TS} \mRNA\ is among the $n$ \gls{TS} proteins
+I consider as \enquote{success} when a \gls{TS} \mRNA\ is among the $n$ \gls{TS} proteins
 and test if the number of observed successes is greater than
 the expected number for random sampling.\mybr\
 
@@ -1130,7 +1130,7 @@ all the consensus trees within this thesis are strict,
 for the consensus tree to include it.
 I use one of the possible implementations of these methods
 from the \textbf{\textsf{R}} package
-\softCi{ape \normalfont{(v5.2)}}{Paradis2019-ue}.\mybr\
+\softCi{ape \normalfont{(v5.3)}}{Paradis2019-ue}.\mybr\
 
 %\vspace{-3mm}
 \begin{figure}[!htp]
@@ -1230,7 +1230,7 @@ than the expected levels computed by random permutation
 (the grey line is showing the average of 10,000 permutations).\mybr\
 
 \begin{figure}[!htb]
-    \includegraphics[scale=0.9]{integration/PearsonLog2correlationRankedGenes3-15meanPermut.pdf}\centering
+    \includegraphics[scale=0.9]{integration/PearsonLog2correlationRankedGenes3_15meanPermut.png}\centering
     \vspace{-3mm}
     \caption[Pearson correlation coefficients of gene expression levels
     between studies in descending order]%
@@ -1351,7 +1351,7 @@ in digital format at \url{http://www.barzine.net/~mitra/thesis}.\mybr\
 \vspace{-5mm}
 
 \begin{figure}[!ht]
-    \includegraphics[scale=0.88]{integration/TSratioBasedOnPearsoncorrelationRankedGenes3-15SimulrowMeans.pdf}\centering
+    \includegraphics[scale=0.88]{integration/TSratioBasedOnPearsoncorrelationRankedGenes3_15SimulrowMeans.png}\centering
     \vspace{-3mm}
     \caption[TS proteins percentage as a function of
     the considered number of genes (ranked by Pearson correlation)]{\label{fig:Spe_Cor}%
@@ -1542,11 +1542,11 @@ and (Benjamini and Hochberg~\mycite{Benjamini1995-nf}) correction.\mybr\
 
 %\begin{landscape}
     \begin{sidewaysfigure}
-        \includegraphics[scale=0.95]{integration/goea.pdf}\centering
+        \includegraphics[scale=0.91]{integration/goea.png}\centering
         \vspace{-3mm}
         \caption[Enriched GO categories for the genes with a TS protein and
         the three hundred with the highest correlations
-        and anticorrelationss]{\label{fig:goares}%
+        and anticorrelations]{\label{fig:goares}%
         \textbf{Enriched GO categories for the genes with a TS protein,
         the three hundred with the highest correlations and
         the three hundred with the highest anticorrelations.}
@@ -2008,9 +2008,9 @@ predicting protein levels directly from \mRNA\ levels
 is still unlikely at the moment.\mybr\
 
 However, \gls{go} information can be useful to appraise protein expression
-as confirmed in the collaborative work
-with the Institute of Mathematics and Computer Science (University of Latvia).
+as confirmed in the recent collaborative work I was involved.
 With the help of \karlis,
+%Institute of Mathematics and Computer Science (University of Latvia).
 we have shown that deep learning algorithms that include GO information
 can reasonably predict the order of expression magnitude of missing proteins
 in a given label-free \ms\ proteomic study from \gls{RNA} expression data.
@@ -2089,10 +2089,10 @@ most (about 73\%) have a positive correlation for their expression.
 While the highest correlated genes are enriched in \gls{TS} proteins,
 many of them are expressed ubiquitously.\mybr\
 
-The \gls{go} enrichment analysis on the pairs with a \gls{TS} protein
-highlights that they are enriched for specific signalling,
-the most correlated genes are enriched in catabolic processes and
-the most anticorrelated ones in regulatory processes.\mybr\
+The \gls{go} enrichment analysis highlights that
+genes presenting a \gls{TS} protein are enriched in specific signalling,
+genes with the highest correlated \mRNA/protein pairs in catabolic processes
+and genes with the most anticorrelated ones in regulatory processes.\mybr\
 
 Providing proper care and consistent processing,
 one may use these independent resources as part of their study

@@ -121,75 +121,7 @@ in the general context of gene expression study.
 \end{tabular}
 \end{table}
 
-
-
-\FloatBarrier\
-\section{Data visualisation}
-
-%\subsection{Anscombe quartet}
-
-\begin{figure}[!ht]
-    \includegraphics[scale=0.40]{expressed/AnscombePanel.pdf}\centering
-    \caption[Anscombe quartet --- why data should always be visualy checked]
-    {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
-    visually checked.}\smallbreak{} All the datasets, while presenting
-    different distributions, have equal or very similar descriptive statistic
-    indicators;
-    the means and variances for both $x$ and $y$ variables and
-    the Pearson correlation between $x$ and $y$, and
-    their linear regressions are very similar.}
-\end{figure}
-
-%\subsection{Unlogged expression profiles}
-\begin{figure}[!ht]
-    \centering
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/castle.pdf}
-        \caption{Castle}\label{fig:densityCastle_nolog2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/vt.pdf}
-        \caption{Brawand}\label{fig:densityBrawand_nolog2}
-    \end{subfigure}
-
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/ibm.pdf}
-        \caption{Illumina Body Map}\label{fig:densityIBM_nolog2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/uhlen.pdf}
-        \caption{Uhlen}\label{fig:densityUhlen_nolog2}
-    \end{subfigure}
-
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/gtex.pdf}
-        \caption{Gtex}\label{fig:densityGtex_nolog2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/cutler.pdf}
-        \caption{Cutler}\label{fig:densityCutler_nolog2}
-    \end{subfigure}
-
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/kuster.pdf}
-        \caption{Kuster}\label{fig:densityKuster_nolog2}
-    \end{subfigure}%
-~%
-    \begin{subfigure}[b]{0.35\textwidth}
-        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/pandey.pdf}
-        \caption{Pandey}\label{fig:densityPandey_nolog2}
-    \end{subfigure}
-    \caption{Profile of expression across the transcriptome (protein coding
-    genes only) and proteome datasets}\label{fig:distribPlot_noLog2}
-\end{figure}
-
-
-\FloatBarrier\
-\section{Other additional material}
-
+\subsection{Other common mathematical definitions}
 
 The population correlation coefficient ($\rho$) of two random variable $X$ and $Y$
 is defined as:
@@ -297,3 +229,66 @@ where:
     \item[\textbullet\ $sd^2$] is another notation of the variance as
            the standard deviation is equal to the square root of the variance.
 \end{eqlist}
+
+\section{Data visualisation}
+
+%\subsection{Anscombe quartet}
+
+\begin{figure}[!ht]
+    \includegraphics[scale=0.21]{expressed/AnscombePan.png}\centering
+    \caption[Anscombe quartet --- why data should always be visualy checked]
+    {\label{fig:Anscombe}\textbf{Anscombe quartet --- why data should always
+    visually checked.}\smallbreak{} All the datasets, while presenting
+    different distributions, have equal or very similar descriptive statistic
+    indicators;
+    the means and variances for both $x$ and $y$ variables and
+    the Pearson correlation between $x$ and $y$, and
+    their linear regressions are very similar.}
+\end{figure}
+
+%\subsection{Unlogged expression profiles}
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/castle.pdf}
+        \caption{Castle}\label{fig:densityCastle_nolog2}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/vt.pdf}
+        \caption{Brawand}\label{fig:densityBrawand_nolog2}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/ibm.pdf}
+        \caption{Illumina Body Map}\label{fig:densityIBM_nolog2}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/uhlen.pdf}
+        \caption{Uhlen}\label{fig:densityUhlen_nolog2}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/gtex.pdf}
+        \caption{Gtex}\label{fig:densityGtex_nolog2}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/cutler.pdf}
+        \caption{Cutler}\label{fig:densityCutler_nolog2}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/kuster.pdf}
+        \caption{Kuster}\label{fig:densityKuster_nolog2}
+    \end{subfigure}%
+~%
+    \begin{subfigure}[b]{0.35\textwidth}
+        \centering \includegraphics[width=\textwidth]{expressed/density_noLog2/pandey.pdf}
+        \caption{Pandey}\label{fig:densityPandey_nolog2}
+    \end{subfigure}
+    \caption{Profile of expression across the transcriptome (protein coding
+    genes only) and proteome datasets}\label{fig:distribPlot_noLog2}
+\end{figure}
+
