@@ -14,6 +14,41 @@ The amino acids all share the same primary chain.
     \textbf{Amino acids formulas} --- from \citet{Morris2016-qv}}
 \end{figure}
 
+
+\begin{table}[]
+\centering
+\caption{Molecular weight of the most common \glspl{aa} and their residues}\label{tab:massAAs}
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+Name           & \multicolumn{2}{c}{Abbr.} & \begin{tabular}[c]{@{}c@{}}Molecular\\Formula\end{tabular} & \begin{tabular}[c]{@{}c@{}}Molecular\\Weight\end{tabular} & \begin{tabular}[c]{@{}c@{}}Residue\\Formula\end{tabular} & \begin{tabular}[c]{@{}c@{}}Residue Weight\\(-H2O)\end{tabular} \\ \midrule
+Alanine & Ala & A & \ch{C3H7NO2} & 89.10 & \ch{C3H5NO} & 71.08 \\
+Arginine & Arg & R & \ch{C6H14N4O2} & 174.20 & \ch{C6H12N4O} & 156.19 \\
+Asparagine & Asn & N & \ch{C4H8N2O3} & 132.12 & \ch{C4H6N2O2} & 114.11 \\
+Aspartic acid  & Asp & D & \ch{C4H7NO4} & 133.11 & \ch{C4H5NO3} & 115.09 \\
+Cysteine & Cys & C & \ch{C3H7NO2S} & 121.16 & \ch{C3H5NOS} & 103.15 \\
+Glutamic acid  & Glu & E & \ch{C5H9NO4} & 147.13 & \ch{C5H7NO3} & 129.12 \\
+Glutamine & Gln & Q & \ch{C5H10N2O3} & 146.15 & \ch{C5H8N2O2} & 128.13 \\
+Glycine & Gly & G & \ch{C2H5NO2} & 75.07 & \ch{C2H3NO} & 57.05 \\
+Histidine & His & H & \ch{C6H9N3O2} & 155.16 & \ch{C6H7N3O} & 137.14 \\
+Hydroxyproline & Hyp & O & \ch{C5H9NO3} & 131.13 & \ch{C5H7NO2} & 113.11 \\
+Isoleucine & Ile & I & \ch{C6H13NO2} & 131.18 & \ch{C6H11NO} & 113.16 \\
+Leucine & Leu & L & \ch{C6H13NO2} & 131.18 & \ch{C6H11NO} & 113.16 \\
+Lysine & Lys & K & \ch{C6H14N2O2} & 146.19 & \ch{C6H12N2O} & 128.18 \\
+Methionine & Met & M & \ch{C5H11NO2S} & 149.21 & \ch{C5H9NOS} & 131.20 \\
+Phenylalanine & Phe & F & \ch{C9H11NO2} & 165.19 & \ch{C9H9NO} & 147.18 \\
+Proline & Pro & P & \ch{C5H9NO2} & 115.13 & \ch{C5H7NO} & 97.12 \\
+Pyroglutamatic & Glp & U & \ch{C5H7NO3} & 139.11 & \ch{C5H5NO2} & 121.09  \\
+Serine & Ser & S & \ch{C3H7NO3} & 105.09 & \ch{C3H5NO2} & 87.08 \\
+Threonine & Thr & T & \ch{C4H9NO3} & 119.12 & \ch{C4H7NO2} & 101.11 \\
+Tryptophan & Trp & W & \ch{C11H12N2O2} & 204.23 & \ch{C11H10N2O} & 186.22 \\
+Tyrosine & Tyr & Y & \ch{C9H11NO3} & 181.19 & \ch{C9H9NO2} & 163.18 \\
+Valine & Val & V & \ch{C5H11NO2} & 117.15 & \ch{C5H9NO} & 99.13 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
 \section{Original material}\label{sec:kelvinsong}
 \vspace{-5mm}
 To create \Cref{fig:transcriptionTranslation},
@@ -536,5 +571,23 @@ based on the underlying algorithmic technique.
     }
 \end{figure}
 
+\cpv{\citet{Huang2012-nr} describe parametric approaches as
+those that request prior knowledge to estimate the peptides' distribution.
+When there is no need for prior knowledge,
+they describe the approach as non-parametric,
+even when the tool assesses the peptide distribution
+by extracting information from the \ms\ or \gls{MS/MS} spectra.}\mybr\
 
+\cpv{\section{Bayesian Inference}}\label{app:bayesInf}
+
+\cpv{Bayesian inference is developed upon Bayes' theorem,
+which allows the computation of conditional probabilities,
+\ie\ computation of the likelihood an event happening given prior known conditions,
+including the likelihood of another event being true.}\mybr\
+
+\cpv{Bayesian statistics focuses on
+the credibility of events happening rather than
+their occurrence frequencies (as in frequentist statistics).
+See \citet{Li2019-ck} for general mathematical definitions of Bayesian inference models
+and \citet{Kurt2019-hm} for a layman's guide to Bayesian statistics.}\mybr\
 

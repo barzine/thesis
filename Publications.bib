@@ -127,39 +127,88 @@
   note     = "(under review)"
 }
 
-
-@UNPUBLISHED{deepLearning2020,
-     title    = {Using Deep Learning to Extrapolate Protein Expression Measurements},
-     author   = {Barzine, M and Freivalds, K and Wright, JC and
-                 Opmanis, M and Rituma, D and Ghavidel, FZ and
-                 Jarnuczak, AJ and  Celms, E and Cerans, K and Jonassen, I and
-                 Lace, L and Vizcaíno, JA and Choudhary, J and
-                 Brazma, A and Viksna, J},
-    abstract = {Motivation: Mass spectrometry-based proteomics experiments
-                for estimating protein abundance in human samples typically assay
-                a subset of less than 60\% of the ~20,000 genes.
-                Computational methods for imputing the missing values
-                using RNA expression data exist, but usually they allow only
-                for imputations for proteins measured
-                in at least some of the samples.
-                Computational methods for estimating abundance comprehensively
-                across the genome level are still missing.
-                Results: We propose a novel method based on deep learning
-                to extrapolate the observed protein expression values
-                to all proteins using functional annotations and RNA measurements.
-                We tested our method on four datasets, including human cell lines,
-                and human and mouse tissues. Our method predicts
-                the protein expression values with average R2 scores
-                between 0.46 and 0.54, which is significantly better than
-                predictions based on correlations using the RNA data alone.
-                Moreover, we demonstrate that the derived models
-                can be “transferred” across experiments and species.
-                For instance, the model derived from human tissues gave
-                $R2=0.49$ when applied to mouse tissue data.
-                We conclude that computationally estimating protein abundances
-                can be feasible.},
-    journal= {Proteomics},
-    year={2020},
-    language={en},
-    note={(under review)}
+@ARTICLE{deepLearning2020,
+  title    = "Using Deep Learning to Extrapolate Protein Expression
+              Measurements",
+  author   = "Barzine, Mitra Parissa and Freivalds, Karlis and Wright, James C
+              and Opmanis, Mārtiņš and Rituma, Darta and Ghavidel, Fatemeh
+              Zamanzad and Jarnuczak, Andrew F and Celms, Edgars and Čerāns,
+              Kārlis and Jonassen, Inge and Lace, Lelde and Antonio Vizcaíno,
+              Juan and Choudhary, Jyoti Sharma and Brazma, Alvis and Viksna,
+              Juris",
+  abstract = "Mass spectrometry (MS)-based quantitative proteomics experiments
+              typically assay a subset of up to 60\% of the ≈20 000 human
+              protein coding genes. Computational methods for imputing the
+              missing values using RNA expression data usually allow only for
+              imputations of proteins measured in at least some of the samples.
+              In silico methods for comprehensively estimating abundances
+              across all proteins are still missing. Here, a novel method is
+              proposed using deep learning to extrapolate the observed protein
+              expression values in label-free MS experiments to all proteins,
+              leveraging gene functional annotations and RNA measurements as
+              key predictive attributes. This method is tested on four
+              datasets, including human cell lines and human and mouse tissues.
+              This method predicts the protein expression values with average R
+              2 scores between 0.46 and 0.54, which is significantly better
+              than predictions based on correlations using the RNA expression
+              data alone. Moreover, it is demonstrated that the derived models
+              can be ``transferred'' across experiments and species. For
+              instance, the model derived from human tissues gave a R 2 = 0.51
+              when applied to mouse tissue data. It is concluded that protein
+              abundances generated in label-free MS experiments can be
+              computationally predicted using functional annotated attributes
+              and can be used to highlight aberrant protein abundance values.",
+  journal  = "Proteomics",
+  volume   =  20,
+  issue    = "21-22",
+  pages    = "e2000009",
+  month    =  nov,
+  year     =  2020,
+  keywords = "Gene Ontology; UniProt keywords; deep learning networks; mass
+              spectrometry; protein abundance prediction",
+  language = "en",
+  issn     = "1615-9853, 1615-9861",
+  pmid     = "32937025",
+  doi      = "10.1002/pmic.202000009"
 }
+
+@UNPUBLISHED{Rustici2021-ca,
+  title    = "Transcriptomics data availability and reusability in the
+              transition from microarray to next-generation sequencing",
+  author   = "Rustici, Gabriella and Williams, Eleanor and Barzine, Mitra and
+              Brazma, Alvis and Bumgarner, Roger and Chierici, Marco and
+              Furlanello, Cesare and Greger, Liliana and Jurman, Giuseppe and
+              Miller, Michael and Francis Ouellette, B F and Quackenbush, John
+              and Reich, Michael and Stoeckert, Christian J and Taylor, Ronald
+              C and Trutane, Stephen Chervitz and Weller, Jennifer and Wilhelm,
+              Brian and Winegarden, Neil",
+  abstract = "Over the last two decades, molecular biology has been changed by
+              the introduction of high-throughput technologies. Data sharing
+              requirements have prompted the establishment of persistent data
+              archives. A standardized approach for recording and managing
+              these data was first proposed in the Minimal Information About a
+              Microarray Experiment (MIAME) guidelines. The Minimal Information
+              about a high throughput nucleotide Sequencing Experiment
+              (MINSEQE) proposal was introduced in 2008 as a logical extension
+              of the guidelines to next-generation sequencing (NGS)
+              technologies used for transcriptome analysis. We present a
+              historical snapshot of the data-sharing situation focusing on
+              transcriptomics data from both microarray and RNA-sequencing
+              experiments published between 2009 and 2013, a period during
+              which RNA-seq studies became increasingly popular for
+              transcriptome analysis. We assess how much data from RNA-seq
+              based experiments is actually available in persistent data
+              archives, compared to data derived from microarray based
+              experiments, and evaluate how these types of data differ. Based
+              on this analysis, we provide recommendations to improve RNA-seq
+              data availability, reusability, and reproducibility. \#\#\#
+              Competing Interest Statement The authors have declared no
+              competing interest.",
+  journal  = "bioRxiv",
+  pages    = "2020.12.31.425022",
+  month    =  jan,
+  year     =  2021,
+  language = "en",
+  doi      = "10.1101/2020.12.31.425022"
+}
+

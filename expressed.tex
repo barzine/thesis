@@ -124,12 +124,12 @@ Even a non-linear but strong relationship is promptly highlighted
 
 \begin{figure}[!htbp]
     \hspace*{-2cm}
-    \begin{subfigure}[b]{0.61\textwidth}
-      \centering  \includegraphics[width=\textwidth]{expressed/RepTechscat_heart.png}
+    \begin{subfigure}[b]{0.59\textwidth}
+      \centering  \includegraphics[width=\textwidth]{expressed/HeartTechnicalRep.png}
         \caption{Technical replicates (Heart)}\label{fig:scatTechRep}
     \end{subfigure}~%
-    \begin{subfigure}[b]{0.61\textwidth}
-    \centering \includegraphics[width=\textwidth]{expressed/RepBiolscat_kidney.png}
+    \begin{subfigure}[b]{0.59\textwidth}
+    \centering \includegraphics[width=\textwidth]{expressed/KidneyBiolRep.png}
         \caption{Biological replicates (Kidney)}\label{fig:scatBiolRep}
     \end{subfigure}
     \caption[Examples of scatter plot for replicates from \uhlen\ (transcriptome)
@@ -145,7 +145,7 @@ Even a non-linear but strong relationship is promptly highlighted
 diverge even in technical replicates.
 Biological replicates, within a same dataset,
 may present very close profiles
-even if the spread for the lowly genes
+even if the spread for the lowly detected genes
 is even greater
 as showed in \Cref{fig:scatBiolRep}.\mybr\
 
@@ -295,10 +295,14 @@ and Pearson correlation methods.\mybr\
 
 The linkage parameter specifies which part of each cluster is used as reference
 for computing the distance between the clusters. There are many methods and after
-trying several, I have arbitrary selected the one that divides most accurately
+trying several, I have arbitrarily selected the one that divides most accurately
 the samples by their tissue source across the different datasets.
 In fact, I noticed that Ward's method~\mycite{Ward1963}
-was the best for this task and was outperforming the complete-linkage method.\mybr\
+was the best for this task and was outperforming the complete-linkage \cpv{method\footnote{%
+Ward's method minimises at each step the variance within each cluster;
+the complete-linkage method (or \emph{farthest neighbour clustering})
+uses the maximum distance between the two farthest elements of each pair of clusters
+and merges the pair with the smaller inter-cluster distance.}}.\mybr\
 
 Indeed, this latter method was used in~\mycite{Uhlen2014}
 (first release of the \uhlen\ dataset) where
@@ -349,6 +353,38 @@ that I describe hereinafter.\mybr\
     of the biological samples of Uhlén study based on the Pearson correlation}
     --- all expressed genes are included.}
 \end{figure}
+
+\cpv{Mitochondria are organelles that can be found in eukaryotic cells.
+They have a central role in many essential processes~\mycite{Kotrys2019-ln}.
+While mitochondria share many similarities with bacteria\footnote{%
+Despite the many debates and investigation
+going on about the lineages and mechanisms,
+current research accepts that
+mitochondria have evolved from an \textalpha{}-proteobacterial endosymbiont
+of a host cell prior to the \glsdesc{LECA} (\gls{LECA})~\mycite{Martin2015-bb,Stairs2015-fx}.},
+substantial divergences,
+notably for mammals,
+have been discussed in many reviews such as
+\citet{Boguszewska2020-yr,Barshad2018-xf,Hillen2018-ad,Al-Faresi2019-zn,%
+Ladoukakis2017-qm,Shokolenko2017-ox}.
+One remarkable key difference is the polyadenylation of the \RNAs{}.
+In bacteria, the polyadenylation of \mRNAs\ prompts
+their degradation~\mycite{Hajnsdorf2018-gj,Rorbach2014-wd}.
+On the other hand, the entire range of the polyadenylation effects
+is still elusive for the human \glspl{mt-mRNA}~\mycite{Al-Faresi2019-zn}.
+The polyadenylated tail has only
+a relative effect on the \glspl{mt-mRNA}' stability~\mycite{Bratic2016-ep}.
+Besides, it is highly transcript-specific and
+can either stabilise them or flag them for degradation~\mycite{Kotrys2019-ln}.
+Most likely, its prime roles are the creation of a functional stop codon
+and the protection of the 3' side of the \gls{mt-mRNA}
+against degradation~\mycite{Bratic2016-ep}.
+Except for \gene{MT-ND6},
+a polyadenylated tail has been observed for the twelve other \glspl{mt-mRNA}.
+The extent of polyadenylation can vary across cell types~\mycite{Kotrys2019-ln}.
+However, the polyadenylated tail has
+an average length of $45$ \gls{nt}~\mycite{Rorbach2014-wd},
+which explains its possible captures by \Rnaseq\ (see \Cref{subsec:libPrep}).}\mybr\
 
 Gene expression levels of mitochondria can report very useful information,
 \eg\ the stress level of a cell in a single cell experiment~\mycite{Ilicic2016}.
@@ -473,19 +509,41 @@ a lack of expression, rather than a lack of observation.\mybr\
         \end{itemize}
 \end{itemize}
 
-\minisec{Limitation of the study}
+\minisec{Limitations of the study}
 \vspace{-0.1in}
-Although I have compared the list of
-undefined, expressed and unexpressed molecules,
-the bulk of the analyses has been done on the common expressed genes across
-the datasets.\mybr\
 
-In other words, an \mRNA\ --- or protein --- was excluded
-if it is not expressed in at least
-one sample in \emph{each and every} dataset used for the analyses,
-I then exclude it.
+\cpv{While I have chosen to define proteins as \emph{expressed}
+if only they present a non-null value,
+the truth is more complex.}\mybr\
+
+\cpv{One major challenge of bottom-up proteomics is
+the high rate of missing values.
+The detection of 10 to 50\% of the expressed proteins
+can fail in a given study, and
+the proportion of a peptide/protein exhibiting a missing value at least once
+within the same study can reach 90\%~\mycite{Lazar2016-oe}.
+As presented in \Cref{subsec:msProfiles},
+the detection of a protein is affected
+by the expression ranges of all the other proteins in the mixture.
+Thus, due to its relative abundance to other proteins in two given samples or tissues,
+the same protein can be detected in one and missed in another one
+while present in both; it can reach the \ms\ detection limit in the first case
+but not in the second.
+Imputing the missing values is a widespread handling approach,
+for which, many algorithms have been developed and reviewed~\mycite{Webb-Robertson2015-pu,%
+Valikangas2018-uw,Gardner2020-kx}.}\mybr\
+
+\cpv{For this thesis, I have chosen to not impute the missing data and
+exclude any \mRNA\ or protein} that is not expressed in at least one sample
+in \emph{each and every} dataset used for the analyses.
 This led me to define different working sets for the following chapters analyses
 to limit the number of omitted \mRNAs/proteins.\mybr\
+
+I have compared the list of
+undefined, expressed and unexpressed molecules.
+However, the bulk of the analyses has been done
+on the common expressed genes across the datasets.\mybr\
+
 
 \subsection{Aggregating tissue expression}\label{subsec:averagedTissue}
 \vspace{-0.15in}

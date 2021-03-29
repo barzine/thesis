@@ -627,7 +627,7 @@ isoforms, I have focused my thesis on the gene level expression. Indeed, current
 annotations and knowledge are still lacking in the reasons and
 external conditions that impact the expression of a specific isoform over the
 others. In addition, criticisms have been raised on the accuracy of distinction
-between them~\mycite{tamaraRNA,ernestRNA,Dapas2017-ui}.\mybr\
+between them~\mycite{tamaraRNA,Janes2015-wn,Dapas2017-ui}.\mybr\
 
 However, normalising gene expression
 presents more challenges than specific transcript expression.
@@ -699,8 +699,8 @@ See~\citet{Wright-2016,Weisser2016-pipeline} for more details.\mybr\
       data]{\label{fig:pipelineProt}\textbf{General steps for processing the
       proteome.} [Adaptation of courtesy materials from \james].\\
       (\textbf{A}) The three datasets have been processed through the
-      same pipeline. I only use their normal tissues samples and I also discard
-      the cell lines. (\textbf{B}) Extensive sources of protein sequences were
+      same pipeline. In this thesis, I only use the samples from adult tissues.
+      (\textbf{B}) Extensive sources of protein sequences were
       used for the search database, including prediction of novel proteins.
       Contamination and decoy sequences were also included to allow for \gls{FDR}
       estimation. (\textbf{C}) State of the art workflow was used to process the
@@ -708,8 +708,9 @@ See~\citet{Wright-2016,Weisser2016-pipeline} for more details.\mybr\
       This workflow combines multiple \ms\ search engines and
       post-search evaluation tools. Results were filtered by peptide length,
       \gls{FDR}, \gls{PEP} and agreement between the multiple search algorithms.
-      \\\NB\ There is no relation between the real size of
-      the database parts and their representation.}
+      Note that there is no relation between the real size of
+      the database parts and their representation;
+      the decoy sequences are as numerous as the sum of the known and possible candidates. }
   \end{sidewaysfigure}
 
 \subsubsection{Spectral processing}\label{subsub:spectralProcessing}
@@ -738,7 +739,9 @@ sequences from \gls{GENCODE}; the human reference proteome from
 sequences\footnote{Contamination sequences ---
 \Href{http://maxquant.org/contaminants.zip}}
 and \gls{HLA} sequences\footnote{\gls{HLA} sequences ---
-\Href{https://www.ebi.ac.uk/ipd/imgt/hla/download.html}}.\mybr\
+\Href{https://www.ebi.ac.uk/ipd/imgt/hla/download.html}}.
+\cpv{This \emph{known} portion of the target sequence database
+represents 787,587 tryptic peptide sequences.}\mybr\
 
 The sources for potential
 novel proteins included a selection of non-coding gene sequences (including
@@ -750,22 +753,24 @@ from \softFoCi{Pseudogene.org}{http://pseudogene.org/}{pseudogenesOrg}
 and three-frame translated \Rnaseq\ transcript sequences.
 These translated sequences include models
 built on \ibm\ by \gls{Ensembl} and by the Kellis lab in addition with
-models built on different \gls{ENCODE} cell lines by Caltech and CSHL\@.\mybr\
+models built on different \gls{ENCODE} cell lines by Caltech and CSHL\@.
+\cpv{This \emph{novel} portion of the target sequence database
+provides an addition of 4,211,835 tryptic peptide sequences.}\mybr\
+\mybr\
 %Precautions were taken with the handling of the overlapping regions
 %and with the sequence three-frame translations.
 
-\softFo{Mimic}{https://github.com/percolator/mimic} generated the randomised
-decoy sequences (equal sizes of the target database sequences).
-The different databases were then merged together.
+\cpv{\softFo{Mimic}{https://github.com/percolator/mimic} generated
+4,999,422 ($787,587 + 4,211,835$) randomised decoy sequences,
+\ie\ the decoy database and the target database have an equal size of peptide sequences.
+The different databases were then merged together.}
 It is represented on \Cref{fig:pipelineProt}{\footnotesize B}.\mybr\
 
 To account for the isobaric peptides, all isoleucine (I) residues were
 converted to leucine (L) before the search and then after the search all leucine
 (L) residues were converted to (J)\footnote{As J is one of the letter
 from the Latin alphabet that do not map to any amino acid.}
-to avoid later misconceptions.
-In summary, the known coding portion of the tryptic peptides sequences represents
-787,587 peptides and the novel portion provides an additional 4,211,835 peptides.\mybr\
+to avoid later misconceptions.\cpvD\mybr\
 
 %\NB\ For each peptide sequence, there is a unique identifier,
 %an associated source database
@@ -794,9 +799,20 @@ searches:
 the precursor tolerance was set to 10 \gls{ppm};
 fragment tolerance for \gls{HCD} spectra to $0.02$ \gls{Da} and
 to $0.5$ \gls{Da} for \gls{CID} spectra;
-the allowed missed cleavages were limited to $3$;
-several amino acid modifications were
-also used for the research (see~\citet{Wright-2016}).\mybr\
+the allowed missed cleavages were limited to $3$.
+\cpv{As described in~\citet{Wright-2016},
+the research also accounted for several amino acid modifications
+by including (known) mass tolerances.
+The fixed modification carbamidomethyl ($+57.0214$ \gls{Da}) was specified
+for all cysteine residues.
+The searches also comprised the following variable modifications:
+N-terminal acetylation ($+42.01056$ \gls{Da}),
+N-terminal carbamidomethyl ($+57.0214$ \gls{Da}),
+deamidation of asparagine and glutamine residues ($+0.984$ \gls{Da}),
+oxidation of methionine residues ($+15.9949$ \gls{Da}),
+and the possible N-terminal conversion to pyro-glutamine of
+glutamine ($-17.0265$ \gls{Da}) and glutamic acid ($-18.0106$ \gls{Da})
+residues.}\mybr\
 
 The search results were converted into mzTab formatted files and uploaded along
 with the mzML spectra and FASTA search database to \Pride{PXD002967}.\mybr\
@@ -874,9 +890,12 @@ these data.
 While the results may vary for individual genes,
 the overall outcomes are congruent hence
 supporting the robustness of the findings presented in this thesis.
-In addition, the products of these pipelines (either for the \Rnaseq\ or the \ms\
-data) are in agreement with the original studies findings ---
-except for~\citet{PandeyData}.\mybr\
+\cpv{In addition, all the products of the \Rnaseq\ pipeline
+are in agreement with the original studies findings.
+The \ms\ pipeline also produces similar results to the original studies
+--- except for~\citet{PandeyData},
+which original processing and results raised many criticisms~\mycite{Ezkurdia2014-qx}}.
+\mybr\
 
 While we are in the era of \emph{data deluge} and \emph{big data},
 the number of tissue overlaps for independent normal human studies is surprisingly small

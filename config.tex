@@ -1,7 +1,7 @@
 %\RequirePackage{minted} %remove as no more code in the thesis
 \RequirePackage{tocbasic}
 \RequirePackage{polyglossia}
-\setdefaultlanguage[variant=uk]{english}
+\setdefaultlanguage[variant=british]{english}
 %\setmainlanguage[variant=uk]{english}
 \RequirePackage[english, iso]{isodate}
 \RequirePackage{varioref}
@@ -12,7 +12,7 @@
 \RequirePackage[natbib=true,backend=biber,style=authoryear,isbn=false,%url=false,%
 doi=false,url=false,dashed=false,eprint=false,giveninits=true,hyperref=true,%
 maxcitenames=1,maxbibnames=99,useprefix,uniquename=init,
-labeldate=year,alldates=year,urldate=short%
+labeldate=year,alldates=year,urldate=short%,sortlocal=en-GB%
 %,backref%
 ]{biblatex} %add backref for draft
 \AtBeginBibliography{\small}
@@ -80,7 +80,7 @@ labeldate=year,alldates=year,urldate=short%
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-\usepackage{anyfontsize}
+\RequirePackage{anyfontsize}
 
 %\usepackage[explicit]{titlesec}
 \RequirePackage[dottedtoc,eulerchapternumbers]{classicthesis}
@@ -117,14 +117,22 @@ labeldate=year,alldates=year,urldate=short%
 \RequirePackage{amsmath}
 \RequirePackage{xpatch}
 \RequirePackage{xltxtra}
+\RequirePackage{soul}
+\RequirePackage{textgreek}
 \RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[framemethod=tikz]{mdframed}
+\RequirePackage[xcolor]{changebar}
 \RequirePackage{calc}
 \RequirePackage{libertine}
 \RequirePackage{unicode-math}
 \RequirePackage[font=bf,format=hang,labelfont={bf,normal},textfont=normal,up,margin=5pt,labelformat=default,labelsep=period]{caption}
 %format=hang
 %\usepackage[font=small,format=plain,labelfont=bf,up,textfont=normal,up,justification=justified,singlelinecheck=false,margin=5pt]{caption}
+
+\DeclareCaptionLabelFormat{adja-page}{\hrulefill\\#1 #2 \emph{(previous page) }}
+
 \RequirePackage{subcaption}
+\captionsetup{subrefformat=parens}
 %\usepackage[user,xr]{zref} %for cross reference between files
 
 %\usepackage{ifoddpage}
@@ -149,7 +157,6 @@ labeldate=year,alldates=year,urldate=short%
 \RequirePackage{amsgen}
 \RequirePackage{interval}
 \RequirePackage{ragged2e}
-\RequirePackage{soul}
 \RequirePackage{multicol}
 %\usepackage{arsclassica}
 \RequirePackage[xindy, toc, nopostdot,nolist,nogroupskip]{glossaries} %%after hyperref loaded
@@ -577,4 +584,4 @@ labeldate=year,alldates=year,urldate=short%
   \mkern-2mu
   \mathchoice{}{}{\mkern0.2mu}{\mkern0.5mu}%
 }
-
+\RequirePackage{chemformula}

@@ -37,7 +37,10 @@
 \newcommand*\opbr{U+005B}
 \newcommand*\clbr{U+005D}
 \newcommand*\phd{Ph.D.}
-
+%\newcommand*\cpv[1]{\colorbox{Goldenrod}{#1}}
+%\newcommand*\cpv[1]{\begin{mdframed}[hidealllines=true,backgroundcolor=Dandelion]#1\end{mdframed}}
+\newcommand*\cpv[1]{\cbcolor{orange}\cbstart{}{#1} \cbend}
+\newcommand*\cpvD{\cbcolor{red} \cbdelete}
 
 %\newcommand*\mRNAs{\mol{mRNAs}}
 %\newcommand*\mRNA{\mol{mRNA}}
@@ -252,3 +255,4 @@
 \newcommand*\brain{\Brain}
 \newcommand*\hypothalamus{\Hypothalamus}
 \newcommand*\nervous{\Nervous}
+

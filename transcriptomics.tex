@@ -49,7 +49,7 @@ and \wolfgang.\mybr\
 
 \derivativeWork{}
 \begin{itemize}[topsep=0pt,nosep]
-    \item\hspace{-1.8mm}\fullcite{EBIgxa}
+    \item (paper)\fullcite{EBIgxa}
     \item (short talk) Quantitative Genomics 2015 --- Integration of
         independent human RNA-seq datasets: a feasibility study
     \item (poster) ECCB 2014 --- A feasibility study:
@@ -63,12 +63,12 @@ and \wolfgang.\mybr\
 
 In the past years,
 \Rnaseq\ rapidly gained popularity
-for gene expression studies
+for human gene expression studies
 due to a broader dynamic range than previous technologies
 and the promise to enable quantitative profiling \mycite{Marioni2008-xr}.
 That technology was an advancement with respect to microarray assays
 that are semiquantitative~\mycite{lee:2006}
-and very prone to batch effects~\mycite{Irizarry2005-bs}
+and very prone to batch effects~\mycite{Irizarry2005-bs}.
 However, \Rnaseq\ studies had shown variation in their conclusions on various
 occasions for similar research topics~\mycite{seqcmaqc}.
 At the time that I started my \phd,
@@ -274,7 +274,7 @@ of the \treps{}\footnote{\Glsxtrlong{TREP}. See \Cref{subsec:averagedTissue}:
 for \setOne\ and \setTwo\
 are respectively presented in \Cref{fig:noMitoNoRep4T,fig:noMitoNoRep23T}.
 They are based on clustering (Ward's method linkage \mycite{Ward1963})
-the \treps\ Pearson correlation coefficients
+the \treps{}' Pearson correlation coefficients
 (\pcgs\ expressed at least at 1 \FPKM).\mybr\
 
 Both heatmaps show that
@@ -330,7 +330,7 @@ See also \Crefu{sec:rnaseq-data} and \Crefu{tab:repCorr}.\mybr\
 \end{figure}
 
 \begin{figure}[!htpb]
-    \includegraphics[scale=0.84]{transcriptomics/heatmap23TnoMitonoRep_1TC.pdf}\centering
+    \cpv{\includegraphics[scale=0.84]{transcriptomics/heatmap23TnoMitonoRep_1TCcpv.pdf}}\centering
     \caption[Heatmap of 23 common tissues between Uhlén and GTEx studies]%
     {\label{fig:noMitoNoRep23T}%
     \textbf{Heatmap of twenty-three common tissues between Uhlén and GTEx studies.}
@@ -500,7 +500,7 @@ In fact, as gene tissue selectivity and tissue specificity definitions are
 relative to a context,
 if the latter changes,
 the genes attributes may change as well
-(\eg\ one gene that is unspecific in \setTwo\ may be \heart{}-specific in \setOne).\mybr\
+(\eg\ one gene that is \cpv{non-specific} in \setTwo\ may be \heart{}-specific in \setOne).\mybr\
 
 
 \subsubsection{Use of prior knowledge: TiGER database}\label{subsub:Tiger}
@@ -1004,7 +1004,7 @@ from an existent resource
 \WebCi{TiGER}{http://bioinfo.wilmer.jhu.edu/tiger/}{tiger}
 that I have updated to the current human genome build (\hg{38}).
 Mining the experimental data with this updated list highlights
-the need for cautiousness when dealing with older resources.
+the need for \cpv{caution} when dealing with older resources.
 While the congruence of the three methods is partial,
 the \gls{TS} genes show distinct expression profiles across tissues
 that are rather consistent through the different studies.\mybr\

@@ -24,9 +24,7 @@ The work presented in this chapter was done in collaboration with \james\
 who has implemented the new protein quantification method
 (presented in \Cref{sec:NewQuantProt}).
 I have received general feedback from \alvis, \mar,
-\sarah.
-A manuscript describing part of this chapter's work
-and the one presented in \Cref{ch:Integration} is being prepared.\mybr\
+\sarah{}.\mybr\
 
 \section{An~overall~fragmented~and~disparate~universe~to~explore}
 
@@ -41,7 +39,7 @@ the first notable attempts to draft the human proteome occurred only recently
 in 2014~\mycite{PandeyData,KusterData},
 or that the oldest (unpublished) available multi-tissue \cutler\ dataset is from 2010
 (see \Cref{subsec:cutler}).
-To this date,
+Till early 2019,
 \cutler\ Lab, \kuster\ Lab and \pandey\ Lab datasets are the only ones
 that explore concurrently several non-diseased human tissues.
 See \Cref{sec:ProteoData} for more details and
@@ -183,7 +181,11 @@ none of the three ubiquitous proteins
 is detected in \heart\ by the
 \hFo{Human Protein Atlas}{https://www.proteinatlas.org/}~\mycite{Uhlen2015}
 while they are found in epithelial cells.
-One hypothesis is that contamination occurred when sampling from the donor.\mybr\
+One hypothesis is that contamination occurred when sampling from the donor
+\cpv{or during the preparation or \ms\ analysis.
+\protein{ALB} found in the tissues is more likely coming from the blood supply
+(where \protein{ALB} is abundant);
+\protein{KRT9} and \protein{KRT10} are environmental contaminants.}\mybr\
 
 Lists for ubiquitous and \gls{TS} proteins of each dataset separately
 and across the three (when consistent) are given as digital supporting data.\mybr\
@@ -322,7 +324,7 @@ that have at least three unique peptides
 since this first method is based on the Top3 approach~\mycite{Silva-Top3}
 and uses the three \emph{unique}\footnote{I.e.\ exclusive to a single protein}
 most expressed peptides of a protein to estimate its overall expression
-(see \Cref{eq:Top3} (\vref{eq:Top3}) and \Cref{subsubsec:protQuantLB}).\mybr\
+(see \Cref{eq:Top3} on p.~\pageref{eq:Top3} and \Cref{subsubsec:protQuantLB}).\mybr\
 
 \begin{minipage}{\textwidth}
 \begin{equation}
@@ -336,7 +338,7 @@ where:{\small
     \item $\hat{\mu}_{ij}$ is the normalised expression for the protein $i$ in experiment $j$ (normalised \gls{PSM}),
     \item $\sum \text{Intensity of Top 3 unique peptides} _{ij}$ is
         the sum of the intensity of the three most intense unique peptides
-        of the protein $i$ (mapped to its gene definition $G_i$),
+        of the protein $i$,
     \item $\text{Total Intensity in experiment } j$ is the total sum of the intensity of all
 the peptides identified in the experiment $j$.
 \end{itemize}
@@ -354,12 +356,62 @@ in proportion to the distribution of unique peptides per protein
 following a similar approach to \cuffl\ for \Rnaseq\ data (see \Cref{minisec:Cufflinks}).
 As three unique peptides are no longer required for the quantification,
 it allows relaxing the inference parameters to two unique peptides
-(in order to still avoid \emph{one-hit wonders}, see \Cref{subsec:proteinInference}).
-The new quantification follows a similar approach to the \RPKM\ normalisation ---
+(in order to still avoid \emph{one-hit wonders}, see \Cref{subsec:proteinInference})
+for the identification of the proteins.\mybr\
+
+
+\cpv{Once the identification is done,
+all the unique and degenerate peptides are mapped to the identified proteins.
+For the unique peptides,
+their quantification is directly linked to one and only protein.
+However, for the degenerate peptides,
+it is necessary to gauge the likely amount provided by each of their matching proteins.}\mybr\
+
+\cpv{For this purpose, the distribution coefficient of the degenerate peptide $d$
+to the protein $p$, $C_{d,p}$, is defined as below:}
+
+\cbstart{}
+
+\begin{minipage}{\textwidth}
+\begin{equation}
+     \tag{Distrib.\ coeff.\ of the degenerate peptide}\label{eq:distribDegen}
+     C_{d,p}=\frac{%
+     \sum\limits_{i=1}^{Nu_p}\frac{\text{Number of \psm}(u_{p,i})}{Nu_p}
+     }{%
+     \sum\limits_{q\in P_d}(\frac{\sum\limits_{j=1}^{Nu_q}\text{Number of \psm}(u_{q,j})}{Nu_q})
+     }
+\end{equation}
+where:{\small
+\begin{itemize}[topsep=0pt,nosep]
+    \item $P_d$ is the set of identified proteins that include the degenerate peptide $d$
+    \item $Nu_p$ is the number of unique peptides of the protein $p$, $\forall p  \in P_d$
+    \item $u_{p,i}$ is the $i$th unique peptide of the protein $p$, $\forall p  \in P_d$
+    \item $\text{Number of PSM}(u)$ is the number of \psms\ of the peptide $u$
+\end{itemize}
+}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+Then, the contribution of the degenerate peptide $d$
+to the quantification of a protein $p$ is computed as:
+\begin{equation}
+    \tag{Distribution of the degenerate peptide quantification to a protein}
+    \text{Q}_{d,p}=C_{d,p} \cdot\ \text{Q}_d
+\end{equation}
+where:{\small
+\begin{itemize}[topsep=0pt,nosep]
+    \item $C_{d,p}$ is the distribution coefficient defined above
+    \item $\text{Q}_d$ is the total quantification of
+        the degenerate peptide $d$
+\end{itemize}
+}
+\end{minipage}
+\cbend\
+
+The new quantification follows a similar approach to the F/\RPKM\ normalisation ---
 see \Cref{eq:rpkm-fx}.
 Protein expression levels are expressed in \glspl{PPKM},
-which stands for \glspl{PSM} Per Kilobase of gene per Million.\mybr\
-
+which stands for \glspl{PSM} Per Kilobase of gene per Million.
 As shown in \Cref{eq:PPKM},
 this method counts the number of \psms\
 that can be mapped to the corresponding \gls{Ensembl} gene identifier of a protein.
@@ -376,18 +428,19 @@ in the analyses of the following \Cref{ch:Integration}.\mybr\
 \begin{minipage}{\textwidth}
 \begin{equation}\label{eq:PPKM}
     \tag{PPKM definition}
-    \hat{\mu}_{ij} = \frac{\text{Number of \psms\ matching } G_i \cdot10^{-6}}{\ell_{G_i}\cdot\sum \text{\psms}_j}
+    \hat{\mu}_{ij} = \frac{\text{Number of \psms\ matching } G_i \cdot10^{-6}}{\ell_{G_i}\cdot \text{Number of \psm}_j}
 \end{equation}
 
 where:{\small
 \begin{itemize}[topsep=0pt,nosep]
     \item $\hat{\mu}_{ij}$ is the normalised expression of the protein $i$
         in the experiment $j$,
+    \item $G_i$ is the gene that corresponds to the protein $i$,
     \item $\text{Number of \psms\ matching } G_i$ is the number of \psms\ mapped
-        to the definition of the gene $G_i$ that corresponds to the protein $i$,
-    \item $\ell_{G_i}$ is the length of the longest transcript of the gene $G_i$,
+        to $G_i$,
+    \item $\ell_{G_i}$ is the length of the longest transcript of $G_i$,
 %\text{Longest transcript length for } G_i$
-    \item $\sum \text{\psms}_j$ is the total number of \psms\ identified in
+    \item $\text{Number of \psm}_j$ is the total number of \psms\ identified in
 the experiment $j$.
 \end{itemize}
 }
@@ -402,9 +455,14 @@ to be inferred in proteins.
 We have chosen a conservative (and state-of-the-art) threshold prior to
 the first quantification filtering
 and a less strict one for the new method.
-As my aim is to compare and integrate proteomic and transcriptomic data together,
-an increased number of false positives among the identified proteins
-(see \Cref{subsub:peptideID}) is not a real issue.\mybr\
+\cpv{As my aim is to compare and integrate proteomic and transcriptomic data together,
+the primary purpose of the new quantification is to provide a number of proteins
+that is roughly similar to the \mRNAs{}' one.
+Thus, we also have to relax parameters and
+allow an increased number of false positives among the identified proteins
+(see \Cref{subsub:peptideID}).
+I have included proteins quantified with both methods
+in the analyses of the next chapter (\Cref{ch:Integration})}.\mybr\
 
 \begin{figure}[!htbp]
     \includegraphics[scale=0.7]{proteomics/distribPandeyQ1Q2.pdf}\centering

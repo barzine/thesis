@@ -25,10 +25,7 @@ to estimate protein expression,
 which is generally difficult to measure directly (see \Cref{sec:exploreProtMS}).\mybr\
 
 I have performed the integration and all the analyses presented in this chapter
-under the supervision of \alvis\ and \jyoti.
-A manuscript describing this work
-and the new method of protein quantification, presented in \Cref{sec:NewQuantProt},
-is in preparation.\mybr\
+under the supervision of \alvis\ and \jyoti{}.\mybr\
 
 A few closely related studies~\mycite{SciRep2016,Franks2017-bp,Wang2019-ut} have
 been published while I was working on
@@ -41,8 +38,10 @@ whenever relevant.\mybr\
 \clearpage
 \derivativeWork{}
 \begin{itemize}[topsep=0pt,nosep]
-    \item (submitted paper) Mitra P. Barzine, K\={a}rlis Freivalds, James Wemright et al. (2020).
-        Using Deep Learning to Extrapolate Protein Expression Measurements.
+    \item (paper) \cpv{\href{https://dx.doi.org/10.1002/pmic.202000009}{%
+        Mitra P. Barzine, K\={a}rlis Freivalds, James Wright et al. (2020). %
+        \enquote{Using Deep Learning to Extrapolate Protein Expression Measurements}. %
+        \textit{Proteomics} 20 (21--22), e2000009}}
     \item (submitted paper) Andrew F. Jarnuczak; Hanna Najgebauer; Mitra Barzine;
         Deepti J. Kundu; Fatemeh Ghavidel; Yasset Perez-Riverol; Irene Papatheodorou; Alvis Brazma;
         Juan Antonio Vizcaíno An integrated landscape of protein expression in human cancer
@@ -281,7 +280,8 @@ The first quantification follows state-of-the-art practices
 with stringent parameters (described in \Cref{subsec:msDataProcess})
 since accurate protein identification is paramount
 for reliable proteome exploration.
-The protein levels are given in \glspl{PSM}.
+The protein levels are
+the intensity of their top three unique peptides normalised within-sample.
 \Cref{fig:PGU_vennQ1} presents
 the genes overlap across twelve shared tissues
 between the \pandey\ Lab's proteins quantified through this first method
@@ -536,7 +536,7 @@ for the untransformed data).\mybr\
 \end{figure}
 
 \begin{figure}[!htbp]
-    \includegraphics[scale=0.75]{integration/Kidney_scattplot_Q3_T15.png}\centering
+    \includegraphics[scale=0.65]{integration/Kidney_scattplot_Q3_T15pv.png}\centering
     \caption[Scatterplot of protein (Pandey Lab data --- PPKM quantification)
     and mRNA (Uhlén \etal) expression for Kidney]
     {\label{fig:ScatKid}\textbf{Scatterplot of
@@ -723,7 +723,9 @@ can have a significant impact on the correlation
 and may explain the mitigated results.\mybr\
 
 The expression breadth of a gene is
-the number of tissues and cell lines within which the gene is expressed.
+the number of tissues and cell lines within which the gene is expressed
+\cpv{at a given threshold\footnote{If a gene is expressed
+below the considered threshold in all the tissues, its expression breadth is null.}}.
 \Cref{fig:expressionBreadth} allows visualising
 the distribution of the expression breadth of the \mRNAs\ (\uhlen\ \etal)
 and the proteins (\pandey\ Lab data) across their fifteen common tissues.
@@ -1047,7 +1049,7 @@ based on identical differential expression
 within many clusters of the proteins and \mRNAs{}.\mybr\
 
 %\vspace{4mm}
-Given the unsuccess of direct approaches built on uniquely detected genes,
+Given the \cpv{mixed results} of the direct approaches built on uniquely detected genes,
 I next examine whether or not an indirect method may be more appropriate.
 For this new analysis,
 I build hierarchical cluster trees that try to translate
@@ -1417,7 +1419,7 @@ from $r= -0.77$ (for \gene{ZNF770}) to $r=1$ (for several genes).\mybr\
 However,
 the corresponding \mRNA/\mRNA\ pairs between \uhlen\ \etal\ and \gtex\ data
 show a more evenly distribution of these genes
-through the 10, 000 highest gene correlations after an initial peak.
+through the 10,000 highest gene correlations after an initial peak.
 The average of the 10,000 permutations (in grey) of the \pandey\ Lab
 with the \uhlen\ \etal\ data also shows
 an initial high \gls{TS} protein percentage that drops
@@ -1530,7 +1532,7 @@ I consider three gene lists:
 the three hundred best correlated and
 the three hundred most anticorrelated protein/\mRNA\ pairs
 and all the pairs (2,613) with a \gls{TS} protein.
-As a reference, I use the 12, 921 matching protein/\mRNA\ pairs
+As a reference, I use the 12,921 matching protein/\mRNA\ pairs
 between \pandey\ Lab (\gls{PPKM} quantification) and \uhlen\ \etal\ data.\mybr\
 
 The \gls{BiocR} package \softCi{clusterProfiler \normalfont{(v3.12)}}{clusterProfiler}
@@ -1732,7 +1734,7 @@ which identifies 6,428 proteins only.\mybr\
 
 The tissue-centric analyses show that
 even independently sourced proteomics and transcriptomics of similar tissues
-present fair correlation coefficients.
+present \cpv{reasonable} correlation coefficients.
 For instance, the range of Spearman correlation
 ($\rho_{\text{\Oesophagus}}=0.39$
 $≤$ $\rho_i$ $≤$ $\rho_{\text{\liver}}=0.62$)
@@ -1748,7 +1750,7 @@ for the joint integration of \emph{same-sourced} proteomics and transcriptomics
 (\eg, \citet{Marguerat2012-sn,schwanhausserglobal:2011,Schwanhausser2013-et,Li2014-ai}).\mybr\
 
 Most remarkably,
-all the same-tissue pairs of transcriptomic and proteomic
+all the same-tissue pairs of \cpv{transcriptome and proteome}
 have a statistically significant correlation
 despite the tissue proteomic expression profiles closeness.\mybr\
 
@@ -1877,7 +1879,7 @@ and proteoforms~\mycite{Aebersold2018-jn}
 I chose to perform all the analyses at gene-level expression
 (see p.~\pageref{minisec:quantNorm})
 due to the many existing criticisms about
-current algorithms' accuracy with isoforms~\mycite{tamaraRNA,ernestRNA,Dapas2017-ui}.\mybr\
+current algorithms' accuracy with isoforms~\mycite{tamaraRNA,Janes2015-wn,Dapas2017-ui}.\mybr\
 
 Yet, most genes present one dominant transcript~\mycite{oneDominant}.
 One possible method to improve the \mRNA/protein correlations
@@ -2014,17 +2016,16 @@ With the help of \karlis,
 we have shown that deep learning algorithms that include GO information
 can reasonably predict the order of expression magnitude of missing proteins
 in a given label-free \ms\ proteomic study from \gls{RNA} expression data.
-The paper $\lbrack$Barzine,
-Freivalds, Wright et al. ---~\cite{deepLearning2020}$\rbrack$
-that describes the method is currently under review.
-While our approach is not an imputation method,
+While our approach, described in $\lbrack$Barzine,
+Freivalds, Wright et al. ---~\cite{deepLearning2020}$\rbrack$,
+is not an imputation method,
 it can be used in complement or instead of one.\mybr\
 
 Beyond any predictive interest,
-\gls{go} annotation clues on biological insights and mechanisms
-or possible research avenues.\mybr\
-
-Previous studies have demonstrated similar results to
+\gls{go} annotation, through enrichment analyses for instance,
+can provide biological or mechanism insights
+and help the design of new research avenues.
+Previous studies have reported similar results to
 the highest correlated pairs of \mRNA/protein
 that are enriched with catabolic genes,
 and the most anticorrelated ones that are enriched for regulatory processes.\mybr\
@@ -2046,7 +2047,7 @@ Accepting the premise that,
 regardless of the tissue,
 a similar sequence of regulatory steps apply to a gene
 (from its transcription to possible post-translational modifications),
-taken together the above facts suggest me that
+taken together the above facts may suggest that
 the catabolic genes may have
 a more straightforward modulation of their expression than the other genes.
 In organic chemistry,
